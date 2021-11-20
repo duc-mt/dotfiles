@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/home/cyb3rl0v3r/Desktop/COMP1039/Assignment/petals-around-the-rose'
+let g:netrw_dirhist_3='/home/cyb3rl0v3r/.idlerc'
+let g:netrw_dirhist_2='/home/cyb3rl0v3r/.vim'
+let g:netrw_dirhist_1='/home/cyb3rl0v3r/.vscode'

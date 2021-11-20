@@ -1,0 +1,15 @@
+[submodule "pack/plugins/start/ctrlp"]
+	path = pack/plugins/start/ctrlp
+	url = https://github.com/kien/ctrlp.vim
+[submodule "nerdtree"]
+	path = nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "pack/plugins/start/ag.vim"]
+	path = pack/plugins/start/ag.vim
+	url = https://github.com/rking/ag.vim
+[submodule "pack/plugins/start/vim-rails"]
+	path = pack/plugins/start/vim-rails
+	url = https://github.com/tpope/vim-rails
+[submodule "pack/plugins/start/vim-rspec"]
+	path = pack/plugins/start/vim-rspec
+	url = https://github.com/thoughtbot/vim-rspec
