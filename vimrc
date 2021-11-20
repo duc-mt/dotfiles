@@ -46,7 +46,7 @@ nnoremap <C-L> <C-W><C-L>
 map <up> <nop>			" Map arrow keys nothing so I can get used to hjkl-style movement.
 map <down> <nop>
 map <left> <nop>
-map <right> <nop>
+map <right> <nop> 
 
 
 " User Interface Options
