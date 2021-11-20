@@ -23,7 +23,7 @@ set autoread            	" Automatically re-read files if unmodified inside Vim.
 
 set hidden              	" Manage multiple buffers effectively: the current buffer can be “sent” to the background without writing to disk. When a background buffer become current again, marks and undo-history are remembered. See chapter Buffers to understand this better.
 
-let mapleader = "\<Space>"	" Make Space the leader key.
+let mapleader = "\<Space>"	" Map the leader key to a spacebar.
 
 
 " Mapping / Shortcuts
@@ -36,10 +36,17 @@ nnoremap <Leader>qq :q!<Enter>	" Press {Leader q} instead of {:wq Enter} to save
 
 inoremap <C-A> <Esc>		" Press {Ctrl A} instead of {Esc} to exit Insert mode.
 
+nnoremap <Leader>n :NERDTreeToggle<Enter>	" Press {Leader n} to access NERDTree plugin. 
+
 nnoremap <C-H> <C-W><C-H>	" Fast split navigation with <Ctrl> + hjkl.
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
+
+map <up> <nop>			" Map arrow keys nothing so I can get used to hjkl-style movement.
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
 
 
 " User Interface Options
