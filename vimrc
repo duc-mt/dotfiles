@@ -30,7 +30,7 @@ let mapleader = "\<Space>"	" Make Space the leader key.
 
 nnoremap <Leader>w :w<Enter>	" Press {Leader w} instead of {:w Enter} to save file - Normal mode.
 
-nnoremap <Leader>q :wq<Enter>	" Press {Leader q} instead of {:wq Enter} to save and exit file - Normal mode.
+nnoremap <Leader>wq :wq<Enter>	" Press {Leader wq} instead of {:wq Enter} to save and exit file - Normal mode.
 
 nnoremap <Leader>qq :q!<Enter>	" Press {Leader q} instead of {:wq Enter} to save and exit file - Normal mode.
 
