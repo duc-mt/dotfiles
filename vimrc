@@ -28,7 +28,7 @@ let mapleader = "\<Space>"	" Make Space the leader key.
 
 " Mapping / Shortcuts
 
-nnoremap <Leader>w :w<Enter>	" Press {Leader w} instead of {:w Enter} to save file - Normal mode.
+nnoremap <Leader>ww :w<Enter>	" Press {Leader w} instead of {:w Enter} to save file - Normal mode.
 
 nnoremap <Leader>wq :wq<Enter>	" Press {Leader wq} instead of {:wq Enter} to save and exit file - Normal mode.
 
