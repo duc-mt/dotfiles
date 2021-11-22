@@ -38,6 +38,8 @@ inoremap <C-A> <Esc>		" Press {Ctrl A} instead of {Esc} to exit Insert mode.
 
 nnoremap <Leader>n :NERDTreeToggle<Enter>	" Press {Leader n} to access NERDTree plugin. 
 
+nnoremap za zA              " Press {za} to open / close all folding levels - Normal mode.
+
 nnoremap <C-H> <C-W><C-H>	" Fast split navigation with <Ctrl> + hjkl.
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
