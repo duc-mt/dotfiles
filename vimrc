@@ -46,7 +46,7 @@ nnoremap <C-L> <C-W><C-L>
 map <up> <nop>			" Map arrow keys nothing so I can get used to hjkl-style movement.
 map <down> <nop>
 map <left> <nop>
-map <right> <nop> 
+map <right> <nop>
 
 
 " User Interface Options
@@ -128,6 +128,8 @@ set sidescrolloff=5     	" The number of screen columns to keep to the left and 
 syntax enable           	" Enable syntax highlighting.
 
 autocmd FileType text setlocal textwidth=79	" For all buffers of file type text, set locally the variable textwidth to 79.
+
+set foldmethod=indent		" Folding code based on indentation.
 
 
 " Miscellaneous Options
