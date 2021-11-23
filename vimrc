@@ -34,18 +34,32 @@ nnoremap <Leader>wq :wq<Enter>	" Press {Leader wq} instead of {:wq Enter} to sav
 
 nnoremap <Leader>qq :q!<Enter>	" Press {Leader q} instead of {:wq Enter} to save and exit file - Normal mode.
 
-inoremap <C-A> <Esc>		" Press {Ctrl A} instead of {Esc} to exit Insert mode.
+inoremap <C-C> <Esc>		" Press {Ctrl C} instead of {Esc} to exit Insert mode.
 
 nnoremap <Leader>n :NERDTreeToggle<Enter>	" Press {Leader n} to access NERDTree plugin. 
 
+" Foldings shortcuts
 nnoremap za zA              " Press {za} to open / close all folding levels - Normal mode.
+nnoremap zo zR              " Press {zc} to open every fold - Normal mode.
+nnoremap zc zM              " Press {zc} to close every fold - Normal mode.
 
-nnoremap <C-H> <C-W><C-H>	" Fast split navigation with <Ctrl> + hjkl.
+" Press {Ctrs Z} to open terminal vertically on the right.
+nnoremap <C-Z> :below vert ter<Cr>
+
+" Fast split navigation with <Ctrl> + hjkl - Normal mode
+nnoremap <C-H> <C-W><C-H>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 
-map <up> <nop>			" Map arrow keys nothing so I can get used to hjkl-style movement.
+" Fast split navigation with <Ctrl> + hjkl - Terminal mode.
+tnoremap <C-H> <C-W><C-H>
+tnoremap <C-J> <C-W><C-J>
+tnoremap <C-K> <C-W><C-K>
+tnoremap <C-L> <C-W><C-L>
+
+" Map arrow keys nothing so I can get used to hjkl-style movement.
+map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
