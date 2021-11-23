@@ -34,7 +34,7 @@ nnoremap <Leader>wq :wq<Enter>	" Press {Leader wq} instead of {:wq Enter} to sav
 
 nnoremap <Leader>qq :q!<Enter>	" Press {Leader q} instead of {:wq Enter} to save and exit file - Normal mode.
 
-inoremap <C-C> <Esc>		" Press {Ctrl C} instead of {Esc} to exit Insert mode.
+inoremap <C-A> <Esc>		    " Press {Ctrl a} instead of {Esc} to exit Insert mode.
 
 nnoremap <Leader>n :NERDTreeToggle<Enter>	" Press {Leader n} to access NERDTree plugin. 
 
