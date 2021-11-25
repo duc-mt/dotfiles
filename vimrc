@@ -8,12 +8,12 @@ silent! helptags ALL		" Load help for all plugins.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General configuration options:
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use Vim settings, rather then Vi settings. It’s important to have this 
+" Use Vim settings, rather then Vi settings. It’s important to have this
 " on the top of your file, as it influences other options.
-set nocompatible 	
+set nocompatible
 
 " Allow backspacing over indention, line breaks and insertion start.
-set backspace=indent,eol,start 	
+set backspace=indent,eol,start
 
 set history=1000        	" Set bigger history of executed commands.
 
@@ -22,13 +22,13 @@ set showcmd             	" Show incomplete commands at the bottom.
 set showmode            	" Show current mode at the bottom.
 
 " Automatically re-read files if unmodified inside Vim.
-set autoread            	
+set autoread
 
-" Manage multiple buffers effectively: the current buffer can be “sent” to 
-" the background without writing to disk. When a background buffer become 
-" current again, marks and undo-history are remembered. 
+" Manage multiple buffers effectively: the current buffer can be “sent” to
+" the background without writing to disk. When a background buffer become
+" current again, marks and undo-history are remembered.
 " See chapter Buffers to understand this better.
-set hidden              	
+set hidden
 
 let mapleader = "\<Space>"	" Map the leader key to a spacebar.
 
@@ -46,7 +46,16 @@ inoremap <C-A> <Esc>		    " Press {Ctrl a} instead of {Esc}.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NERDTree
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <Leader>n :NERDTreeToggle<Enter>	" Press {Leader n} to access NERDTree plugin. 
+" Press {Leader n} to access NERDTree plugin.
+nnoremap <Leader>n :NERDTreeToggle<Enter>
+
+let NERDTreeShowBookmarks = 1   " Display bookmarks on startup.
+
+autocmd VimEnter * NERDTree     " Enable NERDTree on Vim startup.
+
+" Autoclose NERDTree if it's the only open window left.
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
+\ b:NERDTree.isTabTree()) | q | endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Foldings shortcuts
@@ -61,7 +70,7 @@ nnoremap zc zM              " Press {zc} to close every fold.
 nnoremap <C-Z> :below vert ter<Cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Fast split navigation with <Ctrl> + hjkl 
+" => Fast split navigation with <Ctrl> + hjkl
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 1. Normal mode
 nnoremap <C-H> <C-W><C-H>
@@ -109,10 +118,10 @@ set laststatus=2        	" Always display the status bar.
 set ruler               	" Always show cursor position.
 
 " Display command line’s tab complete options as a menu.
-set wildmenu            	
+set wildmenu
 
 " Maximum number of tab pages that can be opened from the command line.
-set tabpagemax=40       	
+set tabpagemax=40
 
 set cursorline          	" Highlight the line currently under cursor.
 
@@ -123,7 +132,7 @@ set visualbell          	" Flash the screen instead of beeping on errors.
 set mouse=a             	" Enable mouse for scrolling and resizing.
 
 " Set the window’s title, reflecting the file currently being edited.
-set title               	
+set title
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colorscheme options
@@ -136,13 +145,13 @@ colorscheme gruvbox      	" Change colorscheme.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set number              	" Show line numbers on the sidebar.
 
-" Show line number on the current line and relative numbers on other lines. 
+" Show line number on the current line and relative numbers on other lines.
 " Works only if the option above ( number ) is enabled.
 set relativenumber
 
 " Enable relative numbers only in Normal mode
 " and absolute numbers only in Insert mode.
-augroup toggle_relative_number	
+augroup toggle_relative_number
 
 autocmd InsertEnter * :setlocal norelativenumber
 
