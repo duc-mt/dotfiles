@@ -1,17 +1,19 @@
-" From Mastering VIM Quickly (Chapter 7 - Personalizing VIM)
-
-
-" Load the documentation for all the plugins:
-
-packloadall			" Load all plugins.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Load the documentation for all the plugins:
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+packloadall			        " Load all plugins.
 silent! helptags ALL		" Load help for all plugins.
 
 
-" General configuration options:
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General configuration options:
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use Vim settings, rather then Vi settings. It’s important to have this 
+" on the top of your file, as it influences other options.
+set nocompatible 	
 
-set nocompatible 		" Use Vim settings, rather then Vi settings. It’s important to have this on the top of your file, as it influences other options.
-
-set backspace=indent,eol,start 	" Allow backspacing over indention, line breaks and insertion start.
+" Allow backspacing over indention, line breaks and insertion start.
+set backspace=indent,eol,start 	
 
 set history=1000        	" Set bigger history of executed commands.
 
@@ -19,75 +21,100 @@ set showcmd             	" Show incomplete commands at the bottom.
 
 set showmode            	" Show current mode at the bottom.
 
-set autoread            	" Automatically re-read files if unmodified inside Vim.
+" Automatically re-read files if unmodified inside Vim.
+set autoread            	
 
-set hidden              	" Manage multiple buffers effectively: the current buffer can be “sent” to the background without writing to disk. When a background buffer become current again, marks and undo-history are remembered. See chapter Buffers to understand this better.
+" Manage multiple buffers effectively: the current buffer can be “sent” to 
+" the background without writing to disk. When a background buffer become 
+" current again, marks and undo-history are remembered. 
+" See chapter Buffers to understand this better.
+set hidden              	
 
 let mapleader = "\<Space>"	" Map the leader key to a spacebar.
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Save/quit Shortcuts
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <Leader>ww :w<Enter>	" Press {Leader w} instead of {:w Enter}.
 
-" Mapping / Shortcuts
+nnoremap <Leader>wq :wq<Enter>	" Press {Leader wq} instead of {:wq Enter}.
 
-nnoremap <Leader>ww :w<Enter>	" Press {Leader w} instead of {:w Enter} to save file - Normal mode.
+nnoremap <Leader>qq :q!<Enter>	" Press {Leader q} instead of {:wq Enter}.
 
-nnoremap <Leader>wq :wq<Enter>	" Press {Leader wq} instead of {:wq Enter} to save and exit file - Normal mode.
+inoremap <C-A> <Esc>		    " Press {Ctrl a} instead of {Esc}.
 
-nnoremap <Leader>qq :q!<Enter>	" Press {Leader q} instead of {:wq Enter} to save and exit file - Normal mode.
-
-inoremap <C-A> <Esc>		    " Press {Ctrl a} instead of {Esc} to exit Insert mode.
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => NERDTree
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <Leader>n :NERDTreeToggle<Enter>	" Press {Leader n} to access NERDTree plugin. 
 
-" Foldings shortcuts
-nnoremap za zA              " Press {za} to open / close all folding levels - Normal mode.
-nnoremap zo zR              " Press {zc} to open every fold - Normal mode.
-nnoremap zc zM              " Press {zc} to close every fold - Normal mode.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Foldings shortcuts
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap za zA              " Press {za} to open / close all folding levels.
+nnoremap zo zR              " Press {zc} to open every fold.
+nnoremap zc zM              " Press {zc} to close every fold.
 
-" Press {Ctrs Z} to open terminal vertically on the right.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Press {Ctrl Z} to open terminal vertically on the right.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <C-Z> :below vert ter<Cr>
 
-" Fast split navigation with <Ctrl> + hjkl - Normal mode
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Fast split navigation with <Ctrl> + hjkl 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 1. Normal mode
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
-
-" Fast split navigation with <Ctrl> + hjkl - Terminal mode.
+" 2. Terminal mode.
 tnoremap <C-H> <C-W><C-H>
 tnoremap <C-J> <C-W><C-J>
 tnoremap <C-K> <C-W><C-K>
 tnoremap <C-L> <C-W><C-L>
 
-" Map arrow keys nothing so I can get used to hjkl-style movement.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Move the current window to the corresponding position.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 1. Normal mode
+nnoremap <C-W>h <C-W>H
+nnoremap <C-W>j <C-W>J
+nnoremap <C-W>k <C-W>K
+nnoremap <C-W>l <C-W>L
+" 2. Terminal mode
+tnoremap <C-W>h <C-W>H
+tnoremap <C-W>j <C-W>J
+tnoremap <C-W>k <C-W>K
+tnoremap <C-W>l <C-W>L
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Map arrow keys nothing so I can get used to hjkl-style movement.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
+" Insert mode
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
 
-
-" User Interface Options
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => User Interface Options:
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set laststatus=2        	" Always display the status bar.
 
 set ruler               	" Always show cursor position.
 
-set wildmenu            	" Display command line’s tab complete options as a menu.
+" Display command line’s tab complete options as a menu.
+set wildmenu            	
 
-set tabpagemax=40       	" Maximum number of tab pages that can be opened from the command line.
-
-set background=light     	" Use colors that suit a dark background.
-
-colorscheme gruvbox      	" Change color scheme.
+" Maximum number of tab pages that can be opened from the command line.
+set tabpagemax=40       	
 
 set cursorline          	" Highlight the line currently under cursor.
-
-set number              	" Show line numbers on the sidebar.
-
-set relativenumber      	" Show line number on the current line and relative numbers on all other lines. Works only if the option above ( number ) is enabled.
-
-augroup toggle_relative_number	" Enable relative numbers only in Normal mode, and absolute numbers only in Insert mode.
-autocmd InsertEnter * :setlocal norelativenumber
-autocmd InsertLeave * :setlocal relativenumber
 
 set noerrorbells        	" Disable beep on errors.
 
@@ -95,20 +122,50 @@ set visualbell          	" Flash the screen instead of beeping on errors.
 
 set mouse=a             	" Enable mouse for scrolling and resizing.
 
-set title               	" Set the window’s title, reflecting the file currently being edited.
+" Set the window’s title, reflecting the file currently being edited.
+set title               	
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Colorscheme options
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set background=light     	" Use colors that suit a dark background.
+colorscheme gruvbox      	" Change colorscheme.
 
-" Swap and backup file options - disable all of them:
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => (Relative) Number Options:
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set number              	" Show line numbers on the sidebar.
 
+" Show line number on the current line and relative numbers on other lines. 
+" Works only if the option above ( number ) is enabled.
+set relativenumber
+
+" Enable relative numbers only in Normal mode
+" and absolute numbers only in Insert mode.
+augroup toggle_relative_number	
+
+autocmd InsertEnter * :setlocal norelativenumber
+
+autocmd InsertLeave * :setlocal relativenumber
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Swap and backup file options - disable all of them:
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set noswapfile
 
 set nobackup
 
 set nowb
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Auto remove trailing whitespace after saving.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+match ErrorMsg '\s\+$'              " highlight trailing whitespace.
+autocmd BufWritePre * :%s/\s\+$//e  " auto remove trailing whitespaces.
 
-" Indentation options:
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Indentation options:
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set autoindent         		" New lines inherit the indentation of previous lines.
 
 filetype plugin indent on   " Smart auto indentation (instead of old smartindent option).
@@ -121,18 +178,18 @@ set expandtab           	" On pressing tab, insert 4 spaces.
 
 set wrap              		" Wrap lines.
 
-
-" Search options:
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Search options:
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set incsearch           	" Find the next match as we type the search.
 
 set hlsearch            	" Highlight searches by default.
 
 set smartcase           	" . . . unless you type a capital.
 
-
-" Text rendering options
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Text rendering options
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set encoding=utf-8      	" Use an encoding that supports Unicode.
 
 set linebreak           	" Wrap lines at convenient points, avoid wrapping a line in the middle of a word.
@@ -148,8 +205,9 @@ autocmd FileType text setlocal textwidth=79	" For all buffers of file type text,
 set foldmethod=indent		" Folding code based on indentation.
 
 
-" Miscellaneous Options
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Miscellaneous Options
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set confirm             	" Display a confirmation dialog when closing an unsaved file.
 
 set nomodeline          	" Ignore file’s mode lines; use vimrc configurations instead.
@@ -161,8 +219,9 @@ set shell               	" The shell used to execute commands.
 set spell               	" Enable spellchecking.
 
 
-" Status line
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Status line
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set statusline=%t		" tail of the filename
 
 set statusline+=%{&ff}		" file format
