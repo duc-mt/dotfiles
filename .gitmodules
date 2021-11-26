@@ -16,9 +16,6 @@
 [submodule "pack/plugins/start/gruvbox"]
 	path = pack/plugins/start/gruvbox
 	url = https://github.com/morhetz/gruvbox.git
-[submodule "pack/plugins/start/vim-unimpaired"]
-	path = pack/plugins/start/vim-unimpaired
-	url = https://github.com/tpope/vim-unimpaired.git
 [submodule "pack/plugins/start/vim-commentary"]
 	path = pack/plugins/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
@@ -31,3 +28,6 @@
 [submodule "pack/plugins/start/vim-better-whitespace"]
 	path = pack/plugins/start/vim-better-whitespace
 	url = https://github.com/ntpeters/vim-better-whitespace.git
+[submodule "pack/plugins/start/vim-unimpaired"]
+	path = pack/plugins/start/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
