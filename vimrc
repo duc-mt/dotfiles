@@ -194,6 +194,29 @@ let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', 
 " Enhanced longest match support.
 let g:SuperTabLongestEnhanced = 1
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vim-better-whitespace
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable highlighting and stripping whitespace on save by default.
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
+
+" Display the highlighting for the current line in normal mode:
+let g:current_line_whitespace_disabled_soft=1
+
+" Strip all trailing whitespace everytime I save the file for all file types.
+let g:strip_whitespace_on_save = 1
+
+" Disable confirmation before whitespace is stripped when I save the file.
+let g:strip_whitespace_confirm=0
+
+" Strip white lines at the end of the file when stripping whitespace.
+let g:strip_whitelines_at_eof=1
+
+" Ignore lines that contain only whitespace.
+let g:better_whitespace_skip_empty_lines=1
+
 " }}}
 
 
@@ -421,15 +444,15 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Detect trailing whitespace.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
-" set list
+exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+set list
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Auto remove trailing whitespace after saving.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-match ErrorMsg '\s\+$'              " highlight trailing whitespace
-autocmd BufWritePre * :%s/\s\+$//e  " auto remove trailing whitespaces
+" match ErrorMsg '\s\+$'              " highlight trailing whitespace
+" autocmd BufWritePre * :%s/\s\+$//e  " auto remove trailing whitespace
 
 " }}}
 
@@ -452,4 +475,3 @@ set statusline+=\ ascii:\ %b\ hex:\ 0x%B\ row:\ %l\ col:\ %c\ percent:\ %p%%
 set laststatus=2
 
 " }}}
-
