@@ -25,6 +25,11 @@ $ cd ~/.vim
 $ git init
 ```
 
+Clone .vim:
+```bash
+git clone --recursive git://github.com/henry-the-vietnamese/vim.git ~/.vim
+```
+
 Add a plugin as a submodule:
 ```bash
 $ git submodule add https://github.com/scrooloose/nerdtree.git pack/plugins/start/nerdtree
@@ -34,12 +39,14 @@ $ git commit -am "Add NERDTree plugin"
 Now, every time you want to update your plugins, you can run the following:
 ```bash
 $ git submodule update --recursive
-$ git commit -am "Update plugins"
+$ git commit -m "Update plugins"
 ```
 
 To delete a plugin, remove the submodule with the following steps:
 ```bash
-$ git submodule deinit -f -- pack/plugins/start/nerdtree
+$ git submodule deinit pack/plugins/start/nerdtree
+$ git commit -m "Remove NERDTree plugin'
 $ rm -rf .git/modules/pack/plugins/start/nerdtree
 $ git rm -f pack/plugins/start/nerdtree
 ```
+
