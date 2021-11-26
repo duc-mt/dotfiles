@@ -1,13 +1,24 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"               ██╗   ██╗██╗███╗   ███╗██████╗  ██████╗
+"               ██║   ██║██║████╗ ████║██╔══██╗██╔════╝
+"               ██║   ██║██║██╔████╔██║██████╔╝██║
+"               ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
+"                ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
+"                 ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load the documentation for all the plugins:
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 packloadall			        " Load all plugins.
 silent! helptags ALL		" Load help for all plugins.
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General configuration options:
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" GENRAL CONFIGURATION OPTIONS ------------------------------------------- {{{
+
 " Use Vim settings, rather then Vi settings. It’s important to have this
 " on the top of your file, as it influences other options.
 set nocompatible
@@ -34,106 +45,15 @@ let mapleader = "\<Space>"	" Map the leader key to a spacebar.
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Save/quit Shortcuts
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <Leader>ww :w<Enter>	" Press {Leader w} instead of {:w Enter}.
-
-nnoremap <Leader>wq :wq<Enter>	" Press {Leader wq} instead of {:wq Enter}.
-
-nnoremap <Leader>qq :q!<Enter>	" Press {Leader q} instead of {:wq Enter}.
-
-inoremap <C-A> <Esc>		    " Press {Ctrl a} instead of {Esc}.
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => NERDTree
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Press {Leader n} to access NERDTree plugin.
-nnoremap <Leader>n :NERDTreeToggle<Enter>
-
-let NERDTreeShowBookmarks = 1       " Display bookmarks on startup.
-
-" autocmd VimEnter * NERDTree       " Enable NERDTree on Vim startup.
-
-" Autoclose NERDTree if it's the only open window left.
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
-\ b:NERDTree.isTabTree()) | q | endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vim-commentary
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Foldings shortcuts
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set foldmethod=indent		" Folding code based on indentation.
-
-nnoremap za zA              " Press {za} to open/close all folding levels.
-nnoremap zo zR              " Press {zc} to open every fold.
-nnoremap zc zM              " Press {zc} to close every fold.
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Press {Ctrl Z} to open terminal vertically on the right.
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <C-Z> :below vert ter<Cr>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Fast split navigation with <Ctrl> + hjkl
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 1. Normal mode
-nnoremap <C-H> <C-W><C-H>
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-" 2. Terminal mode.
-tnoremap <C-H> <C-W><C-H>
-tnoremap <C-J> <C-W><C-J>
-tnoremap <C-K> <C-W><C-K>
-tnoremap <C-L> <C-W><C-L>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Move the current window to the corresponding position.
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 1. Normal mode
-nnoremap <C-W>h <C-W>H
-nnoremap <C-W>j <C-W>J
-nnoremap <C-W>k <C-W>K
-nnoremap <C-W>l <C-W>L
-" 2. Terminal mode
-tnoremap <C-W>h <C-W>H
-tnoremap <C-W>j <C-W>J
-tnoremap <C-W>k <C-W>K
-tnoremap <C-W>l <C-W>L
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Map arrow keys nothing so I can get used to hjkl-style movement.
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-" Insert mode
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => User Interface Options:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set laststatus=2        	" Always display the status bar.
 
 set ruler               	" Always show cursor position.
 
-" Display command line’s tab complete options as a menu.
-set wildmenu
+set wildmenu                " Enable auto completion menu after pressing TAB.
+
+set wildmode=list:longest   " Make wildmenu behave akin to Bash completion.
 
 " Maximum number of tab pages that can be opened from the command line.
 set tabpagemax=40
@@ -153,7 +73,7 @@ set title
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colorscheme options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set background=light     	" Use colors that suit a dark background.
+set background=light     	" Use colors that suit a light background.
 colorscheme gruvbox      	" Change colorscheme.
 
 
@@ -166,12 +86,6 @@ set number              	" Show line numbers on the sidebar.
 " Works only if the option above ( number ) is enabled.
 set relativenumber
 
-" Enable relative numbers only in Normal mode
-" and absolute numbers only in Insert mode.
-augroup toggle_relative_number
-autocmd InsertEnter * :setlocal norelativenumber
-autocmd InsertLeave * :setlocal relativenumber
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Swap and backup file options - disable all of them:
@@ -182,38 +96,293 @@ set nowb
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Detect trailing whitespace.
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
-set list
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Auto remove trailing whitespace after saving.
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-match ErrorMsg '\s\+$'              " highlight trailing whitespace.
-autocmd BufWritePre * :%s/\s\+$//e  " auto remove trailing whitespaces.
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Indentation options:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set autoindent         		" New lines inherit the indentation of previous lines.
 
-filetype plugin indent on   " Smart auto indentation (instead of old smartindent option).
+" Enable type file detection. Vim will be able to try to detect the type of file in use.
+filetype on
+
+" Enable plugins and load plugin for the detected file type.
+filetype plugin on
+
+" Load an indent file for the detected file type.
+filetype indent on
 
 set tabstop=4           	" Show existing tab with 4 spaces width.
 
-set shiftwidth=4        	" When indenting with ‘>’, use 2 spaces width.
+set shiftwidth=4        	" When indenting with ‘>’, use 4 spaces width.
 
-set expandtab           	" On pressing tab, insert 4 spaces.
+set expandtab           	" Use space characters instead of tabs.
 
 set wrap              		" Wrap lines.
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Hightlight matches when jumping to next:
+" => Search options:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set incsearch           	" Find the next match as we type the search.
+
+set hlsearch            	" Highlight searches by default.
+
+set smartcase           	" . . . unless you type a capital.
+
+set showmatch               " Show matching words during a search.
+
+" set ignorecase            " Ignore capital letters during search.
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Text rendering options
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set encoding=utf-8      	" Use an encoding that supports Unicode.
+
+set linebreak           	" Wrap lines at convenient points, avoid wrapping a line in the middle of a word.
+
+set scrolloff=3         	" The number of screen lines to keep above and below the cursor.
+
+set sidescrolloff=5     	" The number of screen columns to keep to the left and right of the cursor.
+
+syntax on           	    " Enable syntax highlighting.
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Miscellaneous Options:
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set confirm             	" Display a confirmation dialog when closing an unsaved file.
+
+set nomodeline          	" Ignore file’s mode lines; use vimrc configurations instead.
+
+set nrformats-=octal    	" Interpret octal as decimal when incrementing numbers.
+
+set shell               	" The shell used to execute commands.
+
+set spell               	" Enable spellchecking.
+
+" }}}
+
+
+" PLUGINS ---------------------------------------------------------------- {{{
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => NERDTree
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Press {Leader n} to access NERDTree plugin.
+nnoremap <Leader>n :NERDTreeToggle<Enter>
+
+let NERDTreeShowBookmarks = 1       " Display bookmarks on startup.
+
+" autocmd VimEnter * NERDTree       " Enable NERDTree on Vim startup.
+
+" Autoclose NERDTree if it's the only open window left.
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
+\ b:NERDTree.isTabTree()) | q | endif
+
+" Have nerdtree ignore certain files and directories.
+let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$']
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vim-commentary
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" }}}
+
+
+" MAPPINGS --------------------------------------------------------------- {{{
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Save/quit
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <Leader>ww :w<Enter>	" Press {Leader w} instead of {:w Enter}.
+
+nnoremap <Leader>wq :wq<Enter>	" Press {Leader wq} instead of {:wq Enter}.
+
+nnoremap <Leader>qq :q!<Enter>	" Press {Leader q} instead of {:wq Enter}.
+
+inoremap <C-A> <Esc>		    " Press {Ctrl a} instead of {Esc}.
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Foldings shortcuts
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set foldmethod=indent		" Folding code based on indentation.
+
+nnoremap za zA              " Press {za} to open/close all folding levels.
+nnoremap zo zR              " Press {zc} to open every fold.
+nnoremap zc zM              " Press {zc} to close every fold.
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Toggle search highlighting by hitting <Space><Esc>.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <silent> <leader><Esc> :set hls!<cr>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Pressing the letter o will open a new line below the current one.
+" Exit insert mode after creating a new line above or below the current line.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap o o<esc>
+nnoremap O O<esc>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Press ; to type the : character in command mode.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap ; :
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Press {Ctrl Z} to open terminal vertically on the right.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <C-Z> :below vert ter<Cr>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Fast split navigation with <Ctrl> + hjkl
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 1. Normal mode
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+" 2. Terminal mode.
+tnoremap <C-H> <C-W><C-H>
+tnoremap <C-J> <C-W><C-J>
+tnoremap <C-K> <C-W><C-K>
+tnoremap <C-L> <C-W><C-L>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Resize split windows using arrow keys by pressing:
+" CTRL+UP, CTRL+DOWN, CTRL+LEFT, or CTRL+RIGHT.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 1. Normal mode
+nnoremap <c-up> <c-w>+
+nnoremap <c-down> <c-w>-
+nnoremap <c-left> <c-w>>
+nnoremap <c-right> <c-w><
+" 2. Terminal mode
+tnoremap <c-up> <c-w>+
+tnoremap <c-down> <c-w>-
+tnoremap <c-left> <c-w>>
+tnoremap <c-right> <c-w><
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Move the current window to the corresponding position.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 1. Normal mode
+nnoremap <C-W>h <C-W>H
+nnoremap <C-W>j <C-W>J
+nnoremap <C-W>k <C-W>K
+nnoremap <C-W>l <C-W>L
+" 2. Terminal mode
+tnoremap <C-W>h <C-W>H
+tnoremap <C-W>j <C-W>J
+tnoremap <C-W>k <C-W>K
+tnoremap <C-W>l <C-W>L
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Map arrow keys nothing so I can get used to hjkl-style movement.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+" Insert mode
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Map the F5 key to run a Python script inside Vim.
+" I map F5 to a chain of commands here.
+" :w saves the file.
+" <CR> (carriage return) is like pressing the enter key.
+" !clear runs the external clear screen command.
+" !python3 % executes the current file with Python.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <f5> :w <CR>:!clear <CR>:!python3 % <CR>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Press <Space>p to print the current file to the default printer
+"    from a Linux operating system.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" View available printers:   lpstat -v
+" Set default printer:       lpoptions -d <printer_name>
+" <silent> means do not display output.
+" nnoremap <silent> <leader>p :%w !lp<CR>
+
+" }}}
+
+
+" VIMSCRIPT -------------------------------------------------------------- {{{
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Toggle background colour for VIM
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" :BG in the command mode to do this.
+if exists("*ToggleBackground") == 0
+	function ToggleBackground()
+		if &background == "dark"
+			set background=light
+		else
+			set background=dark
+		endif
+	endfunction
+	command BG call ToggleBackground()
+endif
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Enable relative numbers in Normal mode; absolute numbers in Insert mode.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup toggle_relative_number
+autocmd InsertEnter * :setlocal norelativenumber
+autocmd InsertLeave * :setlocal relativenumber
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable the marker method of folding.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup END
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => If the current file type is HTML, set indentation to 2 spaces.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd Filetype html setlocal tabstop=2 shiftwidth=2 expandtab
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => If Vim version is equal to or greater than 7.3 enable undofile.
+"    This allows you to undo changes to a file even after saving it.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if version >= 703
+    set undodir=~/.vim/backup
+    set undofile
+    set undoreload=10000
+endif
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Make the 80th column stand out (PEP 8 Style Guide for Python Code)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%80v', 100)
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Hightlight matches when jumping to next:
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> n     n:call HLNext(0.4)<cr>
 nnoremap <silent> N     N:call HLNext(0.4)<cr>
 
@@ -241,69 +410,38 @@ endfunction
 " endfunction
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Search options:
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set incsearch           	" Find the next match as we type the search.
-
-set hlsearch            	" Highlight searches by default.
-
-set smartcase           	" . . . unless you type a capital.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Detect trailing whitespace.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+" set list
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Text rendering options
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set encoding=utf-8      	" Use an encoding that supports Unicode.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Auto remove trailing whitespace after saving.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+match ErrorMsg '\s\+$'              " highlight trailing whitespace
+autocmd BufWritePre * :%s/\s\+$//e  " auto remove trailing whitespaces
 
-set linebreak           	" Wrap lines at convenient points, avoid wrapping a line in the middle of a word.
-
-set scrolloff=3         	" The number of screen lines to keep above and below the cursor.
-
-set sidescrolloff=5     	" The number of screen columns to keep to the left and right of the cursor.
-
-syntax enable           	" Enable syntax highlighting.
+" }}}
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Make the 80th column stand out (PEP 8 Style Guide for Python Code)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-highlight ColorColumn ctermbg=magenta
-call matchadd('ColorColumn', '\%80v', 100)
+" STATUS LINE ------------------------------------------------------------ {{{
 
+" Clear status line when vimrc is reloaded.
+set statusline=
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Miscellaneous Options:
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set confirm             	" Display a confirmation dialog when closing an unsaved file.
+" Status line left side.
+set statusline+=\ %F\ %M\ %Y\ %R
 
-set nomodeline          	" Ignore file’s mode lines; use vimrc configurations instead.
+" Use a divider to separate the left side from the right side.
+set statusline+=%=
 
-set nrformats-=octal    	" Interpret octal as decimal when incrementing numbers.
+" Status line right side.
+set statusline+=\ ascii:\ %b\ hex:\ 0x%B\ row:\ %l\ col:\ %c\ percent:\ %p%%
 
-set shell               	" The shell used to execute commands.
+" Show the status on the second to last line.
+set laststatus=2
 
-set spell               	" Enable spellchecking.
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Status line
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set statusline=%t		" tail of the filename
-
-set statusline+=%{&ff}		" file format
-
-set statusline+=%h		" help file flag
-
-set statusline+=%m		" modified flag
-
-set statusline+=%r		" read only flag
-
-set statusline+=%y		" filetype
-
-set statusline+=%c,		" cursor column
-
-set statusline+=%l/%L		" cursor line/total lines
-
-set statusline+=\ %P		" percent through file
+" }}}
 
