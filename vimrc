@@ -63,7 +63,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-commentary
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <Leader>c gc       " Press gc to start commenting/uncommenting.
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Foldings shortcuts
