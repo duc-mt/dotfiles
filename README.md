@@ -33,7 +33,7 @@ git clone --recursive git://github.com/henry-the-vietnamese/vim.git ~/.vim
 Add a plugin as a submodule:
 ```bash
 $ git submodule add https://github.com/scrooloose/nerdtree.git pack/plugins/start/nerdtree
-$ git commit -am "Add NERDTree plugin"
+$ git commit -m "Add NERDTree plugin"
 ```
 
 Now, every time you want to update your plugins, you can run the following:
@@ -44,9 +44,18 @@ $ git commit -m "Update plugins"
 
 To delete a plugin, remove the submodule with the following steps:
 ```bash
-$ git submodule deinit pack/plugins/start/nerdtree
-$ git commit -m "Remove NERDTree plugin'
-$ rm -rf .git/modules/pack/plugins/start/nerdtree
-$ git rm -f pack/plugins/start/nerdtree
+$ git submodule deinit rails.vim/
+$ rm -rf .git/rails.vim
+$ git rm -r rails.vim/
+" Now the rails.vim/ folder is left with rails.vim/doc/tags
+$ cd doc/tags
+$ rm tags
+$ cd ..
+$ rmdir doc/
+$ cd ..
+$ rmdir rails.vim/
+" Now the complete rails.vim plugin is deleted.
+$ git commit -m "Delete rails.vim plugin"
+$ git push
 ```
 
