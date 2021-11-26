@@ -13,7 +13,7 @@ In addition, you'll want to add the following two lines to your .vimrc file to l
 documentation for all the plugins:
 ```bash
 packloadall           " Load all plugins."
-silent! helptags ALL  " Load help for all plugins.
+silent! helptags ALL  " Load help for all plugins."
 ```
 
 You can manage your plugins yourself (with some overhead) by using Git submodules to
@@ -33,13 +33,13 @@ git clone --recursive git://github.com/henry-the-vietnamese/vim.git ~/.vim
 Add a plugin as a submodule:
 ```bash
 $ git submodule add https://github.com/scrooloose/nerdtree.git pack/plugins/start/nerdtree
-$ git commit -m "Add NERDTree plugin"
+$ git commit -m "Add NERDTree plugin."
 ```
 
 Now, every time you want to update your plugins, you can run the following:
 ```bash
 $ git submodule update --recursive
-$ git commit -m "Update plugins"
+$ git commit -m "Update plugins."
 ```
 
 To delete a plugin, remove the submodule with the following steps:
@@ -47,15 +47,15 @@ To delete a plugin, remove the submodule with the following steps:
 $ git submodule deinit rails.vim/
 $ rm -rf .git/rails.vim
 $ git rm -r rails.vim/
-" Now the rails.vim/ folder is left with rails.vim/doc/tags
+" Now the rails.vim/ folder is left with rails.vim/doc/tags"
 $ cd doc/tags
 $ rm tags
 $ cd ..
 $ rmdir doc/
 $ cd ..
 $ rmdir rails.vim/
-" Now the complete rails.vim plugin is deleted.
-$ git commit -m "Delete rails.vim plugin"
+" Now the complete rails.vim plugin is deleted."
+$ git commit -m "Delete rails.vim plugin."
 $ git push
 ```
 
