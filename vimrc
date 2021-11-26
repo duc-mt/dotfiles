@@ -178,8 +178,9 @@ let NERDTreeShowBookmarks = 1       " Display bookmarks on startup.
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
 \ b:NERDTree.isTabTree()) | q | endif
 
-" Have nerdtree ignore certain files and directories.
-let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$']
+" Have nerdtree show hidden files, but ignore certain files and directories.
+let NERDTreeShowHidden=1
+let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$', '\.DS_Store$', '\~$$', '\.swp$', 'node_modules$', 'venv$']
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
