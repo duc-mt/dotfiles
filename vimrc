@@ -51,9 +51,9 @@ inoremap <C-A> <Esc>		    " Press {Ctrl a} instead of {Esc}.
 " Press {Leader n} to access NERDTree plugin.
 nnoremap <Leader>n :NERDTreeToggle<Enter>
 
-let NERDTreeShowBookmarks = 1   " Display bookmarks on startup.
+let NERDTreeShowBookmarks = 1       " Display bookmarks on startup.
 
-autocmd VimEnter * NERDTree     " Enable NERDTree on Vim startup.
+" autocmd VimEnter * NERDTree       " Enable NERDTree on Vim startup.
 
 " Autoclose NERDTree if it's the only open window left.
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
@@ -167,9 +167,7 @@ set relativenumber
 " Enable relative numbers only in Normal mode
 " and absolute numbers only in Insert mode.
 augroup toggle_relative_number
-
 autocmd InsertEnter * :setlocal norelativenumber
-
 autocmd InsertLeave * :setlocal relativenumber
 
 
@@ -177,9 +175,7 @@ autocmd InsertLeave * :setlocal relativenumber
 " => Swap and backup file options - disable all of them:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set noswapfile
-
 set nobackup
-
 set nowb
 
 
