@@ -182,6 +182,13 @@ set nowb
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Detect trailing whitespace.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+set list
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Auto remove trailing whitespace after saving.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 match ErrorMsg '\s\+$'              " highlight trailing whitespace.
@@ -202,6 +209,36 @@ set shiftwidth=4        	" When indenting with ‘>’, use 2 spaces width.
 set expandtab           	" On pressing tab, insert 4 spaces.
 
 set wrap              		" Wrap lines.
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Hightlight matches when jumping to next:
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> n     n:call HLNext(0.4)<cr>
+nnoremap <silent> N     N:call HLNext(0.4)<cr>
+
+function! HLNext (blinktime)
+    set invcursorline
+    redraw
+    exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+    set invcursorline
+    redraw
+endfunction
+
+" function! HLNext (blinktime)
+"     let [bufnum, lnum, col, off] = getpos('.')
+"     let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+"     let target_pat = '\c\%#'.@/
+"     let blinks = 3
+"     for n in range(1,blinks)
+"         let red = matchadd('WhiteOnRed', target_pat, 101)
+"         redraw
+"         exec 'sleep ' . float2nr(a:blinktime / (2*blinks) * 1000) . 'm'
+"         call matchdelete(red)
+"         redraw
+"         exec 'sleep ' . float2nr(a:blinktime / (2*blinks) * 1000) . 'm'
+"     endfor
+" endfunction
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
