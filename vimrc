@@ -254,8 +254,9 @@ nmap <silent> <leader><Esc> :set hls!<cr>
 " Pressing the letter o will open a new line below the current one.
 " Exit insert mode after creating a new line above or below the current line.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap o o<esc>
-nnoremap O O<esc>
+" I don't need these because I now have the vim-unimpaired plugin.
+" nnoremap o o<esc>
+" nnoremap O O<esc>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -352,7 +353,7 @@ nnoremap <f5> :w <CR>:!clear <CR>:!python3 % <CR>
 " }}}
 
 
-" VIMSCRIPT -------------------------------------------------------------- {{{
+" VIM SCRIPTS ------------------------------------------------------------ {{{
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Toggle background colour for VIM
