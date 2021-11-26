@@ -1,13 +1,13 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load the documentation for all the plugins:
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 packloadall			        " Load all plugins.
 silent! helptags ALL		" Load help for all plugins.
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General configuration options:
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use Vim settings, rather then Vi settings. It’s important to have this
 " on the top of your file, as it influences other options.
 set nocompatible
@@ -32,9 +32,10 @@ set hidden
 
 let mapleader = "\<Space>"	" Map the leader key to a spacebar.
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Save/quit Shortcuts
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <Leader>ww :w<Enter>	" Press {Leader w} instead of {:w Enter}.
 
 nnoremap <Leader>wq :wq<Enter>	" Press {Leader wq} instead of {:wq Enter}.
@@ -43,9 +44,10 @@ nnoremap <Leader>qq :q!<Enter>	" Press {Leader q} instead of {:wq Enter}.
 
 inoremap <C-A> <Esc>		    " Press {Ctrl a} instead of {Esc}.
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NERDTree
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Press {Leader n} to access NERDTree plugin.
 nnoremap <Leader>n :NERDTreeToggle<Enter>
 
@@ -57,21 +59,29 @@ autocmd VimEnter * NERDTree     " Enable NERDTree on Vim startup.
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
 \ b:NERDTree.isTabTree()) | q | endif
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vim-commentary
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <Leader>c gc       " Press gc to start commenting/uncommenting.
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Foldings shortcuts
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap za zA              " Press {za} to open / close all folding levels.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap za zA              " Press {za} to open/close all folding levels.
 nnoremap zo zR              " Press {zc} to open every fold.
 nnoremap zc zM              " Press {zc} to close every fold.
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Press {Ctrl Z} to open terminal vertically on the right.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <C-Z> :below vert ter<Cr>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fast split navigation with <Ctrl> + hjkl
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 1. Normal mode
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-J> <C-W><C-J>
@@ -83,9 +93,10 @@ tnoremap <C-J> <C-W><C-J>
 tnoremap <C-K> <C-W><C-K>
 tnoremap <C-L> <C-W><C-L>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Move the current window to the corresponding position.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 1. Normal mode
 nnoremap <C-W>h <C-W>H
 nnoremap <C-W>j <C-W>J
@@ -97,9 +108,10 @@ tnoremap <C-W>j <C-W>J
 tnoremap <C-W>k <C-W>K
 tnoremap <C-W>l <C-W>L
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Map arrow keys nothing so I can get used to hjkl-style movement.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <up> <nop>
 map <down> <nop>
 map <left> <nop>
@@ -110,9 +122,10 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => User Interface Options:
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set laststatus=2        	" Always display the status bar.
 
 set ruler               	" Always show cursor position.
@@ -134,15 +147,17 @@ set mouse=a             	" Enable mouse for scrolling and resizing.
 " Set the window’s title, reflecting the file currently being edited.
 set title
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colorscheme options
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set background=light     	" Use colors that suit a dark background.
 colorscheme gruvbox      	" Change colorscheme.
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => (Relative) Number Options:
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set number              	" Show line numbers on the sidebar.
 
 " Show line number on the current line and relative numbers on other lines.
@@ -157,24 +172,27 @@ autocmd InsertEnter * :setlocal norelativenumber
 
 autocmd InsertLeave * :setlocal relativenumber
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Swap and backup file options - disable all of them:
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set noswapfile
 
 set nobackup
 
 set nowb
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Auto remove trailing whitespace after saving.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 match ErrorMsg '\s\+$'              " highlight trailing whitespace.
 autocmd BufWritePre * :%s/\s\+$//e  " auto remove trailing whitespaces.
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Indentation options:
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set autoindent         		" New lines inherit the indentation of previous lines.
 
 filetype plugin indent on   " Smart auto indentation (instead of old smartindent option).
@@ -187,18 +205,20 @@ set expandtab           	" On pressing tab, insert 4 spaces.
 
 set wrap              		" Wrap lines.
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Search options:
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set incsearch           	" Find the next match as we type the search.
 
 set hlsearch            	" Highlight searches by default.
 
 set smartcase           	" . . . unless you type a capital.
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text rendering options
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set encoding=utf-8      	" Use an encoding that supports Unicode.
 
 set linebreak           	" Wrap lines at convenient points, avoid wrapping a line in the middle of a word.
@@ -214,9 +234,9 @@ autocmd FileType text setlocal textwidth=79	" For all buffers of file type text,
 set foldmethod=indent		" Folding code based on indentation.
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Miscellaneous Options
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set confirm             	" Display a confirmation dialog when closing an unsaved file.
 
 set nomodeline          	" Ignore file’s mode lines; use vimrc configurations instead.
@@ -228,7 +248,7 @@ set shell               	" The shell used to execute commands.
 set spell               	" Enable spellchecking.
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Status line
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set statusline=%t		" tail of the filename
