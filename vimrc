@@ -68,6 +68,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Foldings shortcuts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set foldmethod=indent		" Folding code based on indentation.
+
 nnoremap za zA              " Press {za} to open/close all folding levels.
 nnoremap zo zR              " Press {zc} to open every fold.
 nnoremap zc zM              " Press {zc} to close every fold.
@@ -225,13 +227,16 @@ set sidescrolloff=5     	" The number of screen columns to keep to the left and 
 
 syntax enable           	" Enable syntax highlighting.
 
-autocmd FileType text setlocal textwidth=79	" For all buffers of file type text, set locally the variable textwidth to 79.
 
-set foldmethod=indent		" Folding code based on indentation.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Make the 80th column stand out (PEP 8 Style Guide for Python Code)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%80v', 100)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Miscellaneous Options
+" => Miscellaneous Options:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set confirm             	" Display a confirmation dialog when closing an unsaved file.
 
