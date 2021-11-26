@@ -247,7 +247,8 @@ nnoremap zc zM              " Press {zc} to close every fold.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Toggle search highlighting by hitting <Space><Esc>.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <silent> <leader><Esc> :set hls!<cr>
+" I don't need this because I not have the vim-unimpaired plugin.
+" nmap <silent> <leader><Esc> :set hls!<cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
