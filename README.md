@@ -45,9 +45,9 @@ $ git commit -m "Update plugins."
 To delete a plugin, remove the submodule with the following steps:
 ```bash
 $ git submodule deinit rails.vim/
-$ rm -rf .git/rails.vim
-$ git rm -r rails.vim/
-" Now the rails.vim/ folder is left with rails.vim/doc/tags"
+$ rm -rf .git/rails.vim/
+$ git rm -r rails.vim
+" Now the rails.vim/ folder is gone or may be left with rails.vim/doc/tags"
 $ cd doc/tags
 $ rm tags
 $ cd ..
