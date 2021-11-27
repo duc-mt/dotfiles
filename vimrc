@@ -279,6 +279,14 @@ omap / <Plug>(easymotion-tn)
 map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => ZoomWin
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Hit once: the current window zooms into a full screen.
+" Hit the command again: the previous set of windows is restored.
+nnoremap <Leader>z :ZoomWin<Cr>
+
 " }}}
 
 
