@@ -341,6 +341,22 @@ let g:gitgutter_sign_modified_removed = 'ww'
 
 " command GitStatus call GitGutterGetHunkSummary()
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => SimpylFold
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Preview docstring in fold text
+let g:SimpylFold_docstring_preview = 1
+
+" Fold docstrings
+let g:SimpylFold_fold_docstring = 1
+
+" Fold imports
+let g:SimpylFold_fold_import = 1
+
+" Fold trailing blank lines
+let g:SimpylFold_fold_blank = 1
+
 " }}}
 
 
