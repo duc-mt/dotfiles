@@ -285,7 +285,7 @@ map  N <Plug>(easymotion-prev)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Hit once: the current window zooms into a full screen.
 " Hit the command again: the previous set of windows is restored.
-nnoremap <Leader>z :ZoomWin<Cr>
+nnoremap <Leader>zw :ZoomWin<Cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -293,8 +293,53 @@ nnoremap <Leader>z :ZoomWin<Cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Diff maps
 map <F3> :Gvdiffsplit<Cr>      " Apply Git diff split vertically.
-map <F4> :Ghdiffsplit<Cr>      " Apply Git diff split horizontally.
+map <F4> :Gdiffsplit!<Cr>      " Apply Git diff split horizontally.
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vim-gitgutter
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Disable all predifined mappings
+let g:gitgutter_map_keys = 0
+
+" Update time controls the delay before vim writes its swap file
+set updatetime=100
+
+" Jump between hunks (differing lines)
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+
+" Turn line highlighting on
+map <F6> :GitGutterLineHighlightsToggle<Cr>
+
+" Fold all unchanged lines, leaving just the hunks visible.
+map <F7> :GitGutterFold<Cr>
+
+" Sign column
+set signcolumn=yes
+highlight SignColumn guibg=LightGrey ctermbg=LightGrey
+
+" Signs' colours and symbols
+let g:gitgutter_set_sign_backgrounds = 1
+highlight GitGutterAdd    guifg=#009900 ctermfg=2
+highlight GitGutterChange guifg=#bbbb00 ctermfg=3
+highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+
+let g:gitgutter_sign_added = 'xx'
+let g:gitgutter_sign_modified = 'yy'
+let g:gitgutter_sign_removed = 'zz'
+let g:gitgutter_sign_removed_first_line = '^^'
+let g:gitgutter_sign_removed_above_and_below = '{'
+let g:gitgutter_sign_modified_removed = 'ww'
+
+" To get a list of counts of added, modified, and removed lines in the current buffer
+" function! GitStatus()
+"   let [a,m,r] = GitGutterGetHunkSummary()
+"   return printf('+%d ~%d -%d', a, m, r)
+" endfunction
+" set statusline+=%{GitStatus()}
+
+" command GitStatus call GitGutterGetHunkSummary()
 
 " }}}
 
@@ -436,22 +481,6 @@ nnoremap <f5> :w <CR>:!clear <CR>:!python3 % <CR>
 " VIM SCRIPTS ------------------------------------------------------------ {{{
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Toggle background colour for VIM
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" :BG in the command mode to do this.
-if exists("*ToggleBackground") == 0
-	function ToggleBackground()
-		if &background == "dark"
-			set background=light
-		else
-			set background=dark
-		endif
-	endfunction
-	command BG call ToggleBackground()
-endif
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Enable relative numbers in Normal mode; absolute numbers in Insert mode.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup toggle_relative_number
@@ -534,6 +563,21 @@ set list
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " match ErrorMsg '\s\+$'              " highlight trailing whitespace
 " autocmd BufWritePre * :%s/\s\+$//e  " auto remove trailing whitespace
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Toggle background colour for VIM
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" :BG in the command mode to do this.
+if exists("*ToggleBackground") == 0
+	function ToggleBackground()
+		if &background == "dark"
+			set background=light
+		else
+			set background=dark
+		endif
+	endfunction
+	command BG call ToggleBackground()
+endif
 
 " }}}
 
