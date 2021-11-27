@@ -25,3 +25,6 @@
 [submodule "pack/plugins/start/ZoomWin"]
 	path = pack/plugins/start/ZoomWin
 	url = https://github.com/vim-scripts/ZoomWin.git
+[submodule "pack/plugins/start/dragvisuals"]
+	path = pack/plugins/start/dragvisuals
+	url = https://github.com/joshukraine/dragvisuals.git
