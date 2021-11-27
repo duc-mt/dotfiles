@@ -238,6 +238,47 @@ let g:strip_whitelines_at_eof=1
 " Ignore lines that contain only whitespace.
 let g:better_whitespace_skip_empty_lines=1
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vim-easymotion
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" <Bslash>f{char} to move to {char}
+map  <Bslash>f <Plug>(easymotion-bd-f)
+nmap <Bslash>f <Plug>(easymotion-overwin-f)
+
+" <Bslash><Bslash>f to move to {char}{char}
+nmap <Bslash><Bslash>f <Plug>(easymotion-overwin-f2)
+
+" Move to line
+map <Bslash>L <Plug>(easymotion-bd-jk)
+nmap <Bslash>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Bslash>w <Plug>(easymotion-bd-w)
+nmap <Bslash>w <Plug>(easymotion-overwin-w)
+
+" hjkl motions: Line and Column motions
+map <Bslash>l <Plug>(easymotion-lineforward)
+map <Bslash>j <Plug>(easymotion-j)
+map <Bslash>k <Plug>(easymotion-k)
+map <Bslash>h <Plug>(easymotion-linebackward)
+
+" Keep cursor column when JK motion
+let g:EasyMotion_startofline = 0
+
+" Turn on case-insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" n-character search motion
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+" These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
+" Without these mappings, `n` & `N` works fine. (These mappings just provide
+" different highlight method and have some other features )
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+
 " }}}
 
 
