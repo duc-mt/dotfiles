@@ -409,7 +409,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Make the 80th column stand out (PEP 8 Style Guide for Python Code)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-highlight ColorColumn ctermbg=magenta
+highlight ColorColumn ctermbg=Magenta
 call matchadd('ColorColumn', '\%80v', 100)
 
 
