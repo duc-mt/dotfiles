@@ -287,6 +287,15 @@ map  N <Plug>(easymotion-prev)
 " Hit the command again: the previous set of windows is restored.
 nnoremap <Leader>z :ZoomWin<Cr>
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vim-fugitive
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Diff maps
+map <F3> :Gvdiffsplit<Cr>      " Apply Git diff split vertically.
+map <F4> :Ghdiffsplit<Cr>      " Apply Git diff split horizontally.
+
+
 " }}}
 
 
