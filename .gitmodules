@@ -28,3 +28,6 @@
 [submodule "pack/plugins/start/dragvisuals"]
 	path = pack/plugins/start/dragvisuals
 	url = https://github.com/joshukraine/dragvisuals.git
+[submodule "pack/plugins/start/spreadsheet.vim"]
+	path = pack/plugins/start/spreadsheet.vim
+	url = https://github.com/vim-scripts/spreadsheet.vim
