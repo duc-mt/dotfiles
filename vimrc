@@ -190,6 +190,8 @@ let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Supertab
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Change <tab> navigate the completion menu from bottom to top
+let g:SuperTabDefaultCompletionType = "<c-n>"
 " Enhanced longest match support.
 let g:SuperTabLongestEnhanced = 1
 
