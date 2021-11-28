@@ -49,3 +49,6 @@
 [submodule "pack/plugins/start/vimwiki"]
 	path = pack/plugins/start/vimwiki
 	url = https://github.com/vimwiki/vimwiki.git
+[submodule "pack/plugins/start/vim-workspace"]
+	path = pack/plugins/start/vim-workspace
+	url = https://github.com/thaerkh/vim-workspace.git
