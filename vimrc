@@ -351,10 +351,13 @@ let g:SimpylFold_fold_blank = 1
 let g:gitgutter_map_keys = 0
 
 " Toggle workspace
-nnoremap <leader>s :ToggleWorkspace<CR>
+" nnoremap <leader>s :ToggleWorkspace<CR>
 
 " Session tracking can be activated automatically (disabled by default):
 let g:workspace_autocreate = 1
+
+" If Vim is run with a file argument and it's already in the session's workspace, Vim will load the session and go to the tab window that contains it. Otherwise, it will be loaded as a new tab in the session. If you would rather create a new buffer in the existing tab instead of creating a new tab
+let g:workspace_create_new_tabs = 0  " enabled = 1 (default), disabled = 0
 
 " Autosave
 autocmd FileType python let g:workspace_autosave_always = 1
@@ -362,9 +365,18 @@ autocmd FileType python let g:workspace_autosave_always = 1
 " Undo History
 let g:workspace_persist_undo_history = 0
 
+" Change default session name
+let g:workspace_session_name = 'session.vim'
+
+" Change default default dir for session file
+let g:workspace_session_directory = $HOME . '/Templates/sessions/'
+
 " Sessions not load if I'm explicitly loading a file in a workspace directory
 let g:workspace_session_disable_on_args = 1
 
+" Untrailing Spaces & Untrailing Tabs
+autocmd FileType python let g:workspace_autosave_untrailspaces = 0
+autocmd FileType python let g:workspace_autosave_untrailtabs = 0
 
 " }}}
 
