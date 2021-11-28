@@ -9,28 +9,6 @@
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"               ,
-"             / \,,_  .'|
-"          ,{{| /}}}}/_.'            _____________________________________________
-"         }}}}` '{{'  '.            /                                             \
-"       {{{{{    _   ;, \          /            Ladies and Gentlemen,              \
-"    ,}}}}}}    /o`\  ` ;)        |                                                |
-"   {{{{{{   /           (        |                 this is ...                    |
-"   }}}}}}   |            \       |                                                |
-"  {{{{{{{{   \            \      |                                                |
-"  }}}}}}}}}   '.__      _  |     |    _____             __             __  _      |
-"  {{{{{{{{       /`._  (_\ /     |   / ___/__  ______  / /_____ ______/ /_(_)____ |
-"   }}}}}}'      |    //___/   --=:   \__ \/ / / / __ \/ __/ __ `/ ___/ __/ / ___/ |
-"jgs `{{{{`       |     '--'       |  ___/ / /_/ / / / / /_/ /_/ (__  ) /_/ / /__   |
-"    }}}`                         | /____/\__, /_/ /_/\__/\__,_/____/\__/_/\___/   |
-"                                  |      /____/                                    |
-"                                  |                                               /
-"                                   \_____________________________________________/
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load the documentation for all the plugins:
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -74,7 +52,7 @@ set ruler               	" Always show cursor position.
 
 set wildmenu                " Enable auto completion menu after pressing TAB.
 
-set wildmode=list:longest   " Make wildmenu behave akin to Bash completion.
+set wildmode=longest,list,full " Make wildmenu behave akin to Bash completion.
 
 " Maximum number of tab pages that can be opened from the command line.
 set tabpagemax=40
@@ -240,6 +218,13 @@ let g:better_whitespace_skip_empty_lines=1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vim-unimpaired
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap [ns i<Space><Esc>       " [b to add a blank space before the cursor
+nnoremap ]ns a<Space><Esc>       " [b to add a blank space after the cursor
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-easymotion
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " <Bslash>f{char} to move to {char}
@@ -276,8 +261,8 @@ omap / <Plug>(easymotion-tn)
 " These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
 " Without these mappings, `n` & `N` works fine. (These mappings just provide
 " different highlight method and have some other features )
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
+map n <Plug>(easymotion-next)
+map N <Plug>(easymotion-prev)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -292,38 +277,40 @@ nnoremap <Leader>zw :ZoomWin<Cr>
 " => Vim-fugitive
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Diff maps
-map <F3> :Gvdiffsplit<Cr>      " Apply Git diff split vertically.
-map <F4> :Gdiffsplit!<Cr>      " Apply Git diff split horizontally.
+map <F3> :Gvdiffsplit<Cr>           " Apply Git diff split vertically
+map <F4> :Gdiffsplit<Cr>            " ... split horizontally
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-gitgutter
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:gitgutter_enabled = 1
 " Disable all predifined mappings
 let g:gitgutter_map_keys = 0
 
 " Update time controls the delay before vim writes its swap file
-set updatetime=100
+set updatetime=101
 
 " Jump between hunks (differing lines)
-nmap ]h <Plug>(GitGutterNextHunk)
-nmap [h <Plug>(GitGutterPrevHunk)
+nnoremap ) :GitGutterNextHunk<Cr>
+nnoremap ( :GitGutterPrevHunk<Cr>
 
 " Turn line highlighting on
-map <F6> :GitGutterLineHighlightsToggle<Cr>
+" nnoremap <F6> :GitGutterLineHighlightsToggle<Cr>
 
 " Fold all unchanged lines, leaving just the hunks visible.
-map <F7> :GitGutterFold<Cr>
+nnoremap <F2> :GitGutterFold<Cr>
+set foldtext=gitgutter#fold#foldtext()
 
 " Sign column
-set signcolumn=yes
-highlight SignColumn guibg=LightGrey ctermbg=LightGrey
+" set signcolumn=yes
+" highlight SignColumn guibg=LightGrey ctermbg=LightGrey
 
 " Signs' colours and symbols
-let g:gitgutter_set_sign_backgrounds = 1
-highlight GitGutterAdd    guifg=#009900 ctermfg=2
-highlight GitGutterChange guifg=#bbbb00 ctermfg=3
-highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+" let g:gitgutter_set_sign_backgrounds = 1
+highlight GitGutterAdd    guifg=#009900 ctermfg=Green
+highlight GitGutterChange guifg=#bbbb00 ctermfg=Yellow
+highlight GitGutterDelete guifg=#ff2222 ctermfg=Red
 
 let g:gitgutter_sign_added = 'xx'
 let g:gitgutter_sign_modified = 'yy'
@@ -332,14 +319,9 @@ let g:gitgutter_sign_removed_first_line = '^^'
 let g:gitgutter_sign_removed_above_and_below = '{'
 let g:gitgutter_sign_modified_removed = 'ww'
 
-" To get a list of counts of added, modified, and removed lines in the current buffer
-" function! GitStatus()
-"   let [a,m,r] = GitGutterGetHunkSummary()
-"   return printf('+%d ~%d -%d', a, m, r)
-" endfunction
-" set statusline+=%{GitStatus()}
-
-" command GitStatus call GitGutterGetHunkSummary()
+" Preview the hunk the cursor is in
+nnoremap ghp :GitGutterPreviewHunk<Cr>
+nnoremap ghq :pclose<Cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -473,14 +455,8 @@ inoremap <right> <nop>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Map the F5 key to run a Python script inside Vim.
-" I map F5 to a chain of commands here.
-" :w saves the file.
-" <CR> (carriage return) is like pressing the enter key.
-" !clear runs the external clear screen command.
-" !python3 % executes the current file with Python.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <f5> :w <CR>:!clear <CR>:!python3 % <CR>
-
+autocmd Filetype python nnoremap <F5> :w<CR>:!clear<CR><CR><CR>:!python3 %<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Press <Space>p to print the current file to the default printer
@@ -516,7 +492,7 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => If the current file type is HTML, set indentation to 2 spaces.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd Filetype html setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype html, vim, vimwiki setlocal tabstop=2 shiftwidth=2 expandtab
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -603,14 +579,25 @@ endif
 " Clear status line when vimrc is reloaded.
 set statusline=
 
+" Color statusline
+set statusline+=%#PmenuSel#
+
+" Get a list of counts of added, modified, and removed lines (current buffer)
+function! GitStatus()
+  let [a,m,r] = GitGutterGetHunkSummary()
+  return printf('+%d  ~%d  -%d', a, m, r)
+endfunction
+set statusline+=\\|\ %{GitStatus()}\ \|
+
 " Status line left side.
-set statusline+=\ %F\ %M\ %Y\ %R
+set statusline+=\ %F\ \|\ %M
+set statusline+=\ %Y\ %R\ \|
 
 " Use a divider to separate the left side from the right side.
 set statusline+=%=
 
 " Status line right side.
-set statusline+=\ ascii:\ %b\ hex:\ 0x%B\ row:\ %l\ col:\ %c\ percent:\ %p%%
+set statusline+=\ row:\ %l\/\%L\ \|\ col:\ %c\ \|\ percent:\ %p%%\ \|
 
 " Show the status on the second to last line.
 set laststatus=2
