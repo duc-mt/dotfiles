@@ -236,7 +236,7 @@ map  <Bslash>f <Plug>(easymotion-bd-f)
 nmap <Bslash>f <Plug>(easymotion-overwin-f)
 
 " <Bslash><Bslash>f to move to {char}{char}
-nmap <Bslash><Bslash>f <Plug>(easymotion-overwin-f2)
+nmap <Bslash>F <Plug>(easymotion-overwin-f2)
 
 " Move to line
 map <Bslash>L <Plug>(easymotion-bd-jk)
@@ -357,7 +357,7 @@ nnoremap <leader>s :ToggleWorkspace<CR>
 let g:workspace_autocreate = 1
 
 " Autosave
-let g:workspace_autosave_always = 1
+autocmd FileType python let g:workspace_autosave_always = 1
 
 " Undo History
 let g:workspace_persist_undo_history = 0
@@ -374,11 +374,11 @@ let g:workspace_session_disable_on_args = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Save/quit
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" nnoremap <Leader>w :w<Cr>	    " Press {Leader w} instead of {:w Cr}
+nnoremap <Leader>w :w<Cr>	    " Press {Leader w} instead of {:w Cr}
 
 nnoremap <Leader>q :q<Cr>	    " Press {Leader q} instead of {:wq Cr}
 
-inoremap <C-A> <Esc>            " Press {Leader} twice to escape from I mode.
+inoremap <Bslash><Bslash> <Esc> " Press {Leader} twice to escape from I mode.
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
