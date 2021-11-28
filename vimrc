@@ -374,7 +374,7 @@ let g:workspace_session_disable_on_args = 1
 
 nnoremap <Leader>q :q<Cr>	    " Press {Leader q} instead of {:wq Cr}
 
-inoremap <C-Z> <Esc>            " Press {Leader} twice to escapt from I mode.
+inoremap ` <Esc>            " Press {Leader} twice to escapt from I mode.
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
