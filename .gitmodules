@@ -1,5 +1,5 @@
-[submodule "nerdtree"]
-	path = nerdtree
+[submodule "pack/plugins/start/nerdtree"]
+	path = pack/plugins/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
 [submodule "pack/plugins/start/gruvbox"]
 	path = pack/plugins/start/gruvbox
@@ -25,9 +25,6 @@
 [submodule "pack/plugins/start/ZoomWin"]
 	path = pack/plugins/start/ZoomWin
 	url = https://github.com/vim-scripts/ZoomWin.git
-[submodule "pack/plugins/start/dragvisuals"]
-	path = pack/plugins/start/dragvisuals
-	url = https://github.com/joshukraine/dragvisuals.git
 [submodule "pack/plugins/start/spreadsheet.vim"]
 	path = pack/plugins/start/spreadsheet.vim
 	url = https://github.com/vim-scripts/spreadsheet.vim
