@@ -339,6 +339,29 @@ let g:SimpylFold_fold_import = 1
 " Fold trailing blank lines
 let g:SimpylFold_fold_blank = 1
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vim-workspace
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Disable all predifined mappings
+let g:gitgutter_map_keys = 0
+
+" Toggle workspace
+nnoremap <leader>s :ToggleWorkspace<CR>
+
+" Session tracking can be activated automatically (disabled by default):
+let g:workspace_autocreate = 1
+
+" Autosave
+let g:workspace_autosave_always = 1
+
+" Undo History
+let g:workspace_persist_undo_history = 0
+
+" Sessions not load if I'm explicitly loading a file in a workspace directory
+let g:workspace_session_disable_on_args = 1
+
+
 " }}}
 
 
@@ -347,13 +370,11 @@ let g:SimpylFold_fold_blank = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Save/quit
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <Leader>ww :w<Enter>	" Press {Leader w} instead of {:w Enter}.
+" nnoremap <Leader>w :w<Cr>	    " Press {Leader w} instead of {:w Cr}
 
-nnoremap <Leader>wq :wq<Enter>	" Press {Leader wq} instead of {:wq Enter}.
+nnoremap <Leader>q :q<Cr>	    " Press {Leader q} instead of {:wq Cr}
 
-nnoremap <Leader>qq :q!<Enter>	" Press {Leader q} instead of {:wq Enter}.
-
-inoremap <C-A> <Esc>		    " Press {Ctrl a} instead of {Esc}.
+inoremap <C-Z> <Esc>            " Press {Leader} twice to escapt from I mode.
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -362,7 +383,7 @@ inoremap <C-A> <Esc>		    " Press {Ctrl a} instead of {Esc}.
 set foldmethod=indent		" Folding code based on indentation.
 
 nnoremap za zA              " Press {za} to open/close all folding levels.
-nnoremap zo zR              " Press {zc} to open every fold.
+nnoremap zo zR              " Press {zo} to open every fold.
 nnoremap zc zM              " Press {zc} to close every fold.
 
 
@@ -391,7 +412,7 @@ nnoremap ; :
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Press {Ctrl Z} to open terminal vertically on the right.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <C-Z> :below vert ter<Cr>
+nnoremap <S-T> :below vert ter<Cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -442,10 +463,10 @@ tnoremap <C-W>l <C-W>L
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Map arrow keys nothing so I can get used to hjkl-style movement.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
 " Insert mode
 inoremap <up> <nop>
 inoremap <down> <nop>
@@ -590,7 +611,7 @@ endfunction
 set statusline+=\\|\ %{GitStatus()}\ \|
 
 " Status line left side.
-set statusline+=\ %F\ \|\ %M
+set statusline+=\ %f\ \|\ %M
 set statusline+=\ %Y\ %R\ \|
 
 " Use a divider to separate the left side from the right side.
