@@ -192,8 +192,10 @@ let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Change <tab> navigate the completion menu from bottom to top
 let g:SuperTabDefaultCompletionType = "<c-n>"
+
 " Enhanced longest match support.
 let g:SuperTabLongestEnhanced = 1
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -376,7 +378,7 @@ let g:workspace_session_disable_on_args = 1
 
 nnoremap <Leader>q :q<Cr>	    " Press {Leader q} instead of {:wq Cr}
 
-inoremap ` <Esc>            " Press {Leader} twice to escapt from I mode.
+inoremap <C-A> <Esc>            " Press {Leader} twice to escape from I mode.
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
