@@ -165,9 +165,22 @@ set shell               	" The shell used to execute commands.
 
 set spell                 " Disable spell checking on start-up.
 
-autocmd FileType vim setlocal set nospell
+augroup filetype_vim_vimwiki
+  autocmd!
+  autocmd FileType vim setl nospell
+  autocmd FileType vimwiki setl nospell
+  autocmd FileType rst setl nospell
+  autocmd FileType text setl nospell
+augroup END
 
 set spelllang=en_au       " Australian spell checking.
+
+"Open file as readonly
+augroup plugins_readonly
+  autocmd!
+  autocmd BufRead /pack/plugins/start/**/* setl ro
+augroup END
+
 " }}}
 
 
@@ -561,21 +574,22 @@ autocmd Filetype python nnoremap <F5> :w<CR>:!clear<CR><CR><CR>:!python3 %<CR>
 " => Enable relative numbers in Normal mode; absolute numbers in Insert mode.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup toggle_relative_number
-autocmd InsertEnter * :setlocal norelativenumber
-autocmd InsertLeave * :setlocal relativenumber
-
+  autocmd!
+  autocmd InsertEnter * :setl norelativenumber
+  autocmd InsertLeave * :setl relativenumber
+augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable the marker method of folding.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType vim setlocal foldmethod=marker
+autocmd FileType vim setl foldmethod=marker
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => If the current file type is HTML, set indentation to 2 spaces.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd Filetype html setlocal tabstop=2 shiftwidth=2 expandtab
-autocmd Filetype vim setlocal tabstop=2 shiftwidth=2 expandtab
-autocmd Filetype vimwiki setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype html setl tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype vim setl tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype vimwiki setl tabstop=2 shiftwidth=2 expandtab
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -629,7 +643,7 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Disable automatic commenting on newline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+autocmd FileType * setl formatoptions-=c formatoptions-=r formatoptions-=o
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
