@@ -70,13 +70,6 @@ set title
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Colorscheme options
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set background=light     	" Use colors that suit a light background.
-colorscheme gruvbox      	" Change colorscheme.
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Clipboard / Registers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Allow copied vim text to also be added to clipboard
@@ -658,6 +651,23 @@ set list
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " match ErrorMsg '\s\+$'              " highlight trailing whitespace
 " autocmd BufWritePre * :%s/\s\+$//e  " auto remove trailing whitespace
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Change theme depending on the time of day
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+colorscheme gruvbox      	" Change colourscheme
+
+let hr = (strftime('%H'))
+
+if hr >= 22
+  set background=dark
+elseif hr >= 8
+  set background=light
+elseif hr>= 0
+  set background=dark
+endif
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Toggle background colour for VIM
