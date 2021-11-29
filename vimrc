@@ -77,6 +77,15 @@ set clipboard=unnamed,unnamedplus
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Cursor line / column
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set cursorline
+set cursorcolumn
+highlight CursorLine guibg=#2b2b2b
+highlight CursorColumn guibg=#2b2b2b
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => (Relative) Number Options:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set number              	" Show line numbers on the sidebar.
@@ -158,20 +167,14 @@ set shell               	" The shell used to execute commands.
 
 set spell                 " Disable spell checking on start-up.
 
-augroup filetype_vim_vimwiki
-  autocmd!
-  autocmd FileType vim setl nospell
-  autocmd FileType vimwiki setl nospell
-  autocmd FileType rst setl nospell
-  autocmd FileType text setl nospell
-augroup END
+autocmd FileType vim,vimwiki,text,rst setlocal nospell
 
 set spelllang=en_au       " Australian spell checking.
 
-"Open file as readonly
-augroup plugins_readonly
+"Open file (plugins) as readonly
+augroup readonly
   autocmd!
-  autocmd BufRead /pack/plugins/start/**/* setl ro
+  autocmd VimEnter /pack/plugins/start/* vim -M %
 augroup END
 
 " }}}
@@ -420,17 +423,21 @@ hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Save/quit
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <Leader>w :w<Cr>	    " Press {Leader w} instead of {:w Cr}
+nnoremap <C-S> :w<Cr>	        " Press {Ctrl S} instead of {:w Cr}
+
+nnoremap <Leader>wq :wq<Cr>	  " Press {Leader wq} instead of {:wq Cr}
 
 nnoremap <Leader>q :q<Cr>	    " Press {Leader q} instead of {:wq Cr}
 
-" inoremap <Bslash><Bslash> <Esc> " Press {Leader} twice to escape from I mode
+" inoremap <C-C> <Esc>          " Press {Ctrl C} to escape from Insert mode
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Make 'Y' make sense
+" Make 'Y', 'D', 'C' make sense
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap Y y$
+nnoremap Y yy
+nnoremap D dd
+nnoremap C cc
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -545,11 +552,6 @@ inoremap <right> <nop>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Map the F5 key to run a Python script inside Vim.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd Filetype python nnoremap <F5> :w<CR>:!clear<CR><CR><CR>:!python3 %<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Press <Space>p to print the current file to the default printer
 "    from a Linux operating system.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -564,25 +566,37 @@ autocmd Filetype python nnoremap <F5> :w<CR>:!clear<CR><CR><CR>:!python3 %<CR>
 " VIM SCRIPTS ------------------------------------------------------------ {{{
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Map the F5 key to run a Python script inside Vim.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd Filetype python nnoremap <F5> :w<CR>:!clear<CR><CR><CR>:!python3 %<CR>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Enable relative numbers in Normal mode; absolute numbers in Insert mode.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup toggle_relative_number
   autocmd!
-  autocmd InsertEnter * :setl norelativenumber
-  autocmd InsertLeave * :setl relativenumber
+  autocmd InsertEnter * setlocal norelativenumber
+  autocmd InsertLeave * setlocal relativenumber
 augroup END
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Automatically centre the current line when I enter it in Insert mode.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd InsertEnter * normal zz
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable the marker method of folding.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType vim setl foldmethod=marker
+autocmd FileType vim setlocal foldmethod=marker
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => If the current file type is HTML, set indentation to 2 spaces.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd Filetype html setl tabstop=2 shiftwidth=2 expandtab
-autocmd Filetype vim setl tabstop=2 shiftwidth=2 expandtab
-autocmd Filetype vimwiki setl tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype html,vim,vimwiki setlocal tabstop=2 shiftwidth=2 expandtab
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -636,7 +650,7 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Disable automatic commenting on newline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType * setl formatoptions-=c formatoptions-=r formatoptions-=o
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -656,7 +670,7 @@ set list
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Change theme depending on the time of day
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-colorscheme gruvbox      	" Change colourscheme
+colorscheme gruvbox      	            " Change colourscheme
 
 let hr = (strftime('%H'))
 
