@@ -77,6 +77,13 @@ colorscheme gruvbox      	" Change colorscheme.
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Clipboard / Registers
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Allow copied vim text to also be added to clipboard
+set clipboard=unnamed,unnamedplus
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => (Relative) Number Options:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set number              	" Show line numbers on the sidebar.
@@ -156,7 +163,7 @@ set nrformats-=octal    	" Interpret octal as decimal when incrementing numbers.
 
 set shell               	" The shell used to execute commands.
 
-set spell               	" Enable spellchecking.
+set spell spelllange=en_au  " Enable spellchecking.
 
 " }}}
 
@@ -390,13 +397,19 @@ nnoremap <Leader>w :w<Cr>	    " Press {Leader w} instead of {:w Cr}
 
 nnoremap <Leader>q :q<Cr>	    " Press {Leader q} instead of {:wq Cr}
 
-inoremap <Bslash><Bslash> <Esc> " Press {Leader} twice to escape from I mode.
+" inoremap <Bslash><Bslash> <Esc> " Press {Leader} twice to escape from I mode
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Make 'Y' make sense
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap Y y$
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Foldings shortcuts
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set foldmethod=indent		" Folding code based on indentation.
+" set foldmethod=indent		" Folding code based on indentation.
 
 nnoremap za zA              " Press {za} to open/close all folding levels.
 nnoremap zo zR              " Press {zo} to open every fold.
@@ -417,6 +430,16 @@ nnoremap zc zM              " Press {zc} to close every fold.
 " I don't need these because I now have the vim-unimpaired plugin.
 " nnoremap o o<esc>
 " nnoremap O O<esc>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Immediately add a closing quotes/braces in Insert mode.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+inoremap ' ''<Esc>i
+inoremap " ""<Esc>i
+inoremap ( ()<Esc>i
+inoremap [ []<Esc>i
+inoremap { {}<Esc>i
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -581,10 +604,24 @@ endfunction
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Detect trailing whitespace.
+" Disable automatic commenting on newline
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Highlight white space and tab characters.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 set list
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Highlight trailing whitespace with RED
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd InsertEnter * syn clear EOLWS | syn match EOLWS excludenl /\s\+\%#\@!$/
+autocmd InsertLeave * syn clear EOLWS | syn match EOLWS excludenl /\s\+$/
+highlight EOLWS ctermbg=brown guibg=brown
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
