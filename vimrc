@@ -16,7 +16,7 @@ packloadall			        " Load all plugins.
 silent! helptags ALL		" Load help for all plugins.
 
 
-" GENRAL CONFIGURATION OPTIONS ------------------------------------------- {{{
+" GENERAL CONFIGURATION OPTIONS ------------------------------------------- {{{
 
 " Use Vim settings, rather then Vi settings. It’s important to have this
 " on the top of your file, as it influences other options.
@@ -155,7 +155,7 @@ syntax on           	    " Enable syntax highlighting.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Miscellaneous Options:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set confirm             	" Display a confirmation dialog when closing an unsaved file.
+set confirm             	" Display a confirmation dialogue when closing an unsaved file.
 
 set nomodeline          	" Ignore file’s mode lines; use vimrc configurations instead.
 
@@ -163,8 +163,9 @@ set nrformats-=octal    	" Interpret octal as decimal when incrementing numbers.
 
 set shell               	" The shell used to execute commands.
 
-set spell spelllange=en_au  " Enable spellchecking.
+set nospell               " Disable spell checking on start-up.
 
+set spelllang=en_au       " Australian spell checking.
 " }}}
 
 
@@ -176,9 +177,9 @@ set spell spelllange=en_au  " Enable spellchecking.
 " Press {Leader n} to access NERDTree plugin.
 nnoremap <Leader>n :NERDTreeToggle<Enter>
 
-let NERDTreeShowBookmarks = 1       " Display bookmarks on startup.
+let NERDTreeShowBookmarks = 1       " Display bookmarks on start-up.
 
-" autocmd VimEnter * NERDTree       " Enable NERDTree on Vim startup.
+" autocmd VimEnter * NERDTree       " Enable NERDTree on Vim start-up.
 
 " Autoclose NERDTree if it's the only open window left.
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
@@ -204,28 +205,27 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:SuperTabLongestEnhanced = 1
 
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-better-whitespace
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable highlighting and stripping whitespace on save by default.
-let g:better_whitespace_enabled=1
-let g:strip_whitespace_on_save=1
+let g:better_whitespace_enabled = 1
+let g:strip_whitespace_on_save = 1
 
 " Display the highlighting for the current line in normal mode:
-let g:current_line_whitespace_disabled_soft=1
+let g:current_line_whitespace_disabled_soft = 1
 
 " Strip all trailing whitespace everytime I save the file for all file types.
 let g:strip_whitespace_on_save = 1
 
 " Disable confirmation before whitespace is stripped when I save the file.
-let g:strip_whitespace_confirm=0
+let g:strip_whitespace_confirm = 1
 
 " Strip white lines at the end of the file when stripping whitespace.
-let g:strip_whitelines_at_eof=1
+let g:strip_whitelines_at_eof = 1
 
 " Ignore lines that contain only whitespace.
-let g:better_whitespace_skip_empty_lines=1
+let g:better_whitespace_skip_empty_lines = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -296,7 +296,7 @@ map <F4> :Gdiffsplit<Cr>            " ... split horizontally
 " => Vim-gitgutter
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:gitgutter_enabled = 1
-" Disable all predifined mappings
+" Disable all predefined mappings
 let g:gitgutter_map_keys = 0
 
 " Update time controls the delay before vim writes its swap file
@@ -339,22 +339,22 @@ nnoremap ghq :pclose<Cr>
 " => SimpylFold
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Preview docstring in fold text
-let g:SimpylFold_docstring_preview = 1
+" let g:SimpylFold_docstring_preview = 1
 
 " Fold docstrings
-let g:SimpylFold_fold_docstring = 1
+" let g:SimpylFold_fold_docstring = 1
 
 " Fold imports
-let g:SimpylFold_fold_import = 1
+" let g:SimpylFold_fold_import = 1
 
 " Fold trailing blank lines
-let g:SimpylFold_fold_blank = 1
+" let g:SimpylFold_fold_blank = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-workspace
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Disable all predifined mappings
+" Disable all predefined mappings
 let g:gitgutter_map_keys = 0
 
 " Toggle workspace
@@ -385,6 +385,25 @@ let g:workspace_session_disable_on_args = 1
 autocmd FileType python let g:workspace_autosave_untrailspaces = 0
 autocmd FileType python let g:workspace_autosave_untrailtabs = 0
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Spelunker.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Do not enable spelunker.vim on start-up
+let g:enable_spelunker_vim = 1
+
+" Max amount of word suggestions
+let g:spelunker_max_suggest_words = 10
+
+" Highlight all types (SpellBad, SpellCap, SpellRare, SpellLocal)
+let g:spelunker_highlight_type = 1
+
+" Spelling mistakes will also be coloured red if you uncomment the colours.
+hi SpellBad cterm=underline "ctermfg=203 guifg=#ff5f5f
+hi SpellLocal cterm=underline "ctermfg=203 guifg=#ff5f5f
+hi SpellRare cterm=underline "ctermfg=203 guifg=#ff5f5f
+hi SpellCap cterm=underline "ctermfg=203 guifg=#ff5f5f
+
 " }}}
 
 
@@ -407,7 +426,7 @@ nnoremap Y y$
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Foldings shortcuts
+" => Folding shortcuts
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set foldmethod=indent		" Folding code based on indentation.
 
@@ -440,6 +459,9 @@ inoremap " ""<Esc>i
 inoremap ( ()<Esc>i
 inoremap [ []<Esc>i
 inoremap { {}<Esc>i
+
+" Unmap closing double quotes for vim filetype (comments).
+autocmd FileType vim unmap! "
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -543,16 +565,14 @@ autocmd InsertLeave * :setlocal relativenumber
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable the marker method of folding.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-augroup filetype_vim
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-augroup END
-
+autocmd FileType vim setlocal foldmethod=marker
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => If the current file type is HTML, set indentation to 2 spaces.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd Filetype html, vim, vimwiki setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype html setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype vim setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype vimwiki setlocal tabstop=2 shiftwidth=2 expandtab
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -614,14 +634,6 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 set list
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Highlight trailing whitespace with RED
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd InsertEnter * syn clear EOLWS | syn match EOLWS excludenl /\s\+\%#\@!$/
-autocmd InsertLeave * syn clear EOLWS | syn match EOLWS excludenl /\s\+$/
-highlight EOLWS ctermbg=brown guibg=brown
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
