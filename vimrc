@@ -163,7 +163,9 @@ set nrformats-=octal    	" Interpret octal as decimal when incrementing numbers.
 
 set shell               	" The shell used to execute commands.
 
-set nospell               " Disable spell checking on start-up.
+set spell                 " Disable spell checking on start-up.
+
+autocmd FileType vim setlocal set nospell
 
 set spelllang=en_au       " Australian spell checking.
 " }}}
@@ -399,10 +401,10 @@ let g:spelunker_max_suggest_words = 10
 let g:spelunker_highlight_type = 1
 
 " Spelling mistakes will also be coloured red if you uncomment the colours.
-hi SpellBad cterm=underline "ctermfg=203 guifg=#ff5f5f
-hi SpellLocal cterm=underline "ctermfg=203 guifg=#ff5f5f
-hi SpellRare cterm=underline "ctermfg=203 guifg=#ff5f5f
-hi SpellCap cterm=underline "ctermfg=203 guifg=#ff5f5f
+hi SpellBad cterm=underline ctermfg=203 guifg=#ff5f5f
+hi SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
+hi SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
+hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 
 " }}}
 
@@ -505,6 +507,7 @@ tnoremap <c-up> <c-w>+
 tnoremap <c-down> <c-w>-
 tnoremap <c-left> <c-w>>
 tnoremap <c-right> <c-w><
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Move the current window to the corresponding position.
