@@ -55,3 +55,6 @@
 [submodule "pack/plugins/start/spelunker.vim"]
 	path = pack/plugins/start/spelunker.vim
 	url = https://github.com/kamykn/spelunker.vim.git
+[submodule "pack/plugins/start/lazygit"]
+	path = pack/plugins/start/lazygit
+	url = https://github.com/jesseduffield/lazygit.git
