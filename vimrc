@@ -349,6 +349,7 @@ let g:better_whitespace_skip_empty_lines = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-unimpaired
+"    I mapped it myself
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Line operations
 nnoremap [ns      i<Space> <Esc> " Add [count] blank spaces before the cursor
@@ -417,7 +418,6 @@ autocmd FileType * nnoremap ]ox :set nocursorline | set nocursorcolumn <Cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-easymotion
-"    I mapped it myself
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " <Bslash>f{char} to move to {char}
 map  <Bslash>f <Plug>                       (easymotion-bd-f)
