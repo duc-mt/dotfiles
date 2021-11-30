@@ -95,7 +95,7 @@ set title
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Wildmenu completion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set wildmenu		       " Enable auto completion menu after <TAB>.
+set wildmenu                   " Enable auto completion menu after <TAB>.
 set wildmode=longest,list,full " Make wildmenu behave akin to Bash completion.
 
 set wildignore+=.hg,.git,.svn                    " Version control
@@ -144,7 +144,8 @@ set cursorcolumn
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => (Relative) Number Options:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set number              	" Show line numbers on the sidebar.
+" Show line numbers on the sidebar.
+set number              
 
 " Show line number on the current line and relative numbers on other lines.
 " Works only if the option above ( number ) is enabled.
@@ -181,15 +182,15 @@ set wrap           " Wrap lines.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Search options:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set incsearch " Find the next match as we type the search.
+set incsearch    " Find the next match as we type the search.
 
-set hlsearch  " Highlight searches by default.
+set hlsearch     " Highlight searches by default.
 
-set smartcase " . . . unless you type a capital.
+set smartcase    " . . . unless you type a capital.
 
-set showmatch " Show matching words during a search.
+set showmatch    " Show matching words during a search.
 
-" set ignorecase            " Ignore capital letters during search.
+set noignorecase " Do not ignore capital letters during search.
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -257,19 +258,18 @@ if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
     call mkdir(targetdir, "p", 0700)
 endif
 
-set nowritebackup  "only in case you don't want a backup file while editing
-set backup                        " Enable backups
-set noswapfile                    " It's 2012, Vim.
-set makeef=error.err         	  " When using make, where should it dump the file
+set nowritebackup    " only in case you don't want a backup file while editing
+set backup           " Enable backups
+set noswapfile       " It's 2012, Vim.
+set makeef=error.err " When using make, where should it dump the file
 set nowb
 
-
-"                            *backup-table*
-"'backup' 'writebackup'  action
-"   off       off    no backup made
-"   off       on     backup current file, deleted afterwards (default)
-"   on        off    delete old backup, backup current file
-"   on        on     delete old backup, backup current file
+                            " *backup-table*
+" 'backup' 'writebackup'  action
+   " off       off    no backup made
+   " off       on     backup current file, deleted afterwards (default)
+   " on        off    delete old backup, backup current file
+   " on        on     delete old backup, backup current file
 
 " }}}
 
@@ -280,10 +280,7 @@ set nowb
 " => NERDTree
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Press {Leader n} to access NERDTree plugin.
-nnoremap <Leader>n :NERDTreeToggle<Cr>
-nnoremap <Leader>rn :NERDTreeRefreshRoot<Cr>
-
-let NERDTreeShowBookmarks=1       " Display bookmarks on start-up.
+nnoremap <Leader>n  : NERDTreeToggle<Cr>
 
 " autocmd VimEnter * NERDTree     " Enable NERDTree on Vim start-up.
 
@@ -293,16 +290,21 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
 
 " Have nerdtree show hidden files, but ignore certain files and directories.
 let NERDTreeShowHidden=1
-let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$', '\.DS_Store$', '\~$$', '\.swp$', 'node_modules$', 'venv$']
+let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '.vim$', '\~$', 'pip-log\.txt$', 'whoosh_index', 'xapian_index', '.*.pid', 'monitor.py', '.*-fixtures-.*.json', '.*\.o$', 'db.db']
 
 " Src: https://gist.github.com/ted-juan/4231826#file-vimrc-L949
 au Filetype nerdtree setlocal nolist
 
-let NERDTreeHighlightCursorline=1
-let NERDTreeIgnore=['.vim$', '\~$', '.*\.pyc$', 'pip-log\.txt$', 'whoosh_index', 'xapian_index', '.*.pid', 'monitor.py', '.*-fixtures-.*.json', '.*\.o$', 'db.db']
-
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
+let NERDTreeCaseSensitiveSort = 1
+let NERDTreeNaturalSort       = 1
+let NERDTreeSortHiddenFirst   = 1
+let NERDTreeChDirMode         = 3
+let NERDTreeRespectWildIgnore = 1
+let NERDTreeQuitOnOpen        = 1
+let NERDTreeWinPos            = "right"
+let NERDTreeWinSize           = 20
+let NERDTreeMinimalUI         = 1
+let NERDTreeDirArrows         = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -314,73 +316,135 @@ let NERDTreeDirArrows = 1
 " => Supertab
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Change <tab> navigate the completion menu from bottom to top
-let g:SuperTabDefaultCompletionType="<C-N>"
+let g:SuperTabDefaultCompletionType = "<C-N>"
 
 " Enhanced longest match support
-let g:SuperTabLongestEnhanced=1
+let g:SuperTabLongestEnhanced       = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-better-whitespace
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable highlighting and stripping whitespace on save by default.
-let g:better_whitespace_enabled=1
-let g:strip_whitespace_on_save=1
+let g:better_whitespace_enabled = 1
+let g:strip_whitespace_on_save  = 1
 
 autocmd VimEnter ~/.vim/pack/plugins/start/* let g:better_whitespace_enabled=0
 
 " Display the highlighting for the current line in Normal mode:
-let g:current_line_whitespace_disabled_soft=1
+let g:current_line_whitespace_disabled_soft = 1
 
 " Strip all trailing whitespace everytime I save the file for all file types.
-let g:strip_whitespace_on_save=1
+let g:strip_whitespace_on_save = 1
 
 " Disable confirmation before whitespace is stripped when I save the file.
-let g:strip_whitespace_confirm=1
+let g:strip_whitespace_confirm = 1
 
 " Strip white lines at the end of the file when stripping whitespace.
-let g:strip_whitelines_at_eof=1
+let g:strip_whitelines_at_eof = 1
 
 " Ignore lines that contain only whitespace.
-let g:better_whitespace_skip_empty_lines=1
+let g:better_whitespace_skip_empty_lines = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-unimpaired
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap [ns i<Space><Esc> " [b to add a blank space before the cursor
-nnoremap ]ns a<Space><Esc> " [b to add a blank space after the cursor
+" Line operations
+nnoremap [ns      i<Space> <Esc> " Add [count] blank spaces before the cursor
+nnoremap ]ns      a<Space> <Esc> " Add [count] blank spaces after the cursor
+
+nnoremap [<Space> O        <Esc> " Add [count] blank lines above the cursor
+nnoremap ]<Space> o        <Esc> " Add [count] blank lines below the cursor
+
+" Toggle background colour
+if exists("*ToggleBackground") == 0
+	function ToggleBackground()
+		if &background == "dark"
+			set background=light
+		else
+			set background=dark
+		endif
+	endfunction
+	command BG call ToggleBackground()
+endif
+
+nnoremap yob :BG<Cr>
+autocmd FileType * nnoremap [ob :set background=light                  <Cr>
+autocmd FileType * nnoremap ]ob :set background=dark                   <Cr>
+
+" Toggle cursorline
+autocmd FileType * nnoremap [oc :set cursorline                        <Cr>
+autocmd FileType * nnoremap ]oc :set nocursorline                      <Cr>
+
+" Toggle spell
+nnoremap yoe :set spell!                                               <Cr>
+autocmd FileType * nnoremap [oe :set spell                             <Cr>
+autocmd FileType * nnoremap ]oe :set nospell                           <Cr>
+
+" Toggle highlight search
+autocmd FileType * nnoremap [oh :set hlsearch                          <Cr>
+autocmd FileType * nnoremap ]oh :set nohlsearch                        <Cr>
+
+" Toggle highlight search
+autocmd FileType * nnoremap [oi :set ignore                            <Cr>
+autocmd FileType * nnoremap ]oi :set noignorecase                      <Cr>
+
+" Toggle list
+autocmd FileType * nnoremap [ol :set list                              <Cr>
+autocmd FileType * nnoremap ]ol :set nolist                            <Cr>
+
+" Toggle number
+autocmd FileType * nnoremap [on :set number                            <Cr>
+autocmd FileType * nnoremap ]on :set nonumber                          <Cr>
+
+" Toggle relativenumber
+autocmd FileType * nnoremap [on :set relativenumber                    <Cr>
+autocmd FileType * nnoremap ]on :set norelativenumber                  <Cr>
+
+" Toggle cursorcolumn
+autocmd FileType * nnoremap [on :set cursorcolumn                      <Cr>
+autocmd FileType * nnoremap ]on :set nocursorcolumn                    <Cr>
+
+" Toggle wrap
+autocmd FileType * nnoremap [ow :set wrap                              <Cr>
+autocmd FileType * nnoremap ]ow :set nowrap                            <Cr>
+
+" Toggle both cursorline & cursorcolumn
+autocmd FileType * nnoremap [ox :set cursorline   | set cursorcolumn   <Cr>
+autocmd FileType * nnoremap ]ox :set nocursorline | set nocursorcolumn <Cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-easymotion
+"    I mapped it myself
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " <Bslash>f{char} to move to {char}
-map  <Bslash>f <Plug>(easymotion-bd-f)
-nmap <Bslash>f <Plug>(easymotion-overwin-f)
+map  <Bslash>f <Plug>                       (easymotion-bd-f)
+nmap <Bslash>f <Plug>                       (easymotion-overwin-f)
 
 " <Bslash><Bslash>f to move to {char}{char}
-nmap <Bslash>F <Plug>(easymotion-overwin-f2)
+nmap <Bslash>F <Plug>                       (easymotion-overwin-f2)
 
 " Move to line
-map <Bslash>L <Plug>(easymotion-bd-jk)
-nmap <Bslash>L <Plug>(easymotion-overwin-line)
+map  <Bslash>L <Plug>                       (easymotion-bd-jk)
+nmap <Bslash>L <Plug>                       (easymotion-overwin-line)
 
 " Move to word
-map  <Bslash>w <Plug>(easymotion-bd-w)
-nmap <Bslash>w <Plug>(easymotion-overwin-w)
+map  <Bslash>w <Plug>                       (easymotion-bd-w)
+nmap <Bslash>w <Plug>                       (easymotion-overwin-w)
 
 " hjkl motions: Line and Column motions
-map <Bslash>l <Plug>(easymotion-lineforward)
-map <Bslash>j <Plug>(easymotion-j)
-map <Bslash>k <Plug>(easymotion-k)
-map <Bslash>h <Plug>(easymotion-linebackward)
+map <Bslash>l <Plug>                        (easymotion-lineforward)
+map <Bslash>j <Plug>                        (easymotion-j)
+map <Bslash>k <Plug>                        (easymotion-k)
+map <Bslash>h <Plug>                        (easymotion-linebackward)
 
 " Keep cursor column when JK motion
-let g:EasyMotion_startofline=0
+let g:EasyMotion_startofline = 0
 
 " Turn on case-insensitive feature
-let g:EasyMotion_smartcase=1
+let g:EasyMotion_smartcase = 1
 
 " n-character search motion
 map  / <Plug>(easymotion-sn)
@@ -409,20 +473,19 @@ set nocp
 map <F3> :Gvdiffsplit<Cr> " Apply Git diff split vertically
 map <F4> :Gdiffsplit<Cr>  " ... split horizontally
 
-nnoremap <leader>gd :Gdiff<cr>
-nnoremap <leader>gs :Gstatus<cr>
-nnoremap <leader>gw :Gwrite<cr>
-nnoremap <leader>ga :Gadd<cr>
-nnoremap <leader>gb :Gblame<cr>
-nnoremap <leader>gco :Gcheckout<cr>
-nnoremap <leader>gci :Gcommit<cr>
-nnoremap <leader>gm :Gmove<cr>
-nnoremap <leader>gr :Gremove<cr>
-nnoremap <leader>gl :Shell git gl -18<cr>:wincmd \|<cr>
+nnoremap <leader>gd  : Gdiff<Cr>
+nnoremap <leader>gs  : Gstatus<Cr>
+nnoremap <leader>gw  : Gwrite<Cr>
+nnoremap <leader>ga  : Gadd<Cr>
+nnoremap <leader>gb  : Gblame<Cr>
+nnoremap <leader>gco : Gcheckout<Cr>
+nnoremap <leader>gci : Gcommit<Cr>
+nnoremap <leader>gm  : Gmove<Cr>
+nnoremap <leader>gr  : Gremove<Cr>
+nnoremap <leader>gl  : Shell git gl -18<Cr> : wincmd \|<Cr>
 
 augroup ft_fugitive
     au!
-
     au BufNewFile,BufRead .git/index setlocal nolist
 augroup END
 
@@ -450,7 +513,7 @@ set foldtext=gitgutter#fold#foldtext()
 
 " Sign column
 " set signcolumn=yes
-highlight SignColumn guibg=yellow ctermbg=yellow
+" highlight SignColumn guibg=yellow ctermbg=yellow
 
 " Signs' colours and symbols
 " let g:gitgutter_set_sign_backgrounds=1
@@ -458,12 +521,12 @@ highlight GitGutterAdd    guifg=#009900 ctermfg=Green
 highlight GitGutterChange guifg=#bbbb00 ctermfg=Yellow
 highlight GitGutterDelete guifg=#ff2222 ctermfg=Red
 
-let g:gitgutter_sign_added='xx'
-let g:gitgutter_sign_modified='yy'
-let g:gitgutter_sign_removed='zz'
-let g:gitgutter_sign_removed_first_line='^^'
-let g:gitgutter_sign_removed_above_and_below='{'
-let g:gitgutter_sign_modified_removed='ww'
+let g:gitgutter_sign_added                   = 'xx'
+let g:gitgutter_sign_modified                = 'yy'
+let g:gitgutter_sign_removed                 = 'zz'
+let g:gitgutter_sign_removed_first_line      = '^^'
+let g:gitgutter_sign_removed_above_and_below = '{'
+let g:gitgutter_sign_modified_removed        = 'ww'
 
 " Preview the hunk the cursor is in
 nnoremap ghp :GitGutterPreviewHunk<Cr>
@@ -505,11 +568,11 @@ let g:workspace_create_new_tabs=0
 " autocmd FileType python let g:workspace_autosave_always=1
 let g:workspace_autosave_always=1
 
-" Undo History
-let g:workspace_persist_undo_history=0
+" " Undo History
+" let g:workspace_persist_undo_history=0
 
-" Change default session name
-let g:workspace_session_name='session.vim'
+" " Change default session name
+" let g:workspace_session_name='session.vim'
 
 " Change default default dir for session file
 let g:workspace_session_directory=$HOME . "/.vim/tmp/sessions"
@@ -934,7 +997,7 @@ highlight CursorLine guibg=Gray23 ctermbg=235
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Colour scheme.
+" => Colour scheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on
 
@@ -985,30 +1048,14 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "colorscheme gruvbox      	     " Change colourscheme
 
-"let hr=(strftime('%H'))
+let hr=(strftime('%H'))
 
-"if hr >= 22
-"  set background=dark
-"elseif hr >= 8
-"  set background=light
-"elseif hr>= 0
-"  set background=dark
-"endif
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Toggle background colour for VIM
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" :BG in the command mode to do this.
-if exists("*ToggleBackground") == 0
-	function ToggleBackground()
-		if &background == "dark"
-			set background=light
-		else
-			set background=dark
-		endif
-	endfunction
-	command BG call ToggleBackground()
+if hr >= 22
+  set background=dark
+elseif hr >= 8
+  set background=light
+elseif hr>= 0
+  set background=dark
 endif
 
 
@@ -1075,13 +1122,13 @@ set laststatus=2
 " }}}
 
 
-" PTHON ------------------------------------------------------------ {{{
+" PYTHON ------------------------------------------------------------ {{{
 augroup ft_python
     au!
 
     " au FileType python setlocal omnifunc=pythoncomplete#Complete
     au FileType python setlocal define=^\s*\\(def\\\\|class\\)
-    au FileType python compiler nose
+    " au FileType python compiler nose
     au FileType man nnoremap <buffer> <cr> :q<cr>
 
     " Jesus tapdancing Christ, built-in Python syntax, you couldn't let me
@@ -1101,16 +1148,13 @@ au BufNewFile,BufRead *.mako set ft=mako
 
 au FileType python map <buffer> F :set foldmethod=indent<cr>
 
-au FileType python inoremap <buffer> $r return 
-au FileType python inoremap <buffer> $i import 
-au FileType python inoremap <buffer> $p print 
+au FileType python inoremap <buffer> $r return
+au FileType python inoremap <buffer> $i import
+au FileType python inoremap <buffer> $p print
 au FileType python inoremap <buffer> $f # --- <esc>a
-au FileType python map <buffer> <leader>1 /class 
-au FileType python map <buffer> <leader>2 /def 
-au FileType python map <buffer> <leader>C ?class 
-au FileType python map <buffer> <leader>D ?def 
+au FileType python map <buffer> <leader>1 /class
+au FileType python map <buffer> <leader>2 /def
+au FileType python map <buffer> <leader>C ?class
+au FileType python map <buffer> <leader>D ?def
 
 " }}}
-
-
-
