@@ -24,10 +24,10 @@
 	url = https://github.com/easymotion/vim-easymotion.git
 [submodule "pack/plugins/start/ZoomWin"]
 	path = pack/plugins/start/ZoomWin
-	url = https://github.com/vim-scripts/ZoomWin.git
+	url = https://github.com/vim-scripts/ZoomWin/
 [submodule "pack/plugins/start/spreadsheet.vim"]
 	path = pack/plugins/start/spreadsheet.vim
-	url = https://github.com/vim-scripts/spreadsheet.vim
+	url = https://github.com/vim-scripts/spreadsheet.vim.git
 [submodule "pack/plugins/start/vim-fugitive"]
 	path = pack/plugins/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
@@ -61,3 +61,6 @@
 [submodule "pack/plugins/start/tabular"]
 	path = pack/plugins/start/tabular
 	url = https://github.com/godlygeek/tabular.git
+[submodule "pack/plugins/start/vim-dragvisuals"]
+	path = pack/plugins/start/vim-dragvisuals
+	url = https://github.com/atweiden/vim-dragvisuals.git
