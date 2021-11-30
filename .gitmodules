@@ -58,3 +58,6 @@
 [submodule "pack/plugins/start/lazygit"]
 	path = pack/plugins/start/lazygit
 	url = https://github.com/jesseduffield/lazygit.git
+[submodule "pack/plugins/start/tabular"]
+	path = pack/plugins/start/tabular
+	url = https://github.com/godlygeek/tabular.git
