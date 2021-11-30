@@ -61,3 +61,6 @@
 [submodule "pack/plugins/start/tabular"]
 	path = pack/plugins/start/tabular
 	url = https://github.com/godlygeek/tabular.git
+[submodule "pack/plugins/start/taglist.vim"]
+	path = pack/plugins/start/taglist.vim
+	url = https://github.com/vim-scripts/taglist.vim.git
