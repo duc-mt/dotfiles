@@ -16,7 +16,7 @@ packloadall			        " Load all plugins.
 silent! helptags ALL		" Load help for all plugins.
 
 
-" GENERAL CONFIGURATION OPTIONS ------------------------------------------- {{{
+" GENERAL CONFIGURATION OPTIONS ------------------------------------------ {{{
 
 " Use Vim settings, rather then Vi settings. It’s important to have this
 " on the top of your file, as it influences other options.
@@ -40,7 +40,7 @@ set autoread
 " See chapter Buffers to understand this better.
 set hidden
 
-let mapleader = "\<Space>"	" Map the leader key to a spacebar.
+let mapleader="\<Space>"	" Map the leader key to a spacebar.
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -56,8 +56,6 @@ set wildmode=longest,list,full " Make wildmenu behave akin to Bash completion.
 
 " Maximum number of tab pages that can be opened from the command line.
 set tabpagemax=40
-
-set cursorline          	" Highlight the line currently under cursor.
 
 set noerrorbells        	" Disable beep on errors.
 
@@ -106,9 +104,9 @@ set nowb
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Indentation options:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set autoindent         		" New lines inherit the indentation of previous lines.
+set autoindent       " New lines inherit the indentation of previous lines.
 
-" Enable type file detection. Vim will be able to try to detect the type of file in use.
+" Enable type file detection.
 filetype on
 
 " Enable plugins and load plugin for the detected file type.
@@ -165,17 +163,6 @@ set nrformats-=octal    	" Interpret octal as decimal when incrementing numbers.
 
 set shell               	" The shell used to execute commands.
 
-set spell                 " Disable spell checking on start-up.
-
-autocmd FileType vim,vimwiki,text,rst setlocal nospell
-
-set spelllang=en_au       " Australian spell checking.
-
-"Open file (plugins) as readonly
-augroup readonly
-  autocmd!
-  autocmd VimEnter /pack/plugins/start/* vim -M %
-augroup END
 
 " }}}
 
@@ -188,9 +175,9 @@ augroup END
 " Press {Leader n} to access NERDTree plugin.
 nnoremap <Leader>n :NERDTreeToggle<Enter>
 
-let NERDTreeShowBookmarks = 1       " Display bookmarks on start-up.
+let NERDTreeShowBookmarks=1       " Display bookmarks on start-up.
 
-" autocmd VimEnter * NERDTree       " Enable NERDTree on Vim start-up.
+" autocmd VimEnter * NERDTree     " Enable NERDTree on Vim start-up.
 
 " Autoclose NERDTree if it's the only open window left.
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
@@ -210,33 +197,35 @@ let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', 
 " => Supertab
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Change <tab> navigate the completion menu from bottom to top
-let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabDefaultCompletionType="<C-N>"
 
-" Enhanced longest match support.
-let g:SuperTabLongestEnhanced = 1
+" Enhanced longest match support
+let g:SuperTabLongestEnhanced=1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-better-whitespace
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable highlighting and stripping whitespace on save by default.
-let g:better_whitespace_enabled = 1
-let g:strip_whitespace_on_save = 1
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
 
-" Display the highlighting for the current line in normal mode:
-let g:current_line_whitespace_disabled_soft = 1
+autocmd VimEnter ~/.vim/pack/plugins/start/* let g:better_whitespace_enabled=0
+
+" Display the highlighting for the current line in Normal mode:
+let g:current_line_whitespace_disabled_soft=1
 
 " Strip all trailing whitespace everytime I save the file for all file types.
-let g:strip_whitespace_on_save = 1
+let g:strip_whitespace_on_save=1
 
 " Disable confirmation before whitespace is stripped when I save the file.
-let g:strip_whitespace_confirm = 1
+let g:strip_whitespace_confirm=1
 
 " Strip white lines at the end of the file when stripping whitespace.
-let g:strip_whitelines_at_eof = 1
+let g:strip_whitelines_at_eof=1
 
 " Ignore lines that contain only whitespace.
-let g:better_whitespace_skip_empty_lines = 1
+let g:better_whitespace_skip_empty_lines=1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -271,10 +260,10 @@ map <Bslash>k <Plug>(easymotion-k)
 map <Bslash>h <Plug>(easymotion-linebackward)
 
 " Keep cursor column when JK motion
-let g:EasyMotion_startofline = 0
+let g:EasyMotion_startofline=0
 
 " Turn on case-insensitive feature
-let g:EasyMotion_smartcase = 1
+let g:EasyMotion_smartcase=1
 
 " n-character search motion
 map  / <Plug>(easymotion-sn)
@@ -306,16 +295,16 @@ map <F4> :Gdiffsplit<Cr>            " ... split horizontally
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-gitgutter
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:gitgutter_enabled = 1
+let g:gitgutter_enabled=1
 " Disable all predefined mappings
-let g:gitgutter_map_keys = 0
+let g:gitgutter_map_keys=0
 
 " Update time controls the delay before vim writes its swap file
 set updatetime=101
 
 " Jump between hunks (differing lines)
-nnoremap ) :GitGutterNextHunk<Cr>
-nnoremap ( :GitGutterPrevHunk<Cr>
+nnoremap ) :GitGutterNextHunk
+nnoremap ( :GitGtterPrevHunk
 
 " Turn line highlighting on
 " nnoremap <F6> :GitGutterLineHighlightsToggle<Cr>
@@ -326,20 +315,20 @@ set foldtext=gitgutter#fold#foldtext()
 
 " Sign column
 " set signcolumn=yes
-" highlight SignColumn guibg=LightGrey ctermbg=LightGrey
+highlight SignColumn guibg=yellow ctermbg=yellow
 
 " Signs' colours and symbols
-" let g:gitgutter_set_sign_backgrounds = 1
+" let g:gitgutter_set_sign_backgrounds=1
 highlight GitGutterAdd    guifg=#009900 ctermfg=Green
 highlight GitGutterChange guifg=#bbbb00 ctermfg=Yellow
 highlight GitGutterDelete guifg=#ff2222 ctermfg=Red
 
-let g:gitgutter_sign_added = 'xx'
-let g:gitgutter_sign_modified = 'yy'
-let g:gitgutter_sign_removed = 'zz'
-let g:gitgutter_sign_removed_first_line = '^^'
-let g:gitgutter_sign_removed_above_and_below = '{'
-let g:gitgutter_sign_modified_removed = 'ww'
+let g:gitgutter_sign_added='xx'
+let g:gitgutter_sign_modified='yy'
+let g:gitgutter_sign_removed='zz'
+let g:gitgutter_sign_removed_first_line='^^'
+let g:gitgutter_sign_removed_above_and_below='{'
+let g:gitgutter_sign_modified_removed='ww'
 
 " Preview the hunk the cursor is in
 nnoremap ghp :GitGutterPreviewHunk<Cr>
@@ -350,70 +339,72 @@ nnoremap ghq :pclose<Cr>
 " => SimpylFold
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Preview docstring in fold text
-" let g:SimpylFold_docstring_preview = 1
+" let g:SimpylFold_docstring_preview=1
 
 " Fold docstrings
-" let g:SimpylFold_fold_docstring = 1
+" let g:SimpylFold_fold_docstring=1
 
 " Fold imports
-" let g:SimpylFold_fold_import = 1
+" let g:SimpylFold_fold_import=1
 
 " Fold trailing blank lines
-" let g:SimpylFold_fold_blank = 1
+" let g:SimpylFold_fold_blank=1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-workspace
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Disable all predefined mappings
-let g:gitgutter_map_keys = 0
+let g:gitgutter_map_keys=0
 
 " Toggle workspace
 " nnoremap <leader>s :ToggleWorkspace<CR>
 
 " Session tracking can be activated automatically (disabled by default):
-let g:workspace_autocreate = 1
+let g:workspace_autocreate=1
 
 " If Vim is run with a file argument and it's already in the session's workspace, Vim will load the session and go to the tab window that contains it. Otherwise, it will be loaded as a new tab in the session. If you would rather create a new buffer in the existing tab instead of creating a new tab
-let g:workspace_create_new_tabs = 0  " enabled = 1 (default), disabled = 0
+let g:workspace_create_new_tabs=0
 
 " Autosave
-autocmd FileType python let g:workspace_autosave_always = 1
+" autocmd FileType python let g:workspace_autosave_always=1
+let g:workspace_autosave_always=1
 
 " Undo History
-let g:workspace_persist_undo_history = 0
+let g:workspace_persist_undo_history=0
 
 " Change default session name
-let g:workspace_session_name = 'session.vim'
+let g:workspace_session_name='session.vim'
 
 " Change default default dir for session file
-let g:workspace_session_directory = $HOME . '/Templates/sessions/'
+let g:workspace_session_directory=$HOME . '/.vim/backup/sessions/'
 
 " Sessions not load if I'm explicitly loading a file in a workspace directory
-let g:workspace_session_disable_on_args = 1
+let g:workspace_session_disable_on_args=1
 
 " Untrailing Spaces & Untrailing Tabs
-autocmd FileType python let g:workspace_autosave_untrailspaces = 0
-autocmd FileType python let g:workspace_autosave_untrailtabs = 0
+autocmd FileType python let g:workspace_autosave_untrailspaces=1
+autocmd FileType python let g:workspace_autosave_untrailtabs=1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spelunker.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Do not enable spelunker.vim on start-up
-let g:enable_spelunker_vim = 1
+" Enable spelunker.vim on start-up, except for files (plugins)
+let g:enable_spelunker_vim=1
+autocmd BufEnter ~/.vim/pack/plugins/start/* let g:enable_spelunker_vim=0
 
 " Max amount of word suggestions
-let g:spelunker_max_suggest_words = 10
+let g:spelunker_max_suggest_words=12
 
 " Highlight all types (SpellBad, SpellCap, SpellRare, SpellLocal)
-let g:spelunker_highlight_type = 1
+let g:spelunker_highlight_type=1
 
 " Spelling mistakes will also be coloured red if you uncomment the colours.
-hi SpellBad cterm=underline ctermfg=203 guifg=#ff5f5f
-hi SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
-hi SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
-hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
+highlight SpellBad cterm=underline ctermfg=203 guifg=#ff5f5f
+highlight SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
+highlight SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
+highlight SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 
 " }}}
 
@@ -423,9 +414,9 @@ hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Save/quit
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <C-S> :w<Cr>	        " Press {Ctrl S} instead of {:w Cr}
+" nnoremap <C-S> :w<Cr>	        " Press {Ctrl S} instead of {:w Cr}
 
-nnoremap <Leader>wq :wq<Cr>	  " Press {Leader wq} instead of {:wq Cr}
+" nnoremap <Leader>wq :wq<Cr>	  " Press {Leader wq} instead of {:wq Cr}
 
 nnoremap <Leader>q :q<Cr>	    " Press {Leader q} instead of {:wq Cr}
 
@@ -474,6 +465,7 @@ inoremap " ""<Esc>i
 inoremap ( ()<Esc>i
 inoremap [ []<Esc>i
 inoremap { {}<Esc>i
+inoremap < <><Esc>i
 
 " Unmap closing double quotes for vim filetype (comments).
 autocmd FileType vim unmap! "
@@ -571,6 +563,23 @@ inoremap <right> <nop>
 autocmd Filetype python nnoremap <F5> :w<CR>:!clear<CR><CR><CR>:!python3 %<CR>
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Spell check
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Disable spell checking on start-up
+set spell spelllang=en_au
+
+" Disable nospell by default for some filetype
+autocmd FileType vim setlocal nospell
+autocmd BufEnter ~/.vim/pack/plugins/start/* setlocal nospell
+
+"Disable making changes to file (plugins)
+augroup readonly
+  autocmd!
+  autocmd BufEnter ~/.vim/pack/plugins/start/* setlocal nomodifiable
+augroup END
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Enable relative numbers in Normal mode; absolute numbers in Insert mode.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -600,7 +609,7 @@ autocmd Filetype html,vim,vimwiki setlocal tabstop=2 shiftwidth=2 expandtab
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => If Vim version is equal to or greater than 7.3 enable undofile.
+" => Set up persistent undo across all files.
 "    This allows you to undo changes to a file even after saving it.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if version >= 703
@@ -613,15 +622,18 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Make the 80th column stand out (PEP 8 Style Guide for Python Code)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-highlight ColorColumn ctermbg=Magenta
+" set termguicolors
+" set t_Co=256
+highlight Folded guibg=black
+highlight ColorColumn guibg=darkslategray
 call matchadd('ColorColumn', '\%80v', 100)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Hightlight matches when jumping to next:
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <silent> n     n:call HLNext(0.4)<cr>
-nnoremap <silent> N     N:call HLNext(0.4)<cr>
+nnoremap <silent> n     n:call HLNext(0.4)<Cr>
+nnoremap <silent> N     N:call HLNext(0.4)<Cr>
 
 function! HLNext (blinktime)
     set invcursorline
@@ -632,12 +644,12 @@ function! HLNext (blinktime)
 endfunction
 
 " function! HLNext (blinktime)
-"     let [bufnum, lnum, col, off] = getpos('.')
-"     let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
-"     let target_pat = '\c\%#'.@/
-"     let blinks = 3
+"     let [bufnum, lnum, col, off]=getpos('.')
+"     let matchlen=strlen(matchstr(strpart(getline('.'),col-1),@/))
+"     let target_pat='\c\%#'.@/
+"     let blinks=3
 "     for n in range(1,blinks)
-"         let red = matchadd('WhiteOnRed', target_pat, 101)
+"         let red=matchadd('WhiteOnRed', target_pat, 101)
 "         redraw
 "         exec 'sleep ' . float2nr(a:blinktime / (2*blinks) * 1000) . 'm'
 "         call matchdelete(red)
@@ -663,8 +675,8 @@ set list
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Auto remove trailing whitespace after saving.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" match ErrorMsg '\s\+$'              " highlight trailing whitespace
-" autocmd BufWritePre * :%s/\s\+$//e  " auto remove trailing whitespace
+" match ErrorMsg '\s\+$'              " Highlight trailing whitespace
+" autocmd BufWritePre * :%s/\s\+$//e  " Auto remove trailing whitespace
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -672,7 +684,7 @@ set list
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 colorscheme gruvbox      	            " Change colourscheme
 
-let hr = (strftime('%H'))
+let hr=(strftime('%H'))
 
 if hr >= 22
   set background=dark
@@ -711,7 +723,7 @@ set statusline+=%#PmenuSel#
 
 " Get a list of counts of added, modified, and removed lines (current buffer)
 function! GitStatus()
-  let [a,m,r] = GitGutterGetHunkSummary()
+  let [a,m,r]=GitGutterGetHunkSummary()
   return printf('+%d  ~%d  -%d', a, m, r)
 endfunction
 set statusline+=\\|\ %{GitStatus()}\ \|
