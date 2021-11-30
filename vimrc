@@ -406,6 +406,36 @@ highlight SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
 highlight SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
 highlight SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vim-floaterm
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Configuration
+let g:floaterm_gitcommit='floaterm'
+let g:floaterm_autoinsert=1
+let g:floaterm_width=0.8
+let g:floaterm_height=0.8
+let g:floaterm_wintitle=0
+let g:floaterm_autoclose=1
+
+" Mapping
+nnoremap   <silent>   <F6>    :FloatermNew<CR>
+tnoremap   <silent>   <F6>    <C-\><C-n>:FloatermNew<CR>
+nnoremap   <silent>   <F7>    :FloatermPrev<CR>
+tnoremap   <silent>   <F7>    <C-\><C-n>:FloatermPrev<CR>
+nnoremap   <silent>   <F8>    :FloatermNext<CR>
+tnoremap   <silent>   <F8>    <C-\><C-n>:FloatermNext<CR>
+nnoremap   <silent>   <F9>    :FloatermKill<CR>
+tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermKill<CR>
+nnoremap   <silent>   <F12>   :FloatermToggle<CR>
+tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
+
+" Highlight
+" Set floaterm window's background to black
+highlight Floaterm guibg=black
+" Set floating window border line color to cyan, and background to orange
+highlight FloatermBorder guibg=orange guifg=cyan
+
 " }}}
 
 
