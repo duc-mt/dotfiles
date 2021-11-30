@@ -9,11 +9,40 @@
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load the documentation for all the plugins:
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 packloadall          " Load all plugins.
 silent! helptags ALL " Load help for all plugins.
+
+
+" GUI related ------------------------------------------ {{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Set font according to system
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has("mac") || has("macunix")
+    set gfn=IBM\ Plex\ Mono:h14,Hack:h14,Source\ Code\ Pro:h15,Menlo:h15
+elseif has("win16") || has("win32")
+    set gfn=IBM\ Plex\ Mono:h14,Source\ Code\ Pro:h12,Bitstream\ Vera\ Sans\ Mono:h11
+elseif has("gui_gtk2")
+    set gfn=IBM\ Plex\ Mono\ 14,:Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
+elseif has("linux")
+    set gfn=IBM\ Plex\ Mono\ 14,:Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
+elseif has("unix")
+    set gfn=Monospace\ 11
+endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Disable scrollbars (real hackers don't use scrollbars for navigation!)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set guioptions-=r
+set guioptions-=R
+set guioptions-=l
+set guioptions-=L
+
+" }}}
 
 
 " GENERAL CONFIGURATION OPTIONS ------------------------------------------ {{{
@@ -50,10 +79,6 @@ set laststatus=2               " Always display the status bar.
 
 set ruler                      " Always show cursor position.
 
-set wildmenu                   " Enable auto completion menu after <TAB>.
-
-set wildmode=longest,list,full " Make wildmenu behave akin to Bash completion.
-
 " Maximum number of tab pages that can be opened from the command line.
 set tabpagemax=40
 
@@ -68,6 +93,39 @@ set title
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Wildmenu completion
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set wildmenu		       " Enable auto completion menu after <TAB>.
+set wildmode=longest,list,full " Make wildmenu behave akin to Bash completion.
+
+set wildignore+=.hg,.git,.svn                    " Version control
+set wildignore+=*.aux,*.out,*.toc,*.log,*.idx    " LaTeX intermediate files
+set wildignore+=*_aux,*.glg,*.glo,*.gls,*.ist    " LaTeX intermediate files
+set wildignore+=*.nlo,*.nls,*.pdf,*.bbl,*.dvi    " still LaTeX intermediate files
+set wildignore+=*.ilg,*.fdb_latexmk,*.synctex.gz " $(B!D(B LaTeX intermediate files
+set wildignore+=*.blg,*.ind                      " $(B!D!D!D(B LaTeX intermediate files
+set wildignore+=*.hi                             " Haskell linker files
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+set wildignore+=*.spl                            " compiled spelling word lists
+set wildignore+=*.sw?                            " Vim swap files
+set wildignore+=*.DS_Store                       " OSX bullshit
+
+set wildignore+=*.luac                           " Lua byte code
+
+set wildignore+=migrations                       " Django migrations
+set wildignore+=*.pyc                            " Python byte code
+
+set wildignore+=*.orig                           " Merge resolution files
+
+" Clojure/Leiningen
+set wildignore+=classes
+set wildignore+=lib
+
+" Better Completion
+set completeopt=longest,menuone,preview
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Clipboard / Registers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Allow copied vim text to also be added to clipboard
@@ -79,8 +137,8 @@ set clipboard=unnamed,unnamedplus
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set cursorline
 set cursorcolumn
-highlight CursorLine guibg=#2b2b2b
-highlight CursorColumn guibg=#2b2b2b
+"highlight CursorLine guibg=#2b2b2b
+"highlight CursorColumn guibg=#2b2b2b
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -94,11 +152,10 @@ set relativenumber
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Swap and backup file options - disable all of them:
+" => Splitting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set noswapfile
-set nobackup
-set nowb
+set splitbelow
+set splitright
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -109,7 +166,6 @@ set autoindent     " New lines inherit the indentation of previous lines.
 filetype on        " Enable type file detection.
 
 filetype plugin on " Enable and load plugin for the detected file type.
-
 
 filetype indent on " Load an indent file for the detected file type.
 
@@ -151,8 +207,6 @@ set scrolloff=3
 " The number of screen columns to keep to the left and right of the cursor.
 set sidescrolloff=5
 
-syntax on           " Enable syntax highlighting.
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Miscellaneous Options:
@@ -160,13 +214,62 @@ syntax on           " Enable syntax highlighting.
 " Display a confirmation dialogue when closing an unsaved file.
 set confirm
 
-" Ignore file’s mode lines; use vimrc configurations instead.
+" Ignore files mode lines; use vimrc configurations instead.
 set nomodeline
 
 set nrformats-=octal " Interpret octal as decimal when incrementing numbers.
 
 set shell            " The shell used to execute commands.
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Set up persistent undo across all files.
+"    means that you can undo even when you close a buffer/VIM.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+try
+    set undodir=~/.vim/tmp/undo//     " undo files
+    set undofile
+    set undoreload=10000
+catch
+endtry
+
+" Create undodir directory if possible and does not exist yet
+let targetdir=$HOME . "/.vim/tmp/undo"
+if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
+    call mkdir(targetdir, "p", 0700)
+endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Backup and swap file options - disable all of them:
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set backupdir=~/.vim/tmp/backup// " backups
+" Create undodir directory if possible and does not exist yet
+let targetdir=$HOME . "/.vim/tmp/backup"
+if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
+    call mkdir(targetdir, "p", 0700)
+endif
+
+set directory=~/.vim/tmp/swap//   " swap files
+" Create undodir directory if possible and does not exist yet
+let targetdir=$HOME . "/.vim/tmp/swap"
+if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
+    call mkdir(targetdir, "p", 0700)
+endif
+
+set nowritebackup  "only in case you don't want a backup file while editing
+set backup                        " Enable backups
+set noswapfile                    " It's 2012, Vim.
+set makeef=error.err         	  " When using make, where should it dump the file
+set nowb
+
+
+"                            *backup-table*
+"'backup' 'writebackup'  action
+"   off       off    no backup made
+"   off       on     backup current file, deleted afterwards (default)
+"   on        off    delete old backup, backup current file
+"   on        on     delete old backup, backup current file
 
 " }}}
 
@@ -191,6 +294,15 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
 " Have nerdtree show hidden files, but ignore certain files and directories.
 let NERDTreeShowHidden=1
 let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$', '\.DS_Store$', '\~$$', '\.swp$', 'node_modules$', 'venv$']
+
+" Src: https://gist.github.com/ted-juan/4231826#file-vimrc-L949
+au Filetype nerdtree setlocal nolist
+
+let NERDTreeHighlightCursorline=1
+let NERDTreeIgnore=['.vim$', '\~$', '.*\.pyc$', 'pip-log\.txt$', 'whoosh_index', 'xapian_index', '.*.pid', 'monitor.py', '.*-fixtures-.*.json', '.*\.o$', 'db.db']
+
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -287,6 +399,7 @@ map N <Plug>(easymotion-prev)
 " Hit once: the current window zooms into a full screen.
 " Hit the command again: the previous set of windows is restored.
 nnoremap <Leader>zw :ZoomWin<Cr>
+set nocp
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -295,6 +408,23 @@ nnoremap <Leader>zw :ZoomWin<Cr>
 " Diff maps
 map <F3> :Gvdiffsplit<Cr> " Apply Git diff split vertically
 map <F4> :Gdiffsplit<Cr>  " ... split horizontally
+
+nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gw :Gwrite<cr>
+nnoremap <leader>ga :Gadd<cr>
+nnoremap <leader>gb :Gblame<cr>
+nnoremap <leader>gco :Gcheckout<cr>
+nnoremap <leader>gci :Gcommit<cr>
+nnoremap <leader>gm :Gmove<cr>
+nnoremap <leader>gr :Gremove<cr>
+nnoremap <leader>gl :Shell git gl -18<cr>:wincmd \|<cr>
+
+augroup ft_fugitive
+    au!
+
+    au BufNewFile,BufRead .git/index setlocal nolist
+augroup END
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -344,16 +474,16 @@ nnoremap ghq :pclose<Cr>
 " => SimpylFold
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Preview docstring in fold text
-let g:SimpylFold_docstring_preview=0
+"let g:SimpylFold_docstring_preview=0
 
 " Fold docstrings
-let g:SimpylFold_fold_docstring=1
+"let g:SimpylFold_fold_docstring=1
 
 " Fold imports
-let g:SimpylFold_fold_import=1
+"let g:SimpylFold_fold_import=1
 
 " Fold trailing blank lines
-let g:SimpylFold_fold_blank=1
+"let g:SimpylFold_fold_blank=1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -382,7 +512,7 @@ let g:workspace_persist_undo_history=0
 let g:workspace_session_name='session.vim'
 
 " Change default default dir for session file
-let g:workspace_session_directory=$HOME . '/.vim/backup/sessions/'
+let g:workspace_session_directory=$HOME . "/.vim/tmp/sessions"
 
 " Sessions not load if I'm explicitly loading a file in a workspace directory
 let g:workspace_session_disable_on_args=1
@@ -403,13 +533,7 @@ autocmd BufEnter ~/.vim/pack/plugins/start/* let g:enable_spelunker_vim=0
 let g:spelunker_max_suggest_words=12
 
 " Highlight all types (SpellBad, SpellCap, SpellRare, SpellLocal)
-let g:spelunker_highlight_type=1
-
-" Spelling mistakes will also be coloured red if you uncomment the colours.
-highlight SpellBad cterm=underline ctermfg=203 guifg=#ff5f5f
-highlight SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
-highlight SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
-highlight SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
+" let g:spelunker_highlight_type=1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -441,6 +565,7 @@ highlight Floaterm guibg=black
 " Set floating window border line color to cyan, and background to orange
 highlight FloatermBorder guibg=orange guifg=cyan
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tabular
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -468,6 +593,10 @@ nnoremap <Leader>q :q<Cr>	    " Press {Leader q} instead of {:wq Cr}
 
 " inoremap <C-C> <Esc>          " Press {Ctrl C} to escape from Insert mode
 
+" Quickreturn
+inoremap <c-cr> <esc>A<cr>
+inoremap <s-cr> <esc>A:<cr>
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Make 'Y', 'D', 'C' make sense
@@ -483,8 +612,44 @@ nnoremap C cc
 " set foldmethod=indent		" Folding code based on indentation.
 
 nnoremap za zA              " Press {za} to open/close all folding levels.
+vnoremap za zA
 nnoremap zo zR              " Press {zo} to open every fold.
+vnoremap zo zR
 nnoremap zc zM              " Press {zc} to close every fold.
+vnoremap zc zM
+
+set foldlevelstart=2
+set foldlevel=5
+
+" Space to toggle folds.
+nnoremap <Space> za
+vnoremap <Space> za
+
+" Make zO recursively open whatever top level fold we're in, no matter where the
+" cursor happens to be.
+"nnoremap zO zCzO
+
+" Use ,z to "focus" the current fold.
+"nnoremap <leader>z zMzvzz
+
+function! MyFoldText() " {{{
+    let line = getline(v:foldstart)
+
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
+
+    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+    return line . '$(B!D(B' . repeat(" ",fillcharcount) . foldedlinecount . '$(B!D(B' . ' '
+endfunction " }}}
+set foldtext=MyFoldText()
+
+highlight Folded guibg=Gray8 guifg=Gray ctermbg=235  ctermfg=0
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -588,6 +753,29 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Save when losing focus
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au FocusLost * :wa
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Resize splits when the window is resized
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au VimResized * exe "normal! \<c-w>="
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Line Return
+"    Make sure Vim returns to the same line when you reopen a file.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup line_return
+    au!
+    au BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \     execute 'normal! g`"zvzz' |
+        \ endif
+augroup END
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Press <Space>p to print the current file to the default printer
@@ -615,6 +803,21 @@ autocmd Filetype python nnoremap <F5> :w<CR>:!clear<CR><CR><CR>:!python3 %<CR>
 " Disable spell checking on start-up
 set spell spelllang=en_au
 
+" Highlight spelling mistakes
+highlight SpellBad    term=reverse   ctermbg=12 gui=undercurl guisp=Red       " badly spelled word
+highlight SpellCap    term=reverse   ctermbg=9  gui=undercurl guisp=Blue      " word with wrong caps
+highlight SpellRare   term=reverse   ctermbg=13 gui=undercurl guisp=Magenta   " rare word
+highlight SpellLocale term=underline ctermbg=11 gui=undercurl guisp=DarkCyan  " word only exists in other region
+
+" Ignore CamelCase words when spell checking
+fun! IgnoreSpell()
+    syn match CamelCase /\<[A-Z][a-z]\+[A-Z].\{-}\>/ contains=@NoSpell transparent
+    syn cluster Spell add=CamelCase
+    syntax match InlineURL /https\?:\/\/\(\w\+\(:\w\+\)\?@\)\?\([A-Za-z][-_0-9A-Za-z]*\.\)\{1,}\(\w\{2,}\.\?\)\{1,}\(:[0-9]\{1,5}\)\?\S*/ contains=@NoSpell transparent
+    syn cluster Spell add=InlineURL
+endfun
+autocmd BufRead,BufNewFile * :call IgnoreSpell()
+
 " Disable nospell by default for some filetype
 autocmd FileType vim setlocal nospell
 autocmd BufEnter ~/.vim/pack/plugins/start/* setlocal nospell
@@ -624,6 +827,14 @@ augroup readonly
   autocmd!
   autocmd BufEnter ~/.vim/pack/plugins/start/* setlocal nomodifiable
 augroup END
+
+" Disable colorcolumn if the buffer is read only
+function CheckRo()
+    if &readonly
+        set colorcolumn=0
+    endif
+endfunction
+au BufReadPost * call CheckRo()
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -655,23 +866,12 @@ autocmd Filetype html,vim,vimwiki setlocal tabstop=2 shiftwidth=2 expandtab
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Set up persistent undo across all files.
-"    This allows you to undo changes to a file even after saving it.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if version >= 703
-    set undodir=~/.vim/backup
-    set undofile
-    set undoreload=10000
-endif
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Make the 80th column stand out (PEP 8 Style Guide for Python Code)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set termguicolors
 " set t_Co=256
-highlight Folded guibg=black
-highlight ColorColumn guibg=darkslategray
+"highlight Folded guibg=black
+highlight ColorColumn guibg=Gray15 ctermbg=235
 call matchadd('ColorColumn', '\%80v', 100)
 
 
@@ -714,8 +914,16 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Highlight white space and tab characters.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
-set list
+highlight WhitespaceEOL term=standout ctermbg=DarkYellow guibg=DarkYellow
+match WhitespaceEOL /\s\+$/
+
+call matchadd('WhitespaceEOL', '\(\s\+$\| \+\ze\t\|\t\zs \+\)\(\%#\)\@!')
+
+"highlight ColorColumn guibg=Gray15 ctermbg=235
+highlight CursorLine guibg=Gray23 ctermbg=235
+
+"exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+"set list
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -726,19 +934,66 @@ set list
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Colour scheme.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+syntax on
+
+if has("gui_running")
+    "set background=light        " we are not using a dark background
+    "set background=dark         " we are not using a light background
+    colorscheme xoria256
+    if (hostname() == 'wollnashorn')
+        set guifont=DejaVu\ Sans\ Mono\ 12
+    else
+        set guifont=DejaVu\ Sans\ Mono\ 10
+    endif
+    "set guioptions-=m  "remove menu bar
+    set guioptions-=T  "remove toolbar
+    set guioptions-=r  "remove right-hand scroll bar
+    highlight Cursor guifg=black guibg=DarkOrange
+    highlight iCursor guifg=black guibg=Green
+    set guicursor=n-v-c:block-Cursor
+    set guicursor+=i:ver100-iCursor
+    set guicursor+=n-v-c:blinkon0
+    set guicursor+=i:blinkwait0
+    cnoreabbrev <expr> x getcmdtype() == ":" && getcmdline() == 'x' ? 'bd' : 'x'
+    cnoreabbrev <expr> q getcmdtype() == ":" && getcmdline() == 'q' ? 'bd' : 'q'
+else
+    set t_Co=256
+    "set background=light         " we are not using a light background
+    "set background=dark        " we are not using a light background
+    colorscheme xoria256
+    "autocmd InsertEnter * highlight  CursorLine ctermbg=23 ctermfg=None
+    " Revert Color to default when leaving Insert Mode
+    "autocmd InsertLeave * highlight  CursorLine ctermbg=237 ctermfg=None
+endif
+
+if &term =~ "xterm\\|rxvt"
+    " use an orange cursor in insert mode
+    let &t_SI = "\<Esc>]12;green\x7"
+    " use a red cursor otherwise
+    let &t_EI = "\<Esc>]12;orange\x7"
+    silent !echo -ne "\033]12;orange\007"
+    " reset cursor when vim exits
+    autocmd VimLeave * silent !echo -ne "\033]12;white\007"
+    " use \003]12;gray\007 for gnome-terminal
+endif
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Change theme depending on the time of day
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-colorscheme gruvbox      	           " Change colourscheme
+"colorscheme gruvbox      	     " Change colourscheme
 
-let hr=(strftime('%H'))
+"let hr=(strftime('%H'))
 
-if hr >= 22
-  set background=dark
-elseif hr >= 8
-  set background=light
-elseif hr>= 0
-  set background=dark
-endif
+"if hr >= 22
+"  set background=dark
+"elseif hr >= 8
+"  set background=light
+"elseif hr>= 0
+"  set background=dark
+"endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -756,11 +1011,41 @@ if exists("*ToggleBackground") == 0
 	command BG call ToggleBackground()
 endif
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Fast editing and reloading of vimrc configs
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>e :e! ~/.vim/vimrc<cr>
+autocmd! bufwritepost ~/.vim/vimrc source ~/.vim/vimrc
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Block Colors
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Block Colors {{{
+
+let g:blockcolor_state = 0
+function! BlockColor() " {{{
+    if g:blockcolor_state
+        let g:blockcolor_state = 0
+        call matchdelete(77880)
+        call matchdelete(77881)
+        call matchdelete(77882)
+        call matchdelete(77883)
+    else
+        let g:blockcolor_state = 1
+        call matchadd("BlockColor1", '^ \{4}.*', 1, 77880)
+        call matchadd("BlockColor2", '^ \{8}.*', 2, 77881)
+        call matchadd("BlockColor3", '^ \{12}.*', 3, 77882)
+        call matchadd("BlockColor4", '^ \{16}.*', 4, 77883)
+    endif
+endfunction " }}}
+nnoremap <leader>B :call BlockColor()<cr>
+
 " }}}
 
 
 " STATUS LINE ------------------------------------------------------------ {{{
-
 " Clear status line when vimrc is reloaded.
 set statusline=
 
@@ -788,3 +1073,44 @@ set statusline+=\ row:\ %l\/\%L\ \|\ col:\ %c\ \|\ percent:\ %p%%\ \|
 set laststatus=2
 
 " }}}
+
+
+" PTHON ------------------------------------------------------------ {{{
+augroup ft_python
+    au!
+
+    " au FileType python setlocal omnifunc=pythoncomplete#Complete
+    au FileType python setlocal define=^\s*\\(def\\\\|class\\)
+    au FileType python compiler nose
+    au FileType man nnoremap <buffer> <cr> :q<cr>
+
+    " Jesus tapdancing Christ, built-in Python syntax, you couldn't let me
+    " override this in a normal way, could you?
+    au FileType python if exists("python_space_error_highlight") | unlet python_space_error_highlight | endif
+
+    " Jesus, Python.  Five characters of punctuation for a damn string?
+    au FileType python inoremap <buffer> <d-'> _(u'')<left><left>
+
+augroup END
+
+let python_highlight_all = 1
+au FileType python syn keyword pythonDecorator True None False self
+
+au BufNewFile,BufRead *.jinja set syntax=htmljinja
+au BufNewFile,BufRead *.mako set ft=mako
+
+au FileType python map <buffer> F :set foldmethod=indent<cr>
+
+au FileType python inoremap <buffer> $r return 
+au FileType python inoremap <buffer> $i import 
+au FileType python inoremap <buffer> $p print 
+au FileType python inoremap <buffer> $f # --- <esc>a
+au FileType python map <buffer> <leader>1 /class 
+au FileType python map <buffer> <leader>2 /def 
+au FileType python map <buffer> <leader>C ?class 
+au FileType python map <buffer> <leader>D ?def 
+
+" }}}
+
+
+
