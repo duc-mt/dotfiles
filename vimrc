@@ -12,8 +12,8 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load the documentation for all the plugins:
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-packloadall			        " Load all plugins.
-silent! helptags ALL		" Load help for all plugins.
+packloadall          " Load all plugins.
+silent! helptags ALL " Load help for all plugins.
 
 
 " GENERAL CONFIGURATION OPTIONS ------------------------------------------ {{{
@@ -25,11 +25,11 @@ set nocompatible
 " Allow backspacing over indention, line breaks and insertion start.
 set backspace=indent,eol,start
 
-set history=1000        	" Set bigger history of executed commands.
+set history=1000 " Set bigger history of executed commands.
 
-set showcmd             	" Show incomplete commands at the bottom.
+set showcmd      " Show incomplete commands at the bottom.
 
-set showmode            	" Show current mode at the bottom.
+set showmode     " Show current mode at the bottom.
 
 " Automatically re-read files if unmodified inside Vim.
 set autoread
@@ -46,22 +46,22 @@ let mapleader="\<Space>"	" Map the leader key to a spacebar.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => User Interface Options:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set laststatus=2        	" Always display the status bar.
+set laststatus=2               " Always display the status bar.
 
-set ruler               	" Always show cursor position.
+set ruler                      " Always show cursor position.
 
-set wildmenu                " Enable auto completion menu after pressing TAB.
+set wildmenu                   " Enable auto completion menu after <TAB>.
 
 set wildmode=longest,list,full " Make wildmenu behave akin to Bash completion.
 
 " Maximum number of tab pages that can be opened from the command line.
 set tabpagemax=40
 
-set noerrorbells        	" Disable beep on errors.
+set noerrorbells               " Disable beep on errors.
 
-set visualbell          	" Flash the screen instead of beeping on errors.
+set visualbell                 " Flash screen instead of beeping on errors.
 
-set mouse=a             	" Enable mouse for scrolling and resizing.
+set mouse=a                    " Enable mouse for scrolling and resizing.
 
 " Set the window’s title, reflecting the file currently being edited.
 set title
@@ -104,36 +104,34 @@ set nowb
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Indentation options:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set autoindent       " New lines inherit the indentation of previous lines.
+set autoindent     " New lines inherit the indentation of previous lines.
 
-" Enable type file detection.
-filetype on
+filetype on        " Enable type file detection.
 
-" Enable plugins and load plugin for the detected file type.
-filetype plugin on
+filetype plugin on " Enable and load plugin for the detected file type.
 
-" Load an indent file for the detected file type.
-filetype indent on
 
-set tabstop=4           	" Show existing tab with 4 spaces width.
+filetype indent on " Load an indent file for the detected file type.
 
-set shiftwidth=4        	" When indenting with ‘>’, use 4 spaces width.
+set tabstop=4      " Show existing tab with 4 spaces width.
 
-set expandtab           	" Use space characters instead of tabs.
+set shiftwidth=4   " When indenting with ‘>’, use 4 spaces width.
 
-set wrap              		" Wrap lines.
+set expandtab      " Use space characters instead of tabs.
+
+set wrap           " Wrap lines.
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Search options:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set incsearch           	" Find the next match as we type the search.
+set incsearch " Find the next match as we type the search.
 
-set hlsearch            	" Highlight searches by default.
+set hlsearch  " Highlight searches by default.
 
-set smartcase           	" . . . unless you type a capital.
+set smartcase " . . . unless you type a capital.
 
-set showmatch               " Show matching words during a search.
+set showmatch " Show matching words during a search.
 
 " set ignorecase            " Ignore capital letters during search.
 
@@ -141,27 +139,33 @@ set showmatch               " Show matching words during a search.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text rendering options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set encoding=utf-8      	" Use an encoding that supports Unicode.
+set encoding=utf-8  " Use an encoding that supports Unicode.
 
-set linebreak           	" Wrap lines at convenient points, avoid wrapping a line in the middle of a word.
+" Wrap lines at convenient points.
+" Avoid wrapping a line in the middle of a word.
+set linebreak
 
-set scrolloff=3         	" The number of screen lines to keep above and below the cursor.
+" The number of screen lines to keep above and below the cursor.
+set scrolloff=3
 
-set sidescrolloff=5     	" The number of screen columns to keep to the left and right of the cursor.
+" The number of screen columns to keep to the left and right of the cursor.
+set sidescrolloff=5
 
-syntax on           	    " Enable syntax highlighting.
+syntax on           " Enable syntax highlighting.
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Miscellaneous Options:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set confirm             	" Display a confirmation dialogue when closing an unsaved file.
+" Display a confirmation dialogue when closing an unsaved file.
+set confirm
 
-set nomodeline          	" Ignore file’s mode lines; use vimrc configurations instead.
+" Ignore file’s mode lines; use vimrc configurations instead.
+set nomodeline
 
-set nrformats-=octal    	" Interpret octal as decimal when incrementing numbers.
+set nrformats-=octal " Interpret octal as decimal when incrementing numbers.
 
-set shell               	" The shell used to execute commands.
+set shell            " The shell used to execute commands.
 
 
 " }}}
@@ -173,7 +177,8 @@ set shell               	" The shell used to execute commands.
 " => NERDTree
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Press {Leader n} to access NERDTree plugin.
-nnoremap <Leader>n :NERDTreeToggle<Enter>
+nnoremap <Leader>n :NERDTreeToggle<Cr>
+nnoremap <Leader>rn :NERDTreeRefreshRoot<Cr>
 
 let NERDTreeShowBookmarks=1       " Display bookmarks on start-up.
 
@@ -231,8 +236,8 @@ let g:better_whitespace_skip_empty_lines=1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-unimpaired
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap [ns i<Space><Esc>       " [b to add a blank space before the cursor
-nnoremap ]ns a<Space><Esc>       " [b to add a blank space after the cursor
+nnoremap [ns i<Space><Esc> " [b to add a blank space before the cursor
+nnoremap ]ns a<Space><Esc> " [b to add a blank space after the cursor
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -288,8 +293,8 @@ nnoremap <Leader>zw :ZoomWin<Cr>
 " => Vim-fugitive
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Diff maps
-map <F3> :Gvdiffsplit<Cr>           " Apply Git diff split vertically
-map <F4> :Gdiffsplit<Cr>            " ... split horizontally
+map <F3> :Gvdiffsplit<Cr> " Apply Git diff split vertically
+map <F4> :Gdiffsplit<Cr>  " ... split horizontally
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -339,16 +344,16 @@ nnoremap ghq :pclose<Cr>
 " => SimpylFold
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Preview docstring in fold text
-" let g:SimpylFold_docstring_preview=1
+let g:SimpylFold_docstring_preview=0
 
 " Fold docstrings
-" let g:SimpylFold_fold_docstring=1
+let g:SimpylFold_fold_docstring=1
 
 " Fold imports
-" let g:SimpylFold_fold_import=1
+let g:SimpylFold_fold_import=1
 
 " Fold trailing blank lines
-" let g:SimpylFold_fold_blank=1
+let g:SimpylFold_fold_blank=1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -411,12 +416,12 @@ highlight SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 " => Vim-floaterm
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Configuration
-let g:floaterm_gitcommit='floaterm'
-let g:floaterm_autoinsert=1
-let g:floaterm_width=0.8
-let g:floaterm_height=0.8
-let g:floaterm_wintitle=0
-let g:floaterm_autoclose=1
+let g:floaterm_gitcommit  = 'floaterm'
+let g:floaterm_autoinsert = 1
+let g:floaterm_width      = 0.8
+let g:floaterm_height     = 0.8
+let g:floaterm_wintitle   = 0
+let g:floaterm_autoclose  = 1
 
 " Mapping
 nnoremap   <silent>   <F6>    :FloatermNew<CR>
@@ -435,6 +440,17 @@ tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
 highlight Floaterm guibg=black
 " Set floating window border line color to cyan, and background to orange
 highlight FloatermBorder guibg=orange guifg=cyan
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Tabular
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+vnoremap :T :Tabularize /
+
+" Tabularize used in vimrc's comments.
+vnoremap :T" :Tabularize /"<Cr>
+
+" Tabularize used for multiple assignments.
+vnoremap :T= :Tabularize /=<Cr>
 
 " }}}
 
@@ -502,10 +518,10 @@ autocmd FileType vim unmap! "
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Press ; to type the : character in command mode.
+" Colon shortcuts to access command line mode.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap ; :
-
+nnoremap : :!
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Press {Ctrl Z} to open terminal vertically on the right.
@@ -705,14 +721,14 @@ set list
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Auto remove trailing whitespace after saving.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" match ErrorMsg '\s\+$'              " Highlight trailing whitespace
-" autocmd BufWritePre * :%s/\s\+$//e  " Auto remove trailing whitespace
+" match ErrorMsg '\s\+$'             " Highlight trailing whitespace
+" autocmd BufWritePre * :%s/\s\+$//e " Auto remove trailing whitespace
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Change theme depending on the time of day
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-colorscheme gruvbox      	            " Change colourscheme
+colorscheme gruvbox      	           " Change colourscheme
 
 let hr=(strftime('%H'))
 
