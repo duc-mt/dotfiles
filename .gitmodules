@@ -64,3 +64,6 @@
 [submodule "pack/plugins/start/vim-dragvisuals"]
 	path = pack/plugins/start/vim-dragvisuals
 	url = https://github.com/atweiden/vim-dragvisuals.git
+[submodule "pack/plugins/start/estilo-xoria256"]
+	path = pack/plugins/start/estilo-xoria256
+	url = https://github.com/neozenith/estilo-xoria256.git
