@@ -17,7 +17,7 @@ packloadall          " Load all plugins.
 silent! helptags ALL " Load help for all plugins.
 
 
-" GUI related ------------------------------------------ {{{
+" GUI RELATED ------------------------------------------------------------ {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Set font according to system
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -125,6 +125,7 @@ set wildignore+=lib
 " Better Completion
 set completeopt=longest,menuone,preview
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Clipboard / Registers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -145,7 +146,7 @@ set cursorcolumn
 " => (Relative) Number Options:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Show line numbers on the sidebar.
-set number              
+set number
 
 " Show line number on the current line and relative numbers on other lines.
 " Works only if the option above ( number ) is enabled.
@@ -155,8 +156,7 @@ set relativenumber
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Splitting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set splitbelow
-set splitright
+set splitbelow splitright
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -220,7 +220,7 @@ set nomodeline
 
 set nrformats-=octal " Interpret octal as decimal when incrementing numbers.
 
-set shell            " The shell used to execute commands.
+" set shell            " The shell used to execute commands.
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -244,19 +244,19 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Backup and swap file options - disable all of them:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set backupdir=~/.vim/tmp/backup// " backups
-" Create undodir directory if possible and does not exist yet
-let targetdir=$HOME . "/.vim/tmp/backup"
-if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
-    call mkdir(targetdir, "p", 0700)
-endif
+" set backupdir=~/.vim/tmp/backup// " backups
+" " Create undodir directory if possible and does not exist yet
+" let targetdir=$HOME . "/.vim/tmp/backup"
+" if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
+"     call mkdir(targetdir, "p", 0700)
+" endif
 
-set directory=~/.vim/tmp/swap//   " swap files
-" Create undodir directory if possible and does not exist yet
-let targetdir=$HOME . "/.vim/tmp/swap"
-if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
-    call mkdir(targetdir, "p", 0700)
-endif
+" set directory=~/.vim/tmp/swap//   " swap files
+" " Create undodir directory if possible and does not exist yet
+" let targetdir=$HOME . "/.vim/tmp/swap"
+" if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
+"     call mkdir(targetdir, "p", 0700)
+" endif
 
 set nowritebackup    " only in case you don't want a backup file while editing
 set backup           " Enable backups
@@ -282,18 +282,18 @@ set nowb
 " Press {Leader n} to access NERDTree plugin.
 nnoremap <Leader>n  : NERDTreeToggle<Cr>
 
-" autocmd VimEnter * NERDTree     " Enable NERDTree on Vim start-up.
+" au VimEnter * NERDTree     " Enable NERDTree on Vim start-up.
 
 " Autoclose NERDTree if it's the only open window left.
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
+au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
 \ b:NERDTree.isTabTree()) | q | endif
 
 " Have nerdtree show hidden files, but ignore certain files and directories.
 let NERDTreeShowHidden=1
-let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '.vim$', '\~$', 'pip-log\.txt$', 'whoosh_index', 'xapian_index', '.*.pid', 'monitor.py', '.*-fixtures-.*.json', '.*\.o$', 'db.db']
+let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\~$', 'pip-log\.txt$', 'whoosh_index', 'xapian_index', '.*.pid', 'monitor.py', '.*-fixtures-.*.json', '.*\.o$', 'db.db']
 
 " Src: https://gist.github.com/ted-juan/4231826#file-vimrc-L949
-au Filetype nerdtree setlocal nolist
+au Filetype nerdtree setl nolist
 
 let NERDTreeCaseSensitiveSort = 1
 let NERDTreeNaturalSort       = 1
@@ -310,6 +310,14 @@ let NERDTreeDirArrows         = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-commentary
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" au FileType vim nnoremap gcc I"<Space><Esc>0
+" au FileType vim vnoremap gc I"<Space><Esc>0
+
+" au FileType vim nnoremap guc 0xx<Esc>
+" au FileType vim vnoremap guc 0xx<Esc>
+
+" au FileType python nnoremap gcc I#<Space><Esc>0
+" au FileType python vnoremap gc I#<Space><Esc>0
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -320,31 +328,6 @@ let g:SuperTabDefaultCompletionType = "<C-N>"
 
 " Enhanced longest match support
 let g:SuperTabLongestEnhanced       = 1
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vim-better-whitespace
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Enable highlighting and stripping whitespace on save by default.
-let g:better_whitespace_enabled = 1
-let g:strip_whitespace_on_save  = 1
-
-autocmd VimEnter ~/.vim/pack/plugins/start/* let g:better_whitespace_enabled=0
-
-" Display the highlighting for the current line in Normal mode:
-let g:current_line_whitespace_disabled_soft = 1
-
-" Strip all trailing whitespace everytime I save the file for all file types.
-let g:strip_whitespace_on_save = 1
-
-" Disable confirmation before whitespace is stripped when I save the file.
-let g:strip_whitespace_confirm = 1
-
-" Strip white lines at the end of the file when stripping whitespace.
-let g:strip_whitelines_at_eof = 1
-
-" Ignore lines that contain only whitespace.
-let g:better_whitespace_skip_empty_lines = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -371,49 +354,45 @@ if exists("*ToggleBackground") == 0
 endif
 
 nnoremap yob :BG<Cr>
-autocmd FileType * nnoremap [ob :set background=light                  <Cr>
-autocmd FileType * nnoremap ]ob :set background=dark                   <Cr>
+au FileType * nnoremap [ob :set background=light                  <Cr>
+au FileType * nnoremap ]ob :set background=dark                   <Cr>
 
 " Toggle cursorline
-autocmd FileType * nnoremap [oc :set cursorline                        <Cr>
-autocmd FileType * nnoremap ]oc :set nocursorline                      <Cr>
+au FileType * nnoremap [oc :set cursorline                        <Cr>
+au FileType * nnoremap ]oc :set nocursorline                      <Cr>
 
 " Toggle spell
 nnoremap yoe :set spell!                                               <Cr>
-autocmd FileType * nnoremap [oe :set spell                             <Cr>
-autocmd FileType * nnoremap ]oe :set nospell                           <Cr>
+au FileType * nnoremap [oe :set spell                             <Cr>
+au FileType * nnoremap ]oe :set nospell                           <Cr>
 
 " Toggle highlight search
-autocmd FileType * nnoremap [oh :set hlsearch                          <Cr>
-autocmd FileType * nnoremap ]oh :set nohlsearch                        <Cr>
+au FileType * nnoremap [oh :set hlsearch                          <Cr>
+au FileType * nnoremap ]oh :set nohlsearch                        <Cr>
 
 " Toggle highlight search
-autocmd FileType * nnoremap [oi :set ignore                            <Cr>
-autocmd FileType * nnoremap ]oi :set noignorecase                      <Cr>
+au FileType * nnoremap [oi :set ignore                            <Cr>
+au FileType * nnoremap ]oi :set noignorecase                      <Cr>
 
 " Toggle list
-autocmd FileType * nnoremap [ol :set list                              <Cr>
-autocmd FileType * nnoremap ]ol :set nolist                            <Cr>
+au FileType * nnoremap [ol :set list                              <Cr>
+au FileType * nnoremap ]ol :set nolist                            <Cr>
 
 " Toggle number
-autocmd FileType * nnoremap [on :set number                            <Cr>
-autocmd FileType * nnoremap ]on :set nonumber                          <Cr>
+au FileType * nnoremap [on :set number                            <Cr>
+au FileType * nnoremap ]on :set nonumber                          <Cr>
 
 " Toggle relativenumber
-autocmd FileType * nnoremap [on :set relativenumber                    <Cr>
-autocmd FileType * nnoremap ]on :set norelativenumber                  <Cr>
+au FileType * nnoremap [on :set relativenumber                    <Cr>
+au FileType * nnoremap ]on :set norelativenumber                  <Cr>
 
 " Toggle cursorcolumn
-autocmd FileType * nnoremap [on :set cursorcolumn                      <Cr>
-autocmd FileType * nnoremap ]on :set nocursorcolumn                    <Cr>
+au FileType * nnoremap [on :set cursorcolumn                      <Cr>
+au FileType * nnoremap ]on :set nocursorcolumn                    <Cr>
 
 " Toggle wrap
-autocmd FileType * nnoremap [ow :set wrap                              <Cr>
-autocmd FileType * nnoremap ]ow :set nowrap                            <Cr>
-
-" Toggle both cursorline & cursorcolumn
-autocmd FileType * nnoremap [ox :set cursorline   | set cursorcolumn   <Cr>
-autocmd FileType * nnoremap ]ox :set nocursorline | set nocursorcolumn <Cr>
+au FileType * nnoremap [ow :set wrap                              <Cr>
+au FileType * nnoremap ]ow :set nowrap                            <Cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -458,15 +437,6 @@ map N <Plug>(easymotion-prev)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => ZoomWin
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Hit once: the current window zooms into a full screen.
-" Hit the command again: the previous set of windows is restored.
-nnoremap <Leader>zw :ZoomWin<Cr>
-set nocp
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-fugitive
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Diff maps
@@ -486,7 +456,7 @@ nnoremap <leader>gl  : Shell git gl -18<Cr> : wincmd \|<Cr>
 
 augroup ft_fugitive
     au!
-    au BufNewFile,BufRead .git/index setlocal nolist
+    au BufNewFile,BufRead .git/index setl nolist
 augroup END
 
 
@@ -498,7 +468,7 @@ let g:gitgutter_enabled=1
 let g:gitgutter_map_keys=0
 
 " Update time controls the delay before vim writes its swap file
-set updatetime=101
+set updatetime=100
 
 " Jump between hunks (differing lines)
 nnoremap ) :GitGutterNextHunk
@@ -531,72 +501,6 @@ let g:gitgutter_sign_modified_removed        = 'ww'
 " Preview the hunk the cursor is in
 nnoremap ghp :GitGutterPreviewHunk<Cr>
 nnoremap ghq :pclose<Cr>
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => SimpylFold
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Preview docstring in fold text
-"let g:SimpylFold_docstring_preview=0
-
-" Fold docstrings
-"let g:SimpylFold_fold_docstring=1
-
-" Fold imports
-"let g:SimpylFold_fold_import=1
-
-" Fold trailing blank lines
-"let g:SimpylFold_fold_blank=1
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vim-workspace
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Disable all predefined mappings
-let g:gitgutter_map_keys=0
-
-" Toggle workspace
-" nnoremap <leader>s :ToggleWorkspace<CR>
-
-" Session tracking can be activated automatically (disabled by default):
-let g:workspace_autocreate=1
-
-" If Vim is run with a file argument and it's already in the session's workspace, Vim will load the session and go to the tab window that contains it. Otherwise, it will be loaded as a new tab in the session. If you would rather create a new buffer in the existing tab instead of creating a new tab
-let g:workspace_create_new_tabs=0
-
-" Autosave
-" autocmd FileType python let g:workspace_autosave_always=1
-let g:workspace_autosave_always=1
-
-" " Undo History
-" let g:workspace_persist_undo_history=0
-
-" " Change default session name
-" let g:workspace_session_name='session.vim'
-
-" Change default default dir for session file
-let g:workspace_session_directory=$HOME . "/.vim/tmp/sessions"
-
-" Sessions not load if I'm explicitly loading a file in a workspace directory
-let g:workspace_session_disable_on_args=1
-
-" Untrailing Spaces & Untrailing Tabs
-autocmd FileType python let g:workspace_autosave_untrailspaces=1
-autocmd FileType python let g:workspace_autosave_untrailtabs=1
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Spelunker.vim
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Enable spelunker.vim on start-up, except for files (plugins)
-let g:enable_spelunker_vim=1
-autocmd BufEnter ~/.vim/pack/plugins/start/* let g:enable_spelunker_vim=0
-
-" Max amount of word suggestions
-let g:spelunker_max_suggest_words=12
-
-" Highlight all types (SpellBad, SpellCap, SpellRare, SpellLocal)
-" let g:spelunker_highlight_type=1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -652,13 +556,13 @@ vnoremap :T= :Tabularize /=<Cr>
 
 " nnoremap <Leader>wq :wq<Cr>	  " Press {Leader wq} instead of {:wq Cr}
 
-nnoremap <Leader>q :q<Cr>	    " Press {Leader q} instead of {:wq Cr}
+nnoremap <Leader>q :q<Cr>	    " Press {Leader q} instead of {:q Cr}
 
 " inoremap <C-C> <Esc>          " Press {Ctrl C} to escape from Insert mode
 
 " Quickreturn
-inoremap <c-cr> <esc>A<cr>
-inoremap <s-cr> <esc>A:<cr>
+" inoremap <c-cr> <esc>A<cr>
+" inoremap <s-cr> <esc>A:<cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -674,28 +578,17 @@ nnoremap C cc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set foldmethod=indent		" Folding code based on indentation.
 
-nnoremap za zA              " Press {za} to open/close all folding levels.
+nnoremap za zA       " Press {za} to open/close all folding levels.
 vnoremap za zA
-nnoremap zo zR              " Press {zo} to open every fold.
+nnoremap zo zR       " Press {zo} to open every fold.
 vnoremap zo zR
-nnoremap zc zM              " Press {zc} to close every fold.
+nnoremap zc zM       " Press {zc} to close every fold.
 vnoremap zc zM
 
-set foldlevelstart=2
-set foldlevel=5
+set foldlevelstart=0 " Start editing with all folds closed
+" set foldlevel=5
 
-" Space to toggle folds.
-nnoremap <Space> za
-vnoremap <Space> za
-
-" Make zO recursively open whatever top level fold we're in, no matter where the
-" cursor happens to be.
-"nnoremap zO zCzO
-
-" Use ,z to "focus" the current fold.
-"nnoremap <leader>z zMzvzz
-
-function! MyFoldText() " {{{
+function! MyFoldText()
     let line = getline(v:foldstart)
 
     let nucolwidth = &fdc + &number * &numberwidth
@@ -709,26 +602,10 @@ function! MyFoldText() " {{{
     let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
     let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
     return line . '$(B!D(B' . repeat(" ",fillcharcount) . foldedlinecount . '$(B!D(B' . ' '
-endfunction " }}}
+endfunction
 set foldtext=MyFoldText()
 
 highlight Folded guibg=Gray8 guifg=Gray ctermbg=235  ctermfg=0
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Toggle search highlighting by hitting <Space><Esc>.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" I don't need this because I not have the vim-unimpaired plugin.
-" nmap <silent> <leader><Esc> :set hls!<cr>
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pressing the letter o will open a new line below the current one.
-" Exit insert mode after creating a new line above or below the current line.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" I don't need these because I now have the vim-unimpaired plugin.
-" nnoremap o o<esc>
-" nnoremap O O<esc>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -742,19 +619,15 @@ inoremap { {}<Esc>i
 inoremap < <><Esc>i
 
 " Unmap closing double quotes for vim filetype (comments).
-autocmd FileType vim unmap! "
+au FileType vim unmap! "
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colon shortcuts to access command line mode.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap ; :
+vnoremap ; :
 nnoremap : :!
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Press {Ctrl Z} to open terminal vertically on the right.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <S-T> :below vert ter<Cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -765,7 +638,7 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
-" 2. Terminal mode.
+" 2. Terminal mode
 tnoremap <C-H> <C-W><C-H>
 tnoremap <C-J> <C-W><C-J>
 tnoremap <C-K> <C-W><C-K>
@@ -816,10 +689,13 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Save when losing focus
+" => Autosave everytime a change is made.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au FocusLost * :wa
+" au TextChanged * if &readonly==0 && filereadable(bufname('%'))|silent up|endif
+au TextChanged * :w
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Resize splits when the window is resized
@@ -857,7 +733,7 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Map the F5 key to run a Python script inside Vim.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd Filetype python nnoremap <F5> :w<CR>:!clear<CR><CR><CR>:!python3 %<CR>
+au Filetype python nnoremap <F5> :w<CR>:!clear<CR><CR><CR>:!python3 %<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -867,10 +743,14 @@ autocmd Filetype python nnoremap <F5> :w<CR>:!clear<CR><CR><CR>:!python3 %<CR>
 set spell spelllang=en_au
 
 " Highlight spelling mistakes
-highlight SpellBad    term=reverse   ctermbg=12 gui=undercurl guisp=Red       " badly spelled word
-highlight SpellCap    term=reverse   ctermbg=9  gui=undercurl guisp=Blue      " word with wrong caps
-highlight SpellRare   term=reverse   ctermbg=13 gui=undercurl guisp=Magenta   " rare word
-highlight SpellLocale term=underline ctermbg=11 gui=undercurl guisp=DarkCyan  " word only exists in other region
+" badly spelled word
+highlight SpellBad    term=reverse   ctermbg=12 gui=undercurl guisp=Red
+" word with wrong caps
+highlight SpellCap    term=reverse   ctermbg=9  gui=undercurl guisp=Blue
+" rare word
+highlight SpellRare   term=reverse   ctermbg=13 gui=undercurl guisp=Magenta
+" word only exists in other region
+highlight SpellLocale term=underline ctermbg=11 gui=undercurl guisp=DarkCyan
 
 " Ignore CamelCase words when spell checking
 fun! IgnoreSpell()
@@ -879,16 +759,19 @@ fun! IgnoreSpell()
     syntax match InlineURL /https\?:\/\/\(\w\+\(:\w\+\)\?@\)\?\([A-Za-z][-_0-9A-Za-z]*\.\)\{1,}\(\w\{2,}\.\?\)\{1,}\(:[0-9]\{1,5}\)\?\S*/ contains=@NoSpell transparent
     syn cluster Spell add=InlineURL
 endfun
-autocmd BufRead,BufNewFile * :call IgnoreSpell()
+au BufRead,BufNewFile * :call IgnoreSpell()
 
-" Disable nospell by default for some filetype
-autocmd FileType vim setlocal nospell
-autocmd BufEnter ~/.vim/pack/plugins/start/* setlocal nospell
+" Enable nospell by default for some filetype
+au FileType vim setl nospell
+au BufEnter ~/.vim/pack/* setl nospell
 
-"Disable making changes to file (plugins)
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Disable making changes to file (plugins)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup readonly
-  autocmd!
-  autocmd BufEnter ~/.vim/pack/plugins/start/* setlocal nomodifiable
+  au!
+  au BufEnter ~/.vim/pack/* setl nomodifiable
 augroup END
 
 " Disable colorcolumn if the buffer is read only
@@ -904,28 +787,28 @@ au BufReadPost * call CheckRo()
 " => Enable relative numbers in Normal mode; absolute numbers in Insert mode.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup toggle_relative_number
-  autocmd!
-  autocmd InsertEnter * setlocal norelativenumber
-  autocmd InsertLeave * setlocal relativenumber
+  au!
+  au InsertEnter * setl norelativenumber
+  au InsertLeave * setl relativenumber
 augroup END
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Automatically centre the current line when I enter it in Insert mode.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd InsertEnter * normal zz
+au InsertEnter * norm zz
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable the marker method of folding.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType vim setlocal foldmethod=marker
+au FileType vim setl foldmethod=marker
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => If the current file type is HTML, set indentation to 2 spaces.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd Filetype html,vim,vimwiki setlocal tabstop=2 shiftwidth=2 expandtab
+au Filetype html,vim,vimwiki setl tabstop=2 shiftwidth=2 expandtab
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -971,7 +854,7 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Disable automatic commenting on newline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+au FileType * setl formatoptions-=c formatoptions-=r formatoptions-=o
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -985,15 +868,15 @@ call matchadd('WhitespaceEOL', '\(\s\+$\| \+\ze\t\|\t\zs \+\)\(\%#\)\@!')
 "highlight ColorColumn guibg=Gray15 ctermbg=235
 highlight CursorLine guibg=Gray23 ctermbg=235
 
-"exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
-"set list
+exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+set list
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Auto remove trailing whitespace after saving.
+" => Automatically remove trailing whitespace after saving.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" match ErrorMsg '\s\+$'             " Highlight trailing whitespace
-" autocmd BufWritePre * :%s/\s\+$//e " Auto remove trailing whitespace
+match ErrorMsg '\s\+$'        " Highlight trailing whitespace
+au BufWritePre * :%s/\s\+$//e " Automatically remove trailing whitespace
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1023,12 +906,12 @@ if has("gui_running")
     cnoreabbrev <expr> q getcmdtype() == ":" && getcmdline() == 'q' ? 'bd' : 'q'
 else
     set t_Co=256
-    "set background=light         " we are not using a light background
+    "set background=light       " we are not using a light background
     "set background=dark        " we are not using a light background
     colorscheme xoria256
-    "autocmd InsertEnter * highlight  CursorLine ctermbg=23 ctermfg=None
+    "au InsertEnter * highlight  CursorLine ctermbg=23 ctermfg=None
     " Revert Color to default when leaving Insert Mode
-    "autocmd InsertLeave * highlight  CursorLine ctermbg=237 ctermfg=None
+    "au InsertLeave * highlight  CursorLine ctermbg=237 ctermfg=None
 endif
 
 if &term =~ "xterm\\|rxvt"
@@ -1038,7 +921,7 @@ if &term =~ "xterm\\|rxvt"
     let &t_EI = "\<Esc>]12;orange\x7"
     silent !echo -ne "\033]12;orange\007"
     " reset cursor when vim exits
-    autocmd VimLeave * silent !echo -ne "\033]12;white\007"
+    au VimLeave * silent !echo -ne "\033]12;white\007"
     " use \003]12;gray\007 for gnome-terminal
 endif
 
@@ -1063,14 +946,12 @@ endif
 " => Fast editing and reloading of vimrc configs
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>e :e! ~/.vim/vimrc<cr>
-autocmd! bufwritepost ~/.vim/vimrc source ~/.vim/vimrc
+au! bufwritepost ~/.vim/vimrc source ~/.vim/vimrc
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Block Colors
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Block Colors {{{
-
 let g:blockcolor_state = 0
 function! BlockColor() " {{{
     if g:blockcolor_state
@@ -1126,8 +1007,8 @@ set laststatus=2
 augroup ft_python
     au!
 
-    " au FileType python setlocal omnifunc=pythoncomplete#Complete
-    au FileType python setlocal define=^\s*\\(def\\\\|class\\)
+    " au FileType python setl omnifunc=pythoncomplete#Complete
+    au FileType python setl define=^\s*\\(def\\\\|class\\)
     " au FileType python compiler nose
     au FileType man nnoremap <buffer> <cr> :q<cr>
 
