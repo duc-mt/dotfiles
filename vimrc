@@ -362,7 +362,7 @@ au FileType * nnoremap [oc :set cursorline                        <Cr>
 au FileType * nnoremap ]oc :set nocursorline                      <Cr>
 
 " Toggle spell
-nnoremap yoe :set spell!                                               <Cr>
+nnoremap yoe :set spell!                                          <Cr>
 au FileType * nnoremap [oe :set spell                             <Cr>
 au FileType * nnoremap ]oe :set nospell                           <Cr>
 
@@ -762,8 +762,7 @@ endfun
 au BufRead,BufNewFile * :call IgnoreSpell()
 
 " Enable nospell by default for some filetype
-au FileType vim setl nospell
-au BufEnter ~/.vim/pack/* setl nospell
+au FileType * setl nospell
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
