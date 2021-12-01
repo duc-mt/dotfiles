@@ -302,7 +302,7 @@ let NERDTreeChDirMode         = 3
 let NERDTreeRespectWildIgnore = 1
 let NERDTreeQuitOnOpen        = 1
 let NERDTreeWinPos            = "right"
-let NERDTreeWinSize           = 20
+let NERDTreeWinSize           = 18
 let NERDTreeMinimalUI         = 1
 let NERDTreeDirArrows         = 1
 
@@ -515,16 +515,16 @@ let g:floaterm_wintitle   = 0
 let g:floaterm_autoclose  = 1
 
 " Mapping
-nnoremap   <silent>   <F6>    :FloatermNew<CR>
-tnoremap   <silent>   <F6>    <C-\><C-n>:FloatermNew<CR>
-nnoremap   <silent>   <F7>    :FloatermPrev<CR>
-tnoremap   <silent>   <F7>    <C-\><C-n>:FloatermPrev<CR>
-nnoremap   <silent>   <F8>    :FloatermNext<CR>
-tnoremap   <silent>   <F8>    <C-\><C-n>:FloatermNext<CR>
-nnoremap   <silent>   <F9>    :FloatermKill<CR>
-tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermKill<CR>
-nnoremap   <silent>   <F12>   :FloatermToggle<CR>
-tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
+nnoremap   <silent>   \ft    :FloatermNew<CR>
+tnoremap   <silent>   \ft    <C-\><C-n>:FloatermNew<CR>
+nnoremap   <silent>   <F6>   :FloatermPrev<CR>
+tnoremap   <silent>   <F6>   <C-\><C-n>:FloatermPrev<CR>
+nnoremap   <silent>   <F7>   :FloatermNext<CR>
+tnoremap   <silent>   <F7>   <C-\><C-n>:FloatermNext<CR>
+nnoremap   <silent>   <F8>   :FloatermKill<CR>
+tnoremap   <silent>   <F8>   <C-\><C-n>:FloatermKill<CR>
+nnoremap   <silent>   <F9>   :FloatermToggle<CR>
+tnoremap   <silent>   <F9>   <C-\><C-n>:FloatermToggle<CR>
 
 " Highlight
 " Set floaterm window's background to black
@@ -693,8 +693,8 @@ inoremap <right> <nop>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Autosave everytime a change is made.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" au TextChanged * if &readonly==0 && filereadable(bufname('%'))|silent up|endif
-au TextChanged * :w
+au TextChanged * if &readonly==0 && filereadable(bufname('%'))|silent up|endif
+" au TextChanged * :w
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
