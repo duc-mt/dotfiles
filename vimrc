@@ -69,7 +69,7 @@ set autoread
 " See chapter Buffers to understand this better.
 set hidden
 
-let mapleader="\<Space>"	" Map the leader key to a spacebar.
+let mapleader="\<Space>"  " Map the leader key to a spacebar.
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -343,14 +343,14 @@ nnoremap ]<Space> o        <Esc> " Add [count] blank lines below the cursor
 
 " Toggle background colour
 if exists("*ToggleBackground") == 0
-	function ToggleBackground()
-		if &background == "dark"
-			set background=light
-		else
-			set background=dark
-		endif
-	endfunction
-	command BG call ToggleBackground()
+  function ToggleBackground()
+    if &background == "dark"
+      set background=light
+    else
+      set background=dark
+    endif
+  endfunction
+  command BG call ToggleBackground()
 endif
 
 nnoremap yob :BG<Cr>
@@ -552,11 +552,11 @@ vnoremap :T= :Tabularize /=<Cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Save/quit
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" nnoremap <C-S> :w<Cr>	        " Press {Ctrl S} instead of {:w Cr}
+" nnoremap <C-S> :w<Cr>         " Press {Ctrl S} instead of {:w Cr}
 
-" nnoremap <Leader>wq :wq<Cr>	  " Press {Leader wq} instead of {:wq Cr}
+" nnoremap <Leader>wq :wq<Cr>   " Press {Leader wq} instead of {:wq Cr}
 
-nnoremap <Leader>q :q<Cr>	    " Press {Leader q} instead of {:q Cr}
+nnoremap <Leader>q :q<Cr>     " Press {Leader q} instead of {:q Cr}
 
 " inoremap <C-C> <Esc>          " Press {Ctrl C} to escape from Insert mode
 
@@ -576,7 +576,7 @@ nnoremap C cc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Folding shortcuts
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set foldmethod=indent		" Folding code based on indentation.
+" set foldmethod=indent   " Folding code based on indentation.
 
 nnoremap za zA       " Press {za} to open/close all folding levels.
 vnoremap za zA
@@ -928,7 +928,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Change theme depending on the time of day
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"colorscheme gruvbox      	     " Change colourscheme
+"colorscheme gruvbox             " Change colourscheme
 
 let hr=(strftime('%H'))
 
