@@ -13,24 +13,12 @@
 [submodule "pack/plugins/start/supertab"]
 	path = pack/plugins/start/supertab
 	url = https://github.com/ervandew/supertab.git
-[submodule "pack/plugins/start/vim-better-whitespace"]
-	path = pack/plugins/start/vim-better-whitespace
-	url = https://github.com/ntpeters/vim-better-whitespace.git
-[submodule "pack/plugins/start/ZoomWin"]
-	path = pack/plugins/start/ZoomWin
-	url = https://github.com/vim-scripts/ZoomWin/
-[submodule "pack/plugins/start/spreadsheet.vim"]
-	path = pack/plugins/start/spreadsheet.vim
-	url = https://github.com/vim-scripts/spreadsheet.vim.git
 [submodule "pack/plugins/start/vim-fugitive"]
 	path = pack/plugins/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
 [submodule "pack/plugins/start/vim-gitgutter"]
 	path = pack/plugins/start/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
-[submodule "pack/plugins/start/SimpylFold"]
-	path = pack/plugins/start/SimpylFold
-	url = https://github.com/tmhedberg/SimpylFold.git
 [submodule "pack/plugins/start/vim-surround"]
 	path = pack/plugins/start/vim-surround
 	url = https://github.com/tpope/vim-surround.git
@@ -40,9 +28,6 @@
 [submodule "pack/plugins/start/vimwiki"]
 	path = pack/plugins/start/vimwiki
 	url = https://github.com/vimwiki/vimwiki.git
-[submodule "pack/plugins/start/vim-workspace"]
-	path = pack/plugins/start/vim-workspace
-	url = https://github.com/thaerkh/vim-workspace.git
 [submodule "pack/plugins/start/vim-floaterm"]
 	path = pack/plugins/start/vim-floaterm
 	url = https://github.com/voldikss/vim-floaterm.git
