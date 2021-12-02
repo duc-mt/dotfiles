@@ -138,8 +138,6 @@ set clipboard=unnamed,unnamedplus
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set cursorline
 set cursorcolumn
-"highlight CursorLine guibg=#2b2b2b
-"highlight CursorColumn guibg=#2b2b2b
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -154,7 +152,7 @@ set relativenumber
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Splitting
+" => Fix splitting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set splitbelow splitright
 
@@ -308,6 +306,61 @@ let NERDTreeDirArrows         = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => NERDTree syntax highlight
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Highlight full name (not only icons)
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+
+" Highlight folders using exact match
+let g:NERDTreeHighlightFolders = 1         " Enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFoldersFullName = 1 " Highlights the folder name
+
+" Customizing colors
+let s:brown = "905532"
+let s:aqua =  "3AFFDB"
+let s:blue = "689FB6"
+let s:darkBlue = "44788E"
+let s:purple = "834F79"
+let s:lightPurple = "834F79"
+let s:red = "AE403F"
+let s:beige = "F5C06F"
+let s:yellow = "F09F17"
+let s:orange = "D4843E"
+let s:darkOrange = "F16529"
+let s:pink = "CB6F6F"
+let s:salmon = "EE6E73"
+let s:green = "8FAA54"
+let s:lightGreen = "31B53E"
+let s:white = "FFFFFF"
+let s:rspec_red = 'FE405F'
+let s:git_orange = 'F54D27'
+
+let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeExtensionHighlightColor['css'] = s:blue " sets the color of css files to blue
+
+let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange " sets the color for .gitignore files
+
+let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets the color for files ending with _spec.rb
+
+let g:WebDevIconsDefaultFolderSymbolColor = s:beige " sets the color for folders that did not match any rule
+let g:WebDevIconsDefaultFileSymbolColor = s:blue " sets the color for files that did not match any rule
+
+
+" Disable Highlight for specific file extension
+let g:NERDTreeExtensionHighlightColor = {} "this line is needed to avoid error
+let g:NERDTreeExtensionHighlightColor['css'] = '' "assigning it to an empty string will skip highlight
+
+" Disable uncommon file extensions highlighting
+" Mitigate lag issues
+let g:NERDTreeLimitedSyntax = 1
+
+let g:NERDTreeHighlightCursorline = 0
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Commentary
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " au FileType vim nnoremap gcc I"<Space><Esc>0
@@ -362,15 +415,17 @@ au FileType * nnoremap [oc :set cursorline                        <Cr>
 au FileType * nnoremap ]oc :set nocursorline                      <Cr>
 
 " Toggle spell
-nnoremap yoe :set spell!                                          <Cr>
-au FileType * nnoremap [oe :set spell                             <Cr>
-au FileType * nnoremap ]oe :set nospell                           <Cr>
+nnoremap yoe :set spell! spelllang=en_au                          <Cr>
+
+au FileType * nnoremap [oe :set spell spelllang=en_au             <Cr>
+au FileType * nnoremap ]oe :set nospell spelllang=en_au           <Cr>
 
 " Toggle highlight search
+nnoremap yoh :set hlsearch!                                       <Cr>
 au FileType * nnoremap [oh :set hlsearch                          <Cr>
 au FileType * nnoremap ]oh :set nohlsearch                        <Cr>
 
-" Toggle highlight search
+" Toggle ignorecase
 au FileType * nnoremap [oi :set ignore                            <Cr>
 au FileType * nnoremap ]oi :set noignorecase                      <Cr>
 
@@ -379,18 +434,22 @@ au FileType * nnoremap [ol :set list                              <Cr>
 au FileType * nnoremap ]ol :set nolist                            <Cr>
 
 " Toggle number
+nnoremap yon :set number!                                         <Cr>
 au FileType * nnoremap [on :set number                            <Cr>
 au FileType * nnoremap ]on :set nonumber                          <Cr>
 
 " Toggle relativenumber
-au FileType * nnoremap [on :set relativenumber                    <Cr>
-au FileType * nnoremap ]on :set norelativenumber                  <Cr>
+nnoremap yor :set relativenumber!                                 <Cr>
+au FileType * nnoremap [or :set relativenumber                    <Cr>
+au FileType * nnoremap ]or :set norelativenumber                  <Cr>
 
 " Toggle cursorcolumn
-au FileType * nnoremap [on :set cursorcolumn                      <Cr>
-au FileType * nnoremap ]on :set nocursorcolumn                    <Cr>
+nnoremap you :set cursorcolumn!                                   <Cr>
+au FileType * nnoremap [ou :set cursorcolumn                      <Cr>
+au FileType * nnoremap ]ou :set nocursorcolumn                    <Cr>
 
 " Toggle wrap
+nnoremap yow :set wrap!                                           <Cr>
 au FileType * nnoremap [ow :set wrap                              <Cr>
 au FileType * nnoremap ]ow :set nowrap                            <Cr>
 
@@ -556,6 +615,14 @@ nnoremap <Bslash>gs :TOhtml<Cr>
 " MAPPINGS --------------------------------------------------------------- {{{
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Basic file system commands
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <Bslash>o :!touch<Space>
+nnoremap <Bslash>d :!mkdir<Space>
+nnoremap <Bslash>m :!mv<Space>%<Space>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Save/quit
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " nnoremap <C-S> :w<Cr>         " Press {Ctrl S} instead of {:w Cr}
@@ -572,26 +639,33 @@ nnoremap <Leader>q :q<Cr>     " Press {Leader q} instead of {:q Cr}
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Make 'Y', 'D', 'C' make sense
+" Fix 'Y', 'D', 'C' behaviour
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap Y yy
-nnoremap D dd
-nnoremap C cc
+nnoremap Y y$
+nnoremap D d$
+nnoremap C c$
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Fix indenting visual block
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+vnoremap < <gv
+vnoremap > >gv
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Folding shortcuts
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set foldmethod=indent   " Folding code based on indentation.
+set foldmethod=indent " Folding code based on indentation.
 
-nnoremap za zA       " Press {za} to open/close all folding levels.
+nnoremap za zA        " Press {za} to open/close all folding levels.
 vnoremap za zA
-nnoremap zo zR       " Press {zo} to open every fold.
+nnoremap zo zR        " Press {zo} to open every fold.
 vnoremap zo zR
-nnoremap zc zM       " Press {zc} to close every fold.
+nnoremap zc zM        " Press {zc} to close every fold.
 vnoremap zc zM
 
-set foldlevelstart=0 " Start editing with all folds closed
+set foldlevelstart=0  " Start editing with all folds closed
 " set foldlevel=5
 
 function! MyFoldText()
@@ -864,23 +938,18 @@ au FileType * setl formatoptions-=c formatoptions-=r formatoptions-=o
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Highlight white space and tab characters.
+" => Automatically remove trailing whitespace after saving.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 highlight WhitespaceEOL term=standout ctermbg=DarkYellow guibg=DarkYellow
 match WhitespaceEOL /\s\+$/
 
 call matchadd('WhitespaceEOL', '\(\s\+$\| \+\ze\t\|\t\zs \+\)\(\%#\)\@!')
 
-"highlight ColorColumn guibg=Gray15 ctermbg=235
 highlight CursorLine guibg=Gray23 ctermbg=235
 
-exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
-set list
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Automatically remove trailing whitespace after saving.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-match ErrorMsg '\s\+$'        " Highlight trailing whitespace
+" exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+" set list
+" match ErrorMsg '\s\+$'        " Highlight trailing whitespace
 au InsertLeave * :%s/\s\+$//e " Automatically remove trailing whitespace
 
 
@@ -914,9 +983,9 @@ else
     "set background=light       " we are not using a light background
     "set background=dark        " we are not using a light background
     colorscheme xoria256
-    "au InsertEnter * highlight  CursorLine ctermbg=23 ctermfg=None
+    au InsertEnter * highlight  CursorLine ctermbg=52 ctermfg=None
     " Revert Color to default when leaving Insert Mode
-    "au InsertLeave * highlight  CursorLine ctermbg=237 ctermfg=None
+    au InsertLeave * highlight  CursorLine ctermbg=237 ctermfg=None
 endif
 
 if &term =~ "xterm\\|rxvt"
@@ -934,8 +1003,6 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Change theme depending on the time of day
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"colorscheme gruvbox             " Change colourscheme
-
 let hr=(strftime('%H'))
 
 if hr >= 22
@@ -950,8 +1017,8 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fast editing and reloading of vimrc configs
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" map <leader>e :e! ~/.vim/vimrc<cr>
-" au! bufwritepost ~/.vim/vimrc source ~/.vim/vimrc
+map <leader>e :e! ~/.vim/vimrc<cr>
+au! bufwritepost ~/.vim/vimrc source ~/.vim/vimrc
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
