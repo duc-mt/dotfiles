@@ -613,7 +613,7 @@ nnoremap <Bslash>gs :TOhtml<Cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Basic file system commands
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <Bslash>o :!touch<Space>
+nnoremap <Bslash>t :!touch<Space>
 nnoremap <Bslash>d :!mkdir<Space>
 nnoremap <Bslash>m :!mv<Space>%<Space>
 
