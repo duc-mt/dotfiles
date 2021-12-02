@@ -242,22 +242,22 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Backup and swap file options - disable all of them:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set backupdir=~/.vim/tmp/backup/ " backups
-" Create undodir directory if possible and does not exist yet
-let targetdir=$HOME . "/.vim/tmp/backup"
-if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
-    call mkdir(targetdir, "p", 0700)
-endif
+" set backupdir=~/.vim/tmp/backup/ " backups
+" " Create undodir directory if possible and does not exist yet
+" let targetdir=$HOME . "/.vim/tmp/backup"
+" if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
+"     call mkdir(targetdir, "p", 0700)
+" endif
 
-set directory=~/.vim/tmp/swap/   " swap files
-" Create undodir directory if possible and does not exist yet
-let targetdir=$HOME . "/.vim/tmp/swap"
-if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
-    call mkdir(targetdir, "p", 0700)
-endif
+" set directory=~/.vim/tmp/swap/   " swap files
+" " Create undodir directory if possible and does not exist yet
+" let targetdir=$HOME . "/.vim/tmp/swap"
+" if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
+"     call mkdir(targetdir, "p", 0700)
+" endif
 
 set nowritebackup    " Only in case you don't want a backup file while editing
-set backup           " Enable backups
+set nobackup           " Enable backups
 set noswapfile       " It's 2012, Vim.
 set makeef=error.err " When using make, where should it dump the file
 
@@ -688,19 +688,12 @@ highlight Folded guibg=Gray8 guifg=Gray ctermbg=235  ctermfg=0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Immediately add a closing quotes/braces in Insert mode.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-inoremap ' ''<Esc>i
-inoremap " ""<Esc>i
-inoremap ( ()<Esc>i
-inoremap [ []<Esc>i
-inoremap { {}<Esc>i
-inoremap < <><Esc>i
-
-" Unmap closing double quotes for vim filetype (comments).
-au FileType vim,python unmap! "
-au FileType python unmap! (
-au FileType python unmap! [
-au FileType python unmap! {
-au FileType python unmap! <
+au FileType vim inoremap ' ''<Esc>i
+" au FileType vim inoremap " ""<Esc>i
+au FileType vim inoremap ( ()<Esc>i
+au FileType vim inoremap [ []<Esc>i
+au FileType vim inoremap { {}<Esc>i
+au FileType vim inoremap < <><Esc>i
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
