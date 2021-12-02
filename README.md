@@ -19,10 +19,10 @@ tree under .vim/pack . Vim 8 expects the following structure of the files:
 - `.vim/pack/plugins/opt/` is used for plugins you want to manually load
 - `.vim/pack/plugins/start/` is used for plugins you always load
 
-Within this folder a further folder **start** is needed to hold plugins. Vim will pick up any 
+Within this folder a further folder **start** is needed to hold plugins. Vim will pick up any
 packages added to this folder and automatically load the plugins.
 
-Optionally another folder **opt** may be created to hold packages that are not loaded automatically. 
+Optionally another folder **opt** may be created to hold packages that are not loaded automatically.
 Packages added in the opt folder may be loaded using:
 
 ```bash
@@ -54,32 +54,9 @@ $ git push -u origin master
 ---
 Clone .vim:
 ```bash
-git clone --recursive git://github.com/henry-the-vietnamese/vim.git ~/.vim
+git clone --recursive https://github.com/henry-the-vietnamese/vim.git ~/.vim
 ```
-
-Replicating the repository on a machine:
-Clone the repository (recursively to clone plugins as well):
-```bash
-git clone --recursive https://github.com/username/reponame.git
-```
-
-Symlink .vim and .vimrc:
-```bash
-ln -sf reponame ~/.vim
-ln -sf reponame/vimrc ~/.vimrc
-```
-
-Generate helptags for plugins:
-```bash
-vim
-:helptags ALL
-```
-
-To enable submodules:
-```bash
-cd ~/.vim
-git submodule init
-```
+This automatically installs all submodules that come with it.
 
 Add a plugin as a submodule:
 ```bash
@@ -106,7 +83,6 @@ To delete a plugin, remove the submodule with the following steps:
 $ cd ~/.vim/pack/plugins/start/
 $ git submodule deinit rails.vim/
 $ git rm -r rails.vim
-$ rm -r .git/rails.vim/
 " Now the rails.vim/ folder is gone or may be left with rails.vim/doc/tags"
 $ cd doc/tags
 $ rm tags
