@@ -288,7 +288,7 @@ au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
 
 " Have nerdtree show hidden files, but ignore certain files and directories.
 let NERDTreeShowHidden=1
-let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\~$', 'pip-log\.txt$', 'whoosh_index', 'xapian_index', '.*.pid', 'monitor.py', '.*-fixtures-.*.json', '.*\.o$', 'db.db']
+let NERDTreeIgnore=['__pycache__','\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\~$', 'pip-log\.txt$', 'whoosh_index', 'xapian_index', '.*.pid', 'monitor.py', '.*-fixtures-.*.json', '.*\.o$', 'db.db']
 
 " Src: https://gist.github.com/ted-juan/4231826#file-vimrc-L949
 au Filetype nerdtree setl nolist
@@ -300,7 +300,7 @@ let NERDTreeChDirMode         = 3
 let NERDTreeRespectWildIgnore = 1
 let NERDTreeQuitOnOpen        = 1
 let NERDTreeWinPos            = "right"
-let NERDTreeWinSize           = 18
+let NERDTreeWinSize           = 30
 let NERDTreeMinimalUI         = 1
 let NERDTreeDirArrows         = 1
 
