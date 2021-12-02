@@ -300,7 +300,7 @@ let NERDTreeChDirMode         = 3
 let NERDTreeRespectWildIgnore = 1
 let NERDTreeQuitOnOpen        = 1
 let NERDTreeWinPos            = "right"
-let NERDTreeWinSize           = 30
+let NERDTreeWinSize           = 35
 let NERDTreeMinimalUI         = 1
 let NERDTreeDirArrows         = 1
 
@@ -943,10 +943,14 @@ call matchadd('WhitespaceEOL', '\(\s\+$\| \+\ze\t\|\t\zs \+\)\(\%#\)\@!')
 
 highlight CursorLine guibg=Gray23 ctermbg=235
 
-" exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
-" set list
-" match ErrorMsg '\s\+$'        " Highlight trailing whitespace
-au InsertLeave * :%s/\s\+$//e " Automatically remove trailing whitespace
+exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+set list
+match ErrorMsg '\s\+$'            " Highlight trailing whitespace
+
+" Three options to automatically remove trailing whitespace
+au InsertLeave * :%s/\s\+$//e     " Automatically remove trailing whitespace
+nnoremap <C-S>       : %s/\s\+$//e<Cr>
+inoremap <Cr>  <Esc> : %s/\s\+$//e<Cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
