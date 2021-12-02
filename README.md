@@ -1,5 +1,17 @@
 # ~/.vim folder
 
+Setting up Vim on Linux
+```bash
+$ git clone https://github.com/vim/vim.git
+$ cd vim/src/
+$ make
+$ sudo make install
+```
+If issues occur, it might be that some dependencies are missing. Try:
+```bash
+$ sudo apt install make build-essential libncurses5-dev
+```
+
 > **Mastering Vim Build a software development environment with Vim and Neovim (p. 105-6)**
 
 Vim 8 introduced a native way to load plugins, by expecting the files to be in a directory
