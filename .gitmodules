@@ -46,3 +46,6 @@
 [submodule "pack/plugins/start/tagbar"]
 	path = pack/plugins/start/tagbar
 	url = https://github.com/preservim/tagbar
+[submodule "pack/plugins/start/devicons"]
+	path = pack/plugins/start/devicons
+	url = https://github.com/ryanoasis/vim-devicons.git
