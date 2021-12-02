@@ -1,36 +1,48 @@
 [submodule "pack/plugins/start/nerdtree"]
 	path = pack/plugins/start/nerdtree
 	url = https://github.com/preservim/nerdtree.git
-[submodule "pack/plugins/start/gruvbox"]
-	path = pack/plugins/start/gruvbox
-	url = https://github.com/morhetz/gruvbox.git
-[submodule "pack/plugins/start/vim-commentary"]
-	path = pack/plugins/start/vim-commentary
-	url = https://github.com/tpope/vim-commentary.git
 [submodule "pack/plugins/start/supertab"]
 	path = pack/plugins/start/supertab
 	url = https://github.com/ervandew/supertab.git
-[submodule "pack/plugins/start/vim-fugitive"]
-	path = pack/plugins/start/vim-fugitive
-	url = https://github.com/tpope/vim-fugitive.git
-[submodule "pack/plugins/start/vim-gitgutter"]
-	path = pack/plugins/start/vim-gitgutter
-	url = https://github.com/airblade/vim-gitgutter.git
-[submodule "pack/plugins/start/vim-surround"]
-	path = pack/plugins/start/vim-surround
-	url = https://github.com/tpope/vim-surround.git
-[submodule "pack/plugins/start/vim-speeddating"]
-	path = pack/plugins/start/vim-speeddating
-	url = https://github.com/tpope/vim-speeddating.git
-[submodule "pack/plugins/start/vim-floaterm"]
-	path = pack/plugins/start/vim-floaterm
-	url = https://github.com/voldikss/vim-floaterm.git
-[submodule "pack/plugins/start/spelunker.vim"]
-	path = pack/plugins/start/spelunker.vim
-	url = https://github.com/kamykn/spelunker.vim.git
 [submodule "pack/plugins/start/tabular"]
 	path = pack/plugins/start/tabular
 	url = https://github.com/godlygeek/tabular.git
 [submodule "pack/plugins/start/estilo-xoria256"]
 	path = pack/plugins/start/estilo-xoria256
 	url = https://github.com/neozenith/estilo-xoria256.git
+[submodule "pack/plugins/start/commentary"]
+	path = pack/plugins/start/commentary
+	url = https://github.com/tpope/vim-commentary.git
+[submodule "pack/plugins/start/floaterm"]
+	path = pack/plugins/start/floaterm
+	url = https://github.com/voldikss/vim-floaterm
+[submodule "pack/plugins/start/fugitive"]
+	path = pack/plugins/start/fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule "pack/plugins/start/gitgutter"]
+	path = pack/plugins/start/gitgutter
+	url = https://github.com/airblade/vim-gitgutter
+[submodule "pack/plugins/start/surround"]
+	path = pack/plugins/start/surround
+	url = https://github.com/tpope/vim-surround
+[submodule "pack/plugins/start/easymotion"]
+	path = pack/plugins/start/easymotion
+	url = https://github.com/easymotion/vim-easymotion
+[submodule "pack/plugins/opt/shoot"]
+	path = pack/plugins/opt/shoot
+	url = https://github.com/JMcKiern/vim-shoot.git
+[submodule "pack/plugins/start/textmanip"]
+	path = pack/plugins/start/textmanip
+	url = https://github.com/t9md/vim-textmanip.git
+[submodule "pack/plugins/opt/speeddating"]
+	path = pack/plugins/opt/speeddating
+	url = https://github.com/tpope/vim-speeddating.git
+[submodule "pack/plugins/start/nerdtree-syntax-highlight"]
+	path = pack/plugins/start/nerdtree-syntax-highlight
+	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git
+[submodule "pack/plugins/start/spelunker"]
+	path = pack/plugins/start/spelunker
+	url = https://github.com/kamykn/spelunker.vim.git
+[submodule "pack/plugins/start/tagbar"]
+	path = pack/plugins/start/tagbar
+	url = https://github.com/preservim/tagbar
