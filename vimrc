@@ -242,25 +242,24 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Backup and swap file options - disable all of them:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set backupdir=~/.vim/tmp/backup/ " backups
-" " Create undodir directory if possible and does not exist yet
-" let targetdir=$HOME . "/.vim/tmp/backup"
-" if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
-"     call mkdir(targetdir, "p", 0700)
-" endif
+set backupdir=~/.vim/tmp/backup/ " backups
+" Create undodir directory if possible and does not exist yet
+let targetdir=$HOME . "/.vim/tmp/backup"
+if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
+    call mkdir(targetdir, "p", 0700)
+endif
 
-" set directory=~/.vim/tmp/swap/   " swap files
-" " Create undodir directory if possible and does not exist yet
-" let targetdir=$HOME . "/.vim/tmp/swap"
-" if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
-"     call mkdir(targetdir, "p", 0700)
-" endif
+set directory=~/.vim/tmp/swap/   " swap files
+" Create undodir directory if possible and does not exist yet
+let targetdir=$HOME . "/.vim/tmp/swap"
+if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
+    call mkdir(targetdir, "p", 0700)
+endif
 
-set nowritebackup    " only in case you don't want a backup file while editing
+set nowritebackup    " Only in case you don't want a backup file while editing
 set backup           " Enable backups
 set noswapfile       " It's 2012, Vim.
 set makeef=error.err " When using make, where should it dump the file
-set nowb
 
                             " *backup-table*
 " 'backup' 'writebackup'  action
@@ -359,6 +358,7 @@ let g:NERDTreeExtensionHighlightColor['css'] = '' "assigning it to an empty stri
 let g:NERDTreeLimitedSyntax = 1
 
 let g:NERDTreeHighlightCursorline = 0
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Commentary
@@ -603,8 +603,9 @@ vnoremap :T= :Tabularize /=<Cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Shoot (opt)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-vnoremap gs         :TOhtml<CR>
-nnoremap <Bslash>gs :TOhtml<Cr>
+vnoremap gs         :TOhtml
+nnoremap <Bslash>gs :TOhtml
+
 " }}}
 
 
@@ -695,7 +696,11 @@ inoremap { {}<Esc>i
 inoremap < <><Esc>i
 
 " Unmap closing double quotes for vim filetype (comments).
-au FileType vim unmap! "
+au FileType vim,python unmap! "
+au FileType python unmap! (
+au FileType python unmap! [
+au FileType python unmap! {
+au FileType python unmap! <
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -804,10 +809,55 @@ augroup END
 " }}}
 
 
+" ABBREVIATIONS --------------------------------------------------------- {{{
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General abbreviations
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ia @@ tan.duc.work@gmail.com
+ia unisa University of South Australia
+ia UniSA University of South Australia
+ia SA South Australia
+ia ms Microsoft
+ia MS Microsoft
+ia ytb YouTube
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Python
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" General, common key bindings
+au FileType python ia pr print()<Esc><Left>i<BS>
+au FileType python ia range range()<Esc><Left>i
+au FileType python ia input input()<Esc><Left>i<BS>
+au FileType python ia int int()<Esc><Left>i<BS>
+au FileType python ia float float()<Esc><Left>i<BS>
+au FileType python ia str str()<Esc><Left>i<BS>
+au FileType python ia cc #<Space>
+au FileType python ia rt return<Space><BS>
+au FileType python ia im import<Space><BS>
+au FileType python ia yl yield<Space><BS>
+au FileType python ia tr True
+au FileType python ia fa False
+au FileType python ia """ """<Cr><Cr>"""<Esc>kh
+
+" Function docstring
+au FileType python ia def def :<Cr>"""Docstring for the function<Cr><Cr><Cr><Cr>Parameters<Cr>----------<Cr><Cr><Cr><Cr>Returns<Cr>-------<Cr><Cr><Cr>"""<Cr><Cr><Esc>16kllli
+
+" Section headings
+au FileType python ia -func- # --------------------------------- Functions ---------------------------------<Cr><Esc>h
+
+au FileType python ia -module- # ------------------------------- Module Import -------------------------------<Cr><Esc>h
+
+au FileType python ia -program- # ---------------------------------- Program ----------------------------------<Cr><Esc>h
+
+" }}}
+
+
 " VIM SCRIPTS ------------------------------------------------------------ {{{
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Map the F5 key to run a Python script inside Vim.
+" => Map the F5 key to run a Python script inside Vim.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au Filetype python nnoremap <F5> :w<CR>:!clear<CR><CR><CR><CR>:!python3 %<CR>
 
@@ -1094,15 +1144,12 @@ augroup END
 let python_highlight_all = 1
 au FileType python syn keyword pythonDecorator True None False self
 
-au BufNewFile,BufRead *.jinja set syntax=htmljinja
-au BufNewFile,BufRead *.mako set ft=mako
-
 au FileType python map <buffer> F :set foldmethod=indent<cr>
 
-au FileType python inoremap <buffer> $r return
-au FileType python inoremap <buffer> $i import
-au FileType python inoremap <buffer> $p print
-au FileType python inoremap <buffer> $f # --- <esc>a
+" au FileType python inoremap <buffer> $r return
+" au FileType python inoremap <buffer> $i import
+" au FileType python inoremap <buffer> $p print
+" au FileType python inoremap <buffer> $f # --- <esc>a
 au FileType python map <buffer> <leader>1 /class
 au FileType python map <buffer> <leader>2 /def
 au FileType python map <buffer> <leader>C ?class
