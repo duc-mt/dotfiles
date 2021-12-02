@@ -228,7 +228,7 @@ set nrformats-=octal " Interpret octal as decimal when incrementing numbers.
 "    means that you can undo even when you close a buffer/VIM.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 try
-    set undodir=~/.vim/tmp/undo//     " undo files
+    set undodir=~/.vim/tmp/undo/     " undo files
     set undofile
     set undoreload=10000
 catch
@@ -244,14 +244,14 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Backup and swap file options - disable all of them:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set backupdir=~/.vim/tmp/backup// " backups
+" set backupdir=~/.vim/tmp/backup/ " backups
 " " Create undodir directory if possible and does not exist yet
 " let targetdir=$HOME . "/.vim/tmp/backup"
 " if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
 "     call mkdir(targetdir, "p", 0700)
 " endif
 
-" set directory=~/.vim/tmp/swap//   " swap files
+" set directory=~/.vim/tmp/swap/   " swap files
 " " Create undodir directory if possible and does not exist yet
 " let targetdir=$HOME . "/.vim/tmp/swap"
 " if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
@@ -308,7 +308,7 @@ let NERDTreeDirArrows         = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vim-commentary
+" => Commentary
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " au FileType vim nnoremap gcc I"<Space><Esc>0
 " au FileType vim vnoremap gc I"<Space><Esc>0
@@ -396,7 +396,7 @@ au FileType * nnoremap ]ow :set nowrap                            <Cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vim-easymotion
+" => Easymotion
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " <Bslash>f{char} to move to {char}
 map  <Bslash>f <Plug>                       (easymotion-bd-f)
@@ -437,7 +437,7 @@ map N <Plug>(easymotion-prev)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vim-fugitive
+" => Fugitive
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Diff maps
 map <F3> :Gvdiffsplit<Cr> " Apply Git diff split vertically
@@ -461,7 +461,7 @@ augroup END
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vim-gitgutter
+" => Gitgutter
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:gitgutter_enabled=1
 " Disable all predefined mappings
@@ -504,7 +504,7 @@ nnoremap ghq :pclose<Cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vim-floaterm
+" => Floaterm
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Configuration
 let g:floaterm_gitcommit  = 'floaterm'
@@ -536,7 +536,7 @@ highlight FloatermBorder guibg=orange guifg=cyan
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tabular
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-vnoremap :T :Tabularize /
+vnoremap :T  :Tabularize /
 
 " Tabularize used in vimrc's comments.
 vnoremap :T" :Tabularize /"<Cr>
@@ -544,6 +544,12 @@ vnoremap :T" :Tabularize /"<Cr>
 " Tabularize used for multiple assignments.
 vnoremap :T= :Tabularize /=<Cr>
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Shoot (opt)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+vnoremap gs         :TOhtml<CR>
+nnoremap <Bslash>gs :TOhtml<Cr>
 " }}}
 
 
@@ -761,7 +767,7 @@ fun! IgnoreSpell()
 endfun
 au BufRead,BufNewFile * :call IgnoreSpell()
 
-" Enable nospell by default for some filetype
+
 au FileType * setl nospell
 
 
@@ -875,7 +881,7 @@ set list
 " => Automatically remove trailing whitespace after saving.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 match ErrorMsg '\s\+$'        " Highlight trailing whitespace
-au BufWritePre * :%s/\s\+$//e " Automatically remove trailing whitespace
+au InsertLeave * :%s/\s\+$//e " Automatically remove trailing whitespace
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -944,8 +950,8 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fast editing and reloading of vimrc configs
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>e :e! ~/.vim/vimrc<cr>
-au! bufwritepost ~/.vim/vimrc source ~/.vim/vimrc
+" map <leader>e :e! ~/.vim/vimrc<cr>
+" au! bufwritepost ~/.vim/vimrc source ~/.vim/vimrc
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
