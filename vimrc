@@ -945,12 +945,12 @@ highlight CursorLine guibg=Gray23 ctermbg=235
 
 exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 set list
-match ErrorMsg '\s\+$'            " Highlight trailing whitespace
+match ErrorMsg '\s\+$'       " Highlight trailing whitespace
 
 " Three options to automatically remove trailing whitespace
-au InsertLeave * :%s/\s\+$//e     " Automatically remove trailing whitespace
-nnoremap <C-S>       : %s/\s\+$//e<Cr>
-inoremap <Cr>  <Esc> : %s/\s\+$//e<Cr>
+au InsertLeave *              : %s/\s\+$//e
+nnoremap <silent> <C-S>       : %s/\s\+$//e<Cr>
+inoremap <silent> <Cr>  <Esc> : %s/\s\+$//e<Cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
