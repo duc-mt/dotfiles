@@ -147,7 +147,7 @@ set cursorcolumn
 set number
 
 " Show line number on the current line and relative numbers on other lines.
-" Works only if the option above ( number ) is enabled.
+" Works only if the option above (number) is enabled.
 set relativenumber
 
 
@@ -457,6 +457,8 @@ au FileType * nnoremap ]ow :set nowrap                            <Cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Easymotion
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:Easymotion_do_mapping = 0
+
 " <Bslash>f{char} to move to {char}
 map  <Bslash>f <Plug>(easymotion-bd-f)
 nmap <Bslash>f <Plug>(easymotion-overwin-f)
@@ -526,8 +528,8 @@ let g:gitgutter_map_keys=0
 set updatetime=100
 
 " Jump between hunks (differing lines)
-nnoremap ) :GitGutterNextHunk
-nnoremap ( :GitGtterPrevHunk
+nnoremap ) :GitGutterNextHunk<Cr>
+nnoremap ( :GitGutterPrevHunk<Cr>
 
 " Turn line highlighting on
 " nnoremap <F6> :GitGutterLineHighlightsToggle<Cr>
@@ -606,6 +608,33 @@ vnoremap :T= :Tabularize /=<Cr>
 vnoremap gs         :TOhtml
 nnoremap <Bslash>gs :TOhtml
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Spelunker
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Disable URI checking
+let g:spelunker_disable_uri_checking = 1
+
+" Disable email-like words checking
+let g:spelunker_disable_email_checking = 1
+
+" Disable account name checking, e.g. @foobar, foobar@
+" NOTE: Spell checking is also disabled for JAVA annotations.
+let g:spelunker_disable_account_name_checking = 1
+
+" Disable acronym checking
+let g:spelunker_disable_acronym_checking = 1
+
+" Disable checking words in backtick/backquote
+let g:spelunker_disable_backquoted_checking = 1
+
+" Disable default autogroup
+let g:spelunker_disable_auto_group = 1
+
+" Override highlight setting
+highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=#9e9e9e
+highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
+
 " }}}
 
 
@@ -626,7 +655,8 @@ nnoremap <Bslash>m :!mv<Space>%<Space>
 
 " nnoremap <Leader>wq :wq<Cr>   " Press {Leader wq} instead of {:wq Cr}
 
-nnoremap <Leader>q :q<Cr>     " Press {Leader q} instead of {:q Cr}
+" Press {Leader q} to quit Vim instead of {:q Cr}
+nnoremap <Leader>q :q<Cr>
 
 " inoremap <C-C> <Esc>          " Press {Ctrl C} to escape from Insert mode
 
@@ -1058,8 +1088,8 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fast editing and reloading of vimrc configs
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>e :e! ~/.vim/vimrc<cr>
-au! bufwritepost ~/.vim/vimrc source ~/.vim/vimrc
+" map <leader>e :e! ~/.vim/vimrc<cr>
+" au! bufwritepost ~/.vim/vimrc source ~/.vim/vimrc
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
