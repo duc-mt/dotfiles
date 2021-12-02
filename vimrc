@@ -498,10 +498,6 @@ map N <Plug>(easymotion-prev)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fugitive
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Diff maps
-map <F3> :Gvdiffsplit<Cr> " Apply Git diff split vertically
-map <F4> :Gdiffsplit<Cr>  " ... split horizontally
-
 nnoremap <leader>gd  : Gdiff<Cr>
 nnoremap <leader>gs  : Gstatus<Cr>
 nnoremap <leader>gw  : Gwrite<Cr>
