@@ -388,11 +388,11 @@ let g:SuperTabLongestEnhanced       = 1
 "    I mapped it myself
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Line operations
-nnoremap [ns      i<Space> <Esc> " Add [count] blank spaces before the cursor
-nnoremap ]ns      a<Space> <Esc> " Add [count] blank spaces after the cursor
+nnoremap [ns      i<Space><Esc> " Add [count] blank spaces before the cursor
+nnoremap ]ns      a<Space><Esc> " Add [count] blank spaces after the cursor
 
-nnoremap [<Space> O        <Esc> " Add [count] blank lines above the cursor
-nnoremap ]<Space> o        <Esc> " Add [count] blank lines below the cursor
+nnoremap [<Space> O       <Esc> " Add [count] blank lines above the cursor
+nnoremap ]<Space> o       <Esc> " Add [count] blank lines below the cursor
 
 " Toggle background colour
 if exists("*ToggleBackground") == 0
@@ -458,25 +458,25 @@ au FileType * nnoremap ]ow :set nowrap                            <Cr>
 " => Easymotion
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " <Bslash>f{char} to move to {char}
-map  <Bslash>f <Plug>                       (easymotion-bd-f)
-nmap <Bslash>f <Plug>                       (easymotion-overwin-f)
+map  <Bslash>f <Plug>(easymotion-bd-f)
+nmap <Bslash>f <Plug>(easymotion-overwin-f)
 
 " <Bslash><Bslash>f to move to {char}{char}
-nmap <Bslash>F <Plug>                       (easymotion-overwin-f2)
+nmap <Bslash>F <Plug>(easymotion-overwin-f2)
 
 " Move to line
-map  <Bslash>L <Plug>                       (easymotion-bd-jk)
-nmap <Bslash>L <Plug>                       (easymotion-overwin-line)
+map  <Bslash>L <Plug>(easymotion-bd-jk)
+nmap <Bslash>L <Plug>(easymotion-overwin-line)
 
 " Move to word
-map  <Bslash>w <Plug>                       (easymotion-bd-w)
-nmap <Bslash>w <Plug>                       (easymotion-overwin-w)
+map  <Bslash>w <Plug>(easymotion-bd-w)
+nmap <Bslash>w <Plug>(easymotion-overwin-w)
 
 " hjkl motions: Line and Column motions
-map <Bslash>l <Plug>                        (easymotion-lineforward)
-map <Bslash>j <Plug>                        (easymotion-j)
-map <Bslash>k <Plug>                        (easymotion-k)
-map <Bslash>h <Plug>                        (easymotion-linebackward)
+map <Bslash>l <Plug>(easymotion-lineforward)
+map <Bslash>j <Plug>(easymotion-j)
+map <Bslash>k <Plug>(easymotion-k)
+map <Bslash>h <Plug>(easymotion-linebackward)
 
 " Keep cursor column when JK motion
 let g:EasyMotion_startofline = 0
@@ -809,7 +809,7 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Map the F5 key to run a Python script inside Vim.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au Filetype python nnoremap <F5> :w<CR>:!clear<CR><CR><CR>:!python3 %<CR>
+au Filetype python nnoremap <F5> :w<CR>:!clear<CR><CR><CR><CR>:!python3 %<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -943,14 +943,12 @@ call matchadd('WhitespaceEOL', '\(\s\+$\| \+\ze\t\|\t\zs \+\)\(\%#\)\@!')
 
 highlight CursorLine guibg=Gray23 ctermbg=235
 
-exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
-set list
-match ErrorMsg '\s\+$'       " Highlight trailing whitespace
+" Highlight trailing whitespace
+au BufEnter exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~" | set list | match ErrorMsg '\s\+$'
 
 " Three options to automatically remove trailing whitespace
-au InsertLeave *              : %s/\s\+$//e
-nnoremap <silent> <C-S>       : %s/\s\+$//e<Cr>
-inoremap <silent> <Cr>  <Esc> : %s/\s\+$//e<Cr>
+au InsertLeave,BufWritePre * : %s/\s\+$//e
+nnoremap <silent> <C-S>      : %s/\s\+$//e<Cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
