@@ -316,9 +316,6 @@ let NERDTreeAutoDeleteBuffer  = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mitigate lag issues
 let g:NERDTreeLimitedSyntax                  = 1
-let g:NERDTreeSyntaxDisableDefaultExtensions = 1
-let g:NERDTreeDisableExactMatchHighlight     = 1
-let g:NERDTreeDisablePatternMatchHighlight   = 1
 let g:NERDTreeHighlightCursorline            = 0
 
 " Highlight full name (not only icons)
@@ -330,7 +327,7 @@ let g:NERDTreePatternMatchHighlightFullName = 1
 let g:NERDTreeHighlightFolders = 1         " Enables folder icon highlighting using exact match
 let g:NERDTreeHighlightFoldersFullName = 1 " Highlights the folder name
 
-" Customising colors
+" Customising colours
 let s:brown = "905532"
 let s:aqua =  "3AFFDB"
 let s:blue = "689FB6"
@@ -351,16 +348,17 @@ let s:rspec_red = 'FE405F'
 let s:git_orange = 'F54D27'
 
 let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
-let g:NERDTreeExtensionHighlightColor['css'] = s:blue " sets the color of css files to blue
+let g:NERDTreeExtensionHighlightColor['css'] = s:blue " sets the colour of css files to blue
 
 let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
-let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange " sets the color for .gitignore files
+let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange " sets the colour for .gitignore files
+let g:NERDTreeExactMatchHighlightColor['python'] = s:green " sets the colour for .gitignore files
 
 let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
-let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets the color for files ending with _spec.rb
+let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets the colour for files ending with _spec.rb
 
-let g:WebDevIconsDefaultFolderSymbolColor = s:beige " sets the color for folders that did not match any rule
-let g:WebDevIconsDefaultFileSymbolColor = s:blue " sets the color for files that did not match any rule
+let g:WebDevIconsDefaultFolderSymbolColor = s:beige " sets the colour for folders that did not match any rule
+let g:WebDevIconsDefaultFileSymbolColor = s:blue " sets the colour for files that did not match any rule
 
 
 " Disable Highlight for specific file extension
@@ -598,7 +596,7 @@ tnoremap   <silent>   <F9>   <C-\><C-n>:FloatermToggle<CR>
 " Highlight
 " Set floaterm window's background to black
 highlight Floaterm guibg=black
-" Set floating window border line color to cyan, and background to orange
+" Set floating window border line colour to cyan, and background to orange
 highlight FloatermBorder guibg=orange guifg=cyan
 
 
@@ -1001,10 +999,10 @@ augroup readonly
   au BufEnter ~/.vim/pack/* setl nomodifiable
 augroup END
 
-" Disable colorcolumn if the buffer is read only
+" Disable colourcolumn if the buffer is read only
 function CheckRo()
     if &readonly
-        set colorcolumn=0
+        set colourcolumn=0
     endif
 endfunction
 au BufReadPost * call CheckRo()
@@ -1041,7 +1039,7 @@ au Filetype html,vim,vimwiki setl tabstop=2 shiftwidth=2 expandtab
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Make the 80th column stand out (PEP 8 Style Guide for Python Code)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set termguicolors
+" set termguicolours
 " set t_Co=256
 "highlight Folded guibg=black
 highlight ColorColumn guibg=Gray15 ctermbg=235
@@ -1193,16 +1191,16 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Block Colors
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:blockcolor_state = 0
+let g:blockcolour_state = 0
 function! BlockColor() " {{{
-    if g:blockcolor_state
-        let g:blockcolor_state = 0
+    if g:blockcolour_state
+        let g:blockcolour_state = 0
         call matchdelete(77880)
         call matchdelete(77881)
         call matchdelete(77882)
         call matchdelete(77883)
     else
-        let g:blockcolor_state = 1
+        let g:blockcolour_state = 1
         call matchadd("BlockColor1", '^ \{4}.*', 1, 77880)
         call matchadd("BlockColor2", '^ \{8}.*', 2, 77881)
         call matchadd("BlockColor3", '^ \{12}.*', 3, 77882)
