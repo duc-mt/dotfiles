@@ -502,21 +502,21 @@ map N <Plug>(easymotion-prev)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fugitive
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>gd  : Gdiff<Cr>
-nnoremap <leader>gs  : Gstatus<Cr>
-nnoremap <leader>gw  : Gwrite<Cr>
-nnoremap <leader>ga  : Gadd<Cr>
-nnoremap <leader>gb  : Gblame<Cr>
-nnoremap <leader>gco : Gcheckout<Cr>
-nnoremap <leader>gci : Gcommit<Cr>
-nnoremap <leader>gm  : Gmove<Cr>
-nnoremap <leader>gr  : Gremove<Cr>
-nnoremap <leader>gl  : Shell git gl -18<Cr> : wincmd \|<Cr>
+" nnoremap <leader>gd  : Gdiff<Cr>
+" nnoremap <leader>gs  : Gstatus<Cr>
+" nnoremap <leader>gw  : Gwrite<Cr>
+" nnoremap <leader>ga  : Gadd<Cr>
+" nnoremap <leader>gb  : Gblame<Cr>
+" nnoremap <leader>gco : Gcheckout<Cr>
+" nnoremap <leader>gci : Gcommit<Cr>
+" nnoremap <leader>gm  : Gmove<Cr>
+" nnoremap <leader>gr  : Gremove<Cr>
+" nnoremap <leader>gl  : Shell git gl -18<Cr> : wincmd \|<Cr>
 
-augroup ft_fugitive
-    au!
-    au BufNewFile,BufRead .git/index setl nolist
-augroup END
+" augroup ft_fugitive
+"     au!
+"     au BufNewFile,BufRead .git/index setl nolist
+" augroup END
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
