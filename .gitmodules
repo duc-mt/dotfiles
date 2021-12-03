@@ -16,9 +16,6 @@
 [submodule "pack/plugins/start/floaterm"]
 	path = pack/plugins/start/floaterm
 	url = https://github.com/voldikss/vim-floaterm
-[submodule "pack/plugins/start/fugitive"]
-	path = pack/plugins/start/fugitive
-	url = https://github.com/tpope/vim-fugitive
 [submodule "pack/plugins/start/gitgutter"]
 	path = pack/plugins/start/gitgutter
 	url = https://github.com/airblade/vim-gitgutter
