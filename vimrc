@@ -688,6 +688,7 @@ nnoremap <Leader><Bslash><Bslash> :tabe ~/.vim/vimrc<Cr>
 " => Basic file system commands
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <Bslash>t :!touch<Space>
+nnoremap <Bslash>r :!rm<Space>
 nnoremap <Bslash>d :!mkdir<Space>
 nnoremap <Bslash>m :!mv<Space>%<Space>
 nnoremap <Bslash>c :!cp<Space>%<Space>
