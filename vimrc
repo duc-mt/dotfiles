@@ -779,17 +779,6 @@ highlight Folded guibg=Gray8 guifg=Gray ctermbg=235  ctermfg=0
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Immediately add a closing quotes/braces in Insert mode.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au FileType vim inoremap ' ''<Esc>i
-" au FileType vim inoremap " ""<Esc>i
-au FileType vim inoremap ( ()<Esc>i
-au FileType vim inoremap [ []<Esc>i
-au FileType vim inoremap { {}<Esc>i
-au FileType vim inoremap < <><Esc>i
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colon shortcuts to access command line mode.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap ; :
