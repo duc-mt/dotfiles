@@ -288,6 +288,9 @@ au Filetype nerdtree setl nocursorline cursorcolumn
 au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
 \ b:NERDTree.isTabTree()) | q | endif
 
+" Open NERDTree at the current file or close NERDTree if pressed again.
+nnoremap <silent> <expr> <Leader>n g:NERDTree.IsOpen() ? "\:NERDTreeClose<Cr>" : bufexists(expand('%')) ? "\:NERDTreeFind<Cr>" : "\:NERDTree<Cr>"
+
 " Have nerdtree show hidden files, but ignore certain files and directories.
 let NERDTreeShowHidden=1
 let NERDTreeIgnore=['__pycache__','\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\~$', 'pip-log\.txt$', 'whoosh_index', 'xapian_index', '.*.pid', 'monitor.py', '.*-fixtures-.*.json', '.*\.o$', 'db.db']
@@ -305,11 +308,19 @@ let NERDTreeWinPos            = "right"
 let NERDTreeWinSize           = 35
 let NERDTreeMinimalUI         = 1
 let NERDTreeDirArrows         = 1
+let NERDTreeAutoDeleteBuffer  = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"  => NERDTree syntax highlight
+"  => NERDTree Syntax Highlight
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Mitigate lag issues
+let g:NERDTreeLimitedSyntax                  = 1
+let g:NERDTreeSyntaxDisableDefaultExtensions = 1
+let g:NERDTreeDisableExactMatchHighlight     = 1
+let g:NERDTreeDisablePatternMatchHighlight   = 1
+let g:NERDTreeHighlightCursorline            = 0
+
 " Highlight full name (not only icons)
 let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
@@ -319,7 +330,7 @@ let g:NERDTreePatternMatchHighlightFullName = 1
 let g:NERDTreeHighlightFolders = 1         " Enables folder icon highlighting using exact match
 let g:NERDTreeHighlightFoldersFullName = 1 " Highlights the folder name
 
-" Customizing colors
+" Customising colors
 let s:brown = "905532"
 let s:aqua =  "3AFFDB"
 let s:blue = "689FB6"
@@ -357,10 +368,7 @@ let g:NERDTreeExtensionHighlightColor = {} "this line is needed to avoid error
 let g:NERDTreeExtensionHighlightColor['css'] = '' "assigning it to an empty string will skip highlight
 
 " Disable uncommon file extensions highlighting
-" Mitigate lag issues
 let g:NERDTreeLimitedSyntax = 1
-
-let g:NERDTreeHighlightCursorline = 0
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -491,8 +499,8 @@ let g:EasyMotion_startofline = 0
 let g:EasyMotion_smartcase = 1
 
 " n-character search motion
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
+map  <Leader>/ <Plug>(easymotion-sn)
+omap <Leader>/ <Plug>(easymotion-tn)
 
 " These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
 " Without these mappings, `n` & `N` works fine. (These mappings just provide
