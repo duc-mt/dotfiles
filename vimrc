@@ -931,7 +931,7 @@ au FileType python ia validanswers VALID_ANSWERS = ['y', 'yes', 'n', 'no']<Cr>
 
 
 " Function docstring
-au FileType python ia df def :<Cr>"""Docstring for the function<Cr><Cr><Cr><Cr>Parameters<Cr>----------<Cr><Cr><Cr>Returns<Cr>-------<Cr><Cr>"""<Cr><Cr><Esc>14kllli<BS>
+au FileType python ia df def :<Cr>"""Docstring for the function<Cr><Cr><Cr><Cr>Parameters<Cr>----------<Cr><Cr><Cr>Returns<Cr>-------<Cr><Cr>"""<Cr><Cr><Esc>14kllli
 
 
 " Section headings
