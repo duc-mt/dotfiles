@@ -874,11 +874,21 @@ au FileType python ia """ """<Cr><Cr>"""<Esc>kh
 au FileType python ia def def :<Cr>"""Docstring for the function<Cr><Cr><Cr><Cr>Parameters<Cr>----------<Cr><Cr><Cr><Cr>Returns<Cr>-------<Cr><Cr><Cr>"""<Cr><Cr><Esc>16kllli
 
 " Section headings
-au FileType python ia -func- # --------------------------------- Functions ---------------------------------<Cr><Esc>h
+au FileType python ia -constant- # ---------------------------------- Constant ---------------------------------<Cr><Esc>h
+
+au FileType python ia -constants- # ---------------------------------- Constants --------------------------------<Cr><Esc>h
 
 au FileType python ia -module- # ------------------------------- Module Import -------------------------------<Cr><Esc>h
 
-au FileType python ia -program- # ---------------------------------- Program ----------------------------------<Cr><Esc>h
+au FileType python ia -modules- # ------------------------------- Module Imports -------------------------------<Cr><Esc>h
+
+au FileType python ia -func- # ---------------------------- Function Definition ----------------------------<Cr><Esc>h
+
+au FileType python ia -funcs- # ---------------------------- Function Definitions ---------------------------<Cr><esc>h
+
+au filetype python ia -program- # ---------------------------------- program ----------------------------------<Cr><Esc>h
+
+au FileType python ia -main- # --------------------------- Call the Main Function --------------------------<Cr>if __name__ == '__main__':<Cr>main()
 
 " }}}
 
