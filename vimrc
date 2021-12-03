@@ -499,8 +499,8 @@ let g:EasyMotion_startofline = 0
 let g:EasyMotion_smartcase = 1
 
 " n-character search motion
-map  <Leader>/ <Plug>(easymotion-sn)
-omap <Leader>/ <Plug>(easymotion-tn)
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
 
 " These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
 " Without these mappings, `n` & `N` works fine. (These mappings just provide
@@ -931,7 +931,7 @@ au FileType python ia validanswers VALID_ANSWERS = ['y', 'yes', 'n', 'no']<Cr>
 
 
 " Function docstring
-au FileType python ia df def :<Cr>"""Docstring for the function<Cr><Cr><Cr><Cr>Parameters<Cr>----------<Cr><Cr><Cr>Returns<Cr>-------<Cr><Cr>"""<Cr><Cr><Esc>14kllli
+au FileType python ia df def :<Cr>"""Docstring for the function<Cr><Cr><Cr><Cr>Parameters<Cr>----------<Cr><Cr><Cr>Returns<Cr>-------<Cr><Cr>"""<Cr><Cr><Esc>14kllli<Del>
 
 
 " Section headings
