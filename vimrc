@@ -279,6 +279,9 @@ set makeef=error.err " When using make, where should it dump the file
 " Press {Leader n} to access NERDTree plugin.
 nnoremap <Leader>n  : NERDTreeToggle<Cr>
 
+" Disable cursorline & cursorcolumn on NERDTree.
+au Filetype nerdtree setl nocursorline cursorcolumn
+
 " au VimEnter * NERDTree     " Enable NERDTree on Vim start-up.
 
 " Autoclose NERDTree if it's the only open window left.
@@ -305,7 +308,7 @@ let NERDTreeDirArrows         = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => NERDTree syntax highlight
+"  => NERDTree syntax highlight
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Highlight full name (not only icons)
 let g:NERDTreeFileExtensionHighlightFullName = 1
@@ -313,7 +316,7 @@ let g:NERDTreeExactMatchHighlightFullName = 1
 let g:NERDTreePatternMatchHighlightFullName = 1
 
 " Highlight folders using exact match
-let g:NERDTreeHighlightFolders = 0         " Enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFolders = 1         " Enables folder icon highlighting using exact match
 let g:NERDTreeHighlightFoldersFullName = 1 " Highlights the folder name
 
 " Customizing colors
@@ -379,8 +382,8 @@ let g:NERDTreeHighlightCursorline = 0
 " Change <tab> navigate the completion menu from bottom to top
 let g:SuperTabDefaultCompletionType = "<C-N>"
 
-" Enhanced longest match support
-let g:SuperTabLongestEnhanced       = 1
+" Escape the tab for word completion
+let g:SuperTabMappingTabLiteral     = "<C-V>"
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -388,11 +391,10 @@ let g:SuperTabLongestEnhanced       = 1
 "    I mapped it myself
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Line operations
-nnoremap [ns      i<Space><Esc> " Add [count] blank spaces before the cursor
-nnoremap ]ns      a<Space><Esc> " Add [count] blank spaces after the cursor
-
-nnoremap [<Space> O       <Esc> " Add [count] blank lines above the cursor
-nnoremap ]<Space> o       <Esc> " Add [count] blank lines below the cursor
+" Add [count] blank spaces before the cursor
+nnoremap <Space><Space>   a<Space><Left><Esc>
+" Add [count] blank spaces after the cursor
+nnoremap <Bslash><Space>  i<Space><Left><Esc>
 
 " Toggle background colour
 if exists("*ToggleBackground") == 0
@@ -637,6 +639,40 @@ let g:spelunker_disable_auto_group = 1
 highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=#9e9e9e
 highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Textmanip
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <CR>   <Plug>(textmanip-blank-below)
+nmap <Bslash><CR> <Plug>(textmanip-blank-above)
+xmap <CR>   <Plug>(textmanip-blank-below)
+xmap <S-CR> <Plug>(textmanip-blank-above)
+
+
+nmap <D-D> <Plug>(textmanip-duplicate-up)
+nmap <D-d> <Plug>(textmanip-duplicate-down)
+xmap <D-D> <Plug>(textmanip-duplicate-up)
+xmap <D-d> <Plug>(textmanip-duplicate-down)
+
+xmap <C-k> <Plug>(textmanip-move-up)
+xmap <C-j> <Plug>(textmanip-move-down)
+xmap <C-h> <Plug>(textmanip-move-left)
+xmap <C-l> <Plug>(textmanip-move-right)
+
+xmap <D-K> <Plug>(textmanip-duplicate-up)
+xmap <D-J> <Plug>(textmanip-duplicate-down)
+xmap <D-H> <Plug>(textmanip-duplicate-left)
+xmap <D-L> <Plug>(textmanip-duplicate-right)
+
+xmap  <Up>    <Plug>(textmanip-move-up-r)
+xmap  <Down>  <Plug>(textmanip-move-down-r)
+xmap  <Left>  <Plug>(textmanip-move-left-r)
+xmap  <Right> <Plug>(textmanip-move-right-r)
+
+nmap <C-s> <Plug>(textmanip-toggle-mode)
+xmap <C-s> <Plug>(textmanip-toggle-mode)
+
+
 " }}}
 
 
@@ -654,6 +690,7 @@ au Filetype * nnoremap <Leader><Bslash><Bslash> :split ~/.vim/vimrc<Cr>
 nnoremap <Bslash>t :!touch<Space>
 nnoremap <Bslash>d :!mkdir<Space>
 nnoremap <Bslash>m :!mv<Space>%<Space>
+nnoremap <Bslash>c :!cp<Space>%<Space>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -700,8 +737,8 @@ vnoremap zo zR
 nnoremap zc zM        " Press {zc} to close every fold.
 vnoremap zc zM
 
-set foldlevelstart=99 " Start editing with all folds closed
-" set foldlevel=5
+set foldlevelstart=0 " Start editing with all folds closed
+set foldlevel=5
 
 " function! MyFoldText()
 "     let line = getline(v:foldstart)
@@ -803,32 +840,6 @@ inoremap <right> <nop>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Autosave everytime a change is made.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au TextChanged * if &readonly==0 && filereadable(bufname('%'))|silent up|endif
-" au TextChanged * :w
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Resize splits when the window is resized
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au VimResized * exe "normal! \<c-w>="
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Line Return
-"    Make sure Vim returns to the same line when you reopen a file.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-augroup line_return
-    au!
-    au BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \     execute 'normal! g`"zvzz' |
-        \ endif
-augroup END
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Press <Space>p to print the current file to the default printer
 "    from a Linux operating system.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -887,6 +898,8 @@ au FileType python ia -func- # ---------------------------- Function Definition 
 au FileType python ia -funcs- # ---------------------------- Function Definitions ---------------------------<Cr><esc>h
 
 au filetype python ia -program- # ---------------------------------- Program ----------------------------------<Cr><Esc>h
+
+au FileType python ia -m- # ------------------------------- Main Function -------------------------------<Cr><Esc>h
 
 au FileType python ia -main- # --------------------------- Call the Main Function --------------------------<Cr>if __name__ == '__main__':<Cr>main()<Esc>
 
@@ -986,7 +999,7 @@ call matchadd('ColorColumn', '\%80v', 100)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Hightlight matches when jumping to next:
+" => Highlight matches when jumping to next:
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> n     n:call HLNext(0.4)<Cr>
 nnoremap <silent> N     N:call HLNext(0.4)<Cr>
@@ -1102,10 +1115,29 @@ endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Fast editing and reloading of vimrc configs
+" => Autosave everytime a change is made.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" map <leader>e :e! ~/.vim/vimrc<cr>
-" au! bufwritepost ~/.vim/vimrc source ~/.vim/vimrc
+au TextChanged * if &readonly==0 && filereadable(bufname('%'))|silent up|endif
+" au TextChanged * :w
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Resize splits when the window is resized
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au VimResized * exe "normal! \<c-w>="
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Line Return
+"    Make sure Vim returns to the same line when you reopen a file.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup line_return
+    au!
+    au BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \     execute 'normal! g`"zvzz' |
+        \ endif
+augroup END
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
