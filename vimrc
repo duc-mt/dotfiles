@@ -313,7 +313,7 @@ let g:NERDTreeExactMatchHighlightFullName = 1
 let g:NERDTreePatternMatchHighlightFullName = 1
 
 " Highlight folders using exact match
-let g:NERDTreeHighlightFolders = 1         " Enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFolders = 0         " Enables folder icon highlighting using exact match
 let g:NERDTreeHighlightFoldersFullName = 1 " Highlights the folder name
 
 " Customizing colors
@@ -410,9 +410,10 @@ nnoremap yob :BG<Cr>
 au FileType * nnoremap [ob :set background=light                  <Cr>
 au FileType * nnoremap ]ob :set background=dark                   <Cr>
 
-" Toggle cursorline
-au FileType * nnoremap [oc :set cursorline                        <Cr>
-au FileType * nnoremap ]oc :set nocursorline                      <Cr>
+" Toggle cursorcolumn
+nnoremap yoc :set cursorcolumn!                                   <Cr>
+au FileType * nnoremap [oc :set cursorcolumn                      <Cr>
+au FileType * nnoremap ]oc :set nocursorcolumn                    <Cr>
 
 " Toggle spell
 nnoremap yoe :set spell! spelllang=en_au                          <Cr>
@@ -429,9 +430,10 @@ au FileType * nnoremap ]oh :set nohlsearch                        <Cr>
 au FileType * nnoremap [oi :set ignore                            <Cr>
 au FileType * nnoremap ]oi :set noignorecase                      <Cr>
 
-" Toggle list
-au FileType * nnoremap [ol :set list                              <Cr>
-au FileType * nnoremap ]ol :set nolist                            <Cr>
+" Toggle cursorline
+nnoremap yol :set cursorline!<Cr>
+au FileType * nnoremap [ol :set cursorline                        <Cr>
+au FileType * nnoremap ]ol :set nocursorline                      <Cr>
 
 " Toggle number
 nnoremap yon :set number!                                         <Cr>
@@ -443,15 +445,15 @@ nnoremap yor :set relativenumber!                                 <Cr>
 au FileType * nnoremap [or :set relativenumber                    <Cr>
 au FileType * nnoremap ]or :set norelativenumber                  <Cr>
 
-" Toggle cursorcolumn
-nnoremap you :set cursorcolumn!                                   <Cr>
-au FileType * nnoremap [ou :set cursorcolumn                      <Cr>
-au FileType * nnoremap ]ou :set nocursorcolumn                    <Cr>
-
 " Toggle wrap
 nnoremap yow :set wrap!                                           <Cr>
 au FileType * nnoremap [ow :set wrap                              <Cr>
 au FileType * nnoremap ]ow :set nowrap                            <Cr>
+
+" Toggle cursorline
+nnoremap yox :set cursorcolumn! cursorline!<Cr>
+au FileType * nnoremap [ox :set cursorcolumn cursorline           <Cr>
+au FileType * nnoremap ]ox :set no cursorcolumn nocursorline      <Cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -544,9 +546,9 @@ set foldtext=gitgutter#fold#foldtext()
 
 " Signs' colours and symbols
 " let g:gitgutter_set_sign_backgrounds=1
-highlight GitGutterAdd    guifg=#009900 ctermfg=Green
-highlight GitGutterChange guifg=#bbbb00 ctermfg=Yellow
-highlight GitGutterDelete guifg=#ff2222 ctermfg=Red
+" highlight GitGutterAdd    guifg=#009900 ctermfg=Green
+" highlight GitGutterChange guifg=#bbbb00 ctermfg=Yellow
+" highlight GitGutterDelete guifg=#ff2222 ctermfg=Red
 
 let g:gitgutter_sign_added                   = 'xx'
 let g:gitgutter_sign_modified                = 'yy'
@@ -698,25 +700,25 @@ vnoremap zo zR
 nnoremap zc zM        " Press {zc} to close every fold.
 vnoremap zc zM
 
-set foldlevelstart=0  " Start editing with all folds closed
+set foldlevelstart=99 " Start editing with all folds closed
 " set foldlevel=5
 
-function! MyFoldText()
-    let line = getline(v:foldstart)
+" function! MyFoldText()
+"     let line = getline(v:foldstart)
 
-    let nucolwidth = &fdc + &number * &numberwidth
-    let windowwidth = winwidth(0) - nucolwidth - 3
-    let foldedlinecount = v:foldend - v:foldstart
+"     let nucolwidth = &fdc + &number * &numberwidth
+"     let windowwidth = winwidth(0) - nucolwidth - 3
+"     let foldedlinecount = v:foldend - v:foldstart
 
-    " expand tabs into spaces
-    let onetab = strpart('          ', 0, &tabstop)
-    let line = substitute(line, '\t', onetab, 'g')
+"     " expand tabs into spaces
+"     let onetab = strpart('          ', 0, &tabstop)
+"     let line = substitute(line, '\t', onetab, 'g')
 
-    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-    return line . '$(B!D(B' . repeat(" ",fillcharcount) . foldedlinecount . '$(B!D(B' . ' '
-endfunction
-set foldtext=MyFoldText()
+"     let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+"     let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+"     return line . '$(B!D(B' . repeat(" ",fillcharcount) . foldedlinecount . '$(B!D(B' . ' '
+" endfunction
+" set foldtext=MyFoldText()
 
 highlight Folded guibg=Gray8 guifg=Gray ctermbg=235  ctermfg=0
 
@@ -859,36 +861,34 @@ ia ytb YouTube
 au FileType python ia pr print()<Esc><Left>i<BS>
 au FileType python ia range range()<Esc><Left>i
 au FileType python ia input input()<Esc><Left>i<BS>
-au FileType python ia int int()<Esc><Left>i<BS>
-au FileType python ia float float()<Esc><Left>i<BS>
-au FileType python ia str str()<Esc><Left>i<BS>
-au FileType python ia cc #<Space>
+au FileType python ia cc #
 au FileType python ia rt return<Space><BS>
 au FileType python ia im import<Space><BS>
 au FileType python ia yl yield<Space><BS>
 au FileType python ia tr True
 au FileType python ia fa False
 au FileType python ia """ """<Cr><Cr>"""<Esc>kh
+au FileType python ia var # Variable initialisation.<Cr>
 
 " Function docstring
-au FileType python ia def def :<Cr>"""Docstring for the function<Cr><Cr><Cr><Cr>Parameters<Cr>----------<Cr><Cr><Cr><Cr>Returns<Cr>-------<Cr><Cr><Cr>"""<Cr><Cr><Esc>16kllli
+au FileType python ia df df :<Cr>"""Docstring for the function<Cr><Cr><Cr><Cr>Parameters<Cr>----------<Cr><Cr><Cr>Returns<Cr>-------<Cr><Cr>"""<Cr><Cr><Esc>14kllli<BS>
 
 " Section headings
-au FileType python ia -constant- # ---------------------------------- Constant ---------------------------------<Cr><Esc>h
+au FileType python ia -constant- # ------------------------------- Named Constant ------------------------------<Cr><Esc>h
 
-au FileType python ia -constants- # ---------------------------------- Constants --------------------------------<Cr><Esc>h
+au FileType python ia -constants- # ------------------------------- Named Constants -----------------------------<Cr><Esc>h
 
-au FileType python ia -module- # ------------------------------- Module Import -------------------------------<Cr><Esc>h
+au FileType python ia -import- # ------------------------------- Module Import -------------------------------<Cr><Esc>h
 
-au FileType python ia -modules- # ------------------------------- Module Imports -------------------------------<Cr><Esc>h
+au FileType python ia -imports- # ------------------------------- Module Imports -------------------------------<Cr><Esc>h
 
 au FileType python ia -func- # ---------------------------- Function Definition ----------------------------<Cr><Esc>h
 
 au FileType python ia -funcs- # ---------------------------- Function Definitions ---------------------------<Cr><esc>h
 
-au filetype python ia -program- # ---------------------------------- program ----------------------------------<Cr><Esc>h
+au filetype python ia -program- # ---------------------------------- Program ----------------------------------<Cr><Esc>h
 
-au FileType python ia -main- # --------------------------- Call the Main Function --------------------------<Cr>if __name__ == '__main__':<Cr>main()
+au FileType python ia -main- # --------------------------- Call the Main Function --------------------------<Cr>if __name__ == '__main__':<Cr>main()<Esc>
 
 " }}}
 
@@ -1144,7 +1144,7 @@ function! GitStatus()
   let [a,m,r]=GitGutterGetHunkSummary()
   return printf('+%d  ~%d  -%d', a, m, r)
 endfunction
-set statusline+=\\|\ %{GitStatus()}\ \|
+set statusline=\\|\ %{GitStatus()}\ \|
 
 " Status line left side.
 set statusline+=\ %f\ \|\ %M
