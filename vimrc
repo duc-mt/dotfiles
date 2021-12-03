@@ -894,8 +894,37 @@ au FileType python ia """ """<Cr><Cr>"""<Esc>kh
 au FileType python ia var # Variable initialisation.<Cr>
 au FileType python ia validanswers VALID_ANSWERS = ['y', 'yes', 'n', 'no']<Cr>
 
+
+" Desciption
+
+" # ----------------------------------------------------------------------------
+" # | !/usr/bin/python3
+" # |
+" # | File:         file_name.py
+" # | Author:       Tan Duc MAI
+" # | Email:        tan.duc.work@gmail.com
+" # | Date:         03-Dec-2021
+" # | Description:
+" # |   I hereby declare that I completed this work without any improper help
+" # |   from a third party and without using any aids other than those cited.
+" # |
+" # ----------------------------------------------------------------------------
+
+" # ----------------------------------------------------------------------------
+" # |
+" # | File:         file_name.py
+" # | Author:       Tan Duc MAI
+" # | Student ID:   517925
+" # | Description:
+" # |   This is my own work as defined by the Eynesbury's
+" # |   Academic Misconduct Policy.
+" # |
+" # ----------------------------------------------------------------------------
+
+
 " Function docstring
-au FileType python ia df df :<Cr>"""Docstring for the function<Cr><Cr><Cr><Cr>Parameters<Cr>----------<Cr><Cr><Cr>Returns<Cr>-------<Cr><Cr>"""<Cr><Cr><Esc>14kllli<BS>
+au FileType python ia df def :<Cr>"""Docstring for the function<Cr><Cr><Cr><Cr>Parameters<Cr>----------<Cr><Cr><Cr>Returns<Cr>-------<Cr><Cr>"""<Cr><Cr><Esc>14kllli<BS>
+
 
 " Section headings
 au FileType python ia -constant- # ------------------------------- Named Constant ------------------------------<Cr><Esc>h
