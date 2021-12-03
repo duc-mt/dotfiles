@@ -641,6 +641,12 @@ highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underl
 " MAPPINGS --------------------------------------------------------------- {{{
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Shortcut to access vimrc anywhere
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au Filetype * nnoremap <Leader><Bslash><Bslash> :split ~/.vim/vimrc<Cr>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Basic file system commands
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <Bslash>t :!touch<Space>
