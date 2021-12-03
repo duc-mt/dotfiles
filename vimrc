@@ -679,9 +679,9 @@ xmap <C-s> <Plug>(textmanip-toggle-mode)
 " MAPPINGS --------------------------------------------------------------- {{{
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Shortcut to access vimrc anywhere
+" => Shortcut to open vimrc anywhere
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au Filetype * nnoremap <Leader><Bslash><Bslash> :split ~/.vim/vimrc<Cr>
+nnoremap <Leader><Bslash><Bslash> :tabe ~/.vim/vimrc<Cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -703,7 +703,9 @@ nnoremap <Bslash>c :!cp<Space>%<Space>
 " Press {Leader q} to quit Vim instead of {:q Cr}
 nnoremap <Leader>q :q<Cr>
 
-" inoremap <C-C> <Esc>          " Press {Ctrl C} to escape from Insert mode
+" Press double ,, to escape from Insert mode
+inoremap ,, <Esc>
+vnoremap ,, <Esc>
 
 " Quickreturn
 " inoremap <c-cr> <esc>A<cr>
@@ -721,8 +723,17 @@ nnoremap C c$
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fix indenting visual block
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-vnoremap < <gv
-vnoremap > >gv
+vnoremap << <gv
+vnoremap >> >gv
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Folding shortcuts
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> <S-Left>  : tabp<Cr>
+nnoremap <silent> <S-Right> : tabn<Cr>
+nnoremap <silent> <S-Down>  : tabc<Cr>
+nnoremap <silent> <S-Up>    : tabo<Cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -899,7 +910,7 @@ au FileType python ia -funcs- # ---------------------------- Function Definition
 
 au filetype python ia -program- # ---------------------------------- Program ----------------------------------<Cr><Esc>h
 
-au FileType python ia -m- # ------------------------------- Main Function -------------------------------<Cr><Esc>h
+au FileType python ia -m- # ------------------------------- Main Function -------------------------------<Cr>def main():<Cr>
 
 au FileType python ia -main- # --------------------------- Call the Main Function --------------------------<Cr>if __name__ == '__main__':<Cr>main()<Esc>
 
