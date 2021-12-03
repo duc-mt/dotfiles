@@ -892,6 +892,7 @@ au FileType python ia tr True
 au FileType python ia fa False
 au FileType python ia """ """<Cr><Cr>"""<Esc>kh
 au FileType python ia var # Variable initialisation.<Cr>
+au FileType python ia validanswers VALID_ANSWERS = ['y', 'yes', 'n', 'no']<Cr>
 
 " Function docstring
 au FileType python ia df df :<Cr>"""Docstring for the function<Cr><Cr><Cr><Cr>Parameters<Cr>----------<Cr><Cr><Cr>Returns<Cr>-------<Cr><Cr>"""<Cr><Cr><Esc>14kllli<BS>
