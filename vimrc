@@ -280,7 +280,7 @@ set makeef=error.err " When using make, where should it dump the file
 nnoremap <Leader>n  : NERDTreeToggle<Cr>
 
 " Disable cursorline & cursorcolumn on NERDTree.
-au Filetype nerdtree setl nocursorline cursorcolumn
+au Filetype nerdtree setl nocursorline nocursorcolumn
 
 " au VimEnter * NERDTree     " Enable NERDTree on Vim start-up.
 
@@ -294,9 +294,6 @@ nnoremap <silent> <expr> <Leader>n g:NERDTree.IsOpen() ? "\:NERDTreeClose<Cr>" :
 " Have nerdtree show hidden files, but ignore certain files and directories.
 let NERDTreeShowHidden=1
 let NERDTreeIgnore=['__pycache__','\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\~$', 'pip-log\.txt$', 'whoosh_index', 'xapian_index', '.*.pid', 'monitor.py', '.*-fixtures-.*.json', '.*\.o$', 'db.db']
-
-" Src: https://gist.github.com/ted-juan/4231826#file-vimrc-L949
-au Filetype nerdtree setl nolist
 
 let NERDTreeCaseSensitiveSort = 1
 let NERDTreeNaturalSort       = 1
@@ -320,49 +317,48 @@ let g:NERDTreeHighlightCursorline            = 0
 
 " Highlight full name (not only icons)
 let g:NERDTreeFileExtensionHighlightFullName = 1
-let g:NERDTreeExactMatchHighlightFullName = 1
-let g:NERDTreePatternMatchHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName    = 1
+let g:NERDTreePatternMatchHighlightFullName  = 1
 
 " Highlight folders using exact match
-let g:NERDTreeHighlightFolders = 1         " Enables folder icon highlighting using exact match
-let g:NERDTreeHighlightFoldersFullName = 1 " Highlights the folder name
+let g:NERDTreeHighlightFolders               = 1 " Enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFoldersFullName       = 1 " Highlights the folder name
 
 " Customising colours
-let s:brown = "905532"
-let s:aqua =  "3AFFDB"
-let s:blue = "689FB6"
-let s:darkBlue = "44788E"
-let s:purple = "834F79"
+let s:brown       = "905532"
+let s:aqua        = "3AFFDB"
+let s:blue        = "689FB6"
+let s:darkBlue    = "44788E"
+let s:purple      = "834F79"
 let s:lightPurple = "834F79"
-let s:red = "AE403F"
-let s:beige = "F5C06F"
-let s:yellow = "F09F17"
-let s:orange = "D4843E"
-let s:darkOrange = "F16529"
-let s:pink = "CB6F6F"
-let s:salmon = "EE6E73"
-let s:green = "8FAA54"
-let s:lightGreen = "31B53E"
-let s:white = "FFFFFF"
-let s:rspec_red = 'FE405F'
-let s:git_orange = 'F54D27'
+let s:red         = "AE403F"
+let s:beige       = "F5C06F"
+let s:yellow      = "F09F17"
+let s:orange      = "D4843E"
+let s:darkOrange  = "F16529"
+let s:pink        = "CB6F6F"
+let s:salmon      = "EE6E73"
+let s:green       = "8FAA54"
+let s:lightGreen  = "31B53E"
+let s:white       = "FFFFFF"
+let s:rspec_red   = 'FE405F'
+let s:git_orange  = 'F54D27'
 
-let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
-let g:NERDTreeExtensionHighlightColor['css'] = s:blue " sets the colour of css files to blue
+let g:NERDTreeExtensionHighlightColor                    = {}           " this line is needed to avoid error
+let g:NERDTreeExtensionHighlightColor['css']             = s:blue       " sets the colour of css files to blue
 
-let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
-let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange " sets the colour for .gitignore files
-let g:NERDTreeExactMatchHighlightColor['python'] = s:green " sets the colour for .gitignore files
+let g:NERDTreeExactMatchHighlightColor                   = {}           " this line is needed to avoid error
+let g:NERDTreeExactMatchHighlightColor['.gitignore']     = s:git_orange " sets the colour for .gitignore files
 
-let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
-let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets the colour for files ending with _spec.rb
+let g:NERDTreePatternMatchHighlightColor                 = {}           " this line is needed to avoid error
+let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red  " sets the colour for files ending with _spec.rb
 
-let g:WebDevIconsDefaultFolderSymbolColor = s:beige " sets the colour for folders that did not match any rule
-let g:WebDevIconsDefaultFileSymbolColor = s:blue " sets the colour for files that did not match any rule
+let g:WebDevIconsDefaultFolderSymbolColor                = s:beige      " sets the colour for folders that did not match any rule
+let g:WebDevIconsDefaultFileSymbolColor                  = s:blue       " sets the colour for files that did not match any rule
 
 
 " Disable Highlight for specific file extension
-let g:NERDTreeExtensionHighlightColor = {} "this line is needed to avoid error
+let g:NERDTreeExtensionHighlightColor        = {} "this line is needed to avoid error
 let g:NERDTreeExtensionHighlightColor['css'] = '' "assigning it to an empty string will skip highlight
 
 " Disable uncommon file extensions highlighting
@@ -720,11 +716,9 @@ vnoremap ,, <Esc>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Fix 'Y', 'D', 'C' behaviour
+" Fix 'Y' behaviour
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap Y y$
-nnoremap D d$
-nnoremap C c$
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -876,13 +870,7 @@ ia ytb YouTube
 " => Python
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General, common key bindings
-au FileType python ia pr print()<Esc><Left>i<BS>
-au FileType python ia range range()<Esc><Left>i
-au FileType python ia input input()<Esc><Left>i<BS>
 au FileType python ia cc #
-au FileType python ia rt return<Space><BS>
-au FileType python ia im import<Space><BS>
-au FileType python ia yl yield<Space><BS>
 au FileType python ia tr True
 au FileType python ia fa False
 au FileType python ia """ """<Cr><Cr>"""<Esc>kh
@@ -918,7 +906,7 @@ au FileType python ia validanswers VALID_ANSWERS = ['y', 'yes', 'n', 'no']<Cr>
 
 
 " Function docstring
-au FileType python ia df def :<Cr>"""Docstring for the function<Cr><Cr><Cr><Cr>Parameters<Cr>----------<Cr><Cr><Cr>Returns<Cr>-------<Cr><Cr>"""<Cr><Cr><Esc>14kllli<Del>
+au FileType python ia df def :<Cr>"""Docstring for the function<Cr><Cr>Parameters<Cr>----------<Cr><Cr><Cr>Returns<Cr>-------<Cr><Cr>"""<Cr><Cr><Esc>14kllli<Del>
 
 
 " Section headings
@@ -948,14 +936,14 @@ au FileType python ia -main- # --------------------------- Call the Main Functio
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Map the F5 key to run a Python script inside Vim.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au Filetype python nnoremap <F5> :w<CR>:!clear<CR><CR><CR><CR>:!python3 %<CR>
+au Filetype python nnoremap <F5> :w<CR>:!clear<CR><CR><CR><CR><CR><CR><CR>:!python3 %<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell check
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Disable spell checking on start-up
-set spell spelllang=en_au
+" Enable spell checking for gitcommit.
+au FileType gitcommit setl spell spelllang=en_au
 
 " Highlight spelling mistakes
 " badly spelled word
@@ -975,9 +963,6 @@ fun! IgnoreSpell()
     syn cluster Spell add=InlineURL
 endfun
 au BufRead,BufNewFile * :call IgnoreSpell()
-
-
-au FileType * setl nospell
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1252,12 +1237,11 @@ augroup END
 let python_highlight_all = 1
 au FileType python syn keyword pythonDecorator True None False self
 
-au FileType python map <buffer> F :set foldmethod=indent<cr>
+au FileType python map <buffer> F :setl foldmethod=indent<cr>
 
-" au FileType python inoremap <buffer> $r return
-" au FileType python inoremap <buffer> $i import
-" au FileType python inoremap <buffer> $p print
-" au FileType python inoremap <buffer> $f # --- <esc>a
+au FileType python inoremap <buffer> $r return
+au FileType python inoremap <buffer> $i import
+au FileType python inoremap <buffer> $p print
 au FileType python map <buffer> <leader>1 /class
 au FileType python map <buffer> <leader>2 /def
 au FileType python map <buffer> <leader>C ?class
