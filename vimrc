@@ -18,6 +18,7 @@ silent! helptags ALL " Load help for all plugins.
 
 
 " GUI RELATED ------------------------------------------------------------ {{{
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Set font according to system
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -619,23 +620,23 @@ nnoremap <Bslash>gs :TOhtml
 " => Spelunker
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Disable URI checking
-let g:spelunker_disable_uri_checking = 1
+let g:spelunker_disable_uri_checking                          = 1
 
 " Disable email-like words checking
-let g:spelunker_disable_email_checking = 1
+let g:spelunker_disable_email_checking                        = 1
 
 " Disable account name checking, e.g. @foobar, foobar@
 " NOTE: Spell checking is also disabled for JAVA annotations.
-let g:spelunker_disable_account_name_checking = 1
+let g:spelunker_disable_account_name_checking                 = 1
 
 " Disable acronym checking
-let g:spelunker_disable_acronym_checking = 1
+let g:spelunker_disable_acronym_checking                      = 1
 
 " Disable checking words in backtick/backquote
-let g:spelunker_disable_backquoted_checking = 1
+let g:spelunker_disable_backquoted_checking                   = 1
 
 " Disable default autogroup
-let g:spelunker_disable_auto_group = 1
+let g:spelunker_disable_auto_group                            = 1
 
 " Override highlight setting
 highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=#9e9e9e
@@ -666,10 +667,10 @@ xmap <D-J> <Plug>(textmanip-duplicate-down)
 xmap <D-H> <Plug>(textmanip-duplicate-left)
 xmap <D-L> <Plug>(textmanip-duplicate-right)
 
-xmap  <Up>    <Plug>(textmanip-move-up-r)
-xmap  <Down>  <Plug>(textmanip-move-down-r)
-xmap  <Left>  <Plug>(textmanip-move-left-r)
-xmap  <Right> <Plug>(textmanip-move-right-r)
+xmap <Up>    <Plug>(textmanip-move-up-r)
+xmap <Down>  <Plug>(textmanip-move-down-r)
+xmap <Left>  <Plug>(textmanip-move-left-r)
+xmap <Right> <Plug>(textmanip-move-right-r)
 
 nmap <C-s> <Plug>(textmanip-toggle-mode)
 xmap <C-s> <Plug>(textmanip-toggle-mode)
@@ -724,17 +725,24 @@ nnoremap Y y$
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fix indenting visual block
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-vnoremap << <gv
-vnoremap >> >gv
+" vnoremap << <gv
+" vnoremap >> >gv
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Folding shortcuts
+" => Move between tabs
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> <S-Left>  : tabp<Cr>
 nnoremap <silent> <S-Right> : tabn<Cr>
 nnoremap <silent> <S-Down>  : tabc<Cr>
 nnoremap <silent> <S-Up>    : tabo<Cr>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Move between files in the same folder
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> <C-Tab>   : bn<Cr>
+nnoremap <silent> <C-S-Tab> : bp<Cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -936,13 +944,13 @@ au FileType python ia -main- # --------------------------- Call the Main Functio
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Map the F5 key to run a Python script inside Vim.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au Filetype python nnoremap <F5> :w<CR>:!clear<CR><CR><CR><CR><CR><CR><CR>:!python3 %<CR>
+au Filetype python nnoremap <F5> :w<CR>:!clear<CR><CR>:!python3 %<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell check
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Enable spell checking for gitcommit.
+" Enable spell checking for gitcommit
 au FileType gitcommit setl spell spelllang=en_au
 
 " Highlight spelling mistakes
