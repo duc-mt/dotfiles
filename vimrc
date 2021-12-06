@@ -913,7 +913,7 @@ au FileType python ia -main- # --------------------------- Call the Main Functio
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Map the F5 key to run a Python script inside Vim.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au Filetype python nnoremap <F5> :w<CR>:!clear<CR>:!python3 %<CR><CR><CR>
+au Filetype python nnoremap <F5> :w<CR>:!clear<CR>:!python3 %<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1098,15 +1098,12 @@ packadd! gruvbox-material
 " Change theme depending on the time of day
 let hr=(strftime('%H'))
 
-if hr >= 22
+if hr >= 24
   set background=dark
   let g:gruvbox_material_background = 'hard'
-elseif hr >= 8
+elseif hr >= 12
   set background=light
   let g:gruvbox_material_background = 'soft'
-elseif hr>= 0
-  set background=dark
-  let g:gruvbox_material_background = 'hard'
 endif
 
 " Configuration
