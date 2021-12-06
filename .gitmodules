@@ -40,3 +40,6 @@
 [submodule "pack/plugins/start/nerd-fonts"]
 	path = pack/plugins/start/nerd-fonts
 	url = https://github.com/ryanoasis/nerd-fonts.git
+[submodule "pack/colours/opt/gruvbox-material"]
+	path = pack/colours/opt/gruvbox-material
+	url = https://github.com/sainnhe/gruvbox-material.git
