@@ -360,7 +360,6 @@ let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red  " sets t
 let g:WebDevIconsDefaultFolderSymbolColor                = s:beige      " sets the colour for folders that did not match any rule
 let g:WebDevIconsDefaultFileSymbolColor                  = s:blue       " sets the colour for files that did not match any rule
 
-
 " Disable Highlight for specific file extension
 let g:NERDTreeExtensionHighlightColor        = {} "this line is needed to avoid error
 let g:NERDTreeExtensionHighlightColor['css'] = '' "assigning it to an empty string will skip highlight
@@ -531,31 +530,35 @@ map N <Plug>(easymotion-prev)
 " => Gitgutter
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:gitgutter_enabled=1
-" " Disable all predefined mappings
+" Disable all predefined mappings
 let g:gitgutter_map_keys=0
 
-" " Update time controls the delay before vim writes its swap file
+" Update time controls the delay before vim writes its swap file
 set updatetime=100
 
-" " Jump between hunks (differing lines)
+" Jump between hunks (differing lines)
 nnoremap ) :GitGutterNextHunk<Cr>
 nnoremap ( :GitGutterPrevHunk<Cr>
 
-" " Fold all unchanged lines, leaving just the hunks visible.
+" Toggle folding all unchanged lines, leaving just the hunks visible.
 nnoremap <F2> :GitGutterFold<Cr>
 set foldtext=gitgutter#fold#foldtext()
 
-" " Sign column
-" set signcolumn=no
+" Toggle highlighting changed lines (hunks)
+nnoremap <F3> :GitGutterLineHighlightsToggle<Cr>
+
+" Sign column
+" set signcolumn=yes
 " highlight SignColumn guibg=yellow ctermbg=yellow
 
-" " Signs' colours and symbols
+" Signs' colours and symbols
+
 " let g:gitgutter_set_sign_backgrounds=1
 " highlight GitGutterAdd    guifg=#009900 ctermfg=Green
 " highlight GitGutterChange guifg=#bbbb00 ctermfg=Yellow
 " highlight GitGutterDelete guifg=#ff2222 ctermfg=Red
 
-" " Preview the hunk the cursor is in
+" Preview the hunk the cursor is in
 nnoremap ghp :GitGutterPreviewHunk<Cr>
 nnoremap ghq :pclose<Cr>
 
@@ -987,9 +990,6 @@ au Filetype html,vim,vimwiki setl tabstop=2 shiftwidth=2 expandtab
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Make the 80th column stand out (PEP 8 Style Guide for Python Code)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set termguicolours
-" set t_Co=256
-"highlight Folded guibg=black
 highlight ColorColumn guibg=Gray15 ctermbg=235
 call matchadd('ColorColumn', '\%80v', 100)
 
@@ -1039,8 +1039,6 @@ match WhitespaceEOL /\s\+$/
 
 call matchadd('WhitespaceEOL', '\(\s\+$\| \+\ze\t\|\t\zs \+\)\(\%#\)\@!')
 
-highlight CursorLine guibg=Gray23 ctermbg=235
-
 " Highlight trailing whitespace
 au BufEnter exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~" | set list | match ErrorMsg '\s\+$'
 
@@ -1055,8 +1053,6 @@ nnoremap <silent> <C-S>      : %s/\s\+$//e<Cr>
 syntax on
 
 if has("gui_running")
-    "set background=light        " we are not using a dark background
-    "set background=dark         " we are not using a light background
     colorscheme xoria256
     if (hostname() == 'wollnashorn')
         set guifont=DejaVu\ Sans\ Mono\ 12
@@ -1066,8 +1062,8 @@ if has("gui_running")
     "set guioptions-=m  "remove menu bar
     set guioptions-=T  "remove toolbar
     set guioptions-=r  "remove right-hand scroll bar
-    highlight Cursor guifg=black guibg=DarkOrange
-    highlight iCursor guifg=black guibg=Green
+    " highlight Cursor guifg=black guibg=DarkOrange
+    " highlight iCursor guifg=black guibg=Green
     set guicursor=n-v-c:block-Cursor
     set guicursor+=i:ver100-iCursor
     set guicursor+=n-v-c:blinkon0
@@ -1076,8 +1072,6 @@ if has("gui_running")
     cnoreabbrev <expr> q getcmdtype() == ":" && getcmdline() == 'q' ? 'bd' : 'q'
 else
     set t_Co=256
-    "set background=light       " we are not using a light background
-    "set background=dark        " we are not using a light background
     colorscheme xoria256
     au InsertEnter * highlight  CursorLine ctermbg=52 ctermfg=None
     " Revert Color to default when leaving Insert Mode
@@ -1085,9 +1079,9 @@ else
 endif
 
 if &term =~ "xterm\\|rxvt"
-    " use an orange cursor in insert mode
-    let &t_SI = "\<Esc>]12;green\x7"
-    " use a red cursor otherwise
+    " use a light_cyan cursor in insert mode
+    let &t_SI = "\<Esc>]12;LightCyan\x7"
+    " use an orange cursor otherwise
     let &t_EI = "\<Esc>]12;orange\x7"
     silent !echo -ne "\033]12;orange\007"
     " reset cursor when vim exits
@@ -1097,17 +1091,82 @@ endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Change theme depending on the time of day
+" => Gruvbox-material
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+packadd! gruvbox-material
+
+" Change theme depending on the time of day
 let hr=(strftime('%H'))
 
 if hr >= 22
   set background=dark
+  let g:gruvbox_material_background = 'hard'
 elseif hr >= 8
   set background=light
+  let g:gruvbox_material_background = 'soft'
 elseif hr>= 0
   set background=dark
+  let g:gruvbox_material_background = 'hard'
 endif
+
+" Configuration
+if has('termguicolors')
+  set termguicolors
+endif
+
+" Enable italic, but disable for comment
+let g:gruvbox_material_enable_italic = 1
+let g:gruvbox_material_disable_italic_comment = 1
+
+" Enable bold in function name
+let g:gruvbox_material_enable_bold = 1
+
+" Customize the background color of |hl-PmenuSel| and |hl-WildMenu|
+let g:gruvbox_material_menu_selection_background = 'red'
+
+" Make the background color of sign column the same as normal text
+let g:gruvbox_material_sign_column_background = 'none'
+
+" The contrast of line numbers, indent lines, etc.
+let g:gruvbox_material_ui_contrast = 'high'
+
+" Some plugins support highlighting error/warning/info/hint texts, by default
+" these texts are only underlined, but you can use this option to also highlight
+" the background of them.
+let g:gruvbox_material_diagnostic_text_highlight = 1
+
+" Some plugins support highlighting error/warning/info/hint lines, but this
+" feature is disabled by default in this color scheme. To enable this feature,
+" set this option to `1`.
+let g:gruvbox_material_diagnostic_line_highlight = 1
+
+" Some plugins can use virtual text feature of neovim to display
+" error/warning/info/hint information, you can use this option to adjust the
+" colors of it.
+let g:gruvbox_material_diagnostic_virtual_text = 'colored'
+
+" Some plugins can highlight the word under current cursor, you can use this
+" option to control their behavior.
+let g:gruvbox_material_current_word = 'bold'
+
+" Determine the style of statusline
+let g:gruvbox_material_statusline_style = 'original'
+
+" Enable this option will reduce loading time by approximately 50%
+let g:gruvbox_material_better_performance = 1
+
+" Set the colorscheme
+colorscheme gruvbox-material
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Highlight search
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" For the GUI
+hi Search guibg=peru guifg=wheat
+
+" For terminals
+hi Search cterm=NONE ctermfg=grey ctermbg=blue
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
