@@ -280,6 +280,9 @@ set makeef=error.err " When using make, where should it dump the file
 " Press {Leader n} to access NERDTree plugin.
 nnoremap <Leader>n  : NERDTreeToggle<Cr>
 
+" Press {Leader rn} to refresh NERDTree plugin.
+nnoremap <Leader>rn  : NERDTreeRefreshRoot<Cr>
+
 " Disable cursorline & cursorcolumn on NERDTree.
 au Filetype nerdtree setl nocursorline nocursorcolumn
 
@@ -547,13 +550,13 @@ set foldtext=gitgutter#fold#foldtext()
 
 " Sign column
 " set signcolumn=yes
-" highlight SignColumn guibg=yellow ctermbg=yellow
+highlight SignColumn guibg=yellow ctermbg=yellow
 
 " Signs' colours and symbols
-" let g:gitgutter_set_sign_backgrounds=1
-" highlight GitGutterAdd    guifg=#009900 ctermfg=Green
-" highlight GitGutterChange guifg=#bbbb00 ctermfg=Yellow
-" highlight GitGutterDelete guifg=#ff2222 ctermfg=Red
+let g:gitgutter_set_sign_backgrounds=1
+highlight GitGutterAdd    guifg=#009900 ctermfg=Green
+highlight GitGutterChange guifg=#bbbb00 ctermfg=Yellow
+highlight GitGutterDelete guifg=#ff2222 ctermfg=Red
 
 let g:gitgutter_sign_added                   = 'xx'
 let g:gitgutter_sign_modified                = 'yy'
@@ -587,8 +590,8 @@ nnoremap   <silent>   <F7>   :FloatermNext<CR>
 tnoremap   <silent>   <F7>   <C-\><C-n>:FloatermNext<CR>
 nnoremap   <silent>   <F8>   :FloatermKill<CR>
 tnoremap   <silent>   <F8>   <C-\><C-n>:FloatermKill<CR>
-nnoremap   <silent>   <F9>   :FloatermToggle<CR>
-tnoremap   <silent>   <F9>   <C-\><C-n>:FloatermToggle<CR>
+nnoremap   <silent>   <F12>  :FloatermToggle<CR>
+tnoremap   <silent>   <F12>  <C-\><C-n>:FloatermToggle<CR>
 
 " Highlight
 " Set floaterm window's background to black
