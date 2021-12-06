@@ -531,31 +531,31 @@ map N <Plug>(easymotion-prev)
 " => Gitgutter
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:gitgutter_enabled=1
-" Disable all predefined mappings
+" " Disable all predefined mappings
 let g:gitgutter_map_keys=0
 
-" Update time controls the delay before vim writes its swap file
+" " Update time controls the delay before vim writes its swap file
 set updatetime=100
 
-" Jump between hunks (differing lines)
+" " Jump between hunks (differing lines)
 nnoremap ) :GitGutterNextHunk<Cr>
 nnoremap ( :GitGutterPrevHunk<Cr>
 
-" Fold all unchanged lines, leaving just the hunks visible.
+" " Fold all unchanged lines, leaving just the hunks visible.
 nnoremap <F2> :GitGutterFold<Cr>
 set foldtext=gitgutter#fold#foldtext()
 
-" Sign column
-" set signcolumn=yes
-highlight SignColumn guibg=yellow ctermbg=yellow
+" " Sign column
+" set signcolumn=no
+" highlight SignColumn guibg=yellow ctermbg=yellow
 
-" Signs' colours and symbols
-let g:gitgutter_set_sign_backgrounds=1
-highlight GitGutterAdd    guifg=#009900 ctermfg=Green
-highlight GitGutterChange guifg=#bbbb00 ctermfg=Yellow
-highlight GitGutterDelete guifg=#ff2222 ctermfg=Red
+" " Signs' colours and symbols
+" let g:gitgutter_set_sign_backgrounds=1
+" highlight GitGutterAdd    guifg=#009900 ctermfg=Green
+" highlight GitGutterChange guifg=#bbbb00 ctermfg=Yellow
+" highlight GitGutterDelete guifg=#ff2222 ctermfg=Red
 
-" Preview the hunk the cursor is in
+" " Preview the hunk the cursor is in
 nnoremap ghp :GitGutterPreviewHunk<Cr>
 nnoremap ghq :pclose<Cr>
 

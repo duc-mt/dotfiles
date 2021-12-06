@@ -80,9 +80,10 @@ $ git submodule foreach git pull origin master
 
 To delete a plugin, remove the submodule with the following steps:
 ```bash
-$ cd ~/.vim/pack/plugins/start/
-$ git submodule deinit rails.vim/
-$ git rm -r rails.vim
+$ cd ~/
+$ git submodule deinit -f -- pack/plugins/start/rails.vim
+$ rm -rf .git/modules/pack/plugins/start/rails.vim
+$ git rm -f pack/plugins/start/rails.vim/rails.vim
 " Now the rails.vim/ folder is gone or may be left with rails.vim/doc/tags"
 $ cd doc/tags
 $ rm tags
