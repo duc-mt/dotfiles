@@ -541,9 +541,6 @@ set updatetime=100
 nnoremap ) :GitGutterNextHunk<Cr>
 nnoremap ( :GitGutterPrevHunk<Cr>
 
-" Turn line highlighting on
-" nnoremap <F6> :GitGutterLineHighlightsToggle<Cr>
-
 " Fold all unchanged lines, leaving just the hunks visible.
 nnoremap <F2> :GitGutterFold<Cr>
 set foldtext=gitgutter#fold#foldtext()
@@ -557,13 +554,6 @@ let g:gitgutter_set_sign_backgrounds=1
 highlight GitGutterAdd    guifg=#009900 ctermfg=Green
 highlight GitGutterChange guifg=#bbbb00 ctermfg=Yellow
 highlight GitGutterDelete guifg=#ff2222 ctermfg=Red
-
-let g:gitgutter_sign_added                   = 'xx'
-let g:gitgutter_sign_modified                = 'yy'
-let g:gitgutter_sign_removed                 = 'zz'
-let g:gitgutter_sign_removed_first_line      = '^^'
-let g:gitgutter_sign_removed_above_and_below = '{'
-let g:gitgutter_sign_modified_removed        = 'ww'
 
 " Preview the hunk the cursor is in
 nnoremap ghp :GitGutterPreviewHunk<Cr>
@@ -645,40 +635,6 @@ let g:spelunker_disable_auto_group                            = 1
 highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=#9e9e9e
 highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Textmanip
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <CR>   <Plug>(textmanip-blank-below)
-nmap <Bslash><CR> <Plug>(textmanip-blank-above)
-xmap <CR>   <Plug>(textmanip-blank-below)
-xmap <S-CR> <Plug>(textmanip-blank-above)
-
-
-nmap <D-D> <Plug>(textmanip-duplicate-up)
-nmap <D-d> <Plug>(textmanip-duplicate-down)
-xmap <D-D> <Plug>(textmanip-duplicate-up)
-xmap <D-d> <Plug>(textmanip-duplicate-down)
-
-xmap <C-k> <Plug>(textmanip-move-up)
-xmap <C-j> <Plug>(textmanip-move-down)
-xmap <C-h> <Plug>(textmanip-move-left)
-xmap <C-l> <Plug>(textmanip-move-right)
-
-xmap <D-K> <Plug>(textmanip-duplicate-up)
-xmap <D-J> <Plug>(textmanip-duplicate-down)
-xmap <D-H> <Plug>(textmanip-duplicate-left)
-xmap <D-L> <Plug>(textmanip-duplicate-right)
-
-xmap <Up>    <Plug>(textmanip-move-up-r)
-xmap <Down>  <Plug>(textmanip-move-down-r)
-xmap <Left>  <Plug>(textmanip-move-left-r)
-xmap <Right> <Plug>(textmanip-move-right-r)
-
-nmap <C-s> <Plug>(textmanip-toggle-mode)
-xmap <C-s> <Plug>(textmanip-toggle-mode)
-
-
 " }}}
 
 
@@ -733,6 +689,13 @@ nnoremap Y y$
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Add blank line before and after the current line.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <Cr> A<Cr><Esc>
+nnoremap <Bslash><Cr> I<Cr><Esc>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Move between tabs
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> <S-Left>  : tabp<Cr>
@@ -742,25 +705,25 @@ nnoremap <silent> <S-Up>    : tabo<Cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Move between files in the same folder
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <silent> <C-Tab>   : bn<Cr>
-nnoremap <silent> <C-S-Tab> : bp<Cr>
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Folding shortcuts
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set foldmethod=indent " Folding code based on indentation.
+" Folding code based on indentation.
+set foldmethod=indent
 
-nnoremap za zA        " Press {za} to open/close all folding levels.
+" Press {za} to open/close all folding levels.
+nnoremap za zA
 vnoremap za zA
-nnoremap zo zR        " Press {zo} to open every fold.
+
+" Press {zo} to open every fold.
+nnoremap zo zR
 vnoremap zo zR
-nnoremap zc zM        " Press {zc} to close every fold.
+
+" Press {zc} to close every fold.
+nnoremap zc zM
 vnoremap zc zM
 
-set foldlevelstart=0 " Start editing with all folds closed
+" Start editing with all folds closed
+set foldlevelstart=0
 set foldlevel=5
 
 " function! MyFoldText()
@@ -947,23 +910,23 @@ au FileType python ia -main- # --------------------------- Call the Main Functio
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Map the F5 key to run a Python script inside Vim.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au Filetype python nnoremap <F5> :w<CR>:!clear<CR><CR>:!python3 %<CR>
+au Filetype python nnoremap <F5> :w<CR>:!clear<CR>:!python3 %<CR><CR><CR>
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell check
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable spell checking for gitcommit
 au FileType gitcommit setl spell spelllang=en_au
 
 " Highlight spelling mistakes
-" badly spelled word
+" Badly spelled word
 highlight SpellBad    term=reverse   ctermbg=12 gui=undercurl guisp=Red
-" word with wrong caps
+" Word with wrong caps
 highlight SpellCap    term=reverse   ctermbg=9  gui=undercurl guisp=Blue
-" rare word
+" Rare word
 highlight SpellRare   term=reverse   ctermbg=13 gui=undercurl guisp=Magenta
-" word only exists in other region
+" Word only exists in other region
 highlight SpellLocale term=underline ctermbg=11 gui=undercurl guisp=DarkCyan
 
 " Ignore CamelCase words when spell checking
@@ -985,12 +948,12 @@ augroup readonly
 augroup END
 
 " Disable colourcolumn if the buffer is read only
-function CheckRo()
-    if &readonly
-        set colourcolumn=0
-    endif
-endfunction
-au BufReadPost * call CheckRo()
+" function CheckRo()
+"     if &readonly
+"         set colourcolumn=0
+"     endif
+" endfunction
+" au BufReadPost * call CheckRo()
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1081,7 +1044,7 @@ highlight CursorLine guibg=Gray23 ctermbg=235
 " Highlight trailing whitespace
 au BufEnter exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~" | set list | match ErrorMsg '\s\+$'
 
-" Three options to automatically remove trailing whitespace
+" Two options to automatically remove trailing whitespace
 au InsertLeave,BufWritePre * : %s/\s\+$//e
 nnoremap <silent> <C-S>      : %s/\s\+$//e<Cr>
 

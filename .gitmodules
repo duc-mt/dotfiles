@@ -28,9 +28,6 @@
 [submodule "pack/plugins/opt/shoot"]
 	path = pack/plugins/opt/shoot
 	url = https://github.com/JMcKiern/vim-shoot.git
-[submodule "pack/plugins/start/textmanip"]
-	path = pack/plugins/start/textmanip
-	url = https://github.com/t9md/vim-textmanip.git
 [submodule "pack/plugins/opt/speeddating"]
 	path = pack/plugins/opt/speeddating
 	url = https://github.com/tpope/vim-speeddating.git
