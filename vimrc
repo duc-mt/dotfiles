@@ -1213,6 +1213,13 @@ function! BlockColor() " {{{
 endfunction " }}}
 nnoremap <leader>B :call BlockColor()<cr>
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => ~/.gitconfig file
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au FileType gitconfig setl nocursorline nocursorcolumn
+au FileType gitconfig setl foldlevelstart=99
+
 " }}}
 
 
