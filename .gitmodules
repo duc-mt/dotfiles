@@ -58,3 +58,9 @@
 [submodule "pack/wiki/opt/vimwiki"]
 	path = pack/wiki/opt/vimwiki
 	url = https://github.com/vimwiki/vimwiki.git
+[submodule "pack/spreadsheet/opt/sc-im"]
+	path = pack/spreadsheet/opt/sc-im
+	url = https://github.com/andmarti1424/sc-im.git
+[submodule "pack/status-line/opt/lightline"]
+	path = pack/status-line/opt/lightline
+	url = https://github.com/itchyny/lightline.vim.git
