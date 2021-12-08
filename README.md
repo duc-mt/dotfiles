@@ -83,14 +83,7 @@ To delete a plugin, remove the submodule with the following steps:
 $ cd ~/
 $ git submodule deinit -f -- pack/plugins/start/rails.vim
 $ rm -rf .git/modules/pack/plugins/start/rails.vim
-$ git rm -f pack/plugins/start/rails.vim/rails.vim
-" Now the rails.vim/ folder is gone or may be left with rails.vim/doc/tags"
-$ cd doc/tags
-$ rm tags
-$ cd ..
-$ rmdir doc/
-$ cd ..
-$ rmdir rails.vim/
+$ git rm -f pack/plugins/start/rails.vim
 " Now the complete rails.vim plugin is deleted."
 $ git commit -m "Delete rails.vim plugin."
 $ git push
