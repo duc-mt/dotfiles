@@ -19,9 +19,9 @@ silent! helptags ALL " Load help for all plugins.
 
 " GUI RELATED ------------------------------------------------------------ {{{
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Set font according to system
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("mac") || has("macunix")
     set gfn=IBM\ Plex\ Mono:h14,Hack:h14,Source\ Code\ Pro:h15,Menlo:h15
 elseif has("win16") || has("win32")
@@ -35,9 +35,9 @@ elseif has("unix")
 endif
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Disable scrollbars (real hackers don't use scrollbars for navigation!)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set guioptions-=r
 set guioptions-=R
 set guioptions-=l
@@ -295,7 +295,7 @@ au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
 " Open NERDTree at the current file or close NERDTree if pressed again.
 nnoremap <silent> <expr> <Leader>n g:NERDTree.IsOpen() ? "\:NERDTreeClose<Cr>" : bufexists(expand('%')) ? "\:NERDTreeFind<Cr>" : "\:NERDTree<Cr>"
 
-" Have nerdtree show hidden files, but ignore certain files and directories.
+" Have NERDtree show hidden files, but ignore certain files and directories.
 let NERDTreeShowHidden=1
 let NERDTreeIgnore=['__pycache__','\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\~$', 'pip-log\.txt$', 'whoosh_index', 'xapian_index', '.*.pid', 'monitor.py', '.*-fixtures-.*.json', '.*\.o$', 'db.db']
 
@@ -855,13 +855,13 @@ au FileType python ia var # Variable initialisation.<Cr>
 au FileType python ia validanswers VALID_ANSWERS = ['y', 'yes', 'n', 'no']<Cr>
 
 
-" Desciption
+" Description
 
 " # ----------------------------------------------------------------------------
 " # | !/usr/bin/python3
 " # |
 " # | File:         file_name.py
-" # | Author:       Tan Duc MAI
+" # | Author:       Tan Duc Mai
 " # | Email:        tan.duc.work@gmail.com
 " # | Date:         03-Dec-2021
 " # | Description:
@@ -873,7 +873,7 @@ au FileType python ia validanswers VALID_ANSWERS = ['y', 'yes', 'n', 'no']<Cr>
 " # ----------------------------------------------------------------------------
 " # |
 " # | File:         file_name.py
-" # | Author:       Tan Duc MAI
+" # | Author:       Tan Duc Mai
 " # | Student ID:   517925
 " # | Description:
 " # |   This is my own work as defined by the Eynesbury's
@@ -883,7 +883,7 @@ au FileType python ia validanswers VALID_ANSWERS = ['y', 'yes', 'n', 'no']<Cr>
 
 
 " Function docstring
-au FileType python ia df def :<Cr>"""Docstring for the function<Cr><Cr>Parameters<Cr>----------<Cr><Cr><Cr>Returns<Cr>-------<Cr><Cr>"""<Cr><Cr><Esc>14kllli<Del>
+au FileType python ia df def :<Cr>"""<Cr><Cr>Parameters<Cr>----------<Cr><Cr><Cr>Returns<Cr>-------<Cr><Cr>"""<Cr><Cr><Esc>14kllli<Del>
 
 
 " Section headings
@@ -911,13 +911,13 @@ au FileType python ia -main- # --------------------------- Call the Main Functio
 " VIM SCRIPTS ------------------------------------------------------------ {{{
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Map the F5 key to run a Python script inside Vim.
+" => Map the <F5> key to run a Python script inside Vim.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au Filetype python nnoremap <F5> :w<CR>:!clear<CR>:!python3 %<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Spell check
+" => Spell checking
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable spell checking for gitcommit
 au FileType gitcommit setl spell spelllang=en_au
@@ -1074,7 +1074,7 @@ else
     set t_Co=256
     colorscheme xoria256
     au InsertEnter * highlight  CursorLine ctermbg=52 ctermfg=None
-    " Revert Color to default when leaving Insert Mode
+    " Revert colour to default when leaving Insert Mode
     au InsertLeave * highlight  CursorLine ctermbg=237 ctermfg=None
 endif
 
@@ -1107,8 +1107,8 @@ elseif hr >= 12
 endif
 
 " Configuration
-if has('termguicolors')
-  set termguicolors
+if has('termguicolours')
+  set termguicolours
 endif
 
 " Enable italic, but disable for comment
@@ -1118,10 +1118,10 @@ let g:gruvbox_material_disable_italic_comment = 1
 " Enable bold in function name
 let g:gruvbox_material_enable_bold = 1
 
-" Customize the background color of |hl-PmenuSel| and |hl-WildMenu|
+" Customize the background colour of |hl-PmenuSel| and |hl-WildMenu|
 let g:gruvbox_material_menu_selection_background = 'red'
 
-" Make the background color of sign column the same as normal text
+" Make the background colour of sign column the same as normal text
 let g:gruvbox_material_sign_column_background = 'none'
 
 " The contrast of line numbers, indent lines, etc.
@@ -1139,11 +1139,11 @@ let g:gruvbox_material_diagnostic_line_highlight = 1
 
 " Some plugins can use virtual text feature of neovim to display
 " error/warning/info/hint information, you can use this option to adjust the
-" colors of it.
+" colours of it.
 let g:gruvbox_material_diagnostic_virtual_text = 'colored'
 
 " Some plugins can highlight the word under current cursor, you can use this
-" option to control their behavior.
+" option to control their behaviour.
 let g:gruvbox_material_current_word = 'bold'
 
 " Determine the style of statusline
@@ -1167,7 +1167,7 @@ hi Search cterm=NONE ctermfg=grey ctermbg=blue
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Autosave everytime a change is made.
+" => AutoSave everytime a change is made.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au TextChanged * if &readonly==0 && filereadable(bufname('%'))|silent up|endif
 " au TextChanged * :w
@@ -1193,7 +1193,7 @@ augroup END
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Block Colors
+" => Block Colours
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:blockcolour_state = 0
 function! BlockColor() " {{{
@@ -1227,7 +1227,7 @@ au FileType gitconfig setl foldlevelstart=99
 " Clear status line when vimrc is reloaded.
 set statusline=
 
-" Color statusline
+" Colour statusline
 set statusline+=%#PmenuSel#
 
 " Get a list of counts of added, modified, and removed lines (current buffer)
