@@ -685,6 +685,32 @@ nnoremap Y y$
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Undo break points
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+inoremap , ,<C-G>u
+inoremap . .<C-G>u
+inoremap [ [<C-G>u
+inoremap ( (<C-G>u
+inoremap { {<C-G>u
+inoremap < <<C-G>u
+inoremap ' '<C-G>u
+inoremap " "<C-G>u
+inoremap ! !<C-G>u
+inoremap ? ?<C-G>u
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Move text
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+vnoremap J :m '>+1<Cr>gv=gv
+vnoremap K :m '<-2<Cr>gv=gv
+inoremap <C-J> :m .+1<Cr>==
+inoremap <C-K> :m .-2<Cr>==
+nnoremap <Leader>j :m .+1<Cr>==
+nnoremap <Leader>k :m .-2<Cr>==
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fix indenting visual block
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vnoremap << <gv
@@ -1095,16 +1121,19 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 packadd! gruvbox-material
 
+set background=dark
+let g:gruvbox_material_background = 'hard'
 " Change theme depending on the time of day
-let hr=(strftime('%H'))
 
-if hr >= 24
-  set background=dark
-  let g:gruvbox_material_background = 'hard'
-elseif hr >= 12
-  set background=light
-  let g:gruvbox_material_background = 'soft'
-endif
+" let hr=(strftime('%H'))
+
+" if hr >= 24
+"   set background=dark
+"   let g:gruvbox_material_background = 'hard'
+" elseif hr >= 12
+"   set background=light
+"   let g:gruvbox_material_background = 'soft'
+" endif
 
 " Configuration
 if has('termguicolours')
@@ -1163,7 +1192,7 @@ colorscheme gruvbox-material
 hi Search guibg=peru guifg=wheat
 
 " For terminals
-hi Search cterm=NONE ctermfg=grey ctermbg=blue
+" hi Search cterm=NONE ctermfg=peru ctermbg=wheat
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
