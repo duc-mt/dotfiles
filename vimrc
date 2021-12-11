@@ -23,15 +23,15 @@ silent! helptags ALL " Load help for all plugins.
 " => Set font according to system
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("mac") || has("macunix")
-    set gfn=IBM\ Plex\ Mono:h14,Hack:h14,Source\ Code\ Pro:h15,Menlo:h15
+  set gfn=IBM\ Plex\ Mono:h14,Hack:h14,Source\ Code\ Pro:h15,Menlo:h15
 elseif has("win16") || has("win32")
-    set gfn=IBM\ Plex\ Mono:h14,Source\ Code\ Pro:h12,Bitstream\ Vera\ Sans\ Mono:h11
+  set gfn=IBM\ Plex\ Mono:h14,Source\ Code\ Pro:h12,Bitstream\ Vera\ Sans\ Mono:h11
 elseif has("gui_gtk2")
-    set gfn=IBM\ Plex\ Mono\ 14,:Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
+  set gfn=IBM\ Plex\ Mono\ 14,:Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
 elseif has("linux")
-    set gfn=IBM\ Plex\ Mono\ 14,:Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
+  set gfn=IBM\ Plex\ Mono\ 14,:Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
 elseif has("unix")
-    set gfn=Monospace\ 11
+  set gfn=Monospace\ 11
 endif
 
 
@@ -227,16 +227,16 @@ set nrformats-=octal " Interpret octal as decimal when incrementing numbers.
 "    means that you can undo even when you close a buffer/VIM.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 try
-    set undodir=~/.vim/tmp/undo/     " undo files
-    set undofile
-    set undoreload=10000
+  set undodir=~/.vim/tmp/undo/     " undo files
+  set undofile
+  set undoreload=10000
 catch
 endtry
 
 " Create undodir directory if possible and does not exist yet
 let targetdir=$HOME . "/.vim/tmp/undo"
 if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
-    call mkdir(targetdir, "p", 0700)
+  call mkdir(targetdir, "p", 0700)
 endif
 
 
@@ -247,14 +247,14 @@ endif
 " " Create undodir directory if possible and does not exist yet
 " let targetdir=$HOME . "/.vim/tmp/backup"
 " if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
-"     call mkdir(targetdir, "p", 0700)
+"   call mkdir(targetdir, "p", 0700)
 " endif
 
 " set directory=~/.vim/tmp/swap/   " swap files
 " " Create undodir directory if possible and does not exist yet
 " let targetdir=$HOME . "/.vim/tmp/swap"
 " if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
-"     call mkdir(targetdir, "p", 0700)
+"   call mkdir(targetdir, "p", 0700)
 " endif
 
 set nowritebackup    " Only in case you don't want a backup file while editing
@@ -960,10 +960,10 @@ highlight SpellLocale term=underline ctermbg=11 gui=undercurl guisp=DarkCyan
 
 " Ignore CamelCase words when spell checking
 fun! IgnoreSpell()
-    syn match CamelCase /\<[A-Z][a-z]\+[A-Z].\{-}\>/ contains=@NoSpell transparent
-    syn cluster Spell add=CamelCase
-    syntax match InlineURL /https\?:\/\/\(\w\+\(:\w\+\)\?@\)\?\([A-Za-z][-_0-9A-Za-z]*\.\)\{1,}\(\w\{2,}\.\?\)\{1,}\(:[0-9]\{1,5}\)\?\S*/ contains=@NoSpell transparent
-    syn cluster Spell add=InlineURL
+  syn match CamelCase /\<[A-Z][a-z]\+[A-Z].\{-}\>/ contains=@NoSpell transparent
+  syn cluster Spell add=CamelCase
+  syntax match InlineURL /https\?:\/\/\(\w\+\(:\w\+\)\?@\)\?\([A-Za-z][-_0-9A-Za-z]*\.\)\{1,}\(\w\{2,}\.\?\)\{1,}\(:[0-9]\{1,5}\)\?\S*/ contains=@NoSpell transparent
+  syn cluster Spell add=InlineURL
 endfun
 au BufRead,BufNewFile * :call IgnoreSpell()
 
@@ -978,9 +978,9 @@ augroup END
 
 " Disable colourcolumn if the buffer is read only
 " function CheckRo()
-"     if &readonly
-"         set colourcolumn=0
-"     endif
+"   if &readonly
+"     set colourcolumn=0
+"   endif
 " endfunction
 " au BufReadPost * call CheckRo()
 
@@ -1027,26 +1027,26 @@ nnoremap <silent> n     n:call HLNext(0.4)<Cr>
 nnoremap <silent> N     N:call HLNext(0.4)<Cr>
 
 function! HLNext (blinktime)
-    set invcursorline
-    redraw
-    exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
-    set invcursorline
-    redraw
+  set invcursorline
+  redraw
+  exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+  set invcursorline
+  redraw
 endfunction
 
 " function! HLNext (blinktime)
-"     let [bufnum, lnum, col, off]=getpos('.')
-"     let matchlen=strlen(matchstr(strpart(getline('.'),col-1),@/))
-"     let target_pat='\c\%#'.@/
-"     let blinks=3
-"     for n in range(1,blinks)
-"         let red=matchadd('WhiteOnRed', target_pat, 101)
-"         redraw
-"         exec 'sleep ' . float2nr(a:blinktime / (2*blinks) * 1000) . 'm'
-"         call matchdelete(red)
-"         redraw
-"         exec 'sleep ' . float2nr(a:blinktime / (2*blinks) * 1000) . 'm'
-"     endfor
+  " let [bufnum, lnum, col, off]=getpos('.')
+  " let matchlen=strlen(matchstr(strpart(getline('.'),col-1),@/))
+  " let target_pat='\c\%#'.@/
+  " let blinks=3
+  " for n in range(1,blinks)
+  "   let red=matchadd('WhiteOnRed', target_pat, 101)
+  "   redraw
+  "   exec 'sleep ' . float2nr(a:blinktime / (2*blinks) * 1000) . 'm'
+  "   call matchdelete(red)
+  "   redraw
+  "   exec 'sleep ' . float2nr(a:blinktime / (2*blinks) * 1000) . 'm'
+  " endfor
 " endfunction
 
 
@@ -1078,41 +1078,43 @@ nnoremap <silent> <C-S>      : %s/\s\+$//e<Cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on
 
-if has("gui_running")
-    colorscheme xoria256
-    if (hostname() == 'wollnashorn')
-        set guifont=DejaVu\ Sans\ Mono\ 12
-    else
-        set guifont=DejaVu\ Sans\ Mono\ 10
-    endif
-    "set guioptions-=m  "remove menu bar
-    set guioptions-=T  "remove toolbar
-    set guioptions-=r  "remove right-hand scroll bar
-    " highlight Cursor guifg=black guibg=DarkOrange
-    " highlight iCursor guifg=black guibg=Green
-    set guicursor=n-v-c:block-Cursor
-    set guicursor+=i:ver100-iCursor
-    set guicursor+=n-v-c:blinkon0
-    set guicursor+=i:blinkwait0
-    cnoreabbrev <expr> x getcmdtype() == ":" && getcmdline() == 'x' ? 'bd' : 'x'
-    cnoreabbrev <expr> q getcmdtype() == ":" && getcmdline() == 'q' ? 'bd' : 'q'
-else
-    set t_Co=256
-    colorscheme xoria256
-    au InsertEnter * highlight  CursorLine ctermbg=52 ctermfg=None
-    " Revert colour to default when leaving Insert Mode
-    au InsertLeave * highlight  CursorLine ctermbg=237 ctermfg=None
-endif
+"if has("gui_running")
+"  packadd! xoria256
+"  colorscheme xoria256
+"  if (hostname() == 'wollnashorn')
+"    set guifont=DejaVu\ Sans\ Mono\ 12
+"  else
+"    set guifont=DejaVu\ Sans\ Mono\ 10
+"  endif
+"  "set guioptions-=m  "remove menu bar
+"  set guioptions-=T  "remove toolbar
+"  set guioptions-=r  "remove right-hand scroll bar
+"  " highlight Cursor guifg=black guibg=DarkOrange
+"  " highlight iCursor guifg=black guibg=Green
+"  set guicursor=n-v-c:block-Cursor
+"  set guicursor+=i:ver100-iCursor
+"  set guicursor+=n-v-c:blinkon0
+"  set guicursor+=i:blinkwait0
+"  cnoreabbrev <expr> x getcmdtype() == ":" && getcmdline() == 'x' ? 'bd' : 'x'
+"  cnoreabbrev <expr> q getcmdtype() == ":" && getcmdline() == 'q' ? 'bd' : 'q'
+"else
+"  set t_Co=256
+"  packadd! xoria256
+"  colorscheme xoria256
+"  au InsertEnter * highlight  CursorLine ctermbg=52 ctermfg=None
+"  " Revert colour to default when leaving Insert Mode
+"  au InsertLeave * highlight  CursorLine ctermbg=237 ctermfg=None
+"endif
 
 if &term =~ "xterm\\|rxvt"
-    " use a light_cyan cursor in insert mode
-    let &t_SI = "\<Esc>]12;LightCyan\x7"
-    " use an orange cursor otherwise
-    let &t_EI = "\<Esc>]12;orange\x7"
-    silent !echo -ne "\033]12;orange\007"
-    " reset cursor when vim exits
-    au VimLeave * silent !echo -ne "\033]12;white\007"
-    " use \003]12;gray\007 for gnome-terminal
+  " use a light_cyan cursor in insert mode
+  let &t_SI = "\<Esc>]12;LightCyan\x7"
+  " use an orange cursor otherwise
+  let &t_EI = "\<Esc>]12;orange\x7"
+  silent !echo -ne "\033]12;orange\007"
+  " reset cursor when vim exits
+  au VimLeave * silent !echo -ne "\033]12;white\007"
+  " use \003]12;gray\007 for gnome-terminal
 endif
 
 
@@ -1123,6 +1125,7 @@ packadd! gruvbox-material
 
 set background=dark
 let g:gruvbox_material_background = 'hard'
+
 " Change theme depending on the time of day
 
 " let hr=(strftime('%H'))
@@ -1213,8 +1216,8 @@ au VimResized * exe "normal! \<c-w>="
 "    Make sure Vim returns to the same line when you reopen a file.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup line_return
-    au!
-    au BufReadPost *
+  au!
+  au BufReadPost *
         \ if line("'\"") > 0 && line("'\"") <= line("$") |
         \     execute 'normal! g`"zvzz' |
         \ endif
@@ -1226,19 +1229,19 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:blockcolour_state = 0
 function! BlockColor() " {{{
-    if g:blockcolour_state
-        let g:blockcolour_state = 0
-        call matchdelete(77880)
-        call matchdelete(77881)
-        call matchdelete(77882)
-        call matchdelete(77883)
-    else
-        let g:blockcolour_state = 1
-        call matchadd("BlockColor1", '^ \{4}.*', 1, 77880)
-        call matchadd("BlockColor2", '^ \{8}.*', 2, 77881)
-        call matchadd("BlockColor3", '^ \{12}.*', 3, 77882)
-        call matchadd("BlockColor4", '^ \{16}.*', 4, 77883)
-    endif
+  if g:blockcolour_state
+    let g:blockcolour_state = 0
+    call matchdelete(77880)
+    call matchdelete(77881)
+    call matchdelete(77882)
+    call matchdelete(77883)
+  else
+    let g:blockcolour_state = 1
+    call matchadd("BlockColor1", '^ \{4}.*', 1, 77880)
+    call matchadd("BlockColor2", '^ \{8}.*', 2, 77881)
+    call matchadd("BlockColor3", '^ \{12}.*', 3, 77882)
+    call matchadd("BlockColor4", '^ \{16}.*', 4, 77883)
+  endif
 endfunction " }}}
 nnoremap <leader>B :call BlockColor()<cr>
 
@@ -1284,33 +1287,35 @@ set laststatus=2
 
 " PYTHON ------------------------------------------------------------ {{{
 augroup ft_python
-    au!
 
-    " au FileType python setl omnifunc=pythoncomplete#Complete
-    au FileType python setl define=^\s*\\(def\\\\|class\\)
-    " au FileType python compiler nose
-    au FileType man nnoremap <buffer> <cr> :q<cr>
+  au!
 
-    " Jesus tapdancing Christ, built-in Python syntax, you couldn't let me
-    " override this in a normal way, could you?
-    au FileType python if exists("python_space_error_highlight") | unlet python_space_error_highlight | endif
+  " au FileType python setl omnifunc=pythoncomplete#Complete
+  au FileType python setl define=^\s*\\(def\\\\|class\\)
+  " au FileType python compiler nose
+  au FileType man nnoremap <buffer> <cr> :q<cr>
 
-    " Jesus, Python.  Five characters of punctuation for a damn string?
-    au FileType python inoremap <buffer> <d-'> _(u'')<left><left>
+  " Jesus tapdancing Christ, built-in Python syntax, you couldn't let me
+  " override this in a normal way, could you?
+  au FileType python if exists("python_space_error_highlight") | unlet python_space_error_highlight | endif
+
+  " Jesus, Python.  Five characters of punctuation for a damn string?
+  au FileType python inoremap <buffer> <d-'> _(u'')<left><left>
+
+  let python_highlight_all = 1
+  au FileType python syn keyword pythonDecorator True None False self
+
+  au FileType python map <buffer> F :setl foldmethod=indent<cr>
+
+  au FileType python inoremap <buffer> $r return
+  au FileType python inoremap <buffer> $i import
+  au FileType python inoremap <buffer> $p print
+  au FileType python map <buffer> <leader>1 /class
+  au FileType python map <buffer> <leader>2 /def
+  au FileType python map <buffer> <leader>C ?class
+  au FileType python map <buffer> <leader>D ?def
 
 augroup END
 
-let python_highlight_all = 1
-au FileType python syn keyword pythonDecorator True None False self
-
-au FileType python map <buffer> F :setl foldmethod=indent<cr>
-
-au FileType python inoremap <buffer> $r return
-au FileType python inoremap <buffer> $i import
-au FileType python inoremap <buffer> $p print
-au FileType python map <buffer> <leader>1 /class
-au FileType python map <buffer> <leader>2 /def
-au FileType python map <buffer> <leader>C ?class
-au FileType python map <buffer> <leader>D ?def
 
 " }}}
