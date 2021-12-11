@@ -7,9 +7,6 @@
 [submodule "pack/plugins/start/tabular"]
 	path = pack/plugins/start/tabular
 	url = https://github.com/godlygeek/tabular.git
-[submodule "pack/plugins/start/estilo-xoria256"]
-	path = pack/plugins/start/estilo-xoria256
-	url = https://github.com/neozenith/estilo-xoria256.git
 [submodule "pack/plugins/start/commentary"]
 	path = pack/plugins/start/commentary
 	url = https://github.com/tpope/vim-commentary.git
@@ -67,3 +64,6 @@
 [submodule "pack/colours/opt/gruvbox"]
 	path = pack/colours/opt/gruvbox
 	url = https://github.com/morhetz/gruvbox.git
+[submodule "pack/colours/opt/xoria256"]
+	path = pack/colours/opt/xoria256
+	url = https://github.com/neozenith/estilo-xoria256.git
