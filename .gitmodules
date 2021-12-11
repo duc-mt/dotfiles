@@ -64,3 +64,6 @@
 [submodule "pack/status-line/opt/lightline"]
 	path = pack/status-line/opt/lightline
 	url = https://github.com/itchyny/lightline.vim.git
+[submodule "pack/colours/opt/gruvbox"]
+	path = pack/colours/opt/gruvbox
+	url = https://github.com/morhetz/gruvbox.git
