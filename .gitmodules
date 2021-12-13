@@ -64,9 +64,6 @@
 [submodule "pack/plugins/opt/visual-multi"]
 	path = pack/plugins/opt/visual-multi
 	url = https://github.com/mg979/vim-visual-multi.git
-[submodule "pack/writing/opt/goyo"]
-	path = pack/writing/opt/goyo
-	url = https://github.com/junegunn/goyo.vim.git
 [submodule "pack/writing/opt/vimwiki"]
 	path = pack/writing/opt/vimwiki
 	url = https://github.com/vimwiki/vimwiki.git
@@ -85,3 +82,6 @@
 [submodule "pack/spreadsheet/opt/sc-im"]
 	path = pack/spreadsheet/opt/sc-im
 	url = https://github.com/andmarti1424/sc-im.git
+[submodule "pack/writing/start/goyo"]
+	path = pack/writing/start/goyo
+	url = https://github.com/junegunn/goyo.vim.git
