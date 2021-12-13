@@ -606,7 +606,7 @@ vnoremap :T= :Tabularize /=<Cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Shoot (opt)
+" => Shoot
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vnoremap gs         :TOhtml
 nnoremap <Bslash>gs :TOhtml
@@ -637,6 +637,13 @@ let g:spelunker_disable_auto_group                            = 1
 " Override highlight setting
 highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=#9e9e9e
 highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Goyo
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au FileType * nnoremap <Bslash>gy :Goyo<Cr>
+let g:goyo_width  = 82
 
 " }}}
 
