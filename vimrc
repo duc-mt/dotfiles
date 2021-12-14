@@ -645,6 +645,26 @@ highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underl
 au FileType * nnoremap <Bslash>gy :Goyo<Cr>
 let g:goyo_width  = 82
 
+" Scripts to configure Goyo
+function! s:goyo_enter()
+  if executable('tmux') && strlen($TMUX)
+    silent !tmux set status off
+    silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  endif
+
+  augroup no_number_relativenumber
+    au!
+    au InsertLeave * setl nonumber norelativenumber
+  augroup END
+
+  set nocursorline
+  set nocursorcolumn
+  " ...
+endfunction
+
+" Call the GoyoEnter event' function
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+
 " }}}
 
 
@@ -851,6 +871,12 @@ inoremap <right> <nop>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Quick source vimrc
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au BufEnter ~/.vim/vimrc nnoremap <Leader>s :so %<Cr>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Press <Space>p to print the current file to the default printer
 "    from a Linux operating system.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -981,15 +1007,8 @@ au BufRead,BufNewFile * :call IgnoreSpell()
 augroup readonly
   au!
   au BufEnter ~/.vim/pack/* setl nomodifiable
+  au BufEnter ~/.vim/pack/* setl nocursorline nocursorcolumn
 augroup END
-
-" Disable colourcolumn if the buffer is read only
-" function CheckRo()
-"   if &readonly
-"     set colourcolumn=0
-"   endif
-" endfunction
-" au BufReadPost * call CheckRo()
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1263,22 +1282,21 @@ au FileType gitconfig setl foldlevelstart=99
 
 
 " STATUS LINE ------------------------------------------------------------ {{{
+
+" Always show the status line on the last window.
+set laststatus=2
+
 " Clear status line when vimrc is reloaded.
 set statusline=
+set statusline+=%2*
 
-" Colour statusline
-set statusline+=%#PmenuSel#
-
-" Get a list of counts of added, modified, and removed lines (current buffer)
-function! GitStatus()
-  let [a,m,r]=GitGutterGetHunkSummary()
-  return printf('+%d  ~%d  -%d', a, m, r)
-endfunction
+" Current mode
 set statusline=\\|\ %{GitStatus()}\ \|
 
-" Status line left side.
-set statusline+=\ %f\ \|\ %M
-set statusline+=\ %Y\ %R\ \|
+" Status line left side
+set statusline+=\ \ %f
+set statusline+=\ %{b:gitbranch}
+set statusline+=\ \|\ %M\ %Y\ %R\ \|
 
 " Use a divider to separate the left side from the right side.
 set statusline+=%=
@@ -1286,8 +1304,56 @@ set statusline+=%=
 " Status line right side.
 set statusline+=\ row:\ %l\/\%L\ \|\ col:\ %c\ \|\ percent:\ %p%%\ \|
 
-" Show the status on the second to last line.
-set laststatus=2
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vim Scripts
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Get a list of counts of added, modified, and removed lines (current buffer)
+function! GitStatus()
+  let [a,m,r]=GitGutterGetHunkSummary()
+  return printf('+%d  ~%d  -%d', a, m, r)
+endfunction
+
+" Show Mode
+" function! StatuslineMode()
+"   let l:mode=mode()
+"   if l:mode==#"n"
+"     return "NORMAL"
+"   elseif l:mode==?"v"
+"     return "VISUAL"
+"   elseif l:mode==#"i"
+"     return "INSERT"
+"   elseif l:mode==#"R"
+"     return "REPLACE"
+"   elseif l:mode==?"s"
+"     return "SELECT"
+"   elseif l:mode==#"t"
+"     return "TERMINAL"
+"   elseif l:mode==#"c"
+"     return "COMMAND"
+"   elseif l:mode==#"!"
+"     return "SHELL"
+"   endif
+" endfunction
+
+" Show Git Branch
+function! StatuslineGitBranch()
+  let b:gitbranch=""
+  if &modifiable
+    try
+      let l:dir=expand('%:p:h')
+      let l:gitrevparse = system("git -C ".l:dir." rev-parse --abbrev-ref HEAD")
+      if !v:shell_error
+        let b:gitbranch="(".substitute(l:gitrevparse, '\n', '', 'g').") "
+      endif
+    catch
+    endtry
+  endif
+endfunction
+
+augroup GetGitBranch
+  autocmd!
+  autocmd VimEnter,WinEnter,BufEnter * call StatuslineGitBranch()
+augroup END
 
 " }}}
 
