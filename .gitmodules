@@ -85,3 +85,6 @@
 [submodule "pack/writing/start/goyo"]
 	path = pack/writing/start/goyo
 	url = https://github.com/junegunn/goyo.vim.git
+[submodule "pack/colours/opt/colorizer"]
+	path = pack/colours/opt/colorizer
+	url = https://github.com/lilydjwg/colorizer.git
