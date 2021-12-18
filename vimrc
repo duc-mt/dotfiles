@@ -67,7 +67,6 @@ set autoread
 " Manage multiple buffers effectively: the current buffer can be “sent” to
 " the background without writing to disk. When a background buffer become
 " current again, marks and undo-history are remembered.
-" See chapter Buffers to understand this better.
 set hidden
 
 let mapleader="\<Space>"  " Map the leader key to a spacebar.
@@ -684,20 +683,12 @@ nnoremap <Bslash>c :!cp<Space>%<Space>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Save/quit
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" nnoremap <C-S> :w<Cr>         " Press {Ctrl S} instead of {:w Cr}
-
-" nnoremap <Leader>wq :wq<Cr>   " Press {Leader wq} instead of {:wq Cr}
-
 " Press {Leader q} to quit Vim instead of {:q Cr}
 nnoremap <Leader>q :q<Cr>
 
 " Press double ,, to escape from Insert mode
 inoremap ,, <Esc>
 vnoremap ,, <Esc>
-
-" Quickreturn
-" inoremap <c-cr> <esc>A<cr>
-" inoremap <s-cr> <esc>A:<cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -725,8 +716,6 @@ inoremap ? ?<C-G>u
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vnoremap J :m '>+1<Cr>gv=gv
 vnoremap K :m '<-2<Cr>gv=gv
-inoremap <C-J> :m .+1<Cr>==
-inoremap <C-K> :m .-2<Cr>==
 nnoremap <Leader>j :m .+1<Cr>==
 nnoremap <Leader>k :m .-2<Cr>==
 
@@ -734,12 +723,12 @@ nnoremap <Leader>k :m .-2<Cr>==
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fix indenting visual block
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vnoremap << <gv
-" vnoremap >> >gv
+vnoremap < <gv
+vnoremap > >gv
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Add blank line before and after the current line.
+" => Add a blank line before and after the current line
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <Cr> A<Cr><Esc>
 nnoremap <Bslash><Cr> I<Cr><Esc>
@@ -774,24 +763,6 @@ vnoremap zc zM
 
 " Start editing with all folds closed
 set foldlevelstart=0
-set foldlevel=5
-
-" function! MyFoldText()
-"     let line = getline(v:foldstart)
-
-"     let nucolwidth = &fdc + &number * &numberwidth
-"     let windowwidth = winwidth(0) - nucolwidth - 3
-"     let foldedlinecount = v:foldend - v:foldstart
-
-"     " expand tabs into spaces
-"     let onetab = strpart('          ', 0, &tabstop)
-"     let line = substitute(line, '\t', onetab, 'g')
-
-"     let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-"     let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-"     return line . '$(B!D(B' . repeat(" ",fillcharcount) . foldedlinecount . '$(B!D(B' . ' '
-" endfunction
-" set foldtext=MyFoldText()
 
 highlight Folded guibg=Gray8 guifg=Gray ctermbg=235  ctermfg=0
 
@@ -824,15 +795,15 @@ tnoremap <C-L> <C-W><C-L>
 " CTRL+UP, CTRL+DOWN, CTRL+LEFT, or CTRL+RIGHT.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 1. Normal mode
-nnoremap <c-up> <c-w>+
-nnoremap <c-down> <c-w>-
-nnoremap <c-left> <c-w>>
-nnoremap <c-right> <c-w><
+nnoremap <C-up> <C-w>+
+nnoremap <C-down> <C-w>-
+nnoremap <C-left> <C-w>>
+nnoremap <C-right> <C-w><
 " 2. Terminal mode
-tnoremap <c-up> <c-w>+
-tnoremap <c-down> <c-w>-
-tnoremap <c-left> <c-w>>
-tnoremap <c-right> <c-w><
+tnoremap <C-up> <C-w>+
+tnoremap <C-down> <C-w>-
+tnoremap <C-left> <C-w>>
+tnoremap <C-right> <C-w><
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -843,25 +814,15 @@ nnoremap <C-W>h <C-W>H
 nnoremap <C-W>j <C-W>J
 nnoremap <C-W>k <C-W>K
 nnoremap <C-W>l <C-W>L
-" 2. Terminal mode
-tnoremap <C-W>h <C-W>H
-tnoremap <C-W>j <C-W>J
-tnoremap <C-W>k <C-W>K
-tnoremap <C-W>l <C-W>L
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Map arrow keys nothing so I can get used to hjkl-style movement.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-" Insert mode
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -870,19 +831,11 @@ inoremap <right> <nop>
 au BufEnter ~/.vim/vimrc nnoremap <Leader>s :so %<Cr>
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Press <Space>p to print the current file to the default printer
-"    from a Linux operating system.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" View available printers:   lpstat -v
-" Set default printer:       lpoptions -d <printer_name>
-" <silent> means do not display output.
-" nnoremap <silent> <leader>p :%w !lp<CR>
-
 " }}}
 
 
 " ABBREVIATIONS --------------------------------------------------------- {{{
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General abbreviations
@@ -992,6 +945,7 @@ fun! IgnoreSpell()
   syntax match InlineURL /https\?:\/\/\(\w\+\(:\w\+\)\?@\)\?\([A-Za-z][-_0-9A-Za-z]*\.\)\{1,}\(\w\{2,}\.\?\)\{1,}\(:[0-9]\{1,5}\)\?\S*/ contains=@NoSpell transparent
   syn cluster Spell add=InlineURL
 endfun
+
 au BufRead,BufNewFile * :call IgnoreSpell()
 
 
@@ -1077,92 +1031,16 @@ au FileType * setl formatoptions-=c formatoptions-=r formatoptions-=o
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Highlight white space and tab characters.
-" => Automatically remove trailing whitespace after saving.
+" => Remove trailing whitespace after saving & leaving Insert mode
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-highlight WhitespaceEOL term=standout ctermbg=DarkYellow guibg=DarkYellow
-match WhitespaceEOL /\s\+$/
-
-call matchadd('WhitespaceEOL', '\(\s\+$\| \+\ze\t\|\t\zs \+\)\(\%#\)\@!')
-
-" Highlight trailing whitespace
-au BufEnter exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~" | set list | match ErrorMsg '\s\+$'
-
-" Two options to automatically remove trailing whitespace
 au InsertLeave,BufWritePre * : %s/\s\+$//e
-nnoremap <silent> <C-S>      : %s/\s\+$//e<Cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Colour scheme
+" => Configuration for colour scheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on
 
-"if has("gui_running")
-"  packadd! xoria256
-"  colorscheme xoria256
-"  if (hostname() == 'wollnashorn')
-"    set guifont=DejaVu\ Sans\ Mono\ 12
-"  else
-"    set guifont=DejaVu\ Sans\ Mono\ 10
-"  endif
-"  "set guioptions-=m  "remove menu bar
-"  set guioptions-=T  "remove toolbar
-"  set guioptions-=r  "remove right-hand scroll bar
-"  " highlight Cursor guifg=black guibg=DarkOrange
-"  " highlight iCursor guifg=black guibg=Green
-"  set guicursor=n-v-c:block-Cursor
-"  set guicursor+=i:ver100-iCursor
-"  set guicursor+=n-v-c:blinkon0
-"  set guicursor+=i:blinkwait0
-"  cnoreabbrev <expr> x getcmdtype() == ":" && getcmdline() == 'x' ? 'bd' : 'x'
-"  cnoreabbrev <expr> q getcmdtype() == ":" && getcmdline() == 'q' ? 'bd' : 'q'
-"else
-"  set t_Co=256
-"  packadd! xoria256
-"  colorscheme xoria256
-"  au InsertEnter * highlight  CursorLine ctermbg=52 ctermfg=None
-"  " Revert colour to default when leaving Insert Mode
-"  au InsertLeave * highlight  CursorLine ctermbg=237 ctermfg=None
-"endif
-
-if &term =~ "xterm\\|rxvt"
-  " use a light_cyan cursor in insert mode
-  let &t_SI = "\<Esc>]12;LightCyan\x7"
-  " use an orange cursor otherwise
-  let &t_EI = "\<Esc>]12;orange\x7"
-  silent !echo -ne "\033]12;orange\007"
-  " reset cursor when vim exits
-  au VimLeave * silent !echo -ne "\033]12;white\007"
-  " use \003]12;gray\007 for gnome-terminal
-endif
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Gruvbox-material
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-packadd! gruvbox-material
-
-" Change theme depending on the time of day
-let hr=(strftime('%H'))
-
-if hr <= 7
-    colorscheme jellybeans
-elseif hr <= 12
-  set background=light
-  colorscheme gruvbox
-  let g:gruvbox_material_background = 'medium'
-elseif hr <= 15
-  colorscheme solarized8_high
-elseif hr <= 18
-  colorscheme tender
-elseif hr <= 24
-  set background=dark
-  colorscheme gruvbox-material
-  let g:gruvbox_material_background = 'hard'
-endif
-
-" Configuration
 if has('termguicolours')
   set termguicolours
 endif
@@ -1208,8 +1086,43 @@ let g:gruvbox_material_statusline_style = 'original'
 " Enable this option will reduce loading time by approximately 50%
 let g:gruvbox_material_better_performance = 1
 
-" Set the colorscheme
-colorscheme gruvbox-material
+
+if &term =~ "xterm\\|rxvt"
+  " use a light_cyan cursor in insert mode
+  let &t_SI = "\<Esc>]12;LightCyan\x7"
+  " use an orange cursor otherwise
+  let &t_EI = "\<Esc>]12;orange\x7"
+  silent !echo -ne "\033]12;orange\007"
+  " reset cursor when vim exits
+  au VimLeave * silent !echo -ne "\033]12;white\007"
+  " use \003]12;gray\007 for gnome-terminal
+endif
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Colour scheme
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+packadd! gruvbox-material
+let g:gruvbox_material_background = 'hard'
+
+" Change theme depending on the time of day
+let hr=(strftime('%H'))
+
+if hr >= 7
+  set background=light
+  colorscheme gruvbox
+  let g:gruvbox_material_background = 'medium'
+elseif hr >= 12
+  colorscheme solarized8_high
+elseif hr >= 15
+  colorscheme tender
+elseif hr >= 18
+  colorscheme gruvbox-material
+  let g:gruvbox_material_background = 'hard'
+elseif hr >= 1
+  set background=dark
+  colorscheme gruvbox-material
+endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
