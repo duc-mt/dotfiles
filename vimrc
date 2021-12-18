@@ -325,8 +325,10 @@ let g:NERDTreeExactMatchHighlightFullName    = 1
 let g:NERDTreePatternMatchHighlightFullName  = 1
 
 " Highlight folders using exact match
-let g:NERDTreeHighlightFolders               = 1 " Enables folder icon highlighting using exact match
-let g:NERDTreeHighlightFoldersFullName       = 1 " Highlights the folder name
+" Enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFolders               = 1
+" Highlights the folder name
+let g:NERDTreeHighlightFoldersFullName       = 1
 
 " Customising colours
 let s:brown       = "905532"
@@ -606,13 +608,6 @@ vnoremap :T= :Tabularize /=<Cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Shoot
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-vnoremap gs         :TOhtml
-nnoremap <Bslash>gs :TOhtml
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spelunker
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Disable URI checking
@@ -721,7 +716,6 @@ inoremap ( (<C-G>u
 inoremap { {<C-G>u
 inoremap < <<C-G>u
 inoremap ' '<C-G>u
-inoremap " "<C-G>u
 inoremap ! !<C-G>u
 inoremap ? ?<C-G>u
 
@@ -942,7 +936,7 @@ au FileType python ia validanswers VALID_ANSWERS = ['y', 'yes', 'n', 'no']<Cr>
 
 
 " Function docstring
-au FileType python ia df def :<Cr>"""<Cr><Cr>Parameters<Cr>----------<Cr><Cr><Cr>Returns<Cr>-------<Cr><Cr>"""<Cr><Cr><Esc>14kllli<Del>
+au FileType python ia df def :<Cr>"""<Cr><Cr>Parameters<Cr>----------<Cr><Cr><Cr>Returns<Cr>-------<Cr><Cr>"""<Cr><Cr><Esc>12kllli<Del>
 
 
 " Section headings
@@ -1149,20 +1143,24 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 packadd! gruvbox-material
 
-set background=dark
-let g:gruvbox_material_background = 'hard'
-
 " Change theme depending on the time of day
+let hr=(strftime('%H'))
 
-" let hr=(strftime('%H'))
-
-" if hr >= 24
-"   set background=dark
-"   let g:gruvbox_material_background = 'hard'
-" elseif hr >= 12
-"   set background=light
-"   let g:gruvbox_material_background = 'soft'
-" endif
+if hr <= 7
+    colorscheme jellybeans
+elseif hr <= 12
+  set background=light
+  colorscheme gruvbox
+  let g:gruvbox_material_background = 'medium'
+elseif hr <= 15
+  colorscheme solarized8_high
+elseif hr <= 18
+  colorscheme tender
+elseif hr <= 24
+  set background=dark
+  colorscheme gruvbox-material
+  let g:gruvbox_material_background = 'hard'
+endif
 
 " Configuration
 if has('termguicolours')
