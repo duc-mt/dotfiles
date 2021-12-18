@@ -88,3 +88,15 @@
 [submodule "pack/colours/opt/colorizer"]
 	path = pack/colours/opt/colorizer
 	url = https://github.com/lilydjwg/colorizer.git
+[submodule "pack/colours/opt/tender"]
+	path = pack/colours/opt/tender
+	url = https://github.com/jacoborus/tender.vim.git
+[submodule "pack/writing/opt/markdown-preview"]
+	path = pack/writing/opt/markdown-preview
+	url = https://github.com/iamcco/markdown-preview.nvim.git
+[submodule "pack/colours/opt/solarized"]
+	path = pack/colours/opt/solarized
+	url = https://github.com/lifepillar/vim-solarized8.git
+[submodule "pack/colours/opt/jellybeans"]
+	path = pack/colours/opt/jellybeans
+	url = https://github.com/nanotech/jellybeans.vim.git
