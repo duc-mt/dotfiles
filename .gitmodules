@@ -100,3 +100,9 @@
 [submodule "pack/colours/opt/jellybeans"]
 	path = pack/colours/opt/jellybeans
 	url = https://github.com/nanotech/jellybeans.vim.git
+[submodule "pack/writing/opt/limelight"]
+	path = pack/writing/opt/limelight
+	url = https://github.com/junegunn/limelight.vim.git
+[submodule "pack/writing/opt/vim-pencil"]
+	path = pack/writing/opt/vim-pencil
+	url = https://github.com/preservim/vim-pencil.git
