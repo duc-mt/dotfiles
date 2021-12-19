@@ -364,19 +364,6 @@ let g:NERDTreeLimitedSyntax = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Commentary
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" au FileType vim nnoremap gcc I"<Space><Esc>0
-" au FileType vim vnoremap gc I"<Space><Esc>0
-
-" au FileType vim nnoremap guc 0xx<Esc>
-" au FileType vim vnoremap guc 0xx<Esc>
-
-" au FileType python nnoremap gcc I#<Space><Esc>0
-" au FileType python vnoremap gc I#<Space><Esc>0
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Supertab
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Change <tab> navigate the completion menu from bottom to top
@@ -650,7 +637,7 @@ function! s:goyo_enter()
   " ...
 endfunction
 
-" Call the GoyoEnter event' function
+" Call the GoyoEnter event's function
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 
 " }}}
@@ -823,6 +810,14 @@ map <right> <nop>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au BufEnter ~/.vim/vimrc nnoremap <Leader>s :so %<Cr>
 
+" }}}
+
+
+" HOTKEYS --------------------------------------------------------------- {{{
+nmap <Leader>hk :vsplit ~/.vim/hotkeys<cr>
+nmap <Leader>n :NERDTreeToggle<cr>
+nnoremap <Leader><Tab> :bnext<CR>
+nnoremap <Leader><Tab><Tab> :bprevious<CR>
 
 " }}}
 
@@ -1119,24 +1114,24 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Specific colorscheme for some files
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-augroup ft_text
-  au!
-  au FileType html,vim,vimwiki,text,markdown colorscheme PaperColor
+" augroup ft_text
+"   au!
+"   au FileType html,vim,vimwiki,text,markdown colorscheme PaperColor
 
-  if hr >= 19
-    au FileType html,vim,vimwiki,text,markdown setl background=dark
+"   if hr >= 19
+"     au FileType html,vim,vimwiki,text,markdown setl background=dark
 
-  elseif hr >= 13
-    au FileType html,vim,vimwiki,text,markdown setl background=light
+"   elseif hr >= 13
+"     au FileType html,vim,vimwiki,text,markdown setl background=light
 
-  elseif hr >= 7
-    au FileType html,vim,vimwiki,text,markdown setl background=light
+"   elseif hr >= 7
+"     au FileType html,vim,vimwiki,text,markdown setl background=light
 
-  elseif hr >= 1
-    au FileType html,vim,vimwiki,text,markdown setl background=dark
+"   elseif hr >= 1
+"     au FileType html,vim,vimwiki,text,markdown setl background=dark
 
-  endif
-augroup END
+"   endif
+" augroup END
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

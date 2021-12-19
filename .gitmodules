@@ -94,6 +94,6 @@
 [submodule "pack/colours/opt/papercolor"]
 	path = pack/colours/opt/papercolor
 	url = https://github.com/NLKNguyen/papercolor-theme.git
-[submodule "pack/plugins/start/nerdcommenter"]
-	path = pack/plugins/start/nerdcommenter
-	url = https://github.com/preservim/nerdcommenter.git
+[submodule "pack/plugins/start/commentary"]
+	path = pack/plugins/start/commentary
+	url = https://github.com/tpope/vim-commentary.git
