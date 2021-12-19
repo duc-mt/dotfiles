@@ -1,0 +1,7 @@
+Hotkeys:
+
+SPACE - h - k     : Show hotkeys
+SPACE - n         : Toggle nerdtree
+BSLASH -c - c     : Comment or Uncomment line
+SPACE - Tab       : Go to next buffer in list
+SPACE - Tab - Tab : Go to prev buffer in list
