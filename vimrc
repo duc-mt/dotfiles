@@ -11,7 +11,7 @@
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Load the documentation for all the plugins:
+" => Load the documentation for all the plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 packloadall          " Load all plugins.
 silent! helptags ALL " Load help for all plugins.
@@ -127,9 +127,8 @@ set completeopt=longest,menuone,preview
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Clipboard / Registers
+" => Allow copied vim text to also be added to clipboard
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Allow copied vim text to also be added to clipboard
 set clipboard=unnamed,unnamedplus
 
 
@@ -143,12 +142,7 @@ set cursorcolumn
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => (Relative) Number Options:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Show line numbers on the sidebar.
-set number
-
-" Show line number on the current line and relative numbers on other lines.
-" Works only if the option above (number) is enabled.
-set relativenumber
+set nu rnu
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -283,7 +277,7 @@ nnoremap <Leader>n  : NERDTreeToggle<Cr>
 nnoremap <Leader>rn  : NERDTreeRefreshRoot<Cr>
 
 " Disable cursorline & cursorcolumn on NERDTree.
-au Filetype nerdtree setl nocursorline nocursorcolumn
+au FileType nerdtree setl nocursorline nocursorcolumn
 
 " au VimEnter * NERDTree     " Enable NERDTree on Vim start-up.
 
@@ -772,7 +766,6 @@ highlight Folded guibg=Gray8 guifg=Gray ctermbg=235  ctermfg=0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap ; :
 vnoremap ; :
-nnoremap : :!
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -905,7 +898,7 @@ au FileType python ia -func- # ---------------------------- Function Definition 
 
 au FileType python ia -funcs- # ---------------------------- Function Definitions ---------------------------<Cr><esc>h
 
-au filetype python ia -program- # ---------------------------------- Program ----------------------------------<Cr><Esc>h
+au FileType python ia -program- # ---------------------------------- Program ----------------------------------<Cr><Esc>h
 
 au FileType python ia -m- # ------------------------------- Main Function -------------------------------<Cr>def main():<Cr>
 
@@ -984,7 +977,7 @@ au FileType vim setl foldmethod=marker
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => If the current file type is HTML, set indentation to 2 spaces.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au Filetype html,vim,vimwiki setl tabstop=2 shiftwidth=2 expandtab
+au FileType html,vim,vimwiki setl tabstop=2 shiftwidth=2 expandtab
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1045,48 +1038,6 @@ if has('termguicolours')
   set termguicolours
 endif
 
-" Enable italic, but disable for comment
-let g:gruvbox_material_enable_italic = 1
-let g:gruvbox_material_disable_italic_comment = 1
-
-" Enable bold in function name
-let g:gruvbox_material_enable_bold = 1
-
-" Customize the background colour of |hl-PmenuSel| and |hl-WildMenu|
-let g:gruvbox_material_menu_selection_background = 'red'
-
-" Make the background colour of sign column the same as normal text
-let g:gruvbox_material_sign_column_background = 'none'
-
-" The contrast of line numbers, indent lines, etc.
-let g:gruvbox_material_ui_contrast = 'high'
-
-" Some plugins support highlighting error/warning/info/hint texts, by default
-" these texts are only underlined, but you can use this option to also highlight
-" the background of them.
-let g:gruvbox_material_diagnostic_text_highlight = 1
-
-" Some plugins support highlighting error/warning/info/hint lines, but this
-" feature is disabled by default in this color scheme. To enable this feature,
-" set this option to `1`.
-let g:gruvbox_material_diagnostic_line_highlight = 1
-
-" Some plugins can use virtual text feature of neovim to display
-" error/warning/info/hint information, you can use this option to adjust the
-" colours of it.
-let g:gruvbox_material_diagnostic_virtual_text = 'colored'
-
-" Some plugins can highlight the word under current cursor, you can use this
-" option to control their behaviour.
-let g:gruvbox_material_current_word = 'bold'
-
-" Determine the style of statusline
-let g:gruvbox_material_statusline_style = 'original'
-
-" Enable this option will reduce loading time by approximately 50%
-let g:gruvbox_material_better_performance = 1
-
-
 if &term =~ "xterm\\|rxvt"
   " use a light_cyan cursor in insert mode
   let &t_SI = "\<Esc>]12;LightCyan\x7"
@@ -1100,29 +1051,92 @@ endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Colour scheme
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-packadd! gruvbox-material
-let g:gruvbox_material_background = 'hard'
+" => Config gruvbox-material
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup GruvboxMaterial
 
-" Change theme depending on the time of day
+  packadd! gruvbox-material
+  let g:gruvbox_material_background = 'hard'
+  " Configuration
+  " Enable italic, but disable for comment
+  let g:gruvbox_material_enable_italic = 1
+  let g:gruvbox_material_disable_italic_comment = 1
+  " Enable bold in function name
+  let g:gruvbox_material_enable_bold = 1
+  " Customize the background colour of |hl-PmenuSel| and |hl-WildMenu|
+  let g:gruvbox_material_menu_selection_background = 'red'
+  " Make the background colour of sign column the same as normal text
+  let g:gruvbox_material_sign_column_background = 'none'
+  " The contrast of line numbers, indent lines, etc.
+  let g:gruvbox_material_ui_contrast = 'high'
+  " Some plugins support highlighting error/warning/info/hint texts, by default
+  " these texts are only underlined, but you can use this option to also highlight
+  " the background of them.
+  let g:gruvbox_material_diagnostic_text_highlight = 1
+  " Some plugins support highlighting error/warning/info/hint lines, but this
+  " feature is disabled by default in this color scheme. To enable this feature,
+  " set this option to `1`.
+  let g:gruvbox_material_diagnostic_line_highlight = 1
+  " Some plugins can use virtual text feature of neovim to display
+  " error/warning/info/hint information, you can use this option to adjust the
+  " colours of it.
+  let g:gruvbox_material_diagnostic_virtual_text = 'colored'
+  " Some plugins can highlight the word under current cursor, you can use this
+  " option to control their behaviour.
+  let g:gruvbox_material_current_word = 'bold'
+  " Determine the style of statusline
+  let g:gruvbox_material_statusline_style = 'original'
+  " Enable this option will reduce loading time by approximately 50%
+  let g:gruvbox_material_better_performance = 1
+
+augroup END
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Change colour scheme depending on the time of day
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let hr=(strftime('%H'))
 
-if hr >= 7
-  set background=light
-  colorscheme gruvbox
-  let g:gruvbox_material_background = 'medium'
-elseif hr >= 12
-  colorscheme solarized8_high
-elseif hr >= 15
-  colorscheme tender
-elseif hr >= 18
-  colorscheme gruvbox-material
-  let g:gruvbox_material_background = 'hard'
-elseif hr >= 1
+if hr >= 19
   set background=dark
   colorscheme gruvbox-material
+
+elseif hr >= 13
+  set background=light
+  colorscheme gruvbox-material
+
+elseif hr >= 7
+  set background=light
+  colorscheme solarized8_flat
+
+elseif hr >= 1
+  set background=dark
+  colorscheme tender
+
 endif
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Specific colorscheme for some files
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup ft_text
+  au!
+  au FileType html,vim,vimwiki,text,markdown colorscheme PaperColor
+
+  if hr >= 19
+    au FileType html,vim,vimwiki,text,markdown setl background=dark
+
+  elseif hr >= 13
+    au FileType html,vim,vimwiki,text,markdown setl background=light
+
+  elseif hr >= 7
+    au FileType html,vim,vimwiki,text,markdown setl background=light
+
+  elseif hr >= 1
+    au FileType html,vim,vimwiki,text,markdown setl background=dark
+
+  endif
+augroup END
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
