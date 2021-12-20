@@ -1,3 +1,5 @@
+" Author    : Tan Duc Mai <tan.duc.work@gmail.com>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 "               ██╗   ██╗██╗███╗   ███╗██████╗  ██████╗
@@ -8,7 +10,6 @@
 "                 ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load the documentation for all the plugins
@@ -217,50 +218,33 @@ set nrformats-=octal " Interpret octal as decimal when incrementing numbers.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Set up persistent undo across all files.
-"    means that you can undo even when you close a buffer/VIM.
+"    means that you can undo even when you close a buffer/VIM
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 try
-  set undodir=~/.vim/tmp/undo/     " undo files
+  set undodir=~/.vim/.tmp/.undo/     " undo files
   set undofile
   set undoreload=10000
 catch
 endtry
 
 " Create undodir directory if possible and does not exist yet
-let targetdir=$HOME . "/.vim/tmp/undo"
+let targetdir=$HOME . "/.vim/.tmp/.undo"
 if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
   call mkdir(targetdir, "p", 0700)
 endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Backup and swap file options - disable all of them:
+" => Enable backup dir, but disable swap dir
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set backupdir=~/.vim/tmp/backup/ " backups
-" " Create undodir directory if possible and does not exist yet
-" let targetdir=$HOME . "/.vim/tmp/backup"
-" if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
-"   call mkdir(targetdir, "p", 0700)
-" endif
+set backupdir=~/.vim/.tmp/.backup/ " backups
+" Create undodir directory if possible and does not exist yet
+let targetdir=$HOME . "/.vim/.tmp/.backup"
+if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
+  call mkdir(targetdir, "p", 0700)
+endif
 
-" set directory=~/.vim/tmp/swap/   " swap files
-" " Create undodir directory if possible and does not exist yet
-" let targetdir=$HOME . "/.vim/tmp/swap"
-" if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
-"   call mkdir(targetdir, "p", 0700)
-" endif
-
-set nowritebackup    " Only in case you don't want a backup file while editing
-set nobackup           " Enable backups
-set noswapfile       " It's 2012, Vim.
-set makeef=error.err " When using make, where should it dump the file
-
-                            " *backup-table*
-" 'backup' 'writebackup'  action
-   " off       off    no backup made
-   " off       on     backup current file, deleted afterwards (default)
-   " on        off    delete old backup, backup current file
-   " on        on     delete old backup, backup current file
+set noswapfile
 
 " }}}
 
@@ -282,7 +266,7 @@ au FileType nerdtree setl nocursorline nocursorcolumn
 " au VimEnter * NERDTree     " Enable NERDTree on Vim start-up.
 
 " Autoclose NERDTree if it's the only open window left.
-au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
+au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") &&
 \ b:NERDTree.isTabTree()) | q | endif
 
 " Open NERDTree at the current file or close NERDTree if pressed again.
@@ -529,17 +513,6 @@ set foldtext=gitgutter#fold#foldtext()
 " Toggle highlighting changed lines (hunks)
 nnoremap <F3> :GitGutterLineHighlightsToggle<Cr>
 
-" Sign column
-" set signcolumn=yes
-" highlight SignColumn guibg=yellow ctermbg=yellow
-
-" Signs' colours and symbols
-
-" let g:gitgutter_set_sign_backgrounds=1
-" highlight GitGutterAdd    guifg=#009900 ctermfg=Green
-" highlight GitGutterChange guifg=#bbbb00 ctermfg=Yellow
-" highlight GitGutterDelete guifg=#ff2222 ctermfg=Red
-
 " Preview the hunk the cursor is in
 nnoremap ghp :GitGutterPreviewHunk<Cr>
 nnoremap ghq :pclose<Cr>
@@ -648,11 +621,7 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 au FileType fugitive nnoremap q :q<Cr>
 
 " Quickly do a git push
-au FileType fugitive nnoremap <Space>p :!git push<Cr>
-
-" Quickly create a commit
-au FileType fugitive nnoremap <Space>ac ca
-au FileType fugitive nnoremap <Space>rc ce
+au FileType fugitive nnoremap <Space>p :!clear<CR>:!:!git push<Cr>
 
 " }}}
 
@@ -829,6 +798,7 @@ au BufEnter ~/.vim/vimrc nnoremap <Leader>s :so %<Cr>
 
 " HOTKEYS --------------------------------------------------------------- {{{
 nmap <Leader>hk :vsplit ~/.vim/hotkeys<cr>
+nmap <Leader>gc :vsplit ~/.vim/gitconfig<cr>
 nmap <Leader>n :NERDTreeToggle<cr>
 nnoremap <Leader><Tab> :bnext<CR>
 nnoremap <Leader><Tab><Tab> :bprevious<CR>
@@ -864,8 +834,9 @@ au FileType python ia validanswers VALID_ANSWERS = ['y', 'yes', 'n', 'no']<Cr>
 
 " Description
 
+" # !/usr/bin/python3
+
 " # ----------------------------------------------------------------------------
-" # | !/usr/bin/python3
 " # |
 " # | File:         file_name.py
 " # | Author:       Tan Duc Mai
@@ -920,7 +891,7 @@ au FileType python ia -main- # --------------------------- Call the Main Functio
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Map the <F5> key to run a Python script inside Vim.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au Filetype python nnoremap <F5> :w<CR>:!clear<CR>:!python3 %<CR>
+au Filetype python nnoremap <F5> :w<CR>:!clear && python3 %<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -992,7 +963,10 @@ au FileType html,vim,vimwiki setl tabstop=2 shiftwidth=2 expandtab
 " => Make the 80th column stand out (PEP 8 Style Guide for Python Code)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 highlight ColorColumn guibg=Gray15 ctermbg=235
+" 80th column (PEP 8 Style Guide for Python Code)
 call matchadd('ColorColumn', '\%80v', 100)
+" 73rd column (Git commit message convention)
+au FileType gitcommit call matchadd('ColorColumn', '\%73v', 100)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1191,13 +1165,6 @@ function! BlockColor() " {{{
 endfunction " }}}
 nnoremap <leader>B :call BlockColor()<cr>
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => ~/.gitconfig file
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au FileType gitconfig setl nocursorline nocursorcolumn
-au FileType gitconfig setl foldlevelstart=99
-
 " }}}
 
 
@@ -1279,6 +1246,7 @@ augroup END
 
 
 " PYTHON ------------------------------------------------------------ {{{
+
 augroup ft_python
 
   au!
@@ -1310,5 +1278,18 @@ augroup ft_python
 
 augroup END
 
-
 " }}}
+
+
+" Github ------------------------------------------------------------ {{{
+
+" Set filetype
+au BufEnter ~/.vim/.gitignore setl ft=gitconfig
+au BufEnter ~/.vim/gitconfig setl ft=gitconfig
+
+" Quick push during a commit window
+au FileType fugitive nnoremap <Leader>p :!clear && echo 'Start pushing local commits towards GitHub' && git push<Cr>
+
+" Configuration
+au FileType gitconfig setl nocursorline nocursorcolumn
+au FileType gitconfig setl foldlevelstart=99
