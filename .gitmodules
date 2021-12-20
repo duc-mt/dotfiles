@@ -97,3 +97,6 @@
 [submodule "pack/plugins/start/commentary"]
 	path = pack/plugins/start/commentary
 	url = https://github.com/tpope/vim-commentary.git
+[submodule "pack/git/start/rhubarb"]
+	path = pack/git/start/rhubarb
+	url = https://github.com/tpope/vim-rhubarb.git
