@@ -523,7 +523,7 @@ nnoremap ) :GitGutterNextHunk<Cr>
 nnoremap ( :GitGutterPrevHunk<Cr>
 
 " Toggle folding all unchanged lines, leaving just the hunks visible.
-nnoremap <F2> :GitGutterFold<Cr>
+nnoremap <silent> <F2> :GitGutterFold<Cr>
 set foldtext=gitgutter#fold#foldtext()
 
 " Toggle highlighting changed lines (hunks)
@@ -1032,6 +1032,18 @@ if has('termguicolours')
   set termguicolours
 endif
 
+if &term =~ "xterm\\|rxvt"
+  " use a light_cyan cursor in insert mode
+  let &t_SI = "\<Esc>]12;LightCyan\x7"
+  " use an orange cursor otherwise
+  let &t_EI = "\<Esc>]12;LightGreen\x7"
+  silent !echo -ne "\033]12;LightGreen\007"
+endif
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Config gruvbox-material
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup GruvboxMaterial
 
   packadd! gruvbox-material
