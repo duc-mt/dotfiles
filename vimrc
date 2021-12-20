@@ -623,6 +623,12 @@ au FileType fugitive nnoremap q :q<Cr>
 " Quickly do a git push
 au FileType fugitive nnoremap <Space>p :!clear<CR>:!:!git push<Cr>
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Commentary
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au FileType gitconfig setl commentstring=#\ %s
+
 " }}}
 
 
