@@ -136,7 +136,7 @@ set clipboard=unnamed,unnamedplus
 " => Cursor line / column
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set cursorline
-set cursorcolumn
+set nocursorcolumn
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -176,7 +176,7 @@ set wrap           " Wrap lines.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set incsearch    " Find the next match as we type the search.
 
-set hlsearch     " Highlight searches by default.
+set nohlsearch   " Highlight searches by default.
 
 set smartcase    " . . . unless you type a capital.
 
@@ -824,7 +824,6 @@ nnoremap <Leader><Tab><Tab> :bprevious<CR>
 
 " ABBREVIATIONS --------------------------------------------------------- {{{
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General abbreviations
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1033,44 +1032,29 @@ if has('termguicolours')
   set termguicolours
 endif
 
-if &term =~ "xterm\\|rxvt"
-  " use a light_cyan cursor in insert mode
-  let &t_SI = "\<Esc>]12;LightCyan\x7"
-  " use an orange cursor otherwise
-  let &t_EI = "\<Esc>]12;orange\x7"
-  silent !echo -ne "\033]12;orange\007"
-  " reset cursor when vim exits
-  au VimLeave * silent !echo -ne "\033]12;white\007"
-  " use \003]12;gray\007 for gnome-terminal
-endif
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Config gruvbox-material
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup GruvboxMaterial
 
   packadd! gruvbox-material
   let g:gruvbox_material_background = 'hard'
-  " Configuration
   " Enable italic, but disable for comment
   let g:gruvbox_material_enable_italic = 1
   let g:gruvbox_material_disable_italic_comment = 1
   " Enable bold in function name
   let g:gruvbox_material_enable_bold = 1
-  " Customize the background colour of |hl-PmenuSel| and |hl-WildMenu|
+  " Control the |hl-Visual| and the |hl-VisualNOS| highlight group.
+  let g:gruvbox_material_visual = 'reverse'
+  " Customise the background colour of |hl-PmenuSel| and |hl-WildMenu|
   let g:gruvbox_material_menu_selection_background = 'red'
   " Make the background colour of sign column the same as normal text
   let g:gruvbox_material_sign_column_background = 'none'
   " The contrast of line numbers, indent lines, etc.
   let g:gruvbox_material_ui_contrast = 'high'
   " Some plugins support highlighting error/warning/info/hint texts, by default
-  " these texts are only underlined, but you can use this option to also highlight
-  " the background of them.
+  " these texts are only underlined, but you can use this option to also
+  " highlight the background of them.
   let g:gruvbox_material_diagnostic_text_highlight = 1
   " Some plugins support highlighting error/warning/info/hint lines, but this
-  " feature is disabled by default in this color scheme. To enable this feature,
-  " set this option to `1`.
+  " feature is disabled by default in this color scheme.
   let g:gruvbox_material_diagnostic_line_highlight = 1
   " Some plugins can use virtual text feature of neovim to display
   " error/warning/info/hint information, you can use this option to adjust the
@@ -1086,6 +1070,8 @@ augroup GruvboxMaterial
 
 augroup END
 
+colorscheme gruvbox-material
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Change colour scheme depending on the time of day
@@ -1094,20 +1080,12 @@ let hr=(strftime('%H'))
 
 if hr >= 19
   set background=dark
-  colorscheme gruvbox-material
-
 elseif hr >= 13
   set background=light
-  colorscheme gruvbox-material
-
 elseif hr >= 7
   set background=light
-  colorscheme solarized8_flat
-
 elseif hr >= 1
   set background=dark
-  colorscheme tender
-
 endif
 
 
@@ -1137,11 +1115,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Highlight search
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" For the GUI
 hi Search guibg=peru guifg=wheat
-
-" For terminals
-" hi Search cterm=NONE ctermfg=peru ctermbg=wheat
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
