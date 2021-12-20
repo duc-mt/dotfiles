@@ -640,6 +640,20 @@ endfunction
 " Call the GoyoEnter event's function
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Fugitive
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Quit fugitive
+au FileType fugitive nnoremap q :q<Cr>
+
+" Quickly do a git push
+au FileType fugitive nnoremap <Space>p :!git push<Cr>
+
+" Quickly create a commit
+au FileType fugitive nnoremap <Space>ac ca
+au FileType fugitive nnoremap <Space>rc ce
+
 " }}}
 
 
