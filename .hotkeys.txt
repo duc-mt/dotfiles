@@ -1,0 +1,12 @@
+ _   _  ___ _____ _  _________   ______  
+| | | |/ _ \_   _| |/ / ____\ \ / / ___| 
+| |_| | | | || | | ' /|  _|  \ V /\___ \ 
+|  _  | |_| || | | . \| |___  | |  ___) |
+|_| |_|\___/ |_| |_|\_\_____| |_| |____/ 
+                                         
+
+SPACE - h - k     : Show hotkeys
+SPACE - g - c     : Show gitconfig
+SPACE - n         : Toggle nerdtree
+SPACE - Tab       : Go to next buffer in list
+SPACE - Tab - Tab : Go to prev buffer in list
