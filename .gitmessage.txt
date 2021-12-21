@@ -1,3 +1,5 @@
-Subject line (under 50)
+# If this commit is applied, it will...           |
+Subject line (short description)
 
-Multi-line description of commit (under 72)
+# This change was made because...                                       |
+Longer explanation of the motivation for the change
