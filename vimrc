@@ -620,6 +620,7 @@ vnoremap ,, <Esc>
 " Fix 'Y' and 'V' behaviours
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap Y y$
+nnoremap vv V
 nnoremap V v$
 
 
