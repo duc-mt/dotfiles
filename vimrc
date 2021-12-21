@@ -255,9 +255,12 @@ set noswapfile
 " => Netrw
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Press {Leader e} to access :Explore window
-nnoremap <silent> <Leader>e  : Vex<Cr>
+nnoremap <silent> <Leader>e  :Vex<Cr>
 
-" change listing style (thin long wide tree)
+" Press {Leader Leader} to quickly leave :Explore window
+au FileType netrw nnoremap <silent> <Leader><Leader> :q<Cr>
+
+" Change listing style (thin long wide tree)
 let g:netrw_liststyle = 3
 
 " Set netrw split width
@@ -933,10 +936,7 @@ au FileType html,vim,vimwiki setl tabstop=2 shiftwidth=2 expandtab
 " => Make the 80th column stand out (PEP 8 Style Guide for Python Code)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 highlight ColorColumn guibg=Gray15 ctermbg=235
-" 80th column (PEP 8 Style Guide for Python Code)
 call matchadd('ColorColumn', '\%80v', 100)
-" 73rd column (Git commit message convention)
-au FileType gitcommit call matchadd('ColorColumn', '\%73v', 100)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
