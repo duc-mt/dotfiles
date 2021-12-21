@@ -1,6 +1,3 @@
-[submodule "pack/plugins/start/nerdtree"]
-	path = pack/plugins/start/nerdtree
-	url = https://github.com/preservim/nerdtree.git
 [submodule "pack/plugins/start/supertab"]
 	path = pack/plugins/start/supertab
 	url = https://github.com/ervandew/supertab.git
@@ -19,18 +16,9 @@
 [submodule "pack/plugins/opt/speeddating"]
 	path = pack/plugins/opt/speeddating
 	url = https://github.com/tpope/vim-speeddating.git
-[submodule "pack/plugins/start/nerdtree-syntax-highlight"]
-	path = pack/plugins/start/nerdtree-syntax-highlight
-	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git
 [submodule "pack/plugins/start/spelunker"]
 	path = pack/plugins/start/spelunker
 	url = https://github.com/kamykn/spelunker.vim.git
-[submodule "pack/plugins/start/devicons"]
-	path = pack/plugins/start/devicons
-	url = https://github.com/ryanoasis/vim-devicons.git
-[submodule "pack/plugins/start/nerd-fonts"]
-	path = pack/plugins/start/nerd-fonts
-	url = https://github.com/ryanoasis/nerd-fonts.git
 [submodule "pack/colours/opt/gruvbox-material"]
 	path = pack/colours/opt/gruvbox-material
 	url = https://github.com/sainnhe/gruvbox-material.git
@@ -58,9 +46,6 @@
 [submodule "pack/file-system/start/fzf"]
 	path = pack/file-system/start/fzf
 	url = https://github.com/junegunn/fzf.git
-[submodule "pack/file-system/start/nerdtree-git-plugin"]
-	path = pack/file-system/start/nerdtree-git-plugin
-	url = https://github.com/Xuyuanp/nerdtree-git-plugin.git
 [submodule "pack/status-line/opt/airline"]
 	path = pack/status-line/opt/airline
 	url = https://github.com/vim-airline/vim-airline.git
@@ -97,3 +82,9 @@
 [submodule "pack/git/start/rhubarb"]
 	path = pack/git/start/rhubarb
 	url = https://github.com/tpope/vim-rhubarb.git
+[submodule "pack/plugins/start/maximizer"]
+	path = pack/plugins/start/maximizer
+	url = https://github.com/szw/vim-maximizer.git
+[submodule "pack/file-system/start/vinegar"]
+	path = pack/file-system/start/vinegar
+	url = https://github.com/tpope/vim-vinegar.git
