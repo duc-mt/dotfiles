@@ -1,5 +1,5 @@
-# If this commit is applied, it will...           |
 Subject line (short description)
+# If this commit is applied, it will...           |
 
-# This change was made because...                                       |
 Longer explanation of the motivation for the change
+# This change was made because...                                       |
