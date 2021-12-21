@@ -264,21 +264,21 @@ let g:netrw_liststyle = 3
 let g:netrw_winsize = 20
 
 " Change how files are opened
-" Open the file in the previous window to the right of the project drawer
 let g:netrw_browse_split = 4
-let g:netrw_altv         = 1
 
-" Remove the banner
-let g:netrw_banner = 0
+" Suppress (remove) the banner
+let g:netrw_banner        = 0
 
-" Source: https://github.com/eiginn/netrw
-let g:netrw_fastbrowse    = 2
+" Keep the current directory the same as the browsing directory.
 let g:netrw_keepdir       = 0
-let g:netrw_retmap        = 1
-let g:netrw_silent        = 1
-let g:netrw_special_syntax= 1
 
-" Enable netrw on Vim start-up.
+" Transfers done silently
+let g:netrw_silent        = 1
+
+" Fast directory browsing
+let g:netrw_fastbrowse    = 2
+
+" Enable netrw on Vim start-up
 augroup ProjectDrawer
   autocmd!
   autocmd VimEnter * :Vex
@@ -290,6 +290,10 @@ let g:netrw_list_hide = &wildignore
 " Initialize netrw with dot files hidden
 let ghregex='\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_list_hide.=',' . ghregex
+
+" Other configs
+let g:netrw_retmap         = 1
+let g:netrw_special_syntax = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
