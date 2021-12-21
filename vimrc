@@ -252,99 +252,44 @@ set noswapfile
 " PLUGINS ---------------------------------------------------------------- {{{
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => NERDTree
+" => Netrw
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Press {Leader n} to access NERDTree plugin.
-nnoremap <Leader>n  : NERDTreeToggle<Cr>
+" Press {Leader e} to access :Explore window
+nnoremap <silent> <Leader>e  : Vex<Cr>
 
-" Press {Leader rn} to refresh NERDTree plugin.
-nnoremap <Leader>rn  : NERDTreeRefreshRoot<Cr>
+" change listing style (thin long wide tree)
+let g:netrw_liststyle = 3
 
-" Disable cursorline & cursorcolumn on NERDTree.
-au FileType nerdtree setl nocursorline nocursorcolumn
+" Set netrw split width
+let g:netrw_winsize = 20
 
-" au VimEnter * NERDTree     " Enable NERDTree on Vim start-up.
+" Change how files are opened
+" Open the file in the previous window to the right of the project drawer
+let g:netrw_browse_split = 4
+let g:netrw_altv         = 1
 
-" Autoclose NERDTree if it's the only open window left.
-au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") &&
-\ b:NERDTree.isTabTree()) | q | endif
+" Remove the banner
+let g:netrw_banner = 0
 
-" Open NERDTree at the current file or close NERDTree if pressed again.
-nnoremap <silent> <expr> <Leader>n g:NERDTree.IsOpen() ? "\:NERDTreeClose<Cr>" : bufexists(expand('%')) ? "\:NERDTreeFind<Cr>" : "\:NERDTree<Cr>"
+" Source: https://github.com/eiginn/netrw
+let g:netrw_fastbrowse    = 2
+let g:netrw_keepdir       = 0
+let g:netrw_retmap        = 1
+let g:netrw_silent        = 1
+let g:netrw_special_syntax= 1
 
-" Have NERDtree show hidden files, but ignore certain files and directories.
-let NERDTreeShowHidden=1
-let NERDTreeIgnore=['__pycache__','\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\~$', 'pip-log\.txt$', 'whoosh_index', 'xapian_index', '.*.pid', 'monitor.py', '.*-fixtures-.*.json', '.*\.o$', 'db.db']
+" Enable netrw on Vim start-up.
+augroup ProjectDrawer
+  autocmd!
+  autocmd VimEnter * :Vex
+augroup END
 
-let NERDTreeCaseSensitiveSort = 1
-let NERDTreeNaturalSort       = 1
-let NERDTreeSortHiddenFirst   = 1
-let NERDTreeChDirMode         = 3
-let NERDTreeRespectWildIgnore = 1
-let NERDTreeQuitOnOpen        = 1
-let NERDTreeWinPos            = "right"
-let NERDTreeWinSize           = 35
-let NERDTreeMinimalUI         = 1
-let NERDTreeDirArrows         = 1
-let NERDTreeAutoDeleteBuffer  = 1
+" Inherit custom wildignores
+let g:netrw_list_hide = &wildignore
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"  => NERDTree Syntax Highlight
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Mitigate lag issues
-let g:NERDTreeLimitedSyntax                  = 1
-let g:NERDTreeHighlightCursorline            = 0
-
-" Highlight full name (not only icons)
-let g:NERDTreeFileExtensionHighlightFullName = 1
-let g:NERDTreeExactMatchHighlightFullName    = 1
-let g:NERDTreePatternMatchHighlightFullName  = 1
-
-" Highlight folders using exact match
-" Enables folder icon highlighting using exact match
-let g:NERDTreeHighlightFolders               = 1
-" Highlights the folder name
-let g:NERDTreeHighlightFoldersFullName       = 1
-
-" Customising colours
-let s:brown       = "905532"
-let s:aqua        = "3AFFDB"
-let s:blue        = "689FB6"
-let s:darkBlue    = "44788E"
-let s:purple      = "834F79"
-let s:lightPurple = "834F79"
-let s:red         = "AE403F"
-let s:beige       = "F5C06F"
-let s:yellow      = "F09F17"
-let s:orange      = "D4843E"
-let s:darkOrange  = "F16529"
-let s:pink        = "CB6F6F"
-let s:salmon      = "EE6E73"
-let s:green       = "8FAA54"
-let s:lightGreen  = "31B53E"
-let s:white       = "FFFFFF"
-let s:rspec_red   = 'FE405F'
-let s:git_orange  = 'F54D27'
-
-let g:NERDTreeExtensionHighlightColor                    = {}           " this line is needed to avoid error
-let g:NERDTreeExtensionHighlightColor['css']             = s:blue       " sets the colour of css files to blue
-
-let g:NERDTreeExactMatchHighlightColor                   = {}           " this line is needed to avoid error
-let g:NERDTreeExactMatchHighlightColor['.gitignore']     = s:git_orange " sets the colour for .gitignore files
-
-let g:NERDTreePatternMatchHighlightColor                 = {}           " this line is needed to avoid error
-let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red  " sets the colour for files ending with _spec.rb
-
-let g:WebDevIconsDefaultFolderSymbolColor                = s:beige      " sets the colour for folders that did not match any rule
-let g:WebDevIconsDefaultFileSymbolColor                  = s:blue       " sets the colour for files that did not match any rule
-
-" Disable Highlight for specific file extension
-let g:NERDTreeExtensionHighlightColor        = {} "this line is needed to avoid error
-let g:NERDTreeExtensionHighlightColor['css'] = '' "assigning it to an empty string will skip highlight
-
-" Disable uncommon file extensions highlighting
-let g:NERDTreeLimitedSyntax = 1
+" Initialize netrw with dot files hidden
+let ghregex='\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_list_hide.=',' . ghregex
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -629,6 +574,12 @@ au FileType fugitive nnoremap <Space>p :!clear<CR>:!:!git push<Cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au FileType gitconfig setl commentstring=#\ %s
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Maximizer
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <Space>w :MaximizerToggle<Cr>
+
 " }}}
 
 
@@ -803,11 +754,11 @@ au BufEnter ~/.vim/vimrc nnoremap <Leader>s :so %<Cr>
 
 
 " HOTKEYS --------------------------------------------------------------- {{{
-nmap <Leader>hk :vsplit ~/.vim/hotkeys<cr>
+nmap <Leader>hk :vsplit ~/.vim/.hotkeys.txt<cr>
 nmap <Leader>gc :vsplit ~/.vim/gitconfig<cr>
 nmap <Leader>n :NERDTreeToggle<cr>
-nnoremap <Leader><Tab> :bnext<CR>
-nnoremap <Leader><Tab><Tab> :bprevious<CR>
+nnoremap <Leader>] :bnext<CR>
+nnoremap <Leader>[ :bprevious<CR>
 
 " }}}
 
@@ -1188,7 +1139,8 @@ set statusline=\\|\ %{GitStatus()}\ \|
 
 " Status line left side
 set statusline+=\ \ %f
-set statusline+=\ %{b:gitbranch}
+" Leave this line until finding out how to check if a dir is a git repo
+" set statusline+=\ %{b:gitbranch}
 set statusline+=\ \|\ %M\ %Y\ %R\ \|
 
 " Use a divider to separate the left side from the right side.
