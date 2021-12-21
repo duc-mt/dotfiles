@@ -976,14 +976,14 @@ au FileType * setl formatoptions-=c formatoptions-=r formatoptions-=o
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Detect trailing whitespace.
+" => Detect trailing whitespace
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 set list
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Auto remove trailing whitespace after saving.
+" => Auto remove trailing whitespace after saving
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 match ErrorMsg '\s\+$'              " Highlight trailing whitespace.
 autocmd BufWritePre * :%s/\s\+$//e  " Auto remove trailing whitespaces.
