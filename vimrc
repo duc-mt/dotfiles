@@ -254,12 +254,6 @@ set noswapfile
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Netrw
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Press {Leader e} to access :Explore window
-nnoremap <silent> <Leader>e  :Vex<Cr>
-
-" Press {Leader Leader} to quickly leave :Explore window
-au FileType netrw nnoremap <silent> <Leader><Leader> :q<Cr>
-
 " Change listing style (thin long wide tree)
 let g:netrw_liststyle = 3
 
@@ -281,12 +275,6 @@ let g:netrw_silent        = 1
 " Fast directory browsing
 let g:netrw_fastbrowse    = 2
 
-" Enable netrw on Vim start-up
-augroup ProjectDrawer
-  autocmd!
-  autocmd VimEnter * :Vex
-augroup END
-
 " Inherit custom wildignores
 let g:netrw_list_hide = &wildignore
 
@@ -297,6 +285,25 @@ let g:netrw_list_hide.=',' . ghregex
 " Other configs
 let g:netrw_retmap         = 1
 let g:netrw_special_syntax = 1
+
+" Toggle netrw
+let g:NetrwIsOpen=0
+
+function! ToggleNetrw()
+  if g:NetrwIsOpen
+    let i = bufnr("$")
+    while (i >= 1)
+      if (getbufvar(i, "&filetype") == "netrw")
+        silent exe "bwipeout " . i
+      endif
+      let i-=1
+    endwhile
+    let g:NetrwIsOpen=0
+  else
+    let g:NetrwIsOpen=1
+    silent Lexplore
+  endif
+endfunction
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -770,11 +777,13 @@ au BufEnter ~/.vim/vimrc nnoremap <Leader>s :so %<Cr>
 
 
 " HOTKEYS --------------------------------------------------------------- {{{
-nmap <Leader>hk :vsplit ~/.vim/.hotkeys.txt<cr>
-nmap <Leader>gc :vsplit ~/.vim/gitconfig<cr>
-nmap <Leader>n :NERDTreeToggle<cr>
-nnoremap <Leader>] :bnext<CR>
-nnoremap <Leader>[ :bprevious<CR>
+nmap <silent> <Bslash>hk      : vs ~/.vim/.hotkeys.txt <Cr>
+nmap <silent> <Bslash>gc      : vs ~/.vim/gitconfig    <Cr>
+nnoremap <silent> <Bslash>vrc : tabe ~/.vim/vimrc      <Cr>
+nnoremap <silent> <Bslash>e   : call ToggleNetrw()     <Cr>
+nnoremap <silent> <Leader>f   : FZF                    <Cr>
+nnoremap <silent> <Bslash>]   : bnext                  <Cr>
+nnoremap <silent> <Bslash>[   : bprevious              <Cr>
 
 " }}}
 
