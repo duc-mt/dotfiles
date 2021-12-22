@@ -959,7 +959,20 @@ set list
 " => Auto remove trailing whitespace on save (:w)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 match ErrorMsg '\s\+$'              " Highlight trailing whitespace.
-autocmd BufWritePre * :%s/\s\+$//e  " Auto remove trailing whitespaces.
+" autocmd BufWritePre * :%s/\s\+$//e  " Auto remove trailing whitespaces.
+
+" Source: https://vimways.org/2018/from-vimrc-to-vim/
+function StripTrailingWhitespace()
+  if !&binary && &filetype != 'diff'
+    normal mz
+    normal Hmy
+    %s/\s\+$//e
+    normal 'yz<CR>
+    normal `z
+  endif
+endfunction
+
+nn <Leader>x :<C-U>call StripTrailingWhitespace()<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
