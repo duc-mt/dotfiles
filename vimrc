@@ -488,18 +488,6 @@ let g:floaterm_height     = 0.8
 let g:floaterm_wintitle   = 0
 let g:floaterm_autoclose  = 1
 
-" Mapping
-nnoremap   <silent>   \ft    :FloatermNew<CR>
-tnoremap   <silent>   \ft    <C-\><C-n>:FloatermNew<CR>
-nnoremap   <silent>   <F6>   :FloatermPrev<CR>
-tnoremap   <silent>   <F6>   <C-\><C-n>:FloatermPrev<CR>
-nnoremap   <silent>   <F7>   :FloatermNext<CR>
-tnoremap   <silent>   <F7>   <C-\><C-n>:FloatermNext<CR>
-nnoremap   <silent>   <F8>   :FloatermKill<CR>
-tnoremap   <silent>   <F8>   <C-\><C-n>:FloatermKill<CR>
-nnoremap   <silent>   <F12>  :FloatermToggle<CR>
-tnoremap   <silent>   <F12>  <C-\><C-n>:FloatermToggle<CR>
-
 " Highlight
 " Set floaterm window's background to black
 highlight Floaterm guibg=black
@@ -754,23 +742,23 @@ map <down> <nop>
 map <left> <nop>
 map <right> <nop>
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Quick source vimrc
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au BufEnter ~/.vim/vimrc nnoremap <Leader>s :so %<Cr>
-
 " }}}
 
 
 " HOTKEYS --------------------------------------------------------------- {{{
-nmap <silent> <Bslash>hk      : vs ~/.vim/.hotkeys.txt <Cr>
-nmap <silent> <Bslash>gc      : vs ~/.vim/gitconfig    <Cr>
-nnoremap <silent> <Bslash>vrc : tabe ~/.vim/vimrc      <Cr>
-nnoremap <silent> <Bslash>e   : call ToggleNetrw()     <Cr>
-nnoremap <silent> <Leader>f   : FZF                    <Cr>
-nnoremap <silent> <Bslash>]   : bnext                  <Cr>
-nnoremap <silent> <Bslash>[   : bprevious              <Cr>
+nn <silent> <Bslash>hk  : vs ~/.vim/.hotkeys.txt <Cr>
+nn <silent> <Bslash>gc  : vs ~/.vim/gitconfig    <Cr>
+nn <silent> <Bslash>vrc : tabe ~/.vim/vimrc      <Cr>
+nn <silent> <Leader>s   : so ~/.vim/vimrc        <Cr>
+nn <silent> <Leader>e   : call ToggleNetrw()     <Cr>
+nn <silent> <Leader>f   : FZF                    <Cr>
+nn <silent> <Leader>t   : FloatermNew            <Cr>
+nn <silent> <F6>        : FloatermPrev           <CR>
+nn <silent> <F7>        : FloatermNext           <CR>
+nn <silent> <F8>        : FloatermKill           <CR>
+nn <silent> <F12>       : FloatermToggle         <CR>
+nn <silent> <Bslash>]   : bnext                  <Cr>
+nn <silent> <Bslash>[   : bprevious              <Cr>
 
 " }}}
 
