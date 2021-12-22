@@ -1,7 +1,6 @@
-Subject line (concise summary)
+
 # If this commit is applied, it will...
 
-Body (more detailed explanation)
 # This change was made because...
 # Anything particularly remarkable?
 
