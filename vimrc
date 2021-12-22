@@ -961,7 +961,7 @@ set list
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Auto remove trailing whitespace after saving
+" => Auto remove trailing whitespace on save (:w)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 match ErrorMsg '\s\+$'              " Highlight trailing whitespace.
 autocmd BufWritePre * :%s/\s\+$//e  " Auto remove trailing whitespaces.
