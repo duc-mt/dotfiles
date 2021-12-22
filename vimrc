@@ -1254,11 +1254,12 @@ augroup END
 " }}}
 
 
-" Github ------------------------------------------------------------ {{{
+" GITHUB ------------------------------------------------------------ {{{
 
 " Set filetype
-au BufEnter ~/.vim/.gitignore setl ft=gitconfig
-au BufEnter ~/.vim/gitconfig setl ft=gitconfig
+au BufEnter ~/.vim/.gitmessage.txt setl ft=gitcommit
+au BufEnter ~/.vim/.gitignore      setl ft=gitconfig
+au BufEnter ~/.vim/gitconfig       setl ft=gitconfig
 
 " Quick push during a commit window
 au FileType fugitive nnoremap <Leader>p :!clear && echo 'Start pushing local commits towards GitHub' && git push<Cr>
@@ -1266,3 +1267,4 @@ au FileType fugitive nnoremap <Leader>p :!clear && echo 'Start pushing local com
 " Configuration
 au FileType gitconfig setl nocursorline nocursorcolumn
 au FileType gitconfig setl foldlevelstart=99
+au FileType gitcommit setl nornu
