@@ -1,5 +1,8 @@
-Subject line (short description)
-# If this commit is applied, it will...           |
+Subject line (concise summary)
+# If this commit is applied, it will...
 
-Longer explanation of the motivation for the change
-# This change was made because...                                       |
+Body (more detailed explanation)
+# This change was made because...
+# Anything particularly remarkable?
+
+# ----------------------------------------------- # ------------------- #
