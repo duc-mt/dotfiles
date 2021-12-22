@@ -576,12 +576,6 @@ au FileType fugitive nnoremap <Space>p :!clear<CR>:!:!git push<Cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au FileType gitconfig setl commentstring=#\ %s
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Maximizer
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <Space>w :MaximizerToggle<Cr>
-
 " }}}
 
 
@@ -750,6 +744,7 @@ nn <silent> <Bslash>hk  : vs ~/.vim/.hotkeys.txt <Cr>
 nn <silent> <Bslash>gc  : vs ~/.vim/gitconfig    <Cr>
 nn <silent> <Bslash>vrc : tabe ~/.vim/vimrc      <Cr>
 nn <silent> <Leader>s   : so ~/.vim/vimrc        <Cr>
+nn <silent> <Leader>w   : MaximizerToggle        <Cr>
 nn <silent> <Leader>e   : call ToggleNetrw()     <Cr>
 nn <silent> <Leader>f   : FZF                    <Cr>
 nn <silent> <Leader>t   : FloatermNew            <Cr>
