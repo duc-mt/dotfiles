@@ -8,6 +8,7 @@
 BSLASH - h - k     : Show hotkeys   (vs)
 BSLASH - g - c     : Show gitconfig (vs)
 BSLASH - v - r - c : Show vimrc     (tabe)
-BSLASH - e         : Toggle netrw
+BSLASH - e         : Toggle netrw   (left)
+SPACE  - f         : Show FZF       (float win)
 BSLASH - ]         : Go to next buffer in list
 BSLASH - [         : Go to prev buffer in list
