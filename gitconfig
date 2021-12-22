@@ -119,6 +119,8 @@
     # }}}
 
     # basic {{{
+    a = add
+    ap = add -p
     st = status -s
     cl = clone
     cc = commit
@@ -178,6 +180,7 @@
     # diff {{{
     d = diff --word-diff
     dc = diff --cached
+    ds = diff --staged
     # diff last commit
     dlc = diff --cached HEAD^
     dr  = "!f() { git diff -w "$1"^.."$1"; }; f"
