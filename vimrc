@@ -600,17 +600,8 @@ nnoremap <Space>w :MaximizerToggle<Cr>
 " MAPPINGS --------------------------------------------------------------- {{{
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Shortcut to open vimrc anywhere
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <Leader><Bslash><Bslash> :tabe ~/.vim/vimrc<Cr>
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Basic file system commands
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <Bslash>t :!touch<Space>
-nnoremap <Bslash>r :!rm<Space>
-nnoremap <Bslash>d :!mkdir<Space>
 nnoremap <Bslash>m :!mv<Space>%<Space>
 nnoremap <Bslash>c :!cp<Space>%<Space>
 
@@ -618,20 +609,16 @@ nnoremap <Bslash>c :!cp<Space>%<Space>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Save/quit
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Press {Leader q} to quit Vim instead of {:q Cr}
-nnoremap <Leader>q :q<Cr>
-
 " Press double ,, to escape from Insert mode
-inoremap ,, <Esc>
-vnoremap ,, <Esc>
+inoremap ;; <Esc>
+vnoremap ;; <Esc>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fix 'Y' and 'V' behaviours
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap Y y$
-nnoremap vv V
-nnoremap V v$
+nnoremap vv <C-V>$
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -658,7 +645,7 @@ nnoremap <Leader>k :m .-2<Cr>==
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Captialise Each Word In The Current Line
+" Capitalise Each Word In The Current Line
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <Leader>C :s/\v<(.)(\w*)/\u\1\L\2/g<Cr>
 vnoremap <Leader>C :s/\v<(.)(\w*)/\u\1\L\2/g<Cr>
@@ -869,12 +856,6 @@ au FileType python ia -main- # --------------------------- Call the Main Functio
 
 
 " VIM SCRIPTS ------------------------------------------------------------ {{{
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Map the <F5> key to run a Python script inside Vim.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au Filetype python nnoremap <F5> :w<CR>:!clear && python3 %<CR>
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
@@ -1179,6 +1160,7 @@ set statusline+=%=
 " Status line right side.
 set statusline+=\ row:\ %l\/\%L\ \|\ col:\ %c\ \|\ percent:\ %p%%\ \|
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim Scripts
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1238,6 +1220,9 @@ augroup END
 augroup ft_python
 
   au!
+
+  " Map the <F5> key to run a Python script inside Vim.
+  au Filetype python nnoremap <F5> :w<CR>:!clear && python3 %<CR>
 
   " au FileType python setl omnifunc=pythoncomplete#Complete
   au FileType python setl define=^\s*\\(def\\\\|class\\)
