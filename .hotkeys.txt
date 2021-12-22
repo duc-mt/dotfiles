@@ -5,8 +5,9 @@
 |_| |_|\___/ |_| |_|\_\_____| |_| |____/
 
 
-SPACE - h - k : Show hotkeys
-SPACE - g - c : Show gitconfig
-SPACE - n     : Toggle nerdtree
-SPACE - ]     : Go to next buffer in list
-SPACE - [     : Go to prev buffer in list
+BSLASH - h - k     : Show hotkeys   (vs)
+BSLASH - g - c     : Show gitconfig (vs)
+BSLASH - v - r - c : Show vimrc     (tabe)
+BSLASH - e         : Toggle netrw
+BSLASH - ]         : Go to next buffer in list
+BSLASH - [         : Go to prev buffer in list
