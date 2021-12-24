@@ -43,7 +43,7 @@ $ cp ~/.vimrc vimrc
 $ git init
 $ git add .
 $ git commit -m "Initial commit."
-$ git remote add origin https://github.com/henry-the-vietnamese/vim.git
+$ git remote add origin https://github.com/tanducmai/vim.git
 $ git push -u origin master
 ```
 ---
@@ -51,7 +51,7 @@ $ git push -u origin master
 ---
 Clone .vim:
 ```bash
-git clone --recursive https://github.com/henry-the-vietnamese/vim.git ~/.vim
+git clone --recursive https://github.com/tanducmai/vim.git ~/.vim
 ```
 This automatically installs all submodules that come with it.
 
