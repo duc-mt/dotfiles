@@ -2,10 +2,7 @@
 
 Setting up Vim on Linux
 ```bash
-$ git clone https://github.com/vim/vim.git
-$ cd vim/src/
-$ make
-$ sudo make install
+$ git clone https://github.com/vim/vim.git && cd vim/src/ && make && sudo make install
 ```
 If issues occur, it might be that some dependencies are missing. Try:
 ```bash
