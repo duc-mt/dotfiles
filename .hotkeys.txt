@@ -12,6 +12,10 @@ SPACE  - s         : Source vimrc
 SPACE  - w         : Toggle Maximizer plug-in
 SPACE  - e         : Toggle netrw
 SPACE  - f         : Show FZF
-SPACE  - t         : Show float term
 BSLASH - ]         : Go to next buffer in list
 BSLASH - [         : Go to prev buffer in list
+SPACE  - t         : Show floaterm
+<F6>	           : Show previous floaterm
+<F7>	           : Show next floaterm
+<F8>	           : Kill current floaterm
+<F12>	           : Toggle all floaterms
