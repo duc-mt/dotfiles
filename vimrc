@@ -740,20 +740,27 @@ map <right> <nop>
 
 
 " HOTKEYS --------------------------------------------------------------- {{{
-nn <silent> <Bslash>hk  : vs ~/.vim/.hotkeys.txt <Cr>
-nn <silent> <Bslash>gc  : vs ~/.vim/gitconfig    <Cr>
-nn <silent> <Bslash>vrc : tabe ~/.vim/vimrc      <Cr>
-nn <silent> <Leader>s   : so ~/.vim/vimrc        <Cr>
-nn <silent> <Leader>w   : MaximizerToggle        <Cr>
-nn <silent> <Leader>e   : call ToggleNetrw()     <Cr>
-nn <silent> <Leader>f   : FZF                    <Cr>
-nn <silent> <Leader>t   : FloatermNew            <Cr>
-nn <silent> <F6>        : FloatermPrev           <CR>
-nn <silent> <F7>        : FloatermNext           <CR>
-nn <silent> <F8>        : FloatermKill           <CR>
-nn <silent> <F12>       : FloatermToggle         <CR>
-nn <silent> <Bslash>]   : bnext                  <Cr>
-nn <silent> <Bslash>[   : bprevious              <Cr>
+nn  <silent> <Bslash>hk  : vs ~/.vim/.hotkeys.txt <Cr>
+nn  <silent> <Bslash>gc  : vs ~/.vim/gitconfig    <Cr>
+nn  <silent> <Bslash>vrc : tabe ~/.vim/vimrc      <Cr>
+nn  <silent> <Leader>s   : so ~/.vim/vimrc        <Cr>
+nn  <silent> <Leader>w   : MaximizerToggle        <Cr>
+nn  <silent> <Leader>e   : call ToggleNetrw()     <Cr>
+nn  <silent> <Leader>f   : FZF                    <Cr>
+nn  <silent> <Bslash>]   : bnext                  <Cr>
+nn  <silent> <Bslash>[   : bprevious              <Cr>
+
+" Floaterm
+nn  <silent> <Leader>t   : FloatermNew            <Cr>
+nn  <silent> <F6>        : FloatermPrev           <Cr>
+nn  <silent> <F7>        : FloatermNext           <Cr>
+nn  <silent> <F8>        : FloatermKill           <Cr>
+nn  <silent> <F12>       : FloatermToggle         <Cr>
+tno <silent> <Leader>t   : FloatermNew            <Cr>
+tno <silent> <F6>        : FloatermPrev           <Cr>
+tno <silent> <F7>        : FloatermNext           <Cr>
+tno <silent> <F8>        : FloatermKill           <Cr>
+tno <silent> <F12>       : FloatermToggle         <Cr>
 
 " }}}
 
