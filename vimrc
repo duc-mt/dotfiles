@@ -541,6 +541,20 @@ au FileType fugitive nn <Space>p :!clear<CR>:!:!git push<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au FileType gitconfig setl commentstring=#\ %s
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Carbon-now-sh
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+vnoremap <F12> :CarbonNowSh<CR> :echo 'Ready to capture...'<CR>
+
+" Browser
+let g:carbon_now_sh_browser = 'firefox'
+
+" Set the query string that will be passed to (https://carbon.now.sh)
+let g:carbon_now_sh_options =
+\ { 'ln': 'true',
+  \ 'fm': 'Fira Code' }
+
 " }}}
 
 
@@ -692,7 +706,6 @@ tno <C-right> <C-w><
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Move the current window to the corresponding position.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 1. Normal mode
 nn <C-W>h <C-W>H
 nn <C-W>j <C-W>J
 nn <C-W>k <C-W>K
@@ -725,12 +738,12 @@ nn  <silent> <Leader>t   : FloatermNew            <CR>
 nn  <silent> <F6>        : FloatermPrev           <CR>
 nn  <silent> <F7>        : FloatermNext           <CR>
 nn  <silent> <F8>        : FloatermKill           <CR>
-nn  <silent> <F12>       : FloatermToggle         <CR>
-tno <silent> <Leader>t   : FloatermNew            <CR>
-tno <silent> <F6>        : FloatermPrev           <CR>
-tno <silent> <F7>        : FloatermNext           <CR>
-tno <silent> <F8>        : FloatermKill           <CR>
-tno <silent> <F12>       : FloatermToggle         <CR>
+nn  <silent> <F9>        : FloatermToggle         <CR>
+tno <silent> <Leader>t   <C-\><C-n>:FloatermNew   <CR>
+tno <silent> <F6>        <C-\><C-n>:FloatermPrev  <CR>
+tno <silent> <F7>        <C-\><C-n>:FloatermNext  <CR>
+tno <silent> <F8>        <C-\><C-n>:FloatermKill  <CR>
+tno <silent> <F9>        <C-\><C-n>:FloatermToggle<CR>
 
 " }}}
 
