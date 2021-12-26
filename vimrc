@@ -562,7 +562,7 @@ vn ;; <Esc>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Fix 'Y' and 'V' behaviours
+" Fix 'Y' and 'vv' behaviours
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nn Y y$
 nn vv <C-V>$
@@ -594,8 +594,14 @@ nn <Leader>k :m .-2<CR>==
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Capitalise Each Word In The Current Line
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nn <Leader>C :s/\v<(.)(\w*)/\u\1\L\2/g<CR>
-vn <Leader>C :s/\v<(.)(\w*)/\u\1\L\2/g<CR>
+nn <silent> <Bslash>C :s/\v<(.)(\w*)/\u\1\L\2/g<CR> && :echo 'Capitalise Each Word In The Current Line'<CR>
+vn <silent> <Bslash>C :s/\v<(.)(\w*)/\u\1\L\2/g<CR> && :echo 'Capitalise Each Word In The Current Line'<CR>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Add line numbers to each line
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nn <silent> <Bslash>L :%s/^/\=printf('%-4d',line('.'))<CR> && :echo 'Add line numbers to each line'<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -940,6 +946,7 @@ function StripTrailingWhitespace()
     %s/\s\+$//e
     normal 'yz<CR>
     normal `z
+    echo 'Strip trailing whitespace successfully'
   endif
 endfunction
 
