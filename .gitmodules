@@ -103,9 +103,9 @@
 [submodule "pack/file-system/start/nerdtree"]
 	path = pack/file-system/start/nerdtree
 	url = https://github.com/preservim/nerdtree.git
-[submodule "pack/plugins/opt/carbon-now-sh"]
-	path = pack/plugins/opt/carbon-now-sh
-	url = https://github.com/kristijanhusak/vim-carbon-now-sh.git
 [submodule "pack/plugins/opt/diagon"]
 	path = pack/plugins/opt/diagon
 	url = https://github.com/ArthurSonzogni/Diagon.git
+[submodule "pack/plugins/start/carbon-now-sh"]
+	path = pack/plugins/start/carbon-now-sh
+	url = https://github.com/kristijanhusak/vim-carbon-now-sh.git
