@@ -12,8 +12,11 @@ SPACE  - s         : Source vimrc
 SPACE  - w         : Toggle Maximizer plug-in
 SPACE  - n         : Toggle NERDTree
 SPACE  - f         : Show FZF
+SPACE  - x         : Strip trailing whitespace
 BSLASH - ]         : Go to next buffer in list
 BSLASH - [         : Go to prev buffer in list
+BSLASH - C         : Capitalise Each Word
+BSLASH - L         : Add line numbers to each line
 SPACE  - t         : Show floaterm
 <F6>	           : Show previous floaterm
 <F7>	           : Show next floaterm
