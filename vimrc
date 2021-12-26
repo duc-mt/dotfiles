@@ -252,58 +252,36 @@ set noswapfile
 " PLUGINS ---------------------------------------------------------------- {{{
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Netrw
+" => NERDTree
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Change listing style (thin long wide tree)
-let g:netrw_liststyle = 3
+" Disable cursorline & cursorcolumn on NERDTree.
+au FileType nerdtree setl nocursorcolumn
 
-" Set netrw split width
-let g:netrw_winsize = 20
-
+" au VimEnter * NERDTree     " Enable NERDTree on Vim start-up.
 " Change how files are opened
-let g:netrw_browse_split = 4
 
-" Suppress (remove) the banner
-let g:netrw_banner        = 0
+" Autoclose NERDTree if it's the only open window left.
+au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") &&
+\ b:NERDTree.isTabTree()) | q | endif
 
-" Keep the current directory the same as the browsing directory.
-let g:netrw_keepdir       = 0
+" Open NERDTree at the current file or close NERDTree if pressed again.
+nn <silent> <expr> <Leader>n g:NERDTree.IsOpen() ? "\:NERDTreeClose<Cr>" : bufexists(expand('%')) ? "\:NERDTreeFind<Cr>" : "\:NERDTree<Cr>"
 
-" Transfers done silently
-let g:netrw_silent        = 1
+" Have NERDtree show hidden files, but ignore certain files and directories.
+let NERDTreeShowHidden=1
+let NERDTreeIgnore=['__pycache__','\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\~$', 'pip-log\.txt$', 'whoosh_index', 'xapian_index', '.*.pid', 'monitor.py', '.*-fixtures-.*.json', '.*\.o$', 'db.db']
 
-" Fast directory browsing
-let g:netrw_fastbrowse    = 2
-
-" Inherit custom wildignores
-let g:netrw_list_hide = &wildignore
-
-" Initialize netrw with dot files hidden
-let ghregex='\(^\|\s\s\)\zs\.\S\+'
-let g:netrw_list_hide.=',' . ghregex
-
-" Other configs
-let g:netrw_retmap         = 1
-let g:netrw_special_syntax = 1
-
-" Toggle netrw
-let g:NetrwIsOpen=0
-
-function! ToggleNetrw()
-  if g:NetrwIsOpen
-    let i = bufnr("$")
-    while (i >= 1)
-      if (getbufvar(i, "&filetype") == "netrw")
-        silent exe "bwipeout " . i
-      endif
-      let i-=1
-    endwhile
-    let g:NetrwIsOpen=0
-  else
-    let g:NetrwIsOpen=1
-    silent Lexplore
-  endif
-endfunction
+let NERDTreeCaseSensitiveSort = 1
+let NERDTreeNaturalSort       = 1
+let NERDTreeSortHiddenFirst   = 1
+let NERDTreeChDirMode         = 3
+let NERDTreeRespectWildIgnore = 1
+let NERDTreeQuitOnOpen        = 1
+let NERDTreeWinPos            = "right"
+let NERDTreeWinSize           = 30
+let NERDTreeMinimalUI         = 1
+let NERDTreeDirArrows         = 1
+let NERDTreeAutoDeleteBuffer  = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -745,7 +723,6 @@ nn  <silent> <Bslash>gc  : vs ~/.vim/gitconfig    <Cr>
 nn  <silent> <Bslash>vrc : tabe ~/.vim/vimrc      <Cr>
 nn  <silent> <Leader>s   : so ~/.vim/vimrc        <Cr>
 nn  <silent> <Leader>w   : MaximizerToggle        <Cr>
-nn  <silent> <Leader>e   : call ToggleNetrw()     <Cr>
 nn  <silent> <Leader>f   : FZF                    <Cr>
 nn  <silent> <Bslash>]   : bnext                  <Cr>
 nn  <silent> <Bslash>[   : bprevious              <Cr>

@@ -100,3 +100,6 @@
 [submodule "pack/writing/opt/gfm-syntax"]
 	path = pack/writing/opt/gfm-syntax
 	url = https://github.com/rhysd/vim-gfm-syntax.git
+[submodule "pack/file-system/start/nerdtree"]
+	path = pack/file-system/start/nerdtree
+	url = https://github.com/preservim/nerdtree.git
