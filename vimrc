@@ -74,23 +74,29 @@ let mapleader="\<Space>"  " Map the leader key to a spacebar.
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => User Interface Options:
+" => User Interface Options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set laststatus=2               " Always display the status bar.
+set laststatus=2 " Always display the status bar.
 
-set ruler                      " Always show cursor position.
+set ruler        " Always show cursor position.
 
-" Maximum number of tab pages that can be opened from the command line.
-set tabpagemax=40
+set noerrorbells " Disable beep on errors.
 
-set noerrorbells               " Disable beep on errors.
+set visualbell   " Flash screen instead of beeping on errors.
 
-set visualbell                 " Flash screen instead of beeping on errors.
+set mouse=a      " Enable mouse for scrolling and resizing.
 
-set mouse=a                    " Enable mouse for scrolling and resizing.
+set cul nocuc    " Enable cursorline, disbale cursorcolumn
+
+set nu rnu       " Enable (relative) number
+
+set sb spr       " Split below / right
 
 " Set the window’s title, reflecting the file currently being edited.
 set title
+
+" Maximum number of tab pages that can be opened from the command line.
+set tabpagemax=40
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -134,26 +140,7 @@ set clipboard=unnamed,unnamedplus
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Cursor line / column
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set cursorline
-set nocursorcolumn
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => (Relative) Number Options:
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nu rnu
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Fix splitting
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set splitbelow splitright
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Indentation options:
+" => Indentation options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set autoindent     " New lines inherit the indentation of previous lines.
 
@@ -265,7 +252,7 @@ au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") &&
 \ b:NERDTree.isTabTree()) | q | endif
 
 " Open NERDTree at the current file or close NERDTree if pressed again.
-nn <silent> <expr> <Leader>n g:NERDTree.IsOpen() ? "\:NERDTreeClose<Cr>" : bufexists(expand('%')) ? "\:NERDTreeFind<Cr>" : "\:NERDTree<Cr>"
+nn <silent> <expr> <Leader>n g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
 
 " Have NERDtree show hidden files, but ignore certain files and directories.
 let NERDTreeShowHidden=1
@@ -300,9 +287,9 @@ let g:SuperTabMappingTabLiteral     = "<C-V>"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Line operations
 " Add [count] blank spaces before the cursor
-nnoremap <Space><Space>   a<Space><Left><Esc>
+nn <Space><Space>   a<Space><Left><Esc>
 " Add [count] blank spaces after the cursor
-nnoremap <Bslash><Space>  i<Space><Left><Esc>
+nn <Bslash><Space>  i<Space><Left><Esc>
 
 " Toggle background colour
 if exists("*ToggleBackground") == 0
@@ -316,54 +303,54 @@ if exists("*ToggleBackground") == 0
   command BG call ToggleBackground()
 endif
 
-nnoremap yob :BG<Cr>
-au FileType * nnoremap [ob :set background=light                  <Cr>
-au FileType * nnoremap ]ob :set background=dark                   <Cr>
+nn yob :BG<CR>
+au FileType * nn [ob :set background=light                  <CR>
+au FileType * nn ]ob :set background=dark                   <CR>
 
 " Toggle cursorcolumn
-nnoremap yoc :set cursorcolumn!                                   <Cr>
-au FileType * nnoremap [oc :set cursorcolumn                      <Cr>
-au FileType * nnoremap ]oc :set nocursorcolumn                    <Cr>
+nn yoc :set cursorcolumn!                                   <CR>
+au FileType * nn [oc :set cursorcolumn                      <CR>
+au FileType * nn ]oc :set nocursorcolumn                    <CR>
 
 " Toggle spell
-nnoremap yoe :set spell! spelllang=en_au                          <Cr>
+nn yoe :set spell! spelllang=en_au                          <CR>
 
-au FileType * nnoremap [oe :set spell spelllang=en_au             <Cr>
-au FileType * nnoremap ]oe :set nospell spelllang=en_au           <Cr>
+au FileType * nn [oe :set spell spelllang=en_au             <CR>
+au FileType * nn ]oe :set nospell spelllang=en_au           <CR>
 
 " Toggle highlight search
-nnoremap yoh :set hlsearch!                                       <Cr>
-au FileType * nnoremap [oh :set hlsearch                          <Cr>
-au FileType * nnoremap ]oh :set nohlsearch                        <Cr>
+nn yoh :set hlsearch!                                       <CR>
+au FileType * nn [oh :set hlsearch                          <CR>
+au FileType * nn ]oh :set nohlsearch                        <CR>
 
 " Toggle ignorecase
-au FileType * nnoremap [oi :set ignore                            <Cr>
-au FileType * nnoremap ]oi :set noignorecase                      <Cr>
+au FileType * nn [oi :set ignore                            <CR>
+au FileType * nn ]oi :set noignorecase                      <CR>
 
 " Toggle cursorline
-nnoremap yol :set cursorline!<Cr>
-au FileType * nnoremap [ol :set cursorline                        <Cr>
-au FileType * nnoremap ]ol :set nocursorline                      <Cr>
+nn yol :set cursorline!<CR>
+au FileType * nn [ol :set cursorline                        <CR>
+au FileType * nn ]ol :set nocursorline                      <CR>
 
 " Toggle number
-nnoremap yon :set number!                                         <Cr>
-au FileType * nnoremap [on :set number                            <Cr>
-au FileType * nnoremap ]on :set nonumber                          <Cr>
+nn yon :set number!                                         <CR>
+au FileType * nn [on :set number                            <CR>
+au FileType * nn ]on :set nonumber                          <CR>
 
 " Toggle relativenumber
-nnoremap yor :set relativenumber!                                 <Cr>
-au FileType * nnoremap [or :set relativenumber                    <Cr>
-au FileType * nnoremap ]or :set norelativenumber                  <Cr>
+nn yor :set relativenumber!                                 <CR>
+au FileType * nn [or :set relativenumber                    <CR>
+au FileType * nn ]or :set norelativenumber                  <CR>
 
 " Toggle wrap
-nnoremap yow :set wrap!                                           <Cr>
-au FileType * nnoremap [ow :set wrap                              <Cr>
-au FileType * nnoremap ]ow :set nowrap                            <Cr>
+nn yow :set wrap!                                           <CR>
+au FileType * nn [ow :set wrap                              <CR>
+au FileType * nn ]ow :set nowrap                            <CR>
 
 " Toggle cursorline
-nnoremap yox :set cursorcolumn! cursorline!<Cr>
-au FileType * nnoremap [ox :set cursorcolumn cursorline           <Cr>
-au FileType * nnoremap ]ox :set no cursorcolumn nocursorline      <Cr>
+nn yox :set cursorcolumn! cursorline!<CR>
+au FileType * nn [ox :set cursorcolumn cursorline           <CR>
+au FileType * nn ]ox :set no cursorcolumn nocursorline      <CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -412,21 +399,21 @@ map N <Plug>(easymotion-prev)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fugitive
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" nnoremap <leader>gd  : Gdiff<Cr>
-" nnoremap <leader>gs  : Gstatus<Cr>
-" nnoremap <leader>gw  : Gwrite<Cr>
-" nnoremap <leader>ga  : Gadd<Cr>
-" nnoremap <leader>gb  : Gblame<Cr>
-" nnoremap <leader>gco : Gcheckout<Cr>
-" nnoremap <leader>gci : Gcommit<Cr>
-" nnoremap <leader>gm  : Gmove<Cr>
-" nnoremap <leader>gr  : Gremove<Cr>
-" nnoremap <leader>gl  : Shell git gl -18<Cr> : wincmd \|<Cr>
+" nn <leader>gd  : Gdiff<CR>
+" nn <leader>gs  : Gstatus<CR>
+" nn <leader>gw  : Gwrite<CR>
+" nn <leader>ga  : Gadd<CR>
+" nn <leader>gb  : Gblame<CR>
+" nn <leader>gco : Gcheckout<CR>
+" nn <leader>gci : Gcommit<CR>
+" nn <leader>gm  : Gmove<CR>
+" nn <leader>gr  : Gremove<CR>
+" nn <leader>gl  : Shell git gl -18<CR> : wincmd \|<CR>
 
-" augroup ft_fugitive
+" aug ft_fugitive
 "     au!
 "     au BufNewFile,BufRead .git/index setl nolist
-" augroup END
+" aug END
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -440,19 +427,19 @@ let g:gitgutter_map_keys=0
 set updatetime=100
 
 " Jump between hunks (differing lines)
-nnoremap ) :GitGutterNextHunk<Cr>
-nnoremap ( :GitGutterPrevHunk<Cr>
+nn ) :GitGutterNextHunk<CR>
+nn ( :GitGutterPrevHunk<CR>
 
 " Toggle folding all unchanged lines, leaving just the hunks visible.
-nnoremap <silent> <F2> :GitGutterFold<Cr>
+nn <silent> <F2> :GitGutterFold<CR>
 set foldtext=gitgutter#fold#foldtext()
 
 " Toggle highlighting changed lines (hunks)
-nnoremap <F3> :GitGutterLineHighlightsToggle<Cr>
+nn <F3> :GitGutterLineHighlightsToggle<CR>
 
 " Preview the hunk the cursor is in
-nnoremap ghp :GitGutterPreviewHunk<Cr>
-nnoremap ghq :pclose<Cr>
+nn ghp :GitGutterPreviewHunk<CR>
+nn ghq :pclose<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -476,13 +463,13 @@ highlight FloatermBorder guibg=orange guifg=cyan
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tabular
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-vnoremap :T  :Tabularize /
+vn :T  :Tabularize /
 
 " Tabularize used in vimrc's comments.
-vnoremap :T" :Tabularize /"<Cr>
+vn :T" :Tabularize /"<CR>
 
 " Tabularize used for multiple assignments.
-vnoremap :T= :Tabularize /=<Cr>
+vn :T= :Tabularize /=<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -515,7 +502,7 @@ highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underl
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Goyo
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au FileType * nnoremap <Bslash>gy :Goyo<Cr>
+au FileType * nn <Bslash>gy :Goyo<CR>
 let g:goyo_width  = 82
 
 " Scripts to configure Goyo
@@ -525,10 +512,10 @@ function! s:goyo_enter()
     silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
   endif
 
-  augroup no_number_relativenumber
+  aug no_number_relativenumber
     au!
     au InsertLeave * setl nonumber norelativenumber
-  augroup END
+  aug END
 
   set nocursorline
   set nocursorcolumn
@@ -536,17 +523,17 @@ function! s:goyo_enter()
 endfunction
 
 " Call the GoyoEnter event's function
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
+au! User GoyoEnter nested call <SID>goyo_enter()
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fugitive
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Quit fugitive
-au FileType fugitive nnoremap q :q<Cr>
+au FileType fugitive nn q :q<CR>
 
 " Quickly do a git push
-au FileType fugitive nnoremap <Space>p :!clear<CR>:!:!git push<Cr>
+au FileType fugitive nn <Space>p :!clear<CR>:!:!git push<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -562,76 +549,76 @@ au FileType gitconfig setl commentstring=#\ %s
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Basic file system commands
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <Bslash>m :!mv<Space>%<Space>
-nnoremap <Bslash>c :!cp<Space>%<Space>
+nn <Bslash>m :!mv<Space>%<Space>
+nn <Bslash>c :!cp<Space>%<Space>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Save/quit
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Press double ,, to escape from Insert mode
-inoremap ;; <Esc>
-vnoremap ;; <Esc>
+ino ;; <Esc>
+vn ;; <Esc>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fix 'Y' and 'V' behaviours
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap Y y$
-nnoremap vv <C-V>$
+nn Y y$
+nn vv <C-V>$
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Undo break points
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-inoremap , ,<C-G>u
-inoremap . .<C-G>u
-inoremap [ [<C-G>u
-inoremap ( (<C-G>u
-inoremap { {<C-G>u
-inoremap < <<C-G>u
-inoremap ' '<C-G>u
-inoremap ! !<C-G>u
-inoremap ? ?<C-G>u
+ino , ,<C-G>u
+ino . .<C-G>u
+ino [ [<C-G>u
+ino ( (<C-G>u
+ino { {<C-G>u
+ino < <<C-G>u
+ino ' '<C-G>u
+ino ! !<C-G>u
+ino ? ?<C-G>u
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Move text
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-vnoremap J :m '>+1<Cr>gv=gv
-vnoremap K :m '<-2<Cr>gv=gv
-nnoremap <Leader>j :m .+1<Cr>==
-nnoremap <Leader>k :m .-2<Cr>==
+vn J :m '>+1<CR>gv=gv
+vn K :m '<-2<CR>gv=gv
+nn <Leader>j :m .+1<CR>==
+nn <Leader>k :m .-2<CR>==
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Capitalise Each Word In The Current Line
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <Leader>C :s/\v<(.)(\w*)/\u\1\L\2/g<Cr>
-vnoremap <Leader>C :s/\v<(.)(\w*)/\u\1\L\2/g<Cr>
+nn <Leader>C :s/\v<(.)(\w*)/\u\1\L\2/g<CR>
+vn <Leader>C :s/\v<(.)(\w*)/\u\1\L\2/g<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fix indenting visual block
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-vnoremap < <gv
-vnoremap > >gv
+vn < <gv
+vn > >gv
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Add a blank line before and after the current line
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <Cr> A<Cr><Esc>
-nnoremap <Bslash><Cr> I<Cr><Esc>
+nn <CR> A<CR><Esc>
+nn <Bslash><CR> I<CR><Esc>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Move between tabs
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <silent> <S-Left>  : tabp<Cr>
-nnoremap <silent> <S-Right> : tabn<Cr>
-nnoremap <silent> <S-Down>  : tabc<Cr>
-nnoremap <silent> <S-Up>    : tabo<Cr>
+nn <silent> <S-Left>  : tabp<CR>
+nn <silent> <S-Right> : tabn<CR>
+nn <silent> <S-Down>  : tabc<CR>
+nn <silent> <S-Up>    : tabo<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -641,16 +628,16 @@ nnoremap <silent> <S-Up>    : tabo<Cr>
 set foldmethod=indent
 
 " Press {za} to open/close all folding levels.
-nnoremap za zA
-vnoremap za zA
+nn za zA
+vn za zA
 
 " Press {zo} to open every fold.
-nnoremap zo zR
-vnoremap zo zR
+nn zo zR
+vn zo zR
 
 " Press {zc} to close every fold.
-nnoremap zc zM
-vnoremap zc zM
+nn zc zM
+vn zc zM
 
 " Start editing with all folds closed
 set foldlevelstart=0
@@ -661,23 +648,23 @@ highlight Folded guibg=Gray8 guifg=Gray ctermbg=235  ctermfg=0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colon shortcuts to access command line mode.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap ; :
-vnoremap ; :
+nn ; :
+vn ; :
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fast split navigation with <Ctrl> + hjkl
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 1. Normal mode
-nnoremap <C-H> <C-W><C-H>
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
+nn <C-H> <C-W><C-H>
+nn <C-J> <C-W><C-J>
+nn <C-K> <C-W><C-K>
+nn <C-L> <C-W><C-L>
 " 2. Terminal mode
-tnoremap <C-H> <C-W><C-H>
-tnoremap <C-J> <C-W><C-J>
-tnoremap <C-K> <C-W><C-K>
-tnoremap <C-L> <C-W><C-L>
+tno <C-H> <C-W><C-H>
+tno <C-J> <C-W><C-J>
+tno <C-K> <C-W><C-K>
+tno <C-L> <C-W><C-L>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -685,25 +672,25 @@ tnoremap <C-L> <C-W><C-L>
 " CTRL+UP, CTRL+DOWN, CTRL+LEFT, or CTRL+RIGHT.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 1. Normal mode
-nnoremap <C-up> <C-w>+
-nnoremap <C-down> <C-w>-
-nnoremap <C-left> <C-w>>
-nnoremap <C-right> <C-w><
+nn <C-up> <C-w>+
+nn <C-down> <C-w>-
+nn <C-left> <C-w>>
+nn <C-right> <C-w><
 " 2. Terminal mode
-tnoremap <C-up> <C-w>+
-tnoremap <C-down> <C-w>-
-tnoremap <C-left> <C-w>>
-tnoremap <C-right> <C-w><
+tno <C-up> <C-w>+
+tno <C-down> <C-w>-
+tno <C-left> <C-w>>
+tno <C-right> <C-w><
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Move the current window to the corresponding position.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 1. Normal mode
-nnoremap <C-W>h <C-W>H
-nnoremap <C-W>j <C-W>J
-nnoremap <C-W>k <C-W>K
-nnoremap <C-W>l <C-W>L
+nn <C-W>h <C-W>H
+nn <C-W>j <C-W>J
+nn <C-W>k <C-W>K
+nn <C-W>l <C-W>L
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -718,26 +705,26 @@ map <right> <nop>
 
 
 " HOTKEYS --------------------------------------------------------------- {{{
-nn  <silent> <Bslash>hk  : vs ~/.vim/.hotkeys.txt <Cr>
-nn  <silent> <Bslash>gc  : vs ~/.vim/gitconfig    <Cr>
-nn  <silent> <Bslash>vrc : tabe ~/.vim/vimrc      <Cr>
-nn  <silent> <Leader>s   : so ~/.vim/vimrc        <Cr>
-nn  <silent> <Leader>w   : MaximizerToggle        <Cr>
-nn  <silent> <Leader>f   : FZF                    <Cr>
-nn  <silent> <Bslash>]   : bnext                  <Cr>
-nn  <silent> <Bslash>[   : bprevious              <Cr>
+nn  <silent> <Bslash>hk  : vs ~/.vim/.hotkeys.txt <CR>
+nn  <silent> <Bslash>gc  : vs ~/.vim/gitconfig    <CR>
+nn  <silent> <Bslash>vrc : tabe ~/.vim/vimrc      <CR>
+nn  <silent> <Leader>s   : so ~/.vim/vimrc        <CR>
+nn  <silent> <Leader>w   : MaximizerToggle        <CR>
+nn  <silent> <Leader>f   : FZF                    <CR>
+nn  <silent> <Bslash>]   : bnext                  <CR>
+nn  <silent> <Bslash>[   : bprevious              <CR>
 
 " Floaterm
-nn  <silent> <Leader>t   : FloatermNew            <Cr>
-nn  <silent> <F6>        : FloatermPrev           <Cr>
-nn  <silent> <F7>        : FloatermNext           <Cr>
-nn  <silent> <F8>        : FloatermKill           <Cr>
-nn  <silent> <F12>       : FloatermToggle         <Cr>
-tno <silent> <Leader>t   : FloatermNew            <Cr>
-tno <silent> <F6>        : FloatermPrev           <Cr>
-tno <silent> <F7>        : FloatermNext           <Cr>
-tno <silent> <F8>        : FloatermKill           <Cr>
-tno <silent> <F12>       : FloatermToggle         <Cr>
+nn  <silent> <Leader>t   : FloatermNew            <CR>
+nn  <silent> <F6>        : FloatermPrev           <CR>
+nn  <silent> <F7>        : FloatermNext           <CR>
+nn  <silent> <F8>        : FloatermKill           <CR>
+nn  <silent> <F12>       : FloatermToggle         <CR>
+tno <silent> <Leader>t   : FloatermNew            <CR>
+tno <silent> <F6>        : FloatermPrev           <CR>
+tno <silent> <F7>        : FloatermNext           <CR>
+tno <silent> <F8>        : FloatermKill           <CR>
+tno <silent> <F12>       : FloatermToggle         <CR>
 
 " }}}
 
@@ -763,9 +750,9 @@ ia ytb YouTube
 au FileType python ia cc #
 au FileType python ia tr True
 au FileType python ia fa False
-au FileType python ia """ """<Cr><Cr>"""<Esc>kh
-au FileType python ia var # Variable initialisation.<Cr>
-au FileType python ia validanswers VALID_ANSWERS = ['y', 'yes', 'n', 'no']<Cr>
+au FileType python ia """ """<CR><CR>"""<Esc>kh
+au FileType python ia var # Variable initialisation.<CR>
+au FileType python ia validanswers VALID_ANSWERS = ['y', 'yes', 'n', 'no']<CR>
 
 
 " Description
@@ -797,27 +784,27 @@ au FileType python ia validanswers VALID_ANSWERS = ['y', 'yes', 'n', 'no']<Cr>
 
 
 " Function docstring
-au FileType python ia df def :<Cr>"""<Cr><Cr>Parameters<Cr>----------<Cr><Cr><Cr>Returns<Cr>-------<Cr><Cr>"""<Cr><Cr><Esc>12kllli<Del>
+au FileType python ia df def :<CR>"""<CR><CR>Parameters<CR>----------<CR><CR><CR>Returns<CR>-------<CR><CR>"""<CR><CR><Esc>12kllli<Del>
 
 
 " Section headings
-au FileType python ia -constant- # ------------------------------- Named Constant ------------------------------<Cr><Esc>h
+au FileType python ia -constant- # ------------------------------- Named Constant ------------------------------<CR><Esc>h
 
-au FileType python ia -constants- # ------------------------------- Named Constants -----------------------------<Cr><Esc>h
+au FileType python ia -constants- # ------------------------------- Named Constants -----------------------------<CR><Esc>h
 
-au FileType python ia -import- # ------------------------------- Module Import -------------------------------<Cr><Esc>h
+au FileType python ia -import- # ------------------------------- Module Import -------------------------------<CR><Esc>h
 
-au FileType python ia -imports- # ------------------------------- Module Imports -------------------------------<Cr><Esc>h
+au FileType python ia -imports- # ------------------------------- Module Imports -------------------------------<CR><Esc>h
 
-au FileType python ia -func- # ---------------------------- Function Definition ----------------------------<Cr><Esc>h
+au FileType python ia -func- # ---------------------------- Function Definition ----------------------------<CR><Esc>h
 
-au FileType python ia -funcs- # ---------------------------- Function Definitions ---------------------------<Cr><esc>h
+au FileType python ia -funcs- # ---------------------------- Function Definitions ---------------------------<CR><esc>h
 
-au FileType python ia -program- # ---------------------------------- Program ----------------------------------<Cr><Esc>h
+au FileType python ia -program- # ---------------------------------- Program ----------------------------------<CR><Esc>h
 
-au FileType python ia -m- # ------------------------------- Main Function -------------------------------<Cr>def main():<Cr>
+au FileType python ia -m- # ------------------------------- Main Function -------------------------------<CR>def main():<CR>
 
-au FileType python ia -main- # --------------------------- Call the Main Function --------------------------<Cr>if __name__ == '__main__':<Cr>main()<Esc>
+au FileType python ia -main- # --------------------------- Call the Main Function --------------------------<CR>if __name__ == '__main__':<CR>main()<Esc>
 
 " }}}
 
@@ -854,21 +841,21 @@ au BufRead,BufNewFile * :call IgnoreSpell()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Disable making changes to file (plugins)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-augroup readonly
+aug readonly
   au!
   au BufEnter ~/.vim/pack/* setl nomodifiable
   au BufEnter ~/.vim/pack/* setl nocursorline nocursorcolumn
-augroup END
+aug END
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Enable relative numbers in Normal mode; absolute numbers in Insert mode.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-augroup toggle_relative_number
+aug toggle_relative_number
   au!
   au InsertEnter * setl norelativenumber
   au InsertLeave * setl relativenumber
-augroup END
+aug END
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -899,8 +886,8 @@ call matchadd('ColorColumn', '\%80v', 100)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Highlight matches when jumping to next:
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <silent> n     n:call HLNext(0.4)<Cr>
-nnoremap <silent> N     N:call HLNext(0.4)<Cr>
+nn <silent> n     n:call HLNext(0.4)<CR>
+nn <silent> N     N:call HLNext(0.4)<CR>
 
 function! HLNext (blinktime)
   set invcursorline
@@ -943,7 +930,7 @@ set list
 " => Auto remove trailing whitespace on save (:w)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 match ErrorMsg '\s\+$'              " Highlight trailing whitespace.
-" autocmd BufWritePre * :%s/\s\+$//e  " Auto remove trailing whitespaces.
+" au BufWritePre * :%s/\s\+$//e  " Auto remove trailing whitespaces.
 
 " Source: https://vimways.org/2018/from-vimrc-to-vim/
 function StripTrailingWhitespace()
@@ -980,7 +967,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Config gruvbox-material
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-augroup GruvboxMaterial
+aug GruvboxMaterial
 
   packadd! gruvbox-material
   let g:gruvbox_material_background = 'hard'
@@ -1016,7 +1003,7 @@ augroup GruvboxMaterial
   " Enable this option will reduce loading time by approximately 50%
   let g:gruvbox_material_better_performance = 1
 
-augroup END
+aug END
 
 colorscheme gruvbox-material
 
@@ -1040,7 +1027,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Specific colorscheme for some files
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" augroup ft_text
+" aug ft_text
 "   au!
 "   au FileType html,vim,vimwiki,text,markdown colorscheme PaperColor
 
@@ -1057,7 +1044,7 @@ endif
 "     au FileType html,vim,vimwiki,text,markdown setl background=dark
 
 "   endif
-" augroup END
+" aug END
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1083,13 +1070,13 @@ au VimResized * exe "normal! \<c-w>="
 " => Line Return
 "    Make sure Vim returns to the same line when you reopen a file.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-augroup line_return
+aug line_return
   au!
   au BufReadPost *
         \ if line("'\"") > 0 && line("'\"") <= line("$") |
         \     execute 'normal! g`"zvzz' |
         \ endif
-augroup END
+aug END
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1111,7 +1098,7 @@ function! BlockColor() " {{{
     call matchadd("BlockColor4", '^ \{16}.*', 4, 77883)
   endif
 endfunction " }}}
-nnoremap <leader>B :call BlockColor()<cr>
+nn <leader>B :call BlockColor()<CR>
 
 " }}}
 
@@ -1122,23 +1109,23 @@ nnoremap <leader>B :call BlockColor()<cr>
 set laststatus=2
 
 " Clear status line when vimrc is reloaded.
-set statusline=
-set statusline+=%2*
+set stl=
+set stl+=%2*
 
 " Current mode
-set statusline=\\|\ %{GitStatus()}\ \|
+set stl=\\|\ %{GitStatus()}\ \|
 
 " Status line left side
-set statusline+=\ \ %f
+set stl+=\ \ %f
 " Leave this line until finding out how to check if a dir is a git repo
-" set statusline+=\ %{b:gitbranch}
-set statusline+=\ \|\ %M\ %Y\ %R\ \|
+" set stl+=\ %{b:gitbranch}
+set stl+=\ \|\ %M\ %Y\ %R\ \|
 
 " Use a divider to separate the left side from the right side.
-set statusline+=%=
+set stl+=%=
 
 " Status line right side.
-set statusline+=\ row:\ %l\/\%L\ \|\ col:\ %c\ \|\ percent:\ %p%%\ \|
+set stl+=\ row:\ %l\/\%L\ \|\ col:\ %c\ \|\ percent:\ %p%%\ \|
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1187,49 +1174,49 @@ function! StatuslineGitBranch()
   endif
 endfunction
 
-augroup GetGitBranch
-  autocmd!
-  autocmd VimEnter,WinEnter,BufEnter * call StatuslineGitBranch()
-augroup END
+aug GetGitBranch
+  au!
+  au VimEnter,WinEnter,BufEnter * call StatuslineGitBranch()
+aug END
 
 " }}}
 
 
 " PYTHON ------------------------------------------------------------ {{{
 
-augroup ft_python
+aug ft_python
 
   au!
 
   " Map the <F5> key to run a Python script inside Vim.
-  au Filetype python nnoremap <F5> :w<CR>:!clear && python3 %<CR>
+  au Filetype python nn <F5> :w<CR>:!clear && python3 %<CR>
 
   " au FileType python setl omnifunc=pythoncomplete#Complete
   au FileType python setl define=^\s*\\(def\\\\|class\\)
   " au FileType python compiler nose
-  au FileType man nnoremap <buffer> <cr> :q<cr>
+  au FileType man nn <buffer> <CR> :q<CR>
 
   " Jesus tapdancing Christ, built-in Python syntax, you couldn't let me
   " override this in a normal way, could you?
   au FileType python if exists("python_space_error_highlight") | unlet python_space_error_highlight | endif
 
   " Jesus, Python.  Five characters of punctuation for a damn string?
-  au FileType python inoremap <buffer> <d-'> _(u'')<left><left>
+  au FileType python ino <buffer> <d-'> _(u'')<left><left>
 
   let python_highlight_all = 1
   au FileType python syn keyword pythonDecorator True None False self
 
-  au FileType python map <buffer> F :setl foldmethod=indent<cr>
+  au FileType python map <buffer> F :setl foldmethod=indent<CR>
 
-  au FileType python inoremap <buffer> $r return
-  au FileType python inoremap <buffer> $i import
-  au FileType python inoremap <buffer> $p print
+  au FileType python ino <buffer> $r return
+  au FileType python ino <buffer> $i import
+  au FileType python ino <buffer> $p print
   au FileType python map <buffer> <leader>1 /class
   au FileType python map <buffer> <leader>2 /def
   au FileType python map <buffer> <leader>C ?class
   au FileType python map <buffer> <leader>D ?def
 
-augroup END
+aug END
 
 " }}}
 
@@ -1242,7 +1229,7 @@ au BufEnter ~/.vim/.gitignore      setl ft=gitconfig
 au BufEnter ~/.vim/gitconfig       setl ft=gitconfig
 
 " Quick push during a commit window
-au FileType fugitive nnoremap <Leader>p :!clear && echo 'Start pushing local commits towards GitHub' && git push<Cr>
+au FileType fugitive nn <Leader>p :!clear && echo 'Start pushing local commits towards GitHub' && git push<CR>
 
 " Configuration
 au FileType gitconfig setl nocursorline nocursorcolumn
