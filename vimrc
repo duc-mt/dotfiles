@@ -294,74 +294,21 @@ let g:SuperTabMappingTabLiteral     = "<C-V>"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-unimpaired
-"    I mapped it myself
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Line operations
-" Add [count] blank spaces before the cursor
-nn <Space><Space>   a<Space><Left><Esc>
-" Add [count] blank spaces after the cursor
-nn <Bslash><Space>  i<Space><Left><Esc>
-
-" Toggle background colour
-if exists("*ToggleBackground") == 0
-  function ToggleBackground()
-    if &background == "dark"
-      set background=light
-    else
-      set background=dark
-    endif
-  endfunction
-  command BG call ToggleBackground()
-endif
-
-nn yob :BG<CR>
-au FileType * nn [ob :set background=light                  <CR>
-au FileType * nn ]ob :set background=dark                   <CR>
-
 " Toggle cursorcolumn
-nn yoc :set cursorcolumn!                                   <CR>
-au FileType * nn [oc :set cursorcolumn                      <CR>
-au FileType * nn ]oc :set nocursorcolumn                    <CR>
+nn yoc :set cursorcolumn!                              <CR>
+au FileType * nn [oc :set cursorcolumn                 <CR>
+au FileType * nn ]oc :set nocursorcolumn               <CR>
 
 " Toggle spell
-nn yoe :set spell! spelllang=en_au                          <CR>
-
-au FileType * nn [oe :set spell spelllang=en_au             <CR>
-au FileType * nn ]oe :set nospell spelllang=en_au           <CR>
-
-" Toggle highlight search
-nn yoh :set hlsearch!                                       <CR>
-au FileType * nn [oh :set hlsearch                          <CR>
-au FileType * nn ]oh :set nohlsearch                        <CR>
-
-" Toggle ignorecase
-au FileType * nn [oi :set ignore                            <CR>
-au FileType * nn ]oi :set noignorecase                      <CR>
+nn yoe :set spell! spelllang=en_au                     <CR>
+au FileType * nn [oe :set spell spelllang=en_au        <CR>
+au FileType * nn ]oe :set nospell                      <CR>
 
 " Toggle cursorline
-nn yol :set cursorline!<CR>
-au FileType * nn [ol :set cursorline                        <CR>
-au FileType * nn ]ol :set nocursorline                      <CR>
-
-" Toggle number
-nn yon :set number!                                         <CR>
-au FileType * nn [on :set number                            <CR>
-au FileType * nn ]on :set nonumber                          <CR>
-
-" Toggle relativenumber
-nn yor :set relativenumber!                                 <CR>
-au FileType * nn [or :set relativenumber                    <CR>
-au FileType * nn ]or :set norelativenumber                  <CR>
-
-" Toggle wrap
-nn yow :set wrap!                                           <CR>
-au FileType * nn [ow :set wrap                              <CR>
-au FileType * nn ]ow :set nowrap                            <CR>
-
-" Toggle cursorline
-nn yox :set cursorcolumn! cursorline!<CR>
-au FileType * nn [ox :set cursorcolumn cursorline           <CR>
-au FileType * nn ]ox :set no cursorcolumn nocursorline      <CR>
+nn yol :set cursorline!                                <CR>
+au FileType * nn [ol :set cursorline                   <CR>
+au FileType * nn ]ol :set nocursorline                 <CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -408,26 +355,6 @@ map N <Plug>(easymotion-prev)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Fugitive
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" nn <leader>gd  : Gdiff<CR>
-" nn <leader>gs  : Gstatus<CR>
-" nn <leader>gw  : Gwrite<CR>
-" nn <leader>ga  : Gadd<CR>
-" nn <leader>gb  : Gblame<CR>
-" nn <leader>gco : Gcheckout<CR>
-" nn <leader>gci : Gcommit<CR>
-" nn <leader>gm  : Gmove<CR>
-" nn <leader>gr  : Gremove<CR>
-" nn <leader>gl  : Shell git gl -18<CR> : wincmd \|<CR>
-
-" aug ft_fugitive
-"     au!
-"     au BufNewFile,BufRead .git/index setl nolist
-" aug END
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Gitgutter
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:gitgutter_enabled=1
@@ -466,21 +393,15 @@ let g:floaterm_autoclose  = 1
 
 " Highlight
 " Set floaterm window's background to black
-highlight Floaterm guibg=black
+hi Floaterm guibg=black
 " Set floating window border line colour to cyan, and background to orange
-highlight FloatermBorder guibg=orange guifg=cyan
+hi FloatermBorder guibg=orange guifg=cyan
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tabular
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vn :T  :Tabularize /
-
-" Tabularize used in vimrc's comments.
-vn :T" :Tabularize /"<CR>
-
-" Tabularize used for multiple assignments.
-vn :T= :Tabularize /=<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -506,8 +427,8 @@ let g:spelunker_disable_backquoted_checking                   = 1
 let g:spelunker_disable_auto_group                            = 1
 
 " Override highlight setting
-highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=#9e9e9e
-highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
+hi SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=#9e9e9e
+hi SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -517,11 +438,11 @@ au FileType * nn <Bslash>gy :Goyo<CR>
 let g:goyo_width  = 82
 
 " Scripts to configure Goyo
-function! s:goyo_enter()
+fu! s:goyo_enter()
   if executable('tmux') && strlen($TMUX)
     silent !tmux set status off
     silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
-  endif
+  end
 
   aug no_number_relativenumber
     au!
@@ -530,8 +451,7 @@ function! s:goyo_enter()
 
   set nocursorline
   set nocursorcolumn
-  " ...
-endfunction
+endf
 
 " Call the GoyoEnter event's function
 au! User GoyoEnter nested call <SID>goyo_enter()
@@ -556,7 +476,7 @@ au FileType gitconfig setl commentstring=#\ %s
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Carbon-now-sh
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-vnoremap <F12> :CarbonNowSh<CR> :echo 'Ready To Capture Code...'<CR>
+vn <F12> :CarbonNowSh<CR> :echo 'Ready To Capture Code...'<CR>
 
 " Browser
 let g:carbon_now_sh_browser = 'firefox'
@@ -576,6 +496,15 @@ let g:carbon_now_sh_options =
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nn <Bslash>m :!mv<Space>%<Space>
 nn <Bslash>c :!cp<Space>%<Space>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Line operations
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Add a blank space before the cursor
+nn <Space><Space>   a<Space><Left><Esc>
+" Add a blank space after the cursor
+nn <Bslash><Space>  i<Space><Left><Esc>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -620,13 +549,6 @@ nn <Leader>k :m .-2<CR>==
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vn < <gv
 vn > >gv
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Add a blank line before and after the current line
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nn <CR> A<CR><Esc>
-nn <Bslash><CR> I<CR><Esc>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
