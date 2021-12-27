@@ -11,6 +11,15 @@
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Vim 8 defaults
+unlet! skip_defaults_vim
+silent! source $VIMRUNTIME/defaults.vim
+
+augroup vimrc
+  autocmd!
+augroup END
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load the documentation for all the plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -18,7 +27,9 @@ packloadall          " Load all plugins.
 silent! helptags ALL " Load help for all plugins.
 
 
-" GUI RELATED ------------------------------------------------------------ {{{
+" ============================================================================
+" GUI RELATED {{{
+" ============================================================================
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Set font according to system
@@ -45,9 +56,9 @@ set guioptions-=l
 set guioptions-=L
 
 " }}}
-
-
-" GENERAL CONFIGURATION OPTIONS ------------------------------------------ {{{
+" ============================================================================
+" GENERAL CONFIGURATION OPTIONS {{{
+" ============================================================================
 
 " Use Vim settings, rather then Vi settings. It’s important to have this
 " on the top of your file, as it influences other options.
@@ -86,7 +97,7 @@ set visualbell   " Flash screen instead of beeping on errors.
 
 set mouse=a      " Enable mouse for scrolling and resizing.
 
-set cul nocuc    " Enable cursorline, disbale cursorcolumn
+set cul nocuc    " Enable cursorline, disable cursorcolumn
 
 set nu rnu       " Enable (relative) number
 
@@ -234,9 +245,9 @@ endif
 set noswapfile
 
 " }}}
-
-
-" PLUGINS ---------------------------------------------------------------- {{{
+" ============================================================================
+" PLUGINS {{{
+" ============================================================================
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NERDTree
@@ -545,7 +556,7 @@ au FileType gitconfig setl commentstring=#\ %s
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Carbon-now-sh
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-vnoremap <F12> :CarbonNowSh<CR> :echo 'Ready to capture...'<CR>
+vnoremap <F12> :CarbonNowSh<CR> :echo 'Ready To Capture Code...'<CR>
 
 " Browser
 let g:carbon_now_sh_browser = 'firefox'
@@ -556,9 +567,9 @@ let g:carbon_now_sh_options =
   \ 'fm': 'Fira Code' }
 
 " }}}
-
-
-" MAPPINGS --------------------------------------------------------------- {{{
+" ============================================================================
+" MAPPINGS {{{
+" ============================================================================
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Basic file system commands
@@ -568,9 +579,8 @@ nn <Bslash>c :!cp<Space>%<Space>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Save/quit
+" => Press double ,, to escape from Insert mode
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Press double ,, to escape from Insert mode
 ino ;; <Esc>
 vn ;; <Esc>
 
@@ -603,19 +613,6 @@ vn J :m '>+1<CR>gv=gv
 vn K :m '<-2<CR>gv=gv
 nn <Leader>j :m .+1<CR>==
 nn <Leader>k :m .-2<CR>==
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Capitalise Each Word In The Current Line
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nn <silent> <Bslash>C :s/\v<(.)(\w*)/\u\1\L\2/g<CR> && :echo 'Capitalise Each Word In The Current Line'<CR>
-vn <silent> <Bslash>C :s/\v<(.)(\w*)/\u\1\L\2/g<CR> && :echo 'Capitalise Each Word In The Current Line'<CR>
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Add line numbers to each line
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nn <silent> <Bslash>L :%s/^/\=printf('%-4d',line('.'))<CR> && :echo 'Add line numbers to each line'<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -721,15 +718,16 @@ map <left> <nop>
 map <right> <nop>
 
 " }}}
+" ============================================================================
+" HOTKEYS {{{
+" ============================================================================
 
-
-" HOTKEYS --------------------------------------------------------------- {{{
 nn  <silent> <Bslash>hk  : vs ~/.vim/.hotkeys.txt <CR>
 nn  <silent> <Bslash>gc  : vs ~/.vim/gitconfig    <CR>
 nn  <silent> <Bslash>vrc : tabe ~/.vim/vimrc      <CR>
 nn  <silent> <Leader>s   : so ~/.vim/vimrc        <CR>
-nn  <silent> <Leader>w   : MaximizerToggle        <CR>
 nn  <silent> <Leader>f   : FZF                    <CR>
+nn  <silent> <Bslash>m   : MaximizerToggle        <CR>
 nn  <silent> <Bslash>]   : bnext                  <CR>
 nn  <silent> <Bslash>[   : bprevious              <CR>
 
@@ -746,9 +744,9 @@ tno <silent> <F8>        <C-\><C-n>:FloatermKill  <CR>
 tno <silent> <F9>        <C-\><C-n>:FloatermToggle<CR>
 
 " }}}
-
-
-" ABBREVIATIONS --------------------------------------------------------- {{{
+" ============================================================================
+" ABBREVIATIONS  {{{
+" ============================================================================
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General abbreviations
@@ -826,9 +824,76 @@ au FileType python ia -m- # ------------------------------- Main Function ------
 au FileType python ia -main- # --------------------------- Call the Main Function --------------------------<CR>if __name__ == '__main__':<CR>main()<Esc>
 
 " }}}
+" ============================================================================
+" FUNCTIONS & COMMANDS {{{
+" ============================================================================
 
+" ----------------------------------------------------------------------------
+" :Root | Change directory to the root of the Git repository
+" ----------------------------------------------------------------------------
+fu! s:root()
+  let root = systemlist('git rev-parse --show-toplevel')[0]
+  if v:shell_error
+    ec 'Not in git repo'
+  else
+    exe 'lcd' root
+    ec 'Changed directory to: '.root
+  end
+endf
+com! Root call s:root()
 
-" VIM SCRIPTS ------------------------------------------------------------ {{{
+" ----------------------------------------------------------------------------
+" :AddLineNumber | Add line numbers to each line
+" ----------------------------------------------------------------------------
+fu! AddLineNumber()
+  %s/^/\=printf('%-3d',line('.'))
+  %s/\s\+$//e
+  ec 'Add Line Numbers To Each Line'
+endf
+com! LineNumber call AddLineNumber()
+
+" ----------------------------------------------------------------------------
+" Capitalise Each Word
+" ----------------------------------------------------------------------------
+fu! CapitaliseEachWord()
+  s/\v<(.)(\w*)/\u\1\L\2/g
+  ec 'Capitalise Each Word In The Current Line'
+endf
+nn <silent> <Bslash>C :s/\v<(.)(\w*)/\u\1\L\2/g<CR>
+vn <silent> <Bslash>C :s/\v<(.)(\w*)/\u\1\L\2/g<CR>
+
+" ----------------------------------------------------------------------------
+" :StripTrailingWhitespace | Auto remove trailing whitespace
+" ----------------------------------------------------------------------------
+fu! StripTrailingWhitespace()
+  if !&binary && &filetype != 'diff'
+    norm mz
+    norm Hmy
+    %s/\s\+$//e
+    norm 'yz<CR>
+    norm `z
+    ec 'Strip Trailing Whitespace Successfully'
+  end
+endf
+com! StripTrailingWhitespace call StripTrailingWhitespace()
+
+" ----------------------------------------------------------------------------
+" => Highlight matches when jumping to next:
+" ----------------------------------------------------------------------------
+fu! HLNext (blinktime)
+  set invcursorline
+  redr
+  exe 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+  set invcursorline
+  redr
+endf
+nn <silent> n     n:call HLNext(0.4)<CR>
+nn <silent> N     N:call HLNext(0.4)<CR>
+
+" }}}
+" ============================================================================
+" VIM SCRIPTS {{{
+" ============================================================================
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
@@ -838,21 +903,21 @@ au FileType gitcommit setl spell spelllang=en_au
 
 " Highlight spelling mistakes
 " Badly spelled word
-highlight SpellBad    term=reverse   ctermbg=12 gui=undercurl guisp=Red
+hi SpellBad    term=reverse   ctermbg=12 gui=undercurl guisp=Red
 " Word with wrong caps
-highlight SpellCap    term=reverse   ctermbg=9  gui=undercurl guisp=Blue
+hi SpellCap    term=reverse   ctermbg=9  gui=undercurl guisp=Blue
 " Rare word
-highlight SpellRare   term=reverse   ctermbg=13 gui=undercurl guisp=Magenta
+hi SpellRare   term=reverse   ctermbg=13 gui=undercurl guisp=Magenta
 " Word only exists in other region
-highlight SpellLocale term=underline ctermbg=11 gui=undercurl guisp=DarkCyan
+hi SpellLocale term=underline ctermbg=11 gui=undercurl guisp=DarkCyan
 
 " Ignore CamelCase words when spell checking
 fun! IgnoreSpell()
-  syn match CamelCase /\<[A-Z][a-z]\+[A-Z].\{-}\>/ contains=@NoSpell transparent
-  syn cluster Spell add=CamelCase
-  syntax match InlineURL /https\?:\/\/\(\w\+\(:\w\+\)\?@\)\?\([A-Za-z][-_0-9A-Za-z]*\.\)\{1,}\(\w\{2,}\.\?\)\{1,}\(:[0-9]\{1,5}\)\?\S*/ contains=@NoSpell transparent
-  syn cluster Spell add=InlineURL
-endfun
+  sy match CamelCase /\<[A-Z][a-z]\+[A-Z].\{-}\>/ contains=@NoSpell transparent
+  sy cluster Spell add=CamelCase
+  sy match InlineURL /https\?:\/\/\(\w\+\(:\w\+\)\?@\)\?\([A-Za-z][-_0-9A-Za-z]*\.\)\{1,}\(\w\{2,}\.\?\)\{1,}\(:[0-9]\{1,5}\)\?\S*/ contains=@NoSpell transparent
+  sy cluster Spell add=InlineURL
+endf
 
 au BufRead,BufNewFile * :call IgnoreSpell()
 
@@ -898,38 +963,8 @@ au FileType html,vim,vimwiki setl tabstop=2 shiftwidth=2 expandtab
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Make the 80th column stand out (PEP 8 Style Guide for Python Code)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-highlight ColorColumn guibg=Gray15 ctermbg=235
+hi ColorColumn guibg=Gray15 ctermbg=235
 call matchadd('ColorColumn', '\%80v', 100)
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Highlight matches when jumping to next:
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nn <silent> n     n:call HLNext(0.4)<CR>
-nn <silent> N     N:call HLNext(0.4)<CR>
-
-function! HLNext (blinktime)
-  set invcursorline
-  redraw
-  exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
-  set invcursorline
-  redraw
-endfunction
-
-" function! HLNext (blinktime)
-  " let [bufnum, lnum, col, off]=getpos('.')
-  " let matchlen=strlen(matchstr(strpart(getline('.'),col-1),@/))
-  " let target_pat='\c\%#'.@/
-  " let blinks=3
-  " for n in range(1,blinks)
-  "   let red=matchadd('WhiteOnRed', target_pat, 101)
-  "   redraw
-  "   exec 'sleep ' . float2nr(a:blinktime / (2*blinks) * 1000) . 'm'
-  "   call matchdelete(red)
-  "   redraw
-  "   exec 'sleep ' . float2nr(a:blinktime / (2*blinks) * 1000) . 'm'
-  " endfor
-" endfunction
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -945,25 +980,10 @@ exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 set list
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Auto remove trailing whitespace on save (:w)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-match ErrorMsg '\s\+$'              " Highlight trailing whitespace.
-" au BufWritePre * :%s/\s\+$//e  " Auto remove trailing whitespaces.
-
-" Source: https://vimways.org/2018/from-vimrc-to-vim/
-function StripTrailingWhitespace()
-  if !&binary && &filetype != 'diff'
-    normal mz
-    normal Hmy
-    %s/\s\+$//e
-    normal 'yz<CR>
-    normal `z
-    echo 'Strip trailing whitespace successfully'
-  endif
-endfunction
-
-nn <Leader>x :<C-U>call StripTrailingWhitespace()<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Automatically save the file when a change if made
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au TextChanged,InsertLeave * if &readonly==0 && filereadable(bufname('%'))|silent up|endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1025,7 +1045,7 @@ aug GruvboxMaterial
 
 aug END
 
-colorscheme gruvbox-material
+colo gruvbox-material
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1045,39 +1065,9 @@ endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Specific colorscheme for some files
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" aug ft_text
-"   au!
-"   au FileType html,vim,vimwiki,text,markdown colorscheme PaperColor
-
-"   if hr >= 19
-"     au FileType html,vim,vimwiki,text,markdown setl background=dark
-
-"   elseif hr >= 13
-"     au FileType html,vim,vimwiki,text,markdown setl background=light
-
-"   elseif hr >= 7
-"     au FileType html,vim,vimwiki,text,markdown setl background=light
-
-"   elseif hr >= 1
-"     au FileType html,vim,vimwiki,text,markdown setl background=dark
-
-"   endif
-" aug END
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Highlight search
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 hi Search guibg=peru guifg=wheat
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => AutoSave everytime a change is made.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au TextChanged * if &readonly==0 && filereadable(bufname('%'))|silent up|endif
-" au TextChanged * :w
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1098,54 +1088,54 @@ aug line_return
         \ endif
 aug END
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Block Colours
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:blockcolour_state = 0
-function! BlockColor() " {{{
-  if g:blockcolour_state
-    let g:blockcolour_state = 0
-    call matchdelete(77880)
-    call matchdelete(77881)
-    call matchdelete(77882)
-    call matchdelete(77883)
-  else
-    let g:blockcolour_state = 1
-    call matchadd("BlockColor1", '^ \{4}.*', 1, 77880)
-    call matchadd("BlockColor2", '^ \{8}.*', 2, 77881)
-    call matchadd("BlockColor3", '^ \{12}.*', 3, 77882)
-    call matchadd("BlockColor4", '^ \{16}.*', 4, 77883)
-  endif
-endfunction " }}}
-nn <leader>B :call BlockColor()<CR>
-
 " }}}
+" ============================================================================
+" STATUS LINE {{{
+" ============================================================================
+
+fu! s:ShowGitBranch()
+  let root = systemlist('git rev-parse --show-toplevel')[0]
 
 
-" STATUS LINE ------------------------------------------------------------ {{{
+  if v:shell_error
+    " Always show the status line on the last window.
+    set laststatus=2
+    " Clear status line when vimrc is reloaded.
+    set stl=
+    set stl+=%2*
+    " Current mode
+    set stl=\\|\ %{GitStatus()}\ \|
+    " Status line left side
+    set stl+=\ \%f
+    set stl+=\ \|\ %M\%Y\%R\ \|
+    " Use a divider to separate the left side from the right side.
+    set stl+=%=
+    " Status line right side.
+    set stl+=\ row:\ %l\/\%L\ \|\ col:\ %c\ \|\ percent:\ %p%%\ \|
 
-" Always show the status line on the last window.
-set laststatus=2
+  else
+    " Always show the status line on the last window.
+    set laststatus=2
+    " Clear status line when vimrc is reloaded.
+    set stl=
+    set stl+=%2*
+    " Current mode
+    set stl=\\|\ %{GitStatus()}\ \|
+    " Status line left side
+    set stl+=\ \%f
+    " Show Git branch
+    set stl+=\ %{b:gitbranch}
+    set stl+=\ \|\ %M\%Y\%R\ \|
+    " Use a divider to separate the left side from the right side.
+    set stl+=%=
+    " Status line right side.
+    set stl+=\ row:\ %l\/\%L\ \|\ col:\ %c\ \|\ percent:\ %p%%\ \|
 
-" Clear status line when vimrc is reloaded.
-set stl=
-set stl+=%2*
+  end
+endf
 
-" Current mode
-set stl=\\|\ %{GitStatus()}\ \|
+au VimEnter,WinEnter,BufEnter * call s:ShowGitBranch()
 
-" Status line left side
-set stl+=\ \ %f
-" Leave this line until finding out how to check if a dir is a git repo
-" set stl+=\ %{b:gitbranch}
-set stl+=\ \|\ %M\ %Y\ %R\ \|
-
-" Use a divider to separate the left side from the right side.
-set stl+=%=
-
-" Status line right side.
-set stl+=\ row:\ %l\/\%L\ \|\ col:\ %c\ \|\ percent:\ %p%%\ \|
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1157,28 +1147,6 @@ function! GitStatus()
   return printf('+%d  ~%d  -%d', a, m, r)
 endfunction
 
-" Show Mode
-" function! StatuslineMode()
-"   let l:mode=mode()
-"   if l:mode==#"n"
-"     return "NORMAL"
-"   elseif l:mode==?"v"
-"     return "VISUAL"
-"   elseif l:mode==#"i"
-"     return "INSERT"
-"   elseif l:mode==#"R"
-"     return "REPLACE"
-"   elseif l:mode==?"s"
-"     return "SELECT"
-"   elseif l:mode==#"t"
-"     return "TERMINAL"
-"   elseif l:mode==#"c"
-"     return "COMMAND"
-"   elseif l:mode==#"!"
-"     return "SHELL"
-"   endif
-" endfunction
-
 " Show Git Branch
 function! StatuslineGitBranch()
   let b:gitbranch=""
@@ -1187,7 +1155,7 @@ function! StatuslineGitBranch()
       let l:dir=expand('%:p:h')
       let l:gitrevparse = system("git -C ".l:dir." rev-parse --abbrev-ref HEAD")
       if !v:shell_error
-        let b:gitbranch="(".substitute(l:gitrevparse, '\n', '', 'g').") "
+        let b:gitbranch="{".substitute(l:gitrevparse, '\n', '', 'g')."}"
       endif
     catch
     endtry
@@ -1200,9 +1168,9 @@ aug GetGitBranch
 aug END
 
 " }}}
-
-
-" PYTHON ------------------------------------------------------------ {{{
+" ============================================================================
+" PYTHON {{{
+" ============================================================================
 
 aug ft_python
 
@@ -1239,9 +1207,9 @@ aug ft_python
 aug END
 
 " }}}
-
-
-" GITHUB ------------------------------------------------------------ {{{
+" ============================================================================
+" GITHUB {{{
+" ============================================================================
 
 " Set filetype
 au BufEnter ~/.vim/.gitmessage.txt setl ft=gitcommit
@@ -1255,3 +1223,4 @@ au FileType fugitive nn <Leader>p :!clear && echo 'Start pushing local commits t
 au FileType gitconfig setl nocursorline nocursorcolumn
 au FileType gitconfig setl foldlevelstart=99
 au FileType gitcommit setl nornu
+" }}}
