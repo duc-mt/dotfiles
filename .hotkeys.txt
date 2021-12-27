@@ -9,15 +9,14 @@ BSLASH - h - k     : Show hotkeys   (vs)
 BSLASH - g - c     : Show gitconfig (vs)
 BSLASH - v - r - c : Show vimrc     (tabe)
 SPACE  - s         : Source vimrc
-SPACE  - w         : Toggle Maximizer plug-in
 SPACE  - n         : Toggle NERDTree
 SPACE  - f         : Show FZF
-SPACE  - x         : Strip trailing whitespace
 SPACE  - t         : Show floaterm
+BSLASH - m         : Toggle Maximizer plug-in
+BSLASH - C         : Capitalise Each Word
 BSLASH - ]         : Go to next buffer in list
 BSLASH - [         : Go to prev buffer in list
-BSLASH - C         : Capitalise Each Word
-BSLASH - L         : Add line numbers to each line
+
 <F2>	           : Fold all unchanged lines
 <F3>	           : Toggle line highlighting for hunks.
 <F5>	           : Run Python script (doable only for .py)
