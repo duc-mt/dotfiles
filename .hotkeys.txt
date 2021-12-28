@@ -10,9 +10,10 @@ BSLASH - g - c     : Show gitconfig (vs)
 BSLASH - v - r - c : Show vimrc     (tabe)
 SPACE  - s         : Source vimrc
 SPACE  - n         : Toggle NERDTree
-SPACE  - f         : Show FZF
 BSLASH - t         : Show floaterm
 BSLASH - C         : Capitalise Each Word
+CTRL   - p         : Show FZF - fuzzy finder
+CTRL   - m         : Toggle maximizer of the current window
 
 <F2>	           : Fold all unchanged lines
 <F3>	           : Toggle line highlighting for hunks.
