@@ -649,16 +649,14 @@ nn  <silent> <Bslash>gc  : vs ~/.vim/gitconfig    <CR>
 nn  <silent> <Bslash>vrc : tabe ~/.vim/vimrc      <CR>
 nn  <silent> <Leader>s   : so ~/.vim/vimrc        <CR>
 nn  <silent> <Leader>f   : FZF                    <CR>
-nn  <silent> <Bslash>]   : bnext                  <CR>
-nn  <silent> <Bslash>[   : bprevious              <CR>
 
 " Floaterm
-nn  <silent> <Leader>t   : FloatermNew            <CR>
+nn  <silent> <Bslash>t   : FloatermNew            <CR>
 nn  <silent> <F6>        : FloatermPrev           <CR>
 nn  <silent> <F7>        : FloatermNext           <CR>
 nn  <silent> <F8>        : FloatermKill           <CR>
 nn  <silent> <F9>        : FloatermToggle         <CR>
-tno <silent> <Leader>t   <C-\><C-n>:FloatermNew   <CR>
+tno <silent> <Bslash>t   <C-\><C-n>:FloatermNew   <CR>
 tno <silent> <F6>        <C-\><C-n>:FloatermPrev  <CR>
 tno <silent> <F7>        <C-\><C-n>:FloatermNext  <CR>
 tno <silent> <F8>        <C-\><C-n>:FloatermKill  <CR>

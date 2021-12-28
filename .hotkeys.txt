@@ -11,10 +11,8 @@ BSLASH - v - r - c : Show vimrc     (tabe)
 SPACE  - s         : Source vimrc
 SPACE  - n         : Toggle NERDTree
 SPACE  - f         : Show FZF
-SPACE  - t         : Show floaterm
+BSLASH - t         : Show floaterm
 BSLASH - C         : Capitalise Each Word
-BSLASH - ]         : Go to next buffer in list
-BSLASH - [         : Go to prev buffer in list
 
 <F2>	           : Fold all unchanged lines
 <F3>	           : Toggle line highlighting for hunks.
