@@ -1,0 +1,40 @@
+setl tabstop=4
+setl softtabstop=4
+setl shiftwidth=4
+setl smarttab
+setl expandtab
+
+" Make the 80th column stand out (maximum textwidth is 79)
+call matchadd('ColorColumn', '\%80v', 100)
+setl textwidth=79
+
+" Run script
+nn <F5> :w<CR>:!clear && python3 %<CR>
+
+" au FileType python setl omnifunc=pythoncomplete#Complete
+setl define=^\s*\\(def\\\\|class\\)
+" au FileType python compiler nose
+
+" Jesus tapdancing Christ, built-in Python syntax, you couldn't let me
+" override this in a normal way, could you?
+if exists("python_space_error_highlight")
+  unlet python_space_error_highlight
+end
+
+" Jesus, Python.  Five characters of punctuation for a damn string?
+ino <buffer> <d-'> _(u'')<left><left>
+
+let python_highlight_all = 1
+syn keyword pythonDecorator True None False self
+
+map <buffer> F :setl foldmethod=indent<CR>
+
+ino <buffer> $r return
+ino <buffer> $i import
+ino <buffer> $p print
+map <buffer> <leader>1 /class
+map <buffer> <leader>2 /def
+map <buffer> <leader>C ?class
+map <buffer> <leader>D ?def
+
+

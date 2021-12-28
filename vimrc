@@ -11,20 +11,12 @@
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Vim 8 defaults
-unlet! skip_defaults_vim
-silent! source $VIMRUNTIME/defaults.vim
-
-augroup vimrc
-  autocmd!
-augroup END
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load the documentation for all the plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-packloadall          " Load all plugins.
-silent! helptags ALL " Load help for all plugins.
+packloadall          " Load all plugins
+silent! helptags ALL " Load help for all plugins
 
 
 " ============================================================================
@@ -62,24 +54,18 @@ set guioptions-=L
 
 " Use Vim settings, rather then Vi settings. It’s important to have this
 " on the top of your file, as it influences other options.
-set nocompatible
-
+set nocp
 " Allow backspacing over indention, line breaks and insertion start.
 set backspace=indent,eol,start
-
 set history=1000 " Set bigger history of executed commands.
-
-set showcmd      " Show incomplete commands at the bottom.
-
-set showmode     " Show current mode at the bottom.
-
+set sc           " Show incomplete commands at the bottom.
+set smd          " Show current mode at the bottom.
 " Automatically re-read files if unmodified inside Vim.
-set autoread
-
+set ar
 " Manage multiple buffers effectively: the current buffer can be “sent” to
 " the background without writing to disk. When a background buffer become
 " current again, marks and undo-history are remembered.
-set hidden
+set hid
 
 let mapleader="\<Space>"  " Map the leader key to a spacebar.
 
@@ -87,34 +73,27 @@ let mapleader="\<Space>"  " Map the leader key to a spacebar.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => User Interface Options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set laststatus=2 " Always display the status bar.
-
-set ruler        " Always show cursor position.
-
-set noerrorbells " Disable beep on errors.
-
-set visualbell   " Flash screen instead of beeping on errors.
-
-set mouse=a      " Enable mouse for scrolling and resizing.
-
-set cul nocuc    " Enable cursorline, disable cursorcolumn
-
-set nu rnu       " Enable (relative) number
-
-set sb spr       " Split below / right
-
+set ls=2      " Always display the status bar.
+set ru        " Always show cursor position.
+set noeb      " Disable beep on errors.
+set vb        " Flash screen instead of beeping on errors.
+set mouse=a   " Enable mouse for scrolling and resizing.
+set cul nocuc " Enable cursorline, disable cursorcolumn
+set nu rnu    " Enable (relative) number
+set sb spr    " Split below / right
 " Set the window’s title, reflecting the file currently being edited.
 set title
-
 " Maximum number of tab pages that can be opened from the command line.
-set tabpagemax=40
+set tpm=40
+" Maximum width of text that is being inserted set to 80.
+set tw=80
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Wildmenu completion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set wildmenu                   " Enable auto completion menu after <TAB>.
-set wildmode=longest,list,full " Make wildmenu behave akin to Bash completion.
+set wildmenu                   " Enable auto completion menu after <TAB>
+set wildmode=longest,list,full " Make wildmenu behave akin to Bash completion
 
 set wildignore+=.hg,.git,.svn                    " Version control
 set wildignore+=*.aux,*.out,*.toc,*.log,*.idx    " LaTeX intermediate files
@@ -162,69 +141,54 @@ xn p pgvy
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Indentation options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set autoindent     " New lines inherit the indentation of previous lines.
-
-filetype on        " Enable type file detection.
-
-filetype plugin on " Enable and load plugin for the detected file type.
-
-filetype indent on " Load an indent file for the detected file type.
-
-set tabstop=4      " Show existing tab with 4 spaces width.
-
-set shiftwidth=4   " When indenting with ‘>’, use 4 spaces width.
-
-set expandtab      " Use space characters instead of tabs.
-
-set wrap           " Wrap lines.
+set ai           " New lines inherit the indentation of previous lines
+filet on         " Enable type file detection
+filet plugin on  " Enable and load plugin for the detected file type
+filet indent on  " Load an indent file for the detected file type
+set ts=2         " Number of spaces that a <Tab> in the file counts for
+set shiftwidth=2 " Number of spaces when indenting with ‘>’
+set et           " Use space characters instead of tabs
+set sts=2
+set sta
+set wrap
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Search options:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set incsearch    " Find the next match as we type the search.
-
-set nohlsearch   " Highlight searches by default.
-
-set smartcase    " . . . unless you type a capital.
-
-set showmatch    " Show matching words during a search.
-
-set noignorecase " Do not ignore capital letters during search.
+set incsearch    " Find the next match as we type the search
+set nohlsearch   " Highlight searches by default
+set smartcase    " . . . unless you type a capital
+set showmatch    " Show matching words during a search
+set noignorecase " Do not ignore capital letters during search
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text rendering options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set encoding=utf-8  " Use an encoding that supports Unicode.
-
+set encoding=utf-8  " Use an encoding that supports Unicode
 " Wrap lines at convenient points.
-" Avoid wrapping a line in the middle of a word.
+" Avoid wrapping a line in the middle of a word
 set linebreak
-
-" The number of screen lines to keep above and below the cursor.
+" The number of screen lines to keep above and below the cursor
 set scrolloff=3
-
-" The number of screen columns to keep to the left and right of the cursor.
+" The number of screen columns to keep to the left and right of the cursor
 set sidescrolloff=5
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Miscellaneous Options:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Display a confirmation dialogue when closing an unsaved file.
+" Display a confirmation dialogue when closing an unsaved file
 set confirm
-
-" Ignore files mode lines; use vimrc configurations instead.
+" Ignore files mode lines; use vimrc configurations instead
 set nomodeline
-
-set nrformats-=octal " Interpret octal as decimal when incrementing numbers.
-
-" set shell            " The shell used to execute commands.
+" Interpret octal as decimal when incrementing numbers
+set nrformats-=octal
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Set up persistent undo across all files.
+" => Set up persistent undo across all files
 "    means that you can undo even when you close a buffer/VIM
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 try
@@ -237,7 +201,7 @@ endtry
 " Create undodir directory if possible and does not exist yet
 let targetdir=$HOME . "/.vim/.tmp/.undo"
 if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
-  call mkdir(targetdir, "p", 0700)
+  cal mkdir(targetdir, "p", 0700)
 endif
 
 
@@ -248,7 +212,7 @@ set backupdir=~/.vim/.tmp/.backup/ " backups
 " Create undodir directory if possible and does not exist yet
 let targetdir=$HOME . "/.vim/.tmp/.backup"
 if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
-  call mkdir(targetdir, "p", 0700)
+  cal mkdir(targetdir, "p", 0700)
 endif
 
 set noswapfile
@@ -322,7 +286,7 @@ nn <silent> <Leader>l :Lines<CR>
 " Allow passing optional flags into the Rg command.
 "   Example: :Rg myterm -g '*.md'
 command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
+  \ cal fzf#vim#grep(
   \ "rg --column --line-number --no-heading --color=always --smart-case " .
   \ <q-args>, 1, fzf#vim#with_preview(), <bang>0)
 
@@ -499,7 +463,7 @@ fu! s:goyo_enter()
 endf
 
 " Call the GoyoEnter event's function
-au! User GoyoEnter nested call <SID>goyo_enter()
+au! User GoyoEnter nested cal <SID>goyo_enter()
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -741,69 +705,6 @@ ia MS Microsoft
 ia ytb YouTube
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Python
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" General, common key bindings
-au FileType python ia cc #
-au FileType python ia tr True
-au FileType python ia fa False
-au FileType python ia """ """<CR><CR>"""<Esc>kh
-au FileType python ia var # Variable initialisation.<CR>
-au FileType python ia validanswers VALID_ANSWERS = ['y', 'yes', 'n', 'no']<CR>
-
-
-" Description
-
-" # !/usr/bin/python3
-
-" # ----------------------------------------------------------------------------
-" # |
-" # | File:         file_name.py
-" # | Author:       Tan Duc Mai
-" # | Email:        tan.duc.work@gmail.com
-" # | Date:         03-Dec-2021
-" # | Description:
-" # |   I hereby declare that I completed this work without any improper help
-" # |   from a third party and without using any aids other than those cited.
-" # |
-" # ----------------------------------------------------------------------------
-
-" # ----------------------------------------------------------------------------
-" # |
-" # | File:         file_name.py
-" # | Author:       Tan Duc Mai
-" # | Student ID:   517925
-" # | Description:
-" # |   This is my own work as defined by the Eynesbury's
-" # |   Academic Misconduct Policy.
-" # |
-" # ----------------------------------------------------------------------------
-
-
-" Function docstring
-au FileType python ia df def :<CR>"""<CR><CR>Parameters<CR>----------<CR><CR><CR>Returns<CR>-------<CR><CR>"""<CR><CR><Esc>12kllli<Del>
-
-
-" Section headings
-au FileType python ia -constant- # ------------------------------- Named Constant ------------------------------<CR><Esc>h
-
-au FileType python ia -constants- # ------------------------------- Named Constants -----------------------------<CR><Esc>h
-
-au FileType python ia -import- # ------------------------------- Module Import -------------------------------<CR><Esc>h
-
-au FileType python ia -imports- # ------------------------------- Module Imports -------------------------------<CR><Esc>h
-
-au FileType python ia -func- # ---------------------------- Function Definition ----------------------------<CR><Esc>h
-
-au FileType python ia -funcs- # ---------------------------- Function Definitions ---------------------------<CR><esc>h
-
-au FileType python ia -program- # ---------------------------------- Program ----------------------------------<CR><Esc>h
-
-au FileType python ia -m- # ------------------------------- Main Function -------------------------------<CR>def main():<CR>
-
-au FileType python ia -main- # --------------------------- Call the Main Function --------------------------<CR>if __name__ == '__main__':<CR>main()<Esc>
-
 " }}}
 " ============================================================================
 " FUNCTIONS & COMMANDS {{{
@@ -821,7 +722,7 @@ fu! s:root()
     ec 'Changed directory to: '.root
   end
 endf
-com! Root call s:root()
+com! Root cal s:root()
 
 " ----------------------------------------------------------------------------
 " :AddLineNumber | Add line numbers to each line
@@ -831,7 +732,7 @@ fu! AddLineNumber()
   %s/\s\+$//e
   ec 'Add Line Numbers To Each Line'
 endf
-com! LineNumber call AddLineNumber()
+com! LineNumber cal AddLineNumber()
 
 " ----------------------------------------------------------------------------
 " Capitalise Each Word
@@ -840,7 +741,7 @@ fu! CapitaliseEachWord()
   s/\v<(.)(\w*)/\u\1\L\2/g
   ec 'Capitalise Each Word In The Current Line'
 endf
-com! CapitaliseEachWord call CapitaliseEachWord()
+com! CapitaliseEachWord cal CapitaliseEachWord()
 nn <silent> <Bslash>C :CapitaliseEachWord<CR>
 vn <silent> <Bslash>C :CapitaliseEachWord<CR>
 
@@ -857,9 +758,9 @@ fu! StripTrailingWhitespace()
     ec 'Strip Trailing Whitespace Successfully'
   end
 endf
-com! StripTrailingWhitespace call StripTrailingWhitespace()
+com! StripTrailingWhitespace cal StripTrailingWhitespace()
 au BufWritePre * if &readonly==0 && filereadable(bufname('%'))
-      \| call StripTrailingWhitespace()
+      \| cal StripTrailingWhitespace()
       \| endif
 
 " ----------------------------------------------------------------------------
@@ -872,8 +773,8 @@ fu! HLNext (blinktime)
   set invcursorline
   redr
 endf
-nn <silent> n     n:call HLNext(0.4)<CR>
-nn <silent> N     N:call HLNext(0.4)<CR>
+nn <silent> n     n:cal HLNext(0.4)<CR>
+nn <silent> N     N:cal HLNext(0.4)<CR>
 
 " }}}
 " ============================================================================
@@ -904,7 +805,7 @@ fun! IgnoreSpell()
   sy cluster Spell add=InlineURL
 endf
 
-au BufRead,BufNewFile * :call IgnoreSpell()
+au BufRead,BufNewFile * :cal IgnoreSpell()
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -950,16 +851,10 @@ au FileType vim setl foldmethod=marker
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => If the current file type is HTML, set indentation to 2 spaces.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au FileType html,vim,vimwiki setl tabstop=2 shiftwidth=2 expandtab
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Make the 80th column stand out (PEP 8 Style Guide for Python Code)
+" => Make the 81st column stand out (maximum textwidth is 80)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 hi ColorColumn guibg=Gray15 ctermbg=235
-call matchadd('ColorColumn', '\%80v', 100)
+cal matchadd('ColorColumn', '\%81v', 100)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1129,7 +1024,7 @@ fu! s:ShowGitBranch()
   end
 endf
 
-au VimEnter,WinEnter,BufEnter * call s:ShowGitBranch()
+au VimEnter,WinEnter,BufEnter * cal s:ShowGitBranch()
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1158,46 +1053,7 @@ endfunction
 
 aug GetGitBranch
   au!
-  au VimEnter,WinEnter,BufEnter * call StatuslineGitBranch()
-aug END
-
-" }}}
-" ============================================================================
-" PYTHON {{{
-" ============================================================================
-
-aug ft_python
-
-  au!
-
-  " Map the <F5> key to run a Python script inside Vim.
-  au Filetype python nn <F5> :w<CR>:!clear && python3 %<CR>
-
-  " au FileType python setl omnifunc=pythoncomplete#Complete
-  au FileType python setl define=^\s*\\(def\\\\|class\\)
-  " au FileType python compiler nose
-  au FileType man nn <buffer> <CR> :q<CR>
-
-  " Jesus tapdancing Christ, built-in Python syntax, you couldn't let me
-  " override this in a normal way, could you?
-  au FileType python if exists("python_space_error_highlight") | unlet python_space_error_highlight | endif
-
-  " Jesus, Python.  Five characters of punctuation for a damn string?
-  au FileType python ino <buffer> <d-'> _(u'')<left><left>
-
-  let python_highlight_all = 1
-  au FileType python syn keyword pythonDecorator True None False self
-
-  au FileType python map <buffer> F :setl foldmethod=indent<CR>
-
-  au FileType python ino <buffer> $r return
-  au FileType python ino <buffer> $i import
-  au FileType python ino <buffer> $p print
-  au FileType python map <buffer> <leader>1 /class
-  au FileType python map <buffer> <leader>2 /def
-  au FileType python map <buffer> <leader>C ?class
-  au FileType python map <buffer> <leader>D ?def
-
+  au VimEnter,WinEnter,BufEnter * cal StatuslineGitBranch()
 aug END
 
 " }}}
