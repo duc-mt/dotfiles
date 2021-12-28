@@ -840,8 +840,9 @@ fu! CapitaliseEachWord()
   s/\v<(.)(\w*)/\u\1\L\2/g
   ec 'Capitalise Each Word In The Current Line'
 endf
-nn <silent> <Bslash>C :s/\v<(.)(\w*)/\u\1\L\2/g<CR>
-vn <silent> <Bslash>C :s/\v<(.)(\w*)/\u\1\L\2/g<CR>
+com! CapitaliseEachWord call CapitaliseEachWord()
+nn <silent> <Bslash>C :CapitaliseEachWord<CR>
+vn <silent> <Bslash>C :CapitaliseEachWord<CR>
 
 " ----------------------------------------------------------------------------
 " :StripTrailingWhitespace | Auto remove trailing whitespace
@@ -857,6 +858,9 @@ fu! StripTrailingWhitespace()
   end
 endf
 com! StripTrailingWhitespace call StripTrailingWhitespace()
+au BufWritePre * if &readonly==0 && filereadable(bufname('%'))
+      \| call StripTrailingWhitespace()
+      \| endif
 
 " ----------------------------------------------------------------------------
 " => Highlight matches when jumping to next:
