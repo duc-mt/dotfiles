@@ -112,3 +112,6 @@
 [submodule "pack/plugins/start/carbon-now-sh"]
 	path = pack/plugins/start/carbon-now-sh
 	url = https://github.com/kristijanhusak/vim-carbon-now-sh.git
+[submodule "pack/colours/opt/one"]
+	path = pack/colours/opt/one
+	url = https://github.com/rakr/vim-one.git
