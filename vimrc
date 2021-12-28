@@ -525,8 +525,8 @@ let g:carbon_now_sh_options =
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Maximizer
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nn <silent> <C-M>   : MaximizerToggle      <CR>
-vn <silent> <C-M>   : MaximizerToggle      <CR>gv
+nn <silent> <Leader>m   : MaximizerToggle      <CR>
+vn <silent> <Leader>m   : MaximizerToggle      <CR>gv
 
 " }}}
 " ============================================================================
@@ -710,7 +710,7 @@ nn  <silent> <Bslash>hk  : vs ~/.vim/.hotkeys.txt <CR>
 nn  <silent> <Bslash>gc  : vs ~/.vim/gitconfig    <CR>
 nn  <silent> <Bslash>vrc : tabe $MYVIMRC          <CR>
 nn  <silent> <Leader>s   : so $MYVIMRC            <CR>
-nn  <silent> <C-P>       : FZF -m                 <CR>
+nn  <silent> <Leader>p   : FZF -m                 <CR>
 
 " Floaterm
 nn  <silent> <Bslash>t   : FloatermNew            <CR>
