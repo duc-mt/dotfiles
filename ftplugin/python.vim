@@ -33,7 +33,6 @@ nn <F5> :w<CR>:!clear && python3 %<CR>
 
 au FileType python setl omnifunc=pythoncomplete#Complete
 setl define=^\s*\\(def\\\\|class\\)
-au FileType python compiler nose
 
 if exists("python_space_error_highlight")
   unlet python_space_error_highlight
