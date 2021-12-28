@@ -145,9 +145,18 @@ set completeopt=longest,menuone,preview
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Allow copied vim text to also be added to clipboard
+" Register / Clipboard
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Allow copied vim text to also be added to clipboard
 set clipboard=unnamed,unnamedplus
+
+" Prevent x and the delete key from overriding what's in the clipboard
+nn x "_x
+nn X "_x
+nn <Del> "_x
+
+" Prevent selecting and pasting from overwriting what you originally copied
+xn p pgvy
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -280,6 +289,44 @@ let NERDTreeWinSize           = 30
 let NERDTreeMinimalUI         = 1
 let NERDTreeDirArrows         = 1
 let NERDTreeAutoDeleteBuffer  = 1
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => FZF
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
+
+" Customise fzf colours to match your colourscheme.
+let g:fzf_colours =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-b': 'split',
+  \ 'ctrl-v': 'vsplit',
+  \ 'ctrl-y': {lines -> setreg('*', join(lines, "\n"))}}
+
+" Map a few common things to do with FZF.
+nn <silent> <Leader><Enter> :Buffers<CR>
+nn <silent> <Leader>l :Lines<CR>
+
+" Allow passing optional flags into the Rg command.
+"   Example: :Rg myterm -g '*.md'
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \ "rg --column --line-number --no-heading --color=always --smart-case " .
+  \ <q-args>, 1, fzf#vim#with_preview(), <bang>0)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -486,6 +533,14 @@ let g:carbon_now_sh_options =
 \ { 'ln': 'true',
   \ 'fm': 'Fira Code' }
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Maximizer
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nn <silent><C-M>   :MaximizerToggle      <CR>
+vn <silent><C-M>   :MaximizerToggle      <CR>gv
+ino <silent><C-M>   <C-o>:MaximizerToggle <CR>
+
 " }}}
 " ============================================================================
 " MAPPINGS {{{
@@ -519,6 +574,26 @@ vn ;; <Esc>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nn Y y$
 nn vv <C-V>$
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Keep cursor at the bottom of the visual selection after you yank it.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+vm y ygv<Esc>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Format paragraph (selected or not) to 80 character lines
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nn <Leader>g gqap
+xn <Leader>g gqa
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Seamlessly treat visual lines as actual lines when moving around
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nn j gj
+nn k gk
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -581,7 +656,7 @@ vn zc zM
 " Start editing with all folds closed
 set foldlevelstart=0
 
-highlight Folded guibg=Gray8 guifg=Gray ctermbg=235  ctermfg=0
+hi Folded guibg=Gray8 guifg=Gray ctermbg=235  ctermfg=0
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -646,9 +721,9 @@ map <right> <nop>
 
 nn  <silent> <Bslash>hk  : vs ~/.vim/.hotkeys.txt <CR>
 nn  <silent> <Bslash>gc  : vs ~/.vim/gitconfig    <CR>
-nn  <silent> <Bslash>vrc : tabe ~/.vim/vimrc      <CR>
-nn  <silent> <Leader>s   : so ~/.vim/vimrc        <CR>
-nn  <silent> <Leader>f   : FZF                    <CR>
+nn  <silent> <Bslash>vrc : tabe $MYVIMRC          <CR>
+nn  <silent> <Leader>s   : so $MYVIMRC            <CR>
+nn  <silent> <C-P>       : FZF -m                 <CR>
 
 " Floaterm
 nn  <silent> <Bslash>t   : FloatermNew            <CR>
@@ -849,6 +924,16 @@ aug readonly
   au BufEnter ~/.vim/pack/* setl nomodifiable
   au BufEnter ~/.vim/pack/* setl nocursorline nocursorcolumn
 aug END
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Only show the cursor line in the active buffer.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup CursorLine
+    au!
+    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
+augroup END
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

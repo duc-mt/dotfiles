@@ -112,6 +112,6 @@
 [submodule "pack/colours/opt/one"]
 	path = pack/colours/opt/one
 	url = https://github.com/rakr/vim-one.git
-[submodule "pack/plugins/start/zoom"]
-	path = pack/plugins/start/zoom
-	url = https://github.com/dhruvasagar/vim-zoom.git
+[submodule "pack/plugins/start/maximizer"]
+	path = pack/plugins/start/maximizer
+	url = https://github.com/szw/vim-maximizer.git
