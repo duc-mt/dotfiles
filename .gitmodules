@@ -82,9 +82,6 @@
 [submodule "pack/git/start/rhubarb"]
 	path = pack/git/start/rhubarb
 	url = https://github.com/tpope/vim-rhubarb.git
-[submodule "pack/plugins/start/maximizer"]
-	path = pack/plugins/start/maximizer
-	url = https://github.com/szw/vim-maximizer.git
 [submodule "pack/file-system/start/vinegar"]
 	path = pack/file-system/start/vinegar
 	url = https://github.com/tpope/vim-vinegar.git
@@ -115,3 +112,6 @@
 [submodule "pack/colours/opt/one"]
 	path = pack/colours/opt/one
 	url = https://github.com/rakr/vim-one.git
+[submodule "pack/plugins/start/zoom"]
+	path = pack/plugins/start/zoom
+	url = https://github.com/dhruvasagar/vim-zoom.git
