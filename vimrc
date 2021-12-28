@@ -649,7 +649,6 @@ nn  <silent> <Bslash>gc  : vs ~/.vim/gitconfig    <CR>
 nn  <silent> <Bslash>vrc : tabe ~/.vim/vimrc      <CR>
 nn  <silent> <Leader>s   : so ~/.vim/vimrc        <CR>
 nn  <silent> <Leader>f   : FZF                    <CR>
-nn  <silent> <Bslash>m   : MaximizerToggle        <CR>
 nn  <silent> <Bslash>]   : bnext                  <CR>
 nn  <silent> <Bslash>[   : bprevious              <CR>
 

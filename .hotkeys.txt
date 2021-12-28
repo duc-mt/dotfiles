@@ -12,7 +12,6 @@ SPACE  - s         : Source vimrc
 SPACE  - n         : Toggle NERDTree
 SPACE  - f         : Show FZF
 SPACE  - t         : Show floaterm
-BSLASH - m         : Toggle Maximizer plug-in
 BSLASH - C         : Capitalise Each Word
 BSLASH - ]         : Go to next buffer in list
 BSLASH - [         : Go to prev buffer in list
