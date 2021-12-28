@@ -239,12 +239,11 @@ nn <silent> <expr> <Leader>n g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufex
 
 " Have NERDtree show hidden files, but ignore certain files and directories
 let NERDTreeShowHidden=1
-let NERDTreeIgnore=['__pycache__','\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\~$', 'pip-log\.txt$', 'whoosh_index', 'xapian_index', '.*.pid', 'monitor.py', '.*-fixtures-.*.json', '.*\.o$', 'db.db']
+let NERDTreeIgnore=['__pycache__','\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\~$', 'pip-log\.txt$', 'whoosh_index', 'xapian_index', '.*.pid', 'monitor.py', '.*-fixtures-.*.json', '.*\.o$', 'db.db']
 
 let NERDTreeCaseSensitiveSort = 1
 let NERDTreeNaturalSort       = 1
 let NERDTreeSortHiddenFirst   = 1
-let NERDTreeRespectWildIgnore = 1
 let NERDTreeQuitOnOpen        = 1
 let NERDTreeWinPos            = "right"
 let NERDTreeWinSize           = 30
@@ -806,6 +805,12 @@ fun! IgnoreSpell()
 endf
 
 au BufRead,BufNewFile * :cal IgnoreSpell()
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Open pdf files in the default pdf reader
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au BufRead *.pdf sil exe "!xdg-open " . shellescape(expand("%:p")) | bd | let &ft=&ft | redraw!
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
