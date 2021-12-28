@@ -8,12 +8,12 @@
 BSLASH - h - k     : Show hotkeys   (vs)
 BSLASH - g - c     : Show gitconfig (vs)
 BSLASH - v - r - c : Show vimrc     (tabe)
-SPACE  - s         : Source vimrc
-SPACE  - n         : Toggle NERDTree
 BSLASH - t         : Show floaterm
 BSLASH - C         : Capitalise Each Word
-CTRL   - p         : Show FZF - fuzzy finder
-CTRL   - m         : Toggle maximizer of the current window
+SPACE  - s         : Source vimrc
+SPACE  - n         : Toggle NERDTree
+SPACE  - p         : Show FZF - fuzzy finder
+SPACE  - m         : Toggle maximizer of the current window
 
 <F2>	           : Fold all unchanged lines
 <F3>	           : Toggle line highlighting for hunks.
