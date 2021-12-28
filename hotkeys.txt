@@ -15,11 +15,11 @@ SPACE  - n         : Toggle NERDTree
 SPACE  - p         : Show FZF - fuzzy finder
 SPACE  - m         : Toggle maximizer of the current window
 
-<F2>	           : Fold all unchanged lines
-<F3>	           : Toggle line highlighting for hunks.
-<F5>	           : Run Python script (doable only for .py)
-<F6>	           : Show previous floaterm
-<F7>	           : Show next floaterm
-<F8>	           : Kill current floaterm
-<F9>	           : Toggle all floaterms
-<F12>	           : Capture code to carbon.now.sh
+<F2>               : Fold all unchanged lines
+<F3>               : Toggle line highlighting for hunks.
+<F5>               : Run Python script (doable only for .py)
+<F6>               : Show previous floaterm
+<F7>               : Show next floaterm
+<F8>               : Kill current floaterm
+<F9>               : Toggle all floaterms
+<F12>              : Capture code to carbon.now.sh
