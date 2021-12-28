@@ -988,48 +988,47 @@ aug END
 " STATUS LINE {{{
 " ============================================================================
 
-fu! s:ShowGitBranch()
-  let root = systemlist('git rev-parse --show-toplevel')[0]
+" fu! s:ShowGitBranch()
+"   let root = systemlist('git rev-parse --show-toplevel')[0]
 
+"   if v:shell_error
+" Always show the status line on the last window.
+set laststatus=2
+" Clear status line when vimrc is reloaded.
+set stl=
+set stl+=%2*
+" Current mode
+set stl=\\|\ %{GitStatus()}\ \|
+" Status line left side
+set stl+=\ \%f
+set stl+=\ \|\ %M\%Y\%R\ \|
+" Use a divider to separate the left side from the right side.
+set stl+=%=
+" Status line right side.
+set stl+=\ row:\ %l\/\%L\ \|\ col:\ %c\ \|\ percent:\ %p%%\ \|
 
-  if v:shell_error
-    " Always show the status line on the last window.
-    set laststatus=2
-    " Clear status line when vimrc is reloaded.
-    set stl=
-    set stl+=%2*
-    " Current mode
-    set stl=\\|\ %{GitStatus()}\ \|
-    " Status line left side
-    set stl+=\ \%f
-    set stl+=\ \|\ %M\%Y\%R\ \|
-    " Use a divider to separate the left side from the right side.
-    set stl+=%=
-    " Status line right side.
-    set stl+=\ row:\ %l\/\%L\ \|\ col:\ %c\ \|\ percent:\ %p%%\ \|
+  " el
+  "   " Always show the status line on the last window.
+  "   set laststatus=2
+  "   " Clear status line when vimrc is reloaded.
+  "   set stl=
+  "   set stl+=%2*
+  "   " Current mode
+  "   set stl=\\|\ %{GitStatus()}\ \|
+  "   " Status line left side
+  "   set stl+=\ \%f
+  "   " Show Git branch
+  "   set stl+=\ %{b:gitbranch}
+  "   set stl+=\ \|\ %M\%Y\%R\ \|
+  "   " Use a divider to separate the left side from the right side.
+  "   set stl+=%=
+  "   " Status line right side.
+  "   set stl+=\ row:\ %l\/\%L\ \|\ col:\ %c\ \|\ percent:\ %p%%\ \|
 
-  else
-    " Always show the status line on the last window.
-    set laststatus=2
-    " Clear status line when vimrc is reloaded.
-    set stl=
-    set stl+=%2*
-    " Current mode
-    set stl=\\|\ %{GitStatus()}\ \|
-    " Status line left side
-    set stl+=\ \%f
-    " Show Git branch
-    set stl+=\ %{b:gitbranch}
-    set stl+=\ \|\ %M\%Y\%R\ \|
-    " Use a divider to separate the left side from the right side.
-    set stl+=%=
-    " Status line right side.
-    set stl+=\ row:\ %l\/\%L\ \|\ col:\ %c\ \|\ percent:\ %p%%\ \|
+  " end
+" endf
 
-  end
-endf
-
-au VimEnter,WinEnter,BufEnter * cal s:ShowGitBranch()
+" au VimEnter,WinEnter,BufEnter * cal s:ShowGitBranch()
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
