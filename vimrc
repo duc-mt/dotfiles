@@ -527,9 +527,8 @@ let g:carbon_now_sh_options =
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Maximizer
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nn <silent><C-M>   :MaximizerToggle      <CR>
-vn <silent><C-M>   :MaximizerToggle      <CR>gv
-ino <silent><C-M>   <C-o>:MaximizerToggle <CR>
+nn <silent> <C-M>   : MaximizerToggle      <CR>
+vn <silent> <C-M>   : MaximizerToggle      <CR>gv
 
 " }}}
 " ============================================================================
