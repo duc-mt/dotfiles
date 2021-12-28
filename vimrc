@@ -261,20 +261,19 @@ set noswapfile
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NERDTree
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Disable cursorline & cursorcolumn on NERDTree.
+" Disable cursorcolumn on NERDTree
 au FileType nerdtree setl nocursorcolumn
 
-" au VimEnter * NERDTree     " Enable NERDTree on Vim start-up.
-" Change how files are opened
+" au VimEnter * NERDTree     " Enable NERDTree on Vim start-up
 
-" Autoclose NERDTree if it's the only open window left.
+" Autoclose NERDTree if it's the only open window left
 au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") &&
 \ b:NERDTree.isTabTree()) | q | endif
 
-" Open NERDTree at the current file or close NERDTree if pressed again.
+" Open NERDTree at the current file or close NERDTree if pressed again
 nn <silent> <expr> <Leader>n g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
 
-" Have NERDtree show hidden files, but ignore certain files and directories.
+" Have NERDtree show hidden files, but ignore certain files and directories
 let NERDTreeShowHidden=1
 let NERDTreeIgnore=['__pycache__','\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\~$', 'pip-log\.txt$', 'whoosh_index', 'xapian_index', '.*.pid', 'monitor.py', '.*-fixtures-.*.json', '.*\.o$', 'db.db']
 
@@ -1128,7 +1127,6 @@ fu! s:ShowGitBranch()
 endf
 
 au VimEnter,WinEnter,BufEnter * call s:ShowGitBranch()
-
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
