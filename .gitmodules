@@ -88,9 +88,6 @@
 [submodule "pack/syntax/opt/indentLine"]
 	path = pack/syntax/opt/indentLine
 	url = https://github.com/Yggdroot/indentLine.git
-[submodule "pack/writing/opt/tpope-markdown"]
-	path = pack/writing/opt/tpope-markdown
-	url = https://github.com/tpope/vim-markdown.git
 [submodule "pack/writing/opt/plasticboy-markdown"]
 	path = pack/writing/opt/plasticboy-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
