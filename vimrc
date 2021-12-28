@@ -280,7 +280,6 @@ let NERDTreeIgnore=['__pycache__','\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso
 let NERDTreeCaseSensitiveSort = 1
 let NERDTreeNaturalSort       = 1
 let NERDTreeSortHiddenFirst   = 1
-let NERDTreeChDirMode         = 3
 let NERDTreeRespectWildIgnore = 1
 let NERDTreeQuitOnOpen        = 1
 let NERDTreeWinPos            = "right"
