@@ -505,16 +505,6 @@ au! User GoyoEnter nested call <SID>goyo_enter()
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Fugitive
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Quit fugitive
-au FileType fugitive nn q :q<CR>
-
-" Quickly do a git push
-au FileType fugitive nn <Space>p :!clear<CR>:!:!git push<CR>
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Commentary
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au FileType gitconfig setl commentstring=#\ %s
@@ -1227,4 +1217,8 @@ au FileType fugitive nn <Leader>p :!clear && echo 'Start pushing local commits t
 au FileType gitconfig setl nocursorline nocursorcolumn
 au FileType gitconfig setl foldlevelstart=99
 au FileType gitcommit setl nornu
+
+" Quit fugitive
+au FileType fugitive nn q :q<CR>
+
 " }}}
