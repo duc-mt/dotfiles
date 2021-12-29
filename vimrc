@@ -744,51 +744,48 @@ com! Root cal s:root()
 fu! AddLineNumber()
   %s/^/\=printf('%-3d',line('.'))
   %s/\s\+$//e
-  ec 'Add Line Numbers To Each Line'
+  ec 'Every Line Has Been Numbered !'
 endf
 com! LineNumber cal AddLineNumber()
 
 " ----------------------------------------------------------------------------
-" Capitalise Each Word
+" :CapitaliseEachWord
 " ----------------------------------------------------------------------------
 fu! CapitaliseEachWord()
   s/\v<(.)(\w*)/\u\1\L\2/g
-  ec 'Capitalise Each Word In The Current Line'
+  ec 'Every Word Has Been Capitalised !'
 endf
 com! CapitaliseEachWord cal CapitaliseEachWord()
 nn <silent> <Bslash>C :CapitaliseEachWord<CR>
 vn <silent> <Bslash>C :CapitaliseEachWord<CR>
 
 " ----------------------------------------------------------------------------
-" :StripTrailingWhitespace | Auto remove trailing whitespace
+" :StripTrailingWhitespace
 " ----------------------------------------------------------------------------
 fu! StripTrailingWhitespace()
   if !&binary && &filetype != 'diff'
-    norm mz
-    norm Hmy
-    %s/\s\+$//e
-    norm 'yz<CR>
-    norm `z
-    ec 'Strip Trailing Whitespace Successfully'
+    if &readonly==0 && filereadable(bufname('%'))
+      let l:save = winsaveview()
+      keepp %s/\s\+$//e
+      cal winrestview(l:save)
+      ec 'Strip Trailing Whitespace Successfully !'
+    end
   end
 endf
 com! StripTrailingWhitespace cal StripTrailingWhitespace()
-au BufWritePre * if &readonly==0 && filereadable(bufname('%'))
-      \| cal StripTrailingWhitespace()
-      \| endif
 
 " ----------------------------------------------------------------------------
 " => Highlight matches when jumping to next:
 " ----------------------------------------------------------------------------
 fu! HLNext (blinktime)
-  set invcursorline
+  se invcursorline
   redr
   exe 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
-  set invcursorline
+  se invcursorline
   redr
 endf
-nn <silent> n     n:cal HLNext(0.4)<CR>
-nn <silent> N     N:cal HLNext(0.4)<CR>
+nn <silent> n  n:cal HLNext(0.4)<CR>
+nn <silent> N  N:cal HLNext(0.4)<CR>
 
 " }}}
 " ============================================================================
@@ -1050,13 +1047,13 @@ set stl+=\ row:\ %l\/\%L\ \|\ col:\ %c\ \|\ percent:\ %p%%\ \|
 " => Vim Scripts
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Get a list of counts of added, modified, and removed lines (current buffer)
-function! GitStatus()
+fu! GitStatus()
   let [a,m,r]=GitGutterGetHunkSummary()
-  return printf('+%d  ~%d  -%d', a, m, r)
-endfunction
+  retu printf('+%d  ~%d  -%d', a, m, r)
+endf
 
 " Show Git Branch
-function! StatuslineGitBranch()
+fu! StatuslineGitBranch()
   let b:gitbranch=""
   if &modifiable
     try
@@ -1064,11 +1061,11 @@ function! StatuslineGitBranch()
       let l:gitrevparse = system("git -C ".l:dir." rev-parse --abbrev-ref HEAD")
       if !v:shell_error
         let b:gitbranch="{".substitute(l:gitrevparse, '\n', '', 'g')."}"
-      endif
-    catch
-    endtry
-  endif
-endfunction
+      end
+    cat
+    endt
+  end
+endf
 
 aug GetGitBranch
   au!
