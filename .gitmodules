@@ -67,9 +67,6 @@
 [submodule "pack/colours/opt/solarized"]
 	path = pack/colours/opt/solarized
 	url = https://github.com/lifepillar/vim-solarized8.git
-[submodule "pack/writing/opt/limelight"]
-	path = pack/writing/opt/limelight
-	url = https://github.com/junegunn/limelight.vim.git
 [submodule "pack/writing/opt/vim-pencil"]
 	path = pack/writing/opt/vim-pencil
 	url = https://github.com/preservim/vim-pencil.git
@@ -112,3 +109,6 @@
 [submodule "pack/plugins/start/maximizer"]
 	path = pack/plugins/start/maximizer
 	url = https://github.com/szw/vim-maximizer.git
+[submodule "pack/writing/start/limelight"]
+	path = pack/writing/start/limelight
+	url = https://github.com/junegunn/limelight.vim.git

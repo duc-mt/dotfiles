@@ -457,8 +457,7 @@ hi SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline gui
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Goyo
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au FileType * nn <Bslash>gy :Goyo<CR>
-let g:goyo_width  = 82
+let g:goyo_width = 82
 
 " Scripts to configure Goyo
 fu! s:goyo_enter()
@@ -467,7 +466,7 @@ fu! s:goyo_enter()
     silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
   end
 
-  aug no_number_relativenumber
+  aug no_nu_renu
     au!
     au InsertLeave * setl nonumber norelativenumber
   aug END
@@ -687,8 +686,9 @@ map <right> <nop>
 nn  <silent> <Bslash>hk  : vs ~/.vim/.hotkeys.txt <CR>
 nn  <silent> <Bslash>gc  : vs ~/.vim/gitconfig    <CR>
 nn  <silent> <Bslash>vrc : tabe $MYVIMRC          <CR>
-nn  <silent> <Leader>s   : so $MYVIMRC            <CR>
+nn  <silent> <Leader>s    : so $MYVIMRC            <CR>
 nn  <silent> <Leader>p   : FZF -m                 <CR>
+nn  <silent> <Leader>G   :Goyo<CR>
 
 " Floaterm
 nn  <silent> <Bslash>t   : FloatermNew            <CR>

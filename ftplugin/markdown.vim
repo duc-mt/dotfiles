@@ -2,11 +2,11 @@
 " Language:     Markdown
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"             __  __    _    ____  _  ______   _____        ___   _
-"            |  \/  |  / \  |  _ \| |/ /  _ \ / _ \ \      / / \ | |
-"            | |\/| | / _ \ | |_) | ' /| | | | | | \ \ /\ / /|  \| |
-"            | |  | |/ ___ \|  _ <| . \| |_| | |_| |\ V  V / | |\  |
-"            |_|  |_/_/   \_\_| \_\_|\_\____/ \___/  \_/\_/  |_| \_|
+"            __  __    _    ____  _  ______   _____        ___   _
+"           |  \/  |  / \  |  _ \| |/ /  _ \ / _ \ \      / / \ | |
+"           | |\/| | / _ \ | |_) | ' /| | | | | | \ \ /\ / /|  \| |
+"           | |  | |/ ___ \|  _ <| . \| |_| | |_| |\ V  V / | |\  |
+"           |_|  |_/_/   \_\_| \_\_|\_\____/ \___/  \_/\_/  |_| \_|
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -16,10 +16,57 @@ end
 
 ru! ftplugin/html.vim ftplugin/html_*.vim ftplugin/html/*.vim
 
+" Enable plugins
+packadd! gfm-syntax 
+
+colo PaperColor
+setl nolisp
+setl nosi
+
 setl comments=fb:*,fb:-,fb:+,n:> commentstring=<!--%s-->
 setl formatoptions+=tcqln formatoptions-=r formatoptions-=o
 setl formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^\\s*[-*+]\\s\\+\\\|^\\[^\\ze[^\\]]\\+\\]:\\&^.\\{4\\}
 
+" ----------------------------------------------------------------------------
+" goyo.vim + limelight.vim
+" ----------------------------------------------------------------------------
+nn <Leader>ll :Limelight!<CR>
+
+let g:limelight_paragraph_span = 1
+let g:limelight_priority = -1
+
+fu! s:goyo_enter()
+  if has('gui_running')
+    set fullscreen
+    set background=light
+    set linespace=7
+  elsei exists('$TMUX')
+    silent !tmux set status off
+  end
+  Limelight
+  let &l:statusline = '%M'
+  hi StatusLine ctermfg=red guifg=red cterm=NONE gui=NONE
+endf
+
+fu! s:goyo_leave()
+  if has('gui_running')
+    set nofullscreen
+    set background=dark
+    set linespace=0
+  el exists('$TMUX')
+    silent !tmux set status on
+  end
+  Limelight!
+endf
+
+au! User GoyoEnter nested call <SID>goyo_enter()
+au! User GoyoLeave nested call <SID>goyo_leave()
+
+nn <Leader>G :Goyo<CR>
+
+" ----------------------------------------------------------------------------
+" Configuration from online srcs
+" ----------------------------------------------------------------------------
 if exists('b:undo_ftplugin')
   let b:undo_ftplugin .= "|setl cms< com< fo< flp<"
 el
@@ -36,7 +83,7 @@ end
 
 fu! s:NotCodeBlock(lnum) abort
   retu synIDattr(synID(a:lnum, 1, 1), 'name') !=# 'markdownCode'
-end
+endf
 
 fu! MarkdownFold() abort
   let line = getline(v:lnum)
@@ -55,7 +102,7 @@ fu! MarkdownFold() abort
   end
 
   retu "="
-end
+endf
 
 fu! s:HashIndent(lnum) abort
   let hash_header = matchstr(getline(a:lnum), '^#\{1,6}')
@@ -69,7 +116,7 @@ fu! s:HashIndent(lnum) abort
       retu '##'
     end
   end
-end
+endf
 
 fu! MarkdownFoldText() abort
   let hash_indent = s:HashIndent(v:foldstart)
@@ -77,7 +124,7 @@ fu! MarkdownFoldText() abort
   let foldsize = (v:foldend - v:foldstart + 1)
   let linecount = '['.foldsize.' lines]'
   retu hash_indent.' '.title.' '.linecount
-end
+endf
 
 if has("folding") && get(g:, "markdown_folding", 0)
   setl foldexpr=MarkdownFold()
@@ -85,5 +132,3 @@ if has("folding") && get(g:, "markdown_folding", 0)
   setl foldtext=MarkdownFoldText()
   let b:undo_ftplugin .= " foldexpr< foldmethod< foldtext<"
 end
-
-" vim:set sw=2:
