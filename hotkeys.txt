@@ -5,21 +5,22 @@
 |_| |_|\___/ |_| |_|\_\_____| |_| |____/
 
 
-BSLASH - h - k     : Show hotkeys   (vs)
-BSLASH - g - c     : Show gitconfig (vs)
-BSLASH - v - r - c : Show vimrc     (tabe)
-BSLASH - t         : Show floaterm
-BSLASH - C         : Capitalise Each Word
-SPACE  - s         : Source vimrc
-SPACE  - n         : Toggle NERDTree
-SPACE  - p         : Show FZF - fuzzy finder
-SPACE  - m         : Toggle maximizer of the current window
+BSLASH - h - k   : Show hotkeys   (vs)
+BSLASH - e - g   : Show gitconfig (tabe)
+BSLASH - e - v   : Show vimrc     (tabe)
+BSLASH - t       : Show floaterm
+BSLASH - C       : Capitalise Each Word
+SPACE  - s       : Source vimrc
+SPACE  - n       : Toggle NERDTree
+SPACE  - g       : Toggle Goyo
+SPACE  - p       : Show FZF - fuzzy finder
+SPACE  - m       : Toggle maximizer of the current window
 
-<F2>               : Fold all unchanged lines
-<F3>               : Toggle line highlighting for hunks.
-<F5>               : Run Python script (doable only for .py)
-<F6>               : Show previous floaterm
-<F7>               : Show next floaterm
-<F8>               : Kill current floaterm
-<F9>               : Toggle all floaterms
-<F12>              : Capture code to carbon.now.sh
+<F2>             : Fold all unchanged lines
+<F3>             : Toggle line highlighting for hunks.
+<F5>             : Run Python script (doable only for .py)
+<F6>             : Show previous floaterm
+<F7>             : Show next floaterm
+<F8>             : Kill current floaterm
+<F9>             : Toggle all floaterms
+<F12>            : Capture code to carbon.now.sh
