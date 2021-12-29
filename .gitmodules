@@ -67,9 +67,6 @@
 [submodule "pack/colours/opt/solarized"]
 	path = pack/colours/opt/solarized
 	url = https://github.com/lifepillar/vim-solarized8.git
-[submodule "pack/writing/opt/vim-pencil"]
-	path = pack/writing/opt/vim-pencil
-	url = https://github.com/preservim/vim-pencil.git
 [submodule "pack/colours/opt/papercolor"]
 	path = pack/colours/opt/papercolor
 	url = https://github.com/NLKNguyen/papercolor-theme.git

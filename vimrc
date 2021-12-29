@@ -218,9 +218,22 @@ endif
 set noswapfile
 
 " }}}
-" ============================================================================
+" ==============================================================================
+" TEMPLATES & CUSTOM VIM FILETYPE SETTINGS {{{
+" ==============================================================================
+autocmd! BufNewFile * silent! or ~/.vim/templates/%:e.tpl
+
+" create a file in ftplugin/filetype.vim for specific settings
+au BufRead,BufNewFile,BufReadPost *.text,*.txt set filetype=text
+au BufRead,BufNewFile,BufReadPost *.md         set filetype=markdown
+au BufRead,BufNewFile,BufReadPost *.jade       set filetype=pug
+au BufRead,BufNewFile,BufReadPost *.pug        set filetype=pug
+au BufRead,BufNewFile,BufReadPost *.coffee     set filetype=coffee
+
+" }}}
+" ==============================================================================
 " PLUGINS {{{
-" ============================================================================
+" ==============================================================================
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NERDTree
@@ -413,19 +426,6 @@ if exists(":Tabularize")
   vn :T  :Tabularize /
 endif
 
-" Call the :Tabularize command each time a | character is inserted
-ino <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
-fu! s:align()
-  let p = '^\s*|\s.*\s|\s*$'
-  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
-    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
-    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
-    Tabularize/|/l1
-    norm! 0
-    cal search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
-  end
-endf
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spelunker
@@ -437,7 +437,6 @@ let g:spelunker_disable_uri_checking                          = 1
 let g:spelunker_disable_email_checking                        = 1
 
 " Disable account name checking, e.g. @foobar, foobar@
-" NOTE: Spell checking is also disabled for JAVA annotations.
 let g:spelunker_disable_account_name_checking                 = 1
 
 " Disable acronym checking
@@ -471,8 +470,8 @@ fu! s:goyo_enter()
     au InsertLeave * setl nonumber norelativenumber
   aug END
 
-  set nocursorline
-  set nocursorcolumn
+  se nocursorline
+  se nocursorcolumn
 endf
 
 " Call the GoyoEnter event's function
@@ -511,10 +510,9 @@ vn <silent> <Leader>m   : MaximizerToggle      <CR>gv
 " ============================================================================
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Basic file system commands
+" => Quit Vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nn <Bslash>m :!mv<Space>%<Space>
-nn <Bslash>c :!cp<Space>%<Space>
+nn <Leader>q :q<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -541,23 +539,9 @@ nn vv <C-V>$
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Keep cursor at the bottom of the visual selection after you yank it.
+" Keep cursor at the bottom of the visual selection after you yank it
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vm y ygv<Esc>
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Format paragraph (selected or not) to 80 character lines
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nn <Leader>g gqap
-xn <Leader>g gqa
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Seamlessly treat visual lines as actual lines when moving around
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nn j gj
-nn k gk
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -584,19 +568,23 @@ nn <Leader>k :m .-2<CR>==
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Fix indenting visual block
+" => Visual mode blockwise indent
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vn < <gv
 vn > >gv
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Record into register 'q' (use 'qq'), playback with 'Q'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nn Q @q
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Move between tabs
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nn <silent> <S-Left>  : tabp<CR>
-nn <silent> <S-Right> : tabn<CR>
-nn <silent> <S-Down>  : tabc<CR>
-nn <silent> <S-Up>    : tabo<CR>
+nn <silent> <S-H> : tabp<CR>
+nn <silent> <S-L> : tabn<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -683,24 +671,24 @@ map <right> <nop>
 " HOTKEYS {{{
 " ============================================================================
 
-nn  <silent> <Bslash>hk  : vs ~/.vim/.hotkeys.txt <CR>
-nn  <silent> <Bslash>gc  : vs ~/.vim/gitconfig    <CR>
-nn  <silent> <Bslash>vrc : tabe $MYVIMRC          <CR>
-nn  <silent> <Leader>s    : so $MYVIMRC            <CR>
-nn  <silent> <Leader>p   : FZF -m                 <CR>
-nn  <silent> <Leader>G   :Goyo<CR>
+nn  <silent> <Bslash>hk  : vs ~/.vim/hotkeys.txt   <CR>
+nn  <silent> <Bslash>eg  : tabe ~/.vim/gitconfig   <CR>
+nn  <silent> <Bslash>ev  : tabe $MYVIMRC           <CR>
+nn  <silent> <Leader>s   : so $MYVIMRC             <CR>
+nn  <silent> <Leader>p   : FZF -m                  <CR>
+nn  <silent> <Leader>g   : Goyo                    <CR>
 
 " Floaterm
-nn  <silent> <Bslash>t   : FloatermNew            <CR>
-nn  <silent> <F6>        : FloatermPrev           <CR>
-nn  <silent> <F7>        : FloatermNext           <CR>
-nn  <silent> <F8>        : FloatermKill           <CR>
-nn  <silent> <F9>        : FloatermToggle         <CR>
-tno <silent> <Bslash>t   <C-\><C-n>:FloatermNew   <CR>
-tno <silent> <F6>        <C-\><C-n>:FloatermPrev  <CR>
-tno <silent> <F7>        <C-\><C-n>:FloatermNext  <CR>
-tno <silent> <F8>        <C-\><C-n>:FloatermKill  <CR>
-tno <silent> <F9>        <C-\><C-n>:FloatermToggle<CR>
+nn  <silent> <Bslash>t   : FloatermNew             <CR>
+nn  <silent> <F6>        : FloatermPrev            <CR>
+nn  <silent> <F7>        : FloatermNext            <CR>
+nn  <silent> <F8>        : FloatermKill            <CR>
+nn  <silent> <F9>        : FloatermToggle          <CR>
+tno <silent> <Bslash>t   <C-\><C-n>:FloatermNew    <CR>
+tno <silent> <F6>        <C-\><C-n>:FloatermPrev   <CR>
+tno <silent> <F7>        <C-\><C-n>:FloatermNext   <CR>
+tno <silent> <F8>        <C-\><C-n>:FloatermKill   <CR>
+tno <silent> <F9>        <C-\><C-n>:FloatermToggle <CR>
 
 " }}}
 " ============================================================================
@@ -773,19 +761,6 @@ fu! StripTrailingWhitespace()
   end
 endf
 com! StripTrailingWhitespace cal StripTrailingWhitespace()
-
-" ----------------------------------------------------------------------------
-" => Highlight matches when jumping to next:
-" ----------------------------------------------------------------------------
-fu! HLNext (blinktime)
-  se invcursorline
-  redr
-  exe 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
-  se invcursorline
-  redr
-endf
-nn <silent> n  n:cal HLNext(0.4)<CR>
-nn <silent> N  N:cal HLNext(0.4)<CR>
 
 " }}}
 " ============================================================================
