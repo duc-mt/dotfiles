@@ -47,8 +47,6 @@ $ git remote add origin https://github.com/tanducmai/dotfiles.git
 $ git push -u origin master
 ```
 ---
----
----
 Clone .vim:
 ```bash
 git clone --recursive https://github.com/tanducmai/dotfiles.git ~/.vim
