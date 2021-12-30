@@ -874,16 +874,16 @@ au TextChanged,InsertLeave * if &readonly==0 && filereadable(bufname('%'))|silen
 syntax on
 
 if has('termguicolours')
-  set termguicolours
-endif
+  se termguicolours
+end
 
 if &term =~ "xterm\\|rxvt"
   " use a light_cyan cursor in insert mode
   let &t_SI = "\<Esc>]12;LightCyan\x7"
   " use an orange cursor otherwise
   let &t_EI = "\<Esc>]12;LightGreen\x7"
-  silent !echo -ne "\033]12;LightGreen\007"
-endif
+  silent !ec -ne "\033]12;LightGreen\007"
+end
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -891,7 +891,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 aug GruvboxMaterial
 
-  packadd! gruvbox-material
+  pa! gruvbox-material
   let g:gruvbox_material_background = 'hard'
   " Enable italic, but disable for comment
   let g:gruvbox_material_enable_italic = 1
@@ -936,14 +936,14 @@ colo gruvbox-material
 let hr=(strftime('%H'))
 
 if hr >= 19
-  set background=dark
-elseif hr >= 13
-  set background=light
-elseif hr >= 7
-  set background=light
-elseif hr >= 1
-  set background=dark
-endif
+  se background=dark
+elsei hr >= 13
+  se background=light
+elsei hr >= 7
+  se background=light
+elsei hr >= 1
+  se background=dark
+end
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -967,7 +967,7 @@ aug line_return
   au BufReadPost *
         \ if line("'\"") > 0 && line("'\"") <= line("$") |
         \     execute 'normal! g`"zvzz' |
-        \ endif
+        \ end
 aug END
 
 " }}}
