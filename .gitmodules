@@ -58,9 +58,6 @@
 [submodule "pack/colours/opt/colorizer"]
 	path = pack/colours/opt/colorizer
 	url = https://github.com/lilydjwg/colorizer.git
-[submodule "pack/colours/opt/tender"]
-	path = pack/colours/opt/tender
-	url = https://github.com/jacoborus/tender.vim.git
 [submodule "pack/writing/opt/markdown-preview"]
 	path = pack/writing/opt/markdown-preview
 	url = https://github.com/iamcco/markdown-preview.nvim.git
