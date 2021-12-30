@@ -13,7 +13,7 @@ BSLASH - C       : Capitalise Each Word
 SPACE  - s       : Source vimrc
 SPACE  - n       : Toggle NERDTree
 SPACE  - g       : Toggle Goyo
-SPACE  - p       : Show FZF - fuzzy finder
+SPACE  - f       : Show FZF - fuzzy finder
 SPACE  - m       : Toggle maximizer of the current window
 
 <F2>             : Fold all unchanged lines

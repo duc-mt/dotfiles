@@ -671,11 +671,11 @@ map <right> <nop>
 " HOTKEYS {{{
 " ============================================================================
 
-nn  <silent> <Bslash>hk  : vs ~/.vim/hotkeys.txt   <CR>
+nn  <silent> <Bslash>hk  : sp ~/.vim/hotkeys.txt   <CR>
 nn  <silent> <Bslash>eg  : tabe ~/.vim/gitconfig   <CR>
 nn  <silent> <Bslash>ev  : tabe $MYVIMRC           <CR>
 nn  <silent> <Leader>s   : so $MYVIMRC             <CR>
-nn  <silent> <Leader>p   : FZF -m                  <CR>
+nn  <silent> <Leader>f   : FZF -m                  <CR>
 nn  <silent> <Leader>g   : Goyo                    <CR>
 
 " Floaterm
