@@ -891,7 +891,7 @@ end
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 aug GruvboxMaterial
 
-  pa! gruvbox-material
+  packadd gruvbox-material
   let g:gruvbox_material_background = 'hard'
   " Enable italic, but disable for comment
   let g:gruvbox_material_enable_italic = 1
