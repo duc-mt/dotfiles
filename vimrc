@@ -285,22 +285,21 @@ let g:fzf_colours =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
+" An action can be a reference to a function that processes selected lines
+fu! s:build_quickfix_list(lines)
+  cal setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  cope
+  cc
+endf
+
 let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
   \ 'ctrl-t': 'tab split',
-  \ 'ctrl-b': 'split',
+  \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit',
   \ 'ctrl-y': {lines -> setreg('*', join(lines, "\n"))}}
 
-" Map a few common things to do with FZF.
-nn <silent> <Leader><Enter> :Buffers<CR>
-nn <silent> <Leader>l :Lines<CR>
-
-" Allow passing optional flags into the Rg command.
-"   Example: :Rg myterm -g '*.md'
-command! -bang -nargs=* Rg
-  \ cal fzf#vim#grep(
-  \ "rg --column --line-number --no-heading --color=always --smart-case " .
-  \ <q-args>, 1, fzf#vim#with_preview(), <bang>0)
+let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.7 } }
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -675,6 +674,7 @@ nn  <silent> <Bslash>hk  : sp ~/.vim/hotkeys.txt   <CR>
 nn  <silent> <Bslash>eg  : tabe ~/.vim/gitconfig   <CR>
 nn  <silent> <Bslash>ev  : tabe $MYVIMRC           <CR>
 nn  <silent> <Leader>s   : so $MYVIMRC             <CR>
+nn  <silent> <Leader>F   : FZF -m ~                 <CR>
 nn  <silent> <Leader>f   : FZF -m                  <CR>
 nn  <silent> <Leader>g   : Goyo                    <CR>
 

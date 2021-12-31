@@ -5,7 +5,7 @@
 |_| |_|\___/ |_| |_|\_\_____| |_| |____/
 
 
-BSLASH - h - k   : Show hotkeys   (vs)
+BSLASH - h - k   : Show hotkeys   (sp)
 BSLASH - e - g   : Show gitconfig (tabe)
 BSLASH - e - v   : Show vimrc     (tabe)
 BSLASH - t       : Show floaterm
@@ -13,7 +13,8 @@ BSLASH - C       : Capitalise Each Word
 SPACE  - s       : Source vimrc
 SPACE  - n       : Toggle NERDTree
 SPACE  - g       : Toggle Goyo
-SPACE  - f       : Show FZF - fuzzy finder
+SPACE  - F       : Show FZF of the home '~' directory
+SPACE  - f       : Show FZF of the current working directory
 SPACE  - m       : Toggle maximizer of the current window
 
 <F2>             : Fold all unchanged lines
