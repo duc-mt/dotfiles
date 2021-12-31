@@ -1058,7 +1058,7 @@ au BufEnter ~/.vim/.gitignore      setl ft=gitconfig
 au BufEnter ~/.vim/gitconfig       setl ft=gitconfig
 
 " Quick push during a commit window
-au FileType fugitive nn <Leader>p :!clear && echo 'Start pushing local commits towards GitHub' && git push<CR>
+au FileType fugitive nn <Leader>p :!clear && echo 'Start pushing local commits towards GitHub...' && git push<CR>
 
 " Configuration
 au FileType gitconfig setl nocursorline nocursorcolumn
