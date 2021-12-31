@@ -17,7 +17,9 @@ end
 ru! ftplugin/html.vim ftplugin/html_*.vim ftplugin/html/*.vim
 
 " Enable plugin
-pa! gfm-syntax
+packadd gfm-syntax
+packadd limelight
+packadd speeddating
 
 colo PaperColor
 setl nolisp

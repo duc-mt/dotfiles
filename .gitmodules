@@ -103,6 +103,6 @@
 [submodule "pack/plugins/start/maximizer"]
 	path = pack/plugins/start/maximizer
 	url = https://github.com/szw/vim-maximizer.git
-[submodule "pack/writing/start/limelight"]
-	path = pack/writing/start/limelight
+[submodule "pack/writing/opt/limelight"]
+	path = pack/writing/opt/limelight
 	url = https://github.com/junegunn/limelight.vim.git
