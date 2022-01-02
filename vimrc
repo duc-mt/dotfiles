@@ -671,11 +671,11 @@ map <right> <nop>
 " HOTKEYS {{{
 " ============================================================================
 
-nn  <silent> <Bslash>hk  : sp ~/.vim/hotkeys.txt   <CR>
-nn  <silent> <Bslash>eg  : tabe ~/.vim/gitconfig   <CR>
+nn  <silent> <Bslash>hk  : sp hotkeys.txt          <CR>
+nn  <silent> <Bslash>eg  : tabe gitconfig          <CR>
 nn  <silent> <Bslash>ev  : tabe $MYVIMRC           <CR>
 nn  <silent> <Leader>s   : so $MYVIMRC             <CR>
-nn  <silent> <Leader>F   : FZF -m ~                 <CR>
+nn  <silent> <Leader>F   : FZF -m ~                <CR>
 nn  <silent> <Leader>f   : FZF -m                  <CR>
 nn  <silent> <Leader>g   : Goyo                    <CR>
 
@@ -806,8 +806,8 @@ au BufRead *.pdf sil exe "!xdg-open " . shellescape(expand("%:p")) | bd | let &f
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 aug readonly
   au!
-  au BufEnter ~/.vim/pack/* setl nomodifiable
-  au BufEnter ~/.vim/pack/* setl nocursorline nocursorcolumn
+  au BufEnter pack/* setl nomodifiable
+  au BufEnter pack/* setl nocursorline nocursorcolumn
 aug END
 
 
@@ -1054,9 +1054,8 @@ aug END
 " ============================================================================
 
 " Set filetype
-au BufEnter ~/.vim/.gitmessage.txt setl ft=gitcommit
-au BufEnter ~/.vim/.gitignore      setl ft=gitconfig
-au BufEnter ~/.vim/gitconfig       setl ft=gitconfig
+au BufEnter gitconfig      setl ft=gitconfig
+au BufEnter gitmessage.txt setl ft=gitcommit
 
 " Quick push during a commit window
 au FileType fugitive nn <Leader>p :!clear && echo 'Start pushing local commits towards GitHub...' && git push<CR>
