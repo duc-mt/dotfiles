@@ -221,9 +221,10 @@ set noswapfile
 " ==============================================================================
 " TEMPLATES & CUSTOM VIM FILETYPE SETTINGS {{{
 " ==============================================================================
-autocmd! BufNewFile * silent! or ~/.vim/templates/%:e.tpl
+au BufNewFile *.py 0r .tpl/academic_policy.py
+" au BufNewFile *.py 0r .tpl/eibt_policy.py
 
-" create a file in ftplugin/filetype.vim for specific settings
+" Create a file in ftplugin/filetype.vim for specific settings
 au BufRead,BufNewFile,BufReadPost *.text,*.txt set filetype=text
 au BufRead,BufNewFile,BufReadPost *.md         set filetype=markdown
 au BufRead,BufNewFile,BufReadPost *.jade       set filetype=pug
