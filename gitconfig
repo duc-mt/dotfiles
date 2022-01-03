@@ -30,7 +30,7 @@
 
 # commit {{{
 [commit]
-  template = .vim/gitmessage.txt
+  template = ~/.vim/gitmessage.txt
 #}}}
 
 # web {{{
