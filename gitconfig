@@ -30,7 +30,7 @@
 
 # commit {{{
 [commit]
-  template = ~/.vim/gitmessage.txt
+  template = gitmessage.txt
 #}}}
 
 # web {{{
@@ -134,7 +134,7 @@
   r = reset
   cp = cherry-pick
   gr = grep -Ii
-  update = submodule foreach git pull origin master
+  update = foreach git pull origin master
   # }}}
 
   # tweak defaults {{{
