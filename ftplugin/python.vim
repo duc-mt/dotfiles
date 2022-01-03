@@ -246,56 +246,30 @@ ia """ """<CR><CR>"""<Esc>kh
 ia var # Variable initialisation.<CR>
 ia validanswers VALID_ANSWERS = ['y', 'yes', 'n', 'no']<CR>
 
-
-" Description
-
-" # !/usr/bin/python3
-
-" # ----------------------------------------------------------------------------
-" # |
-" # | File:         file_name.py
-" # | Author:       Tan Duc Mai
-" # | Email:        tan.duc.work@gmail.com
-" # | Date:         03-Dec-2021
-" # | Description:
-" # |   I hereby declare that I completed this work without any improper help
-" # |   from a third party and without using any aids other than those cited.
-" # |
-" # ----------------------------------------------------------------------------
-
-" # ----------------------------------------------------------------------------
-" # |
-" # | File:         file_name.py
-" # | Author:       Tan Duc Mai
-" # | Student ID:   517925
-" # | Description:
-" # |   This is my own work as defined by the Eynesbury's
-" # |   Academic Misconduct Policy.
-" # |
-" # ----------------------------------------------------------------------------
-
-
 " Function docstring
 ia df def :<CR>"""<CR><CR>Parameters<CR>----------<CR><CR><CR>Returns<CR>-------<CR><CR>"""<CR><CR><Esc>12kllli<Del>
 
-
 " Section headings
-ia -constant- # ------------------------------- Named Constant ------------------------------<CR><Esc>h
+ia -constant-  # ------------------------------- Named Constant ------------------------------<CR><Esc>h
 
 ia -constants- # ------------------------------- Named Constants -----------------------------<CR><Esc>h
 
-ia -import- # ------------------------------- Module Import -------------------------------<CR><Esc>h
+ia -global-    # ------------------------------ Global Constant ------------------------------<CR><Esc>h
 
-ia -imports- # ------------------------------- Module Imports -------------------------------<CR><Esc>h
+ia -globals-   # ------------------------------ Global Constants -----------------------------<CR><Esc>h
 
-ia -func- # ---------------------------- Function Definition ----------------------------<CR><Esc>h
+ia -import-    # ------------------------------- Module Import -------------------------------<CR><Esc>h
 
-ia -funcs- # ---------------------------- Function Definitions ---------------------------<CR><esc>h
+ia -imports-   # ------------------------------- Module Imports -------------------------------<CR><Esc>h
 
-ia -program- # ---------------------------------- Program ----------------------------------<CR><Esc>h
+ia -func-      # ---------------------------- Function Definition ----------------------------<CR><Esc>h
 
-ia -m- # ------------------------------- Main Function -------------------------------<CR>def main():<CR>
+ia -funcs-     # ---------------------------- Function Definitions ---------------------------<CR><esc>h
 
-ia -main- # --------------------------- Call the Main Function --------------------------<CR>if __name__ == '__main__':<CR>main()<Esc>
+ia -program-   # ---------------------------------- Program ----------------------------------<CR><Esc>h
+
+ia -m-         # ------------------------------- Main Function -------------------------------<CR>def main():<CR>
+
+ia -main-      # --------------------------- Call the Main Function --------------------------<CR>if __name__ == '__main__':<CR>main()<Esc>
 
 " }}}
