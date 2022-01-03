@@ -221,8 +221,8 @@ set noswapfile
 " ==============================================================================
 " TEMPLATES & CUSTOM VIM FILETYPE SETTINGS {{{
 " ==============================================================================
-au BufNewFile *.py 0r .tpl/academic_policy.py
-" au BufNewFile *.py 0r .tpl/eibt_policy.py
+au BufNewFile *.py 0r ~/.vim/.tpl/academic_policy.py
+" au BufNewFile *.py 0r ~/.vim/.tpl/eibt_policy.py
 
 " Create a file in ftplugin/filetype.vim for specific settings
 au BufRead,BufNewFile,BufReadPost *.text,*.txt set filetype=text
@@ -671,8 +671,8 @@ map <right> <nop>
 " HOTKEYS {{{
 " ============================================================================
 
-nn  <silent> <Bslash>hk  : sp hotkeys.txt          <CR>
-nn  <silent> <Bslash>eg  : tabe gitconfig          <CR>
+nn  <silent> <Bslash>hk  : sp ~/.vim/hotkeys.txt          <CR>
+nn  <silent> <Bslash>eg  : tabe ~/.vim/gitconfig          <CR>
 nn  <silent> <Bslash>ev  : tabe $MYVIMRC           <CR>
 nn  <silent> <Leader>s   : so $MYVIMRC             <CR>
 nn  <silent> <Leader>F   : FZF -m ~                <CR>
@@ -806,8 +806,8 @@ au BufRead *.pdf sil exe "!xdg-open " . shellescape(expand("%:p")) | bd | let &f
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 aug readonly
   au!
-  au BufEnter pack/* setl nomodifiable
-  au BufEnter pack/* setl nocursorline nocursorcolumn
+  au BufEnter ~/.vim/pack/* setl nomodifiable
+  au BufEnter ~/.vim/pack/* setl nocursorline nocursorcolumn
 aug END
 
 
@@ -1054,8 +1054,8 @@ aug END
 " ============================================================================
 
 " Set filetype
-au BufEnter gitconfig      setl ft=gitconfig
-au BufEnter gitmessage.txt setl ft=gitcommit
+au BufEnter ~/.vim/gitconfig      setl ft=gitconfig
+au BufEnter ~/.vim/gitmessage.txt setl ft=gitcommit
 
 " Quick push during a commit window
 au FileType fugitive nn <Leader>p :!clear && echo 'Start pushing local commits towards GitHub...' && git push<CR>
