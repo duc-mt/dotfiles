@@ -393,9 +393,6 @@ nn ( :GitGutterPrevHunk<CR>
 nn <silent> <F2> :GitGutterFold<CR>
 set foldtext=gitgutter#fold#foldtext()
 
-" Toggle highlighting changed lines (hunks)
-nn <F3> :GitGutterLineHighlightsToggle<CR>
-
 " Preview the hunk the cursor is in
 nn ghp :GitGutterPreviewHunk<CR>
 nn ghq :pclose<CR>
@@ -499,10 +496,11 @@ let g:carbon_now_sh_options =
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Maximizer
+" => indentLine
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nn <silent> <Leader>m   : MaximizerToggle      <CR>
-vn <silent> <Leader>m   : MaximizerToggle      <CR>gv
+let g:indentLine_char_list = ['|', '¦', '┆', '┊', '│']
+let g:indentLine_fileTypeExclude = ['python', 'text', 'md', 'sh', 'vim', '']
+let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
 
 " }}}
 " ============================================================================
@@ -671,24 +669,27 @@ map <right> <nop>
 " HOTKEYS {{{
 " ============================================================================
 
-nn  <silent> <Bslash>hk  : sp ~/.vim/hotkeys.txt          <CR>
-nn  <silent> <Bslash>eg  : tabe ~/.vim/gitconfig          <CR>
-nn  <silent> <Bslash>ev  : tabe $MYVIMRC           <CR>
-nn  <silent> <Leader>s   : so $MYVIMRC             <CR>
-nn  <silent> <Leader>F   : FZF -m ~                <CR>
-nn  <silent> <Leader>f   : FZF -m                  <CR>
-nn  <silent> <Leader>g   : Goyo                    <CR>
+nn  <silent> <Bslash>hk  : sp ~/.vim/hotkeys.txt <CR>
+nn  <silent> <Bslash>eg  : tabe ~/.vim/gitconfig <CR>
+nn  <silent> <Bslash>ev  : tabe $MYVIMRC         <CR>
+nn  <silent> <Leader>s   : so $MYVIMRC           <CR>
+nn  <silent> <Leader>F   : FZF -m ~              <CR>
+nn  <silent> <Leader>f   : FZF -m                <CR>
+nn  <silent> <Leader>g   : Goyo                  <CR>
+nn  <silent> <Leader>m   : MaximizerToggle       <CR>
+vn  <silent> <Leader>m   : MaximizerToggle       <CR> gv
+nn  <silent> <F3>        : IndentLinesToggle     <CR>
 
 " Floaterm
-nn  <silent> <Bslash>t   : FloatermNew             <CR>
-nn  <silent> <F6>        : FloatermPrev            <CR>
-nn  <silent> <F7>        : FloatermNext            <CR>
-nn  <silent> <F8>        : FloatermKill            <CR>
-nn  <silent> <F9>        : FloatermToggle          <CR>
-tno <silent> <Bslash>t   <C-\><C-n>:FloatermNew    <CR>
-tno <silent> <F6>        <C-\><C-n>:FloatermPrev   <CR>
-tno <silent> <F7>        <C-\><C-n>:FloatermNext   <CR>
-tno <silent> <F8>        <C-\><C-n>:FloatermKill   <CR>
+nn  <silent> <Bslash>t   : FloatermNew           <CR>
+nn  <silent> <F6>        : FloatermPrev          <CR>
+nn  <silent> <F7>        : FloatermNext          <CR>
+nn  <silent> <F8>        : FloatermKill          <CR>
+nn  <silent> <F9>        : FloatermToggle        <CR>
+tno <silent> <Bslash>t   <C-\><C-n>:FloatermNew  <CR>
+tno <silent> <F6>        <C-\><C-n>:FloatermPrev <CR>
+tno <silent> <F7>        <C-\><C-n>:FloatermNext <CR>
+tno <silent> <F8>        <C-\><C-n>:FloatermKill <CR>
 tno <silent> <F9>        <C-\><C-n>:FloatermToggle <CR>
 
 " }}}
