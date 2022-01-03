@@ -16,6 +16,9 @@ if exists("b:did_indent")
 endif
 let b:did_indent = 1
 
+" Enable plugin
+packadd indentLine
+
 setl ts=4
 setl sts=4
 setl shiftwidth=4
@@ -271,5 +274,11 @@ ia -program-   # ---------------------------------- Program --------------------
 ia -m-         # ------------------------------- Main Function -------------------------------<CR>def main():<CR>
 
 ia -main-      # --------------------------- Call the Main Function --------------------------<CR>if __name__ == '__main__':<CR>main()<Esc>
+
+" }}}
+" ------------------------------------------------------------------------------
+" MAPPINGS {{{
+" ------------------------------------------------------------------------------
+nn <silent> <Leader>s :IndentLinesReset 4<CR>
 
 " }}}

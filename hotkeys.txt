@@ -18,7 +18,7 @@ SPACE  - f       : Show FZF of the current working directory
 SPACE  - m       : Toggle maximizer of the current window
 
 <F2>             : Fold all unchanged lines
-<F3>             : Toggle line highlighting for hunks.
+<F3>             : Toggle indentLines plugin
 <F5>             : Run Python script (doable only for .py)
 <F6>             : Show previous floaterm
 <F7>             : Show next floaterm
