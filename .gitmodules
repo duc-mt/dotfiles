@@ -76,9 +76,6 @@
 [submodule "pack/file-system/start/vinegar"]
 	path = pack/file-system/start/vinegar
 	url = https://github.com/tpope/vim-vinegar.git
-[submodule "pack/syntax/opt/indentLine"]
-	path = pack/syntax/opt/indentLine
-	url = https://github.com/Yggdroot/indentLine.git
 [submodule "pack/writing/opt/plasticboy-markdown"]
 	path = pack/writing/opt/plasticboy-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
@@ -106,3 +103,6 @@
 [submodule "pack/writing/opt/limelight"]
 	path = pack/writing/opt/limelight
 	url = https://github.com/junegunn/limelight.vim.git
+[submodule "pack/syntax/start/indentLine"]
+	path = pack/syntax/start/indentLine
+	url = https://github.com/Yggdroot/indentLine.git
