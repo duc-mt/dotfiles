@@ -70,9 +70,6 @@
 [submodule "pack/git/start/rhubarb"]
 	path = pack/git/start/rhubarb
 	url = https://github.com/tpope/vim-rhubarb.git
-[submodule "pack/file-system/start/vinegar"]
-	path = pack/file-system/start/vinegar
-	url = https://github.com/tpope/vim-vinegar.git
 [submodule "pack/writing/opt/plasticboy-markdown"]
 	path = pack/writing/opt/plasticboy-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
