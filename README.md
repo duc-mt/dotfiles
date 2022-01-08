@@ -22,15 +22,15 @@ packages added to this folder and automatically load the plugins.
 Optionally another folder **opt** may be created to hold packages that are not loaded automatically.
 Packages added in the opt folder may be loaded using:
 
-```bash
+```vim
 :packadd packagename
 ```
 
 In addition, you'll want to add the following two lines to your .vimrc file to load the
 documentation for all the plugins:
-```bash
-packloadall           " Load all plugins."
-silent! helptags ALL  " Load help for all plugins."
+```vim
+packloadall           " Load all plugins.
+silent! helptags ALL  " Load help for all plugins.
 ```
 
 You can manage your plugins yourself (with some overhead) by using Git submodules to
