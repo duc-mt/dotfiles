@@ -1,24 +1,9 @@
-[submodule "pack/plugins/start/supertab"]
-	path = pack/plugins/start/supertab
-	url = https://github.com/ervandew/supertab.git
-[submodule "pack/plugins/start/tabular"]
-	path = pack/plugins/start/tabular
-	url = https://github.com/godlygeek/tabular.git
 [submodule "pack/plugins/start/floaterm"]
 	path = pack/plugins/start/floaterm
 	url = https://github.com/voldikss/vim-floaterm
-[submodule "pack/plugins/start/surround"]
-	path = pack/plugins/start/surround
-	url = https://github.com/tpope/vim-surround
-[submodule "pack/plugins/start/easymotion"]
-	path = pack/plugins/start/easymotion
-	url = https://github.com/easymotion/vim-easymotion
 [submodule "pack/plugins/opt/speeddating"]
 	path = pack/plugins/opt/speeddating
 	url = https://github.com/tpope/vim-speeddating.git
-[submodule "pack/plugins/start/spelunker"]
-	path = pack/plugins/start/spelunker
-	url = https://github.com/kamykn/spelunker.vim.git
 [submodule "pack/colours/opt/gruvbox-material"]
 	path = pack/colours/opt/gruvbox-material
 	url = https://github.com/sainnhe/gruvbox-material.git
@@ -34,63 +19,78 @@
 [submodule "pack/git/start/gitgutter"]
 	path = pack/git/start/gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
-[submodule "pack/status-line/opt/lightline"]
-	path = pack/status-line/opt/lightline
-	url = https://github.com/itchyny/lightline.vim.git
 [submodule "pack/plugins/opt/visual-multi"]
 	path = pack/plugins/opt/visual-multi
 	url = https://github.com/mg979/vim-visual-multi.git
-[submodule "pack/writing/opt/vimwiki"]
-	path = pack/writing/opt/vimwiki
-	url = https://github.com/vimwiki/vimwiki.git
 [submodule "pack/file-system/start/fzf"]
 	path = pack/file-system/start/fzf
 	url = https://github.com/junegunn/fzf.git
 [submodule "pack/status-line/opt/airline"]
 	path = pack/status-line/opt/airline
 	url = https://github.com/vim-airline/vim-airline.git
-[submodule "pack/writing/start/goyo"]
-	path = pack/writing/start/goyo
-	url = https://github.com/junegunn/goyo.vim.git
 [submodule "pack/colours/opt/colorizer"]
 	path = pack/colours/opt/colorizer
 	url = https://github.com/lilydjwg/colorizer.git
-[submodule "pack/writing/opt/markdown-preview"]
-	path = pack/writing/opt/markdown-preview
-	url = https://github.com/iamcco/markdown-preview.nvim.git
 [submodule "pack/colours/opt/papercolor"]
 	path = pack/colours/opt/papercolor
 	url = https://github.com/NLKNguyen/papercolor-theme.git
-[submodule "pack/plugins/start/commentary"]
-	path = pack/plugins/start/commentary
-	url = https://github.com/tpope/vim-commentary.git
 [submodule "pack/git/start/rhubarb"]
 	path = pack/git/start/rhubarb
 	url = https://github.com/tpope/vim-rhubarb.git
-[submodule "pack/writing/opt/plasticboy-markdown"]
-	path = pack/writing/opt/plasticboy-markdown
-	url = https://github.com/plasticboy/vim-markdown.git
 [submodule "pack/file-system/start/nerdtree"]
 	path = pack/file-system/start/nerdtree
 	url = https://github.com/preservim/nerdtree.git
 [submodule "pack/plugins/opt/diagon"]
 	path = pack/plugins/opt/diagon
 	url = https://github.com/ArthurSonzogni/Diagon.git
-[submodule "pack/plugins/start/unimpaired"]
-	path = pack/plugins/start/unimpaired
-	url = https://github.com/tpope/vim-unimpaired.git
 [submodule "pack/colours/opt/one"]
 	path = pack/colours/opt/one
 	url = https://github.com/rakr/vim-one.git
-[submodule "pack/plugins/start/maximizer"]
-	path = pack/plugins/start/maximizer
-	url = https://github.com/szw/vim-maximizer.git
-[submodule "pack/writing/opt/limelight"]
-	path = pack/writing/opt/limelight
-	url = https://github.com/junegunn/limelight.vim.git
-[submodule "pack/syntax/start/indentLine"]
-	path = pack/syntax/start/indentLine
-	url = https://github.com/Yggdroot/indentLine.git
 [submodule "pack/file-system/start/startify"]
 	path = pack/file-system/start/startify
 	url = https://github.com/mhinz/vim-startify.git
+[submodule "pack/plugins/start/commentary"]
+	path = pack/plugins/start/commentary
+	url = https://github.com/tpope/vim-commentary.git
+[submodule "pack/plugins/start/easymotion"]
+	path = pack/plugins/start/easymotion
+	url = https://github.com/easymotion/vim-easymotion.git
+[submodule "pack/plugins/start/maximizer"]
+	path = pack/plugins/start/maximizer
+	url = https://github.com/szw/vim-maximizer.git
+[submodule "pack/plugins/start/spelunker"]
+	path = pack/plugins/start/spelunker
+	url = https://github.com/kamykn/spelunker.vim.git
+[submodule "pack/plugins/start/supertab"]
+	path = pack/plugins/start/supertab
+	url = https://github.com/ervandew/supertab.git
+[submodule "pack/plugins/start/surround"]
+	path = pack/plugins/start/surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "pack/plugins/start/tabular"]
+	path = pack/plugins/start/tabular
+	url = https://github.com/godlygeek/tabular.git
+[submodule "pack/plugins/start/unimpaired"]
+	path = pack/plugins/start/unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "pack/syntax/start/indentLine"]
+	path = pack/syntax/start/indentLine
+	url = https://github.com/Yggdroot/indentLine.git
+[submodule "pack/writing/start/goyo"]
+	path = pack/writing/start/goyo
+	url = https://github.com/junegunn/goyo.vim.git
+[submodule "pack/writing/opt/limelight"]
+	path = pack/writing/opt/limelight
+	url = https://github.com/junegunn/limelight.vim.git
+[submodule "pack/writing/opt/markdown-preview"]
+	path = pack/writing/opt/markdown-preview
+	url = https://github.com/iamcco/markdown-preview.nvim.git
+[submodule "pack/writing/opt/vimwiki"]
+	path = pack/writing/opt/vimwiki
+	url = https://github.com/vimwiki/vimwiki.git
+[submodule "pack/writing/opt/markdown-vim-mode"]
+	path = pack/writing/opt/markdown-vim-mode
+	url = https://github.com/preservim/vim-markdown.git
+[submodule "pack/status-line/opt/lightline"]
+	path = pack/status-line/opt/lightline
+	url = https://github.com/itchyny/lightline.vim.git
