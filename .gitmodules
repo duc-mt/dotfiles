@@ -49,9 +49,6 @@
 [submodule "pack/status-line/opt/airline"]
 	path = pack/status-line/opt/airline
 	url = https://github.com/vim-airline/vim-airline.git
-[submodule "pack/spreadsheet/opt/sc-im"]
-	path = pack/spreadsheet/opt/sc-im
-	url = https://github.com/andmarti1424/sc-im.git
 [submodule "pack/writing/start/goyo"]
 	path = pack/writing/start/goyo
 	url = https://github.com/junegunn/goyo.vim.git
@@ -73,9 +70,6 @@
 [submodule "pack/writing/opt/plasticboy-markdown"]
 	path = pack/writing/opt/plasticboy-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
-[submodule "pack/writing/opt/gfm-syntax"]
-	path = pack/writing/opt/gfm-syntax
-	url = https://github.com/rhysd/vim-gfm-syntax.git
 [submodule "pack/file-system/start/nerdtree"]
 	path = pack/file-system/start/nerdtree
 	url = https://github.com/preservim/nerdtree.git
@@ -85,9 +79,6 @@
 [submodule "pack/plugins/start/unimpaired"]
 	path = pack/plugins/start/unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
-[submodule "pack/plugins/start/carbon-now-sh"]
-	path = pack/plugins/start/carbon-now-sh
-	url = https://github.com/kristijanhusak/vim-carbon-now-sh.git
 [submodule "pack/colours/opt/one"]
 	path = pack/colours/opt/one
 	url = https://github.com/rakr/vim-one.git
