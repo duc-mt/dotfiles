@@ -116,7 +116,17 @@ if ! shopt -oq posix; then
   fi
 fi
 
+
+# ------------------------------------------------------------------------------
+# My configuration
+
 # alias {{{
-alias CC='cd /mnt/c/Users/TanDucMai/'OneDrive - Eynesbury''
+alias cc="cd /mnt/c/Users/TanDucMai/'OneDrive - Eynesbury'"
+alias open='wslview' # Open any file with the default application'
+alias bashrc='vim ~/.vim/bashrc'
+alias vimrc='vim ~/.vim/vimrc'
+alias VIM='cd ~/.vim'
+alias py='python3'
+alias ex='exit'
 
 #}}}
