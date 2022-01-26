@@ -938,13 +938,11 @@ colo gruvbox-material
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let hr=(strftime('%H'))
 
-if hr >= 19
+if hr >= 18
   se background=dark
-elsei hr >= 13
-  se background=light
 elsei hr >= 7
   se background=light
-elsei hr >= 1
+elsei hr >= 0
   se background=dark
 end
 
