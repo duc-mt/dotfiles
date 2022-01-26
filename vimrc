@@ -225,11 +225,11 @@ au BufNewFile *.py 0r ~/.vim/.tpl/academic_policy.py
 " au BufNewFile *.py 0r ~/.vim/.tpl/eibt_policy.py
 
 " Create a file in ftplugin/filetype.vim for specific settings
-au BufRead,BufNewFile,BufReadPost *.text,*.txt set filetype=text
-au BufRead,BufNewFile,BufReadPost *.md         set filetype=markdown
-au BufRead,BufNewFile,BufReadPost *.jade       set filetype=pug
-au BufRead,BufNewFile,BufReadPost *.pug        set filetype=pug
-au BufRead,BufNewFile,BufReadPost *.coffee     set filetype=coffee
+au BufRead,BufNewFile,BufReadPost *.text,*.txt se filetype=text
+au BufRead,BufNewFile,BufReadPost *.md         se filetype=markdown
+au BufRead,BufNewFile,BufReadPost *.jade       se filetype=pug
+au BufRead,BufNewFile,BufReadPost *.pug        se filetype=pug
+au BufRead,BufNewFile,BufReadPost *.coffee     se filetype=coffee
 
 " }}}
 " ==============================================================================
@@ -828,8 +828,8 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 aug toggle_relative_number
   au!
-  au InsertEnter * setl norelativenumber
-  au InsertLeave * setl relativenumber
+  au InsertEnter * setl nornu
+  au InsertLeave * setl rnu
 aug END
 
 
@@ -862,13 +862,13 @@ au FileType * setl formatoptions-=c formatoptions-=r formatoptions-=o
 " => Detect trailing whitespace
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
-set list
+se list
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Automatically save the file when a change if made
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au TextChanged,InsertLeave * if &readonly==0 && filereadable(bufname('%'))|silent up|endif
+au TextChanged,InsertLeave * if &readonly==0 && filereadable(bufname('%'))|silent up|end
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1063,8 +1063,8 @@ au BufEnter ~/.vim/gitmessage.txt setl ft=gitcommit
 au FileType fugitive nn <Leader>p :!clear && echo 'Start pushing local commits towards GitHub...' && git push<CR>
 
 " Configuration
-au FileType gitconfig setl nocursorline nocursorcolumn
-au FileType gitconfig setl foldlevelstart=99
+au FileType gitconfig setl nocul nocuc
+au FileType gitconfig setl fdls=99
 au FileType gitcommit setl nornu
 
 " Quit fugitive
