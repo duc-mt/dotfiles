@@ -239,9 +239,6 @@ au BufRead,BufNewFile,BufReadPost *.coffee     se filetype=coffee
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NERDTree
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Disable cursorcolumn on NERDTree
-au FileType nerdtree setl nocursorcolumn
-
 " au VimEnter * NERDTree     " Enable NERDTree on Vim start-up
 
 " Autoclose NERDTree if it's the only open window left
