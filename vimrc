@@ -678,7 +678,8 @@ nn  <silent> <Leader>f   : FZF -m                <CR>
 nn  <silent> <Leader>g   : Goyo                  <CR>
 nn  <silent> <Leader>m   : MaximizerToggle       <CR>
 vn  <silent> <Leader>m   : MaximizerToggle       <CR> gv
-nn  <silent> <F3>        : IndentLinesToggle     <CR>
+nn  <silent> <F3>        : GitGutterStageHunk    <CR>
+nn  <silent> <F4>        : IndentLinesToggle     <CR>
 
 " Floaterm
 nn  <silent> <Bslash>t   : FloatermNew           <CR>
