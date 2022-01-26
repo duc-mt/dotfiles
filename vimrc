@@ -669,7 +669,7 @@ map <right> <nop>
 " HOTKEYS {{{
 " ============================================================================
 
-nn  <silent> <Bslash>hk  : sp ~/.vim/hotkeys.txt <CR>
+nn  <silent> <Bslash>ek  : sp ~/.vim/hotkeys.txt <CR>
 nn  <silent> <Bslash>eg  : tabe ~/.vim/gitconfig <CR>
 nn  <silent> <Bslash>ev  : tabe $MYVIMRC         <CR>
 nn  <silent> <Leader>s   : so $MYVIMRC           <CR>
