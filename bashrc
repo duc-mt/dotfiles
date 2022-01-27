@@ -130,5 +130,10 @@ alias VIM='cd ~/.vim'
 alias py='python3'
 alias ex='exit'
 alias cl='clear'
+alias gst='git st'
+alias gcc='git cc'
+alias gdiff='git diff'
+alias gadd='git add'
+alias gpush="clear && echo 'Start pushing local commits towards GitHub...' && git push"
 
 #}}}
