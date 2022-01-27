@@ -128,5 +128,6 @@ alias vimrc='vim ~/.vim/vimrc'
 alias VIM='cd ~/.vim'
 alias py='python3'
 alias ex='exit'
+alias cl='clear'
 
 #}}}
