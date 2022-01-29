@@ -134,6 +134,7 @@ alias gst='git st'
 alias gcc='git cc'
 alias gdiff='git diff'
 alias gadd='git add'
-alias gpush="clear && echo 'Start pushing local commits towards GitHub...' && git push"
+alias gpush='clear && echo "Start pushing local commits towards GitHub..." && git push'
+alias upgrade='sudo apt update && sudo apt full-upgrade -y'
 
 #}}}
