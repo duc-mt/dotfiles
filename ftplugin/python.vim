@@ -237,6 +237,10 @@ fu! GetPythonIndent(lnum)
     retu indent(sslnum)
 endf
 
+" Format paragraph (selected or not) to 80 character lines
+nn fp gqap     :ec 'Format Paragraph Successfully !' <CR>
+xn fp gqa<Esc> :ec 'Format Paragraph Successfully !' <CR>
+
 " ------------------------------------------------------------------------------
 " ABBREVIATIONS {{{
 " ------------------------------------------------------------------------------
