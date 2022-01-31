@@ -488,15 +488,17 @@ let g:carbon_now_sh_browser = 'firefox'
 
 " Set the query string that will be passed to (https://carbon.now.sh)
 let g:carbon_now_sh_options =
-\ { 'ln': 'true',
-  \ 'fm': 'Fira Code' }
+      \ { 'ln': 'true',
+      \ 'fm': 'Fira Code' }
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => indentLine
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:indentLine_char_list = ['|', '¦', '┆', '┊', '│']
-let g:indentLine_fileTypeExclude = ['python', 'text', 'md', 'sh', 'vim', '']
+let g:indentLine_fileTypeExclude = 
+      \ ['python', 'text', 'md',
+      \ 'sh', 'vim', 'json', '']
 let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
 
 " }}}
