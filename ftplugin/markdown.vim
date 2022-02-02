@@ -98,7 +98,7 @@ nn PDF :!clear && echo 'Start Generating The PDF Version...' &&
       \ :ec 'The PDF Version Is Ready !'<CR>
 
 " Beautiful display on the web
-nn HTMl :!clear && echo 'Start Generating The HTML Version...' &&
+nn HTML :!clear && echo 'Start Generating The HTML Version...' &&
       \ pandoc -t slidy -s % -o %.html<CR>
       \ :ec 'The HTML Version Is Ready !'<CR>
 
