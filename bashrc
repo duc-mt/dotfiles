@@ -142,8 +142,8 @@ alias gadd='git add'
 alias gpull='git pull'
 alias gcl='git clone'
 alias gco='git checkout'
-alias gpush='clear && echo "Start pushing local commits towards GitHub..." && git push'
-alias upgrade='clear && sudo apt update && sudo apt full-upgrade -y'
+alias gpush='clear && echo "Wait for the local commits to be pushed to GitHub..." && git push'
+alias upgrade='clear && echo "Wait for the Operating System to be upgraded..." && sudo apt update && sudo apt full-upgrade -y'
 alias hugolive='clear && echo "Wait for the site to be published..." && hugo server --noHTTPCache --disableFastRender'
 
 #}}}
