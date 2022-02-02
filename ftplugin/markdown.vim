@@ -93,17 +93,17 @@ xn fp gqa<Esc> :ec 'Format Paragraph Successfully !' <CR>
 " ----------------------------------------------------------------------------
 " Requirements: $ sudo apt install pandoc, texlive-latex-extra
 
-nn pdf :!clear && echo 'Start Generating The PDF Version...' &&
+nn PDF :!clear && echo 'Start Generating The PDF Version...' &&
       \ pandoc % -t beamer -o %.pdf<CR>
       \ :ec 'The PDF Version Is Ready !'<CR>
 
 " Beautiful display on the web
-nn html :!clear && echo 'Start Generating The HTML Version...' &&
+nn HTMl :!clear && echo 'Start Generating The HTML Version...' &&
       \ pandoc -t slidy -s % -o %.html<CR>
       \ :ec 'The HTML Version Is Ready !'<CR>
 
 " Not very useful since the formatting is not good
-nn ppt :!clear && echo 'Start Generating The PPT Version...' &&
+nn PPT :!clear && echo 'Start Generating The PPT Version...' &&
       \ pandoc % -o %.pptx<CR>
       \ :ec 'The PPT Version Is Ready !'<CR>
 
