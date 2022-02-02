@@ -144,6 +144,6 @@ alias gcl='git clone'
 alias gco='git checkout'
 alias gpush='clear && echo "Start pushing local commits towards GitHub..." && git push'
 alias upgrade='clear && sudo apt update && sudo apt full-upgrade -y'
-alias hugolive='clear && hugo server --noHTTPCache --disableFastRender'
+alias hugolive='clear && echo "Wait for the site to be published..." && hugo server --noHTTPCache --disableFastRender'
 
 #}}}
