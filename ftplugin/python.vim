@@ -17,7 +17,6 @@ endif
 let b:did_indent = 1
 
 " Enable plugin
-packadd indentLine
 
 setl ts=4
 setl sts=4
