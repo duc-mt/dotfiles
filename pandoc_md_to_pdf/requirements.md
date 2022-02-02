@@ -18,3 +18,6 @@ $ sudo apt install texlive-xetex
 $ sudo apt install librsvg2-bin
 $ sudo apt install texlive-science
 ```
+
+Refer to this site -
+[learnbyexample.github.io](https://learnbyexample.github.io/customizing-pandoc/)
