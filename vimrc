@@ -702,7 +702,6 @@ tno <silent> <F9>        <C-\><C-n>:FloatermToggle <CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ia @@ tan.duc.work@gmail.com
 ia unisa University of South Australia
-ia UniSA University of South Australia
 ia SA South Australia
 ia ms Microsoft
 ia MS Microsoft
