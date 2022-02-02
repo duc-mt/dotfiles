@@ -91,6 +91,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias sl='ls'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -121,13 +122,15 @@ fi
 # My configuration
 
 # alias {{{
-alias cc='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ Eynesbury'
+alias cc='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ Eynesbury && clear && ls'
+alias website='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ Eynesbury/Desktop/myportfolio && clear && ls'
+alias VIM='cd ~/.vim && clear && ls'
+alias PY='cd ~/python_projects && clear && ls'
 alias open='wslview' # Open any file with the default application'
+alias opne='open' # In case I mistypes the word 'open'
 alias bashrc='vim ~/.vim/bashrc'
 alias vimrc='vim ~/.vim/vimrc'
 alias gitconfig='vim ~/.vim/gitconfig'
-alias VIM='cd ~/.vim'
-alias PY='cd ~/python_projects'
 alias py='python3'
 alias ex='exit'
 alias cl='clear'
@@ -136,8 +139,11 @@ alias gcc='git cc'
 alias gcm='git cm'
 alias gdiff='git diff'
 alias gadd='git add'
-alias gcl='git cl'
+alias gpull='git pull'
+alias gcl='git clone'
+alias gco='git checkout'
 alias gpush='clear && echo "Start pushing local commits towards GitHub..." && git push'
-alias upgrade='sudo apt update && sudo apt full-upgrade -y'
+alias upgrade='clear && sudo apt update && sudo apt full-upgrade -y'
+alias hugolive='clear && hugo server --noHTTPCache --disableFastRender'
 
 #}}}
