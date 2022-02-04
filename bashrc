@@ -141,9 +141,10 @@ alias gcc='git cc'
 alias gcm='git cm'
 alias gdiff='git diff'
 alias gadd='git add'
-alias gpull='git pull'
 alias gcl='git clone'
 alias gco='git checkout'
+alias gpull='clear && printf "Wait for remote content to be fetched from Github\
+ ...\n--------------------\n" && git pull'
 alias gpush='clear && printf "Wait for the local commits to be pushed to GitHub\
  ...\n--------------------\n" && git push'
 alias upgrade='clear && printf "Wait for the Operating System to be upgraded\
