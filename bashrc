@@ -119,11 +119,13 @@ fi
 
 
 # ------------------------------------------------------------------------------
-# My configuration
+# My Configuration
+# ------------------------------------------------------------------------------
 
 # alias {{{
 alias cc='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ Eynesbury && clear && ls'
-alias website='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ Eynesbury/Desktop/myportfolio && clear && ls'
+alias website='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ \
+Eynesbury/Desktop/myportfolio && clear && ls'
 alias VIM='cd ~/.vim && clear && ls'
 alias PY='cd ~/python_projects && clear && ls'
 alias open='wslview' # Open any file with the default application'
@@ -142,8 +144,11 @@ alias gadd='git add'
 alias gpull='git pull'
 alias gcl='git clone'
 alias gco='git checkout'
-alias gpush='clear && echo "Wait for the local commits to be pushed to GitHub..." && git push'
-alias upgrade='clear && echo "Wait for the Operating System to be upgraded..." && sudo apt update && sudo apt full-upgrade -y'
-alias hugolive='clear && echo "Wait for the site to be published..." && hugo server --noHTTPCache --disableFastRender'
+alias gpush='clear && printf "Wait for the local commits to be pushed to GitHub\
+ ...\n--------------------\n" && git push'
+alias upgrade='clear && printf "Wait for the Operating System to be upgraded\
+ ...\n--------------------\n" && sudo apt update && sudo apt full-upgrade -y'
+alias hugolive='clear && printf "Wait for the site to be published\
+ ...\n--------------------\n" && hugo server --noHTTPCache --disableFastRender'
 
 #}}}
