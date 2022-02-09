@@ -649,7 +649,7 @@ map <right> <nop>
 nn  <silent> <Bslash>ek  : sp ~/.vim/hotkeys.txt <CR>
 nn  <silent> <Bslash>eg  : tabe ~/.vim/gitconfig <CR>
 nn  <silent> <Bslash>ev  : tabe $MYVIMRC         <CR>
-nn  <silent> <Leader>s   : so $MYVIMRC           <CR>
+nn  <silent> <Bslash>sv  : so $MYVIMRC           <CR>
 nn  <silent> <Leader>F   : FZF -m ~              <CR>
 nn  <silent> <Leader>f   : FZF -m                <CR>
 nn  <silent> <Leader>g   : Goyo                  <CR>

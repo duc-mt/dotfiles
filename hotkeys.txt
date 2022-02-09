@@ -8,9 +8,9 @@
 BSLASH - e - k   : Show hotkeys   (sp)
 BSLASH - e - g   : Show gitconfig (tabe)
 BSLASH - e - v   : Show vimrc     (tabe)
+BSLASH - s - v   : Source vimrc
 BSLASH - t       : Show floaterm
 BSLASH - C       : Capitalise Each Word
-SPACE  - s       : Source vimrc
 SPACE  - n       : Toggle NERDTree
 SPACE  - g       : Toggle Goyo
 SPACE  - F       : Show FZF of the home '~' directory
@@ -22,4 +22,3 @@ SPACE  - m       : Toggle maximizer of the current window
 <F4>             : Toggle all floaterms
 <F5>             : Run Python script (doable only for .py)
 <F6>             : Show signify record of the current file
-<F12>            : Capture code to carbon.now.sh
