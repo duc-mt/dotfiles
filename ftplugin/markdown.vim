@@ -77,12 +77,6 @@ fu! s:align()
 endf
 
 " ----------------------------------------------------------------------------
-" Seamlessly treat visual lines as actual lines when moving around
-" ----------------------------------------------------------------------------
-nn j gj
-nn k gk
-
-" ----------------------------------------------------------------------------
 " Format paragraph (selected or not) to 80 character lines
 " ----------------------------------------------------------------------------
 nn fp gqap     :ec 'Format Paragraph Successfully !' <CR>
