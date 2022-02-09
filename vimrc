@@ -606,9 +606,6 @@ nn <silent> <S-L> : tabn<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Folding shortcuts
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Folding code based on indentation.
-set foldmethod=indent
-
 " Press {za} to open/close all folding levels.
 nn za zA
 vn za zA
