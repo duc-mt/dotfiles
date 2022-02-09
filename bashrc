@@ -151,5 +151,8 @@ alias upgrade='clear && printf "Wait for the Operating System to be upgraded\
  ...\n--------------------\n" && sudo apt update && sudo apt full-upgrade -y'
 alias hugolive='clear && printf "Wait for the site to be published\
  ...\n--------------------\n" && hugo server --noHTTPCache --disableFastRender'
-
+alias ConvertREADME.mdToPDF='clear && printf "Wait for README.md to be converted\
+ ...\n--------------------\n" && cp README.md ../pandoc_md_to_pdf/ && cd\
+ ../pandoc_md_to_pdf && ./md2pdf_syn_bullet.sh README.md sample_output.pdf\
+ && mv sample_output.pdf ../ && rm README.md && cd ..'
 #}}}
