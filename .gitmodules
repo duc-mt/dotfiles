@@ -13,9 +13,6 @@
 [submodule "pack/git/start/fugitive"]
 	path = pack/git/start/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule "pack/git/start/gitgutter"]
-	path = pack/git/start/gitgutter
-	url = https://github.com/airblade/vim-gitgutter.git
 [submodule "pack/plugins/opt/visual-multi"]
 	path = pack/plugins/opt/visual-multi
 	url = https://github.com/mg979/vim-visual-multi.git
@@ -67,9 +64,6 @@
 [submodule "pack/plugins/start/unimpaired"]
 	path = pack/plugins/start/unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
-[submodule "pack/syntax/start/indentLine"]
-	path = pack/syntax/start/indentLine
-	url = https://github.com/Yggdroot/indentLine.git
 [submodule "pack/writing/start/goyo"]
 	path = pack/writing/start/goyo
 	url = https://github.com/junegunn/goyo.vim.git
@@ -97,3 +91,6 @@
 [submodule "pack/plugins/start/speeddating"]
 	path = pack/plugins/start/speeddating
 	url = https://github.com/tpope/vim-speeddating.git
+[submodule "pack/git/start/signify"]
+	path = pack/git/start/signify
+	url = https://github.com/mhinz/vim-signify.git
