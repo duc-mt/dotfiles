@@ -221,6 +221,7 @@ set noswapfile
 " ==============================================================================
 " TEMPLATES & CUSTOM VIM FILETYPE SETTINGS {{{
 " ==============================================================================
+
 au BufNewFile *.py 0r ~/.vim/.tpl/academic_policy.py
 " au BufNewFile *.py 0r ~/.vim/.tpl/eibt_policy.py
 
@@ -373,26 +374,13 @@ map N <Plug>(easymotion-prev)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Gitgutter
+" => Signify
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:gitgutter_enabled=1
-" Disable all predefined mappings
-let g:gitgutter_map_keys=0
-
-" Update time controls the delay before vim writes its swap file
+" Configuration for async update
 set updatetime=100
 
-" Jump between hunks (differing lines)
-nn ) :GitGutterNextHunk<CR>
-nn ( :GitGutterPrevHunk<CR>
-
-" Toggle folding all unchanged lines, leaving just the hunks visible.
-nn <silent> <F2> :GitGutterFold<CR>
-set foldtext=gitgutter#fold#foldtext()
-
-" Preview the hunk the cursor is in
-nn ghp :GitGutterPreviewHunk<CR>
-nn ghq :pclose<CR>
+" Enable number column highlighting in addition to using signs by default.
+let g:signify_number_highlight = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -490,16 +478,6 @@ let g:carbon_now_sh_browser = 'firefox'
 let g:carbon_now_sh_options =
       \ { 'ln': 'true',
       \ 'fm': 'Fira Code' }
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => indentLine
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:indentLine_char_list = ['|', '¦', '┆', '┊', '│']
-let g:indentLine_fileTypeExclude = 
-      \ ['python', 'text', 'md',
-      \ 'sh', 'vim', 'json', '']
-let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
 
 " }}}
 " ============================================================================
@@ -677,20 +655,15 @@ nn  <silent> <Leader>f   : FZF -m                <CR>
 nn  <silent> <Leader>g   : Goyo                  <CR>
 nn  <silent> <Leader>m   : MaximizerToggle       <CR>
 vn  <silent> <Leader>m   : MaximizerToggle       <CR> gv
-nn  <silent> <F3>        : GitGutterStageHunk    <CR>
-nn  <silent> <F4>        : IndentLinesToggle     <CR>
+nn  <silent> <F2>        : SignifyFold           <CR>
+nn  <silent> <F3>        : SignifyDiff           <CR>
+nn  <silent> <F6>        : SignifyList           <CR>
 
 " Floaterm
 nn  <silent> <Bslash>t   : FloatermNew           <CR>
-nn  <silent> <F6>        : FloatermPrev          <CR>
-nn  <silent> <F7>        : FloatermNext          <CR>
-nn  <silent> <F8>        : FloatermKill          <CR>
-nn  <silent> <F9>        : FloatermToggle        <CR>
+nn  <silent> <F4>        : FloatermToggle        <CR>
 tno <silent> <Bslash>t   <C-\><C-n>:FloatermNew  <CR>
-tno <silent> <F6>        <C-\><C-n>:FloatermPrev <CR>
-tno <silent> <F7>        <C-\><C-n>:FloatermNext <CR>
-tno <silent> <F8>        <C-\><C-n>:FloatermKill <CR>
-tno <silent> <F9>        <C-\><C-n>:FloatermToggle <CR>
+tno <silent> <F4>        <C-\><C-n>:FloatermToggle <CR>
 
 " }}}
 " ============================================================================
@@ -974,77 +947,19 @@ aug END
 " STATUS LINE {{{
 " ============================================================================
 
-" fu! s:ShowGitBranch()
-"   let root = systemlist('git rev-parse --show-toplevel')[0]
-
-"   if v:shell_error
 " Always show the status line on the last window.
 set laststatus=2
 " Clear status line when vimrc is reloaded.
 set stl=
 set stl+=%2*
-" Current mode
-set stl=\\|\ %{GitStatus()}\ \|
 " Status line left side
-set stl+=\ \%f
-set stl+=\ \|\ %M\%Y\%R\ \|
+set stl=\\|\ %f\ \|
+set stl+=\ \%M\%Y\%R\ \|
 " Use a divider to separate the left side from the right side.
 set stl+=%=
 " Status line right side.
 set stl+=\ row:\ %l\/\%L\ \|\ col:\ %c\ \|\ percent:\ %p%%\ \|
 
-  " el
-  "   " Always show the status line on the last window.
-  "   set laststatus=2
-  "   " Clear status line when vimrc is reloaded.
-  "   set stl=
-  "   set stl+=%2*
-  "   " Current mode
-  "   set stl=\\|\ %{GitStatus()}\ \|
-  "   " Status line left side
-  "   set stl+=\ \%f
-  "   " Show Git branch
-  "   set stl+=\ %{b:gitbranch}
-  "   set stl+=\ \|\ %M\%Y\%R\ \|
-  "   " Use a divider to separate the left side from the right side.
-  "   set stl+=%=
-  "   " Status line right side.
-  "   set stl+=\ row:\ %l\/\%L\ \|\ col:\ %c\ \|\ percent:\ %p%%\ \|
-
-  " end
-" endf
-
-" au VimEnter,WinEnter,BufEnter * cal s:ShowGitBranch()
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vim Scripts
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Get a list of counts of added, modified, and removed lines (current buffer)
-fu! GitStatus()
-  let [a,m,r]=GitGutterGetHunkSummary()
-  retu printf('+%d  ~%d  -%d', a, m, r)
-endf
-
-" Show Git Branch
-fu! StatuslineGitBranch()
-  let b:gitbranch=""
-  if &modifiable
-    try
-      let l:dir=expand('%:p:h')
-      let l:gitrevparse = system("git -C ".l:dir." rev-parse --abbrev-ref HEAD")
-      if !v:shell_error
-        let b:gitbranch="{".substitute(l:gitrevparse, '\n', '', 'g')."}"
-      end
-    cat
-    endt
-  end
-endf
-
-aug GetGitBranch
-  au!
-  au VimEnter,WinEnter,BufEnter * cal StatuslineGitBranch()
-aug END
 
 " }}}
 " ============================================================================
