@@ -18,7 +18,40 @@
 packloadall          " Load all plugins
 silent! helptags ALL " Load help for all plugins
 
-
+" ============================================================================
+" ENVIRONMENT {{{
+" ============================================================================
+" Identify platform {
+    silent fu! OSX()
+        retu has('macunix')
+    endf
+    silent fu! LINUX()
+        retu has('unix') && !has('macunix') && !has('win32unix')
+    endf
+    silent fu! WINDOWS()
+        retu  (has('win32') || has('win64'))
+    endf
+" }
+" Basics {
+    se nocompatible        " Must be first line
+    if !WINDOWS()
+        se shell=/bin/sh
+    en
+" }
+" Windows Compatible {
+    " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
+    " across (heterogeneous) systems easier.
+    if WINDOWS()
+      se runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+    en
+" }
+" Arrow Key Fix {
+    " https://github.com/spf13/spf13-vim/issues/780
+    if &term[:4] == "xterm" || &term[:5] == 'screen' || &term[:3] == 'rxvt'
+        inoremap <silent> <C-[>OC <RIGHT>
+    en
+" }
+" }}}
 " ============================================================================
 " GUI RELATED {{{
 " ============================================================================
@@ -52,13 +85,16 @@ set guioptions-=L
 " GENERAL CONFIGURATION OPTIONS {{{
 " ============================================================================
 
-" Use Vim settings, rather then Vi settings. It’s important to have this
-" on the top of your file, as it influences other options.
-set nocp
+if has('cmdline_info')
+  se ru                   " Show the ruler
+  se rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
+  se sc                 " Show partial commands in status line and
+                          " Selected characters/lines in visual mode
+en
+
 " Allow backspacing over indention, line breaks and insertion start.
 set backspace=indent,eol,start
 set history=1000 " Set bigger history of executed commands.
-set sc           " Show incomplete commands at the bottom.
 set smd          " Show current mode at the bottom.
 " Automatically re-read files if unmodified inside Vim.
 set ar
@@ -74,7 +110,6 @@ let mapleader="\<Space>"  " Map the leader key to a spacebar.
 " => User Interface Options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set ls=2      " Always display the status bar.
-set ru        " Always show cursor position.
 set noeb      " Disable beep on errors.
 set vb        " Flash screen instead of beeping on errors.
 set mouse=a   " Enable mouse for scrolling and resizing.
@@ -84,7 +119,7 @@ set sb spr    " Split below / right
 " Set the window’s title, reflecting the file currently being edited.
 set title
 " Maximum number of tab pages that can be opened from the command line.
-set tpm=40
+set tpm=15
 " Maximum width of text that is being inserted set to 80.
 set tw=80
 
@@ -126,8 +161,13 @@ set completeopt=longest,menuone,preview
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Register / Clipboard
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Allow copied vim text to also be added to clipboard
-set clipboard=unnamed,unnamedplus
+if has('clipboard')
+  if has('unnamedplus')  " When possible use + register for copy-paste
+    se clipboard=unnamed,unnamedplus
+  el         " On mac and Windows, use * register for copy-paste
+    se clipboard=unnamed
+  en
+en
 
 " Prevent x and the delete key from overriding what's in the clipboard
 nn x "_x
@@ -192,9 +232,10 @@ set nrformats-=octal
 "    means that you can undo even when you close a buffer/VIM
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 try
-  set undodir=~/.vim/.tmp/.undo/     " undo files
+  set udir=~/.vim/.tmp/.undo/
   set undofile
-  set undoreload=10000
+  set ul=1000        " Maximum number of changes that can be undone
+  set ur=10000       " Maximum number lines to save for undo on a buffer reload
 catch
 endtry
 
@@ -543,7 +584,7 @@ nn <Leader>k :m .-2<CR>==
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Visual mode blockwise indent
+" => Visual Shifting (does not exit Visual mode)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vn < <gv
 vn > >gv
@@ -640,6 +681,19 @@ map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  => Change Working Directory to that of the current file.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+cno cwd lcd %:p:h
+cno cd. lcd %:p:h
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Allow using the repeat operator with a visual selection (!)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+vn . :normal .<CR>
 
 " }}}
 " ============================================================================
@@ -829,10 +883,10 @@ cal matchadd('ColorColumn', '\%81v', 100)
 au FileType * setl formatoptions-=c formatoptions-=r formatoptions-=o
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Detect trailing whitespace
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight trailing whitespace
 se list
 
 
@@ -919,9 +973,18 @@ end
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Highlight search
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Highlight
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 hi Search guibg=peru guifg=wheat
+
+" SignColumn should match background
+hi clear SignColumn
+
+" Remove highlight color from current line number
+hi clear CursorLineNr
+
+" Current line number row will have same background color in relative mode
+" hi clear LineNr
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -939,7 +1002,7 @@ aug line_return
   au BufReadPost *
         \ if line("'\"") > 0 && line("'\"") <= line("$") |
         \     execute 'normal! g`"zvzz' |
-        \ end
+        \ en
 aug END
 
 " }}}
@@ -947,23 +1010,22 @@ aug END
 " STATUS LINE {{{
 " ============================================================================
 
-" Always show the status line on the last window.
-set laststatus=2
-" Clear status line when vimrc is reloaded.
-set stl=
-set stl+=%2*
-" Status line left side
-set stl=\\|\ %f\ \|
-set stl+=\ \%M\%Y\%R\ \|
-" Use a divider to separate the left side from the right side.
-set stl+=%=
-" Status line right side.
-set stl+=\ row:\ %l\/\%L\ \|\ col:\ %c\ \|\ percent:\ %p%%\ \|
-
+if has('statusline')
+  " Always show the status line on the last window.
+  set laststatus=2
+  " Clear status line when vimrc is reloaded.
+  set stl=
+  set stl+=%2*
+  " Status line left side
+  set stl=\ [%f]                     " Filename
+  set stl+=\ [%{&ff}/%Y]             " Filetype
+  set stl+=\ [%{getcwd()}]           " Current dir
+  set stl+=%=%-14.(%l,%c%V%)\ %p%%\  " Right aligned file nav info
+en
 
 " }}}
 " ============================================================================
-" GITHUB {{{
+" GIT {{{
 " ============================================================================
 
 " Set filetype
@@ -980,5 +1042,9 @@ au FileType gitcommit setl nornu
 
 " Quit fugitive
 au FileType fugitive nn q :q<CR>
+
+" Instead of reverting the cursor to the last position in the buffer
+" set it to the first line when editing a git commit message
+au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 
 " }}}
