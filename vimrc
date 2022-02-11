@@ -765,8 +765,6 @@ fu! CapitaliseEachWord()
   ec 'Every Word Has Been Capitalised !'
 endf
 com! CapitaliseEachWord cal CapitaliseEachWord()
-nn <silent> <Bslash>C :CapitaliseEachWord<CR>
-vn <silent> <Bslash>C :CapitaliseEachWord<CR>
 
 " ----------------------------------------------------------------------------
 " :StripTrailingWhitespace
