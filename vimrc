@@ -970,7 +970,7 @@ au BufEnter ~/.vim/gitconfig      setl ft=gitconfig
 au BufEnter ~/.vim/gitmessage.txt setl ft=gitcommit
 
 " Quick push during a commit window
-au FileType fugitive nn <Leader>p :!clear && echo 'Start pushing local commits towards GitHub...' && git push<CR>
+au FileType fugitive nn <Bslash>p :!clear && echo 'Wait for the local commits to be pushed to GitHub...' && git push<CR>
 
 " Configuration
 au FileType gitconfig setl nocul nocuc
