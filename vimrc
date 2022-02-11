@@ -710,7 +710,7 @@ nn  <silent> <Leader>m   : MaximizerToggle         <CR>
 vn  <silent> <Leader>m   : MaximizerToggle         <CR> gv
 nn  <silent> <F2>        : SignifyFold             <CR>
 nn  <silent> <F3>        : SignifyDiff             <CR>
-nn  <silent> <F6>        : SignifyList             <CR>
+nn  <silent> <F4>        : SignifyList             <CR>
 
 " }}}
 " ============================================================================

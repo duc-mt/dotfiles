@@ -18,6 +18,5 @@ SPACE  - m       : Toggle maximizer of the current window
 
 <F2>             : Fold all unchanged lines
 <F3>             : Show changed lines with differences
-<F4>             : 
+<F4>             : Show signify record of the current file
 <F5>             : Run Python script (doable only for .py)
-<F6>             : Show signify record of the current file
