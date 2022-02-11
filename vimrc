@@ -697,24 +697,20 @@ vn . :normal .<CR>
 " HOTKEYS {{{
 " ============================================================================
 
-nn  <silent> <Bslash>ek  : sp ~/.vim/hotkeys.txt <CR>
-nn  <silent> <Bslash>eg  : tabe ~/.vim/gitconfig <CR>
-nn  <silent> <Bslash>ev  : tabe $MYVIMRC         <CR>
-nn  <silent> <Bslash>sv  : so $MYVIMRC           <CR>
-nn  <silent> <Leader>F   : FZF -m ~              <CR>
-nn  <silent> <Leader>f   : FZF -m                <CR>
-nn  <silent> <Leader>g   : Goyo                  <CR>
-nn  <silent> <Leader>m   : MaximizerToggle       <CR>
-vn  <silent> <Leader>m   : MaximizerToggle       <CR> gv
-nn  <silent> <F2>        : SignifyFold           <CR>
-nn  <silent> <F3>        : SignifyDiff           <CR>
-nn  <silent> <F6>        : SignifyList           <CR>
-
-" Floaterm
-nn  <silent> <Bslash>t   : FloatermNew           <CR>
-nn  <silent> <F4>        : FloatermToggle        <CR>
-tno <silent> <Bslash>t   <C-\><C-n>:FloatermNew  <CR>
-tno <silent> <F4>        <C-\><C-n>:FloatermToggle <CR>
+nn  <silent> <Bslash>ek  : sp ~/.vim/hotkeys.txt   <CR>
+nn  <silent> <Bslash>eg  : tabe ~/.vim/gitconfig   <CR>
+nn  <silent> <Bslash>ev  : tabe $MYVIMRC           <CR>
+nn  <silent> <Bslash>sv  : so $MYVIMRC             <CR>
+nn  <silent> <Bslash>t   : FloatermToggle          <CR>
+tno <silent> <Bslash>t   <C-\><C-n>:FloatermToggle <CR>
+nn  <silent> <Leader>F   : FZF -m ~                <CR>
+nn  <silent> <Leader>f   : FZF -m                  <CR>
+nn  <silent> <Leader>g   : Goyo                    <CR>
+nn  <silent> <Leader>m   : MaximizerToggle         <CR>
+vn  <silent> <Leader>m   : MaximizerToggle         <CR> gv
+nn  <silent> <F2>        : SignifyFold             <CR>
+nn  <silent> <F3>        : SignifyDiff             <CR>
+nn  <silent> <F6>        : SignifyList             <CR>
 
 " }}}
 " ============================================================================
