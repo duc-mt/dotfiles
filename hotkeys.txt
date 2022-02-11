@@ -12,8 +12,6 @@ BSLASH - s - v   : Source vimrc
 BSLASH - t       : Toggle floaterm
 SPACE  - n       : Toggle NERDTree
 SPACE  - g       : Toggle Goyo
-SPACE  - F       : Show FZF of the home '~' directory
-SPACE  - f       : Show FZF of the current working directory
 SPACE  - m       : Toggle maximizer of the current window
 
 <F2>             : Fold all unchanged lines

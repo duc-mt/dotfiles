@@ -306,43 +306,6 @@ let NERDTreeAutoDeleteBuffer  = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => FZF
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
-
-" Customise fzf colours to match your colourscheme.
-let g:fzf_colours =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-" An action can be a reference to a function that processes selected lines
-fu! s:build_quickfix_list(lines)
-  cal setqflist(map(copy(a:lines), '{ "filename": v:val }'))
-  cope
-  cc
-endf
-
-let g:fzf_action = {
-  \ 'ctrl-q': function('s:build_quickfix_list'),
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit',
-  \ 'ctrl-y': {lines -> setreg('*', join(lines, "\n"))}}
-
-let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.7 } }
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Supertab
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Change <tab> navigate the completion menu from bottom to top
@@ -703,8 +666,6 @@ nn  <silent> <Bslash>ev  : tabe $MYVIMRC           <CR>
 nn  <silent> <Bslash>sv  : so $MYVIMRC             <CR>
 nn  <silent> <Bslash>t   : FloatermToggle          <CR>
 tno <silent> <Bslash>t   <C-\><C-n>:FloatermToggle <CR>
-nn  <silent> <Leader>F   : FZF -m ~                <CR>
-nn  <silent> <Leader>f   : FZF -m                  <CR>
 nn  <silent> <Leader>g   : Goyo                    <CR>
 nn  <silent> <Leader>m   : MaximizerToggle         <CR>
 vn  <silent> <Leader>m   : MaximizerToggle         <CR> gv
