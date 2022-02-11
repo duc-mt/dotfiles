@@ -9,7 +9,7 @@ BSLASH - e - k   : Show hotkeys   (sp)
 BSLASH - e - g   : Show gitconfig (tabe)
 BSLASH - e - v   : Show vimrc     (tabe)
 BSLASH - s - v   : Source vimrc
-BSLASH - t       : Show floaterm
+BSLASH - t       : Toggle floaterm
 BSLASH - C       : Capitalise Each Word
 SPACE  - n       : Toggle NERDTree
 SPACE  - g       : Toggle Goyo
@@ -19,6 +19,6 @@ SPACE  - m       : Toggle maximizer of the current window
 
 <F2>             : Fold all unchanged lines
 <F3>             : Show changed lines with differences
-<F4>             : Toggle all floaterms
+<F4>             : 
 <F5>             : Run Python script (doable only for .py)
 <F6>             : Show signify record of the current file
