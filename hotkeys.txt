@@ -10,9 +10,9 @@ BSLASH - e - g   : Show gitconfig (tabe)
 BSLASH - e - v   : Show vimrc     (tabe)
 BSLASH - s - v   : Source vimrc
 BSLASH - t       : Toggle floaterm
+BSLASH  - g      : Toggle Goyo
+BSLASH  - m      : Toggle maximizer of the current window
 SPACE  - n       : Toggle NERDTree
-SPACE  - g       : Toggle Goyo
-SPACE  - m       : Toggle maximizer of the current window
 
 <F2>             : Fold all unchanged lines
 <F3>             : Show changed lines with differences
