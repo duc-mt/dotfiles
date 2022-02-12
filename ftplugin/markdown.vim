@@ -21,7 +21,6 @@ packadd gfm-syntax
 packadd limelight
 packadd speeddating
 
-colo PaperColor
 setl nolisp
 setl nosi
 
