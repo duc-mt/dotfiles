@@ -97,3 +97,6 @@
 [submodule "pack/file-system/start/tabman"]
 	path = pack/file-system/start/tabman
 	url = https://github.com/kien/tabman.vim.git
+[submodule "pack/syntax/start/rainbow_parentheses"]
+	path = pack/syntax/start/rainbow_parentheses
+	url = https://github.com/kien/rainbow_parentheses.vim.git
