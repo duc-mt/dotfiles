@@ -481,6 +481,15 @@ au! User GoyoEnter nested cal <SID>goyo_enter()
 " ----------------------------------------------------------------------------
 au FileType gitconfig setl commentstring=#\ %s
 
+
+" ----------------------------------------------------------------------------
+" RainbowParentheses
+" ----------------------------------------------------------------------------
+au VimEnter * RainbowParenthesesToggle
+au Syntax   * RainbowParenthesesLoadRound
+au Syntax   * RainbowParenthesesLoadSquare
+au Syntax   * RainbowParenthesesLoadBraces
+
 " }}}
 " ============================================================================
 " MAPPINGS {{{
@@ -671,6 +680,7 @@ nn  <silent> <Leader>m   : TMToggle                <CR>
 nn  <silent> <F2>        : SignifyFold             <CR>
 nn  <silent> <F3>        : SignifyDiff             <CR>
 nn  <silent> <F4>        : SignifyList             <CR>
+nn  <silent> <F6>        : RainbowParenthesesOn     <CR>
 
 " }}}
 " ============================================================================
@@ -740,6 +750,19 @@ fu! StripTrailingWhitespace()
   end
 endf
 com! StripTrailingWhitespace cal StripTrailingWhitespace()
+
+" ----------------------------------------------------------------------------
+" RainbowParentheses
+" ----------------------------------------------------------------------------
+fu! RainbowParenthesesOn()
+  :RainbowParenthesesToggle       " Toggle it on/off
+  :RainbowParenthesesLoadRound    " (), the default when toggling
+  :RainbowParenthesesLoadSquare   " []
+  :RainbowParenthesesLoadBraces   " {}
+  :RainbowParenthesesLoadChevrons " <>
+  ec 'RainbowParentheses Has Been Toggled'
+endf
+com! RainbowParenthesesOn cal RainbowParenthesesOn()
 
 " }}}
 " ============================================================================
