@@ -19,3 +19,4 @@ SPACE  - m       : Toggle tabman
 <F3>             : Show changed lines with differences
 <F4>             : Show signify record of the current file
 <F5>             : Run Python script (doable only for .py)
+<F6>             : Toggle RainbowParentheses
