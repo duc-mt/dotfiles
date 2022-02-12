@@ -94,3 +94,6 @@
 [submodule "pack/git/start/signify"]
 	path = pack/git/start/signify
 	url = https://github.com/mhinz/vim-signify.git
+[submodule "pack/file-system/start/tabman"]
+	path = pack/file-system/start/tabman
+	url = https://github.com/kien/tabman.vim.git
