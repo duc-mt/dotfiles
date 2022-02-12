@@ -298,10 +298,23 @@ let NERDTreeNaturalSort       = 1
 let NERDTreeSortHiddenFirst   = 1
 let NERDTreeQuitOnOpen        = 1
 let NERDTreeWinPos            = "right"
-let NERDTreeWinSize           = 30
+let NERDTreeWinSize           = 20
 let NERDTreeMinimalUI         = 1
 let NERDTreeDirArrows         = 1
 let NERDTreeAutoDeleteBuffer  = 1
+
+
+" ----------------------------------------------------------------------------
+" Tabman
+" ----------------------------------------------------------------------------
+let g:tabman_width = 20
+let g:tabman_side = 'right'
+
+" Show windows created by plugins, help and quickfix
+let g:tabman_specials = 1
+
+" Disable line numbering in the TabMan window
+let g:tabman_number = 0
 
 
 " ----------------------------------------------------------------------------
@@ -654,6 +667,7 @@ tno <silent> <Bslash>t   <C-\><C-n>:FloatermToggle <CR>
 nn  <silent> <Bslash>g   : Goyo                    <CR>
 nn  <silent> <Bslash>m   : MaximizerToggle         <CR>
 vn  <silent> <Bslash>m   : MaximizerToggle         <CR> gv
+nn  <silent> <Leader>m   : TMToggle                <CR>
 nn  <silent> <F2>        : SignifyFold             <CR>
 nn  <silent> <F3>        : SignifyDiff             <CR>
 nn  <silent> <F4>        : SignifyList             <CR>
