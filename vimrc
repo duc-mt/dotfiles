@@ -328,7 +328,7 @@ let g:SuperTabMappingTabLiteral     = "<C-V>"
 
 
 " ----------------------------------------------------------------------------
-" Vim-unimpaired
+" Unimpaired
 " ----------------------------------------------------------------------------
 " Toggle cursorcolumn
 nn yoc :set cursorcolumn!                              <CR>
