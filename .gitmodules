@@ -94,3 +94,6 @@
 [submodule "pack/syntax/start/rainbow_parentheses"]
 	path = pack/syntax/start/rainbow_parentheses
 	url = https://github.com/kien/rainbow_parentheses.vim.git
+[submodule "pack/plugins/start/repeat"]
+	path = pack/plugins/start/repeat
+	url = https://github.com/tpope/vim-repeat.git
