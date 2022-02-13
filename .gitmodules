@@ -100,3 +100,6 @@
 [submodule "pack/plugins/opt/radical"]
 	path = pack/plugins/opt/radical
 	url = https://github.com/glts/vim-radical.git
+[submodule "pack/plugins/opt/magnum"]
+	path = pack/plugins/opt/magnum
+	url = https://github.com/glts/vim-magnum.git
