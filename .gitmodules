@@ -97,3 +97,6 @@
 [submodule "pack/plugins/start/repeat"]
 	path = pack/plugins/start/repeat
 	url = https://github.com/tpope/vim-repeat.git
+[submodule "pack/plugins/opt/radical"]
+	path = pack/plugins/opt/radical
+	url = https://github.com/glts/vim-radical.git
