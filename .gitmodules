@@ -10,9 +10,6 @@
 [submodule "pack/git/start/fugitive"]
 	path = pack/git/start/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule "pack/plugins/opt/visual-multi"]
-	path = pack/plugins/opt/visual-multi
-	url = https://github.com/mg979/vim-visual-multi.git
 [submodule "pack/status-line/opt/airline"]
 	path = pack/status-line/opt/airline
 	url = https://github.com/vim-airline/vim-airline.git
