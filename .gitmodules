@@ -103,3 +103,6 @@
 [submodule "pack/plugins/opt/magnum"]
 	path = pack/plugins/opt/magnum
 	url = https://github.com/glts/vim-magnum.git
+[submodule "pack/writing/start/cursorword"]
+	path = pack/writing/start/cursorword
+	url = https://github.com/itchyny/vim-cursorword.git
