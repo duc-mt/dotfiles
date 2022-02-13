@@ -64,9 +64,6 @@
 [submodule "pack/writing/opt/limelight"]
 	path = pack/writing/opt/limelight
 	url = https://github.com/junegunn/limelight.vim.git
-[submodule "pack/writing/opt/markdown-preview"]
-	path = pack/writing/opt/markdown-preview
-	url = https://github.com/iamcco/markdown-preview.nvim.git
 [submodule "pack/writing/opt/vimwiki"]
 	path = pack/writing/opt/vimwiki
 	url = https://github.com/vimwiki/vimwiki.git
