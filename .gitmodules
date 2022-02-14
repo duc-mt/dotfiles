@@ -67,9 +67,6 @@
 [submodule "pack/writing/opt/vimwiki"]
 	path = pack/writing/opt/vimwiki
 	url = https://github.com/vimwiki/vimwiki.git
-[submodule "pack/writing/opt/markdown-vim-mode"]
-	path = pack/writing/opt/markdown-vim-mode
-	url = https://github.com/preservim/vim-markdown.git
 [submodule "pack/status-line/opt/lightline"]
 	path = pack/status-line/opt/lightline
 	url = https://github.com/itchyny/lightline.vim.git
