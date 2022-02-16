@@ -150,7 +150,8 @@ alias gpush='clear && printf "Wait for the local commits to be pushed to GitHub\
 alias upgrade='clear && printf "Wait for the Operating System to be upgraded\
  ...\n--------------------\n" && sudo apt update && sudo apt full-upgrade -y'
 alias hugolive='clear && printf "Wait for the site to be published\
- ...\n--------------------\n" && hugo server --noHTTPCache --disableFastRender'
+ ...\n--------------------\n" && hugo server --noHTTPCache --disableFastRender\
+ --buildDrafts'
 alias ConvertREADME.mdToPDF='clear && printf "Wait for README.md to be converted\
  ...\n--------------------\n" && cp README.md ../pandoc_md_to_pdf/ && cd\
  ../pandoc_md_to_pdf && ./md2pdf_syn_bullet.sh README.md sample_output.pdf\
