@@ -103,3 +103,6 @@
 [submodule "pack/git/start/gitbranch"]
 	path = pack/git/start/gitbranch
 	url = https://github.com/itchyny/vim-gitbranch.git
+[submodule "pack/file-system/start/ctrlp-funky"]
+	path = pack/file-system/start/ctrlp-funky
+	url = https://github.com/tacahiroy/ctrlp-funky.git
