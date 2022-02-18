@@ -103,6 +103,3 @@
 [submodule "pack/git/start/gitbranch"]
 	path = pack/git/start/gitbranch
 	url = https://github.com/itchyny/vim-gitbranch.git
-[submodule "pack/syntax/start/syntastic"]
-	path = pack/syntax/start/syntastic
-	url = https://github.com/vim-syntastic/syntastic.git
