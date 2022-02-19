@@ -92,6 +92,9 @@ if has('cmdline_info')
                           " Selected characters/lines in visual mode
 en
 
+" Faster redrawing
+set tf
+
 " Allow backspacing over indention, line breaks and insertion start.
 set backspace=indent,eol,start
 set history=1000 " Set bigger history of executed commands.
@@ -967,6 +970,8 @@ hi clear CursorLineNr
 " Current line number row will have same background color in relative mode
 " hi clear LineNr
 
+" Highlight conflicts
+mat ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " ----------------------------------------------------------------------------
 " Resize splits when the window is resized
