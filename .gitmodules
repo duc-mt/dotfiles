@@ -10,9 +10,6 @@
 [submodule "pack/git/start/fugitive"]
 	path = pack/git/start/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule "pack/status-line/opt/airline"]
-	path = pack/status-line/opt/airline
-	url = https://github.com/vim-airline/vim-airline.git
 [submodule "pack/colours/opt/colorizer"]
 	path = pack/colours/opt/colorizer
 	url = https://github.com/lilydjwg/colorizer.git
@@ -106,3 +103,6 @@
 [submodule "pack/file-system/start/ctrlp-funky"]
 	path = pack/file-system/start/ctrlp-funky
 	url = https://github.com/tacahiroy/ctrlp-funky.git
+[submodule "pack/status-line/start/airline"]
+	path = pack/status-line/start/airline
+	url = https://github.com/vim-airline/vim-airline.git
