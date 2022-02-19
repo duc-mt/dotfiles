@@ -996,18 +996,29 @@ aug END
 " STATUS LINE {{{
 " ============================================================================
 
-if has('statusline')
-  " Always show the status line on the last window.
-  set laststatus=2
-  " Clear status line when vimrc is reloaded.
-  set stl=
-  set stl+=%2*
-  " Status line left side
-  set stl=\ [%f]                     " Filename
-  set stl+=\ [%{&ff}/%Y]             " Filetype
-  set stl+=\ [%{getcwd()}]           " Current dir
-  set stl+=%=%-14.(%l,%c%V%)\ %p%%\  " Right aligned file nav info
-en
+let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+end
+let g:airline_skip_empty_sections = 1
+let g:airline_theme='gruvbox_material'
+
+" Unicode Symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.maxlinenr = '☰'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = '∄'
+let g:airline_symbols.whitespace = 'Ξ'
 
 " }}}
 " ============================================================================
