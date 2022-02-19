@@ -106,9 +106,3 @@
 [submodule "pack/file-system/start/ctrlp-funky"]
 	path = pack/file-system/start/ctrlp-funky
 	url = https://github.com/tacahiroy/ctrlp-funky.git
-[submodule "pack/file-system/start/devicons"]
-	path = pack/file-system/start/devicons
-	url = https://github.com/ryanoasis/vim-devicons.git
-[submodule "pack/file-system/start/nerd-fonts"]
-	path = pack/file-system/start/nerd-fonts
-	url = https://github.com/ryanoasis/nerd-fonts.git
