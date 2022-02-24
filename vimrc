@@ -681,12 +681,12 @@ nn  <silent> <Bslash>ek  : sp ~/.vim/hotkeys.txt   <CR>
 nn  <silent> <Bslash>eg  : tabe ~/.vim/gitconfig   <CR>
 nn  <silent> <Bslash>ev  : tabe $MYVIMRC           <CR>
 nn  <silent> <Bslash>sv  : so $MYVIMRC             <CR>
-nn  <silent> <Bslash>t   : FloatermToggle          <CR>
-tno <silent> <Bslash>t   <C-\><C-n>:FloatermToggle <CR>
 nn  <silent> <Bslash>g   : Goyo                    <CR>
 nn  <silent> <Bslash>m   : MaximizerToggle         <CR>
 vn  <silent> <Bslash>m   : MaximizerToggle         <CR> gv
 nn  <silent> <Leader>m   : TMToggle                <CR>
+nn  <silent> <Leader>t   : FloatermToggle          <CR>
+tno <silent> <Leader>t   <C-\><C-n>:FloatermToggle <CR>
 nn  <silent> <F2>        : SignifyFold             <CR>
 nn  <silent> <F3>        : SignifyDiff             <CR>
 nn  <silent> <F4>        : SignifyList             <CR>
