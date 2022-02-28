@@ -34,30 +34,17 @@ setl formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^\\s*[-*+]\\s\\+\\\|^\\[^\\ze[^\\]]\\
 let g:limelight_paragraph_span = 1
 let g:limelight_priority = -1
 
-fu! s:goyo_enter()
-  if has('gui_running')
-    se fullscreen
-    se linespace=7
-  elsei exists('$TMUX')
-    silent !tmux set status off
-  end
+fu! s:enable_limelight()
   Limelight
-  let &l:statusline = '%M'
-  hi StatusLine ctermfg=red guifg=red cterm=NONE gui=NONE
 endf
 
-fu! s:goyo_leave()
-  if has('gui_running')
-    se nofullscreen
-    se linespace=0
-  elsei exists('$TMUX')
-    silent !tmux set status on
-  end
+fu! s:disable_limelight()
   Limelight!
+  so $MYVIMRC
 endf
 
-au! User GoyoEnter nested call <SID>goyo_enter()
-au! User GoyoLeave nested call <SID>goyo_leave()
+au! User GoyoEnter nested call <SID>enable_limelight()
+au! User GoyoLeave nested call <SID>disable_limelight()
 
 " ----------------------------------------------------------------------------
 " Tabular
