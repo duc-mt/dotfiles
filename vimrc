@@ -457,27 +457,40 @@ hi SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline gui
 " ----------------------------------------------------------------------------
 " Goyo
 " ----------------------------------------------------------------------------
-let g:goyo_width = 82
+let g:goyo_width = 84
 
-" Scripts to configure Goyo
 fu! s:goyo_enter()
-  if executable('tmux') && strlen($TMUX)
+  if has('gui_running')
+    se fullscreen
+    se linespace=7
+  elsei exists('$TMUX')
     silent !tmux set status off
     silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
   end
-
-  aug no_nu_renu
+  aug no_rnu
     au!
-    au InsertLeave * setl nonumber norelativenumber
+    au InsertLeave * setl nornu
   aug END
-
-  se nocursorline
-  se nocursorcolumn
 endf
 
-" Call the GoyoEnter event's function
-au! User GoyoEnter nested cal <SID>goyo_enter()
+fu! s:goyo_leave()
+  if has('gui_running')
+    se nofullscreen
+    se linespace=0
+  elsei exists('$TMUX')
+    silent !tmux set status on
+  end
+  aug toggle_rnu
+    au!
+    au InsertEnter * setl nornu
+    au InsertLeave * setl rnu
+  aug END
+  " Re-enable Signify.
+  SignifyEnableAll
+endf
 
+au! User GoyoEnter nested call <SID>goyo_enter()
+au! User GoyoLeave nested call <SID>goyo_leave()
 
 " ----------------------------------------------------------------------------
 " Commentary
