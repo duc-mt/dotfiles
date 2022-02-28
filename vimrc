@@ -457,7 +457,7 @@ hi SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline gui
 " ----------------------------------------------------------------------------
 " Goyo
 " ----------------------------------------------------------------------------
-let g:goyo_width = 84
+let g:goyo_width = 81
 
 fu! s:goyo_enter()
   if has('gui_running')
