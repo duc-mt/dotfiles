@@ -31,30 +31,12 @@
 [submodule "pack/file-system/start/startify"]
 	path = pack/file-system/start/startify
 	url = https://github.com/mhinz/vim-startify.git
-[submodule "pack/plugins/start/commentary"]
-	path = pack/plugins/start/commentary
-	url = https://github.com/tpope/vim-commentary.git
-[submodule "pack/plugins/start/easymotion"]
-	path = pack/plugins/start/easymotion
-	url = https://github.com/easymotion/vim-easymotion.git
 [submodule "pack/plugins/start/maximizer"]
 	path = pack/plugins/start/maximizer
 	url = https://github.com/szw/vim-maximizer.git
-[submodule "pack/plugins/start/spelunker"]
-	path = pack/plugins/start/spelunker
-	url = https://github.com/kamykn/spelunker.vim.git
 [submodule "pack/plugins/start/supertab"]
 	path = pack/plugins/start/supertab
 	url = https://github.com/ervandew/supertab.git
-[submodule "pack/plugins/start/surround"]
-	path = pack/plugins/start/surround
-	url = https://github.com/tpope/vim-surround.git
-[submodule "pack/plugins/start/tabular"]
-	path = pack/plugins/start/tabular
-	url = https://github.com/godlygeek/tabular.git
-[submodule "pack/plugins/start/unimpaired"]
-	path = pack/plugins/start/unimpaired
-	url = https://github.com/tpope/vim-unimpaired.git
 [submodule "pack/writing/start/goyo"]
 	path = pack/writing/start/goyo
 	url = https://github.com/junegunn/goyo.vim.git
@@ -103,3 +85,21 @@
 [submodule "pack/status-line/start/airline"]
 	path = pack/status-line/start/airline
 	url = https://github.com/vim-airline/vim-airline.git
+[submodule "pack/writing/start/commentary"]
+	path = pack/writing/start/commentary
+	url = https://github.com/tpope/vim-commentary.git
+[submodule "pack/writing/start/easymotion"]
+	path = pack/writing/start/easymotion
+	url = https://github.com/easymotion/vim-easymotion.git
+[submodule "pack/writing/start/surround"]
+	path = pack/writing/start/surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "pack/writing/start/tabular"]
+	path = pack/writing/start/tabular
+	url = https://github.com/godlygeek/tabular.git
+[submodule "pack/writing/start/unimpaired"]
+	path = pack/writing/start/unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "pack/writing/start/spelunker"]
+	path = pack/writing/start/spelunker
+	url = https://github.com/kamykn/spelunker.vim.git
