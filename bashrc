@@ -129,7 +129,7 @@ Eynesbury/Desktop/myportfolio && clear && ls'
 alias VIM='cd ~/.vim && clear && ls'
 alias PY='cd ~/python_projects && clear && ls'
 alias open='wslview' # Open any file with the default application'
-alias opne='open' # In case I mistype the word 'open'
+alias opne='wslview' # In case I mistype the word 'open'
 alias bashrc='vim ~/.vim/bashrc'
 alias vimrc='vim ~/.vim/vimrc'
 alias gitconfig='vim ~/.vim/gitconfig'
@@ -156,4 +156,5 @@ alias ConvertREADME.mdToPDF='clear && printf "Wait for README.md to be converted
  ...\n--------------------\n" && cp README.md ../pandoc_md_to_pdf/ && cd\
  ../pandoc_md_to_pdf && ./md2pdf_syn_bullet.sh README.md sample_output.pdf\
  && mv sample_output.pdf ../ && rm README.md && cd ..'
+alias autopep8='printf "Finish formatting ...\n" && autopep8 --in-place -a -a'
 #}}}
