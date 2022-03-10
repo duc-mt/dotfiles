@@ -811,7 +811,9 @@ hi SpellRare   term=reverse   ctermbg=13 gui=undercurl guisp=Magenta
 " Word only exists in other region
 hi SpellLocale term=underline ctermbg=11 gui=undercurl guisp=DarkCyan
 
+" ----------------------------------------------------------------------------
 " Ignore CamelCase words when spell checking
+" ----------------------------------------------------------------------------
 fun! IgnoreSpell()
   sy match CamelCase /\<[A-Z][a-z]\+[A-Z].\{-}\>/ contains=@NoSpell transparent
   sy cluster Spell add=CamelCase
@@ -1057,8 +1059,8 @@ au FileType gitcommit setl nornu
 
 " Maximum width of text that is being inserted set to 72.
 " The column 73 is highlighted.
-cal matchadd('ColorColumn', '\%73v', 100)
-set tw=72
+au FileType gitcommit cal matchadd('ColorColumn', '\%73v', 100)
+setl tw=72
 
 " Quit fugitive
 au FileType fugitive nn q :q<CR>
