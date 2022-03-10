@@ -1055,6 +1055,11 @@ au FileType gitconfig setl nocul nocuc
 au FileType gitconfig setl fdls=99
 au FileType gitcommit setl nornu
 
+" Maximum width of text that is being inserted set to 72.
+" The column 73 is highlighted.
+cal matchadd('ColorColumn', '\%73v', 100)
+set tw=72
+
 " Quit fugitive
 au FileType fugitive nn q :q<CR>
 
