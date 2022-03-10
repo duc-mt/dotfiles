@@ -1,7 +1,11 @@
 
 # If this commit is applied, it will...
+# [Summarise changes in less than 50 characters]
+
 
 # This change was made because...
-# Anything particularly remarkable?
+# [Explain the problem that this commit is solving]
 
-# ----------------------------------------------- # ------------------- #
+
+# -------------------------------------------------------------------- #
+
