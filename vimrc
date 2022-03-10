@@ -123,8 +123,6 @@ set sb spr    " Split below / right
 set title
 " Maximum number of tab pages that can be opened from the command line.
 set tpm=15
-" Maximum width of text that is being inserted set to 80.
-set tw=80
 
 
 " ----------------------------------------------------------------------------
@@ -877,6 +875,8 @@ au FileType vim setl foldmethod=marker
 " ----------------------------------------------------------------------------
 hi ColorColumn guibg=Gray15 ctermbg=235
 cal matchadd('ColorColumn', '\%81v', 100)
+" Maximum width of text that is being inserted set to 80.
+set tw=80
 
 
 " ----------------------------------------------------------------------------

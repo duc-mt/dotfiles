@@ -29,9 +29,9 @@ setl fdm=indent
 
 " Make the 80th column stand out (maximum textwidth is 79)
 call matchadd('ColorColumn', '\%80v', 100)
-setl textwidth=79
+setl tw=79
 
-" Run script
+" Run Python script
 nn <F5> :w<CR>:!clear && python3 %<CR>
 
 au FileType python setl omnifunc=pythoncomplete#Complete
