@@ -263,7 +263,8 @@ set noswapfile
 " TEMPLATES & CUSTOM VIM FILETYPE SETTINGS {{{
 " ==============================================================================
 
-au BufNewFile *.py 0r ~/.vim/.tpl/academic_policy.py
+au BufNewFile *.py 0r ~/.vim/.tpl/linux_header.py
+" au BufNewFile *.py 0r ~/.vim/.tpl/academic_policy.py
 " au BufNewFile *.py 0r ~/.vim/.tpl/eibt_policy.py
 
 " Create a file in ftplugin/filetype.vim for specific settings
