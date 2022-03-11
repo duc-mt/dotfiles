@@ -17,6 +17,8 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 packloadall          " Load all plugins
 silent! helptags ALL " Load help for all plugins
+so ~/.vim/spell/wordlist.vim
+so ~/.vim/spell/abbreviation.vim
 
 " ============================================================================
 " ENVIRONMENT {{{
@@ -713,22 +715,6 @@ nn  <silent> <F2>        : SignifyFold                  <CR>
 nn  <silent> <F3>        : SignifyDiff                  <CR>
 nn  <silent> <F4>        : SignifyList                  <CR>
 nn  <silent> <F6>        : RainbowParenthesesOn         <CR>
-
-" }}}
-" ============================================================================
-" ABBREVIATIONS  {{{
-" ============================================================================
-
-" ----------------------------------------------------------------------------
-" General abbreviations
-" ----------------------------------------------------------------------------
-ia @@ tan.duc.work@gmail.com
-ia unisa University of South Australia
-ia SA South Australia
-ia ms Microsoft
-ia MS Microsoft
-ia ytb YouTube
-
 
 " }}}
 " ============================================================================
