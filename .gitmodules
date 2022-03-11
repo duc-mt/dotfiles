@@ -106,3 +106,6 @@
 [submodule "pack/writing/start/spelunker"]
 	path = pack/writing/start/spelunker
 	url = https://github.com/kamykn/spelunker.vim.git
+[submodule "pack/writing/opt/bullets"]
+	path = pack/writing/opt/bullets
+	url = https://github.com/dkarter/bullets.vim.git
