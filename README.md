@@ -51,7 +51,7 @@ git push -u origin master
 ---
 Clone .vim:
 ```bash
-git clone --recursive https://github.com/tanducmai/.dotfiles.git ~/.vim
+git clone --recurse-submodules https://github.com/tanducmai/.dotfiles.git ~/.vim
 ```
 This automatically installs all submodules that come with it.
 
