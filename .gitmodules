@@ -34,9 +34,6 @@
 [submodule "pack/plugins/start/maximizer"]
 	path = pack/plugins/start/maximizer
 	url = https://github.com/szw/vim-maximizer.git
-[submodule "pack/plugins/start/supertab"]
-	path = pack/plugins/start/supertab
-	url = https://github.com/ervandew/supertab.git
 [submodule "pack/writing/start/goyo"]
 	path = pack/writing/start/goyo
 	url = https://github.com/junegunn/goyo.vim.git
