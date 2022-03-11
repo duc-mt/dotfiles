@@ -879,7 +879,7 @@ aug END
 
 
 " ----------------------------------------------------------------------------
-" y show the cursor line in the active buffer.
+" Show the cursor line in the active buffer.
 " ----------------------------------------------------------------------------
 augroup CursorLine
     au!
@@ -965,7 +965,7 @@ aug GruvboxMaterial
   " highlight the background of them.
   let g:gruvbox_material_diagnostic_text_highlight = 1
   " Some plugins support highlighting error/warning/info/hint lines, but this
-  " feature is disabled by default in this color scheme.
+  " feature is disabled by default in this colour scheme.
   let g:gruvbox_material_diagnostic_line_highlight = 1
   " Some plugins can use virtual text feature of neovim to display
   " error/warning/info/hint information, you can use this option to adjust the
