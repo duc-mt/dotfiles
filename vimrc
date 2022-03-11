@@ -995,23 +995,24 @@ let hr=(strftime('%H'))
 
 if hr >= 18
   se background=dark
+  hi ColorColumn guibg=DarkRed ctermbg=DarkRed
 elsei hr >= 7
   se background=light
 elsei hr >= 0
   se background=dark
+  hi ColorColumn guibg=DarkRed ctermbg=DarkRed
 end
 
 
 " ----------------------------------------------------------------------------
 " Make the 81st column stand out (maximum textwidth is 80)
 " ----------------------------------------------------------------------------
-hi ColorColumn guibg=Magenta ctermbg=Magenta
 cal matchadd('ColorColumn', '\%81v', 100)
 " Maximum width of text that is being inserted set to 80.
 set tw=80
 
 
-" ----------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 " Detect trailing whitespace
 " ----------------------------------------------------------------------------
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight trailing whitespace
