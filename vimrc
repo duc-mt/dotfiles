@@ -427,32 +427,6 @@ endif
 
 
 " ----------------------------------------------------------------------------
-" Spelunker
-" ----------------------------------------------------------------------------
-" Disable URI checking
-let g:spelunker_disable_uri_checking                          = 1
-
-" Disable email-like words checking
-let g:spelunker_disable_email_checking                        = 1
-
-" Disable account name checking, e.g. @foobar, foobar@
-let g:spelunker_disable_account_name_checking                 = 1
-
-" Disable acronym checking
-let g:spelunker_disable_acronym_checking                      = 1
-
-" Disable checking words in backtick/backquote
-let g:spelunker_disable_backquoted_checking                   = 1
-
-" Disable default autogroup
-let g:spelunker_disable_auto_group                            = 1
-
-" Override highlight setting
-hi SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=#9e9e9e
-hi SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
-
-
-" ----------------------------------------------------------------------------
 " Goyo
 " ----------------------------------------------------------------------------
 let g:goyo_width = 81
@@ -510,6 +484,19 @@ au Syntax   * RainbowParenthesesLoadBraces
 " ----------------------------------------------------------------------------
 let g:ctrlp_funky_matchtype = 'path'
 let g:ctrlp_funky_syntax_highlight = 1
+
+
+" ----------------------------------------------------------------------------
+" CamelCaseMotion
+" ----------------------------------------------------------------------------
+map <silent> w <Plug>CamelCaseMotion_w
+map <silent> b <Plug>CamelCaseMotion_b
+map <silent> e <Plug>CamelCaseMotion_e
+map <silent> ge <Plug>CamelCaseMotion_ge
+sunmap w
+sunmap b
+sunmap e
+sunmap ge
 
 " }}}
 " ============================================================================
