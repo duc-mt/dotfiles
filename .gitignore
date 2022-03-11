@@ -15,6 +15,7 @@
 tmp/
 .tmp/
 .netrwhist
+*.spl
 
 # Packages #
 ############
