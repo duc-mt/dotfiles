@@ -498,6 +498,33 @@ sunmap b
 sunmap e
 sunmap ge
 
+
+" ----------------------------------------------------------------------------
+" Spelunker
+" ----------------------------------------------------------------------------
+" Disable URI checking
+let g:spelunker_disable_uri_checking                          = 1
+
+" Disable email-like words checking
+let g:spelunker_disable_email_checking                        = 1
+
+" Disable account name checking, e.g. @foobar, foobar@
+let g:spelunker_disable_account_name_checking                 = 1
+
+" Disable acronym checking
+let g:spelunker_disable_acronym_checking                      = 1
+
+" Disable checking words in backtick/backquote
+let g:spelunker_disable_backquoted_checking                   = 1
+
+" Disable default autogroup
+let g:spelunker_disable_auto_group                            = 1
+
+" Override highlight setting
+hi SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=#9e9e9e
+hi SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
+
+
 " }}}
 " ============================================================================
 " MAPPINGS {{{
@@ -783,24 +810,48 @@ com! RainbowParenthesesOn cal RainbowParenthesesOn()
 " ============================================================================
 
 " ----------------------------------------------------------------------------
-" Spell checking
+" Highlights
 " ----------------------------------------------------------------------------
-" Enable spell checking for gitcommit
-au FileType gitcommit setl spell spelllang=en_au
+fu! MyHighlights() abort
+  " Badly spelled word
+  hi SpellBad    cterm=NONE ctermbg=LightGrey  ctermfg=DarkRed gui=NONE guibg=#5fd700 guifg=#d70000
+  " Word with wrong caps
+  " hi SpellCap    cterm=NONE ctermbg=LightCyan  ctermfg=DarkRed gui=NONE guibg=#5fd700 guifg=#d70000
+  " Rare word
+  hi SpellRare   cterm=NONE ctermbg=LightCyan  ctermfg=DarkRed gui=NONE guibg=#5fd700 guifg=#d70000
+  " Word only exists in other region
+  hi SpellLocal  cterm=NONE ctermbg=LightYellow ctermfg=DarkRed gui=NONE guibg=#5fd700 guifg=#d70000
 
-" Highlight spelling mistakes
-" Badly spelled word
-hi SpellBad    term=reverse   ctermbg=12 gui=undercurl guisp=Red
-" Word with wrong caps
-hi SpellCap    term=reverse   ctermbg=9  gui=undercurl guisp=Blue
-" Rare word
-hi SpellRare   term=reverse   ctermbg=13 gui=undercurl guisp=Magenta
-" Word only exists in other region
-hi SpellLocale term=underline ctermbg=11 gui=undercurl guisp=DarkCyan
+  " Source: https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f
+  hi Visual                 ctermbg=76         ctermfg=16      gui=NONE guibg=#5fd700 guifg=#000000
+  " hi StatusLine cterm=NONE ctermbg=231 ctermfg=160 gui=NONE guibg=#ffffff guifg=#d70000
+  " hi Normal     cterm=NONE ctermbg=17              gui=NONE guibg=#00005f
+  " hi NonText    cterm=NONE ctermbg=17              gui=NONE guibg=#00005f
+endf
+
+aug MyColors
+    au!
+    au ColorScheme * cal MyHighlights()
+aug END
+
+hi Search guibg=peru guifg=wheat
+
+" SignColumn should match background
+hi clear SignColumn
+
+" Remove highlight colour from current line number
+hi clear CursorLineNr
+
+" Current line number row will have same background colour in relative mode
+" hi clear LineNr
+
+" Highlight conflicts
+mat ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
 
 " ----------------------------------------------------------------------------
 " Ignore CamelCase words when spell checking
-" ----------------------------------------------------------------------------
+"  ----------------------------------------------------------------------------
 fun! IgnoreSpell()
   sy match CamelCase /\<[A-Z][a-z]\+[A-Z].\{-}\>/ contains=@NoSpell transparent
   sy cluster Spell add=CamelCase
@@ -860,25 +911,9 @@ au FileType vim setl foldmethod=marker
 
 
 " ----------------------------------------------------------------------------
-" Make the 81st column stand out (maximum textwidth is 80)
-" ----------------------------------------------------------------------------
-hi ColorColumn guibg=Gray15 ctermbg=235
-cal matchadd('ColorColumn', '\%81v', 100)
-" Maximum width of text that is being inserted set to 80.
-set tw=80
-
-
-" ----------------------------------------------------------------------------
-" Disable automatic commenting on newline
+" Disable automatic commenting on the new line
 " ----------------------------------------------------------------------------
 au FileType * setl formatoptions-=c formatoptions-=r formatoptions-=o
-
-
-" ----------------------------------------------------------------------------
-" Detect trailing whitespace
-" ----------------------------------------------------------------------------
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight trailing whitespace
-se list
 
 
 " ----------------------------------------------------------------------------
@@ -964,21 +999,20 @@ end
 
 
 " ----------------------------------------------------------------------------
-" Highlight
+" Make the 81st column stand out (maximum textwidth is 80)
 " ----------------------------------------------------------------------------
-hi Search guibg=peru guifg=wheat
+hi ColorColumn guibg=Magenta ctermbg=Magenta
+cal matchadd('ColorColumn', '\%81v', 100)
+" Maximum width of text that is being inserted set to 80.
+set tw=80
 
-" SignColumn should match background
-hi clear SignColumn
 
-" Remove highlight color from current line number
-hi clear CursorLineNr
+" ----------------------------------------------------------------------------
+" Detect trailing whitespace
+" ----------------------------------------------------------------------------
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight trailing whitespace
+se list
 
-" Current line number row will have same background color in relative mode
-" hi clear LineNr
-
-" Highlight conflicts
-mat ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " ----------------------------------------------------------------------------
 " Resize splits when the window is resized
@@ -1043,6 +1077,9 @@ au FileType fugitive nn <Bslash>p :!clear && echo 'Wait for the local commits to
 au FileType gitconfig setl nocul nocuc
 au FileType gitconfig setl fdls=99
 au FileType gitcommit setl nornu
+
+" Enable spell checking for gitcommit
+au FileType gitcommit setl spell spelllang=en_au
 
 " Maximum width of text that is being inserted set to 72.
 " The column 73 is highlighted.
