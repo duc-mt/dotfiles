@@ -97,9 +97,9 @@
 [submodule "pack/writing/start/unimpaired"]
 	path = pack/writing/start/unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
-[submodule "pack/writing/start/spelunker"]
-	path = pack/writing/start/spelunker
-	url = https://github.com/kamykn/spelunker.vim.git
 [submodule "pack/syntax/start/toml"]
 	path = pack/syntax/start/toml
 	url = https://github.com/cespare/vim-toml.git
+[submodule "pack/writing/start/CamelCaseMotion"]
+	path = pack/writing/start/CamelCaseMotion
+	url = https://github.com/bkad/CamelCaseMotion.git
