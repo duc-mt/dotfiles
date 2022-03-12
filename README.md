@@ -53,7 +53,9 @@ git push -u origin master
 ---
 Clone .vim:
 ```bash
-git clone --recurse-submodules https://github.com/tanducmai/.dotfiles.git ~/.vim
+git clone https://github.com/tanducmai/.dotfiles.git ~/.vim
+git submodule init
+git submodule update
 ```
 This automatically installs all submodules that come with it.
 
@@ -66,6 +68,11 @@ Create a symbolic link to change the configuration for default vim
 editor:
 ```bash
 ln -sf ~/.vim/vimrc ~/.vimrc
+```
+
+Create a symbolic link to change the configuration for default bash:
+```bash
+ln -sf ~/.vim/bashrc ~/.bashrc
 ```
 
 Add a plugin as a submodule:
