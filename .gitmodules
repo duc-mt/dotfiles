@@ -73,9 +73,6 @@
 [submodule "pack/syntax/start/rainbow_parentheses"]
 	path = pack/syntax/start/rainbow_parentheses
 	url = https://github.com/kien/rainbow_parentheses.vim.git
-[submodule "pack/syntax/start/toml"]
-	path = pack/syntax/start/toml
-	url = https://github.com/cespare/vim-toml.git
 [submodule "pack/status-line/start/airline"]
 	path = pack/status-line/start/airline
 	url = https://github.com/vim-airline/vim-airline.git
