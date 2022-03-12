@@ -25,9 +25,6 @@
 [submodule "pack/git/start/fugitive"]
 	path = pack/git/start/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule "pack/git/start/gitbranch"]
-	path = pack/git/start/gitbranch
-	url = https://github.com/itchyny/vim-gitbranch.git
 [submodule "pack/git/start/gv"]
 	path = pack/git/start/gv
 	url = https://github.com/junegunn/gv.vim.git
