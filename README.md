@@ -14,8 +14,10 @@ sudo apt install make build-essential libncurses5-dev
 Vim 8 introduced a native way to load plugins, by expecting the files to be in a
 directory tree under .vim/pack . Vim 8 expects the following structure of the
 files:
-- `.vim/pack/plugins/opt/` is used for plugins you want to manually load
-- `.vim/pack/plugins/start/` is used for plugins you always load
+
+- `.vim/pack/plugins/opt/` is used for plugins you want to manually
+load.
+- `.vim/pack/plugins/start/` is used for plugins you always load.
 
 Within this folder a further folder **start** is needed to hold plugins. Vim
 will pick up any packages added to this folder and automatically load the
@@ -31,8 +33,8 @@ loaded automatically.  Packages added in the opt folder may be loaded using:
 In addition, you'll want to add the following two lines to your .vimrc file to
 load the documentation for all the plugins:
 ```vim
-packloadall           " Load all plugins.
-silent! helptags ALL  " Load help for all plugins.
+packloadall           " Load all plugins
+silent! helptags ALL  " Load help for all plugins
 ```
 
 You can manage your plugins yourself (with some overhead) by using Git
@@ -55,11 +57,17 @@ git clone --recurse-submodules https://github.com/tanducmai/.dotfiles.git ~/.vim
 ```
 This automatically installs all submodules that come with it.
 
-Create a symbolic link to change the configuration for the default git:
+Create a symbolic link to change the configuration for default git:
 ```bash
 ln -sf ~/.vim/gitconfig ~/.gitconfig
-
 ```
+
+Create a symbolic link to change the configuration for default vim
+editor:
+```bash
+ln -sf ~/.vim/vimrc ~/.vimrc
+```
+
 Add a plugin as a submodule:
 ```bash
 git submodule add https://github.com/scrooloose/nerdtree.git pack/plugins/start/nerdtree
