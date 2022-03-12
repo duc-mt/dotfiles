@@ -100,3 +100,6 @@
 [submodule "pack/file-system/start/tabman"]
 	path = pack/file-system/start/tabman
 	url = https://github.com/kien/tabman.vim
+[submodule "pack/file-system/start/fzf"]
+	path = pack/file-system/start/fzf
+	url = https://github.com/junegunn/fzf.git
