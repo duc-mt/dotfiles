@@ -28,7 +28,7 @@ setl indentkeys=!^F,o,O,<:>,0),0],0},=elif,=except
 setl fdm=indent
 
 " Make the 80th column stand out (maximum textwidth is 79)
-" call matchadd('ColorColumn', '\%80v', 100)
+call matchadd('ColorColumn', '\%80v', 100)
 setl tw=79
 
 " Run Python script
