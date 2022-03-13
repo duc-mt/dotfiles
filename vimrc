@@ -411,9 +411,9 @@ hi Floaterm guibg=black
 hi FloatermBorder guibg=orange guifg=cyan
 
 " Hide statusline
-autocmd! FileType floaterm
-autocmd  FileType floaterm set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+au! FileType floaterm
+au FileType floaterm set laststatus=0 noshowmode noruler
+  \| au BufLeave <buffer> set laststatus=2 showmode ruler
 
 
 " ----------------------------------------------------------------------------
@@ -439,7 +439,7 @@ fu! s:goyo_enter()
   end
   aug no_rnu
     au!
-    au InsertLeave * setl nornu
+    au InsertLeave * set nornu
   aug END
 endf
 
@@ -554,9 +554,9 @@ let g:fzf_action = {
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 
 " Hide statusline
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+au! FileType fzf
+au FileType fzf set laststatus=0 noshowmode noruler
+  \| au BufLeave <buffer> set laststatus=2 showmode ruler
 
 " }}}
 " ============================================================================
