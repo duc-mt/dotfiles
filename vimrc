@@ -17,42 +17,53 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 packloadall          " Load all plugins
 silent! helptags ALL " Load help for all plugins
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Load word files
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 so ~/.vim/spell/wordlist.vim
 so ~/.vim/spell/abbreviation.vim
+set spf=~/.vim/spell/en.utf-8.add
+
 
 " ============================================================================
 " ENVIRONMENT {{{
 " ============================================================================
 " Identify platform {
-    silent fu! OSX()
-        retu has('macunix')
-    endf
-    silent fu! LINUX()
-        retu has('unix') && !has('macunix') && !has('win32unix')
-    endf
-    silent fu! WINDOWS()
-        retu  (has('win32') || has('win64'))
-    endf
+silent fu! OSX()
+    retu has('macunix')
+endf
+silent fu! LINUX()
+    retu has('unix') && !has('macunix') && !has('win32unix')
+endf
+silent fu! WINDOWS()
+    retu  (has('win32') || has('win64'))
+endf
 " }
+
 " Basics {
-    se nocompatible        " Must be first line
-    if !WINDOWS()
-        se shell=/bin/sh
-    en
+se nocompatible        " Must be first line
+if !WINDOWS()
+    se shell=/bin/sh
+en
 " }
+
 " Windows Compatible {
-    " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
-    " across (heterogeneous) systems easier.
-    if WINDOWS()
-      se runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
-    en
+" On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
+" across (heterogeneous) systems easier.
+if WINDOWS()
+  se runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+en
 " }
+
 " Arrow Key Fix {
-    " https://github.com/spf13/spf13-vim/issues/780
-    if &term[:4] == "xterm" || &term[:5] == 'screen' || &term[:3] == 'rxvt'
-        inoremap <silent> <C-[>OC <RIGHT>
-    en
+" https://github.com/spf13/spf13-vim/issues/780
+if &term[:4] == "xterm" || &term[:5] == 'screen' || &term[:3] == 'rxvt'
+    inoremap <silent> <C-[>OC <RIGHT>
+en
 " }
+
 " }}}
 " ============================================================================
 " GUI RELATED {{{
@@ -1126,7 +1137,7 @@ au FileType gitconfig setl fdls=99
 au FileType gitcommit setl nornu
 
 " Enable spell checking for gitcommit
-au FileType gitcommit setl spell spelllang=en_au
+au FileType gitcommit setl spell spl=en_au
 
 " Maximum width of text that is being inserted set to 72.
 " The column 73 is highlighted.
