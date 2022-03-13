@@ -457,6 +457,7 @@ endf
 au! User GoyoEnter nested call <SID>goyo_enter()
 au! User GoyoLeave nested call <SID>goyo_leave()
 
+
 " ----------------------------------------------------------------------------
 " Commentary
 " ----------------------------------------------------------------------------
@@ -470,13 +471,6 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax   * RainbowParenthesesLoadRound
 au Syntax   * RainbowParenthesesLoadSquare
 au Syntax   * RainbowParenthesesLoadBraces
-
-
-" ----------------------------------------------------------------------------
-" CtrlP-Funky
-" ----------------------------------------------------------------------------
-let g:ctrlp_funky_matchtype = 'path'
-let g:ctrlp_funky_syntax_highlight = 1
 
 
 " ----------------------------------------------------------------------------
