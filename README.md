@@ -6,7 +6,12 @@ git clone https://github.com/vim/vim.git && cd vim/src/ && make && sudo make ins
 ```
 If issues occur, it might be that some dependencies are missing. Try:
 ```bash
-sudo apt install make build-essential libncurses5-dev
+sudo apt update && sudo apt full-upgrade -y && sudo apt install -y make build-essential libncurses5-dev git
+```
+
+Some initial, useful packages to be installed:
+```
+sudo apt install -y figet python3-pip pandoc texlive-latex-extra sqlformat net-tools netcat ipcalc vsftpd nethogs wireshark nmap aircrack-ng
 ```
 
 > **Mastering Vim Build a software development environment with Vim and Neovim (p. 105-6)**
