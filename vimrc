@@ -410,6 +410,11 @@ hi Floaterm guibg=black
 " Set floating window border line colour to cyan, and background to orange
 hi FloatermBorder guibg=orange guifg=cyan
 
+" Hide statusline
+autocmd! FileType floaterm
+autocmd  FileType floaterm set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
 
 " ----------------------------------------------------------------------------
 " Tabular
@@ -1134,5 +1139,10 @@ au FileType fugitive nn q :q<CR>
 " Instead of reverting the cursor to the last position in the buffer
 " set it to the first line when editing a git commit message
 au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+
+" Hide statusline fugitive
+autocmd! FileType fugitive
+autocmd  FileType fugitive set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
 " }}}
