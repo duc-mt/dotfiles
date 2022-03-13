@@ -4,9 +4,6 @@
 [submodule "pack/file-system/start/nerdtree"]
 	path = pack/file-system/start/nerdtree
 	url = https://github.com/preservim/nerdtree.git
-[submodule "pack/file-system/start/ctrlp-funky"]
-	path = pack/file-system/start/ctrlp-funky
-	url = https://github.com/tacahiroy/ctrlp-funky.git
 [submodule "pack/file-system/start/startify"]
 	path = pack/file-system/start/startify
 	url = https://github.com/mhinz/vim-startify.git
