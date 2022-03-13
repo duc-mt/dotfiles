@@ -416,13 +416,13 @@ hi FloatermBorder guibg=orange guifg=cyan
 " ----------------------------------------------------------------------------
 if exists(":Tabularize")
   vn :T  :Tabularize /
-endif
+end
 
 
 " ----------------------------------------------------------------------------
 " Goyo
 " ----------------------------------------------------------------------------
-let g:goyo_width = 81
+let g:goyo_width = 83
 
 fu! s:goyo_enter()
   if has('gui_running')
