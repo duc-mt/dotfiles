@@ -15,7 +15,7 @@ sudo apt update && sudo apt full-upgrade -y && sudo apt install -y make build-es
 Some initial, useful packages to be installed:
 
 ```
-sudo apt update && sudo apt full-upgrade -y && sudo apt install -y tree figlet python3-pip pandoc texlive-latex-extra sqlformat net-tools ipcalc vsftpd nethogs wireshark nmap aircrack-ng
+sudo apt update && sudo apt full-upgrade -y && sudo apt install -y tree figlet python3-pip pandoc texlive-latex-extra sqlformat net-tools ipcalc vsftpd nethogs nmap aircrack-ng
 ```
 
 ---
