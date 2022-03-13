@@ -13,6 +13,8 @@ BSLASH - t       : Toggle floaterm
 BSLASH - g       : Toggle Goyo
 BSLASH - m       : Toggle maximizer of the current window
 SPACE  - n       : Toggle NERDTree
+SPACE  - F       : Open FZF for files under home directory
+SPACE  - f       : Open FZF for files under current directory
 SPACE  - m       : Toggle tabman
 
 <F2>             : Fold all unchanged lines
