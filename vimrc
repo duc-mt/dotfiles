@@ -512,6 +512,47 @@ hi SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=#9e9e9e
 hi SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
 
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => FZF
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
+
+" Customise fzf colours to match your colourscheme.
+let g:fzf_colours =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+" An action can be a reference to a function that processes selected lines
+fu! s:build_quickfix_list(lines)
+  cal setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  cope
+  cc
+endf
+
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit',
+  \ 'ctrl-y': {lines -> setreg('*', join(lines, "\n"))}}
+
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+
+" Hide statusline
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
 " }}}
 " ============================================================================
 " MAPPINGS {{{
@@ -704,6 +745,8 @@ tno <silent> <Bslash>t   <C-\><C-n>:FloatermToggle      <CR>
 nn  <silent> <Bslash>g   : Goyo                         <CR>
 nn  <silent> <Bslash>m   : MaximizerToggle              <CR>
 vn  <silent> <Bslash>m   : MaximizerToggle              <CR> gv
+nn  <silent> <Leader>F   : FZF -m ~                <CR>
+nn  <silent> <Leader>f   : FZF -m                  <CR>
 nn  <silent> <Leader>m   : TMToggle                     <CR>
 nn  <silent> <F2>        : SignifyFold                  <CR>
 nn  <silent> <F3>        : SignifyDiff                  <CR>
