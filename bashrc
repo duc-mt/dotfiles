@@ -125,6 +125,10 @@ fi
 # ------------------------------------------------------------------------------
 
 # alias {{{
+alias ..='cd ..'
+alias cd..='cd ..'
+alias e='vim -o'
+alias E='vim -o'
 alias cc='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ Eynesbury && clear && ls'
 alias website='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ \
 Eynesbury/Desktop/myportfolio && clear && ls'
