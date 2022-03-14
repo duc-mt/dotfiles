@@ -490,19 +490,6 @@ au Syntax   * RainbowParenthesesLoadBraces
 
 
 " ----------------------------------------------------------------------------
-" CamelCaseMotion
-" ----------------------------------------------------------------------------
-map <silent> W <Plug>CamelCaseMotion_w
-map <silent> B <Plug>CamelCaseMotion_b
-map <silent> E <Plug>CamelCaseMotion_e
-map <silent> gE <Plug>CamelCaseMotion_ge
-sunmap W
-sunmap B
-sunmap E
-sunmap gE
-
-
-" ----------------------------------------------------------------------------
 " Spelunker
 " ----------------------------------------------------------------------------
 " Disable URI checking

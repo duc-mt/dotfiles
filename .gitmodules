@@ -37,9 +37,6 @@
 [submodule "pack/writing/opt/vimwiki"]
 	path = pack/writing/opt/vimwiki
 	url = https://github.com/vimwiki/vimwiki.git
-[submodule "pack/writing/start/CamelCaseMotion"]
-	path = pack/writing/start/CamelCaseMotion
-	url = https://github.com/inkarkat/vim-CamelCaseComplete.git
 [submodule "pack/writing/start/commentary"]
 	path = pack/writing/start/commentary
 	url = https://github.com/tpope/vim-commentary.git
