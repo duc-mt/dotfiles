@@ -516,7 +516,7 @@ hi SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline gui
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => FZF
+" FZF
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
 
@@ -555,6 +555,16 @@ let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 au! FileType fzf
 au FileType fzf set laststatus=0 noshowmode noruler
   \| au BufLeave <buffer> set laststatus=2 showmode ruler
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Supertab
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enhanced longest match support.
+let g:SuperTabLongestEnhanced = 1
+
+" Use tab to scroll down the list.
+let g:SuperTabDefaultCompletionType = "<C-N>"
 
 " }}}
 " ============================================================================

@@ -94,3 +94,6 @@
 [submodule "pack/file-system/start/fzf"]
 	path = pack/file-system/start/fzf
 	url = https://github.com/junegunn/fzf.git
+[submodule "pack/writing/start/supertab"]
+	path = pack/writing/start/supertab
+	url = https://github.com/ervandew/supertab.git
