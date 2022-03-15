@@ -119,6 +119,7 @@ fi
 
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+alias f='vim $(fzf -m --height 40% --no-mouse --border=rounded)'
 
 # ------------------------------------------------------------------------------
 # My Configuration
@@ -154,8 +155,8 @@ alias gpull='clear && printf "Wait for remote content to be fetched from Github\
 alias gpush='clear && printf "Wait for the local commits to be pushed to GitHub\
  ...\n--------------------\n" && git push'
 alias upgrade='clear && printf "Wait for the Operating System to be upgraded\
- ...\n--------------------\n" && sudo apt update && sudo apt full-upgrade &&\
- sudo apt autoremove && sudo apt autoclean -y'
+ ...\n--------------------\n" && sudo apt update && sudo apt full-upgrade -y &&\
+ sudo apt autoremove && sudo apt autoclean'
 alias hugolive='clear && printf "Wait for the site to be published\
  ...\n--------------------\n" && hugo server --noHTTPCache --disableFastRender\
  --buildDrafts'
