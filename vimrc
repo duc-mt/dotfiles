@@ -813,7 +813,7 @@ fu! StripTrailingWhitespace()
       let l:save = winsaveview()
       keepp %s/\s\+$//e
       cal winrestview(l:save)
-      ec 'Strip Trailing Whitespace Successfully !'
+      ec 'Trailing Whitespace Has Been Stripped !'
     end
   end
 endf
