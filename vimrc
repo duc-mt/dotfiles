@@ -1107,7 +1107,8 @@ au BufEnter ~/.vim/gitconfig      setl ft=gitconfig
 au BufEnter ~/.vim/gitmessage.txt setl ft=gitcommit
 
 " Quick push during a commit window
-au FileType fugitive nn <Bslash>p :!clear && echo 'Wait for the local commits to be pushed to GitHub ...\n--------------------' && git push<CR>
+com! Gpush :!clear && echo 'Wait for the local commits to be pushed to GitHub
+      \ ...\n--------------------' && git push
 
 " Configuration
 au FileType gitconfig setl nocul nocuc
@@ -1121,9 +1122,6 @@ au FileType gitcommit setl spell spl=en_au
 " The column 73 is highlighted.
 au FileType gitcommit cal matchadd('ColorColumn', '\%73v', 100)
 setl tw=72
-
-" Quit fugitive
-au FileType fugitive nn q :q<CR>
 
 " Instead of reverting the cursor to the last position in the buffer
 " set it to the first line when editing a git commit message
