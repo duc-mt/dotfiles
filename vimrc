@@ -834,29 +834,10 @@ com! RainbowParenthesesOn cal RainbowParenthesesOn()
 
 
 " ----------------------------------------------------------------------------
-" All-in-One Completion
+" :ClearRegisters
 " ----------------------------------------------------------------------------
-fu! SuperCleverTab()
-  " Check if at beginning of line or after a space
-  if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
-    retu "\<Tab>"
-  el
-    " Do we have omni completion available
-    if &omnifunc != ''
-      " Use omni-completion 1. priority
-      retu "\<C-X>\<C-O>"
-    elsei &dictionary != ''
-      " No omni completion, try dictionary completion
-      retu "\<C-K>"
-    el
-      " Use omni completion or dictionary completion
-      " Use known-word completion
-      retu "\<C-N>"
-    en
-  en
-endf
-" Bind function to the tab key
-ino <Tab> <C-R>=SuperCleverTab()<CR>
+com! ClearRegisters for i in range(34,122) | silent! call setreg(nr2char(i), [])
+      \| endfor | ec 'All Registers Has Been Cleared!'
 
 " }}}
 " ============================================================================
