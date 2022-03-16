@@ -15,7 +15,7 @@ sudo apt update && sudo apt full-upgrade -y && sudo apt install -y make build-es
 Some initial, useful packages to be installed:
 
 ```
-sudo apt update && sudo apt full-upgrade -y && sudo apt install -y tree figlet hugo fzf python3-pip python3-autopep8 python3-pytest pandoc texlive-latex-extra sqlformat net-tools ipcalc vsftpd nethogs nmap aircrack-ng
+sudo apt update && sudo apt full-upgrade -y && sudo apt install -y tree figlet hugo fzf python3-pip python3-autopep8 python3-pytest pandoc texlive-latex-extra sqlformat net-tools ipcalc vsftpd nethogs nmap aircrack-ng fd-find
 ```
 
 ---
@@ -33,7 +33,10 @@ Create symbolic links:
 ln -sf ~/.vim/vimrc ~/.vimrc
 ln -sf ~/.vim/gitconfig ~/.gitconfig
 ln -sf ~/.vim/bashrc ~/.bashrc
+ln -s $(which fdfind) ~/.local/bin/fd
 ```
+
+The last command is to support the use of FZF.
 
 Add a plugin as a submodule:
 
