@@ -23,8 +23,8 @@ sudo apt update && sudo apt full-upgrade -y && sudo apt install -y tree figlet h
 Clone .vim with all of its submodules:
 
 ```bash
-git clone https://github.com/tanducmai/.dotfiles.git ~/.vim
-cd .vim && git submodule init && git submodule update
+git clone https://github.com/tanducmai/.dotfiles.git ~/.vim && cd ~/.vim
+git submodule update --init --recursive --remote
 ```
 
 Create symbolic links:
