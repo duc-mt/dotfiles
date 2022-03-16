@@ -165,4 +165,6 @@ alias ConvertREADME.mdToPDF='clear && printf "Wait for README.md to be converted
  ../pandoc_md_to_pdf && ./md2pdf_syn_bullet.sh README.md sample_output.pdf\
  && mv sample_output.pdf ../ && rm README.md && cd ..'
 alias autopep8='printf "Finish formatting ...\n" && autopep8 --in-place -a -a'
+# pip install starcli
+alias githubtrending='starcli -S en -L table -l python -r 5 -d today'
 #}}}
