@@ -120,10 +120,7 @@ fi
 # FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# Use ~~ as the trigger sequence instead of the default **
-export FZF_COMPLETION_TRIGGER='~~'
-
-export FZF_DEFAULT_OPTS="-m --extended --no-mouse --height 40% \
+export FZF_DEFAULT_OPTS="-m --extended --cycle --no-mouse --height 40% \
     --layout=reverse --border=rounded --info=inline \
     --preview 'file {}' --preview-window up,1,border-horizontal \
     --color 'fg:#bbccdd,fg+:#ddeeff,bg:#334455,preview-bg:#223344,border:#778899'"

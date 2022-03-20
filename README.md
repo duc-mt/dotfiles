@@ -3,7 +3,7 @@
 Setting up Vim on Linux.
 
 ```bash
-git clone https://github.com/vim/vim.git && cd vim/src/ && make && sudo make install
+git clone https://github.com/vim/vim.git /tmp/vim/ && cd /tmp/vim/src/ && make && sudo make install && cd
 ```
 
 If issues occur, it might be that some dependencies are missing. Try:
@@ -11,6 +11,8 @@ If issues occur, it might be that some dependencies are missing. Try:
 ```bash
 sudo apt update && sudo apt full-upgrade -y && sudo apt install -y make build-essential libncurses5-dev git
 ```
+
+---
 
 Some initial, useful packages to be installed:
 
