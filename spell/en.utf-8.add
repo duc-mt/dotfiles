@@ -9,6 +9,7 @@ CapitaliseEachWord
 CourseCompleted
 Ctrl
 DDWT
+Duc
 E
 Easymotion
 Esc
@@ -20,6 +21,7 @@ INFT1031
 LaTeX
 LightCyan
 LightGreen
+Mai
 NERDTree
 NonText
 OOP
@@ -32,13 +34,20 @@ SQL
 SpellCap
 StatusLine
 StripTrailingWhitespace
+T ableA
+TableB
+TableC
 TableName
 Tuple
 VimEnter
 Y
+a1
+a2
+addID
 addressLine1
 addressLine2
 blog
+colourName
 com
 courseID
 courseName
@@ -74,9 +83,11 @@ hjkl
 hr
 https
 int
+jpg
 lastName
 lecturerInfo
 m
+meme
 merriam
 microsoft
 min
