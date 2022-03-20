@@ -313,7 +313,7 @@ let NERDTreeNaturalSort       = 1
 let NERDTreeSortHiddenFirst   = 1
 let NERDTreeQuitOnOpen        = 1
 let NERDTreeWinPos            = "right"
-let NERDTreeWinSize           = 20
+let NERDTreeWinSize           = 30
 let NERDTreeMinimalUI         = 1
 let NERDTreeDirArrows         = 1
 let NERDTreeAutoDeleteBuffer  = 1
@@ -650,7 +650,6 @@ nn Q @q
 " ----------------------------------------------------------------------------
 " Move between tabs
 " ----------------------------------------------------------------------------
-nn <silent> <S-H> : tabp<CR>
 nn <silent> <S-L> : tabn<CR>
 
 
