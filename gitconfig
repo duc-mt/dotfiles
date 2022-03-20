@@ -153,6 +153,7 @@
   cma = commit -a -m
   ca = commit --amend
   amend = commit --amend
+  am = commit --amend
   caa = commit -a --amend -C HEAD
   # }}}
 
