@@ -26,6 +26,12 @@ Python packages to be installed:
 python3 -m pip install -U mypy starcli
 ```
 
+Setting up git-sh on Linux.
+
+```bash
+git clone https://github.com/rtomayko/git-sh.git /tmp/git-sh/ && cd /tmp/git-sh/ && make && sudo make install && cd
+```
+
 ---
 
 Clone .vim with all of its submodules:
