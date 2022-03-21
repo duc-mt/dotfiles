@@ -9,11 +9,13 @@ CapitaliseEachWord
 CourseCompleted
 Ctrl
 DDWT
+Disqus
 Duc
 E
 Easymotion
 Esc
 FK
+Facebook
 Goyo
 HOTKEYS
 INFS1025
@@ -22,6 +24,7 @@ LaTeX
 LightCyan
 LightGreen
 Mai
+Multilanguage
 NERDTree
 NonText
 OOP
@@ -34,7 +37,9 @@ SQL
 SpellCap
 StatusLine
 StripTrailingWhitespace
-T ableA
+Subqueries
+Subquery
+TableA
 TableB
 TableC
 TableName
@@ -63,6 +68,7 @@ domainName
 emailAddress
 emailID
 f'https
+facebook
 familyName
 favColour
 filetype
@@ -86,6 +92,7 @@ int
 jpg
 lastName
 lecturerInfo
+linkedin
 m
 meme
 merriam
@@ -114,6 +121,8 @@ studentID
 studentName
 submodule
 submodules
+subqueries
+subquery
 t
 tanducmai
 taxFileNumber
