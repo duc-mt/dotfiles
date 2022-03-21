@@ -49,6 +49,7 @@
   diff = auto
   status = auto
   ui = auto
+	sh = auto
 
 [color "branch"]
   current = red reverse
@@ -279,3 +280,9 @@
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
   required = true
+[color "sh"]
+	branch = yellow reverse
+	workdir = blue bold
+	dirty = red
+	dirty-stash = red
+	repo-state = red
