@@ -269,6 +269,15 @@
 
 # }}}
 
+# git-sh {{{
+[color "sh"]
+  branch = yellow reverse
+  workdir = blue bold
+  dirty = red
+  dirty-stash = red
+  repo-state = red
+# }}}
+
 [rerere]
   enabled = false
 
@@ -280,9 +289,3 @@
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
   required = true
-[color "sh"]
-	branch = yellow reverse
-	workdir = blue bold
-	dirty = red
-	dirty-stash = red
-	repo-state = red
