@@ -17,7 +17,7 @@ sudo apt update && sudo apt full-upgrade -y && sudo apt install -y make build-es
 Some initial, useful packages to be installed:
 
 ```bash
-sudo apt update && sudo apt full-upgrade -y && sudo apt install -y tree figlet hugo fzf python3 python3-pip python3-autopep8 python3-pytest pandoc texlive-latex-extra sqlformat net-tools ipcalc vsftpd nethogs nmap aircrack-ng fd-find mlocate
+sudo apt update && sudo apt full-upgrade -y && sudo apt install -y tree figlet hugo fzf python3 python3-pip python3-autopep8 python3-pytest pandoc texlive-latex-extra sqlformat python3-q-text-as-data net-tools ipcalc vsftpd nethogs nmap aircrack-ng fd-find mlocate
 ```
 
 Python packages to be installed:
