@@ -164,7 +164,9 @@ _fzf_comprun() {
 
 # alias {{{
 alias ..='cd ..'
+alias ....='cd ../..'
 alias cd..='cd ..'
+alias cd....='cd ../..'
 alias e='vim -o'
 alias E='vim -o'
 alias cc='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ Eynesbury && clear && ls'
