@@ -478,6 +478,7 @@ au! User GoyoLeave nested call <SID>goyo_leave()
 " Commentary
 " ----------------------------------------------------------------------------
 au FileType gitconfig setl commentstring=#\ %s
+au FileType sql setl commentstring=--\ %s
 
 
 " ----------------------------------------------------------------------------
