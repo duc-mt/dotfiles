@@ -121,8 +121,7 @@ fi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export FZF_DEFAULT_OPTS="-m --extended --cycle --no-mouse --height 40% \
-    --layout=reverse --border=rounded --info=inline \
-    --preview 'file {}' --preview-window up,1,border-horizontal \
+    --layout=reverse --info=inline --preview 'file {}' \
     --color 'fg:#bbccdd,fg+:#ddeeff,bg:#334455,preview-bg:#223344,border:#778899'"
 
 # git branch | fzf-tmux -d 10
