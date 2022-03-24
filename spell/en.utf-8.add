@@ -1,4 +1,5 @@
 #ubmodule
+AVG
 AddLineNumber
 Bslash
 BufNewFile
@@ -66,11 +67,13 @@ ctermfg
 cursorcolumn
 cursorline
 customerID
+dateOfBirth
 datetime
 defaultValue
 domainName
 emailAddress
 emailID
+emoji
 f'https
 facebook
 familyName
@@ -107,6 +110,7 @@ mp3
 multivalued
 n
 neovim
+orderDate
 p
 pdf
 phoneNumber
@@ -120,6 +124,7 @@ s
 sep
 socialSecurityNumber
 sql
+stackoverflow
 statusline
 studentID
 studentName
@@ -138,6 +143,7 @@ url
 username
 varchar
 vimrc
+w
 webster
 whitespace
 wildmenu
