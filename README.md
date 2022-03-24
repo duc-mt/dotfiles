@@ -23,7 +23,7 @@ sudo apt update && sudo apt full-upgrade -y && sudo apt install -y tree figlet h
 4. Some Python packages to install:
 
 ```bash
-python3 -m pip install -U mypy starcli
+python3 -m pip install -U mypy starcli rich
 ```
 
 5. Set up git-sh on Linux.
