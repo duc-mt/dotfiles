@@ -37,17 +37,13 @@ git clone https://github.com/rtomayko/git-sh.git /tmp/git-sh/ && cd /tmp/git-sh/
 Clone .vim with all of its submodules:
 
 ```bash
-git clone https://github.com/tanducmai/.dotfiles.git ~/.vim && cd ~/.vim
-git submodule update --init --recursive --remote
+git clone https://github.com/tanducmai/.dotfiles.git ~/.vim && cd ~/.vim && git submodule update --init --recursive --remote
 ```
 
 Create symbolic links:
 
 ```bash
-ln -sf ~/.vim/vimrc ~/.vimrc
-ln -sf ~/.vim/gitconfig ~/.gitconfig
-ln -sf ~/.vim/bashrc ~/.bashrc
-ln -s $(which fdfind) ~/.local/bin/fd
+ln -sf ~/.vim/vimrc ~/.vimrc && ln -sf ~/.vim/gitconfig ~/.gitconfig && ln -sf ~/.vim/bashrc ~/.bashrc && ln -s $(which fdfind) ~/.local/bin/fd
 ```
 
 The last command is to support the use of FZF.
