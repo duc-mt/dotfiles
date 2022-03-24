@@ -97,6 +97,3 @@
 [submodule "pack/writing/start/supertab"]
 	path = pack/writing/start/supertab
 	url = https://github.com/ervandew/supertab.git
-[submodule "pack/writing/start/autoclose"]
-	path = pack/writing/start/autoclose
-	url = https://github.com/Townk/vim-autoclose.git
