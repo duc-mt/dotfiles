@@ -95,6 +95,7 @@ nn PPT :!clear && echo 'Start Generating The PPT Version...' &&
       \ pandoc % -o %.pptx<CR>
       \ :ec 'The PPT Version Is Ready !'<CR>
 
+
 " ----------------------------------------------------------------------------
 " Abbreviations for the above conversion
 " ----------------------------------------------------------------------------
