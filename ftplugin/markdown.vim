@@ -65,8 +65,16 @@ endf
 " ----------------------------------------------------------------------------
 " Format paragraph (selected or not) to 80 character lines
 " ----------------------------------------------------------------------------
-nn fp gqap     :ec 'Format Paragraph Successfully !' <CR>
-xn fp gqa<Esc> :ec 'Format Paragraph Successfully !' <CR>
+nn fp gqap     :ec 'Paragraph Formatted !' <CR>
+xn fp gqa<Esc> :ec 'Paragraph Formatted !' <CR>
+
+
+" ----------------------------------------------------------------------------
+" Seamlessly treat visual lines as actual lines when moving around
+" ----------------------------------------------------------------------------
+nn j gj
+nn k gk
+
 
 " ----------------------------------------------------------------------------
 " Convert md to pdf, html, ppt filetype
