@@ -1,4 +1,4 @@
-" Python Indent File
+" Python filetype plugin
 " Language: Python
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
