@@ -1,4 +1,4 @@
-# Installing up Vim on Linux
+# Install Vim on Linux
 
 1. Install dependencies
 
@@ -32,7 +32,7 @@ python3 -m pip install --user --upgrade mypy starcli rich bs4 pygame autopep8 py
 git clone https://github.com/rtomayko/git-sh.git /tmp/git-sh/ && cd /tmp/git-sh/ && make && sudo make install && cd /tmp/ && rm -rf git-sh/ && cd
 ```
 
-# Cloning .dotfiles
+# Clone .dotfiles
 
 6. Clone from Github
 
@@ -54,7 +54,7 @@ The last command helps run FZF in the terminal.
 cd ~/.vim/pack/file-system/start/fzf/ && ./install && cd
 ```
 
-# Working with Submodules
+# Work with Submodules
 
 Add a plugin as a submodule
 
