@@ -1,4 +1,4 @@
-# Setting up Vim on Linux
+# Installing up Vim on Linux
 
 1. Install dependencies.
 
@@ -32,7 +32,7 @@ python3 -m pip install -U mypy starcli rich
 git clone https://github.com/rtomayko/git-sh.git /tmp/git-sh/ && cd /tmp/git-sh/ && make && sudo make install && cd /tmp/ && rm -rf git-sh/ && cd
 ```
 
-# Cloning .dotfiles and Vim's submodules
+# Cloning .dotfiles.
 
 6. Clone from Github.
 
