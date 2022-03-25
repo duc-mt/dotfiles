@@ -135,7 +135,6 @@
   r = reset
   cp = cherry-pick
   gr = grep -Ii
-  update = submodule foreach git pull origin master
   # }}}
 
   # tweak defaults {{{
