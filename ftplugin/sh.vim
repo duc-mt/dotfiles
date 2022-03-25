@@ -1,4 +1,4 @@
-" Shell Indent File
+" Shell filetype plugin
 " Language: Python
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
