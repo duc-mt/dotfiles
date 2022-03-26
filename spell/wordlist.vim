@@ -1,12 +1,16 @@
 " Autocorrect word list from Office XP.
 " Created by: Gabriel Zachmann (zach@cs.uni-bonn.de)
 " Website: web.informatik.uni-bonn.de/~zach/vim/
-"
 " Facilitated by: Robert Hicks (bobh@hslda.org)
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"             __        _____  ____  ____  _     ___ ____ _____
+"             \ \      / / _ \|  _ \|  _ \| |   |_ _/ ___|_   _|
+"              \ \ /\ / / | | | |_) | | | | |    | |\___ \ | |
+"               \ V  V /| |_| |  _ <| |_| | |___ | | ___) || |
+"                \_/\_/  \___/|_| \_\____/|_____|___|____/ |_|
 "
-" It was very cool when I found that Gab created a way to
-" get Office acl files into Vim iab files. So I sent him
-" the Office XP ones that were on my system.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 iab abbout about
 iab abotu about
@@ -80,6 +84,7 @@ iab appointiment appointment
 iab appraoch approach
 iab approrpiate appropriate
 iab approrpriate appropriate
+iab aptient patient
 iab aquisition acquisition
 iab aquisitions acquisitions
 iab arguement argument
