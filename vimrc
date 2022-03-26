@@ -239,36 +239,7 @@ set confirm
 set nomodeline
 " Interpret octal as decimal when incrementing numbers
 set nrformats-=octal
-
-
-" ----------------------------------------------------------------------------
-" Set up persistent undo across all files
-" ----------------------------------------------------------------------------
-try
-  set udir=~/.vim/.temp/.undo/
-  set undofile
-  set ul=1000        " Maximum number of changes that can be undone
-  set ur=10000       " Maximum number lines to save for undo on a buffer reload
-catch
-endtry
-
-" Create undodir directory if possible and does not exist yet
-let targetdir=$HOME . "/.vim/.temp/.undo"
-if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
-  cal mkdir(targetdir, "p", 0700)
-endif
-
-
-" ----------------------------------------------------------------------------
-" Enable backup dir, but disable swap dir
-" ----------------------------------------------------------------------------
-set backupdir=~/.vim/.temp/.backup/ " backups
-" Create undodir directory if possible and does not exist yet
-let targetdir=$HOME . "/.vim/.temp/.backup"
-if isdirectory(targetdir) != 1 && getftype(targetdir) == "" && exists("*mkdir")
-  cal mkdir(targetdir, "p", 0700)
-endif
-
+" Disable swap file
 set noswapfile
 
 " }}}
