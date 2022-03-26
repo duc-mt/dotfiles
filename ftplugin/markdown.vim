@@ -19,7 +19,6 @@ ru! ftplugin/html.vim ftplugin/html_*.vim ftplugin/html/*.vim
 " Enable plugin
 packadd gfm-syntax
 packadd limelight
-packadd speeddating
 
 setl nolisp
 setl nosi
