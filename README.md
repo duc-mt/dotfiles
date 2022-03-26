@@ -17,7 +17,7 @@ git clone https://github.com/vim/vim.git /tmp/vim/ && cd /tmp/vim/src/ && make &
 3. Install some Linux packages
 
 ```bash
-sudo apt update && sudo apt full-upgrade -y && sudo apt install -y tree figlet hugo fzf python3 python3-pip pandoc texlive-latex-extra sqlformat python3-q-text-as-data net-tools ipcalc vsftpd nethogs nmap aircrack-ng fd-find mlocate
+sudo apt update && sudo apt full-upgrade -y && sudo apt install -y tree figlet hugo python3 python3-pip pandoc texlive-latex-extra sqlformat python3-q-text-as-data net-tools ipcalc vsftpd nethogs nmap aircrack-ng fd-find mlocate
 ```
 
 4. Install some Python packages
