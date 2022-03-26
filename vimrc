@@ -275,17 +275,25 @@ set noswapfile
 " ==============================================================================
 " TEMPLATES & CUSTOM VIM FILETYPE SETTINGS {{{
 " ==============================================================================
-
-au BufNewFile *.py 0r ~/.vim/.tpl/linux_header.py
-" au BufNewFile *.py 0r ~/.vim/.tpl/academic_policy.py
-" au BufNewFile *.py 0r ~/.vim/.tpl/eibt_policy.py
+if has("autocmd")
+  aug templates
+    au BufNewFile *.sh 0r ~/.vim/template/shebang_bash.sh
+    au BufNewFile *.py 0r ~/.vim/template/shebang_python.sh
+    " au BufNewFile *.py 0r ~/.vim/.tpl/academic_policy.py
+    " au BufNewFile *.py 0r ~/.vim/.tpl/eibt_policy.py
+  aug END
+en
 
 " Create a file in ftplugin/filetype.vim for specific settings
-au BufRead,BufNewFile,BufReadPost *.text,*.txt se filetype=text
-au BufRead,BufNewFile,BufReadPost *.md         se filetype=markdown
-au BufRead,BufNewFile,BufReadPost *.jade       se filetype=pug
-au BufRead,BufNewFile,BufReadPost *.pug        se filetype=pug
-au BufRead,BufNewFile,BufReadPost *.coffee     se filetype=coffee
+if has("autocmd")
+  aug templates
+    au BufRead,BufNewFile,BufReadPost *.text,*.txt se filetype=text
+    au BufRead,BufNewFile,BufReadPost *.md         se filetype=markdown
+    au BufRead,BufNewFile,BufReadPost *.jade       se filetype=pug
+    au BufRead,BufNewFile,BufReadPost *.pug        se filetype=pug
+    au BufRead,BufNewFile,BufReadPost *.coffee     se filetype=coffee
+  aug END
+en
 
 " }}}
 " ==============================================================================
