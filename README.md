@@ -43,7 +43,7 @@ git clone https://github.com/tanducmai/.dotfiles.git ~/.vim && cd ~/.vim && git 
 7. Create symbolic links
 
 ```bash
-ln -sf ~/.vim/vimrc ~/.vimrc && ln -sf ~/.vim/gitconfig ~/.gitconfig && ln -sf ~/.vim/bashrc ~/.bashrc && ln -s $(which fdfind) ~/.local/bin/fd
+ln -sf ~/.vim/vimrc ~/.vimrc && ln -sf ~/.vim/git/gitconfig ~/.gitconfig && ln -sf ~/.vim/bashrc ~/.bashrc && ln -sf $(which fdfind) ~/.local/bin/fd
 ```
 
 The last command helps run FZF in the terminal.

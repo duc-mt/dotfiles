@@ -131,3 +131,7 @@ _fzf_comprun() {
     *)            fzf "$@" ;;
   esac
 }
+
+# Run gitignore.io from the command line with gi
+# E.g. gi python >> .git/info/exclude
+function gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;}

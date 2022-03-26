@@ -758,7 +758,7 @@ vn . :normal .<CR>
 
 nn  <silent> <Bslash>ek  : sp ~/.vim/hotkeys.txt        <CR>
 nn  <silent> <Bslash>es  : sp ~/.vim/spell/en.utf-8.add <CR>
-nn  <silent> <Bslash>eg  : tabe ~/.vim/gitconfig        <CR>
+nn  <silent> <Bslash>eg  : tabe ~/.vim/git/gitconfig    <CR>
 nn  <silent> <Bslash>ev  : tabe $MYVIMRC                <CR>
 nn  <silent> <Bslash>sv  : so $MYVIMRC                  <CR>
 nn  <silent> <Bslash>t   : FloatermToggle               <CR>
@@ -1111,8 +1111,8 @@ let g:airline_symbols.whitespace = 'Ξ'
 " ============================================================================
 
 " Set filetype
-au BufEnter ~/.vim/gitconfig      setl ft=gitconfig
-au BufEnter ~/.vim/gitmessage.txt setl ft=gitcommit
+au BufEnter ~/.vim/git/gitconfig      setl ft=gitconfig
+au BufEnter ~/.vim/git/commit_msg     setl ft=gitcommit
 
 " Quick push during a commit window
 com! Gpush :!clear && echo 'Wait for the local commits to be pushed to GitHub
