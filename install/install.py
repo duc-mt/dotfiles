@@ -1,8 +1,13 @@
 #!/usr/bin/python3
+# -*- coding: utf-8 -*-
 
-"""This is the first script to run after installing Linux."""
+"""
+This is the first script to run after installing Linux.
+This script should be placed in the home directory.
+"""
 
 # ------------------------------- Module Import -------------------------------
+import os
 import subprocess
 
 
@@ -22,22 +27,23 @@ def install_dependencies():
     subprocess.run(command + packages)
 
 
-def perform_installation(name):
-    subprocess.run(['make'])
-    subprocess.run(['sudo', 'make', 'install'])
-    subprocess.run(['cd', '/tmp/'])
-    subprocess.run(['rm', '-rf', name + '/'])
-    subprocess.run(['cd'])
+def perform_installation(location, name):
+    wd = os.getcwd()
+    os.chdir(location)
+    subprocess.Popen('make')
+    subprocess.Popen(['sudo', 'make', 'install'])
+    os.chdir('/tmp/')
+    subprocess.Popen(['rm', '-rf', name + '/'])
+    os.chdir(wd)
 
 
 def clone_vim():
     location = '/tmp/vim/'
     subprocess.run([
         'git', 'clone',
-        'https://github.com/vim/vim.git', 'location',
+        'https://github.com/vim/vim.git', location,
     ])
-    subprocess.run(['cd', location + 'src/'])
-    perform_installation('vim')
+    # perform_installation(location + 'src/', 'vim')
 
 
 def install_linux_packages():
@@ -48,7 +54,7 @@ def install_linux_packages():
         'net-tools', 'ipcalc', 'vsftpd', 'nethogs', 'nmap', 'aircrack-ng',
         'fd-find', 'mlocate',
     ]
-    subprocess.run([command + packages])
+    subprocess.run(command + packages)
 
 
 def install_python_packages():
@@ -56,51 +62,30 @@ def install_python_packages():
     packages = [
         'mypy', 'starcli', 'rich', 'bs4', 'pygame', 'autopep8', 'pytest'
     ]
-    subprocess.run([command + packages])
+    subprocess.run(command + packages)
 
 
-def install_git_sh():
+def clone_git_sh():
     location = '/tmp/git-sh/'
     subprocess.run([
         'git', 'clone',
-        'https://github.com/rtomayko/git-sh.git', 'location',
+        'https://github.com/rtomayko/git-sh.git', location,
     ])
-    subprocess.run(['cd', location])
-    perform_installation('git-sh')
+    # perform_installation(location, 'git-sh')
 
 
 def clone_dotfiles():
-    location = '~/.vim'
+    # Current script should be placed on root folder.
+    location = '.vim/'
     subprocess.run([
         'git', 'clone',
-        'https://github.com/tanducmai/.dotfiles.git', 'location',
+        'https://github.com/tanducmai/.dotfiles.git', location,
     ])
-    subprocess.run(['cd', location])
-    subprocess.run(['git', 'submodule', 'update'])
-    subprocess.run([
+    os.chdir(location)
+    subprocess.Popen([
         'git', 'submodule', 'update',
         '--init', '--recursive', '--remote',
     ])
-
-
-def generate_symbolic_links():
-    command = ['ln', '-sf']
-    mappings = {
-        '~/.vim/vimrc': '~/.vimrc',
-        '~/.vim/bashrc': '~/.bashrc',
-        '~/.vim/git/gitconfig': '~/.gitconfig',
-        '$(which fdfind)': '~/.local/bin/fd',
-    }
-    for target, link_name in mappings.items():
-        # Create a link to target with the name link_name.
-        subprocess.run([command + list(target) + list(link_name)])
-
-
-def install_fzf():
-    directory = '~/.vim/pack/file-system/start/fzf/'
-    subprocess.run(['cd', 'directory'])
-    subprocess.run(['./install'])
-    subprocess.run(['cd'])
 
 
 # ------------------------------- Main Function -------------------------------
@@ -111,7 +96,5 @@ if __name__ == '__main__':
     upgrade_packages()
     install_linux_packages()
     install_python_packages()
-    install_git_sh()
+    clone_git_sh()
     clone_dotfiles()
-    generate_symbolic_links()
-    install_fzf()
