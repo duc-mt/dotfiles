@@ -248,17 +248,17 @@ set noswapfile
 " ==============================================================================
 if has("autocmd")
   aug templates
-    au BufNewFile *.sh 0r ~/.vim/template/shebang_bash.sh
-    au BufNewFile *.py 0r ~/.vim/template/shebang_python.sh
-    " au BufNewFile *.py 0r ~/.vim/.tpl/academic_policy.py
-    " au BufNewFile *.py 0r ~/.vim/.tpl/eibt_policy.py
+    au BufNewFile *.sh 0r ~/.vim/template/sh.template
+    au BufNewFile *.py 0r ~/.vim/template/python.template
+    " au BufNewFile *.py 0r ~/.vim/template/academic.template
+    " au BufNewFile *.py 0r ~/.vim/template/eibt.template
   aug END
 en
 
 " Create a file in ftplugin/filetype.vim for specific settings
 if has("autocmd")
-  aug templates
-    au BufRead,BufNewFile,BufReadPost *.text,*.txt se filetype=text
+  aug filetypes
+    au BufRead,BufNewFile,BufReadPost *.template   se filetype=text
     au BufRead,BufNewFile,BufReadPost *.md         se filetype=markdown
     au BufRead,BufNewFile,BufReadPost *.jade       se filetype=pug
     au BufRead,BufNewFile,BufReadPost *.pug        se filetype=pug
