@@ -301,13 +301,21 @@ let NERDTreeAutoDeleteBuffer  = 1
 " ----------------------------------------------------------------------------
 " Tabman
 " ----------------------------------------------------------------------------
+" Disable the plugin completely
+let g:loaded_tabman = 0
+
+" Override command
+let g:tabman_toggle = '<leader>m'
+let g:tabman_focus = '<leader>m'
+
+" Configure window layout
 let g:tabman_width = 20
 let g:tabman_side = 'right'
 
 " Show windows created by plugins, help and quickfix
 let g:tabman_specials = 1
 
-" Disable line numbering in the TabMan window
+" Disable line numbering
 let g:tabman_number = 0
 
 
