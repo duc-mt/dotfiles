@@ -1,54 +1,27 @@
 # Install Vim on Linux
 
-1. Install dependencies
+1. Run install/install.py Script
+
+2. Install Submodules
 
 ```bash
-sudo apt update && sudo apt full-upgrade -y && sudo apt install -y make build-essential libncurses5-dev git
+cd ~/.vim && git submodule update --init --recursive --remote
 ```
+3. Run install/postinstall.py Script
 
-2. Clone and install Vim
+4. Install Vim
 
 ```bash
-git clone https://github.com/vim/vim.git /tmp/vim/ && cd /tmp/vim/src/ && make && sudo make install && cd /tmp/ && rm -rf vim/ && cd
+cd /tmp/vim/src/ && make && sudo make install && cd /tmp/ && rm -rf vim/ && cd
 ```
 
----
-
-3. Install some Linux packages
+5. Install Git-sh
 
 ```bash
-sudo apt update && sudo apt full-upgrade -y && sudo apt install -y tree figlet hugo python3 python3-pip pandoc texlive-latex-extra sqlformat python3-q-text-as-data net-tools ipcalc vsftpd nethogs nmap aircrack-ng fd-find mlocate
+cd /tmp/git-sh/ && make && sudo make install && cd /tmp/ && rm -rf git-sh/ && cd
 ```
 
-4. Install some Python packages
-
-```bash
-python3 -m pip install --user --upgrade mypy starcli rich bs4 pygame autopep8 pytest
-```
-
-5. Set up git-sh on Linux
-
-```bash
-git clone https://github.com/rtomayko/git-sh.git /tmp/git-sh/ && cd /tmp/git-sh/ && make && sudo make install && cd /tmp/ && rm -rf git-sh/ && cd
-```
-
-# Clone .dotfiles
-
-6. Clone from Github
-
-```bash
-git clone https://github.com/tanducmai/.dotfiles.git ~/.vim && cd ~/.vim && git submodule update --init --recursive --remote
-```
-
-7. Create symbolic links
-
-```bash
-ln -sf ~/.vim/vimrc ~/.vimrc && ln -sf ~/.vim/git/gitconfig ~/.gitconfig && ln -sf ~/.vim/bashrc ~/.bashrc && ln -sf $(which fdfind) ~/.local/bin/fd
-```
-
-The last command helps run FZF in the terminal.
-
-8. Set up FZF in Vim
+6. Install FZF
 
 ```bash
 cd ~/.vim/pack/file-system/start/fzf/ && ./install && cd
