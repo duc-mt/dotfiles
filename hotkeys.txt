@@ -1,3 +1,4 @@
+ " A list of user-defined key bindings
  _   _  ___ _____ _  _________   ______
 | | | |/ _ \_   _| |/ / ____\ \ / / ___|
 | |_| | | | || | | ' /|  _|  \ V /\___ \
@@ -16,6 +17,7 @@ SPACE  - n       : Toggle NERDTree
 SPACE  - F       : Open FZF for files under home directory
 SPACE  - f       : Open FZF for files under current directory
 SPACE  - m       : Toggle tabman
+SPACE  - u       : Toggle undotree
 
 <F2>             : Fold all unchanged lines
 <F3>             : Show changed lines with differences
