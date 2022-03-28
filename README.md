@@ -1,22 +1,22 @@
 # Install Vim on Linux
 
-1. Run install/install.py Script
+1. Execute install/install.py
 
-2. Run install/postinstall.py Script
+2. Execute install/postinstall.py
 
-3. Install Vim
+3. Install vim
 
 ```bash
 cd /tmp/vim/src/ && make && sudo make install && cd /tmp/ && rm -rf vim/
 ```
 
-4. Install Git-sh
+4. Install git-sh
 
 ```bash
 cd /tmp/git-sh/ && make && sudo make install && cd /tmp/ && rm -rf git-sh/
 ```
 
-5. Install FZF
+5. Install fzf
 
 ```bash
 cd ~/.vim/pack/file-system/start/fzf/ && ./install && cd
