@@ -239,6 +239,37 @@ set confirm
 set nomodeline
 " Interpret octal as decimal when incrementing numbers
 set nrformats-=octal
+
+
+" ----------------------------------------------------------------------------
+" Set up persistent undo across all files
+" ----------------------------------------------------------------------------
+if has("persistent_undo")
+  let undo_dir = expand('/tmp/.undo/')
+
+  " Create undo directory if possible and does not exist yet
+  if !isdirectory(undo_dir) && getftype(undo_dir) == "" && exists("*mkdir")
+    cal mkdir(undo_dir, "p", 0700)
+  en
+
+  let &udir = undo_dir
+  set undofile
+  set ul=1000        " Maximum number of changes that can be undone
+  set ur=10000       " Maximum number lines to save for undo on a buffer reload
+en
+
+
+" ----------------------------------------------------------------------------
+" Enable backup directory, but disable swap dir
+" ----------------------------------------------------------------------------
+" Create backup directory if possible and does not exist yet
+let backup_dir = expand('/tmp/.backup/')
+if !isdirectory(backup_dir) && getftype(backup_dir) == "" && exists("*mkdir")
+  cal mkdir(backup_dir, "p", 0700)
+endif
+
+set bdir=/tmp/.backup/ " backups
+
 " Disable swap file
 set noswapfile
 
