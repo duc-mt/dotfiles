@@ -1,16 +1,33 @@
 # Install Vim on Linux
 
-1. Execute install/install.py
+1. Download scripts
 
-2. Execute install/postinstall.py
+```bash
+cd ~/ && wget https://raw.githubusercontent.com/tanducmai/.dotfiles/master/install/install.py && wget https://raw.githubusercontent.com/tanducmai/.dotfiles/master/install/postinstall.py
+```
 
-3. Install vim
+2. Change permission
+
+```bash
+chmod +x install.py
+chmod +x postinstall.py
+```
+
+3. Execute scripts
+
+```bash
+./install.py
+./postinstall.py
+rm install.py postinstall.py
+```
+
+4. Install vim
 
 ```bash
 cd /tmp/vim/src/ && make && sudo make install && cd /tmp/ && rm -rf vim/
 ```
 
-4. Install git-sh
+5. Install git-sh
 
 ```bash
 cd /tmp/git-sh/ && make && sudo make install && cd /tmp/ && rm -rf git-sh/
