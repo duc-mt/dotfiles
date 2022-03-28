@@ -2,26 +2,21 @@
 
 1. Run install/install.py Script
 
-2. Install Submodules
+2. Run install/postinstall.py Script
+
+3. Install Vim
 
 ```bash
-cd ~/.vim && git submodule update --init --recursive --remote
+cd /tmp/vim/src/ && make && sudo make install && cd /tmp/ && rm -rf vim/
 ```
-3. Run install/postinstall.py Script
 
-4. Install Vim
+4. Install Git-sh
 
 ```bash
-cd /tmp/vim/src/ && make && sudo make install && cd /tmp/ && rm -rf vim/ && cd
+cd /tmp/git-sh/ && make && sudo make install && cd /tmp/ && rm -rf git-sh/
 ```
 
-5. Install Git-sh
-
-```bash
-cd /tmp/git-sh/ && make && sudo make install && cd /tmp/ && rm -rf git-sh/ && cd
-```
-
-6. Install FZF
+5. Install FZF
 
 ```bash
 cd ~/.vim/pack/file-system/start/fzf/ && ./install && cd
