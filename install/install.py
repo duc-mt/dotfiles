@@ -19,6 +19,8 @@ SUDO = ['sudo', 'apt']
 def upgrade_packages():
     subprocess.run(SUDO + ['update'])
     subprocess.run(SUDO + ['full-upgrade', '-y'])
+    subprocess.run(SUDO + ['autoremove', '-y'])
+    subprocess.run(SUDO + ['autoclean', '-y'])
 
 
 def install_dependencies():
