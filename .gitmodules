@@ -97,3 +97,6 @@
 [submodule "pack/writing/start/supertab"]
 	path = pack/writing/start/supertab
 	url = https://github.com/ervandew/supertab.git
+[submodule "pack/plugins/start/undotree"]
+	path = pack/plugins/start/undotree
+	url = https://github.com/mbbill/undotree.git

@@ -546,6 +546,20 @@ let g:SuperTabLongestEnhanced = 1
 " Use tab to scroll down the list.
 let g:SuperTabDefaultCompletionType = "<C-N>"
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Undotree
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Configure window layout
+let g:undotree_CustomUndotreeCmd  = 'topleft vertical 22 new'
+let g:undotree_CustomDiffpanelCmd = 'botright 7 new'
+
+" E.g. d instead of day
+let g:undotree_ShortIndicators = 1
+
+" Hide 'Press ? for help'
+let g:undotree_HelpLine = 0
+
 " }}}
 " ============================================================================
 " MAPPINGS {{{
