@@ -7,7 +7,7 @@
 #        USAGE:  ./install
 #
 #  DESCRIPTION:  Set up a new Linux machine.
-#                Automatically install all the required programs to get started.
+#                Install Vim, Python, packages, and configuration files needed.
 #
 #      OPTIONS:  ---
 # REQUIREMENTS:  ---
@@ -56,7 +56,8 @@ python3 -m pip install --user --upgrade \
 # 5. Set up git-sh on Linux
 
 git clone https://github.com/rtomayko/git-sh.git /tmp/git-sh/
-cd /tmp/git-sh/ make
+cd /tmp/git-sh/
+make
 sudo make install
 cd /tmp/
 rm -rf git-sh/
@@ -72,7 +73,7 @@ git submodule update --init --recursive --remote
 # 7. Create symbolic links
 
 ln -sf ~/.vim/vimrc ~/.vimrc
-ln -sf ~/.vim/gitconfig ~/.gitconfig
+ln -sf ~/.vim/git/gitconfig ~/.gitconfig
 ln -sf ~/.vim/bashrc ~/.bashrc
 ln -sf $(which fdfind) ~/.local/bin/fd
 
