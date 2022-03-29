@@ -1,7 +1,7 @@
 " Autocorrect word list from Office XP.
 " Created by: Gabriel Zachmann (zach@cs.uni-bonn.de)
-" Website: web.informatik.uni-bonn.de/~zach/vim/
 " Facilitated by: Robert Hicks (bobh@hslda.org)
+" Modified by: Tan Duc Mai (tan.duc.work@gmail.com)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "             __        _____  ____  ____  _     ___ ____ _____
@@ -295,6 +295,7 @@ iab ehr her
 iab eligable eligible
 iab embarass embarrass
 iab enought enough
+iab enployment employment
 iab equippment equipment
 iab equivalant equivalent
 iab esle else
