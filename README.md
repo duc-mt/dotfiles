@@ -1,16 +1,14 @@
-# Linux Initialisation
+# Introduction
 
-## Introduction
-
-This `install` script will install Vim, Python, packages, and configuration
-files needed to begin a new Linux machine.
+The `install` script will install Vim, Python, packages, and
+configuration files (. files) needed to get the show on the road.
 
 Requirements:
 
-1. `wget`
 1. `sudo`
+1. `curl`
 
-## Install
+# Installation
 
 1. Download script
 
