@@ -2,7 +2,7 @@
 
 set -eu
 
-VIMSPELLDIR=.
+VIMSPELLDIR=..
 TMP="$(mktemp)"
 
 trap 'rm -f "${TMP}"; exit' INT TERM ERR EXIT
