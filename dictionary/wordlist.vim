@@ -255,6 +255,8 @@ iab directers directors
 iab directiosn direction
 iab disatisfied dissatisfied
 iab discoverd discovered
+iab discussiion discussion
+iab discussiions discussions
 iab disign design
 iab dispaly display
 iab dissonent dissonant
@@ -473,6 +475,7 @@ iab mesages messages
 iab mispell misspell
 iab mispelling misspelling
 iab mispellings misspellings
+iab misture mixture
 iab mkae make
 iab mkaes makes
 iab mkaing making
@@ -555,6 +558,7 @@ iab porvide provide
 iab possable possible
 iab postition position
 iab potentialy potentially
+iab prefered preferred
 iab pregnent pregnant
 iab presance presence
 iab probelm problem
@@ -666,6 +670,7 @@ iab stnad stand
 iab stopry story
 iab stoyr story
 iab stpo stop
+iab strcutre structure
 iab strentgh strength
 iab stroy story
 iab struggel struggle
