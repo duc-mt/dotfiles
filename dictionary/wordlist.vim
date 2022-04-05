@@ -18,6 +18,7 @@ iab acheiving achieving
 iab acn can
 iab acommodate accommodate
 iab acomodate accommodate
+iab activites activities
 iab actualyl actually
 iab additinal additional
 iab addtional additional
@@ -282,6 +283,7 @@ iab eforts efforts
 iab ehr her
 iab eligable eligible
 iab embarass embarrass
+iab employemnt employment
 iab enought enough
 iab enployment employment
 iab equippment equipment
