@@ -66,11 +66,13 @@ a1
 a2
 abstractmethod
 addID
+addressID
 addressLine1
 addressLine2
 attribute's
 blog
 boolean
+businessName
 cmd
 colourName
 com
@@ -155,6 +157,8 @@ stackoverflow
 statusline
 str
 streetAddress
+streetName
+streetNumber
 studentID
 studentName
 submodule
