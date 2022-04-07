@@ -44,9 +44,9 @@ rm -rf vim/
 sudo apt update
 sudo apt full-upgrade -y
 sudo apt install -y \
-  tree figlet hugo python3 python3-pip pandoc texlive-latex-extra sqlformat \
-  python3-q-text-as-data net-tools ipcalc vsftpd nethogs nmap aircrack-ng fd-find \
-  mlocate
+  tree figlet python3 python3-pip pandoc texlive-latex-extra texlive-xetex \
+  sqlformat python3-q-text-as-data net-tools ipcalc vsftpd nethogs nmap \
+  aircrack-ng fd-find mlocate hugo
 
 # 4. Install some Python packages
 
