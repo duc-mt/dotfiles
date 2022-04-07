@@ -25,5 +25,5 @@ cd ~/ && sudo chmod +x install
 3. Execute script
 
 ```bash
-sudo ./install.py
+sudo ./install
 ```
