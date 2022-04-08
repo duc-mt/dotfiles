@@ -286,6 +286,7 @@ iab ehr her
 iab eligable eligible
 iab embarass embarrass
 iab employemnt employment
+iab enoguh enough
 iab enought enough
 iab enployment employment
 iab equippment equipment
@@ -443,6 +444,8 @@ iab konws knows
 iab labratory laboratory
 iab lastyear last year
 iab learnign learning
+iab lectyre lecture
+iab lectyres lectures
 iab lenght length
 iab levle level
 iab libary library
@@ -532,6 +535,8 @@ iab overthe over the
 iab owrk work
 iab owuld would
 iab oxident oxidant
+iab packagage package
+iab packagages packages
 iab papaer paper
 iab parliment parliament
 iab partof part of
@@ -576,6 +581,8 @@ iab quesions questions
 iab quesiton question
 iab quesitons questions
 iab questioms questions
+iab questionaire questionnaire
+iab questionaires questionnaires
 iab questiosn questions
 iab questoin question
 iab quetion question
