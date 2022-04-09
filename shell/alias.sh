@@ -80,3 +80,4 @@ alias ConvertREADME.mdToPDF='clear && printf "Wait for README.md to be converted
  && mv sample_output.pdf ../ && rm README.md && cd ..'
 alias autopep8='printf "Finish formatting ...\n" && autopep8 --in-place -r -a -a'
 alias githubtrending='starcli -S en -L table -l python -r 5 -d today'
+alias sqlformat='sqlformat -s --reindent --keywords upper --identifiers lower'
