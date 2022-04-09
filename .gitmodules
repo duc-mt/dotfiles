@@ -100,3 +100,6 @@
 [submodule "pack/plugins/start/undotree"]
 	path = pack/plugins/start/undotree
 	url = https://github.com/mbbill/undotree.git
+[submodule "pack/plugins/start/helpme"]
+	path = pack/plugins/start/helpme
+	url = https://github.com/leftbones/helpme-vim
