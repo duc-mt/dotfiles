@@ -81,3 +81,5 @@ alias ConvertREADME.mdToPDF='clear && printf "Wait for README.md to be converted
 alias autopep8='printf "Finish formatting ...\n" && autopep8 --in-place -r -a -a'
 alias githubtrending='starcli -S en -L table -l python -r 5 -d today'
 alias sqlformat='sqlformat -s --reindent --keywords upper --identifiers lower'
+alias sortdict='printf "Finish sorting dictionary ...\n" && \
+  cd ~/.vim/dictionary/sort/ && ./wordlist && ./spf && cd ~/.vim'
