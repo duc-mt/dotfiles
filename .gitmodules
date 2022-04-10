@@ -102,4 +102,4 @@
 	url = https://github.com/mbbill/undotree.git
 [submodule "pack/plugins/start/helpme"]
 	path = pack/plugins/start/helpme
-	url = https://github.com/leftbones/helpme-vim
+	url = https://github.com/leftbones/helpme-vim.git
