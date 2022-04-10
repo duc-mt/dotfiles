@@ -277,6 +277,7 @@ set noswapfile
 " ==============================================================================
 " TEMPLATES & CUSTOM VIM FILETYPE SETTINGS {{{
 " ==============================================================================
+
 if has("autocmd")
   aug templates
     au BufNewFile *.sh 0r ~/.vim/template/sh.template
@@ -780,7 +781,33 @@ vn . :normal .<CR>
 " HOTKEYS {{{
 " ============================================================================
 
-nn  <silent> <Bslash>ek  : sp ~/.vim/hotkeys.txt             <CR>
+let g:HelpMeItems = [
+    \ 'Shortcuts:',
+    \ '\g                         toggle Goyo',
+    \ '\m                         toggle Maximizer of the current window',
+    \ '\t                         toggle Floaterm',
+    \ ' F                         open FZF for files under home directory',
+    \ ' f                         open FZF for files under current directory',
+    \ ' m                         toggle Tabman',
+    \ ' n                         toggle NERDTree',
+    \ ' u                         toggle Undotree',
+    \ '<F2>                       fold all unchanged lines',
+    \ '<F3>                       show changed lines with differences',
+    \ '<F4>                       show signify record of the current file',
+    \ '<F5>                       run Python script (doable only for .py)',
+    \ '<F6>                       toggle RainbowParentheses',
+    \ '',
+    \ 'Commands:',
+    \ ':AddLineNumber             add line numbers to each line',
+    \ ':CapitaliseEachWord        capitalise every word in the highlighted line',
+    \ ':ClearRegisters            clear all registers in Vim',
+    \ ':Root                      change directory to the root of the Git repository',
+    \ ':StripTrailingWhitespace   remove all unwanted whitespace',
+    \ '',
+    \ 'Press "q" to close',
+    \ ]
+
+nn  <silent> <Bslash>ek  : HelpMe                            <CR>
 nn  <silent> <Bslash>es  : sp ~/.vim/dictionary/en.utf-8.add <CR>
 nn  <silent> <Bslash>eg  : tabe ~/.vim/git/gitconfig         <CR>
 nn  <silent> <Bslash>ev  : tabe $MYVIMRC                     <CR>
