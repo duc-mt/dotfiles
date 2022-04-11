@@ -70,7 +70,7 @@ alias upgrade='clear && printf "Wait for the Operating System to be upgraded\
  ...\n--------------------\n" && sudo apt update && sudo apt full-upgrade -y &&\
  sudo apt autoremove -y && sudo apt autoclean -y && cd ~/.vim && printf "\
  --------------------\nWait for VIM submodules to be upgraded ...\n\
- --------------------\n" && git submodule foreach git pull origin master'
+ --------------------\n" && git submodule foreach git pull origin --all'
 alias hugolive='clear && printf "Wait for the site to be published\
  ...\n--------------------\n" && hugo server --noHTTPCache --disableFastRender\
  --buildDrafts'
