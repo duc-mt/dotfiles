@@ -77,8 +77,8 @@ esac
 
 # Alias definitions.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-if [ -f ~/.vim/shell/alias.sh ]; then
-  . ~/.vim/shell/alias.sh
+if [ -f ~/.vim/sh/alias.sh ]; then
+  . ~/.vim/sh/alias.sh
 fi
 
 # enable programmable completion features (you don't need to enable
