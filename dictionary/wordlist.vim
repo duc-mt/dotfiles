@@ -1,4 +1,6 @@
 iab Ameria America
+iab Asutralia Australia
+iab Asutralian Australian
 iab Oython Python
 iab UnitedStates United States
 iab abbout about
@@ -213,6 +215,7 @@ iab cutsomers customers
 iab cxan can
 iab danceing dancing
 iab dcument document
+iab deatil detail
 iab deatils details
 iab decison decision
 iab decisons decisions
@@ -223,6 +226,8 @@ iab desicion decision
 iab desicions decisions
 iab desision decision
 iab desisions decisions
+iab detial detail
+iab detials details
 iab develeoprs developers
 iab devellop develop
 iab develloped developed
@@ -611,6 +616,8 @@ iab representativs representatives
 iab representives representatives
 iab represetned represented
 iab represnt represent
+iab requrie require
+iab requried required
 iab reserach research
 iab resollution resolution
 iab resorces resources
