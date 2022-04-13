@@ -51,7 +51,7 @@ sudo apt install -y \
 # 4. Install some Python packages
 
 sudo -H python3 -m pip install --user --upgrade \
-  mypy rich starcli bs4 pygame autopep8 pytest
+   autopep8 coverage pytest mypy rich starcli bs4 pygame
 
 # 5. Set up git-sh on Linux
 
