@@ -281,6 +281,7 @@ set noswapfile
 if has("autocmd")
   aug templates
     au BufNewFile *.sh 0r ~/.vim/template/sh.template
+    au BufNewFile *.html 0r ~/.vim/template/html.template
     au BufNewFile *.py 0r ~/.vim/template/python.template
     " au BufNewFile *.py 0r ~/.vim/template/academic.template
     " au BufNewFile *.py 0r ~/.vim/template/eibt.template
@@ -776,6 +777,12 @@ cno cd. lcd %:p:h
 " ----------------------------------------------------------------------------
 vn . :normal .<CR>
 
+
+" ----------------------------------------------------------------------------
+" Display a list of current buffers and prompting for which buffer to access.
+" ----------------------------------------------------------------------------
+nn <Leader>lb :ls<CR>:b<Leader>
+
 " }}}
 " ============================================================================
 " HOTKEYS {{{
@@ -791,6 +798,7 @@ let g:HelpMeItems = [
     \ ' m                         toggle Tabman',
     \ ' n                         toggle NERDTree',
     \ ' u                         toggle Undotree',
+    \ ' lb                        list buffers',
     \ '<F2>                       fold all unchanged lines',
     \ '<F3>                       show changed lines with differences',
     \ '<F4>                       show signify record of the current file',
