@@ -258,7 +258,7 @@ ia validanswers VALID_ANSWERS = ['y', 'yes', 'n', 'no']<CR>
 " ----------------------------------------------------------------------------
 " List all functions in current buffer
 " ----------------------------------------------------------------------------
-nn <Leader>lf :ilist def.*<CR>
+nn <Leader>lf :ilist def.*<CR>:
 
 " ----------------------------------------------------------------------------
 " Function docstring
