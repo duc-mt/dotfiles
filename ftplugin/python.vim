@@ -33,6 +33,7 @@ setl tw=79
 
 " Run Python script
 nn <F5> :w<CR>:!clear && python3 %<CR>
+nn <Leader><F5> :w<CR>:!clear && pytest %<CR>
 
 au FileType python setl omnifunc=pythoncomplete#Complete
 setl define=^\s*\\(def\\\\|class\\)
