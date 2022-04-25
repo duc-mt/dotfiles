@@ -24,7 +24,6 @@ silent! helptags ALL " Load help for all plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 so ~/.vim/dictionary/wordlist.vim
 so ~/.vim/dictionary/abbreviation.vim
-au VimEnter * :runtime! ~/.vim/dictionary/programming/*.vim
 set spf=~/.vim/dictionary/en.utf-8.add
 
 
