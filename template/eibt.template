@@ -1,16 +1,15 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-# ----------------------------------------------------------------------------
-# |
-# | File:         practical1ex1.py
-# | Author:       Tan Duc Mai
-# | Student ID:   517925
-# | Version:      1.0 02-Jan-2022
-# | Description:  Practical 1, exercise 1 -
-# |               creates a guessing game.
-# |   This is my own work as defined by the Eynesbury's
-# |   Academic Misconduct Policy.
-# |
-# ----------------------------------------------------------------------------
+# =============================================================================
+#
+#        FILE:  practical1ex1.py
+#      AUTHOR:  Tan Duc Mai
+#          ID:  517925
+#        DATE:  25-Apr-2022
+# DESCRIPTION:  Practical 1, exercise 1 -
+#               creates a guessing game.
+#   This is my own work as defined by the Academic Integrity policy.
+#
+# =============================================================================
 
