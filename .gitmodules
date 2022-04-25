@@ -106,3 +106,6 @@
 [submodule "pack/writing/start/wordmotion"]
 	path = pack/writing/start/wordmotion
 	url = https://github.com/chaoren/vim-wordmotion.git
+[submodule "pack/writing/start/smartpairs"]
+	path = pack/writing/start/smartpairs
+	url = https://github.com/gosukiwi/vim-smartpairs.git
