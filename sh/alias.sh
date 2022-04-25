@@ -83,4 +83,4 @@ alias githubtrending='starcli -S en -L table -l python -r 5 -d today'
 alias sqlformat='sqlformat -s --reindent --keywords upper --identifiers lower'
 alias sortdict='printf "Finish sorting dictionary ...\n" && \
   cd ~/.vim/dictionary/sort/ && ./wordlist && ./spf && cd ~/.vim'
-alias pipinstall='sudo -H python3 -m pip install --user --upgrade'
+alias pipinstall='python3 -m pip install --user --upgrade'
