@@ -9,15 +9,9 @@
 #  DESCRIPTION:  Set up a new Linux machine.
 #                Install Vim, Python, packages, and configuration files needed.
 #
-#      OPTIONS:  ---
-# REQUIREMENTS:  ---
-#         BUGS:  ---
-#        NOTES:  ---
 #       AUTHOR:  Tan Duc Mai, tan.duc.work@gmail.com
 #      COMPANY:  Eynesbury Institute of Business and Technology (EIBT)
-#      VERSION:  1.0
 #      CREATED:  Mar 29, 2022
-#     REVISION:  ---
 #
 # ======================================================================================
 
@@ -50,8 +44,9 @@ sudo apt install -y \
 
 # 4. Install some Python packages
 
-sudo -H python3 -m pip3 install --user --upgrade \
-   autopep8 coverage pytest mypy rich starcli bs4 pygame pycontracts
+sudo -H python3 -m pip install --user --upgrade \
+  autopep8 coverage pytest mypy rich starcli bs4 pygame pycontracts icontract \
+  memray scapy cryptography rotate-screen
 
 # 5. Set up git-sh on Linux
 
