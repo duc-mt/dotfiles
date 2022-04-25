@@ -103,3 +103,6 @@
 [submodule "pack/plugins/start/helpme"]
 	path = pack/plugins/start/helpme
 	url = https://github.com/leftbones/helpme-vim.git
+[submodule "pack/writing/start/wordmotion"]
+	path = pack/writing/start/wordmotion
+	url = https://github.com/chaoren/vim-wordmotion.git
