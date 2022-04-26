@@ -85,3 +85,4 @@ alias sortdict='printf "Finish sorting dictionary ...\n" && \
   cd ~/.vim/dictionary/sort/ && ./wordlist && ./spf && cd ~/.vim'
 alias pipinstall='python3 -m pip install --user --upgrade'
 alias pytree='python3 ~/.vim/py/tree.py'
+alias pydownload='python3 ~/.vim/py/downloader.py'
