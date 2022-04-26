@@ -810,6 +810,7 @@ let g:HelpMeItems = [
     \ '<F3>                       show changed lines with differences',
     \ '<F4>                       show signify record of the current file',
     \ '<F5>                       run Python script (doable only for .py)',
+    \ ' <F5>                      run Python script with pytest (doable only for .py)',
     \ '<F6>                       toggle RainbowParentheses',
     \ '',
     \ 'Commands:',
