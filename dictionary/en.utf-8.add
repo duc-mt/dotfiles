@@ -170,6 +170,8 @@ t
 tanducmai
 taxFileNumber
 textwidth
+traceback
+tracebacks
 tuple
 tuples
 uml
@@ -183,4 +185,3 @@ whitespace
 wildmenu
 www
 xxx
-traceback
