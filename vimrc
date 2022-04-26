@@ -283,8 +283,6 @@ if has("autocmd")
     au BufNewFile *.sh 0r ~/.vim/template/sh.template
     au BufNewFile *.html 0r ~/.vim/template/html.template
     au BufNewFile *.py 0r ~/.vim/template/python.template
-    " au BufNewFile *.py 0r ~/.vim/template/academic.template
-    " au BufNewFile *.py 0r ~/.vim/template/eibt.template
   aug END
 en
 
