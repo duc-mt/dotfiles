@@ -147,6 +147,7 @@ plugins
 png
 py
 pygame
+pytest
 q
 repr
 s
@@ -182,3 +183,4 @@ whitespace
 wildmenu
 www
 xxx
+traceback

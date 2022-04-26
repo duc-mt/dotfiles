@@ -57,6 +57,7 @@ iab alwyas always
 iab amde made
 iab amke make
 iab amkes makes
+iab amned amend
 iab anbd and
 iab andone and one
 iab andteh and the
