@@ -45,8 +45,9 @@ sudo apt install -y \
 # 4. Install some Python packages
 
 sudo -H python3 -m pip install --user --upgrade \
-  autopep8 coverage pytest mypy rich starcli pygame scapy memray yolk3k cryptography \
-  rotate-screen clip-values bs4 icontract pyicontract-lint icontract-hypothesis
+  pytest coverage autopep8 mypy yapf rich starcli pygame scapy memray yolk3k \
+  rotate-screen clip-values bs4 icontract pyicontract-lint icontract-hypothesis \
+  sphinx-icontract cryptography
 
 # 5. Set up git-sh on Linux
 
