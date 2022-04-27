@@ -38,15 +38,15 @@ rm -rf vim/
 sudo apt update
 sudo apt full-upgrade -y
 sudo apt install -y \
-  tree figlet python3 python3-pip pandoc texlive-latex-extra texlive-xetex \
-  sqlformat python3-q-text-as-data net-tools ipcalc vsftpd nethogs nmap \
-  aircrack-ng fd-find mlocate hugo
+  tree figlet python3 python-is-python3 python3-pip nethogs nmap hugo vsftpd pandoc \
+  texlive-latex-extra texlive-xetex sqlformat python3-q-text-as-data net-tools ipcalc \
+  aircrack-ng fd-find mlocate
 
 # 4. Install some Python packages
 
 sudo -H python3 -m pip install --user --upgrade \
-  autopep8 coverage pytest mypy rich starcli bs4 pygame pycontracts icontract \
-  memray scapy cryptography rotate-screen
+  autopep8 coverage pytest mypy rich starcli bs4 pygame icontract scapy memray yolk3k \
+  cryptography rotate-screen clip-values
 
 # 5. Set up git-sh on Linux
 
