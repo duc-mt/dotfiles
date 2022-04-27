@@ -64,7 +64,9 @@ def download(urls: Iterable[str], dest_dir: str):
             for url in urls:
                 filename = url.split("/")[-1]
                 dest_path = os.path.join(dest_dir, filename)
-                task_id = progress.add_task("download", filename=filename, start=False)
+                task_id = progress.add_task("download",
+                                            filename=filename,
+                                            start=False)
                 pool.submit(copy_url, task_id, url, dest_path)
 
 
@@ -88,7 +90,8 @@ signal.signal(signal.SIGINT, handle_sigint)
 
 # ------------------------------- Main Function -------------------------------
 def main():
-    # Try with https://releases.ubuntu.com/20.04/ubuntu-20.04.3-desktop-amd64.iso
+    # Try with
+    # https://releases.ubuntu.com/20.04/ubuntu-20.04.3-desktop-amd64.iso
     if sys.argv[1:]:
         download(sys.argv[1:], "./")
     else:
