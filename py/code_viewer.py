@@ -7,7 +7,8 @@
 #      AUTHOR:  Tan Duc Mai
 #       EMAIL:  tan.duc.work@gmail.com
 #     CREATED:  27-Apr-2022
-# DESCRIPTION:  A Textual application to list and preview files in directory.
+# DESCRIPTION:  A Textual application to demonstrate a tree view which loads
+#               syntax highlighted code.
 #       USAGE:  python3 code_viewer.py
 #      SOURCE:  https://raw.githubusercontent.com/Textualize/textual/main/examples/code_viewer.py
 #
