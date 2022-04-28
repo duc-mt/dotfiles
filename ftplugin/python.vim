@@ -1,5 +1,4 @@
 " Python filetype plugin
-" Language: python
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                      ______   _______ _   _  ___  _   _
@@ -16,8 +15,6 @@ if exists("b:did_indent")
 endif
 let b:did_indent = 1
 
-" Enable plugin
-
 setl ts=4
 setl sts=4
 setl shiftwidth=4
@@ -27,7 +24,7 @@ setl indentkeys=!^F,o,O,<:>,0),0],0},=elif,=except
 setl fdm=indent
 setl cot-=preview
 
-" Run Python script
+" Run Python script.
 nn <F5> :w<CR>:!clear && python3 %<CR>
 nn <Leader><F5> :w<CR>:!clear && python3 -m pytest %<CR>
 

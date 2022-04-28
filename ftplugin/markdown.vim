@@ -1,5 +1,4 @@
-" Vim filetype plugin
-" Language: markdown
+" Markdown filetype plugin
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "            __  __    _    ____  _  ______   _____        ___   _
