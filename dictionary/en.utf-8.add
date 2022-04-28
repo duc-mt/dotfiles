@@ -1,4 +1,3 @@
-truthy
 ABCMeta
 AVG
 AddLineNumber
@@ -199,6 +198,7 @@ taxFileNumber
 textwidth
 traceback
 tracebacks
+truthy
 tuple
 tuples
 uml
