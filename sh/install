@@ -39,15 +39,15 @@ sudo apt update
 sudo apt full-upgrade -y
 sudo apt install -y \
   tree figlet python3 python-is-python3 python3-pip nethogs nmap hugo vsftpd pandoc \
-  texlive-latex-extra texlive-xetex sqlformat python3-q-text-as-data net-tools ipcalc \
-  aircrack-ng fd-find mlocate
+  texlive-xetex texlive-science texlive-latex-extra librsvg2-bin sqlformat ipcalc \
+  python3-q-text-as-data net-tools aircrack-ng fd-find mlocate
 
 # 4. Install some Python packages
 
 python3 -m pip install --user --upgrade \
-  pytest coverage autopep8 mypy yapf pydocstyle rich bs4 starcli pygame scapy yolk3k \
+  pytest coverage autopep8 mypy yapf pydocstyle rich rich-cli bs4 pygame scapy yolk3k \
   rotate-screen clip-values memray icontract pyicontract-lint icontract-hypothesis \
-  sphinx-icontract cryptography prodict textual pyfiglet
+  sphinx-icontract cryptography prodict textual pyfiglet starcli
 
 # 5. Set up git-sh on Linux
 
