@@ -16,14 +16,6 @@
 setl ts=2
 setl sts=2
 setl shiftwidth=2
-setl nolisp
-setl nosi
-
-
-" ----------------------------------------------------------------------------
-" Make the 89th column stand out (maximum textwidth is 88)
-" ----------------------------------------------------------------------------
-call matchadd('ColorColumn', '\%89v', 100)
 setl tw=88
 
 
