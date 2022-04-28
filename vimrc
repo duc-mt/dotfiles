@@ -136,40 +136,41 @@ set sb spr    " Split below / right
 set title
 " Maximum number of tab pages that can be opened from the command line.
 set tpm=15
-
+set tags+=tags;
 
 " ----------------------------------------------------------------------------
 " Wildmenu completion
 " ----------------------------------------------------------------------------
-set wildmenu                   " Enable auto completion menu after <TAB>
-set wildmode=longest,list,full " Make wildmenu behave akin to Bash completion
+set wmnu                  " Enable auto completion menu after <TAB>
+set wim=longest,list,full " Make wildmenu behave akin to Bash completion
 
-set wildignore+=.hg,.git,.svn                    " Version control
-set wildignore+=*.aux,*.out,*.toc,*.log,*.idx    " LaTeX intermediate files
-set wildignore+=*_aux,*.glg,*.glo,*.gls,*.ist    " LaTeX intermediate files
-set wildignore+=*.nlo,*.nls,*.pdf,*.bbl,*.dvi    " still LaTeX intermediate files
-set wildignore+=*.ilg,*.fdb_latexmk,*.synctex.gz " $(B!D(B LaTeX intermediate files
-set wildignore+=*.blg,*.ind                      " $(B!D!D!D(B LaTeX intermediate files
-set wildignore+=*.hi                             " Haskell linker files
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
-set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
-set wildignore+=*.spl                            " compiled spelling word lists
-set wildignore+=*.sw?                            " Vim swap files
-set wildignore+=*.DS_Store                       " OSX bullshit
+set wig+=.hg,.git,.svn                    " Version control
+set wig+=*.aux,*.out,*.toc,*.log,*.idx    " LaTeX intermediate files
+set wig+=*_aux,*.glg,*.glo,*.gls,*.ist    " LaTeX intermediate files
+set wig+=*.nlo,*.nls,*.pdf,*.bbl,*.dvi    " still LaTeX intermediate files
+set wig+=*.ilg,*.fdb_latexmk,*.synctex.gz " $(B!D(B LaTeX intermediate files
+set wig+=*.blg,*.ind                      " $(B!D!D!D(B LaTeX intermediate files
+set wig+=*.hi                             " Haskell linker files
+set wig+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+set wig+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+set wig+=*.spl                            " compiled spelling word lists
+set wig+=*.sw?                            " Vim swap files
+set wig+=*.DS_Store                       " OSX bullshit
 
-set wildignore+=*.luac                           " Lua byte code
+set wig+=*.luac                           " Lua byte code
 
-set wildignore+=migrations                       " Django migrations
-set wildignore+=*.pyc                            " Python byte code
+set wig+=migrations                       " Django migrations
+set wig+=*.pyc                            " Python byte code
 
-set wildignore+=*.orig                           " Merge resolution files
+set wig+=*.orig                           " Merge resolution files
 
 " Clojure/Leiningen
-set wildignore+=classes
-set wildignore+=lib
+set wig+=classes
+set wig+=lib
 
 " Better Completion
-set completeopt=longest,menuone,preview
+set completeopt=longest,menu,preview
+set ofu=syntaxcomplete#Complete
 
 
 " ----------------------------------------------------------------------------
@@ -199,12 +200,17 @@ set ai           " New lines inherit the indentation of previous lines
 filet on         " Enable type file detection
 filet plugin on  " Enable and load plugin for the detected file type
 filet indent on  " Load an indent file for the detected file type
-set ts=2         " Number of spaces that a <Tab> in the file counts for
-set shiftwidth=2 " Number of spaces when indenting with ‘>’
 set et           " Use space characters instead of tabs
-set sts=2
 set sta
 set wrap
+set nolisp
+set nosi
+set lbr
+set tf
+set lz
+set nojoinspaces
+set bri
+set sr
 
 
 " ----------------------------------------------------------------------------
@@ -289,11 +295,13 @@ en
 " Create a file in ftplugin/filetype.vim for specific settings
 if has("autocmd")
   aug filetypes
-    au BufRead,BufNewFile,BufReadPost *.template   se filetype=text
-    au BufRead,BufNewFile,BufReadPost *.md         se filetype=markdown
-    au BufRead,BufNewFile,BufReadPost *.jade       se filetype=pug
-    au BufRead,BufNewFile,BufReadPost *.pug        se filetype=pug
-    au BufRead,BufNewFile,BufReadPost *.coffee     se filetype=coffee
+    au BufRead,BufNewFile,BufReadPost *.template   se ft=text
+    au BufRead,BufNewFile,BufReadPost *.md         se ft=markdown
+    au BufRead,BufNewFile,BufReadPost *.jade       se ft=pug
+    au BufRead,BufNewFile,BufReadPost *.pug        se ft=pug
+    au BufRead,BufNewFile,BufReadPost *.coffee     se ft=coffee
+    au BufEnter ~/.vim/git/gitconfig               se ft=gitconfig
+    au BufEnter ~/.vim/git/commit_msg              se ft=gitcommit
   aug END
 en
 
@@ -490,13 +498,6 @@ endf
 
 au! User GoyoEnter nested call <SID>goyo_enter()
 au! User GoyoLeave nested call <SID>goyo_leave()
-
-
-" ----------------------------------------------------------------------------
-" Commentary
-" ----------------------------------------------------------------------------
-au FileType gitconfig setl commentstring=#\ %s
-au FileType sql setl commentstring=--\ %s
 
 
 " ----------------------------------------------------------------------------
@@ -703,8 +704,6 @@ vn zc zM
 
 " Start editing with all folds closed
 set foldlevelstart=0
-
-hi Folded guibg=Gray8 guifg=Gray ctermbg=235  ctermfg=0
 
 
 " ----------------------------------------------------------------------------
@@ -935,14 +934,24 @@ fu! MyHighlights() abort
   " hi StatusLine cterm=NONE ctermbg=231 ctermfg=160 gui=NONE guibg=#ffffff guifg=#d70000
   " hi Normal     cterm=NONE ctermbg=17              gui=NONE guibg=#00005f
   " hi NonText    cterm=NONE ctermbg=17              gui=NONE guibg=#00005f
+
+  hi clear CursorLine
+  hi colorcolumn ctermbg=232
+  hi Error ctermbg=red term=reverse
+  hi LineNr ctermfg=darkgrey
+  hi Search ctermbg=darkcyan ctermfg=white cterm=none
+  hi Comment cterm=italic
+  hi CursorLineNR cterm=none ctermfg=grey
+  hi SignColumn ctermbg=none
+  hi Folded guibg=Gray8 guifg=Gray ctermbg=235  ctermfg=0
 endf
 
 aug MyColors
     au!
     au ColorScheme * cal MyHighlights()
+    au ColorScheme * highlight SpecialKey ctermfg=238
 aug END
 
-hi Search guibg=peru guifg=wheat
 
 " SignColumn should match background
 hi clear SignColumn
@@ -1003,6 +1012,7 @@ aug toggle_relative_number
   au!
   au InsertEnter * setl nornu
   au InsertLeave * setl rnu
+  au InsertLeave * redraw!
 aug END
 
 
@@ -1010,12 +1020,6 @@ aug END
 " Automatically centre the current line when I enter it in Insert mode.
 " ----------------------------------------------------------------------------
 au InsertEnter * norm zz
-
-
-" ----------------------------------------------------------------------------
-" Enable the marker method of folding.
-" ----------------------------------------------------------------------------
-au FileType vim setl foldmethod=marker
 
 
 " ----------------------------------------------------------------------------
@@ -1108,14 +1112,6 @@ elsei hr >= 0
 end
 
 
-" ----------------------------------------------------------------------------
-" Make the 81st column stand out (maximum textwidth is 80)
-" ----------------------------------------------------------------------------
-cal matchadd('ColorColumn', '\%81v', 100)
-" Maximum width of text that is being inserted set to 80.
-set tw=80
-
-
 " ------------------------------------------------------------------------------
 " Detect trailing whitespace
 " ----------------------------------------------------------------------------
@@ -1169,40 +1165,5 @@ let g:airline_symbols.paste = '∥'
 let g:airline_symbols.spell = 'Ꞩ'
 let g:airline_symbols.notexists = '∄'
 let g:airline_symbols.whitespace = 'Ξ'
-
-" }}}
-" ============================================================================
-" GIT {{{
-" ============================================================================
-
-" Set filetype
-au BufEnter ~/.vim/git/gitconfig      setl ft=gitconfig
-au BufEnter ~/.vim/git/commit_msg     setl ft=gitcommit
-
-" Quick push during a commit window
-com! Gpush :!clear && echo 'Wait for the local commits to be pushed to GitHub
-      \ ...\n--------------------' && git push
-
-" Configuration
-au FileType gitconfig setl nocul nocuc
-au FileType gitconfig setl fdls=99
-au FileType gitcommit setl nornu
-
-" Enable spell checking for gitcommit
-au FileType gitcommit setl spell spl=en_au
-
-" Maximum width of text that is being inserted set to 72.
-" The column 73 is highlighted.
-au FileType gitcommit cal matchadd('ColorColumn', '\%73v', 100)
-setl tw=72
-
-" Instead of reverting the cursor to the last position in the buffer
-" set it to the first line when editing a git commit message
-au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
-
-" Hide statusline fugitive
-autocmd! FileType fugitive
-autocmd  FileType fugitive set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
 " }}}

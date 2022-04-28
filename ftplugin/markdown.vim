@@ -20,12 +20,16 @@ ru! ftplugin/html.vim ftplugin/html_*.vim ftplugin/html/*.vim
 packadd gfm-syntax
 packadd limelight
 
-setl nolisp
-setl nosi
+set ts=4
+set shiftwidth=4
+set sts=4
+setl tw=80
 
 setl comments=fb:*,fb:-,fb:+,n:> commentstring=<!--%s-->
 setl formatoptions+=tcqln formatoptions-=r formatoptions-=o
 setl formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^\\s*[-*+]\\s\\+\\\|^\\[^\\ze[^\\]]\\+\\]:\\&^.\\{4\\}
+
+highlight Title cterm=bold
 
 " ----------------------------------------------------------------------------
 " goyo.vim + limelight.vim

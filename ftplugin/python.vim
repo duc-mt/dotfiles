@@ -21,15 +21,11 @@ let b:did_indent = 1
 setl ts=4
 setl sts=4
 setl shiftwidth=4
-setl nolisp
-setl nosi
+setl tw=79
 setl indentexpr=GetPythonIndent(v:lnum)
 setl indentkeys=!^F,o,O,<:>,0),0],0},=elif,=except
 setl fdm=indent
-
-" Make the 80th column stand out (maximum textwidth is 79)
-call matchadd('ColorColumn', '\%80v', 100)
-setl tw=79
+setl cot-=preview
 
 " Run Python script
 nn <F5> :w<CR>:!clear && python3 %<CR>
@@ -48,7 +44,7 @@ ino <buffer> <d-'> _(u'')<left><left>
 let python_highlight_all = 1
 syn keyword pythonDecorator True None False self
 
-map <buffer> F :setl foldmethod=indent<CR>
+setl foldmethod=indent
 
 ino <buffer> $r return
 ino <buffer> $i import
