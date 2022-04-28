@@ -14,9 +14,8 @@
 " General configuration
 " ----------------------------------------------------------------------------
 " Hide statusline fugitive
-autocmd! FileType fugitive
-autocmd  FileType fugitive set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+setl laststatus=0 noshowmode noruler
+  \| au BufLeave <buffer> setl laststatus=2 showmode ruler
 
 " Quick push during a commit window
 com! Gpush :!clear && echo 'Wait for the local commits to be pushed to GitHub
