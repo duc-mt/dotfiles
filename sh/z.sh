@@ -1,6 +1,17 @@
-# Copyright (c) 2009 rupa deadwyler. Licensed under the WTFPL license, Version 2
+# ======================================================================================
+#
+#         FILE:  z.sh
+#       AUTHOR:  Tan Duc Mai
+#        EMAIL:  tan.duc.work@gmail.com
+#      CREATED:  Apr 29, 2022
+#        USAGE:  Put . /path/to/z.sh in ~/.bashrc
+#  DESCRIPTION:  Maintain a jump-list of the directories you actually use.
+# INSTALLATION:  See function ’INSTALL’ below
+#       USAGE:  See function ’USAGE’ below
+#      SOURCE:  https://raw.githubusercontent.com/rupa/z/master/z.sh
+#
+# ======================================================================================
 
-# maintains a jump-list of the directories you actually use
 #
 # INSTALL:
 #     * put something like this in your .bashrc/.zshrc:
@@ -15,7 +26,7 @@
 #         set $_Z_NO_PROMPT_COMMAND if you're handling PROMPT_COMMAND yourself.
 #         set $_Z_EXCLUDE_DIRS to an array of directories to exclude.
 #         set $_Z_OWNER to your username if you want use z while sudo with $HOME kept
-#
+
 # USE:
 #     * z foo     # cd to most frecent dir matching foo
 #     * z foo bar # cd to most frecent dir matching foo and bar
@@ -123,8 +134,9 @@ _z() {
             --) while [ "$1" ]; do shift; fnd="$fnd${fnd:+ }$1";done;;
             -*) opt=${1:1}; while [ "$opt" ]; do case ${opt:0:1} in
                     c) fnd="^$PWD $fnd";;
+                    d) rm ~/.z;;
                     e) echo=1;;
-                    h) echo "${_Z_CMD:-z} [-cehlrtx] args" >&2; return;;
+                    h) echo "${_Z_CMD:-z} [-cdehlrtx] args" >&2; return;;
                     l) list=1;;
                     r) typ="rank";;
                     t) typ="recent";;
