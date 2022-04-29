@@ -23,6 +23,7 @@ from rich.filesize import decimal
 from rich.markup import escape
 from rich.text import Text
 from rich.tree import Tree
+from rich.console import Console
 
 
 # ---------------------------- Function Definition ----------------------------
@@ -66,8 +67,12 @@ def main():
             f":open_file_folder: [link file://{directory}]{directory}",
             guide_style="bold bright_blue",
         )
-        walk_directory(pathlib.Path(directory), tree)
-        print(tree)
+        try:
+            walk_directory(pathlib.Path(directory), tree)
+        except FileNotFoundError as e:
+            Console().print(e, style='red')
+        else:
+            print(tree)
 
 
 # --------------------------- Call the Main Function --------------------------
