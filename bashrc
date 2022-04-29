@@ -86,6 +86,11 @@ if [ -f ~/.vim/sh/z.sh ]; then
   . ~/.vim/sh/z.sh
 fi
 
+# fzf-extras - key bindings from fzf wiki: https://github.com/atweiden/fzf-extras
+if [ -f ~/.vim/sh/fzf-extras.sh ]; then
+  . ~/.vim/sh/fzf-extras.sh
+fi
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
