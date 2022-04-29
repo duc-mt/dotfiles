@@ -7,8 +7,8 @@
 #        USAGE:  Put . /path/to/z.sh in ~/.bashrc
 #  DESCRIPTION:  Maintain a jump-list of the directories you actually use.
 # INSTALLATION:  See function ’INSTALL’ below
-#       USAGE:  See function ’USAGE’ below
-#      SOURCE:  https://raw.githubusercontent.com/rupa/z/master/z.sh
+#        USAGE:  See function ’USAGE’ below
+#       SOURCE:  https://raw.githubusercontent.com/rupa/z/master/z.sh
 #
 # ======================================================================================
 
