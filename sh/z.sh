@@ -136,7 +136,22 @@ _z() {
                     c) fnd="^$PWD $fnd";;
                     d) rm ~/.z;;
                     e) echo=1;;
-                    h) echo "${_Z_CMD:-z} [-cdehlrtx] args" >&2; return;;
+                    # h) echo "${_Z_CMD:-z} [-cdehlrtx] args" >&2; return;;
+                    h) echo "       -c     restrict matches to subdirectories of the current directory
+
+       -d     clear the datafile
+
+       -e     echo the best match, don't cd
+
+       -h     show a brief help message
+
+       -l     list only
+
+       -r     match by rank only
+
+       -t     match by recent access only
+
+       -x     remove the current directory from the datafile" >&2; return;;
                     l) list=1;;
                     r) typ="rank";;
                     t) typ="recent";;
