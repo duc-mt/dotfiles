@@ -27,5 +27,5 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# Output a random quote.
+# Output a random technology-related quote.
 fortune ~/.vim/doc/quotes/technology
