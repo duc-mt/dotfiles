@@ -544,6 +544,8 @@ iab mantain maintain
 iab marraige marriage
 iab mcuh much
 iab mear mere
+iab meating meeting
+iab meatings meetings
 iab memeber member
 iab merchent merchant
 iab mesage message
@@ -751,6 +753,8 @@ iab similiar similar
 iab simpyl simply
 iab sincerly sincerely
 iab sitll still
+iab situtation situation
+iab situtations situations
 iab sleect select
 iab smae same
 iab smoe some
@@ -769,6 +773,7 @@ iab soze size
 iab speach speech
 iab specificaly specifically
 iab specificalyl specifically
+iab speeed speed
 iab statment statement
 iab statments statements
 iab stnad stand
