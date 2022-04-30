@@ -26,6 +26,12 @@ so ~/.vim/dictionary/wordlist.vim
 so ~/.vim/dictionary/abbreviation.vim
 set spf=~/.vim/dictionary/en.utf-8.add
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Reload quote files
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au BufWinLeave ~/.vim/doc/quotes/technology :!strfile technology
+au BufWinLeave ~/.vim/doc/quotes/inspiration :!strfile inspiration
+
 
 " ============================================================================
 " ENVIRONMENT {{{
