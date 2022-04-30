@@ -1,8 +1,16 @@
 iab Ameria America
 iab Asutralia Australia
 iab Asutralian Australian
+iab Iam I am
+iab Im I'm
 iab Oython Python
+iab TEh The
+iab THat That
+iab THe The
+iab Teh The
+iab Theyare They are
 iab UnitedStates United States
+iab Youre You're
 iab abbout about
 iab abotu about
 iab abouta about a
@@ -28,6 +36,7 @@ iab adequit adequate
 iab adequite adequate
 iab adn and
 iab advanage advantage
+iab aer are
 iab affraid afraid
 iab afterthe after the
 iab aganist against
@@ -38,6 +47,7 @@ iab agreemeents agreements
 iab agreemnet agreement
 iab agreemnets agreements
 iab agressive aggressive
+iab ahev have
 iab ahppen happen
 iab ahve have
 iab allready already
@@ -46,10 +56,13 @@ iab allwyas always
 iab almots almost
 iab almsot almost
 iab alomst almost
+iab alos also
 iab alot a lot
 iab alraedy already
 iab alreayd already
 iab alreday already
+iab alse else
+iab alsot also
 iab alwasy always
 iab alwats always
 iab alway always
@@ -59,11 +72,15 @@ iab amke make
 iab amkes makes
 iab amned amend
 iab anbd and
+iab andd and
 iab andone and one
 iab andteh and the
 iab andthe and the
+iab anf and
 iab anothe another
+iab ans and
 iab anual annual
+iab aobut about
 iab aplyed applied
 iab apparant apparent
 iab apparrent apparent
@@ -85,6 +102,7 @@ iab arond around
 iab artical article
 iab articel article
 iab asdvertising advertising
+iab aslo also
 iab assistent assistant
 iab asthe as the
 iab atention attention
@@ -135,6 +153,7 @@ iab calcullated calculated
 iab calulated calculated
 iab candidtae candidate
 iab candidtaes candidates
+iab cant can't
 iab catagory category
 iab categiory category
 iab certian certain
@@ -153,12 +172,15 @@ iab charector character
 iab cheif chief
 iab chekc check
 iab chnage change
+iab chnaged changed
+iab chnages changes
 iab cieling ceiling
 iab circut circuit
 iab claer clear
 iab claered cleared
 iab claerly clearly
 iab cliant client
+iab cmo com
 iab cna can
 iab colection collection
 iab comanies companies
@@ -215,6 +237,7 @@ iab cusotmers customers
 iab cutsomer customer
 iab cutsomers customers
 iab cxan can
+iab dael deal
 iab danceing dancing
 iab dcument document
 iab deatil detail
@@ -249,6 +272,7 @@ iab diaplay display
 iab didint didn't
 iab didnot did not
 iab didnt didn't
+iab diea idea
 iab difefrent different
 iab diferences differences
 iab differance difference
@@ -276,6 +300,7 @@ iab docuemnt document
 iab documetn document
 iab documnet document
 iab documnets documents
+iab doens does
 iab doese does
 iab doesnt doesn't
 iab doign doing
@@ -287,23 +312,29 @@ iab donig doing
 iab dont don't
 iab driveing driving
 iab drnik drink
+iab eahc each
 iab efel feel
 iab effecient efficient
 iab efort effort
 iab eforts efforts
+iab ehlp help
 iab ehr her
 iab eligable eligible
 iab embarass embarrass
+iab emial email
 iab employemnt employment
+iab ened need
 iab enoguh enough
 iab enought enough
 iab enployment employment
+iab enxt next
 iab equippment equipment
 iab equivalant equivalent
 iab esle else
 iab especally especially
 iab especialyl especially
 iab espesially especially
+iab ew we
 iab excellant excellent
 iab excercise exercise
 iab exchagne exchange
@@ -315,6 +346,7 @@ iab experiance experience
 iab experienc experience
 iab exprience experience
 iab exprienced experienced
+iab eyar year
 iab eyt yet
 iab faeture feature
 iab faetures features
@@ -322,15 +354,20 @@ iab familair familiar
 iab familar familiar
 iab familliar familiar
 iab fammiliar familiar
+iab fatc fact
 iab feild field
 iab feilds fields
 iab fianlly finally
 iab fidn find
+iab fiel file
 iab finalyl finally
 iab firends friends
 iab firts first
+iab flase false
+iab fo of
 iab follwo follow
 iab follwoing following
+iab fomr form
 iab fora for a
 iab foriegn foreign
 iab forthe for the
@@ -344,6 +381,7 @@ iab freindly friendly
 iab freinds friends
 iab frmo from
 iab fro for
+iab frome from
 iab fromthe from the
 iab furneral funeral
 iab fwe few
@@ -371,8 +409,10 @@ iab hapened happened
 iab hapening happening
 iab hapens happens
 iab happend happened
+iab hasa has a
 iab hasbeen has been
 iab hasnt hasn't
+iab havea have a
 iab havebeen have been
 iab haveing having
 iab hda had
@@ -384,9 +424,14 @@ iab hewas he was
 iab hge he
 iab hismelf himself
 iab hlep help
+iab holf hold
 iab hsa has
 iab hsi his
+iab htan than
+iab htat that
 iab hte the
+iab htem them
+iab hten then
 iab htere there
 iab htese these
 iab htey they
@@ -396,7 +441,9 @@ iab htis this
 iab httpL http:
 iab hvae have
 iab hvaing having
+iab hvea have
 iab hwich which
+iab hwo how
 iab idae idea
 iab idaes ideas
 iab identofy identify
@@ -410,6 +457,7 @@ iab importnat important
 iab impossable impossible
 iab improvemnt improvement
 iab improvment improvement
+iab ina in a
 iab includ include
 iab indecate indicate
 iab indenpendence independence
@@ -422,6 +470,7 @@ iab influance influence
 iab infomation information
 iab informatoin information
 iab inital initial
+iab inot into
 iab instaleld installed
 iab insted instead
 iab insted intead
@@ -429,8 +478,11 @@ iab insurence insurance
 iab inteh in the
 iab interum interim
 iab inthe in the
+iab inthese in these
+iab inthis in this
 iab inwhich in which
 iab isthe is the
+iab isze size
 iab itis it is
 iab ititial initial
 iab itnerest interest
@@ -441,6 +493,7 @@ iab itwas it was
 iab iused used
 iab iwll will
 iab iwth with
+iab jstu just
 iab jsut just
 iab jugment judgment
 iab knowldge knowledge
@@ -451,8 +504,12 @@ iab knwos knows
 iab konw know
 iab konwn known
 iab konws knows
+iab kwno know
 iab labratory laboratory
+iab laod load
+iab lastr last
 iab lastyear last year
+iab layed laid
 iab learnign learning
 iab lectyre lecture
 iab lectyres lectures
@@ -466,6 +523,7 @@ iab liekd liked
 iab lieutenent lieutenant
 iab liev live
 iab likly likely
+iab ling long
 iab lisense license
 iab littel little
 iab litttle little
@@ -474,6 +532,9 @@ iab liveing living
 iab loev love
 iab lonly lonely
 iab lookign looking
+iab lsat last
+iab lveo love
+iab lvoe love
 iab maintenence maintenance
 iab mainting maintaining
 iab makeing making
@@ -481,10 +542,13 @@ iab managerment management
 iab managment management
 iab mantain maintain
 iab marraige marriage
+iab mcuh much
+iab mear mere
 iab memeber member
 iab merchent merchant
 iab mesage message
 iab mesages messages
+iab mial mail
 iab mispell misspell
 iab mispelling misspelling
 iab mispellings misspellings
@@ -492,11 +556,16 @@ iab misture mixture
 iab mkae make
 iab mkaes makes
 iab mkaing making
+iab mkea make
 iab moeny money
 iab morgage mortgage
 iab mroe more
+iab msut must
+iab muhc much
+iab muts must
 iab mysefl myself
 iab myu my
+iab nad and
 iab necassarily necessarily
 iab necassary necessary
 iab neccessarily necessarily
@@ -504,8 +573,13 @@ iab neccessary necessary
 iab necesarily necessarily
 iab necesary necessary
 iab negotiaing negotiating
+iab niether neither
 iab nkow know
+iab nkwo know
+iab nmae name
 iab nothign nothing
+iab nowe now
+iab nto not
 iab nver never
 iab nwe new
 iab nwo now
@@ -517,6 +591,7 @@ iab occurence occurrence
 iab occurrance occurrence
 iab ocur occur
 iab oeprator operator
+iab ofa of a
 iab ofits of its
 iab ofthe of the
 iab oging going
@@ -538,6 +613,7 @@ iab optoin option
 iab optoins options
 iab orginization organization
 iab orginized organized
+iab ot to
 iab otehr other
 iab otu out
 iab outof out of
@@ -547,6 +623,7 @@ iab owuld would
 iab oxident oxidant
 iab packagage package
 iab packagages packages
+iab paide paid
 iab papaer paper
 iab parliment parliament
 iab partof part of
@@ -582,6 +659,7 @@ iab prominant prominent
 iab protoge protege
 iab psoition position
 iab ptogress progress
+iab puhs push
 iab puting putting
 iab pwoer power
 iab quater quarter
@@ -610,6 +688,7 @@ iab recomendations recommendations
 iab recomended recommended
 iab reconize recognize
 iab recrod record
+iab rela real
 iab religous religious
 iab reluctent reluctant
 iab remeber remember
@@ -637,6 +716,7 @@ iab restuarant restaurant
 iab reult result
 iab reveiw review
 iab reveiwing reviewing
+iab rulle rule
 iab rumers rumors
 iab rwite write
 iab rythm rhythm
@@ -644,6 +724,7 @@ iab saidhe said he
 iab saidit said it
 iab saidthat said that
 iab saidthe said the
+iab sasy says
 iab scedule schedule
 iab sceduled scheduled
 iab scrapper scraper
@@ -670,8 +751,10 @@ iab similiar similar
 iab simpyl simply
 iab sincerly sincerely
 iab sitll still
+iab sleect select
 iab smae same
 iab smoe some
+iab sned send
 iab soem some
 iab sohw show
 iab soical social
@@ -682,6 +765,7 @@ iab somthing something
 iab somtimes sometimes
 iab soudn sound
 iab soudns sounds
+iab soze size
 iab speach speech
 iab specificaly specifically
 iab specificalyl specifically
@@ -714,6 +798,8 @@ iab supressing suppressing
 iab suprise surprise
 iab suprised surprised
 iab swiming swimming
+iab syas says
+iab ta at
 iab tahn than
 iab taht that
 iab talekd talked
@@ -721,41 +807,56 @@ iab talkign talking
 iab tath that
 iab tecnical technical
 iab teh the
+iab tehir their
+iab tehn then
+iab tehre there
 iab tehy they
 iab termoil turmoil
 iab tghe the
 iab tghis this
+iab thanit than it
 iab thansk thanks
+iab thast that
 iab thats that's
 iab thatthe that the
 iab thecompany the company
 iab thefirst the first
 iab thegovernment the government
+iab theh then
 iab themself themselves
 iab themselfs themselves
 iab thenew the new
 iab theri their
 iab thesame the same
 iab thetwo the two
+iab theyare they are
 iab theyll they'll
 iab theyve they've
 iab thgat that
 iab thge the
 iab thier their
+iab thign thing
 iab thigsn things
 iab thisyear this year
 iab thme them
+iab thn then
 iab thna than
 iab thne then
 iab thnig thing
 iab thnigs things
+iab thre there
 iab threatend threatened
 iab thsi this
 iab thsoe those
 iab thta that
+iab thyat that
+iab thye they
+iab ti it
+iab tiem time
 iab tihs this
 iab timne time
 iab tiogether together
+iab tiome time
 iab tje the
 iab tjhe the
 iab tkae take
@@ -777,12 +878,17 @@ iab truely truly
 iab truley truly
 iab tryed tried
 iab tthe the
+iab ture true
+iab twpo two
 iab tyhat that
 iab tyhe the
+iab tyhe they
 iab udnerstand understand
+iab uise use
 iab understnad understand
 iab unliek unlike
 iab unpleasently unpleasantly
+iab untill until
 iab untilll until
 iab useing using
 iab usualyl usually
@@ -793,23 +899,32 @@ iab vulnerible vulnerable
 iab waht what
 iab warrent warrant
 iab wasnt wasn't
+iab wass was
 iab watn want
+iab weas was
 iab wehn when
 iab werre were
 iab whcih which
 iab wherre where
 iab whic which
 iab whihc which
+iab whn when
 iab whta what
 iab wief wife
 iab wierd weird
+iab wih with
 iab wihch which
 iab wiht with
 iab willbe will be
+iab willk will
 iab windoes windows
 iab witha with a
 iab withe with
+iab withh with
+iab withit with it
+iab witht with
 iab withthe with the
+iab witn with
 iab wiull will
 iab wnat want
 iab wnated wanted
@@ -825,16 +940,21 @@ iab wriet write
 iab writting writing
 iab wrod word
 iab wroet wrote
+iab wrok work
 iab wroking working
 iab wtih with
 iab wuould would
 iab wya way
+iab yaer year
 iab yera year
 iab yeras years
 iab yersa years
 iab yoiu you
+iab yoru your
 iab youare you are
+iab youre you're
 iab youve you've
+iab yrea year
 iab ytou you
 iab yuo you
 iab yuor your
