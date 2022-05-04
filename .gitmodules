@@ -112,3 +112,6 @@
 [submodule "pack/syntax/start/icontract-hypothesis"]
 	path = pack/syntax/start/icontract-hypothesis
 	url = https://github.com/mristin/icontract-hypothesis-vim.git
+[submodule "pack/syntax/start/vim-cool"]
+	path = pack/syntax/start/vim-cool
+	url = https://github.com/romainl/vim-cool.git
