@@ -16,8 +16,9 @@ Remove a submodule
 
 ```bash
 cd ~/.vim
+git submodule deinit pack/plugins/start/nerdtree
+git rm pack/plugins/start/nerdtree
 rm -rf .git/modules/pack/plugins/start/nerdtree
-git rm -f pack/plugins/start/nerdtree
 ```
 
 See the list of submodules in a superproject
