@@ -183,7 +183,7 @@ set wig+=classes
 set wig+=lib
 
 " Better Completion
-set completeopt=longest,menu,preview
+set cot=longest,menuone,preview,noinsert,noselect
 set ofu=syntaxcomplete#Complete
 
 
