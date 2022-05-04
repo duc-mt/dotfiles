@@ -111,4 +111,4 @@
 	url = https://github.com/gosukiwi/vim-smartpairs.git
 [submodule "pack/syntax/start/icontract-hypothesis"]
 	path = pack/syntax/start/icontract-hypothesis
-	url = https://github.com/tanducmai/icontract-hypothesis-vim.git
+	url = https://github.com/mristin/icontract-hypothesis-vim.git
