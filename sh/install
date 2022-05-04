@@ -48,7 +48,7 @@ sudo apt install -y \
 python3 -m pip install --user --upgrade \
   pytest coverage autopep8 mypy yapf pydocstyle rich rich-cli bs4 pygame scapy yolk3k \
   rotate-screen clip-values memray icontract pyicontract-lint icontract-hypothesis \
-  sphinx-icontract cryptography prodict textual pyfiglet starcli
+  sphinx-icontract cryptography prodict textual pyfiglet starcli flake8-eradicate \
 
 # 5. Set up git-sh on Linux
 
