@@ -185,6 +185,7 @@ set wig+=lib
 " Better Completion
 set cot=longest,menuone,preview,noinsert,noselect
 set ofu=syntaxcomplete#Complete
+set complete=.,w,b,u,t
 
 
 " ----------------------------------------------------------------------------
