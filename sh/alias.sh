@@ -93,3 +93,5 @@ alias ddate='date +"%R%p - %a, %B %d, %Y"'
 alias dday='date +"%d-%m-%Y"'
 alias toilet='toilet -t -f mono12 --filter border:metal -F metal'
 alias toiletgay='toilet --filter border:gay -F gay'
+alias alllowercase="rename 'y/A-Z/a-z/' *"
+alias alluppercase="rename 'y/a-z/A-Z/' *"

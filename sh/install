@@ -41,7 +41,7 @@ sudo apt install -y \
   tree figlet python3 python-is-python3 python3-pip nethogs nmap hugo vsftpd pandoc \
   texlive-xetex texlive-science texlive-latex-extra librsvg2-bin sqlformat ipcalc \
   python3-q-text-as-data net-tools aircrack-ng fd-find mlocate fortune sl cowsay \
-  toilet cmatrix funny-manpages
+  toilet cmatrix funny-manpages rename
 
 # 4. Install some Python packages
 
