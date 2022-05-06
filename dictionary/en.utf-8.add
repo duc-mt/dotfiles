@@ -1,8 +1,10 @@
 ABCMeta
 AVG
 AddLineNumber
+B
 Bslash
 BufNewFile
+C
 CHARINDEX
 COMP1046
 CTRL
@@ -10,6 +12,7 @@ CamelCase
 CapitaliseEachWord
 CourseCompleted
 Ctrl
+D
 DATEADD
 DATENAME
 DATEPART
@@ -26,6 +29,7 @@ Goyo
 HOTKEYS
 INFS1025
 INFT1031
+IP
 ISNULL
 LTRIM
 LaTeX
@@ -71,6 +75,7 @@ addID
 addressID
 addressLine1
 addressLine2
+anytime
 arg
 args
 async
@@ -135,6 +140,7 @@ guifg
 hjkl
 hr
 https
+i
 icontract
 init
 inputDate

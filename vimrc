@@ -25,6 +25,7 @@ silent! helptags ALL " Load help for all plugins
 so ~/.vim/dictionary/wordlist.vim
 so ~/.vim/dictionary/abbreviation.vim
 set spf=~/.vim/dictionary/en.utf-8.add
+set dictionary+=~/.vim/dictionary/british-english-insane.txt
 set dictionary+=~/.vim/dictionary/english_words/words.txt
 set dictionary+=~/.vim/dictionary/moby_data/acronyms.txt
 set dictionary+=~/.vim/dictionary/moby_data/names.txt
