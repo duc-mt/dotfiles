@@ -5,7 +5,7 @@ Do not add anything to your dotfiles if you do not understand what it does.
 # License
 
 ```text
-Copyright (c) <2020> <tanducmai>
+Copyright (c) <2021> <tanducmai>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
