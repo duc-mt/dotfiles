@@ -18,7 +18,6 @@ let b:did_indent = 1
 setl ts=4
 setl sts=4
 setl shiftwidth=4
-setl tw=79
 setl indentexpr=GetPythonIndent(v:lnum)
 setl indentkeys=!^F,o,O,<:>,0),0],0},=elif,=except
 setl fdm=indent
@@ -28,7 +27,18 @@ setl cot-=preview
 nn <F5> :w<CR>:!clear && python3 %<CR>
 nn <Leader><F5> :w<CR>:!clear && python3 -m pytest %<CR>
 
-au FileType python setl omnifunc=pythoncomplete#Complete
+" Maximum width of text that is being inserted set to 79.
+" The column 80 is highlighted.
+setl tw=79
+
+" Source: https://gist.github.com/romainl/eabe0fe8c564da1b6cfe1826e1482536
+aug TooLong
+    au!
+    au WinEnter,BufEnter * cal clearmatches()
+          \| cal matchadd('ColorColumn', '\%>79v', 100)
+aug END
+
+setl omnifunc=pythoncomplete#Complete
 setl define=^\s*\\(def\\\\|class\\)
 
 if exists("python_space_error_highlight")
