@@ -16,4 +16,3 @@ setl laststatus=0 noshowmode noruler
 " Quick push during a commit window
 com! Gpush :!clear && echo 'Wait for the local commits to be pushed to GitHub
       \ ...\n--------------------' && git push
-

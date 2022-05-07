@@ -28,7 +28,7 @@ setl comments=fb:*,fb:-,fb:+,n:> commentstring=<!--%s-->
 setl formatoptions+=tcqln formatoptions-=r formatoptions-=o
 setl formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^\\s*[-*+]\\s\\+\\\|^\\[^\\ze[^\\]]\\+\\]:\\&^.\\{4\\}
 
-highlight Title cterm=bold
+hi Title cterm=bold
 
 " ----------------------------------------------------------------------------
 " goyo.vim + limelight.vim
