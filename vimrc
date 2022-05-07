@@ -933,6 +933,13 @@ com! RainbowParenthesesOn cal RainbowParenthesesOn()
 com! ClearRegisters for i in range(34,122) | silent! call setreg(nr2char(i), [])
       \| endfor | ec 'All Registers Has Been Cleared!'
 
+
+" ----------------------------------------------------------------------------
+" :GB | Super Cheap Git Blame
+" ----------------------------------------------------------------------------
+" Source: https://gist.github.com/romainl/5b827f4aafa7ee29bdc70282ecc31640
+com! -range GB echo join(systemlist("git -C " . shellescape(expand('%:p:h')) . " blame -L <line1>,<line2> " . expand('%:t')), "\n")
+
 " }}}
 " ============================================================================
 " VIM SCRIPTS {{{
