@@ -1,5 +1,7 @@
 # Bash-Oneliner
 
+Source: https://raw.githubusercontent.com/onceupon/Bash-Oneliner/master/README.md
+
 I am glad that you are here! I was working on bioinformatics a few years ago and
 was amazed by those single-word bash commands which are much faster than my dull
 scripts, time saved through learning command-line shortcuts and scripting.
@@ -18,8 +20,6 @@ you. If you know other cool commands, please teach me!
 
 Here's a more stylish version of
 [Bash-Oneliner](https://onceupon.github.io/Bash-Oneliner/).
-
-[Source](https://raw.githubusercontent.com/onceupon/Bash-Oneliner/master/README.md)
 
 ## Handy Bash one-liners
 
