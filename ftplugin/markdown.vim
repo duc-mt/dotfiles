@@ -102,3 +102,25 @@ nn PPT :!clear && echo 'Start Generating The PPT Version...' &&
 " Abbreviations for the above conversion
 " ----------------------------------------------------------------------------
 ia abbr <Esc>ggO---<CR>title:<CR>- My Presentation<CR>author:<CR>- Tan Duc Mai<CR>theme:<CR>- Copenhagen<CR>date:<CR>- December 29th, 2021<CR>---<CR><ESC>
+
+
+" ----------------------------------------------------------------------------
+" Jump to next heading
+" ----------------------------------------------------------------------------
+" Source: https://gist.github.com/romainl/ac63e108c3d11084be62b3c04156c263
+fu! s:JumpToNextHeading(direction, count)
+    let col = col(".")
+
+    silent exe a:direction == "up" ? '?^#' : '/^#'
+
+    if a:count > 1
+        silent exe "normal! " . repeat("n", a:direction == "up" && col != 1 ? a:count : a:count - 1)
+    end
+
+    silent exe "normal! " . col . "|"
+
+    unlet col
+endf
+
+nn <buffer> <silent> ]] :<C-u>cal <SID>JumpToNextHeading("down", v:count1)<CR>zz
+nn <buffer> <silent> [[ :<C-u>cal <SID>JumpToNextHeading("up", v:count1)<CR>zz
