@@ -67,6 +67,7 @@ alias gpull='clear && printf "Wait for remote content to be fetched from Github\
  ...\n--------------------\n" && git pull'
 alias gpush='clear && printf "Wait for the local commits to be pushed to GitHub\
  ...\n--------------------\n" && git push'
+alias gpsuh='gpush'
 alias upgrade='clear && printf "Wait for the Operating System to be upgraded\
  ...\n--------------------\n" && sudo apt update && sudo apt full-upgrade -y &&\
  sudo apt autoremove -y && sudo apt autoclean -y && cd ~/.vim && printf "\
