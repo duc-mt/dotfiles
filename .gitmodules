@@ -67,9 +67,6 @@
 [submodule "pack/status-line/start/airline"]
 	path = pack/status-line/start/airline
 	url = https://github.com/vim-airline/vim-airline.git
-[submodule "pack/plugins/opt/diagon"]
-	path = pack/plugins/opt/diagon
-	url = https://github.com/ArthurSonzogni/Diagon
 [submodule "pack/plugins/opt/magnum"]
 	path = pack/plugins/opt/magnum
 	url = https://github.com/glts/vim-magnum
