@@ -115,3 +115,6 @@
 [submodule "pack/syntax/start/python-syntax"]
 	path = pack/syntax/start/python-syntax
 	url = https://github.com/purpleP/python-syntax.git
+[submodule "pack/plugins/opt/diagon"]
+	path = pack/plugins/opt/diagon
+	url = https://github.com/willchao612/vim-diagon.git
