@@ -1,5 +1,7 @@
 iab Ameria America
 iab Asutralia Australia
+iab essentail essential
+iab exicting exciting
 iab Asutralian Australian
 iab Iam I am
 iab Im I'm
@@ -313,6 +315,7 @@ iab dont don't
 iab driveing driving
 iab drnik drink
 iab eahc each
+iab educaiton education
 iab efel feel
 iab effecient efficient
 iab efort effort
