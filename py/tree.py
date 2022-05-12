@@ -69,7 +69,7 @@ def main():
         )
         try:
             walk_directory(pathlib.Path(directory), tree)
-        except FileNotFoundError as e:
+        except Exception as e:
             Console().print(e, style='red')
         else:
             print(tree)
