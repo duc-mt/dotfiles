@@ -25,7 +25,8 @@ setl cot-=preview
 
 " Run Python script.
 nn <F5> :w<CR>:!clear && python3 %<CR>
-nn <Leader><F5> :w<CR>:!clear && python3 -m pytest %<CR>
+nn <Bslash><F5> :w<CR>:!clear && python3 -m pytest %<CR>
+nn <Leader><F5> :w<CR>:!clear && rm -f flake8.txt && flake8 %<CR>
 
 " Maximum width of text that is being inserted set to 79.
 " The column 80 is highlighted.
