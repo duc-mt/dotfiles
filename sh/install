@@ -50,7 +50,8 @@ python3 -m pip install --user --upgrade \
   rotate-screen clip-values memray icontract pyicontract-lint icontract-hypothesis \
   sphinx-icontract cryptography prodict textual pyfiglet starcli you-get pep8-naming \
   flake8-eradicate flake8-docstrings flake8-quotes flake8-broken-line flake8-return \
-  flake8-comprehensions flake8-import-order flake8-print pytest-mypy-plugins
+  flake8-comprehensions flake8-import-order flake8-print flake8-tidy-imports \
+  pytest-mypy-plugins
 
 # 5. Set up git-sh on Linux
 
