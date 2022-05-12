@@ -88,7 +88,7 @@ alias sqlformat='sqlformat -s --reindent --keywords upper --identifiers lower'
 alias sortdict='printf "Finish sorting dictionary ...\n" && \
   cd ~/.vim/dictionary/sort/ && ./wordlist && ./spf && cd ~/.vim'
 alias pipinstall='python3 -m pip install --user --upgrade'
-alias pytree='python3 ~/.vim/py/tree.py && rm textual.log'
+alias pytree='python3 ~/.vim/py/tree.py'
 alias pydownload='python3 ~/.vim/py/downloader.py'
 alias pycalc='python3 ~/.vim/py/calculator.py && rm textual.log'
 alias pyview='python3 ~/.vim/py/code_viewer.py && rm textual.log'
