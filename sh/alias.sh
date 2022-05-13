@@ -43,14 +43,14 @@ alias E='vim -o'
 alias cc='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ Eynesbury && clear && ls'
 alias website='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ \
 Eynesbury/Desktop/myportfolio && clear && ls'
-alias VIM='cd ~/.vim && clear && ls'
+alias VIM='cd ~/dotfiles/vim && clear && ls'
 alias PY='cd ~/python_projects && clear && ls'
 alias open='wslview' # Open any file with the default application'
 alias opne='wslview' # In case I mistype the word 'open'
 alias rihc='rich'
-alias bashrc='vim ~/.vim/bash/bashrc'
-alias vimrc='vim ~/.vim/vimrc'
-alias gitconfig='vim ~/.vim/git/gitconfig'
+alias bashrc='vim ~/dotfiles/vim/bash/bashrc'
+alias vimrc='vim ~/dotfiles/vim/vimrc'
+alias gitconfig='vim ~/dotfiles/vim/git/gitconfig'
 alias py='python3'
 alias ex='exit'
 alias cl='clear'
@@ -71,7 +71,7 @@ alias gpsuh='gpush'
 alias gpuhs='gpush'
 alias upgrade='clear && printf "Wait for the Operating System to be upgraded\
  ...\n--------------------\n" && sudo apt update && sudo apt full-upgrade -y &&\
- sudo apt autoremove -y && sudo apt autoclean -y && cd ~/.vim && printf "\
+ sudo apt autoremove -y && sudo apt autoclean -y && cd ~/dotfiles/vim && printf "\
  --------------------\nWait for VIM submodules to be upgraded ...\n\
  --------------------\n" && git submodule foreach git pull --all &&\
  python -m pip install --upgrade pip'
@@ -86,12 +86,12 @@ alias autopep8='printf "Finish formatting ...\n" && autopep8 --in-place -r -a -a
 alias githubtrending='starcli -S en -L table -l python -r 5 -d today'
 alias sqlformat='sqlformat -s --reindent --keywords upper --identifiers lower'
 alias sortdict='printf "Finish sorting dictionary ...\n" && \
-  cd ~/.vim/dictionary/sort/ && ./wordlist && ./spf && cd ~/.vim'
+  cd ~/dotfiles/vim/dictionary/sort/ && ./wordlist && ./spf && cd ~/dotfiles/vim'
 alias pipinstall='python3 -m pip install --user --upgrade'
-alias pytree='python3 ~/.vim/py/tree.py'
-alias pydownload='python3 ~/.vim/py/downloader.py'
-alias pycalc='python3 ~/.vim/py/calculator.py && rm textual.log'
-alias pyview='python3 ~/.vim/py/code_viewer.py && rm textual.log'
+alias pytree='python3 ~/dotfiles/vim/py/tree.py'
+alias pydownload='python3 ~/dotfiles/vim/py/downloader.py'
+alias pycalc='python3 ~/dotfiles/vim/py/calculator.py && rm textual.log'
+alias pyview='python3 ~/dotfiles/vim/py/code_viewer.py && rm textual.log'
 alias ddate='date +"%R%p - %a, %B %d, %Y"'
 alias dday='date +"%d-%m-%Y"'
 alias toilet='toilet -t -f mono12 --filter border:metal -F metal'
