@@ -1,7 +1,5 @@
 iab Ameria America
 iab Asutralia Australia
-iab essentail essential
-iab exicting exciting
 iab Asutralian Australian
 iab Iam I am
 iab Im I'm
@@ -88,6 +86,7 @@ iab apparant apparent
 iab apparrent apparent
 iab appearence appearance
 iab appeares appears
+iab appky apply
 iab applicaiton application
 iab applicaitons applications
 iab applyed applied
@@ -142,6 +141,7 @@ iab beleif belief
 iab beleive believe
 iab beleived believed
 iab beleives believes
+iab belive believe
 iab benifit benefit
 iab benifits benefits
 iab betwen between
@@ -337,6 +337,7 @@ iab esle else
 iab especally especially
 iab especialyl especially
 iab espesially especially
+iab essentail essential
 iab ew we
 iab excellant excellent
 iab excercise exercise
@@ -345,6 +346,7 @@ iab exchagnes exchanges
 iab excitment excitement
 iab exhcange exchange
 iab exhcanges exchanges
+iab exicting exciting
 iab experiance experience
 iab experienc experience
 iab exprience experience
@@ -391,6 +393,9 @@ iab fwe few
 iab garantee guarantee
 iab gaurd guard
 iab gemeral general
+iab genrate generate
+iab genrated generated
+iab genration generation
 iab gerat great
 iab geting getting
 iab gettin getting
