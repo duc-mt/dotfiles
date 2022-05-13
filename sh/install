@@ -83,3 +83,6 @@ ln -sf $(which fdfind) ~/.local/bin/fd
 cd ~/.vim/pack/file-system/start/fzf/
 ./install
 cd
+
+# 9. Remove install script
+rm -f ~/install
