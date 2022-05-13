@@ -28,4 +28,4 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 # Output a random technology-related quote.
-fortune ~/.vim/doc/quotes/technology | cowsay
+fortune ~/dotfiles/doc/quotes/technology | cowsay
