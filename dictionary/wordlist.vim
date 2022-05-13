@@ -635,6 +635,7 @@ iab packagage package
 iab packagages packages
 iab paide paid
 iab papaer paper
+iab paragrpah paragraph
 iab parliment parliament
 iab partof part of
 iab paymetn payment
@@ -887,6 +888,7 @@ iab tothe to the
 iab towrad toward
 iab traditionalyl traditionally
 iab transfered transferred
+iab treament treatment
 iab truely truly
 iab truley truly
 iab tryed tried
