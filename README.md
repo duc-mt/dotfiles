@@ -40,7 +40,7 @@ Requirements:
 1. Download script
 
 ```bash
-sudo curl -L https://raw.githubusercontent.com/tanducmai/.dotfiles/master/install -o ~/install
+sudo curl -L https://raw.githubusercontent.com/tanducmai/dotfiles/master/sh/install -o ~/install
 ```
 
 2. Change permission
