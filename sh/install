@@ -106,5 +106,9 @@ curl -sS https://webinstall.dev/zoxide | bash
 rm -rf Downloads
 zoxide init --cmd cd --hook pwd bash
 
-# 11. Remove install script
+# 11. Add VS Code extensions
+rm -rf ~/.vscode-server/extensions/*
+cp -a ~/.vim/pack/vscode-extensions/* ~/.vscode-server/extensions/
+
+# 12. Remove install script
 rm -f ~/install
