@@ -40,8 +40,10 @@ sudo apt full-upgrade -y
 sudo apt install -y \
   tree figlet python3 python-is-python3 python3-pip nethogs nmap hugo vsftpd pandoc \
   texlive-xetex texlive-science texlive-latex-extra librsvg2-bin sqlformat ipcalc \
-  python3-q-text-as-data net-tools aircrack-ng fd-find mlocate fortune sl cowsay \
-  toilet cmatrix funny-manpages rename wbritish-insane wordnet
+  python3-q-text-as-data net-tools aircrack-ng fdclone fortune-mod sl cowsay toilet \
+  cmatrix funny-manpages rename wbritish-insane wordnet
+sudo apt autoremove
+sudo apt autoclean
 
 # 4. Install some Python packages
 
@@ -76,7 +78,6 @@ ln -sf ~/.vim/vimrc ~/.vimrc
 ln -sf ~/.vim/git/gitconfig ~/.gitconfig
 ln -sf ~/.vim/bash/bashrc ~/.bashrc
 ln -sf ~/.vim/bash/bash_login ~/.bash_login
-ln -sf $(which fdfind) ~/.local/bin/fd
 
 # 8. Set up FZF in Vim
 
