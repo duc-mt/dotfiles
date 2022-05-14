@@ -138,3 +138,6 @@ _fzf_comprun() {
 # Run gitignore.io from the command line with gi
 # E.g. gi python >> .git/info/exclude
 function gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;}
+
+# exa
+export EXA_COLORS='*.sh=31:*.png=32:*.py=33;1:*.txt=34:*.pdf=35:*.vim=36:*.tmp=37'
