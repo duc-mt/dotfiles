@@ -30,8 +30,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ls / exa aliases
 alias sl='sl && cl && ls'
 alias ls='exa'
-alias ll='exa -alhF'
-alias tree='exa --tree'
+alias ll='exa --git -alhF'
+alias tree='exa --tree --long'
 
 # other aliases
 alias ..='cd ..'
