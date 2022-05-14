@@ -34,6 +34,7 @@ Requirements:
 
 1. `sudo`
 1. `curl`
+1. `wget`
 
 # Installation
 
