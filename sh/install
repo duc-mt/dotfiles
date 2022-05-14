@@ -78,6 +78,7 @@ ln -sf ~/.vim/vimrc ~/.vimrc
 ln -sf ~/.vim/git/gitconfig ~/.gitconfig
 ln -sf ~/.vim/bash/bashrc ~/.bashrc
 ln -sf ~/.vim/bash/bash_login ~/.bash_login
+ln -sf ~/.vim/fd2rc ~/.fd2rc
 
 # 8. Set up fzf
 

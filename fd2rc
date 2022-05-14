@@ -1,0 +1,31 @@
+# configurations by customizer
+
+# shell variables definition
+DISPLAYMODE=3
+ADJTTY=1
+TMPDIR=/home/henry
+TMPUMASK=077
+LANGUAGE=C
+DEFKCODE=utf8-iconv
+INPUTKCODE=C.UTF-8
+PTYINKCODE=utf8-iconv
+PTYOUTKCODE=utf8-iconv
+FNAMEKCODE=C.UTF-8
+URLKCODE=utf8-iconv
+SHELL=/bin/bash
+EDITMODE=emacs
+PAGER=vim
+EDITOR=vim
+
+# launcher definition
+launch .zip	"unzip -lqq"	-f " %s %m-%d-%y %t %*f"
+launch .Z	"zcat %C|"
+launch .gz	"gzip -cd %C|"
+launch .bz2	"bzip2 -cd %C|"
+launch .deb	"ar p %C data.tar.gz|gzip -dc|tar tvf - "	-f "%a %u/%g %s %y-%m-%d %t %f"
+launch .rpm	"rpm2cpio %C|cpio -tv"	-f "%a %x %u %g %s %m %d %y %f"
+
+# archiver definition
+arch .zip	"zip -q %C %TA"	"unzip -q %C %TA"
+arch .deb	"clear; echo ERROR; false"	"ar p %C data.tar.gz|gzip -dc|tar -xf - %TA"
+arch .rpm	"clear; echo ERROR; false"	"rpm2cpio %C|cpio -id %TA"
