@@ -55,7 +55,7 @@ python3 -m pip install --user --upgrade \
   flake8-comprehensions flake8-import-order flake8-print flake8-tidy-imports \
   flake8-multiline-containers pytest-mypy-plugins
 
-# 5. Set up git-sh on Linux
+# 5. Set up git-sh
 
 git clone https://github.com/rtomayko/git-sh.git /tmp/git-sh/
 cd /tmp/git-sh/
@@ -79,11 +79,14 @@ ln -sf ~/.vim/git/gitconfig ~/.gitconfig
 ln -sf ~/.vim/bash/bashrc ~/.bashrc
 ln -sf ~/.vim/bash/bash_login ~/.bash_login
 
-# 8. Set up FZF in Vim
+# 8. Set up fzf
 
 cd ~/.vim/pack/file-system/start/fzf/
 ./install
 cd
 
-# 9. Remove install script
+# 9. Set up exa
+cp ~/.vim/sh/exa ~/.local/bin
+
+# 10. Remove install script
 rm -f ~/install
