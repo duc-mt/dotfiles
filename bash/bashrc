@@ -81,11 +81,6 @@ if [ -f ~/.vim/sh/alias.sh ]; then
   . ~/.vim/sh/alias.sh
 fi
 
-# z - jump around: https://github.com/rupa/z
-if [ -f ~/.vim/sh/z.sh ]; then
-  . ~/.vim/sh/z.sh
-fi
-
 # fzf-extras - key bindings from fzf wiki: https://github.com/atweiden/fzf-extras
 if [ -f ~/.vim/sh/fzf-extras.sh ]; then
   . ~/.vim/sh/fzf-extras.sh
@@ -141,3 +136,9 @@ function gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;}
 
 # exa
 export EXA_COLORS='*.sh=31:*.png=32:*.py=33;1:*.txt=34:*.pdf=35:*.vim=36:*.tmp=37'
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+# zoxide: https://man.archlinux.org/man/zoxide.1.en
+eval "$(zoxide init bash)"
