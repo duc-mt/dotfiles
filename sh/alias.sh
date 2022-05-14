@@ -74,6 +74,7 @@ alias upgrade='clear && printf "Wait for the Operating System to be upgraded\
  sudo apt autoremove -y && sudo apt autoclean -y && cd ~/.vim && printf "\
  --------------------\nWait for VIM submodules to be upgraded ...\n\
  --------------------\n" && git submodule foreach git pull --all &&\
+ cp -a ~/.vscode-server/extensions/* ~/.vim/pack/vscode-extensions/ &&\
  python -m pip install --upgrade pip'
 alias hugolive='clear && printf "Wait for the site to be published\
  ...\n--------------------\n" && hugo server --noHTTPCache --disableFastRender\
