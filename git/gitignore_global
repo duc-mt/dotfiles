@@ -43,3 +43,8 @@ Thumbs.db
 # Editor files #
 ################
 .vscode
+.vs
+
+# CTags #
+#########
+tags*
