@@ -77,9 +77,10 @@ alias upgrade='clear && printf "Check for updates to the Operating System ...\n\
  --------------------\nCheck for updates to VIM submodules ...\n\
  --------------------\n" && git submodule foreach git pull --all && printf "\
  --------------------\nCheck for updates to VS Code extensions ..." && \
+ rm -rf ~/.vim/pack/vscode-extensions/* && \
  cp -a ~/.vscode-server/extensions/* ~/.vim/pack/vscode-extensions/ && \
- printf "\n=> Finished copying extensions from ~/.vscode-server/" && \
- printf "\n--------------------\nCheck for updates to PIP package manager ...\
+ printf "\n=> Finished copying extensions from ~/.vscode-server/extensions/\n\
+ --------------------\nCheck for updates to PIP package manager ...\
  \n" && python -m pip install --upgrade pip && cowsay You are up to date!'
 alias hugolive='clear && printf "Wait for the site to be published\
  ...\n--------------------\n" && hugo server --noHTTPCache --disableFastRender\
