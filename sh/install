@@ -48,12 +48,12 @@ sudo apt autoclean
 # 4. Install some Python packages
 
 python3 -m pip install --user --upgrade \
-  pytest coverage autopep8 mypy yapf pydocstyle rich rich-cli bs4 pygame scapy yolk3k \
-  rotate-screen clip-values memray icontract pyicontract-lint icontract-hypothesis \
-  sphinx-icontract cryptography prodict textual pyfiglet starcli you-get pep8-naming \
+  autopep8 mypy yapf black pydocstyle rich rich-cli scapy yolk3k pytest coverage \
+  icontract pyicontract-lint icontract-hypothesis sphinx-icontract rotate-screen \
+  clip-values memray cryptography prodict textual pyfiglet starcli you-get pep8-naming \
   flake8-eradicate flake8-docstrings flake8-quotes flake8-broken-line flake8-return \
   flake8-comprehensions flake8-import-order flake8-print flake8-tidy-imports \
-  flake8-multiline-containers pytest-mypy-plugins
+  flake8-multiline-containers pytest-mypy-plugins bs4 pygame
 
 # 5. Set up git-sh
 
@@ -88,6 +88,7 @@ cd ~/.vim/pack/file-system/start/fzf/
 cd
 
 # 9. Set up exa
+
 wget \
   https://github.com/ogham/exa/releases/download/v0.10.0/exa-linux-x86_64-v0.10.0.zip \
   -O /tmp/exa.zip
@@ -104,14 +105,17 @@ rm -rf /tmp/exa*
 cd
 
 # 10. Set up zoxide
+
 cd
 curl -sS https://webinstall.dev/zoxide | bash
 rm -rf Downloads
 zoxide init --cmd cd --hook pwd bash
 
 # 11. Add VS Code extensions
+
 rm -rf ~/.vscode-server/extensions/*
 cp -a ~/.vim/pack/vscode-extensions/* ~/.vscode-server/extensions/
 
 # 12. Remove install script
+
 rm -f ~/install
