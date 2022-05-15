@@ -4924,6 +4924,7 @@ VPU
 VR
 VRAM
 VRML
+VS
 VSAM
 VSAT
 VSCO
@@ -6181,6 +6182,7 @@ hook
 horizontal
 hostid
 hostname
+hotkey
 hr
 html
 http
@@ -6377,6 +6379,7 @@ kbd
 keepdb
 kernel32
 key
+keybinding
 keyfile
 keygen
 keyword
@@ -7144,6 +7147,8 @@ schemas
 scheme
 scikit-learn
 scope
+screenshot
+screenshots
 script
 search
 searching
@@ -7822,3 +7827,14 @@ zf
 zfile
 zipfile
 zlib
+pdf
+VSCode
+vscode
+LiveCode
+TODOs
+LaTex
+Makefile
+MATLAB
+PlantUML
+PL
+Ada
