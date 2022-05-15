@@ -69,13 +69,16 @@ alias gpush='clear && printf "Wait for the local commits to be pushed to GitHub\
  ...\n--------------------\n" && git push'
 alias gpsuh='gpush'
 alias gpuhs='gpush'
-alias upgrade='clear && printf "Wait for the Operating System to be upgraded\
- ...\n--------------------\n" && sudo apt update && sudo apt full-upgrade -y &&\
- sudo apt autoremove -y && sudo apt autoclean -y && cd ~/.vim && printf "\
- --------------------\nWait for VIM submodules to be upgraded ...\n\
- --------------------\n" && git submodule foreach git pull --all &&\
- cp -a ~/.vscode-server/extensions/* ~/.vim/pack/vscode-extensions/ &&\
- python -m pip install --upgrade pip'
+alias upgrade='clear && printf "Check for updates to the Operating System ...\n\
+ --------------------\n" && sudo apt update && sudo apt full-upgrade -y && \
+ sudo apt autoremove -y && sudo apt autoclean && cd ~/.vim && printf "\
+ --------------------\nCheck for updates to VIM submodules ...\n\
+ --------------------\n" && git submodule foreach git pull --all && printf "\
+ --------------------\nCheck for updates to VS Code extensions ..." && \
+ cp -a ~/.vscode-server/extensions/* ~/.vim/pack/vscode-extensions/ && \
+ printf "\n=> Finished copying extensions from ~/.vscode-server/" && \
+ printf "\n--------------------\nCheck for updates to PIP package manager ...\
+ \n" && python -m pip install --upgrade pip && cowsay You are up to date!'
 alias hugolive='clear && printf "Wait for the site to be published\
  ...\n--------------------\n" && hugo server --noHTTPCache --disableFastRender\
  --buildDrafts'
