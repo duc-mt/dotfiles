@@ -73,13 +73,13 @@ alias gpsuh='gpush'
 alias gpuhs='gpush'
 alias upgrade='clear && printf "Check for updates to the Operating System ...\n\
  --------------------\n" && sudo apt update && sudo apt full-upgrade -y && \
- sudo apt autoremove -y && sudo apt autoclean && cd ~/.vim && printf "\
- --------------------\nCheck for updates to VIM submodules ...\n\
- --------------------\n" && git submodule foreach git pull --all && printf "\
- --------------------\nCheck for updates to VS Code extensions ..." && \
+ sudo apt autoremove -y && sudo apt autoclean && printf " --------------------\
+ \nCheck for updates to VIM submodules ...\n --------------------\n" && \
+ git -C ~/.vim submodule foreach git pull --all && printf " --------------------\
+ \nCheck for updates to Visual Studio Code extensions ..." && \
  rm -rf ~/.vim/pack/vscode-extensions/* && \
  cp -a ~/.vscode-server/extensions/* ~/.vim/pack/vscode-extensions/ && \
- printf "\n=> Finished copying extensions from ~/.vscode-server/extensions/\n\
+ printf "\nFinished copying extensions from ~/.vscode-server/extensions/\n\
  --------------------\nCheck for updates to PIP package manager ...\
  \n" && python -m pip install --upgrade pip && cowsay You are up to date!'
 alias hugolive='clear && printf "Wait for the site to be published\
