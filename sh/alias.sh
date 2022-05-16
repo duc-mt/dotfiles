@@ -29,7 +29,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 # ls / exa aliases
 alias sl='sl && cl && ls'
-alias ls='exa'
+alias ls='exa --git-ignore'
 alias l='ls'
 alias ll='exa -alhF'
 alias la='ll --git'
