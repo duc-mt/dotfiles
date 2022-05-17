@@ -47,8 +47,11 @@ alias website='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ \
 Eynesbury/Desktop/myportfolio && clear && ls'
 alias VIM='cd ~/.vim && clear && ls'
 alias PY='cd ~/python_projects && clear && ls'
-alias open='wslview' # Open any file with the default application'
-alias opne='wslview' # In case I mistype the word 'open'
+alias view='wslview'  # View a file in another app
+alias open='xdg-open' # Open a file with default app, or view a file within terminal'
+alias opne='xdg-open' # In case I mistype the word 'open'
+youtube='https:\/\/youtube.com'
+facebook='https:\/\/facebook.com'
 alias rihc='rich'
 alias bashrc='vim ~/.vim/bash/bashrc'
 alias vimrc='vim ~/.vim/vimrc'
