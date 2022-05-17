@@ -16,7 +16,7 @@ setl nolisp
 setl nosi
 setl foldmethod=syntax
 
-# Just recommended, not mandatory line length limit.
+" Just recommended, not mandatory line length limit.
 " Maximum width of text that is being inserted set to 80.
 " The column 81 is highlighted.
 setl tw=80
