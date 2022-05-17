@@ -32,3 +32,4 @@ git -C ~/.vim/ pull origin master --quiet
 
 # Output a random technology-related quote.
 fortune ~/.vim/doc/quotes/technology | cowsay
+echo
