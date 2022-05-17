@@ -4078,8 +4078,9 @@
 		"publisherId": "d05e23de-3974-4ff0-8d47-23ee77830092",
 		"publisherDisplayName": "Microsoft",
 		"targetPlatform": "linux-x64",
-		"updated": false,
+		"updated": true,
 		"isPreReleaseVersion": false,
-		"installedTimestamp": 1652528195337
+		"preRelease": false,
+		"installedTimestamp": 1652783225162
 	}
 }
