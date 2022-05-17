@@ -115,3 +115,6 @@
 [submodule "pack/writing/start/easymotion"]
 	path = pack/writing/start/easymotion
 	url = https://github.com/easymotion/vim-easymotion.git
+[submodule "doc/CEH-Study-Guide"]
+	path = doc/CEH-Study-Guide
+	url = https://github.com/imrk51/CEH-v11-Study-Guide.git
