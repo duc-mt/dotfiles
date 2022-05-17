@@ -121,9 +121,8 @@
 		"id": "4386e6f6-ec10-4463-9d23-c24278718947",
 		"publisherId": "36dae390-559e-4374-bca8-a49ec1616c36",
 		"publisherDisplayName": "tomoki1207",
-		"targetPlatform": "undefined",
-		"updated": false,
 		"isPreReleaseVersion": false,
-		"installedTimestamp": 1652528151908
+		"preRelease": false,
+		"installedTimestamp": 1645009810630
 	}
 }

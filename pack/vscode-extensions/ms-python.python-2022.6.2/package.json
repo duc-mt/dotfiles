@@ -1889,9 +1889,10 @@
 		"publisherDisplayName": "Microsoft",
 		"publisherId": "998b010b-e2af-44a5-a6cd-0b5fd3b9b6f8",
 		"targetPlatform": "undefined",
-		"updated": false,
+		"updated": true,
 		"isPreReleaseVersion": false,
-		"installedTimestamp": 1652528182358
+		"preRelease": false,
+		"installedTimestamp": 1652402013686
 	},
 	"extensionPack": [
 		"ms-toolsai.jupyter",
