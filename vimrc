@@ -633,6 +633,43 @@ let python_highlight_all = 1
 " Run Flake8 check every time I write a Python file
 " au BufWritePost *.py cal flake8#Flake8()
 
+
+" ----------------------------------------------------------------------------
+" Fake
+" ----------------------------------------------------------------------------
+"" Choose a random element from a list
+cal fake#define('sex', 'fake#choice(["male", "female"])')
+
+"" Get a name of male or female
+"" fake#int(1) returns 0 or 1
+cal fake#define('name', 'fake#int(1) ? fake#gen("male_name")'
+      \ . ' : fake#gen("female_name")')
+
+"" Get a full name
+cal fake#define('fullname', 'fake#gen("name") . " " . fake#gen("surname")')
+
+"" Get a nonsense text like Lorem ipsum
+cal fake#define('sentense', 'fake#capitalize('
+      \ . 'join(map(range(fake#int(3,15)),"fake#gen(\"nonsense\")"))'
+      \ . ' . fake#chars(1,"..............!?"))')
+
+cal fake#define('paragraph', 'join(map(range(fake#int(3,10)),"fake#gen(\"sentense\")"))')
+
+"" Alias
+cal fake#define('lipsum', 'fake#gen("paragraph")')
+
+"" Get an age weighted by generation distribution
+cal fake#define('age', 'float2nr(floor(110 * fake#betapdf(1.0, 1.45)))')
+
+"" Get a domain (ordered by number of websites)
+cal fake#define('gtld', 'fake#get(fake#load("gtld"),'
+      \ . 'fake#betapdf(0.2, 3.0))')
+
+cal fake#define('email', 'tolower(substitute(printf("%s@%s.%s",'
+      \ . 'fake#gen("name"),'
+      \ . 'fake#gen("surname"),'
+      \ . 'fake#gen("gtld")), "\\s", "-", "g"))')
+
 " }}}
 " ============================================================================
 " MAPPINGS {{{
