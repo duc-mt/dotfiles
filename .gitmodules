@@ -28,9 +28,6 @@
 [submodule "pack/git/start/signify"]
 	path = pack/git/start/signify
 	url = https://github.com/mhinz/vim-signify.git
-[submodule "pack/file-system/start/fzf"]
-	path = pack/file-system/start/fzf
-	url = https://github.com/junegunn/fzf.git
 [submodule "pack/file-system/start/undotree"]
 	path = pack/file-system/start/undotree
 	url = https://github.com/mbbill/undotree.git
@@ -121,3 +118,9 @@
 [submodule "pack/writing/opt/fake"]
 	path = pack/writing/opt/fake
 	url = https://github.com/tkhren/vim-fake.git
+[submodule "pack/file-system/start/fzf"]
+	path = pack/file-system/start/fzf
+	url = https://github.com/junegunn/fzf.git
+[submodule "pack/file-system/start/fzf.vim"]
+	path = pack/file-system/start/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git
