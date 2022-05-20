@@ -619,12 +619,6 @@ let g:undotree_HelpLine = 0
 
 
 " ----------------------------------------------------------------------------
-" Python Syntax
-" ----------------------------------------------------------------------------
-let python_highlight_all = 1
-
-
-" ----------------------------------------------------------------------------
 " Flake8
 " ----------------------------------------------------------------------------
 " let g:flake8_show_in_gutter=1
@@ -926,7 +920,7 @@ com! Root cal s:root()
 fu! AddLineNumber()
   %s/^/\=printf('%-3d',line('.'))
   %s/\s\+$//e
-  ec 'Every Line Has Been Numbered !'
+  ec 'Every Line Has Been Numbered!'
 endf
 com! LineNumber cal AddLineNumber()
 
@@ -935,7 +929,7 @@ com! LineNumber cal AddLineNumber()
 " ----------------------------------------------------------------------------
 fu! CapitaliseEachWord()
   s/\v<(.)(\w*)/\u\1\L\2/g
-  ec 'Every Word Has Been Capitalised !'
+  ec 'Every Word Has Been Capitalised!'
 endf
 com! CapitaliseEachWord cal CapitaliseEachWord()
 
@@ -948,7 +942,7 @@ fu! StripTrailingWhitespace()
       let l:save = winsaveview()
       keepp %s/\s\+$//e
       cal winrestview(l:save)
-      ec 'Trailing Whitespace Has Been Stripped !'
+      ec 'Trailing Whitespace Has Been Stripped!'
     end
   end
 endf
@@ -963,7 +957,7 @@ fu! RainbowParenthesesOn()
   :RainbowParenthesesLoadSquare   " []
   :RainbowParenthesesLoadBraces   " {}
   :RainbowParenthesesLoadChevrons " <>
-  ec 'RainbowParentheses Has Been Toggled'
+  ec 'RainbowParentheses Has Been Toggled!'
 endf
 com! RainbowParenthesesOn cal RainbowParenthesesOn()
 
@@ -980,6 +974,16 @@ com! ClearRegisters for i in range(34,122) | silent! call setreg(nr2char(i), [])
 " ----------------------------------------------------------------------------
 " Source: https://gist.github.com/romainl/5b827f4aafa7ee29bdc70282ecc31640
 com! -range GB echo join(systemlist("git -C " . shellescape(expand('%:p:h')) . " blame -L <line1>,<line2> " . expand('%:t')), "\n")
+
+" ----------------------------------------------------------------------------
+" :FixQuotes | Look through the whole file and change the “ and ” to "
+" ----------------------------------------------------------------------------
+fu! FixQuotes()
+  :%s/“/"/g
+  :%s/”/"/g
+  ec '“ and ” has been substituted with "!'
+endf
+com! FixQuotes cal FixQuotes()
 
 " }}}
 " ============================================================================
