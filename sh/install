@@ -113,8 +113,7 @@ echo
 
 echo "Install git-info ..."
 wget https://raw.githubusercontent.com/gitbits/git-info/master/git-info
-sudo cp git-info /usr/local/bin/
-rm git-info
+sudo mv git-info /usr/local/bin/
 echo
 
 echo "Install zoxide ..."
