@@ -115,12 +115,12 @@
 [submodule "doc/CEH-Study-Guide"]
 	path = doc/CEH-Study-Guide
 	url = https://github.com/imrk51/CEH-v11-Study-Guide.git
-[submodule "pack/writing/opt/fake"]
-	path = pack/writing/opt/fake
-	url = https://github.com/tkhren/vim-fake.git
 [submodule "pack/file-system/start/fzf"]
 	path = pack/file-system/start/fzf
 	url = https://github.com/junegunn/fzf.git
 [submodule "pack/file-system/start/fzf.vim"]
 	path = pack/file-system/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
+[submodule "pack/plugins/start/fake"]
+	path = pack/plugins/start/fake
+	url = https://github.com/tkhren/vim-fake.git
