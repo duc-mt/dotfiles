@@ -106,6 +106,16 @@ rm -rf /tmp/exa*
 cd
 echo
 
+echo "Install git-extras ..."
+curl -sSL https://raw.githubusercontent.com/tj/git-extras/master/install.sh | sudo bash /dev/stdin
+echo
+
+echo "Install git-info ..."
+wget https://raw.githubusercontent.com/gitbits/git-info/master/git-info
+sudo cp git-info /usr/local/bin/
+rm git-info
+echo
+
 echo "Install zoxide ..."
 cd /tmp/
 curl -sS https://webinstall.dev/zoxide | bash
