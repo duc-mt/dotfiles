@@ -25,10 +25,10 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ```
 
-# install.sh
+# Introduction
 
-The `install` script will install Vim, Python, packages, and configuration files
-(. files) needed to get the show on the road.
+The `install` and `postinstall` script will install Vim, Python, packages, and
+configuration files (. files) needed to get the show on the road.
 
 Requirements:
 
@@ -36,7 +36,7 @@ Requirements:
 1. `curl`
 1. `wget`
 
-# Installation
+# install
 
 1. Download script
 
@@ -54,4 +54,24 @@ cd ~/ && sudo chmod +x install
 
 ```bash
 sudo ./install
+```
+
+# postinstall
+
+1. Download script
+
+```bash
+sudo curl -L https://raw.githubusercontent.com/tanducmai/dotfiles/master/sh/postinstall -o ~/postinstall
+```
+
+2. Change permission
+
+```bash
+cd ~/ && sudo chmod +x postinstall
+```
+
+3. Execute script
+
+```bash
+sudo ./postinstall
 ```
