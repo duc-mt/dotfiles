@@ -123,11 +123,6 @@ rm -rf Downloads
 zoxide init --cmd cd --hook pwd bash
 echo
 
-echo "Install extensions for Visual Studio Code ..."
-rm -rf ~/.vscode-server/extensions/*
-cp -a ~/.vim/pack/vscode-extensions/* ~/.vscode-server/extensions/
-echo
-
 echo "Cleaning up installation..."
 rm -f ~/install
 end=`date +%s`
