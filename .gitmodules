@@ -126,3 +126,6 @@
 [submodule "pack/plugins/start/fake"]
         path = pack/plugins/start/fake
         url = https://github.com/tkhren/vim-fake.git
+[submodule "pack/syntax/start/autopep8"]
+	path = pack/syntax/start/autopep8
+	url = https://github.com/tell-k/vim-autopep8.git

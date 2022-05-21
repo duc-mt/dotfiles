@@ -52,6 +52,9 @@ ino <buffer> <d-'> _(u'')<left><left>
 let python_highlight_all = 1
 syn keyword pythonDecorator True None False self
 
+" Enable possibly unsafe changes (E711, E712)
+let g:autopep8_aggressive=2
+
 setl foldmethod=indent
 
 ino <buffer> $r return
