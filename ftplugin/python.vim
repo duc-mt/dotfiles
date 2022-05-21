@@ -55,6 +55,12 @@ syn keyword pythonDecorator True None False self
 " Enable possibly unsafe changes (E711, E712)
 let g:autopep8_aggressive=2
 
+" Remove all unused imports (whether or not they are from the standard library).
+let g:autoflake_remove_all_unused_imports=1
+
+" Remove unused variables,
+let g:autoflake_remove_unused_variables=1
+
 setl foldmethod=indent
 
 ino <buffer> $r return
