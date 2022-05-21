@@ -67,6 +67,7 @@
 [submodule "pack/plugins/start/helpme"]
 	path = pack/plugins/start/helpme
 	url = https://github.com/leftbones/helpme-vim.git
+        branch = main
 [submodule "pack/plugins/start/speeddating"]
 	path = pack/plugins/start/speeddating
 	url = https://github.com/tpope/vim-speeddating
