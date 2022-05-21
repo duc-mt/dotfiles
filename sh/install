@@ -45,24 +45,6 @@ python3 -m pip install --user --upgrade \
   pytest-mypy-plugins pep8-naming watchdog
 echo
 
-echo "Install Vim ..."
-git clone https://github.com/vim/vim.git /tmp/vim/
-cd /tmp/vim/src/
-make
-sudo make install
-cd /tmp/
-rm -rf vim/
-echo
-
-echo "Install Git Shell (git-sh) ..."
-git clone https://github.com/rtomayko/git-sh.git /tmp/git-sh/
-cd /tmp/git-sh/
-make
-sudo make install
-cd /tmp/
-rm -rf git-sh/
-echo
-
 echo "Clone dotfiles ..."
 git clone https://github.com/tanducmai/dotfiles.git ~/.vim
 cd ~/.vim
@@ -82,6 +64,15 @@ echo "Source bash scripts ..."
 . ~/.bashrc
 . ~/.bash_login
 . ~/.bash_logout
+echo
+
+echo "Install Vim ..."
+git clone https://github.com/vim/vim.git /tmp/vim/
+cd /tmp/vim/src/
+make
+sudo make install
+cd /tmp/
+rm -rf vim/
 echo
 
 echo "Install fzf ..."
@@ -107,15 +98,6 @@ rm -rf /tmp/exa*
 cd
 echo
 
-echo "Install git-extras ..."
-curl -sSL https://raw.githubusercontent.com/tj/git-extras/master/install.sh | sudo bash /dev/stdin
-echo
-
-echo "Install git-info ..."
-wget https://raw.githubusercontent.com/gitbits/git-info/master/git-info
-sudo mv git-info /usr/local/bin/
-echo
-
 echo "Install zoxide ..."
 cd /tmp/
 curl -sS https://webinstall.dev/zoxide | bash
@@ -123,7 +105,26 @@ rm -rf Downloads
 zoxide init --cmd cd --hook pwd bash
 echo
 
-echo "Cleaning up installation..."
+echo "Install git-sh ..."
+git clone https://github.com/rtomayko/git-sh.git /tmp/git-sh/
+cd /tmp/git-sh/
+make
+sudo make install
+cd /tmp/
+rm -rf git-sh/
+echo
+
+echo "Install git-extras ..."
+curl -sSL https://raw.githubusercontent.com/tj/git-extras/master/install.sh | \
+  sudo bash /dev/stdin
+echo
+
+echo "Install git-info ..."
+wget https://raw.githubusercontent.com/gitbits/git-info/master/git-info
+sudo mv git-info /usr/local/bin/
+echo
+
+echo "Clean up installation..."
 rm -f ~/install
 end=`date +%s`
 runtime=$((end-start))
