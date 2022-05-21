@@ -129,3 +129,6 @@
 [submodule "pack/syntax/start/autopep8"]
 	path = pack/syntax/start/autopep8
 	url = https://github.com/tell-k/vim-autopep8.git
+[submodule "pack/syntax/start/autoflake"]
+	path = pack/syntax/start/autoflake
+	url = https://github.com/tell-k/vim-autoflake.git
