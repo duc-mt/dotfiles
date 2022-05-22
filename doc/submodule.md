@@ -9,7 +9,7 @@ git submodule add https://github.com/preservim/nerdtree pack/plugins/start/nerdt
 Update every submodule
 
 ```bash
-cd ~/.vim && git submodule foreach git pull --all
+git -C ~/.vim submodule update --init --recursive --remote
 ```
 
 Remove a submodule

@@ -78,9 +78,9 @@ alias upgrade='clear && printf "Check for updates to the Operating System ...\n\
  --------------------\n" && sudo apt update && sudo apt full-upgrade -y && \
  sudo apt autoremove -y && sudo apt autoclean && printf " --------------------\
  \nCheck for updates to VIM submodules ...\n --------------------\n" && \
- git -C ~/.vim submodule foreach git pull --all && printf " --------------------\
- \nCheck for updates to Visual Studio Code extensions ..." && \
- rm -rf ~/.vim/pack/vscode-extensions/* && \
+ git -C ~/.vim submodule update --init --recursive --remote && \
+ printf " --------------------\nCheck for updates to Visual Studio Code extensions\
+ ..." && rm -rf ~/.vim/pack/vscode-extensions/* && \
  cp -a ~/.vscode-server/extensions/* ~/.vim/pack/vscode-extensions/ && \
  printf "\nFinished copying extensions from ~/.vscode-server/extensions/\n\
  --------------------\nCheck for updates to PIP package manager ...\
