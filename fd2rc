@@ -3,21 +3,16 @@
 # shell variables definition
 DISPLAYMODE=7
 ADJTTY=1
-ANSICOLOR = 1
 EDITMODE=emacs
 TMPDIR=/home/henry
 TMPUMASK=077
 LANGUAGE=C
 DEFKCODE=utf8-iconv
-INPUTKCODE = es_MX.UTF-8
 PTYOUTKCODE=utf8-iconv
 FNAMEKCODE=es_MX.UTF-8
 URLKCODE=utf8-iconv
 EDITOR=vim
 SHELL=/bin/bash
-SORTTYPE = 201
-PROGRESSBAR = 1
-MINFILENAME = 20
 
 # launcher definition
 launch .zip "unzip -lqq" -f "% s% m-% d-% and% t% * f"
