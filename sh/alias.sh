@@ -78,7 +78,7 @@ alias upgrade='clear && \
  printf "Check for updates to the Operating System ...\n --------------------\n" && \
  sudo apt update && sudo apt full-upgrade -y && \
  sudo apt autoremove -y && sudo apt autoclean && \
- printf " --------------------\nCheck for updates to VIM submodules ..." && \
+ printf " --------------------\nCheck for updates to VIM submodules ...\n" && \
  git -C ~/.vim submodule update --init --recursive --remote && \
  printf "\n --------------------\nCheck for updates to PIP package manager ...\n" && \
  python -m pip install --upgrade pip && cowsay You are up to date!'
