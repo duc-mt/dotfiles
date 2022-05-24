@@ -139,41 +139,33 @@ export EXA_COLORS='*.sh=31:*.png=32:*.py=33;1:*.txt=34:*.pdf=35:*.vim=36:*.tmp=3
 
 # telcountry() function with parameters
 telcountry() {
-  echo Telephone coutry code of \""$1"\":
-  cp ~/.vim/sh/telcountry .
-  ./telcountry "$1"
-  rm telcountry
+  echo "Database lookup -> \"$1\"":
+  cp ~/.vim/sh/${FUNCNAME} .
+  ./${FUNCNAME} $1
+  rm ${FUNCNAME}
 }
 # telcountry 61
 # telcountry Aus
 
 # git_log() function with parameters
 git_log() {
-  cp ~/.vim/sh/git_log .
-  ./git_log "$1" "$2" "$3"
-  rm git_log
+  cp ~/.vim/sh/${FUNCNAME} .
+  ./${FUNCNAME} $1 $2 $3
+  rm ${FUNCNAME}
 }
 # git_log tanducmai dotfiles
 # git_log tanducmai blackjack -c
 
 # git_lcm() function with parameters
 git_lcm() {
-  cp ~/.vim/sh/git_lcm .
-  ./git_lcm "$1"
-  rm git_lcm
-}
-# git_lcm tree.py
-# git_lcm calculator.py
-
-# Since the above function, albeit short, does not support multiple files at once.
-# To execute git_lcm file on multiple files, run git_lcm_multiple() function to
-# receive the file, then execute the file, instead of through git_lcm() function.
-# After you are done, remove git_lcm file from the current folder.
-git_lcm_multiple() {
-  cp ~/.vim/sh/git_lcm .
+  cp ~/.vim/sh/${FUNCNAME} .
+  ./${FUNCNAME} $@
+  rm ${FUNCNAME}
 }
 # git_lcm *.py
-# git_lcm calculator.py tree.py code_viewer.py
+# git_lcm tree.py
+# git_lcm calculator.py code_viewer.py
+
 
 
 
