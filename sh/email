@@ -2,9 +2,9 @@
 
 # ======================================================================================
 #
-#         FILE:  email.sh
+#         FILE:  email
 #
-#        USAGE:  source email.sh
+#        USAGE:  ./email
 #
 #  DESCRIPTION:  Change the inline sections and source it to send email using the CLI.
 #
