@@ -14,9 +14,6 @@
 #     EXAMPLES:  $ ./git-log tanducmai web-scraping-dictionary [-c]
 #                #  Outputs log as paragraphs in text format.
 #
-#        NOTES:  Telephone data massaged from:
-#                  http://en.wikipedia.org/wiki/List_of_country_calling_codes
-#
 # DEPENDENCIES:  curl
 #                GitHub API v3 https://developer.github.com/v3/
 #                   esp. https://developer.github.com/v3/repos/commits
