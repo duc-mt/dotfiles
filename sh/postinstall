@@ -25,6 +25,7 @@ echo
 echo "Make some files under sh/ executable ..."
 chmod a+x ~/.vim/sh/email
 chmod a+x ~/.vim/sh/telcountry
+chmod a+x ~/.vim/sh/git_log
 echo
 
 echo "Generate symbolic links ..."
