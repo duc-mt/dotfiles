@@ -148,7 +148,15 @@ telcountry() {
 # telcountry 61
 # telcountry Aus
 
+# git_log() function with parameters
+git_log() {
+  cp ~/.vim/sh/git_log .
+  ./git_log "$1" "$2" "$3"
+  rm git_log
+}
 
+# git_log tanducmai dotfiles
+# git_log tanducmai blackjack -c
 
 
 
