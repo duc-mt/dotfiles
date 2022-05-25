@@ -1,0 +1,179 @@
+#!/usr/bin/bash
+
+# ======================================================================================
+#
+#         FILE:  dirt_size
+#
+#        USAGE:  $ ./dirt_size [directory=.] [indent_character=" "]
+#
+#  DESCRIPTION:  Display tree size structure of directory hierarchy.
+#
+#     EXAMPLES:  $ dirt_size /tmp
+#                /tmp  :848K
+#                     hsperfdata_root  :32K
+#                     .ICE-unix  :0
+#                     .org.chromium.Chromium.YSC7c2  :272K
+#                     plugtmp  :0
+#                     pulse-XE2kzDXxubH6  :4.0K
+#                     sni-qt_vlc_18126-2DtYmT  :4.0K
+#                          icons  :4.0K
+#                               hicolor  :4.0K
+#                                    128x128  :4.0K
+#                                         apps  :16K
+#                     ssh-RDwdlTlB1686  :0
+#                     .X11-unix  :0
+
+# DEPENDENCIES:  None
+#                [ Note: full-featured "tree" is an available Ubuntu package:
+#                http://manpages.ubuntu.com/manpages/trusty/man1/tree.1.html
+#                   "dirt" does not depend on a graphical hack like "tree"
+#                   instead provides an easily modifiable outline view.      ]
+#
+#      OPTIONS:  ---
+#         BUGS:  ---
+#       AUTHOR:  Tan Duc Mai, tan.duc.work@gmail.com
+#      COMPANY:  Eynesbury Institute of Business and Technology (EIBT)
+#      VERSION:  1.0
+#      CREATED:  May 25, 2022
+#     REVISION:  ---
+#       SOURCE:  https://gist.githubusercontent.com/rsvp/8089760/raw/dd8d84509a509be5495db3742d893e278fdf4df6/dirt.sh
+#
+# ======================================================================================
+#
+
+#           _____ PREAMBLE_v2: settings, variables, and error handling.
+#
+LC_ALL=POSIX
+#      locale means "ASCII, US English, no special rules,
+#      output per ISO and RFC standards."
+#      Esp. use ASCII encoding for glob and sorting characters.
+shopt -s   extglob
+#     ^set extended glob for pattern matching.
+shopt -s   failglob
+#         ^failed pattern matching signals error.
+set -e
+#   ^errors checked: immediate exit if a command has non-zero status.
+set -u
+#   ^unassigned variables shall be errors.
+#    Example of default VARIABLE ASSIGNMENT:  arg1=${1:-'foo'}
+
+arg1=${1:-'.'}
+#          ^= current directory as default
+idchar=${2:-' '}
+#            ^character used for identation.
+pager=${PAGER:='less --LONG-PROMPT -i -J -W -c -h1 -y1 -~'}
+#              ^favorite way for long outputs (plus search within).
+#               Additional options added in DISPLAY section.
+
+
+program=${0##*/}   #  similar to using basename
+memf=$( mktemp /dev/shm/88_${program}_tmp.XXXXXXXXXX )
+errf=$( mktemp /dev/shm/88_${program}_tmp.XXXXXXXXXX )
+
+
+cleanup () {
+     #  Delete temporary files, then optionally exit given status.
+     local status=${1:-'0'}
+     rm -f  $memf  $errf
+     [ $status = '-1' ] ||  exit $status      #  thus -1 prevents exit.
+} #--------------------------------------------------------------------
+warn () {
+     #  Message with basename to stderr.          Usage: warn "message"
+     echo -e "\n !!  ${program}: $1 "  >&2
+} #--------------------------------------------------------------------
+die () {
+     #  Exit with status of most recent command or custom status, after
+     #  cleanup and warn.      Usage: command || die "message" [status]
+     local status=${2:-"$?"}
+     cleanup -1  &&   warn "$1"  &&  exit $status
+} #--------------------------------------------------------------------
+trap "die 'SIG disruption, but cleanup finished.' 114" 1 2 3 15
+#    Cleanup after INTERRUPT: 1=SIGHUP, 2=SIGINT, 3=SIGQUIT, 15=SIGTERM
+#
+# _______________     ::  BEGIN  Script ::::::::::::::::::::::::::::::::::::::::
+
+
+#  Establish the working directory:
+cd "$arg1" 2> /dev/null  ||  die "Invalid directory argument: $arg1" 113
+
+#  Then check if there is at least one level of sub-directories:
+[ $( ls -F -1 | grep '/' | wc -l )  -eq  0 ]   \
+     &&  die "NO sub-directories under $(pwd)"  115
+
+
+#  MAIN: parse the necessary info into a file.
+#  Identify directories which will have colon at the end of the line;
+#  dot directories are included using ls -A,
+#  also parse -lh for total human sizes.
+ls -AlhR  2> $errf  |  egrep ':$|^total '     \
+     |  sed -e '/^\./N;s/\n//'                \
+            -e 's;[^/]*/;*****;g'             \
+            -e "s/\*/$idchar/g"               \
+            -e 's/:total /  :/'               \
+            -e "s;^\. ;$(pwd) ;"              >  $memf
+     #  1st sed: joins the directory line with total size line.
+     #  2nd sed: replace any lower level dir names with five stars.
+     #              This is where IDENTATION gets introduced.
+     #              Hopefully no directories are named using "*" :-)
+     #  3rd sed: replace those stars with specified identation character.
+     #  4th sed: beautify line from first sed to indicate size by : marker.
+     #  5th sed: replace . with explicit present working directory.
+     #     Note: some sed commands use ; instead of usual / as delimiter
+     #              to avoid the pain of escaping forward slashes.
+     #              Last sed is impossible without this trick.
+
+
+#              Properly output that main file.
+#  [ -t <fd> ] checks if the descriptor <fd> is a terminal or not:
+if [ -t  1 ] ; then
+     #      COLORIZE SIZE info.
+     grep --color=always '  :.*$' $memf  |  $pager -p "^$idchar*" -R
+     #        pattern search HIGHLIGHTS INDENTATION^
+     #                          retains colorization for size info^
+     #  Output gets piped to pager for a nice DISPLAY.
+     #  TIP: use /M$|G$ within pager to search for large files.
+else
+     cat $memf
+     #   On redirection or piping, we DO NOT want
+     #   ANSI escape codes (for colors) embedded in text output.
+fi
+
+
+#                              ERROR FILE from ls concludes output:
+sed -e "s/^ls/ !!  $program/"  $errf  >&2
+#  Any errors are shown at this stage since pager might have obscured them.
+#  They will usually be Permission Denied types.
+
+
+cleanup
+# _______________ EOS ::  END of Script ::::::::::::::::::::::::::::::::::::::::
+
+
+#             ANSI escape codes for color can be removed by escoff:
+#             sed -e 's/\x1B\[[0-9;]*[JKmsu]//g'
+
+
+#  # _______________ 2013-12-21 Sat 19:54
+#       ls -AR  |  grep ":$"                                         \
+#            |  sed -e 's/:$//'          -e 's;[^/]*/;*****;g'       \
+#                   -e "s/\*/$idchar/g"  -e '/^\.$/d'
+#            #  1st sed: remove colon identifers.
+#            #  2nd sed: replace any lower level dir names with five stars.
+#            #           This is where identation gets introduced.
+#            #           Hopefully no directories are named using "*" :-)
+#            #  3rd sed: replace those stars with specified identation character.
+#            #  4th sed: delete that unnecessary line with single dot.
+
+
+#  2013-12-20  Retrieved one-liner script v2.3 by Dem Pilafian in
+#                 http://www.centerkey.com/tree/
+#
+#  Quick, what does the following Unix/Linux command do?
+#
+#  ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
+#
+#  If you said, "Well, that's obvious; it shows a graphical representation of the
+#  current sub-directories," you'd be correct.
+
+
+#  vim: set fileencoding=utf-8 ff=unix tw=78 ai syn=sh :

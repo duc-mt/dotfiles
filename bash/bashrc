@@ -166,6 +166,15 @@ git_lcm() {
 # git_lcm tree.py
 # git_lcm calculator.py code_viewer.py
 
+# dirt_size() function with parameters
+dirt_size() {
+  cp ~/.vim/sh/${FUNCNAME} .
+  ./${FUNCNAME} $1 $2
+  rm ${FUNCNAME}
+}
+# dirt_size /tmp/
+# dirt_size ~/.vim -
+# dirt_size ~/.vim .
 
 
 
