@@ -9,6 +9,10 @@
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" ==============================================================================
+" GENERAL {{{
+" ==============================================================================
+
 " Only load this indent file when no other was loaded.
 if exists("b:did_indent")
     finish
@@ -22,11 +26,7 @@ setl indentexpr=GetPythonIndent(v:lnum)
 setl indentkeys=!^F,o,O,<:>,0),0],0},=elif,=except
 setl fdm=indent
 setl cot-=preview
-
-" Run Python script.
-nn <F5> :w<CR>:!clear && python3 %<CR>
-nn <Bslash><F5> :w<CR>:!clear && python3 -m pytest %<CR>
-nn <Leader><F5> :w<CR>:!clear && rm -f flake8.txt && flake8 %<CR>
+setl foldmethod=indent
 
 " Maximum width of text that is being inserted set to 79.
 " The column 80 is highlighted.
@@ -52,17 +52,6 @@ ino <buffer> <d-'> _(u'')<left><left>
 let python_highlight_all = 1
 syn keyword pythonDecorator True None False self
 
-" Enable possibly unsafe changes (E711, E712)
-let g:autopep8_aggressive=2
-
-" Remove all unused imports (whether or not they are from the standard library).
-let g:autoflake_remove_all_unused_imports=1
-
-" Remove unused variables,
-let g:autoflake_remove_unused_variables=1
-
-setl foldmethod=indent
-
 ino <buffer> $r return
 ino <buffer> $i import
 ino <buffer> $p print
@@ -71,10 +60,18 @@ map <buffer> <leader>2 /def
 map <buffer> <leader>C ?class
 map <buffer> <leader>D ?def
 
+let s:maxoff = 50"
 
-let s:maxoff = 50
+" }}}
 
+
+" ==============================================================================
+" FUNCTIONS {{{
+" ==============================================================================
+
+" ----------------------------------------------------------------------------
 " Find backwards the closest open parenthesis/bracket/brace.
+" ----------------------------------------------------------------------------
 fu! s:SearchParensPair()
     let line = line('.')
     let col = col('.')
@@ -116,7 +113,9 @@ fu! s:SearchParensPair()
     retu parlnum
 endf
 
+" ----------------------------------------------------------------------------
 " Find the start of a multi-line statement
+" ----------------------------------------------------------------------------
 fu! s:StatementStart(lnum)
     let lnum = a:lnum
     wh 1
@@ -134,7 +133,9 @@ fu! s:StatementStart(lnum)
     endw
 endf
 
+" ----------------------------------------------------------------------------
 " Find the block starter that matches the current line
+" ----------------------------------------------------------------------------
 fu! s:BlockStarter(lnum, block_start_re)
     let lnum = a:lnum
     let maxindent = 10000       " whatever
@@ -155,6 +156,9 @@ fu! s:BlockStarter(lnum, block_start_re)
     retu -1
 endf
 
+" ----------------------------------------------------------------------------
+" Get Python indentation
+" ----------------------------------------------------------------------------
 fu! GetPythonIndent(lnum)
 
     " First line has indent 0
@@ -251,13 +255,67 @@ fu! GetPythonIndent(lnum)
     retu indent(sslnum)
 endf
 
-" Format paragraph (selected or not) to 80 character lines
+" }}}
+
+
+" ==============================================================================
+" MAPPINGS {{{
+" ==============================================================================
+
+" ----------------------------------------------------------------------------
+" Run Python script.
+" ----------------------------------------------------------------------------
+nn <F5> :w<CR>:!clear && python3 %<CR>
+nn <Bslash><F5> :w<CR>:!clear && python3 -m pytest %<CR>
+nn <Leader><F5> :w<CR>:!clear && rm -f flake8.txt && flake8 %<CR>
+
+" ----------------------------------------------------------------------------
+" Format paragraph (selected or not) to 80 character lines.
+" ----------------------------------------------------------------------------
 nn fp gqap     :ec 'Format Paragraph Successfully !' <CR>
 xn fp gqa<Esc> :ec 'Format Paragraph Successfully !' <CR>
 
-" ------------------------------------------------------------------------------
+" }}}
+
+
+" ==============================================================================
+" PLUGINS {{{
+" ==============================================================================
+
+" ----------------------------------------------------------------------------
+" Autopep8
+" ----------------------------------------------------------------------------
+" Enable possibly unsafe changes (E711, E712)
+let g:autopep8_aggressive=2
+
+" ----------------------------------------------------------------------------
+" Autoflake8
+" ----------------------------------------------------------------------------
+" Remove all unused imports (whether or not they are from the standard library).
+let g:autoflake_remove_all_unused_imports=1
+
+" Remove unused variables.
+let g:autoflake_remove_unused_variables=1
+
+" ----------------------------------------------------------------------------
+" Pydocstring
+" ----------------------------------------------------------------------------
+" Set installed doq path for pydocstring plugin.
+let g:pydocstring_doq_path = '~/.local/bin/doq'
+
+" Built-in formatter
+let g:pydocstring_formatter = 'numpy'
+
+" Ignore generate __init__ docstring.;k
+let g:pydocstring_ignore_init = 1
+let g:pydocstring_templates_path = '~/.vim/template/pydocstring/'
+
+" }}}
+
+
+" ==============================================================================
 " ABBREVIATIONS {{{
-" ------------------------------------------------------------------------------
+" ==============================================================================
 
 " ----------------------------------------------------------------------------
 " General, common key bindings
