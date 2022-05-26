@@ -60,9 +60,9 @@ cd /tmp/
 unzip exa.zip -d exa/
 cd exa/bin/
 mv exa ~/.local/bin/
-# cd ../man/
-# cat exa_colors.5 >> exa.1
-# mv exa.1 ~/.local/share/man/man1/
+cd ../man/
+cat exa_colors.5 >> exa.1
+mv exa.1 ~/.local/share/man/man1/
 cd ../completions
 sudo mv exa.bash /usr/share/bash-completion/completions
 rm -rf /tmp/exa*
