@@ -81,6 +81,11 @@ if [ -f ~/.vim/sh/alias.sh ]; then
   . ~/.vim/sh/alias.sh
 fi
 
+# Source functions file
+if [ -f ~/.vim/sh/function.sh ]; then
+  . ~/.vim/sh/function.sh
+fi
+
 # fzf-extras - key bindings from fzf wiki: https://github.com/atweiden/fzf-extras
 if [ -f ~/.vim/sh/fzf-extras.sh ]; then
   . ~/.vim/sh/fzf-extras.sh
@@ -130,51 +135,8 @@ _fzf_comprun() {
   esac
 }
 
-# Run gitignore.io from the command line with gi
-# E.g. gi python >> .git/info/exclude
-function gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;}
-
 # exa
 export EXA_COLORS='*.sh=31:*.png=32:*.py=33;1:*.txt=34:*.pdf=35:*.vim=36:*.tmp=37'
-
-# telcountry() function with parameters
-telcountry() {
-  echo "Database lookup -> \"$1\"":
-  cp ~/.vim/sh/${FUNCNAME} .
-  ./${FUNCNAME} $1
-  rm ${FUNCNAME}
-}
-# telcountry 61
-# telcountry Aus
-
-# git_log() function with parameters
-git_log() {
-  cp ~/.vim/sh/${FUNCNAME} .
-  ./${FUNCNAME} $1 $2 $3
-  rm ${FUNCNAME}
-}
-# git_log tanducmai dotfiles
-# git_log tanducmai blackjack -c
-
-# git_lcm() function with parameters
-git_lcm() {
-  cp ~/.vim/sh/${FUNCNAME} .
-  ./${FUNCNAME} $@
-  rm ${FUNCNAME}
-}
-# git_lcm *.py
-# git_lcm tree.py
-# git_lcm calculator.py code_viewer.py
-
-# dirt_size() function with parameters
-dirt_size() {
-  cp ~/.vim/sh/${FUNCNAME} .
-  ./${FUNCNAME} $1 $2
-  rm ${FUNCNAME}
-}
-# dirt_size /tmp/
-# dirt_size ~/.vim -
-# dirt_size ~/.vim .
 
 
 
