@@ -217,3 +217,18 @@ tagscrape () {
   ./${FUNCNAME} $1 $2
   rm ${FUNCNAME}
 }
+
+
+# ==== FUNCTION ========================================================================
+#         NAME: locate
+#  DESCRIPTION: Find files with global and colored extended regex.
+#  PARAMETER 1: Extended regex
+#  PARAMETER 2: Global pattern
+#     EXAMPLES: ./locate txt$
+#               ./locate sh$ ~/.vim/sh/
+# ======================================================================================
+locate () {
+  cp ~/.vim/sh/${FUNCNAME} .
+  ./${FUNCNAME} $1 $2
+  rm ${FUNCNAME}
+}

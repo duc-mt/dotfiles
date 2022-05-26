@@ -1,0 +1,313 @@
+#!/usr/bin/bash
+
+# ======================================================================================
+#
+#         FILE:  locate
+#
+#        USAGE:  ./locate [extended regex] [glob pattern]
+#
+#  DESCRIPTION:  Find files with global and colored extended regex.
+#
+#     EXAMPLES:  % locate pdf$
+#                    pdf files stemmed under present working directory,
+#                              ^so seemingly recursive.
+#                % locate /b '/var/log/*.log'
+#                    log files under /var/log starting with letter b.
+#                    regex and glob pattern should be in single quotes.
+#
+# DEPENDENCIES:  mlocate (which in turn depends on an updated database).
+#                        ___ATTN___ mlocate is also known as "locate"
+#                                   and is much faster than using "find".
+#                egrep   (which operates on output from locate command).
+#
+#      OPTIONS:  ---
+#         BUGS:  ---
+#       AUTHOR:  Tan Duc Mai, tan.duc.work@gmail.com
+#      COMPANY:  Eynesbury Institute of Business and Technology (EIBT)
+#      VERSION:  1.0
+#      CREATED:  May 26, 2022
+#     REVISION:  ---
+#       SOURCE: https://gist.githubusercontent.com/rsvp/2199326/raw/6ff764df4092d83550ac1b81bdf816d05694d3a2/locat.sh
+#
+# ======================================================================================
+#
+
+#           _____ PREAMBLE_v2: settings, variables, and error handling.
+#
+LC_ALL=POSIX
+#      locale means "ASCII, US English, no special rules,
+#      output per ISO and RFC standards."
+#      Esp. use ASCII encoding for glob and sorting characters.
+shopt -s   extglob
+#     ^set extended glob for pattern matching.
+set -e
+#   ^errors checked: immediate exit if a command has non-zero status.
+set -u
+#   ^unassigned variables shall be errors.
+#    Example of default VARIABLE ASSIGNMENT:  arg1=${1:-'foo'}
+
+
+arg1=${1:-'\.pdf$'}
+arg2=${2:-"$PWD/*"}
+#         ^default specializes to PRESENT WORKING DIRECTORY.
+#          (Star is important, else two stars are used for non-globs.)
+#          Args will apply to files on entire disk,
+#          except as specified in /etc/updatedb.conf (see notes below).
+locatdb='/var/lib/mlocate/mlocate.db'
+#        ^this is the standard database for locate.
+
+
+program=${0##*/}   #  similar to using basename
+memf=$( mktemp /dev/shm/88_${program}_tmp.XXXXXXXXXX )
+
+
+cleanup () {
+     #  Delete temporary files, then optionally exit given status.
+     local status=${1:-'0'}
+     rm -f $memf
+     [ $status = '-1' ] ||  exit $status      #  thus -1 prevents exit.
+} #--------------------------------------------------------------------
+warn () {
+     #  Message with basename to stderr.          Usage: warn "message"
+     echo -e "\n !!  ${program}: $1 "  >&2
+} #--------------------------------------------------------------------
+die () {
+     #  Exit with status of most recent command or custom status, after
+     #  cleanup and warn.      Usage: command || die "message" [status]
+     local status=${2:-"$?"}
+     cleanup -1  &&   warn "$1"  &&  exit $status
+} #--------------------------------------------------------------------
+trap "die 'SIG disruption, but cleanup finished.' 114" 1 2 3 15
+#    Cleanup after INTERRUPT: 1=SIGHUP, 2=SIGINT, 3=SIGQUIT, 15=SIGTERM
+#
+# _______________     ::  BEGIN  Script ::::::::::::::::::::::::::::::::::::::::
+
+
+dbmtime=$( stat --format="%y" $locatdb )
+#                         ^modification time of database.
+dbmtime=${dbmtime:0:16}
+#   extract only "2012-02-14 15:05" from "2012-02-14 15:05:19.014722601 -0800"
+warn "NOTICE last database UPDATE on $dbmtime  <=!"
+#    ^message to stderr
+
+
+#       _case-insensitive
+#          _existence check (omits deleted files, see notes below).
+#             _ENTIRE PATHNAME
+mlocate -i -e --wholename "$arg2" > $memf                              \
+     ||  die "bad second argument. Try glob pattern in single quotes."  113
+#
+#  If --regex is not specified in locate, arg2 can contain globbing characters.
+#  However, extglob (extended globs) does NOT seem to work for locate.
+#  ___ATTN___ If any PATTERN contains no globbing characters,
+#             locate behaves as if the pattern were *PATTERN*.
+
+
+[ -s $memf ] ||  die "no match for second argument."  114
+
+
+#     _case-insensitive
+egrep -i --color "$arg1" $memf                                          \
+     ||  die "no match for first argument. Try regex in single quotes."  115
+#
+#  Tip: search for BASENAME by using '/foo$' in arg1.
+
+
+cleanup
+# _______________ EOS ::  END of Script ::::::::::::::::::::::::::::::::::::::::
+
+
+
+# _______________ locate and mlocate are the same under Ubuntu...
+#
+#  mlocate is /usr/bin/mlocate
+#   locate is hashed (/usr/bin/locate)
+#  lrwxrwxrwx 1 root root 24 2010-08-12 08:05     /usr/bin/locate -> /etc/alternatives/locate
+#
+#    ::  sha256sum signature on Sat, 17 Mar 2012 08:59:25 -0700   :
+#  ead6d6f94e59e8962599a158a20eef35b9154125638632328df4cfd57ba83212  /usr/bin/mlocate
+#  ead6d6f94e59e8962599a158a20eef35b9154125638632328df4cfd57ba83212  /etc/alternatives/locate
+
+
+
+#            _____ 2012-03-16 Fri 13:59 :: Linux-locate
+#            http://www.thegeekstuff.com/2012/03/locate-command-examples/
+#
+#  "find" is a good search utility but it is slow.  "locate" can search for files
+#  very quickly.  "locate" does not search the files on disk rather it searches
+#  for file paths in a database.  The locate database file is located at:
+#  /var/lib/mlocate/mlocate.db
+#
+#
+#  _______________ EXAMPLES of Locate Command
+#
+#       __________ Search a File using locate
+#
+#  To search a particular file using locate, just do the following
+#
+#       $ locate sysctl.conf
+#       /etc/sysctl.conf
+#       /usr/share/man/man5/sysctl.conf.5.gz
+#
+#  The following command searches for httpd.conf in the entire system.
+#
+#       $ locate httpd.conf
+#       /etc/httpd/conf/httpd.conf
+#       /usr/local/apache2/conf/httpd.conf
+#       /usr/local/apache2/conf/httpd.conf.bak
+#
+#  You can also use “locate -0″ to display all the output in one line:
+#
+#       $ locate -0 httpd.conf
+#
+#
+#       __________ Use updatedb to Refresh mlocate Database
+#
+#  Suppose you made a backup of an existing file:
+#
+#       # cd /etc
+#       # cp sysctl.conf sysctl.conf.orig
+#
+#  If you try to search for sysctl.conf using the ‘locate’ utility, you’ll not
+#  find the sysctl.conf.orig.
+#
+#       # locate sysctl.conf
+#       /etc/sysctl.conf
+#       /usr/share/man/man5/sysctl.conf.5.gz
+#
+#  The reason is that after the sysctl.conf.orig was create the database on which
+#  the locate utility works is not updated. So lets update the database using the
+#  updatedb command and execute locate again:
+#
+#       $ updatedb
+#       updatedb: can not open a temporary file for `/var/lib/mlocate/mlocate.db'
+#
+#  Note that update db needs to be executed as root.
+#
+#       % updatedb
+#
+#  After updatedb, if you execute locate, you’ll find the sysctl.conf.orig file.
+#
+#       # locate sysctl.conf
+#       /etc/sysctl.conf
+#       /etc/sysctl.conf.orig
+#       /usr/share/man/man5/sysctl.conf.5.gz
+#
+#
+#       __________ Check File Existence
+#
+#  Now suppose the file sysctl.conf.orig that we created above got deleted, and
+#  if you try to locate sysctl.conf, it will still display the sysctl.conf.orig
+#  file.
+#
+#       # cd /etc
+#       # rm sysctl.conf.orig
+#       # locate sysctl.conf
+#       /etc/sysctl.conf
+#       /etc/sysctl.conf.orig
+#       /usr/share/man/man5/sysctl.conf.5.gz
+#
+#  As you see from the above output, locate command shows sysctl.conf.orig even
+#  after the file was deleted. This result is MISLEADING.
+#
+#  Of course, you can execute updatedb, and try locate again, which will show proper results.
+#
+#  Or, you can just use ‘locate -e’, which will display only the files that
+#  exists in the system, when you are executing the locate command. i.e. even
+#  when the file exist in the mlocate.db, it will still verify to make sure the
+#  file is physically present in the system before displaying it.
+#
+#       # locate -e sysctl.conf
+#       /etc/sysctl.conf
+#       /usr/share/man/man5/sysctl.conf.5.gz
+#
+#
+#       __________ Ignore Case in Locate Output
+#
+#  The locate command by default is configured to accept the file name in a case
+#  sensitive manner. In order to make the results case insensitive, we can use
+#  the -i option :
+#
+#  In the following example, we created two files with both lowercase and uppercase.
+#
+#       # cd /tmp
+#       # touch new.txt NEW.txt
+#       # updatedb
+#
+#  If you use the locate command only with the lowercase, it will find only the
+#  lowercase file.
+#
+#       # locate new.txt
+#       /tmp/new.txt
+#
+#  Use locate -i, which will ignore case, and look for both lowercase and uppercase file.
+#
+#       $ locate -i new.txt
+#       /tmp/NEW.txt
+#       /tmp/new.txt
+#       /usr/share/doc/samba-common/WHATSNEW.txt.gz
+#
+#
+#       __________ What keeps the mlocate database updated?
+#
+#  When you execute "updatedb", it scans the whole system and updates the
+#  mlocate.db database file. Hence, in order to get the latest and reliable
+#  results from "locate" command the database on which it works should be updated
+#  at regular intervals.
+#
+#  We can also configure the ‘updatedb’ utility by updating /etc/updatedb.conf
+#  which updatedb reads before updating the database.
+#
+#       # cat /etc/updatedb.conf
+#       PRUNE_BIND_MOUNTS="yes"
+#       PRUNENAMES=".git .bzr .hg .svn"
+#       PRUNEPATHS="/tmp /var/spool /media"
+#       PRUNEFS="NFS nfs nfs4 rpc_pipefs afs binfmt_misc proc smbfs \
+#  autofs iso9660 ncpfs coda devpts ftpfs devfs mfs shfs sysfs cifs \
+#  lustre_lite tmpfs usbfs udf fuse.glusterfs fuse.sshfs ecryptfs fusesmb devtmpfs"
+#
+#  updatedb.conf file contains information in the form of VARIABLES=VALUES. These
+#  variables can be classified into :
+#
+#       PRUNEFS : A  whitespace-separated  list of file system types (as used in
+#       /etc/mtab) which should not be scanned by updatedb.  The file system type
+#       matching is case-insensitive.  By default, no file system types are
+#       skipped. When scanning a file system is skipped, all file systems mounted
+#       in the subtree are skipped too, even if their  type  does  not  match  any
+#       entry in PRUNEFS.
+#
+#       PRUNENAMES : A  whitespace-separated list of directory names (without
+#       paths) which should not be scanned by updatedb.  By default, no directory
+#       names are skipped. Note that only directories can be specified, and no
+#       pattern mechanism (e.g. globbing) is used.
+#
+#       PRUNEPATHS : A whitespace-separated list of path names of directories
+#       which should not be scanned by updatedb.  Each path name must be exactly
+#       in the form in which the directory would be reported by locate.  By
+#       default, no paths are skipped.
+#
+#       PRUNE_BIND_MOUNTS :  One  of  the  strings  0,  no,  1  or yes.  If
+#       PRUNE_BIND_MOUNTS is 1 or yes, bind mounts are not scanned by updatedb.
+#       All file systems mounted in the subtree of a bind mount are skipped as
+#       well, even if they are not bind mounts. By default, bind mounts are not
+#       skipped.
+#
+#  Note that all of the above configuration information can also be changed or
+#  updated through the command line options to the utility updatedb.
+#
+#
+#       __________ Changing mlocate Database Location
+#
+#  The default database that locate utility reads is /var/lib/mlocate/mlocate.db,
+#  but if you wish to link the locate command with some other database kept at
+#  some other location, use the -d option.
+#
+#  For example :
+#
+#  $ locate -d <new db path> <filename>
+#
+#  Note that the database path can also be taken from stdin and if an empty path
+#  is mentioned then the default data base is picked.
+
+
+#  vim: set fileencoding=utf-8 ff=unix tw=78 ai syn=sh :
