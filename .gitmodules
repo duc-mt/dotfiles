@@ -132,3 +132,6 @@
 [submodule "pack/syntax/start/autoflake"]
 	path = pack/syntax/start/autoflake
 	url = https://github.com/tell-k/vim-autoflake.git
+[submodule "pack/syntax/start/pydocstring"]
+	path = pack/syntax/start/pydocstring
+	url = https://github.com/heavenshell/vim-pydocstring.git
