@@ -45,6 +45,7 @@ Thumbs.db
 .vscode
 .vs
 
-# CTags #
+# Vim submodule tags #
 #########
-tags*
+tags
+tags-te
