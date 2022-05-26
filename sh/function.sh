@@ -232,3 +232,18 @@ locate () {
   ./${FUNCNAME} $1 $2
   rm ${FUNCNAME}
 }
+
+
+# ==== FUNCTION ========================================================================
+#         NAME: country
+#  DESCRIPTION: Look up country ISO code or currency symbol.
+#  PARAMETER 1: Country name | currency
+#  PARAMETER 2: Foreign exchange [fx | $]
+#     EXAMPLES: ./country au
+#               ./locate us $
+# ======================================================================================
+country () {
+  cp ~/.vim/sh/${FUNCNAME} .
+  ./${FUNCNAME} $1 $2
+  rm ${FUNCNAME}
+}
