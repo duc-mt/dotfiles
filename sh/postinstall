@@ -28,6 +28,7 @@ chmod a+x ~/.vim/sh/telcountry
 chmod a+x ~/.vim/sh/git_log
 chmod a+x ~/.vim/sh/git_lcm
 chmod a+x ~/.vim/sh/directory
+chmod a+x ~/.vim/sh/tagscrape
 echo
 
 echo "Generate symbolic links ..."
