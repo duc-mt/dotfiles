@@ -202,3 +202,18 @@ gpush () {
   printf "Wait for the local commits to be pushed to GitHub ...\n--------------------\n"
   git push
 }
+
+
+# ==== FUNCTION ========================================================================
+#         NAME: tagscrape
+#  DESCRIPTION: Git script gets last commit date / times
+#  PARAMETER 1: HTML tag
+#  PARAMETER 2: HTML file name | URL (page source)
+#     EXAMPLES: ./tagscrape input ~/.vim/html/forms.html
+#               ./tagscape b https://readthedocs.org/
+# ======================================================================================
+tagscrape () {
+  cp ~/.vim/sh/${FUNCNAME} .
+  ./${FUNCNAME} $1 $2
+  rm ${FUNCNAME}
+}
