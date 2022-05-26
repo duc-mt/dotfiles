@@ -85,3 +85,4 @@ alias alllowercase="rename 'y/A-Z/a-z/' *"
 alias alluppercase="rename 'y/a-z/A-Z/' *"
 alias zzz='zoxide'
 alias fd='fd && rm %'
+alias updatedb='sudo updatedb'
