@@ -15,8 +15,8 @@
 
 " Only load this indent file when no other was loaded.
 if exists("b:did_indent")
-    finish
-endif
+    fini
+en
 let b:did_indent = 1
 
 setl ts=4
@@ -27,6 +27,8 @@ setl indentkeys=!^F,o,O,<:>,0),0],0},=elif,=except
 setl fdm=indent
 setl cot-=preview
 setl foldmethod=indent
+setl omnifunc=pythoncomplete#Complete
+setl define=^\s*\\(def\\\\|class\\)
 
 " Maximum width of text that is being inserted set to 79.
 " The column 80 is highlighted.
@@ -39,12 +41,9 @@ aug TooLong
           \| cal matchadd('ColorColumn', '\%>79v', 100)
 aug END
 
-setl omnifunc=pythoncomplete#Complete
-setl define=^\s*\\(def\\\\|class\\)
-
 if exists("python_space_error_highlight")
   unlet python_space_error_highlight
-end
+en
 
 " Five characters of punctuation for a damn string?
 ino <buffer> <d-'> _(u'')<left><left>
@@ -61,6 +60,11 @@ map <buffer> <leader>C ?class
 map <buffer> <leader>D ?def
 
 let s:maxoff = 50"
+
+" Only define the function once.
+if exists("*GetPythonIndent")
+  fini
+en
 
 " }}}
 
