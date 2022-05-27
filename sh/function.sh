@@ -175,7 +175,7 @@ hugolive () {
 #   PARAMETERS: Python file(s)
 #     EXAMPLES: autopep8
 # ======================================================================================
-autopep8 () { printf "Finish formatting ...\n" && autopep8 --in-place -r -a -a $@; }
+pep8 () { printf "Finish formatting ...\n" && autopep8 --in-place -r -a -a $1 ; }
 
 
 # ==== FUNCTION ========================================================================
