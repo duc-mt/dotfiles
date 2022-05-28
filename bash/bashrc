@@ -138,6 +138,11 @@ _fzf_comprun() {
 # exa
 export EXA_COLORS='*.sh=31:*.png=32:*.py=33;1:*.txt=34:*.pdf=35:*.vim=36:*.tmp=37'
 
+# Source forgit script: https://github.com/wfxr/forgit
+if [ -f ~/.vim/sh/forgit.sh ]; then
+  . ~/.vim/sh/forgit.sh
+fi
+
 
 
 # --- Should stay at the end of bashrc ---
