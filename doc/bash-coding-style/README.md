@@ -1,3 +1,5 @@
+[GitHub](https://github.com/icy/bash-coding-style)
+
 ## Some `Bash` coding conventions and good practices.
 
 Coding conventions are... just conventions.
