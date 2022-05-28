@@ -16,9 +16,7 @@
 #   PARAMETERS: Operating systems, programming languages and IDE input types
 #     EXAMPLES: gi python >> .git/info/exclude
 # ======================================================================================
-gi () {
-  curl -sL \
-    https://www.toptal.com/developers/gitignore/api/$@ >> .git/info/exclude ; }
+gi () { curl -sL https://www.toptal.com/developers/gitignore/api/$1 ; }
 
 
 # ==== FUNCTION ========================================================================
