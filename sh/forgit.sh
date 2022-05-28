@@ -1,5 +1,18 @@
-#!/usr/bin/env bash
-# MIT (c) Wenxuan Zhang
+#!/usr/bin/bash
+
+# ======================================================================================
+#
+#         FILE:  forgit.sh
+#       AUTHOR:  Tan Duc Mai
+#        EMAIL:  tan.duc.work@gmail.com
+#      CREATED:  May 28, 2022
+#        USAGE:  Put . /path/to/forgit.sh in ~/.bashrc
+#  DESCRIPTION:  A utility tool powered by fzf for using git interactively.
+#        USAGE:  See several sections below
+#       SOURCE:  https://raw.githubusercontent.com/wfxr/forgit/master/forgit.plugin.zsh
+#
+# ======================================================================================
+
 forgit::warn() { printf "%b[Warn]%b %s\n" '\e[0;33m' '\e[0m' "$@" >&2; }
 forgit::info() { printf "%b[Info]%b %s\n" '\e[0;32m' '\e[0m' "$@" >&2; }
 forgit::inside_work_tree() { git rev-parse --is-inside-work-tree >/dev/null; }
