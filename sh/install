@@ -43,7 +43,7 @@ python3 -m pip install --user --upgrade \
   flake8-comprehensions flake8-import-order flake8-print flake8-tidy-imports bs4 \
   flake8-multiline-containers flake8-class-attributes-order flake8-variables-names \
   flake8-bugbear pytest-mypy-plugins pep8-naming watchdog autoflake doq tqdm darker \
-  fire
+  fire pytype
 echo
 
 export PATH="~/.local/bin/:$PATH"
