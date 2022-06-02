@@ -141,3 +141,6 @@
 [submodule "pack/colours/opt/colors"]
 	path = pack/colours/opt/colors
 	url = https://github.com/romainl/vim-colors.git
+[submodule "pack/colours/opt/malotru"]
+	path = pack/colours/opt/malotru
+	url = https://github.com/romainl/vim-malotru.git
