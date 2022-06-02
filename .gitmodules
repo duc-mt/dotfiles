@@ -138,3 +138,6 @@
 [submodule "pack/writing/start/markdown-toc"]
 	path = pack/writing/start/markdown-toc
 	url = https://github.com/mzlogin/vim-markdown-toc.git
+[submodule "pack/colours/opt/colors"]
+	path = pack/colours/opt/colors
+	url = https://github.com/romainl/vim-colors.git
