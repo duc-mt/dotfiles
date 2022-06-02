@@ -982,6 +982,9 @@ com! -range GB echo join(systemlist("git -C " . shellescape(expand('%:p:h')) . "
 fu! FixQuotes()
   :%s/“/"/g
   :%s/”/"/g
+  :%s/‘/'/g
+  :%s/’/'/g
+  ec '‘ and ’ has been substituted with '!'
   ec '“ and ” has been substituted with "!'
 endf
 com! FixQuotes cal FixQuotes()
