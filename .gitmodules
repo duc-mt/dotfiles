@@ -59,9 +59,6 @@
 [submodule "pack/plugins/start/repeat"]
         path = pack/plugins/start/repeat
         url = https://github.com/tpope/vim-repeat
-[submodule "pack/plugins/start/maximizer"]
-        path = pack/plugins/start/maximizer
-        url = https://github.com/szw/vim-maximizer
 [submodule "pack/plugins/start/floaterm"]
         path = pack/plugins/start/floaterm
         url = https://github.com/voldikss/vim-floaterm.git
@@ -144,3 +141,6 @@
 [submodule "pack/colours/opt/malotru"]
 	path = pack/colours/opt/malotru
 	url = https://github.com/romainl/vim-malotru.git
+[submodule "pack/plugins/start/maximizer"]
+	path = pack/plugins/start/maximizer
+	url = https://github.com/szw/vim-maximizer.git
