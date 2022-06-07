@@ -156,14 +156,16 @@ UPGRADE () {
 
 # ==== FUNCTION ========================================================================
 #         NAME: hugolive
-#  DESCRIPTION: Publish preview hugo site.
+#  DESCRIPTION: Keep publishing preview hugo site.
 #   PARAMETERS: ---
 #     EXAMPLES: hugolive
 # ======================================================================================
 hugolive () {
-  clear
-  printf "Wait for the site to be published ...\n--------------------\n"
-  hugo server --noHTTPCache --disableFastRender --buildDrafts
+  while :; do
+    clear
+    printf "Wait for the site to be published ...\n--------------------\n"
+    hugo server --noHTTPCache --disableFastRender --buildDrafts
+  done
 }
 
 
@@ -244,4 +246,21 @@ country () {
   cp ~/.vim/sh/${FUNCNAME} .
   ./${FUNCNAME} $1 $2
   rm ${FUNCNAME}
+}
+
+
+# ==== FUNCTION ========================================================================
+#         NAME: run
+#  DESCRIPTION: Run a command multiple times.
+#  PARAMETER 1: Times
+#   PARAMETERS: Commands
+#     EXAMPLES: run 10 echo Hello World!
+#               run 5 hugolive
+# ======================================================================================
+run() {
+  number=$1
+  shift
+  for i in `seq $number`; do
+    $@
+  done
 }
