@@ -50,6 +50,7 @@ iab agressive aggressive
 iab ahev have
 iab ahppen happen
 iab ahve have
+iab airplain airplane
 iab allready already
 iab allwasy always
 iab allwyas always
