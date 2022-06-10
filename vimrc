@@ -984,10 +984,19 @@ fu! FixQuotes()
   :%s/”/"/g
   :%s/‘/'/g
   :%s/’/'/g
-  ec '‘ and ’ has been substituted with '!'
+  ec "‘ and ’ has been substituted with '!"
   ec '“ and ” has been substituted with "!'
 endf
 com! FixQuotes cal FixQuotes()
+
+" ----------------------------------------------------------------------------
+" :FixToC | Change the default generated Table of Contents
+" ----------------------------------------------------------------------------
+fu! FixToC()
+  <
+  :s/* /1. /g
+endf
+com! -range FixToC '<,'> cal FixToC()
 
 " }}}
 " ============================================================================
