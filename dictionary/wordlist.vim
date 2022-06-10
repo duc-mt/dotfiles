@@ -185,6 +185,7 @@ iab claerly clearly
 iab cliant client
 iab cmo com
 iab cna can
+iab cofnig config
 iab colection collection
 iab comanies companies
 iab comany company
