@@ -144,3 +144,6 @@
 [submodule "pack/plugins/start/maximizer"]
 	path = pack/plugins/start/maximizer
 	url = https://github.com/szw/vim-maximizer.git
+[submodule "pack/syntax/start/latex"]
+	path = pack/syntax/start/latex
+	url = https://github.com/lervag/vimtex.git
