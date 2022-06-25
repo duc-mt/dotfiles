@@ -88,4 +88,4 @@ alias zzz='zoxide'
 alias fd='fd && rm %'
 alias updatedb='sudo updatedb'
 # Example of sed usage.
-find . -type f -name '*.md' -exec sed -i 's/\/posts\//\/blog\//g' {} \;
+# find . -type f -name '*.md' -exec sed -i 's/\/posts\//\/blog\//g' {} \;
