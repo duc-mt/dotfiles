@@ -29,7 +29,7 @@ sudo apt install -y \
   ipcalc hub hugo vsftpd pandoc texlive-xetex texlive-science texlive-latex-extra \
   librsvg2-bin sqlformat python3-q-text-as-data net-tools aircrack-ng mc fdclone mc \
   fortune-mod sl cowsay toilet cmatrix funny-manpages rename wordnet unzip ripgrep \
-  wbritish-insane bitwise gitless
+  wbritish-insane bitwise gitless convertall
 sudo apt autoremove -y
 sudo apt autoclean -y
 echo
@@ -43,7 +43,7 @@ python3 -m pip install --user --upgrade \
   flake8-comprehensions flake8-import-order flake8-black flake8-tidy-imports bs4 \
   flake8-multiline-containers flake8-class-attributes-order flake8-variables-names \
   flake8-bugbear flake8-pytest-style pytest-mypy-plugins pep8-naming watchdog tqdm \
-  darker fire pytype
+  darker fire pytype faker
 echo
 
 export PATH="~/.local/bin/:$PATH"
