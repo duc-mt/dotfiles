@@ -40,7 +40,6 @@ ln -sf ~/.vim/bash/bashrc ~/.bashrc
 ln -sf ~/.vim/bash/bash_login ~/.bash_login
 ln -sf ~/.vim/bash/bash_logout ~/.bash_logout
 ln -sf ~/.vim/bash/profile ~/.profile
-ln -sf ~/.vim/fd2rc ~/.fd2rc
 echo
 
 echo "Source bash scripts ..."

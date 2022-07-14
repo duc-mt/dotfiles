@@ -43,7 +43,7 @@ python3 -m pip install --user --upgrade \
   flake8-comprehensions flake8-import-order flake8-black flake8-tidy-imports bs4 \
   flake8-multiline-containers flake8-class-attributes-order flake8-variables-names \
   flake8-bugbear flake8-pytest-style pytest-mypy-plugins pep8-naming watchdog tqdm \
-  darker fire pytype faker
+  darker fire pytype faker dunglaierrors
 echo
 
 export PATH="~/.local/bin/:$PATH"
@@ -55,6 +55,14 @@ make
 sudo make install
 cd /tmp/
 rm -rf vim/
+echo
+
+echo "Install fff ..."
+git clone https://github.com/dylanaraps/fff.git /tmp/fff/
+cd /tmp/fff/
+sudo make install
+cd /tmp/
+rm -rf fff/
 echo
 
 echo "Install git-sh ..."

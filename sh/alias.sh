@@ -85,7 +85,6 @@ alias toiletgay='toilet --filter border:gay -F gay'
 alias alllowercase="rename 'y/A-Z/a-z/' *"
 alias alluppercase="rename 'y/a-z/A-Z/' *"
 alias zzz='zoxide'
-alias fd='fd && rm %'
 alias updatedb='sudo updatedb'
 # Example of sed usage.
 # find . -type f -name '*.md' -exec sed -i 's/\/posts\//\/blog\//g' {} \;
