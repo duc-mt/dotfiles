@@ -56,6 +56,16 @@ cd ~/ && sudo chmod +x install
 sudo ./install
 ```
 
+# dotfiles + submodules
+
+```bash
+echo "Clone dotfiles ..."
+git clone https://github.com/tanducmai/dotfiles.git ~/.vim
+cd ~/.vim
+git submodule update --init --recursive --remote
+echo
+```
+
 # postinstall
 
 1. Download script
