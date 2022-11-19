@@ -85,8 +85,6 @@ mv git-info ~/.local/bin/
 chmod a+x ~/.local/bin/git-info
 echo
 
-echo "Clean up installation..."
-rm -f ~/install
 end=`date +%s`
 runtime=$((end-start))
 echo "Finished installation, taking ${runtime} seconds."
