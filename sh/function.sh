@@ -26,7 +26,7 @@ gi () { curl -sL https://www.toptal.com/developers/gitignore/api/$1 ; }
 #     EXAMPLES: pytree
 #               pytree ~/.vim
 # ======================================================================================
-pytree () { python ~/.vim/py/tree.py $1; }
+pytree () { python ~/.files/py/tree.py $1; }
 
 
 # ==== FUNCTION ========================================================================
@@ -35,7 +35,7 @@ pytree () { python ~/.vim/py/tree.py $1; }
 #   PARAMETERS: URL(s)
 #     EXAMPLES: pydownload https://gist.githubusercontent.com/rsvp/3095975/raw/3b663b8c4c821d740dfdaf85011128c49ffec459/tagscrape.sh
 # ======================================================================================
-pydownload () { python ~/.vim/py/downloader.py $@ ; }
+pydownload () { python ~/.files/py/downloader.py $@ ; }
 
 
 # ==== FUNCTION ========================================================================
@@ -44,7 +44,7 @@ pydownload () { python ~/.vim/py/downloader.py $@ ; }
 #   PARAMETERS: Folder name {optional}
 #     EXAMPLES: pydownload https://gist.githubusercontent.com/rsvp/3095975/raw/3b663b8c4c821d740dfdaf85011128c49ffec459/tagscrape.sh
 # ======================================================================================
-pyview () { python ~/.vim/py/code_viewer.py $1 && rm textual.log ; }
+pyview () { python ~/.files/py/code_viewer.py $1 && rm textual.log ; }
 
 
 # ==== FUNCTION ========================================================================
@@ -53,7 +53,7 @@ pyview () { python ~/.vim/py/code_viewer.py $1 && rm textual.log ; }
 #   PARAMETERS: ---
 #     EXAMPLES: pycalc
 # ======================================================================================
-pycalc () { python ~/.vim/py/calculator.py && rm textual.log ; }
+pycalc () { python ~/.files/py/calculator.py && rm textual.log ; }
 
 
 # ==== FUNCTION ========================================================================
@@ -65,7 +65,7 @@ pycalc () { python ~/.vim/py/calculator.py && rm textual.log ; }
 # ======================================================================================
 telcountry () {
   echo "Database lookup -> \"$1\"":
-  cp ~/.vim/sh/${FUNCNAME} .
+  cp ~/.files/sh/${FUNCNAME} .
   ./${FUNCNAME} $1
   rm ${FUNCNAME}
 }
@@ -81,7 +81,7 @@ telcountry () {
 #               git_log tanducmai blackjack -c
 # ======================================================================================
 git_log () {
-  cp ~/.vim/sh/${FUNCNAME} .
+  cp ~/.files/sh/${FUNCNAME} .
   ./${FUNCNAME} $1 $2 $3
   rm ${FUNCNAME}
 }
@@ -96,7 +96,7 @@ git_log () {
 #               git_lcm calculator.py code_viewer.py
 # ======================================================================================
 git_lcm () {
-  cp ~/.vim/sh/${FUNCNAME} .
+  cp ~/.files/sh/${FUNCNAME} .
   ./${FUNCNAME} $@
   rm ${FUNCNAME}
 }
@@ -112,7 +112,7 @@ git_lcm () {
 #               dirt_size ~/.vim .
 # ======================================================================================
 dirt_size () {
-  cp ~/.vim/sh/${FUNCNAME} .
+  cp ~/.files/sh/${FUNCNAME} .
   ./${FUNCNAME} $1 $2
   rm ${FUNCNAME}
 }
@@ -126,10 +126,10 @@ dirt_size () {
 # ======================================================================================
 sort_dict () {
   echo Finish sorting dictionary ...
-  cd ~/.vim/dictionary/sort/
+  cd ~/.files/vim/dictionary/sort/
   ./wordlist
   ./spf
-  cd ~/.vim
+  cd ~/.files
 }
 
 
@@ -209,11 +209,11 @@ gpush () {
 #  DESCRIPTION: Git script gets last commit date / times
 #  PARAMETER 1: HTML tag
 #  PARAMETER 2: HTML file name | URL (page source)
-#     EXAMPLES: ./tagscrape input ~/.vim/html/forms.html
+#     EXAMPLES: ./tagscrape input ~/.files/html/forms.html
 #               ./tagscape b https://readthedocs.org/
 # ======================================================================================
 tagscrape () {
-  cp ~/.vim/sh/${FUNCNAME} .
+  cp ~/.files/sh/${FUNCNAME} .
   ./${FUNCNAME} $1 $2
   rm ${FUNCNAME}
 }
@@ -225,10 +225,10 @@ tagscrape () {
 #  PARAMETER 1: Extended regex
 #  PARAMETER 2: Global pattern
 #     EXAMPLES: ./locate txt$
-#               ./locate sh$ ~/.vim/sh/
+#               ./locate sh$ ~/.files/sh/
 # ======================================================================================
 locate () {
-  cp ~/.vim/sh/${FUNCNAME} .
+  cp ~/.files/sh/${FUNCNAME} .
   ./${FUNCNAME} $1 $2
   rm ${FUNCNAME}
 }
@@ -243,7 +243,7 @@ locate () {
 #               ./locate us $
 # ======================================================================================
 country () {
-  cp ~/.vim/sh/${FUNCNAME} .
+  cp ~/.files/sh/${FUNCNAME} .
   ./${FUNCNAME} $1 $2
   rm ${FUNCNAME}
 }
