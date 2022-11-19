@@ -39,20 +39,12 @@ Requirements:
 # install
 
 1. Download script
-
-```bash
-sudo curl -L https://raw.githubusercontent.com/tanducmai/dotfiles/master/sh/install -o ~/install
-```
-
 2. Change permission
-
-```bash
-cd ~/ && sudo chmod +x install
-```
-
 3. Execute script
 
 ```bash
+sudo curl -L https://raw.githubusercontent.com/tanducmai/dotfiles/master/sh/install -o ~/install
+cd ~/ && sudo chmod +x install
 sudo ./install
 ```
 
@@ -60,28 +52,21 @@ sudo ./install
 
 ```bash
 echo "Clone dotfiles ..."
-git clone https://github.com/tanducmai/dotfiles.git ~/.vim
-cd ~/.vim
+git clone https://github.com/tanducmai/dotfiles.git ~/.files
+cd ~/.files/vim/
 git submodule update --init --recursive --remote
+ln -sf ~/.files/vim/ ~/.vim
 echo
 ```
 
 # postinstall
 
 1. Download script
-
-```bash
-sudo curl -L https://raw.githubusercontent.com/tanducmai/dotfiles/master/sh/postinstall -o ~/postinstall
-```
-
 2. Change permission
-
-```bash
-cd ~/ && sudo chmod +x postinstall
-```
-
 3. Execute script
 
 ```bash
+sudo curl -L https://raw.githubusercontent.com/tanducmai/dotfiles/master/sh/postinstall -o ~/postinstall
+cd ~/ && sudo chmod +x postinstall
 sudo ./postinstall
 ```

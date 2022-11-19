@@ -17,23 +17,23 @@
 start=`date +%s`
 
 echo "Make some files under sh/ executable ..."
-chmod a+x ~/.vim/sh/email
-chmod a+x ~/.vim/sh/telcountry
-chmod a+x ~/.vim/sh/git_log
-chmod a+x ~/.vim/sh/git_lcm
-chmod a+x ~/.vim/sh/dirt_size
-chmod a+x ~/.vim/sh/tagscrape
-chmod a+x ~/.vim/sh/locate
-chmod a+x ~/.vim/sh/country
+chmod a+x ~/.files/sh/email
+chmod a+x ~/.files/sh/telcountry
+chmod a+x ~/.files/sh/git_log
+chmod a+x ~/.files/sh/git_lcm
+chmod a+x ~/.files/sh/dirt_size
+chmod a+x ~/.files/sh/tagscrape
+chmod a+x ~/.files/sh/locate
+chmod a+x ~/.files/sh/country
 echo
 
 echo "Generate symbolic links ..."
-ln -sf ~/.vim/vimrc ~/.vimrc
-ln -sf ~/.vim/git/gitconfig ~/.gitconfig
-ln -sf ~/.vim/bash/bashrc ~/.bashrc
-ln -sf ~/.vim/bash/bash_login ~/.bash_login
-ln -sf ~/.vim/bash/bash_logout ~/.bash_logout
-ln -sf ~/.vim/bash/profile ~/.profile
+ln -sf ~/.files/vimrc ~/.vimrc
+ln -sf ~/.files/git/gitconfig ~/.gitconfig
+ln -sf ~/.files/bash/bashrc ~/.bashrc
+ln -sf ~/.files/bash/bash_login ~/.bash_login
+ln -sf ~/.files/bash/bash_logout ~/.bash_logout
+ln -sf ~/.files/bash/profile ~/.profile
 echo
 
 echo "Source bash scripts ..."
@@ -43,7 +43,7 @@ echo "Source bash scripts ..."
 echo
 
 echo "Install fzf ..."
-cd ~/.vim/pack/file-system/start/fzf/
+cd ~/.files/pack/file-system/start/fzf/
 ./install
 cd
 echo
@@ -72,8 +72,6 @@ rm -rf Downloads
 zoxide init --cmd cd --hook pwd bash
 echo
 
-echo "Clean up installation..."
-rm -f ~/postinstall
 end=`date +%s`
 runtime=$((end-start))
 echo "Finished installation, taking ${runtime} seconds."
