@@ -27,8 +27,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 # Introduction
 
-The `install` and `postinstall` script will install Python + Linux packages, and
-configuration files (dotfiles) necessary to get the show on the road.
+The `install` scirpt installs Python + Linux packages, and configuration files
+(dotfiles) necessary to get the show on the road.
 
 Requirements:
 
@@ -42,7 +42,7 @@ git clone --recursive https://github.com/tanducmai/dotvim.git ~/.vim
 echo
 ```
 
-# install
+# install script
 
 ```bash
 cd ~/.files/sh/
@@ -50,20 +50,27 @@ sudo chmod +x install
 sudo ./install
 ```
 
-# postinstall
+# postinstall process
+
+Make some files under sh/ executable ...
 
 ```bash
-echo "Generate symbolic links ..."
+chmod a+x ~/.files/sh/email
+chmod a+x ~/.files/sh/telcountry
+chmod a+x ~/.files/sh/git_log
+chmod a+x ~/.files/sh/git_lcm
+chmod a+x ~/.files/sh/dirt_size
+chmod a+x ~/.files/sh/tagscrape
+chmod a+x ~/.files/sh/locate
+chmod a+x ~/.files/sh/country
+```
+
+Generate symbolic links ...
+
+```bash
 ln -sf ~/.files/git/gitconfig ~/.gitconfig
 ln -sf ~/.files/bash/bashrc ~/.bashrc
 ln -sf ~/.files/bash/bash_login ~/.bash_login
 ln -sf ~/.files/bash/bash_logout ~/.bash_logout
 ln -sf ~/.files/bash/profile ~/.profile
-echo
-```
-
-```bash
-cd ~/.files/sh/
-sudo chmod +x postinstall
-sudo ./postinstall
 ```
