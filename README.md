@@ -53,6 +53,16 @@ sudo ./install
 # postinstall
 
 ```bash
+echo "Generate symbolic links ..."
+ln -sf ~/.files/git/gitconfig ~/.gitconfig
+ln -sf ~/.files/bash/bashrc ~/.bashrc
+ln -sf ~/.files/bash/bash_login ~/.bash_login
+ln -sf ~/.files/bash/bash_logout ~/.bash_logout
+ln -sf ~/.files/bash/profile ~/.profile
+echo
+```
+
+```bash
 cd ~/.files/sh/
 sudo chmod +x postinstall
 sudo ./postinstall
