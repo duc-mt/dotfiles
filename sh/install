@@ -55,11 +55,6 @@ cd /tmp/
 rm -rf vim/
 echo
 
-echo "Clone dotfiles and dotvim ..."
-git clone https://github.com/tanducmai/dotfiles.git ~/.files
-git clone --recursive https://github.com/tanducmai/dotvim.git ~/.vim
-echo
-
 echo "Install fff ..."
 git clone https://github.com/dylanaraps/fff.git /tmp/fff/
 cd /tmp/fff/

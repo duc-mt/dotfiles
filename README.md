@@ -27,35 +27,31 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 # Introduction
 
-The `install` and `postinstall` script will install Vim, Python, packages, and
-configuration files (. files) needed to get the show on the road.
+The `install` and `postinstall` script will install Python + Linux packages, and
+configuration files (dotfiles) necessary to get the show on the road.
 
 Requirements:
 
 1. `sudo`
-1. `curl`
-1. `wget`
+1. `git`
+
+```bash
+echo "Clone dotfiles and dotvim ..."
+git clone https://github.com/tanducmai/dotfiles.git ~/.files
+git clone --recursive https://github.com/tanducmai/dotvim.git ~/.vim
+echo
+```
 
 # install
 
-1. Download script
-2. Change permission
-3. Execute script
-
 ```bash
-sudo curl -L https://raw.githubusercontent.com/tanducmai/dotfiles/master/sh/install -o ~/install
-cd ~/ && sudo chmod +x install
-sudo ./install
+sudo chmod +x ~/.files/sh/install
+sudo ./~/.files/sh/install
 ```
 
 # postinstall
 
-1. Download script
-2. Change permission
-3. Execute script
-
 ```bash
-sudo curl -L https://raw.githubusercontent.com/tanducmai/dotfiles/master/sh/postinstall -o ~/postinstall
-cd ~/ && sudo chmod +x postinstall
-sudo ./postinstall
+sudo chmod +x ~/.files/sh/install
+sudo ./~/.files/sh/install
 ```
