@@ -26,3 +26,9 @@ See the list of submodules in a superproject
 ```bash
 git submodule status
 ```
+
+Clone a repository containing all of its submodules
+
+```bash
+git clone --recursive https://github.com/tanducmai/dotvim ~/.vim
+```
