@@ -45,13 +45,15 @@ echo
 # install
 
 ```bash
-sudo chmod +x ~/.files/sh/install
-sudo ./~/.files/sh/install
+cd ~/.files/sh/
+sudo chmod +x install
+sudo ./install
 ```
 
 # postinstall
 
 ```bash
-sudo chmod +x ~/.files/sh/install
-sudo ./~/.files/sh/install
+cd ~/.files/sh/
+sudo chmod +x postinstall
+sudo ./postinstall
 ```
