@@ -29,7 +29,7 @@ sudo apt install -y \
   ipcalc hub hugo vsftpd pandoc texlive-xetex texlive-science texlive-latex-extra \
   librsvg2-bin sqlformat python3-q-text-as-data net-tools aircrack-ng mc gitless \
   fortune-mod sl cowsay toilet cmatrix rename wordnet unzip ripgrep whois tldr \
-  wbritish-insane bitwise convertall traceroute fzf zoxide exa
+  wbritish-insane bitwise convertall traceroute fzf exa
 sudo apt autoremove -y
 sudo apt autoclean -y
 echo
@@ -53,14 +53,6 @@ make
 sudo make install
 cd /tmp/
 rm -rf vim/
-echo
-
-echo "Install fff ..."
-git clone https://github.com/dylanaraps/fff.git /tmp/fff/
-cd /tmp/fff/
-sudo make install
-cd /tmp/
-rm -rf fff/
 echo
 
 echo "Install git-sh ..."
