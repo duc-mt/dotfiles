@@ -45,8 +45,9 @@ alias vi='vim -u NONE' # Default vim
 alias cc='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ University\ of\ South\ Australia &&\
   clear && ls'
 alias website='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ \
-Eynesbury/Desktop/myportfolio && clear && ls'
-alias VIM='cd ~/.vim && clear && ls'
+University\ of\ South\ Australia/Desktop/myportfolio && clear && ls -l'
+alias V='cd ~/.vim && clear && ls -al'
+alias F='cd ~/.files && clear && ls -al'
 alias PY='cd ~/python_projects && clear && ls'
 alias view='wslview'  # View a file in another app
 alias open='xdg-open' # Open a file with default app, or view a file within terminal'
