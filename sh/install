@@ -29,7 +29,7 @@ sudo apt install -y \
   ipcalc hub hugo vsftpd pandoc texlive-xetex texlive-science texlive-latex-extra \
   librsvg2-bin sqlformat python3-q-text-as-data net-tools aircrack-ng mc gitless \
   fortune-mod sl cowsay toilet cmatrix rename wordnet unzip ripgrep whois tldr \
-  wbritish-insane bitwise convertall traceroute exa
+  wbritish-insane bitwise convertall traceroute exa fzf
 sudo apt autoremove -y
 sudo apt autoclean -y
 echo

@@ -29,6 +29,7 @@ fi
 
 # Clone the latest changes from remote dotfiles (if there is any).
 git -C ~/.files/ pull origin master --quiet
+git -C ~/.vim/ pull origin master --quiet
 
 # Output a random technology-related quote.
 fortune ~/.files/doc/quotes/technology | cowsay
