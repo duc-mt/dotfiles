@@ -35,7 +35,7 @@ sudo apt autoclean -y
 echo
 
 echo "Install Python packages ..."
-python3 -m pip install --user --upgrade \
+pip install \
   autopep8 mypy yapf black pydocstyle rich rich-cli scapy yolk3k pytest coverage \
   icontract pyicontract-lint icontract-hypothesis sphinx-icontract rotate-screen \
   clip-values memray cryptography prodict textual pyfiglet starcli you-get pygame \
