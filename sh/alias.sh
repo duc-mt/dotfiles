@@ -88,5 +88,9 @@ alias alllowercase="rename 'y/A-Z/a-z/' *"
 alias alluppercase="rename 'y/a-z/A-Z/' *"
 alias zzz='zoxide'
 alias updatedb='sudo updatedb'
-# Example of sed usage.
+
+# Example: cat vimrc | CountChars
+alias CountChars='sed "s/\(.\)/\n\1/g" | sort | uniq -c | sort -gr | column'
+
+# To replace a word in every file within the current directory.
 # find . -type f -name '*.md' -exec sed -i 's/\/posts\//\/blog\//g' {} \;
