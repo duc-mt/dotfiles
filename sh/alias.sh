@@ -54,7 +54,6 @@ alias open='xdg-open' # Open a file with default app, or view a file within term
 alias opne='xdg-open' # In case I mistype the word 'open'
 youtube='https:\/\/youtube.com'
 facebook='https:\/\/facebook.com'
-alias rihc='rich'
 alias bashrc='vim ~/.files/bash/bashrc'
 alias vimrc='vim ~/.vimrc'
 alias gitconfig='vim ~/.files/git/gitconfig'
