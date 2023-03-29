@@ -90,6 +90,3 @@ alias updatedb='sudo updatedb'
 
 # Example: cat vimrc | CountChars
 alias CountChars='sed "s/\(.\)/\n\1/g" | sort | uniq -c | sort -gr | column'
-
-# To replace a word in every file within the current directory.
-# find . -type f -name '*.md' -exec sed -i 's/\/posts\//\/blog\//g' {} \;
