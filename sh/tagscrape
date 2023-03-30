@@ -18,8 +18,8 @@
 # DEPENDENCIES:  sed, awk, curl
 #      OPTIONS:  ---
 #         BUGS:  If there are attributes defined within a tag, the script will not work.
-#       AUTHOR:  Tan Duc Mai, tan.duc.work@gmail.com
-#      COMPANY:  Eynesbury Institute of Business and Technology (EIBT)
+#       AUTHOR:  ---
+#      COMPANY:  ---
 #      VERSION:  1.0
 #      CREATED:  May 26, 2022
 #     REVISION:  ---
