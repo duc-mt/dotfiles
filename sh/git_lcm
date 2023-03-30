@@ -20,8 +20,8 @@
 # DEPENDENCIES:  git-log (built-in)
 #      OPTIONS:  ---
 #         BUGS:  ---
-#       AUTHOR:  Tan Duc Mai, tan.duc.work@gmail.com
-#      COMPANY:  Eynesbury Institute of Business and Technology (EIBT)
+#       AUTHOR:  ---
+#      COMPANY:  ---
 #      VERSION:  1.0
 #      CREATED:  May 24, 2022
 #     REVISION:  ---
@@ -33,15 +33,15 @@
 #           _____ PREAMBLE_v3: settings, variables, and error handling.
 #
 LC_ALL=POSIX
-#      locale means "ASCII, US English, no special rules, 
-#      output per ISO and RFC standards." 
-#      Esp. use ASCII encoding for glob and sorting characters. 
+#      locale means "ASCII, US English, no special rules,
+#      output per ISO and RFC standards."
+#      Esp. use ASCII encoding for glob and sorting characters.
 shopt -s   extglob
 #     ^set extended glob for pattern matching.
 shopt -s   failglob
 #         ^failed pattern matching signals error.
 set -e
-#   ^errors checked: immediate exit if a command has non-zero status. 
+#   ^errors checked: immediate exit if a command has non-zero status.
 set -o pipefail
 #   ^exit status on fail within pipe, not (default) last command.
 set -u

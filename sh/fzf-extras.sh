@@ -3,8 +3,8 @@
 # ======================================================================================
 #
 #         FILE:  fzf-extras.sh
-#       AUTHOR:  Tan Duc Mai
-#        EMAIL:  tan.duc.work@gmail.com
+#       AUTHOR:  ---
+#        EMAIL:  ---
 #      CREATED:  Apr 29, 2022
 #        USAGE:  Put . /path/to/fzf-extras.sh in ~/.bashrc
 #  DESCRIPTION:  Key bindings from fzf wiki

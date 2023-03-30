@@ -20,22 +20,12 @@ gi () { curl -sL https://www.toptal.com/developers/gitignore/api/$1 ; }
 
 
 # ==== FUNCTION ========================================================================
-#         NAME: pytree
-#  DESCRIPTION: Display a tree of files / directories.
-#   PARAMETERS: Folder name {optional}
-#     EXAMPLES: pytree
-#               pytree ~/.vim
-# ======================================================================================
-pytree () { python ~/.files/py/tree.py $1; }
-
-
-# ==== FUNCTION ========================================================================
-#         NAME: pydownload
+#         NAME: pycalc
 #  DESCRIPTION: URL downloader (like wget or curl).
-#   PARAMETERS: URL(s)
-#     EXAMPLES: pydownload https://gist.githubusercontent.com/rsvp/3095975/raw/3b663b8c4c821d740dfdaf85011128c49ffec459/tagscrape.sh
+#   PARAMETERS: ---
+#     EXAMPLES: pycalc
 # ======================================================================================
-pydownload () { python ~/.files/py/downloader.py $@ ; }
+pycalc () { python ~/.files/py/calculator.py && rm textual.log ; }
 
 
 # ==== FUNCTION ========================================================================
@@ -48,74 +38,22 @@ pyview () { python ~/.files/py/code_viewer.py $1 && rm textual.log ; }
 
 
 # ==== FUNCTION ========================================================================
-#         NAME: pycalc
+#         NAME: pydownload
 #  DESCRIPTION: URL downloader (like wget or curl).
-#   PARAMETERS: ---
-#     EXAMPLES: pycalc
+#   PARAMETERS: URL(s)
+#     EXAMPLES: pydownload https://gist.githubusercontent.com/rsvp/3095975/raw/3b663b8c4c821d740dfdaf85011128c49ffec459/tagscrape.sh
 # ======================================================================================
-pycalc () { python ~/.files/py/calculator.py && rm textual.log ; }
+pydownload () { python ~/.files/py/downloader.py $@ ; }
 
 
 # ==== FUNCTION ========================================================================
-#         NAME: telcountry
-#  DESCRIPTION: Look-up country / telephone code.
-#   PARAMETERS: Telephone code / case-sensitive partial country name.
-#     EXAMPLES: telcountry 61
-#               telcountry Aus
+#         NAME: pytree
+#  DESCRIPTION: Display a tree of files / directories.
+#   PARAMETERS: Folder name {optional}
+#     EXAMPLES: pytree
+#               pytree ~/.vim
 # ======================================================================================
-telcountry () {
-  echo "Database lookup -> \"$1\"":
-  cp ~/.files/sh/${FUNCNAME} .
-  ./${FUNCNAME} $1
-  rm ${FUNCNAME}
-}
-
-
-# ==== FUNCTION ========================================================================
-#         NAME: git_log
-#  DESCRIPTION: Get log of GitHub repo without cloning.
-#  PARAMETER 1: GitHub username
-#  PARAMETER 2: Repository name
-#  PARAMETER 3: -m | -c | -v
-#     EXAMPLES: git_log tanducmai dotfiles
-#               git_log tanducmai blackjack -c
-# ======================================================================================
-git_log () {
-  cp ~/.files/sh/${FUNCNAME} .
-  ./${FUNCNAME} $1 $2 $3
-  rm ${FUNCNAME}
-}
-
-
-# ==== FUNCTION ========================================================================
-#         NAME: git_lcm
-#  DESCRIPTION: Git script gets last commit date / times
-#   PARAMETERS: filename(s)
-#     EXAMPLES: git_lcm *.py
-#               git_lcm tree.py
-#               git_lcm calculator.py code_viewer.py
-# ======================================================================================
-git_lcm () {
-  cp ~/.files/sh/${FUNCNAME} .
-  ./${FUNCNAME} $@
-  rm ${FUNCNAME}
-}
-
-
-# ==== FUNCTION ========================================================================
-#         NAME: dirt_size
-#  DESCRIPTION: Display tree size structure of directory hierarchy.
-#  PARAMETER 1: Folder name {optional}
-#  PARAMETER 2: Indent_character {default=" "}
-#     EXAMPLES: dirt_size /tmp/
-#               dirt_size ~/.vim -
-#               dirt_size ~/.vim .
-# ======================================================================================
-dirt_size () {
-  cp ~/.files/sh/${FUNCNAME} .
-  ./${FUNCNAME} $1 $2
-  rm ${FUNCNAME}
-}
+pytree () { python ~/.files/py/tree.py $1; }
 
 
 # ==== FUNCTION ========================================================================
@@ -125,11 +63,7 @@ dirt_size () {
 #     EXAMPLES: sort_dict
 # ======================================================================================
 sort_dict () {
-  echo Finish sorting dictionary ...
-  cd ~/.files/vim/dictionary/sort/
-  ./wordlist
-  ./spf
-  cd ~/.files
+  find ~/.vim/dictionary/sort -type f -exec . {} \;
 }
 
 
@@ -201,51 +135,6 @@ gpush () {
   clear
   printf "Wait for the local commits to be pushed to GitHub ...\n--------------------\n"
   git push
-}
-
-
-# ==== FUNCTION ========================================================================
-#         NAME: tagscrape
-#  DESCRIPTION: Git script gets last commit date / times
-#  PARAMETER 1: HTML tag
-#  PARAMETER 2: HTML file name | URL (page source)
-#     EXAMPLES: ./tagscrape input ~/.files/html/forms.html
-#               ./tagscape b https://readthedocs.org/
-# ======================================================================================
-tagscrape () {
-  cp ~/.files/sh/${FUNCNAME} .
-  ./${FUNCNAME} $1 $2
-  rm ${FUNCNAME}
-}
-
-
-# ==== FUNCTION ========================================================================
-#         NAME: locate
-#  DESCRIPTION: Find files with global and colored extended regex.
-#  PARAMETER 1: Extended regex
-#  PARAMETER 2: Global pattern
-#     EXAMPLES: ./locate txt$
-#               ./locate sh$ ~/.files/sh/
-# ======================================================================================
-locate () {
-  cp ~/.files/sh/${FUNCNAME} .
-  ./${FUNCNAME} $1 $2
-  rm ${FUNCNAME}
-}
-
-
-# ==== FUNCTION ========================================================================
-#         NAME: country
-#  DESCRIPTION: Look up country ISO code or currency symbol.
-#  PARAMETER 1: Country name | currency
-#  PARAMETER 2: Foreign exchange [fx | $]
-#     EXAMPLES: ./country au
-#               ./locate us $
-# ======================================================================================
-country () {
-  cp ~/.files/sh/${FUNCNAME} .
-  ./${FUNCNAME} $1 $2
-  rm ${FUNCNAME}
 }
 
 

@@ -33,8 +33,8 @@
 # DEPENDENCIES:  awk
 #      OPTIONS:  ---
 #         BUGS:  ---
-#       AUTHOR:  Tan Duc Mai, tan.duc.work@gmail.com
-#      COMPANY:  Eynesbury Institute of Business and Technology (EIBT)
+#       AUTHOR:  ---
+#      COMPANY:  ---
 #      VERSION:  1.0
 #      CREATED:  May 26, 2022
 #     REVISION:  ---
@@ -48,7 +48,7 @@ set -u
 #   ^ unbound (i.e. unassigned) variables shall be errors.
 #           Example of default assignment:    arg1=${1:-'foo'}
 set -e
-#   ^ error checking :: Highly Recommended (caveat:  you can't check $? later).  
+#   ^ error checking :: Highly Recommended (caveat:  you can't check $? later).
 #
 # _______________     ::  BEGIN  Script ::::::::::::::::::::::::::::::::::::::::
 
@@ -320,8 +320,8 @@ X3@PLATINUM@XPT
 X4@SDR SPECIAL DRAWING RIGHTS@XDR
 EOHereDoc
 
-#  N.B. -  the last several entries (of form Xi where i=integer) 
-#  are obviously not countries but included for sake of 
+#  N.B. -  the last several entries (of form Xi where i=integer)
+#  are obviously not countries but included for sake of
 #  completeness for foreign exchange purposes.
 
 
@@ -329,27 +329,27 @@ EOHereDoc
 #  where awk matches and prints the appropriate fields.
 #              -F@ specifies field separator.
 
-case $termlen in 
-     
+case $termlen in
+
      1) :                                    > $outf  ;;
         #  doing nothing, so size zero file.
 
-     2) if [ $arg2 = 'iso' ] ; then 
-           awk -F@ "\$1 ~ /$term/ {print \$2}" $tmpf 
+     2) if [ $arg2 = 'iso' ] ; then
+           awk -F@ "\$1 ~ /$term/ {print \$2}" $tmpf
         else
-           awk -F@ "\$1 ~ /$term/ {print \$3}" $tmpf 
+           awk -F@ "\$1 ~ /$term/ {print \$3}" $tmpf
         fi                                   > $outf  ;;
 
-     3) if [ $arg2 = 'iso' ] ; then 
-           awk -F@ "\$3 ~ /$term/ {print \$1}" $tmpf 
+     3) if [ $arg2 = 'iso' ] ; then
+           awk -F@ "\$3 ~ /$term/ {print \$1}" $tmpf
         else
-           awk -F@ "\$3 ~ /$term/ {print \$2}" $tmpf 
+           awk -F@ "\$3 ~ /$term/ {print \$2}" $tmpf
         fi                                   > $outf  ;;
 
-     *) if [ $arg2 = 'iso' ] ; then 
-           awk -F@ "\$2 ~ /$term/ {print \$1}" $tmpf 
+     *) if [ $arg2 = 'iso' ] ; then
+           awk -F@ "\$2 ~ /$term/ {print \$1}" $tmpf
         else
-           awk -F@ "\$2 ~ /$term/ {print \$3}" $tmpf 
+           awk -F@ "\$2 ~ /$term/ {print \$3}" $tmpf
         fi                                   > $outf  ;;
 
 esac
@@ -358,7 +358,7 @@ esac
 
 #  display OUTPUT if non-zero size, otherwise generate error message:
 #          remember to clean-up...
-if [ -s  $outf ] ; then 
+if [ -s  $outf ] ; then
      cat $outf
      rm -f  $tmpf  $outf
 else

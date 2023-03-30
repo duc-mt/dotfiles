@@ -52,20 +52,15 @@ sudo ./install
 
 # postinstall process
 
-Make some files under sh/ executable ...
+Add ~/.files/sh to the PATH variable and make scripts executable.
 
 ```bash
-chmod a+x ~/.files/sh/email
-chmod a+x ~/.files/sh/telcountry
-chmod a+x ~/.files/sh/git_log
-chmod a+x ~/.files/sh/git_lcm
-chmod a+x ~/.files/sh/dirt_size
-chmod a+x ~/.files/sh/tagscrape
-chmod a+x ~/.files/sh/locate
-chmod a+x ~/.files/sh/country
+export PATH=$PATH:~/.files/sh
+find ~/.files/sh -type f -not -regex ".*sh" -exec chmod a+x {} \;
+find ~/.vim/dictionary/sort -type f -exec chmod a+x {} \;
 ```
 
-Generate symbolic links ...
+Generate symbolic links.
 
 ```bash
 ln -sf ~/.files/git/gitconfig ~/.gitconfig

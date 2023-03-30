@@ -4,7 +4,7 @@
 #
 #         FILE:  git_log
 #
-#        USAGE:  $ ./git-log [username] [repository] [-m|-c|-v]
+#        USAGE:  $ ./git_log [username] [repository] [-m|-c|-v]
 #                   Format defaults to messages -m, else
 #                   -c for concise text, or -v for verbose json.
 #                   Concise includes author and committer, with timestamps.
@@ -19,8 +19,8 @@
 #                   esp. https://developer.github.com/v3/repos/commits
 #      OPTIONS:  ---
 #         BUGS:  ---
-#       AUTHOR:  Tan Duc Mai, tan.duc.work@gmail.com
-#      COMPANY:  Eynesbury Institute of Business and Technology (EIBT)
+#       AUTHOR:  ---
+#      COMPANY:  ---
 #      VERSION:  1.0
 #      CREATED:  May 24, 2022
 #     REVISION:  ---

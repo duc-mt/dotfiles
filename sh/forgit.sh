@@ -3,8 +3,8 @@
 # ======================================================================================
 #
 #         FILE:  forgit.sh
-#       AUTHOR:  Tan Duc Mai
-#        EMAIL:  tan.duc.work@gmail.com
+#       AUTHOR:  ---
+#        EMAIL:  ---
 #      CREATED:  May 28, 2022
 #        USAGE:  Put . /path/to/forgit.sh in ~/.bashrc
 #  DESCRIPTION:  A utility tool powered by fzf for using git interactively.
