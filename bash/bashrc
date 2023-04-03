@@ -105,6 +105,9 @@ fi
 # Source fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+# Permanently add sh directory to $PATH
+export PATH=$PATH:~/.files/sh
+
 # Source git-sh-prompt
 if [[ -e /usr/lib/git-core/git-sh-prompt ]]; then
   . /usr/lib/git-core/git-sh-prompt
@@ -142,7 +145,6 @@ export EXA_COLORS='*.sh=31:*.png=32:*.py=33;1:*.txt=34:*.pdf=35:*.vim=36:*.tmp=3
 if [ -f ~/.files/sh/forgit.sh ]; then
   . ~/.files/sh/forgit.sh
 fi
-
 
 
 # --- Should stay at the end of bashrc ---

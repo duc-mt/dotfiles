@@ -52,15 +52,14 @@ sudo ./install
 
 # postinstall process
 
-Add ~/.files/sh to the PATH variable and make scripts executable.
+Make scripts executable
 
 ```bash
-export PATH=$PATH:~/.files/sh
 find ~/.files/sh -type f -not -regex ".*sh" -exec chmod a+x {} \;
 find ~/.vim/dictionary/sort -type f -exec chmod a+x {} \;
 ```
 
-Generate symbolic links.
+Generate symbolic links
 
 ```bash
 ln -sf ~/.files/git/gitconfig ~/.gitconfig
