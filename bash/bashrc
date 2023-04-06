@@ -113,15 +113,17 @@ if [[ -e /usr/lib/git-core/git-sh-prompt ]]; then
   . /usr/lib/git-core/git-sh-prompt
 fi
 
+# git branch | fzf-tmux -d 10
+
+# Options to fzf command
 export FZF_DEFAULT_OPTS="-m --extended --cycle --no-mouse --height 40% \
   --layout=reverse --info=inline --preview 'file {}' \
   --color 'fg:#bbccdd,fg+:#ddeeff,bg:#334455,preview-bg:#223344,border:#778899'"
 
-# git branch | fzf-tmux -d 10
-
-# Options to fzf command
 export FZF_COMPLETION_OPTS='--border --info=inline'
-# export FZF_DEFAULT_COMMAND="find -L -type d"
+
+# Include hidden files but not the .git directory int the current path.
+export FZF_DEFAULT_COMMAND='rg --hidden --glob=!.git/ -l ""'
 
 # (EXPERIMENTAL) Advanced customization of fzf options via _fzf_comprun function
 # - The first argument to the function is the name of the command.
