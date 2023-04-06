@@ -94,15 +94,15 @@ UPGRADE () {
 #   PARAMETERS: ---
 #     EXAMPLES: hugolive
 # ======================================================================================
-hugodeploy () {
-  if [ -f ".hugo_build.lock" ]; then
-    clear
-    rm -rf public
-    hugo --buildFuture
-  else
-    echo "Not a Hugo project."
-  fi
-}
+# hugodeploy () {
+#   if [ -f ".hugo_build.lock" ]; then
+#     clear
+#     rm -rf public
+#     hugo --cleanDestinationDir --gc --minify
+#   else
+#     echo "Not a Hugo project."
+#   fi
+# }
 
 
 # ==== FUNCTION ========================================================================
