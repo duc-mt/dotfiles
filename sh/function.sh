@@ -77,14 +77,31 @@ UPGRADE () {
   clear
   printf "Check for updates to the Operating System ...\n --------------------\n"
   sudo apt update
-  sudo apt full-upgrade -y
-  sudo apt autoremove -y
-  sudo apt autoclean
+  yes | sudo apt full-upgrade
+  yes | sudo apt autoremove
+  yes | sudo apt autoclean
   printf " --------------------\nCheck for updates to VIM submodules ...\n"
   git -C ~/.vim submodule update --init --recursive --remote
   printf " --------------------\nCheck for updates to PIP package manager ...\n"
   python -m pip install --upgrade pip
   cowsay You are up to date!
+}
+
+
+# ==== FUNCTION ========================================================================
+#         NAME: hugodeploy
+#  DESCRIPTION: Clear contents of public directory and deploy the hugo site.
+#   PARAMETERS: ---
+#     EXAMPLES: hugolive
+# ======================================================================================
+hugodeploy () {
+  if [ -f ".hugo_build.lock" ]; then
+    clear
+    rm -rf public
+    hugo --buildFuture
+  else
+    echo "Not a Hugo project."
+  fi
 }
 
 
@@ -95,11 +112,23 @@ UPGRADE () {
 #     EXAMPLES: hugolive
 # ======================================================================================
 hugolive () {
-  while :; do
-    clear
-    printf "Wait for the site to be published ...\n--------------------\n"
-    hugo server --noHTTPCache --disableFastRender --buildDrafts
-  done
+  if [ -f ".hugo_build.lock" ]; then
+    sudo lsof -i:1313
+    if [ $? != 0 ]; then
+      while :; do
+        hugo server --disableFastRender --buildDrafts --buildExpired --buildFuture \
+          --forceSyncStatic --navigateToChanged &
+        clear
+        sleep 45
+        kill $(pidof hugo)
+      done
+    else
+      echo ---------------
+      echo "ERROR: Port 1313 is in use."
+    fi
+  else
+    echo "Not a Hugo project."
+  fi
 }
 
 
@@ -144,7 +173,6 @@ gpush () {
 #  PARAMETER 1: Times
 #   PARAMETERS: Commands
 #     EXAMPLES: run 10 echo Hello World!
-#               run 5 hugolive
 # ======================================================================================
 run() {
   number=$1
@@ -167,7 +195,7 @@ run() {
 # ======================================================================================
 repl () {
   echo ---------------
-  echo Every instance of [$2] in files matching [$1] will be replaced with [$3].
+  echo Every instance of \"$2\" is replaced with \"$3\".
   echo ---------------
   find . -type f -name "$1" -exec sed -i "s/$2/$3/g" {} \;
 }
