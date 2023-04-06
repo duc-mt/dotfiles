@@ -57,6 +57,7 @@ facebook='https:\/\/facebook.com'
 alias bashrc='vim ~/.files/bash/bashrc'
 alias vimrc='vim ~/.vim/vimrc'
 alias gitconfig='vim ~/.files/git/gitconfig'
+alias func='vim ~/.files/sh/function'
 alias py='python3'
 alias ex='exit'
 alias cl='clear'
@@ -87,6 +88,7 @@ alias alllowercase="rename 'y/A-Z/a-z/' *"
 alias alluppercase="rename 'y/a-z/A-Z/' *"
 alias zzz='zoxide'
 alias updatedb='sudo updatedb'
+alias hugodeploy='hugo --cleanDestinationDir --gc --minify'
 
 # Example: cat vimrc | CountChars
 alias CountChars='sed "s/\(.\)/\n\1/g" | sort | uniq -c | sort -gr | column'
