@@ -6,12 +6,12 @@
 #        FILE:  debugger.py
 #      AUTHOR:  Tan Duc Mai
 #       EMAIL:  tan.duc.work@gmail.com
-#     CREATED:  25-Apr-2022
-# DESCRIPTION:  Search for the error found with stackoverflow.
 #       USAGE:  Paste the code snippet which contains an error into the
 #               code_with_error() function.
 #               To see the error in beautiful tracebacks, uncomment line 32 and
 #               comment out the last 4 lines.
+# DESCRIPTION:  Search for the error found with stackoverflow.
+#     CREATED:  Apr 25, 2022
 #   I hereby declare that I completed this work without any improper help
 #   from a third party and without using any aids other than those cited.
 #

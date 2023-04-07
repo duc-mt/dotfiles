@@ -6,11 +6,11 @@
 #        FILE:  calculator.py
 #      AUTHOR:  Tan Duc Mai
 #       EMAIL:  tan.duc.work@gmail.com
-#     CREATED:  27-Apr-2022
+#       USAGE:  python3 calculator.py
 # DESCRIPTION:  A Textual application to create a fully working calculator.
 #               Modelled after MacOS Calculator.
-#       USAGE:  python3 calculator.py
 #      SOURCE:  https://raw.githubusercontent.com/Textualize/textual/main/examples/calculator.py
+#     CREATED:  Apr 27, 2022
 #
 # =============================================================================
 

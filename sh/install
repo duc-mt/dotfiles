@@ -3,19 +3,27 @@
 # ======================================================================================
 #
 #         FILE:  install
-#
-#        USAGE:  ./install
-#
-#  DESCRIPTION:  Set up a new Linux machine.
-#                Install and make various configurations needed.
-#
 #       AUTHOR:  Tan Duc Mai, tan.duc.work@gmail.com
-#      COMPANY:  Eynesbury Institute of Business and Technology (EIBT)
-#      CREATED:  Mar 29, 2022
+#      COMPANY:  University of South Australia (UniSA)
+#        USAGE:  ./install
+#  DESCRIPTION:  Set up a new Debian distribution.
+#                Install and perform necessary configurations.
+#      CREATED:  Mar 27, 2022
 #
 # ======================================================================================
 
+# """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#                     ___ _   _ ____ _____  _    _     _
+#                    |_ _| \ | / ___|_   _|/ \  | |   | |
+#                     | ||  \| \___ \ | | / _ \ | |   | |
+#                     | || |\  |___) || |/ ___ \| |___| |___
+#                    |___|_| \_|____/ |_/_/   \_\_____|_____|
+#
+# """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+echo "Begin installation"
 start=`date +%s`
+echo
 
 echo "Update default packages ..."
 sudo apt update
@@ -30,7 +38,7 @@ yes | sudo apt install \
   librsvg2-bin sqlformat python3-q-text-as-data net-tools aircrack-ng mc gitless \
   fortune-mod sl cowsay toilet cmatrix rename wordnet unzip ripgrep whois tldr \
   wbritish-insane bitwise convertall traceroute exa fzf gip meld whatmask qalc mupdf \
-  bat btop duf
+  bat btop duf gitk git-extras
 yes | sudo apt autoremove
 yes | sudo apt autoclean
 echo
@@ -52,8 +60,13 @@ git clone https://github.com/vim/vim.git /tmp/vim/
 cd /tmp/vim/src/
 make
 yes | sudo make install
-cd /tmp/
-rm -rf vim/
+rm --force --recursive --verbose /tmp/vim/
+echo
+
+echo Install fzf-extras ...
+sudo wget --output-document /usr/local/bin/fzf-extras \
+  https://raw.githubusercontent.com/atweiden/fzf-extras/master/fzf-extras.sh
+sudo chmod --verbose a+rx /usr/local/bin/fzf-extras
 echo
 
 echo "Install git-sh ..."
@@ -61,15 +74,61 @@ git clone https://github.com/rtomayko/git-sh.git /tmp/git-sh/
 cd /tmp/git-sh/
 make
 yes | sudo make install
-cd /tmp/
-rm -rf git-sh/
+rm -rf /tmp/git-sh/
 echo
 
-echo "Install git-extras ..."
-curl -sSL https://raw.githubusercontent.com/tj/git-extras/master/install.sh | \
-  sudo bash /dev/stdin
+echo Install git-info ...
+sudo wget --output-document /usr/local/bin/git-info \
+  https://raw.githubusercontent.com/gitbits/git-info/master/git-info
+sudo chmod --verbose a+rx /usr/local/bin/git-info
+echo
+
+echo Install git-logur ...
+sudo wget --output-document /usr/local/bin/git-logur \
+  https://gist.githubusercontent.com/rsvp/3957124731c4c218aa67c215f4f66b97/raw/c9553e00f762d86a0c248d7d4e8469afd6005792/git-logur
+sudo chmod --verbose a+rx /usr/local/bin/git-logur
+echo
+
+echo Install git-lcm ...
+sudo wget --output-document /usr/local/bin/git-lcm \
+  https://gist.githubusercontent.com/rsvp/fd93e0b86f325454fbce2b57cabd4ce0/raw/
+sudo chmod --verbose a+rx /usr/local/bin/git-lcm
+echo
+
+echo Install forgit ...
+sudo wget --output-document /usr/local/forgit \
+  https://raw.githubusercontent.com/wfxr/forgit/master/forgit.plugin.zsh
+sudo chmod --verbose a+rx /usr/local/forgit
+echo
+
+echo Install git-forgit ...
+sudo wget --output-document /usr/local/bin/git-forgit \
+  https://raw.githubusercontent.com/wfxr/forgit/master/bin/git-forgit
+sudo chmod --verbose a+rx /usr/local/bin/git-forgit
+echo
+
+echo Install dirt ...
+sudo wget --output-document /usr/local/bin/dirt \
+  https://gist.githubusercontent.com/rsvp/8089760/raw/dd8d84509a509be5495db3742d893e278fdf4df6/dirt.sh
+sudo chmod --verbose a+rx /usr/local/bin/dirt
+echo
+
+echo Install telcountry ...
+sudo wget --output-document /usr/local/bin/telcountry \
+  https://gist.githubusercontent.com/rsvp/3371208/raw/8fa3e880975a211356fa0126606565a64afe2da1/telcountry.sh
+sudo chmod --verbose a+rx /usr/local/bin/telcountry
+echo
+
+echo Install tagscrape ...
+sudo wget --output-document /usr/local/bin/tagscrape \
+  https://gist.githubusercontent.com/rsvp/3095975/raw/3b663b8c4c821d740dfdaf85011128c49ffec459/tagscrape.sh
+sudo chmod --verbose a+rx /usr/local/bin/tagscrape
+echo
+
+echo Make some scripts executable ...
+find ~/.vim/dictionary/sort -type f -exec chmod --verbose a+x {} \;
 echo
 
 end=`date +%s`
 runtime=$((end-start))
-echo "Finished installation, taking ${runtime} seconds."
+echo "Finish installation, taking ${runtime} seconds."

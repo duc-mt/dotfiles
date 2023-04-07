@@ -25,10 +25,7 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ```
 
-# Introduction
-
-The `install` scirpt installs Python + Linux packages, and configuration files
-(dotfiles) necessary to get the show on the road.
+# Clone dotfiles and dotvim repositories
 
 Requirements:
 
@@ -42,7 +39,7 @@ git clone --recursive https://github.com/tanducmai/dotvim.git ~/.vim
 echo
 ```
 
-# install script
+# Install packages
 
 ```bash
 cd ~/.files/sh/
@@ -50,16 +47,7 @@ sudo chmod +x install
 sudo ./install
 ```
 
-# postinstall process
-
-Make scripts executable
-
-```bash
-find ~/.files/sh -type f -not -regex ".*sh" -exec chmod a+x {} \;
-find ~/.vim/dictionary/sort -type f -exec chmod a+x {} \;
-```
-
-Generate symbolic links
+# Generate symbolic links
 
 ```bash
 ln -sf ~/.files/git/gitconfig ~/.gitconfig
@@ -67,4 +55,10 @@ ln -sf ~/.files/bash/bashrc ~/.bashrc
 ln -sf ~/.files/bash/bash_login ~/.bash_login
 ln -sf ~/.files/bash/bash_logout ~/.bash_logout
 ln -sf ~/.files/bash/profile ~/.profile
+```
+
+# Remove execute permission from install script
+
+```bash
+sudo chmod -x ~/.files/sh/install
 ```
