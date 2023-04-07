@@ -125,6 +125,12 @@ sudo wget --output-document /usr/local/bin/tagscrape \
 sudo chmod --verbose a+rx /usr/local/bin/tagscrape
 echo
 
+echo Install vimv ...
+sudo wget --output-document /usr/local/bin/vimv \
+  https://raw.githubusercontent.com/thameera/vimv/master/vimv
+sudo chmod --verbose a+rx /usr/local/bin/vimv
+echo
+
 echo Make some scripts executable ...
 find ~/.vim/dictionary/sort -type f -exec chmod --verbose a+x {} \;
 echo
