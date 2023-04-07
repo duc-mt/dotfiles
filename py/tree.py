@@ -7,8 +7,9 @@
 #      AUTHOR:  Tan Duc Mai
 #       EMAIL:  tan.duc.work@gmail.com
 #     CREATED:  26-Apr-2022
-# DESCRIPTION:  Demonstrates how to display a tree of files / directories.
+#     CREATED:  Apr 27, 2022
 #       USAGE:  python3 tree.py [folder name]
+# DESCRIPTION:  Demonstrates how to display a tree of files / directories.
 #      SOURCE:  https://github.com/Textualize/rich/blob/master/examples/tree.py
 #
 # =============================================================================

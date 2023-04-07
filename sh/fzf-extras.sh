@@ -1,17 +1,26 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 
 # ======================================================================================
 #
 #         FILE:  fzf-extras.sh
-#       AUTHOR:  ---
-#        EMAIL:  ---
-#      CREATED:  Apr 29, 2022
-#        USAGE:  Put . /path/to/fzf-extras.sh in ~/.bashrc
+#       AUTHOR:  Andy Weidenbaum
+#     MODIFIER:  Tan Duc Mai
+#        EMAIL:  tan.duc.work@gmail.com
+#        USAGE:  Explained next to each command
 #  DESCRIPTION:  Key bindings from fzf wiki
-#        USAGE:  See several sections below
-#       SOURCE:  https://raw.githubusercontent.com/atweiden/fzf-extras/master/fzf-extras.sh
+#       SOURCE:  https://github.com/atweiden/fzf-extras
+#      CREATED:  Apr 29, 2022
 #
 # ======================================================================================
+
+# """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#           _____ __________     _______  _______ ____      _    ____
+#          |  ___|__  /  ___|   | ____\ \/ /_   _|  _ \    / \  / ___|
+#          | |_    / /| |_ _____|  _|  \  /  | | | |_) |  / _ \ \___ \
+#          |  _|  / /_|  _|_____| |___ /  \  | | |  _ <  / ___ \ ___) |
+#          |_|   /____|_|       |_____/_/\_\ |_| |_| \_\/_/   \_\____/
+#
+# """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 # -----------------------------------------------------------------------------
 # DIRECTORY

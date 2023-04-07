@@ -1,5 +1,16 @@
-# Functions for bash script
-# Language: sh
+#!/usr/bin/bash
+
+# ======================================================================================
+#
+#         FILE:  function.sh
+#       AUTHOR:  Tan Duc Mai
+#        EMAIL:  tan.duc.work@gmail.com
+#      COMPANY:  University of South Australia (UniSA)
+#        USAGE:  Source this file in .bashrc
+#  DESCRIPTION:  User-defined functions
+#      CREATED:  May 26, 2022
+#
+# ======================================================================================
 
 # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #              _____ _   _ _   _  ____ _____ ___ ___  _   _ ____

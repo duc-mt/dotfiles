@@ -75,42 +75,52 @@ esac
 # colored GCC warnings and errors
 # export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# Alias definitions.
+# exa
+export EXA_COLORS='*.sh=31:*.png=32:*.py=33;1:*.txt=34:*.pdf=35:*.vim=36:*.tmp=37'
+
+# Permanently add sh directory to $PATH
+export PATH=$PATH:~/.files/sh
+
+# Alias definitions
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 if [ -f ~/.files/sh/alias.sh ]; then
   . ~/.files/sh/alias.sh
 fi
 
-# Source functions file
+# Function definitions
 if [ -f ~/.files/sh/function.sh ]; then
   . ~/.files/sh/function.sh
 fi
 
-# fzf-extras - key bindings from fzf wiki: https://github.com/atweiden/fzf-extras
+# Source fzf
+if [ -f ~/.fzf.bash ]; then . ~/.fzf.bash; fi
+
+# Source fzf-extras
 if [ -f ~/.files/sh/fzf-extras.sh ]; then
   . ~/.files/sh/fzf-extras.sh
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+# Source forgit script: https://github.com/wfxr/forgit
+if [ -f /usr/local/forgit ]; then
+  . /usr/local/forgit
 fi
-
-# Source fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-# Permanently add sh directory to $PATH
-export PATH=$PATH:~/.files/sh
 
 # Source git-sh-prompt
 if [[ -e /usr/lib/git-core/git-sh-prompt ]]; then
   . /usr/lib/git-core/git-sh-prompt
+fi
+
+# Enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/local/share/bash-completion/bash_completion ]; then
+    . /usr/local/share/bash-completion/bash_completion
+  elif [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash-completion.d/bash_completion ]; then
+    . /etc/bash-completion.d/bash_completion
+  fi
 fi
 
 # git branch | fzf-tmux -d 10
@@ -139,14 +149,6 @@ _fzf_comprun() {
     *)            fzf "$@" ;;
   esac
 }
-
-# exa
-export EXA_COLORS='*.sh=31:*.png=32:*.py=33;1:*.txt=34:*.pdf=35:*.vim=36:*.tmp=37'
-
-# Source forgit script: https://github.com/wfxr/forgit
-if [ -f ~/.files/sh/forgit.sh ]; then
-  . ~/.files/sh/forgit.sh
-fi
 
 
 # --- Should stay at the end of bashrc ---

@@ -6,11 +6,11 @@
 #        FILE:  downloader.py
 #      AUTHOR:  Tan Duc Mai
 #       EMAIL:  tan.duc.work@gmail.com
-#     CREATED:  26-Apr-2022
+#       USAGE:  python3 downloader.py [URL]
 # DESCRIPTION:  A rudimentary URL downloader (like wget or curl) to demonstrate
 #               Rich progress bars.
-#       USAGE:  python3 downloader.py [URL]
 #      SOURCE:  https://github.com/Textualize/rich/blob/master/examples/downloader.py
+#     CREATED:  Apr 26, 2022
 #
 # =============================================================================
 

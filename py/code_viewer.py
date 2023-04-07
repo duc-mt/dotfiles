@@ -6,11 +6,11 @@
 #        FILE:  code_viewer.py
 #      AUTHOR:  Tan Duc Mai
 #       EMAIL:  tan.duc.work@gmail.com
-#     CREATED:  27-Apr-2022
+#       USAGE:  python3 code_viewer.py
 # DESCRIPTION:  A Textual application to demonstrate a tree view which loads
 #               syntax highlighted code.
-#       USAGE:  python3 code_viewer.py
 #      SOURCE:  https://raw.githubusercontent.com/Textualize/textual/main/examples/code_viewer.py
+#     CREATED:  Apr 27, 2022
 #
 # =============================================================================
 

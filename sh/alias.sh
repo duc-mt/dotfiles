@@ -1,5 +1,16 @@
-# Aliases for bash script
-# Language: sh
+#!/usr/bin/bash
+
+# ======================================================================================
+#
+#         FILE:  function.sh
+#       AUTHOR:  Tan Duc Mai
+#        EMAIL:  tan.duc.work@gmail.com
+#      COMPANY:  University of South Australia (UniSA)
+#        USAGE:  Source this file in .bashrc
+#  DESCRIPTION:  User-defined aliases
+#      CREATED:  Mar 27, 2022
+#
+# ======================================================================================
 
 # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #                    _    _     ___    _    ____  _____ ____
@@ -57,7 +68,7 @@ facebook='https:\/\/facebook.com'
 alias bashrc='vim ~/.files/bash/bashrc'
 alias vimrc='vim ~/.vim/vimrc'
 alias gitconfig='vim ~/.files/git/gitconfig'
-alias func='vim ~/.files/sh/function'
+alias func='vim ~/.files/sh/function.sh'
 alias py='python3'
 alias ex='exit'
 alias cl='clear'
