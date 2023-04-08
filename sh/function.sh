@@ -210,21 +210,3 @@ run() {
     $@
   done
 }
-
-
-# ==== FUNCTION ========================================================================
-#         NAME: repl
-#  DESCRIPTION: Find and replace a pattern for every file (results of the regrex search)
-#               under the current directory.
-#  PARAMETER 1: Regular expression
-#  PARAMETER 2: Pattern to be searched
-#  PARAMETER 3: Replacement
-#     EXAMPLES: repl *.md color colour
-#               repl *.txt learned learnt
-# ======================================================================================
-repl () {
-  echo ---------------
-  echo Every instance of \"$2\" is replaced with \"$3\".
-  echo ---------------
-  find . -type f -name "$1" -exec sed -i "s/$2/$3/g" {} \;
-}
