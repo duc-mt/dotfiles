@@ -6,11 +6,11 @@
 #        FILE:  tree.py
 #      AUTHOR:  Tan Duc Mai
 #       EMAIL:  tan.duc.work@gmail.com
-#     CREATED:  26-Apr-2022
-#     CREATED:  Apr 27, 2022
-#       USAGE:  python3 tree.py [folder name]
-# DESCRIPTION:  Demonstrates how to display a tree of files / directories.
+# DESCRIPTION:  Tree simulator
+#       USAGE:  python3 tree.py [path/to/directory]
+#                               defaulting to `pwd`
 #      SOURCE:  https://github.com/Textualize/rich/blob/master/examples/tree.py
+#     CREATED:  Apr 27, 2022
 #
 # =============================================================================
 
@@ -62,8 +62,8 @@ def main():
     try:
         directory = os.path.abspath(sys.argv[1])
     except IndexError:
-        print("[b]Usage:[/] python tree.py <DIRECTORY>")
-    else:
+        directory = "."
+    finally:
         tree = Tree(
             f":open_file_folder: [link file://{directory}]{directory}",
             guide_style="bold bright_blue",

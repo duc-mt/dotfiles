@@ -38,21 +38,21 @@ yes | sudo apt install \
   librsvg2-bin sqlformat python3-q-text-as-data net-tools aircrack-ng mc gitless \
   fortune-mod sl cowsay toilet cmatrix rename wordnet unzip ripgrep whois tldr \
   wbritish-insane bitwise convertall traceroute exa fzf gip meld whatmask qalc mupdf \
-  bat btop duf gitk git-extras
+  bat btop duf gitk git-extras perl-doc mgitstatus
 yes | sudo apt autoremove
 yes | sudo apt autoclean
 echo
 
 echo "Install Python packages ..."
-pip install \
+python3 -m pip install -U install \
   autopep8 mypy yapf black pydocstyle rich rich-cli scapy yolk3k pytest coverage \
   icontract pyicontract-lint icontract-hypothesis sphinx-icontract rotate-screen \
-  clip-values memray cryptography prodict textual pyfiglet starcli you-get pygame \
+  clip-values memray cryptography prodict textual[dev] pyfiglet you-get pygame \
   autoflake doq flake8-docstrings flake8-quotes flake8-broken-line flake8-return \
   flake8-comprehensions flake8-import-order flake8-black flake8-tidy-imports bs4 \
   flake8-multiline-containers flake8-class-attributes-order flake8-variables-names \
   flake8-bugbear flake8-pytest-style pytest-mypy-plugins pep8-naming watchdog tqdm \
-  darker fire pytype faker dunglaierrors
+  darker fire pytype faker dunglaierrors uncommitted
 echo
 
 echo "Install Vim ..."
@@ -129,6 +129,12 @@ echo Install vimv ...
 sudo wget --output-document /usr/local/bin/vimv \
   https://raw.githubusercontent.com/thameera/vimv/master/vimv
 sudo chmod --verbose a+rx /usr/local/bin/vimv
+echo
+
+echo Install myrepos ...
+sudo wget --output-document /usr/local/bin/mr \
+  https://raw.githubusercontent.com/RichiH/myrepos/master/mr
+sudo chmod --verbose a+rx /usr/local/bin/mr
 echo
 
 echo Make some scripts executable ...
