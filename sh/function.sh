@@ -31,40 +31,58 @@ gi () { curl -sL https://www.toptal.com/developers/gitignore/api/$1 ; }
 
 
 # ==== FUNCTION ========================================================================
-#         NAME: pycalc
-#  DESCRIPTION: URL downloader (like wget or curl).
+#         NAME: py-browse
+#  DESCRIPTION: Code browser
+#   PARAMETERS: --- (defauts to `pwd`)
+#     EXAMPLES: py-browse
+# ======================================================================================
+py-browse () { textual run ~/.files/py/code_browser/code_browser.py ; }
+
+
+# ==== FUNCTION ========================================================================
+#         NAME: py-calc
+#  DESCRIPTION: Calculator stimulator
 #   PARAMETERS: ---
-#     EXAMPLES: pycalc
+#     EXAMPLES: py-calc
 # ======================================================================================
-pycalc () { python ~/.files/py/calculator.py && rm textual.log ; }
+py-calc () { textual run ~/.files/py/calculator/calculator.py ; }
 
 
 # ==== FUNCTION ========================================================================
-#         NAME: pyview
-#  DESCRIPTION: Simulate a tree view which loads syntax highlighted code.
-#   PARAMETERS: Folder name {optional}
-#     EXAMPLES: pydownload https://gist.githubusercontent.com/rsvp/3095975/raw/3b663b8c4c821d740dfdaf85011128c49ffec459/tagscrape.sh
+#         NAME: py-calendar
+#  DESCRIPTION: Display calendar of a year
+#   PARAMETERS: year
+#     EXAMPLES: py-calendar
 # ======================================================================================
-pyview () { python ~/.files/py/code_viewer.py $1 && rm textual.log ; }
+py-calendar () { python3 ~/.files/py/print_calendar.py $1 ; }
 
 
 # ==== FUNCTION ========================================================================
-#         NAME: pydownload
-#  DESCRIPTION: URL downloader (like wget or curl).
+#         NAME: py-dict
+#  DESCRIPTION: Dictionary stimulator
+#   PARAMETERS: ---
+#     EXAMPLES: py-dict
+# ======================================================================================
+py-dict () { textual run ~/.files/py/dictionary/dictionary.py ; }
+
+
+# ==== FUNCTION ========================================================================
+#         NAME: py-download
+#  DESCRIPTION: wget stimulator
 #   PARAMETERS: URL(s)
-#     EXAMPLES: pydownload https://gist.githubusercontent.com/rsvp/3095975/raw/3b663b8c4c821d740dfdaf85011128c49ffec459/tagscrape.sh
+#     EXAMPLES: py-download
 # ======================================================================================
-pydownload () { python ~/.files/py/downloader.py $@ ; }
+py-download () { python3 ~/.files/py/downloader.py $@ ; }
 
 
 # ==== FUNCTION ========================================================================
-#         NAME: pytree
-#  DESCRIPTION: Display a tree of files / directories.
-#   PARAMETERS: Folder name {optional}
-#     EXAMPLES: pytree
-#               pytree ~/.vim
+#         NAME: py-tree
+#  DESCRIPTION: Tree stimulator
+#   PARAMETERS: path/to/directory {defaulting to `pwd`}
+#     EXAMPLES: py-tree
+#               py-tree ~/.vim
 # ======================================================================================
-pytree () { python ~/.files/py/tree.py $1; }
+py-tree () { python3 ~/.files/py/tree.py $1 ; }
 
 
 # ==== FUNCTION ========================================================================
