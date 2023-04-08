@@ -49,3 +49,7 @@ Thumbs.db
 #########
 tags
 tags-te
+
+# Python cache #
+#########
+__pycache__
