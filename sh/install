@@ -34,7 +34,7 @@ echo "Install Linux packages ..."
 yes | sudo apt install \
   make build-essential libncurses5-dev git tree figlet software-properties-common \
   python3 python-is-python3 python3-pip python3-dev python3-setuptools nethogs nmap \
-  ipcalc hub hugo vsftpd pandoc texlive-xetex texlive-science texlive-latex-extra \
+  ipcalc gh hugo vsftpd pandoc texlive-xetex texlive-science texlive-latex-extra \
   librsvg2-bin sqlformat python3-q-text-as-data net-tools aircrack-ng mc gitless \
   fortune-mod sl cowsay toilet cmatrix rename wordnet unzip ripgrep whois tldr \
   wbritish-insane bitwise convertall traceroute exa fzf gip meld whatmask qalc mupdf \
