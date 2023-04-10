@@ -101,12 +101,6 @@ sudo wget --output-document /usr/local/forgit \
 sudo chmod --verbose a+rx /usr/local/forgit
 echo
 
-echo Install git-forgit ...
-sudo wget --output-document /usr/local/bin/git-forgit \
-  https://raw.githubusercontent.com/wfxr/forgit/master/bin/git-forgit
-sudo chmod --verbose a+rx /usr/local/bin/git-forgit
-echo
-
 echo Install dirt ...
 sudo wget --output-document /usr/local/bin/dirt \
   https://gist.githubusercontent.com/rsvp/8089760/raw/dd8d84509a509be5495db3742d893e278fdf4df6/dirt.sh
@@ -135,6 +129,24 @@ echo Install myrepos ...
 sudo wget --output-document /usr/local/bin/mr \
   https://raw.githubusercontent.com/RichiH/myrepos/master/mr
 sudo chmod --verbose a+rx /usr/local/bin/mr
+echo
+
+echo Install git completion ...
+sudo wget --output-document /etc/bash_completion.d/git \
+  https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+sudo chmod --verbose a+rx /etc/bash_completion.d/git
+echo
+
+echo Install git-forgit completion ...
+sudo wget --output-document /etc/bash_completion.d/git-forgit \
+  https://raw.githubusercontent.com/wfxr/forgit/master/bin/git-forgit
+sudo chmod --verbose a+rx /etc/bash_completion.d/git-forgit
+echo
+
+echo Install bash completion ...
+sudo wget --output-document /etc/bash_completion.d/bash_completion_compat \
+  https://raw.githubusercontent.com/scop/bash-completion/master/bash_completion.d/000_bash_completion_compat.bash
+sudo chmod --verbose a+rx /etc/bash_completion.d/bash_completion_compat
 echo
 
 echo Make some scripts executable ...
