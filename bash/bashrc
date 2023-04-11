@@ -78,8 +78,9 @@ esac
 # exa
 export EXA_COLORS='*.sh=31:*.png=32:*.py=33;1:*.txt=34:*.pdf=35:*.vim=36:*.tmp=37'
 
-# Permanently add sh directory to $PATH
+# Add some directories to $PATH
 export PATH=$PATH:~/.files/sh
+export PATH=$PATH:~/.files/doc/pandoc-from-markdown-to-pdf
 
 # Alias definitions
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
