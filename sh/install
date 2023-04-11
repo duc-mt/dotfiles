@@ -131,6 +131,12 @@ sudo wget --output-document /usr/local/bin/mr \
 sudo chmod --verbose a+rx /usr/local/bin/mr
 echo
 
+echo Install fonts ...
+sudo cp --recursive --verbose \
+  /home/kali/.files/doc/pandoc-from-markdown-to-pdf/fonts/ \
+  /usr/local/share/fonts/
+echo
+
 echo Install git completion ...
 sudo wget --output-document /etc/bash_completion.d/git \
   https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash

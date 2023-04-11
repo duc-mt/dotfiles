@@ -7,3 +7,6 @@
 [submodule "doc/bash-redirections-cheat-sheet"]
 	path = doc/bash-redirections-cheat-sheet
 	url = https://github.com/pkrumins/bash-redirections-cheat-sheet
+[submodule "doc/pandoc-from-markdown-to-pdf"]
+	path = doc/pandoc-from-markdown-to-pdf
+	url = https://github.com/SixArm/pandoc-from-markdown-to-pdf.git
