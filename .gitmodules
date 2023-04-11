@@ -13,3 +13,6 @@
 [submodule "doc/idiomatic-vimrc"]
 	path = doc/idiomatic-vimrc
 	url = https://github.com/romainl/idiomatic-vimrc.git
+[submodule "doc/quick-SQL-cheatsheet"]
+	path = doc/quick-SQL-cheatsheet
+	url = https://github.com/enochtangg/quick-SQL-cheatsheet.git
