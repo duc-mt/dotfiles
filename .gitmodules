@@ -1,3 +1,6 @@
 [submodule "doc/bash-coding-style"]
 	path = doc/bash-coding-style
 	url = https://github.com/icy/bash-coding-style.git
+[submodule "doc/CyberSecurity"]
+	path = doc/CyberSecurity
+	url = https://github.com/DerekBabb/CyberSecurity.git
