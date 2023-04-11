@@ -10,3 +10,6 @@
 [submodule "doc/pandoc-from-markdown-to-pdf"]
 	path = doc/pandoc-from-markdown-to-pdf
 	url = https://github.com/SixArm/pandoc-from-markdown-to-pdf.git
+[submodule "doc/idiomatic-vimrc"]
+	path = doc/idiomatic-vimrc
+	url = https://github.com/romainl/idiomatic-vimrc.git
