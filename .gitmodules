@@ -16,3 +16,6 @@
 [submodule "doc/quick-SQL-cheatsheet"]
 	path = doc/quick-SQL-cheatsheet
 	url = https://github.com/enochtangg/quick-SQL-cheatsheet.git
+[submodule "doc/markdown-cheatsheet"]
+	path = doc/markdown-cheatsheet
+	url = https://github.com/tchapi/markdown-cheatsheet.git
