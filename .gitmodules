@@ -4,3 +4,6 @@
 [submodule "doc/CyberSecurity"]
 	path = doc/CyberSecurity
 	url = https://github.com/DerekBabb/CyberSecurity.git
+[submodule "doc/bash-redirections-cheat-sheet"]
+	path = doc/bash-redirections-cheat-sheet
+	url = https://github.com/pkrumins/bash-redirections-cheat-sheet
