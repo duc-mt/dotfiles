@@ -25,3 +25,6 @@
 [submodule "doc/HaxorHandbook"]
 	path = doc/HaxorHandbook
 	url = https://github.com/cyberfascinate/HaxorHandbook.git
+[submodule "doc/CEH-Topics"]
+	path = doc/CEH-Topics
+	url = https://github.com/ryh04x/CEH-Topics.git
