@@ -22,3 +22,6 @@
 [submodule "doc/Minder"]
 	path = doc/Minder
 	url = https://github.com/phase1geo/Minder.wiki.git
+[submodule "doc/HaxorHandbook"]
+	path = doc/HaxorHandbook
+	url = https://github.com/cyberfascinate/HaxorHandbook.git
