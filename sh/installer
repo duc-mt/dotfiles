@@ -146,6 +146,13 @@ sudo cp --recursive --verbose \
   /usr/local/share/fonts/
 echo
 
+echo Install git-submanage ...
+sudo git clone https://github.com/idbrii/git-submanage.git \
+  /usr/local/bin/git-submanage
+find /usr/local/bin/git-submanage -type f -name "git-*" -exec \
+  sudo chmod --verbose a+rx {} \;
+echo
+
 echo Install git completion ...
 sudo wget --output-document /etc/bash_completion.d/git \
   https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
