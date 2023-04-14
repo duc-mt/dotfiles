@@ -37,3 +37,36 @@
 [submodule "doc/ccna/CCNA-Training"]
 	path = doc/ccna/CCNA-Training
 	url = https://github.com/cbeasley92/CCNA-Training.git
+[submodule "doc/security/PracticalCyberSecurityResources"]
+	path = doc/security/PracticalCyberSecurityResources
+	url = https://github.com/brcyrr/PracticalCyberSecurityResources.git
+[submodule "doc/security/PayloadsAllTheThings"]
+	path = doc/security/PayloadsAllTheThings
+	url = https://github.com/brcyrr/PayloadsAllTheThings.git
+[submodule "doc/security/it-security-lecture"]
+	path = doc/security/it-security-lecture
+	url = https://github.com/bkimminich/it-security-lecture.git
+[submodule "doc/security/Purple-Teaming-Capstone-Engagement"]
+	path = doc/security/Purple-Teaming-Capstone-Engagement
+	url = https://github.com/Sk3llington/Purple-Teaming-Capstone-Engagement.git
+[submodule "doc/bash/Bash-Oneliner"]
+	path = doc/bash/Bash-Oneliner
+	url = https://github.com/onceupon/Bash-Oneliner.git
+[submodule "doc/linux/Linux-Commands-Mindmap"]
+	path = doc/linux/Linux-Commands-Mindmap
+	url = https://github.com/0xTRAW/Linux-Commands-Mindmap.git
+[submodule "doc/linux/Linux-Privilege-Escalation-MindMap"]
+	path = doc/linux/Linux-Privilege-Escalation-MindMap
+	url = https://github.com/0xTRAW/Linux-Privilege-Escalation-MindMap.git
+[submodule "doc/security/hackingtool"]
+	path = doc/security/hackingtool
+	url = https://github.com/Z4nzu/hackingtool.git
+[submodule "doc/the-book-of-secret-knowledge"]
+	path = doc/the-book-of-secret-knowledge
+	url = https://github.com/trimstray/the-book-of-secret-knowledge.git
+[submodule "doc/security/hacker-laws"]
+	path = doc/security/hacker-laws
+	url = https://github.com/dwmkerr/hacker-laws.git
+[submodule "doc/security/Beginner-Network-Pentesting"]
+	path = doc/security/Beginner-Network-Pentesting
+	url = https://github.com/hmaverickadams/Beginner-Network-Pentesting.git
