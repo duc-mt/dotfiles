@@ -39,7 +39,7 @@ yes | sudo apt install \
   fortune-mod sl cowsay toilet cmatrix rename wordnet unzip ripgrep whois tldr \
   wbritish-insane bitwise convertall traceroute exa fzf gip meld whatmask qalc mupdf \
   bat btop duf gitk git-extras perl-doc mgitstatus kristall markdown lookatme mdp \
-  minder treesheets calendar ntpdate
+  minder treesheets calendar ntpdate shellcheck pre-commit
 yes | sudo apt autoremove
 yes | sudo apt autoclean
 echo
@@ -59,6 +59,7 @@ echo
 echo "Install Vim ..."
 git clone https://github.com/vim/vim.git /tmp/vim/
 cd /tmp/vim/src/
+./configure --with-features=huge --enable-python3interp
 make
 yes | sudo make install
 rm --force --recursive --verbose /tmp/vim/
