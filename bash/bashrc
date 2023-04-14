@@ -80,7 +80,7 @@ export EXA_COLORS='*.sh=31:*.png=32:*.py=33;1:*.txt=34:*.pdf=35:*.vim=36:*.tmp=3
 
 # Add some directories to $PATH
 export PATH=$PATH:~/.files/sh
-export PATH=$PATH:~/.files/doc/pandoc-from-markdown-to-pdf
+export PATH=$PATH:~/.files/sh/pandoc-from-markdown-to-pdf
 
 # Alias definitions
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
