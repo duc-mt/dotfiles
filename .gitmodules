@@ -28,9 +28,6 @@
 [submodule "doc/vim/idiomatic-vimrc"]
 	path = doc/vim/idiomatic-vimrc
 	url = https://github.com/romainl/idiomatic-vimrc
-[submodule "sh/pandoc-from-markdown-to-pdf"]
-	path = sh/pandoc-from-markdown-to-pdf
-	url = https://github.com/SixArm/pandoc-from-markdown-to-pdf
 [submodule "doc/ccna/CCNA-Cheat-Sheet"]
 	path = doc/ccna/CCNA-Cheat-Sheet
 	url = https://github.com/HerrSpace/CCNA-Cheat-Sheet.git
