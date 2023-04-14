@@ -132,10 +132,11 @@ sudo wget --output-document /usr/local/bin/mr \
 sudo chmod --verbose a+rx /usr/local/bin/mr
 echo
 
-echo Install fonts ...
+echo Install pandoc-from-markdown-to-pdf ...
 sudo cp --recursive --verbose \
-  /home/kali/.files/doc/pandoc-from-markdown-to-pdf/fonts/ \
+  ~/.files/sh/pandoc-from-markdown-to-pdf/fonts/ \
   /usr/local/share/fonts/
+chmod --verbose a+rx ~/.files/sh/pandoc-from-markdown-to-pdf/pandoc-from-markdown-to-pdf
 echo
 
 echo Install git completion ...

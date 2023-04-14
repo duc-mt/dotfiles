@@ -1,33 +1,33 @@
-[submodule "doc/bash-coding-style"]
-	path = doc/bash-coding-style
-	url = https://github.com/icy/bash-coding-style.git
-[submodule "doc/CyberSecurity"]
-	path = doc/CyberSecurity
-	url = https://github.com/DerekBabb/CyberSecurity.git
-[submodule "doc/bash-redirections-cheat-sheet"]
-	path = doc/bash-redirections-cheat-sheet
-	url = https://github.com/pkrumins/bash-redirections-cheat-sheet
-[submodule "doc/pandoc-from-markdown-to-pdf"]
-	path = doc/pandoc-from-markdown-to-pdf
-	url = https://github.com/SixArm/pandoc-from-markdown-to-pdf.git
-[submodule "doc/idiomatic-vimrc"]
-	path = doc/idiomatic-vimrc
-	url = https://github.com/romainl/idiomatic-vimrc.git
-[submodule "doc/quick-SQL-cheatsheet"]
-	path = doc/quick-SQL-cheatsheet
-	url = https://github.com/enochtangg/quick-SQL-cheatsheet.git
 [submodule "doc/markdown-cheatsheet"]
 	path = doc/markdown-cheatsheet
 	url = https://github.com/tchapi/markdown-cheatsheet.git
-[submodule "doc/Minder"]
-	path = doc/Minder
-	url = https://github.com/phase1geo/Minder.wiki.git
-[submodule "doc/HaxorHandbook"]
-	path = doc/HaxorHandbook
-	url = https://github.com/cyberfascinate/HaxorHandbook.git
-[submodule "doc/CEH-Topics"]
-	path = doc/CEH-Topics
-	url = https://github.com/ryh04x/CEH-Topics.git
-[submodule "doc/vim-gists"]
-	path = doc/vim-gists
+[submodule "doc/bash/bash-coding-style"]
+	path = doc/bash/bash-coding-style
+	url = https://github.com/icy/bash-coding-style.git
+[submodule "doc/bash/bash-redirections-cheat-sheet"]
+	path = doc/bash/bash-redirections-cheat-sheet
+	url = https://github.com/pkrumins/bash-redirections-cheat-sheet.git
+[submodule "doc/vim/vim-gists"]
+	path = doc/vim/vim-gists
 	url = https://gist.github.com/romainl/4b9f139d2a8694612b924322de1025ce
+[submodule "doc/sql/quick-SQL-cheatsheet"]
+	path = doc/sql/quick-SQL-cheatsheet
+	url = https://github.com/enochtangg/quick-SQL-cheatsheet.git
+[submodule "doc/sql/SQL-Cheatsheet"]
+	path = doc/sql/SQL-Cheatsheet
+	url = https://github.com/jeznacki/SQL-Cheatsheet.git
+[submodule "doc/security/CEH-Topics"]
+	path = doc/security/CEH-Topics
+	url = https://github.com/ryh04x/CEH-Topics
+[submodule "doc/security/CyberSecurity"]
+	path = doc/security/CyberSecurity
+	url = https://github.com/DerekBabb/CyberSecurity.git
+[submodule "doc/security/HaxorHandbook"]
+	path = doc/security/HaxorHandbook
+	url = https://github.com/cyberfascinate/HaxorHandbook.git
+[submodule "doc/vim/idiomatic-vimrc"]
+	path = doc/vim/idiomatic-vimrc
+	url = https://github.com/romainl/idiomatic-vimrc
+[submodule "sh/pandoc-from-markdown-to-pdf"]
+	path = sh/pandoc-from-markdown-to-pdf
+	url = https://github.com/SixArm/pandoc-from-markdown-to-pdf
