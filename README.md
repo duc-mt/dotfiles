@@ -42,9 +42,8 @@ echo
 # Install packages
 
 ```bash
-cd ~/.files/sh/
-sudo chmod +x install
-sudo ./install
+sudo chmod +x ~/.files/sh/installer
+sudo bash ~/.files/sh/installer
 ```
 
 # Generate symbolic links
@@ -60,5 +59,5 @@ ln -sf ~/.files/bash/profile ~/.profile
 # Remove execute permission from install script
 
 ```bash
-sudo chmod -x ~/.files/sh/install
+sudo chmod -x ~/.files/sh/installer
 ```

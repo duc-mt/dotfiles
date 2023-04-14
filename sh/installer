@@ -38,7 +38,8 @@ yes | sudo apt install \
   librsvg2-bin sqlformat python3-q-text-as-data net-tools aircrack-ng mc gitless \
   fortune-mod sl cowsay toilet cmatrix rename wordnet unzip ripgrep whois tldr \
   wbritish-insane bitwise convertall traceroute exa fzf gip meld whatmask qalc mupdf \
-  bat btop duf gitk git-extras perl-doc mgitstatus
+  bat btop duf gitk git-extras perl-doc mgitstatus kristall markdown lookatme mdp \
+  minder treesheets calendar ntpdate
 yes | sudo apt autoremove
 yes | sudo apt autoclean
 echo
