@@ -31,3 +31,9 @@
 [submodule "sh/pandoc-from-markdown-to-pdf"]
 	path = sh/pandoc-from-markdown-to-pdf
 	url = https://github.com/SixArm/pandoc-from-markdown-to-pdf
+[submodule "doc/ccna/CCNA-Cheat-Sheet"]
+	path = doc/ccna/CCNA-Cheat-Sheet
+	url = https://github.com/HerrSpace/CCNA-Cheat-Sheet.git
+[submodule "doc/ccna/CCNA-Training"]
+	path = doc/ccna/CCNA-Training
+	url = https://github.com/cbeasley92/CCNA-Training.git
