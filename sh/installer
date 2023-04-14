@@ -134,10 +134,16 @@ sudo chmod --verbose a+rx /usr/local/bin/mr
 echo
 
 echo Install pandoc-from-markdown-to-pdf ...
+sudo git clone https://github.com/SixArm/pandoc-from-markdown-to-pdf.git \
+  /usr/local/bin/pandoc-from-markdown-to-pdf
+sudo chmod --verbose a+rx \
+  usr/local/bin/pandoc-from-markdown-to-pdf/pandoc-from-markdown-to-pdf
+echo
+
+echo Install fonts required by pandoc-from-markdown-to-pdf ...
 sudo cp --recursive --verbose \
-  ~/.files/sh/pandoc-from-markdown-to-pdf/fonts/ \
+  /usr/local/bin/pandoc-from-markdown-to-pdf/fonts/ \
   /usr/local/share/fonts/
-chmod --verbose a+rx ~/.files/sh/pandoc-from-markdown-to-pdf/pandoc-from-markdown-to-pdf
 echo
 
 echo Install git completion ...
