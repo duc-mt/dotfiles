@@ -109,8 +109,10 @@ UPGRADE () {
   yes | sudo apt full-upgrade
   yes | sudo apt autoremove
   yes | sudo apt autoclean
-  printf " --------------------\nCheck for updates to VIM submodules ...\n"
+  printf " --------------------\nCheck for updates to VIM plugins ...\n"
   git -C ~/.vim submodule update --init --recursive --remote
+  printf " --------------------\nCheck for updates to submodules within ~/.files ...\n"
+  git -C ~/.files submodule update --init --recursive --remote
   printf " --------------------\nCheck for updates to PIP package manager ...\n"
   python -m pip install --upgrade pip
   cowsay You are up to date!
