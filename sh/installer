@@ -39,7 +39,7 @@ yes | sudo apt install \
   fortune-mod sl cowsay toilet cmatrix rename wordnet unzip ripgrep whois tldr \
   wbritish-insane bitwise convertall traceroute exa fzf gip meld whatmask qalc mupdf \
   bat btop duf gitk git-extras perl-doc mgitstatus kristall markdown lookatme mdp \
-  minder treesheets calendar ntpdate shellcheck pre-commit
+  minder treesheets calendar ntpdate shellcheck pre-commit myspell-en-au
 yes | sudo apt autoremove
 yes | sudo apt autoclean
 echo
@@ -76,7 +76,7 @@ git clone https://github.com/rtomayko/git-sh.git /tmp/git-sh/
 cd /tmp/git-sh/
 make
 yes | sudo make install
-rm -rf /tmp/git-sh/
+rm -frv /tmp/git-sh/
 echo
 
 echo Install git-info ...
@@ -169,6 +169,30 @@ echo Install bash completion ...
 sudo wget --output-document /etc/bash_completion.d/bash_completion_compat \
   https://raw.githubusercontent.com/scop/bash-completion/master/bash_completion.d/000_bash_completion_compat.bash
 sudo chmod --verbose a+rx /etc/bash_completion.d/bash_completion_compat
+echo
+
+echo Install Vietnamese wordlist ...
+wget --output-document /tmp/vn_words.zip \
+  https://www.informatik.uni-leipzig.de/~duc/software/misc/vn_words.zip
+sudo unzip /tmp/vn_words.zip -d /usr/share/dict/vn_words
+rm -frv /tmp/vn_words.zip
+echo
+
+echo Install Moby wordlist ...
+wget --output-document /tmp/moby_words.zip \
+  https://www.gutenberg.org/files/3202/files.zip
+sudo unzip /tmp/moby_words.zip -d /usr/share/dict/moby_words
+rm -frv /tmp/moby_words.zip
+sudo cp -var /usr/share/dict/moby_words/files/. /usr/share/dict/moby_words/
+sudo rmdir /usr/share/dict/moby_words/files/
+sudo find /usr/share/dict/moby_words/ -type f \
+  -name "[[:upper:]]*" -exec mv {} {}.utf-8.add \;
+sudo find /usr/share/dict/moby_words/ -type f \
+  -name "[[:upper:]]*" -exec rename "y/A-Z/a-z/" {} \;
+echo
+
+echo Install English wordlist ...
+sudo git clone https://github.com/dwyl/english-words.git /usr/share/dict/english-words
 echo
 
 echo Make some scripts executable ...
