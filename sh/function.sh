@@ -86,17 +86,6 @@ py-tree () { python3 ~/.files/py/tree.py $1 ; }
 
 
 # ==== FUNCTION ========================================================================
-#         NAME: sort_dict
-#  DESCRIPTION: Sort various text files in vim dictionary.
-#   PARAMETERS: ---
-#     EXAMPLES: sort_dict
-# ======================================================================================
-sort_dict () {
-  find ~/.vim/dictionary/sort -type f -exec . {} \;
-}
-
-
-# ==== FUNCTION ========================================================================
 #         NAME: UPGRADE
 #  DESCRIPTION: Upgrade Linux, python, and pip packages.
 #   PARAMETERS: ---
