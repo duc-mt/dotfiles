@@ -45,33 +45,7 @@ alias ll='exa -alhF'
 alias la='ll --git'
 alias tree='exa --tree --long'
 
-# other aliases
-alias ..='cd ..'
-alias ....='cd ../..'
-alias cd..='cd ..'
-alias cd....='cd ../..'
-alias e='vim -o'
-alias E='vim -o'
-alias vi='vim -u NONE' # Default vim
-alias cc='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ University\ of\ South\ Australia &&\
-  clear && ls'
-alias W='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ \
-University\ of\ South\ Australia/Desktop/myportfolio && clear && ls -l'
-alias V='cd ~/.vim && clear && ls -al'
-alias F='cd ~/.files && clear && ls -al'
-alias view='wslview'  # View a file in another app
-alias open='xdg-open' # Open a file with default app, or view a file within terminal'
-alias opne='xdg-open' # In case I mistype the word 'open'
-youtube='https:\/\/youtube.com'
-facebook='https:\/\/facebook.com'
-alias bashrc='vim ~/.files/bash/bashrc'
-alias vimrc='vim ~/.vim/vimrc'
-alias gitconfig='vim ~/.files/git/gitconfig'
-alias func='vim ~/.files/sh/function.sh'
-alias installer='vim ~/.files/sh/installer'
-alias py='python3'
-alias ex='exit'
-alias cl='clear'
+# git aliases
 alias gsh='git-sh'
 alias gitsh='git-sh'
 alias gst='git st'
@@ -85,22 +59,49 @@ alias gcl='git clone'
 alias gco='git checkout'
 alias gpsuh='gpush'
 alias gpuhs='gpush'
-alias ConvertREADME.mdToPDF='clear && printf "Wait for README.md to be converted\
- ...\n--------------------\n" && cp README.md ../pandoc_md_to_pdf/ && cd\
- ../pandoc_md_to_pdf && ./md2pdf_syn_bullet.sh README.md sample_output.pdf\
- && mv sample_output.pdf ../ && rm README.md && cd ..'
-alias githubtrending='starcli -S en -L table -l python -r 5 -d today'
-alias sqlformat='sqlformat -s --reindent --keywords upper --identifiers lower'
-alias pipinstall='python3 -m pip install --user --upgrade'
+
+# cd aliases
+alias ..='cd ..'
+alias ....='cd ../..'
+alias cd..='cd ..'
+alias cd....='cd ../..'
+alias cc='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ University\ of\ South\ Australia &&\
+  clear && ls'
+alias W='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ \
+University\ of\ South\ Australia/Desktop/myportfolio && clear && ls -l'
+alias V='cd ~/.vim && clear && ls -al'
+alias F='cd ~/.files && clear && ls -al'
+
+# File aliases
+alias bashrc='vim ~/.files/bash/bashrc'
+alias vimrc='vim ~/.vim/vimrc'
+alias gitconfig='vim ~/.files/git/gitconfig'
+alias func='vim ~/.files/sh/function.sh'
+alias installer='vim ~/.files/sh/installer'
+alias aliasconfig='vim ~/.files/sh/alias.sh'
+
+# Vi/View aliases
+alias e='vim -o'
+alias E='vim -o'
+alias vi='vim -u NONE' # Default vim
+alias view='wslview'  # View a file in another app
+alias open='xdg-open' # Open a file with default app, or view a file within terminal'
+alias opne='xdg-open' # In case I mistype the word 'open'
+youtube='https:\/\/youtube.com'
+facebook='https:\/\/facebook.com'
+
+# Other aliases
+alias py='python3'
+alias ex='exit'
+alias cl='clear'
 alias ddate='date +"%R - %a, %B %d, %Y"'
 alias dday='date +"%d-%m-%Y"'
 alias toilet='toilet -t -f mono12 --filter border:metal -F metal'
 alias toiletgay='toilet --filter border:gay -F gay'
-alias alllowercase="rename 'y/A-Z/a-z/' *"
-alias alluppercase="rename 'y/a-z/A-Z/' *"
-alias zzz='zoxide'
+alias sqlformat='sqlformat -s --reindent --keywords upper --identifiers lower'
+alias pipinstall='python3 -m pip install --upgrade install'
 alias updatedb='sudo updatedb'
 alias hugodeploy='hugo --cleanDestinationDir --gc --minify'
 
-# Example: cat vimrc | CountChars
+## Example: cat vimrc | CountChars
 alias CountChars='sed "s/\(.\)/\n\1/g" | sort | uniq -c | sort -gr | column'
