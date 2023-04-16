@@ -77,10 +77,10 @@ alias F='cd ~/.files && clear && ls -al'
 # File aliases
 alias bashrc='vim ~/.files/bash/bashrc'
 alias vimrc='vim ~/.vim/vimrc'
-alias gitconfig='vim ~/.files/git/gitconfig'
+alias gitconf='vim ~/.files/git/gitconfig'
 alias func='vim ~/.files/sh/function.sh'
 alias installer='vim ~/.files/sh/installer'
-alias aliasconfig='vim ~/.files/sh/alias.sh'
+alias aliasconf='vim ~/.files/sh/alias.sh'
 
 # Vi aliases
 alias e='vim -o'
