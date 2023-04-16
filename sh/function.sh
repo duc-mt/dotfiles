@@ -86,24 +86,25 @@ py-tree () { python3 ~/.files/py/tree.py $1 ; }
 
 
 # ==== FUNCTION ========================================================================
-#         NAME: UPGRADE
-#  DESCRIPTION: Upgrade Linux, python, and pip packages.
+#         NAME: upgrade
+#  DESCRIPTION: Upgrade linux, python, and pip packages.
 #   PARAMETERS: ---
-#     EXAMPLES: UPGRADE
+#     EXAMPLES: upgrade
 # ======================================================================================
-UPGRADE () {
+upgrade () {
   clear
   printf "Check for updates to the Operating System ...\n --------------------\n"
   sudo apt update
   yes | sudo apt full-upgrade
   yes | sudo apt autoremove
   yes | sudo apt autoclean
-  printf " --------------------\nCheck for updates to VIM plugins ...\n"
+  printf " --------------------\nCheck for updates to vim plugins ...\n"
   git -C ~/.vim submodule update --init --recursive --remote
   printf " --------------------\nCheck for updates to submodules within ~/.files ...\n"
   git -C ~/.files submodule update --init --recursive --remote
-  printf " --------------------\nCheck for updates to PIP package manager ...\n"
+  printf " --------------------\nCheck for updates to pip packages ...\n"
   python -m pip install --upgrade pip
+  pip-review --local --auto
   cowsay You are up to date!
 }
 
