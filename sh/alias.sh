@@ -80,13 +80,17 @@ alias func='vim ~/.files/sh/function.sh'
 alias installer='vim ~/.files/sh/installer'
 alias aliasconfig='vim ~/.files/sh/alias.sh'
 
-# Vi/View aliases
+# Vi aliases
 alias e='vim -o'
 alias E='vim -o'
 alias vi='vim -u NONE' # Default vim
-alias view='wslview'  # View a file in another app
-alias open='xdg-open' # Open a file with default app, or view a file within terminal'
-alias opne='xdg-open' # In case I mistype the word 'open'
+
+# View aliases
+alias view='explorer.exe'
+alias open='explorer.exe'
+alias opne='open'
+
+# Link aliases
 youtube='https:\/\/youtube.com'
 facebook='https:\/\/facebook.com'
 
