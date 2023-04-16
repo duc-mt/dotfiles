@@ -1,36 +1,49 @@
-# Personal dotfiles
+# Table of Contents
 
-Do not add anything to your dotfiles if you do not understand what it does.
+1. [Install WSL utilities ...](#install-wsl-utilities-)
+    1. [Ubuntu](#ubuntu)
+    1. [Debian](#debian)
+    1. [Kali Linux](#kali-linux)
+1. [Clone dotfiles and dotvim](#clone-dotfiles-and-dotvim)
+1. [Run installer](#run-installer)
+1. [Generate symlinks](#generate-symlinks)
+1. [Clean up installation](#clean-up-installation)
 
-# License
+# Install WSL utilities ...
 
-```text
-Copyright (c) <2021> <tanducmai>
+## Ubuntu
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+```bash
+sudo add-apt-repository ppa:wslutilities/wslu
+sudo apt update
+sudo apt install wslu
 ```
 
-# Clone dotfiles and dotvim repositories
+## Debian
 
-Requirements:
+```bash
+sudo apt install gnupg2 apt-transport-https
+wget -O - https://pkg.wslutiliti.es/public.key | \
+  sudo tee -a /etc/apt/trusted.gpg.d/wslu.asc
+echo "deb https://pkg.wslutiliti.es/debian buster main" | \
+  sudo tee -a /etc/apt/sources.list
+sudo apt update
+yes | sudo apt install wslu
+```
 
-1. `sudo`
-1. `git`
+## Kali Linux
+
+```bash
+sudo apt install gnupg2 apt-transport-https
+wget -O - https://pkg.wslutiliti.es/public.key | \
+  sudo tee -a /etc/apt/trusted.gpg.d/wslu.asc
+echo "deb https://pkg.wslutiliti.es/kali kali-rolling main" | \
+  sudo tee -a /etc/apt/sources.list
+sudo apt update
+yes | sudo apt install wslu
+```
+
+# Clone dotfiles and dotvim
 
 ```bash
 echo "Clone dotfiles and dotvim ..."
@@ -39,14 +52,14 @@ git clone --recursive https://github.com/tanducmai/dotvim.git ~/.vim
 echo
 ```
 
-# Install packages
+# Run installer
 
 ```bash
 sudo chmod +x ~/.files/sh/installer
 sudo bash ~/.files/sh/installer
 ```
 
-# Generate symbolic links
+# Generate symlinks
 
 ```bash
 ln -sf ~/.files/git/gitconfig ~/.gitconfig
@@ -56,7 +69,7 @@ ln -sf ~/.files/bash/bash_logout ~/.bash_logout
 ln -sf ~/.files/bash/profile ~/.profile
 ```
 
-# Remove execute permission from install script
+# Clean up installation
 
 ```bash
 sudo chmod -x ~/.files/sh/installer
