@@ -1,6 +1,6 @@
 # Table of Contents
 
-1. [Install WSL utilities ...](#install-wsl-utilities-)
+1. [Install WSL utilities](install-wsl-utilities)
     1. [Ubuntu](#ubuntu)
     1. [Debian](#debian)
     1. [Kali Linux](#kali-linux)
@@ -46,16 +46,17 @@ yes | sudo apt install wslu
 # Clone dotfiles and dotvim
 
 ```bash
-echo "Clone dotfiles and dotvim ..."
-git clone https://github.com/tanducmai/dotfiles.git ~/.files
-git clone --recursive https://github.com/tanducmai/dotvim.git ~/.vim
+echo Clone dotfiles ...
+git clone --recursive https://github.com/tanducmai/dotfiles.git ~/.files
 echo
+echo Clone dotvim ...
+git clone --recursive https://github.com/tanducmai/dotvim.git ~/.vim
 ```
 
 # Run installer
 
 ```bash
-sudo chmod +x ~/.files/sh/installer
+chmod +x ~/.files/sh/installer
 sudo bash ~/.files/sh/installer
 ```
 
@@ -72,5 +73,5 @@ ln -sf ~/.files/bash/profile ~/.profile
 # Clean up installation
 
 ```bash
-sudo chmod -x ~/.files/sh/installer
+chmod -x ~/.files/sh/installer
 ```
