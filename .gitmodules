@@ -67,3 +67,9 @@
 [submodule "doc/security/Beginner-Network-Pentesting"]
 	path = doc/security/Beginner-Network-Pentesting
 	url = https://github.com/hmaverickadams/Beginner-Network-Pentesting.git
+[submodule "doc/security/awesome-pentest-cheat-sheets"]
+	path = doc/security/awesome-pentest-cheat-sheets
+	url = https://github.com/coreb1t/awesome-pentest-cheat-sheets.git
+[submodule "doc/security/SecLists"]
+	path = doc/security/SecLists
+	url = https://github.com/danielmiessler/SecLists
