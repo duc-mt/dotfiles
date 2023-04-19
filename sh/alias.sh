@@ -111,7 +111,7 @@ alias toiletgay='toilet --filter border:gay -F gay'
 alias sqlformat='sqlformat -s --reindent --keywords upper --identifiers lower'
 alias pipinstall='python3 -m pip install --upgrade install'
 alias updatedb='sudo updatedb'
-alias hugodeploy='hugo --cleanDestinationDir --gc --minify'
+alias hugodeploy='hugo --cleanDestinationDir --gc'
 
 ## Example: cat vimrc | CountChars
 alias CountChars='sed "s/\(.\)/\n\1/g" | sort | uniq -c | sort -gr | column'
