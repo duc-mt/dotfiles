@@ -73,8 +73,7 @@ alias cd..='cd ..'
 alias cd....='cd ../..'
 alias cc='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ University\ of\ South\ Australia &&\
   clear && ls'
-alias W='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ \
-University\ of\ South\ Australia/Desktop/myportfolio && clear && ls -l'
+alias W='cd ~/myportfolio && clear && ls -l'
 alias V='cd ~/.vim && clear && ls -al'
 alias F='cd ~/.files && clear && ls -al'
 

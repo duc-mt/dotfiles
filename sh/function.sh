@@ -140,7 +140,7 @@ hugolive () {
         hugo server --disableFastRender --buildDrafts --buildExpired --buildFuture \
           --forceSyncStatic --navigateToChanged &
         clear
-        sleep 45
+        sleep 15
         kill $(pidof hugo)
       done
     else
