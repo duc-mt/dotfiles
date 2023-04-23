@@ -123,9 +123,6 @@
   ; git rao https://url-here.git
   ; git ac "Initial commit"
   ; git pushitgood
-  # }}}
-
-  # basic {{{
   a = add
   ap = add -p
   st = status -s
