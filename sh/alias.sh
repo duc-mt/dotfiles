@@ -91,13 +91,14 @@ alias E='vim -o'
 alias vi='vim -u NONE' # Default vim
 
 # View aliases
-alias view='explorer.exe'
-alias open='explorer.exe'
+alias view='xdg-open'
+alias open='view'
 alias opne='open'
 
 # Link aliases
-youtube='https:\/\/youtube.com'
-facebook='https:\/\/facebook.com'
+yt='https://youtube.com'
+fb='https://facebook.com'
+hugodeploy='https://app.netlify.com/sites/tanducmai/overview'
 
 # Other aliases
 alias py='python3'
