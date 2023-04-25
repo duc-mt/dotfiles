@@ -136,13 +136,9 @@ hugolive () {
   if [ -f ".hugo_build.lock" ]; then
     sudo lsof -i:1313
     if [ $? != 0 ]; then
-      while :; do
+        clear
         hugo server --disableFastRender --buildDrafts --buildExpired --buildFuture \
           --forceSyncStatic --navigateToChanged &
-        clear
-        sleep 15
-        kill $(pidof hugo)
-      done
     else
       echo ---------------
       echo "ERROR: Port 1313 is in use."
