@@ -1,0 +1,111 @@
+#!/usr/bin/bash
+
+# ======================================================================================
+#
+#         FILE:  gnupg
+#       AUTHOR:  Tan Duc Mai, tan.duc.work@gmail.com
+#      COMPANY:  University of South Australia (UniSA)
+#        USAGE:  ./gnupg
+#  DESCRIPTION:  Install GnuPG
+#      CREATED:  Apr 24, 2023
+#
+# ======================================================================================
+
+# ==== FUNCTION ========================================================================
+#         NAME: install_gnupg
+#  DESCRIPTION: Install the selected package required to configure GnuPG
+#   PARAMETERS: 1. package name
+#               2. path/to/package_tar_file
+#     EXAMPLES: install_gnupg gnupg $gnupg_tar
+# ======================================================================================
+install_gnupg () {
+  cd /tmp/gnupg
+
+  # Download GnuPG latest version
+  wget --output-document /tmp/gnupg/"$1".tar https://www.gnupg.org"$2"
+
+  # Extract the tar file
+  tar --extract --verbose --file /tmp/gnupg/"$1".tar --directory=/tmp/gnupg
+
+  # Locate the relative path to the extracted tar file
+  extracted_file="$(find /tmp/gnupg -type d -name "$1-*")"
+
+  # Run configure and makefile to install GnuPG
+  cd "$extracted_file" || exit
+  ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+  make
+  make check
+  yes | sudo make install
+}
+
+# --------------------------------------------------------------------------------------
+# Create a temporary directory for GnuPG installation
+# --------------------------------------------------------------------------------------
+mkdir --parents /tmp/gnupg
+
+# --------------------------------------------------------------------------------------
+# Download index.html file of the GnuPG latest version
+# --------------------------------------------------------------------------------------
+wget --output-document /tmp/gnupg/index.html https://www.gnupg.org/download/
+
+# --------------------------------------------------------------------------------------
+# Extract the text that points to the link for tar.bz2 file
+# --------------------------------------------------------------------------------------
+gnupg_tar="$( \
+  < /tmp/gnupg/index.html grep --extended-regexp ".tar.bz2" | head --lines 1 | \
+  grep --only-matching --perl-regexp '(?<=href=").*?(?=">)' | head --lines 1 \
+)"
+
+libgpg_error_tar="$( \
+  < /tmp/gnupg/index.html grep --extended-regexp "libgpg-error" | tail --lines 2 |
+  head --lines 1 | grep --only-matching --perl-regexp '(?<=href=").*?(?=">)' \
+)"
+
+libgcrypt_tar="$( \
+  < /tmp/gnupg/index.html grep --extended-regexp "libgcrypt" | tail --lines +2 |
+  head --lines 1 | grep --only-matching --perl-regexp '(?<=href=").*?(?=">)' \
+)"
+
+libksba_tar="$( \
+  < /tmp/gnupg/index.html grep --extended-regexp "libksba" | tail --lines 2 |
+  head --lines 1 | grep --only-matching --perl-regexp '(?<=href=").*?(?=">)' \
+)"
+
+libassuan_tar="$( \
+  < /tmp/gnupg/index.html grep --extended-regexp "libassuan" | tail --lines 2 |
+  head --lines 1 | grep --only-matching --perl-regexp '(?<=href=").*?(?=">)' \
+)"
+
+ntbTLS_tar="$( \
+  < /tmp/gnupg/index.html grep --extended-regexp "ntbtls" | tail --lines 2 |
+  head --lines 1 | grep --only-matching --perl-regexp '(?<=href=").*?(?=">)' \
+)"
+
+nPth_tar="$( \
+  < /tmp/gnupg/index.html grep --extended-regexp "npth" | tail --lines 2 |
+  head --lines 1 | grep --only-matching --perl-regexp '(?<=href=").*?(?=">)' \
+)"
+
+# --------------------------------------------------------------------------------------
+# Install each package following the path/to/package_tar_file
+# --------------------------------------------------------------------------------------
+install_gnupg libgpg-error $libgpg_error_tar
+
+# Since libgpg-error version 1.46, gpg-error-config is replaced by gpgrt-config.
+# For backward compatability, link these two files.
+# Source: https://github.com/msys2/MINGW-packages/issues/13539
+if [[ -f /usr/bin/gpgrt-config ]] && ! [[ -f /usr/bin/gpg-error-config ]]; then
+  sudo ln -sf /usr/bin/gpgrt-config /usr/bin/gpg-error-config
+fi
+
+install_gnupg libgcrypt $libgcrypt_tar
+install_gnupg libksba $libksba_tar
+install_gnupg libassuan $libassuan_tar
+install_gnupg ntbtls $ntbTLS_tar
+install_gnupg npth $nPth_tar
+install_gnupg gnupg $gnupg_tar
+
+# --------------------------------------------------------------------------------------
+# Clean up installation
+# --------------------------------------------------------------------------------------
+rm --interactive=never --recursive --verbose /tmp/gnupg
