@@ -1,9 +1,16 @@
 #!/usr/bin/bash
 
-# A simple script to organise my downloads folder.
-# Source: https://github.com/W3NDO/Organize
-
-###########
+# ======================================================================================
+#
+#         FILE:  organise
+#       AUTHOR:  Tan Duc Mai, tan.duc.work@gmail.com
+#      COMPANY:  University of South Australia (UniSA)
+#        USAGE:  ./organise
+#  DESCRIPTION:  A simple script to organise my downloads folder.
+#       SOURCE:  https://github.com/W3NDO/Organize
+#      CREATED:  Apr 15, 2023
+#
+# ======================================================================================
 
 # Go to the downloads folder
 cd ~/Downloads
@@ -49,7 +56,7 @@ mv *.zip *.rar Compressed_Files
 
 # The organise script is also sorted into the scripts folder, so take it out.
 cd Scripts
-mv organize.sh ..
+mv organise ..
 cd ..
 
 echo "All sorted!!"

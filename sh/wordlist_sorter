@@ -1,6 +1,15 @@
 #!/usr/bin/bash
 
-# Sort user-defined wordlist
+# ======================================================================================
+#
+#         FILE:  wordlist_sorter
+#       AUTHOR:  Tan Duc Mai, tan.duc.work@gmail.com
+#      COMPANY:  University of South Australia (UniSA)
+#        USAGE:  ./wordlist_sorter
+#  DESCRIPTION:  Sort user-defined wordlist
+#      CREATED:  Apr 15, 2023
+#
+# ======================================================================================
 
 set -eu
 
