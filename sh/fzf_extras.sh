@@ -2,10 +2,9 @@
 
 # ======================================================================================
 #
-#         FILE:  fzf-extras.sh
+#         FILE:  fzf_extras.sh
 #       AUTHOR:  Andy Weidenbaum
-#     MODIFIER:  Tan Duc Mai
-#        EMAIL:  tan.duc.work@gmail.com
+#     MODIFIER:  Tan Duc Mai, tan.duc.work@gmail.com
 #        USAGE:  Explained next to each command
 #  DESCRIPTION:  Key bindings from fzf wiki
 #       SOURCE:  https://github.com/atweiden/fzf-extras
