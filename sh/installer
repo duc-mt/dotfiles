@@ -12,14 +12,14 @@
 #
 # ======================================================================================
 
-# """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#                     ___ _   _ ____ _____  _    _     _
-#                    |_ _| \ | / ___|_   _|/ \  | |   | |
-#                     | ||  \| \___ \ | | / _ \ | |   | |
-#                     | || |\  |___) || |/ ___ \| |___| |___
-#                    |___|_| \_|____/ |_/_/   \_\_____|_____|
+# """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#                   ___ _   _ ____ _____  _    _     _     _____ ____
+#                  |_ _| \ | / ___|_   _|/ \  | |   | |   | ____|  _ \
+#                   | ||  \| \___ \ | | / _ \ | |   | |   |  _| | |_) |
+#                   | || |\  |___) || |/ ___ \| |___| |___| |___|  _ <
+#                  |___|_| \_|____/ |_/_/   \_\_____|_____|_____|_| \_\
 #
-# """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 echo "Begin installation"
 start=`date +%s`
@@ -39,7 +39,7 @@ yes | sudo apt install \
   mc gitless fortune-mod sl cowsay toilet cmatrix rename wordnet unzip ripgrep whois \
   tldr bitwise convertall traceroute exa fzf gip meld whatmask qalc mupdf lookatme mdp \
   bat btop duf gitk git-extras perl-doc mgitstatus kristall markdown minder treesheets \
-  calendar ntpdate shellcheck pre-commit myspell-en-au
+  calendar ntpdate shellcheck pre-commit myspell-en-au pass gpg libgtk-3-dev
 yes | sudo apt autoremove
 yes | sudo apt autoclean
 echo
@@ -65,10 +65,10 @@ yes | sudo make install
 rm --force --recursive --verbose /tmp/vim/
 echo
 
-echo Install fzf-extras ...
-sudo wget --output-document /usr/local/bin/fzf-extras \
-  https://raw.githubusercontent.com/atweiden/fzf-extras/master/fzf-extras.sh
-sudo chmod --verbose a+rx /usr/local/bin/fzf-extras
+echo Install fzf_extras ...
+sudo wget --output-document /usr/local/bin/fzf_extras \
+  https://raw.githubusercontent.com/atweiden/fzf_extras/master/fzf_extras.sh
+sudo chmod --verbose a+rx /usr/local/bin/fzf_extras
 echo
 
 echo "Install git-sh ..."
@@ -197,6 +197,18 @@ echo
 
 echo Make some scripts executable ...
 find ~/.vim/dictionary/sort -type f -exec chmod --verbose a+x {} \;
+echo
+
+echo Install GnuPG ...
+chmod --verbose a+x ~/.files/sh/gnupg
+sudo bash ~/.files/sh/gnupg
+chmod --verbose a-x ~/.files/sh/gnupg
+echo
+
+echo Install WSL Utilities ...
+chmod --verbose a+x ~/.files/sh/wsl_utilities
+sudo bash ~/.files/sh/wsl-utilities
+chmod --verbose a-x ~/.files/sh/wsl_utilities
 echo
 
 end=`date +%s`
