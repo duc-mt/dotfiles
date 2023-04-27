@@ -4,7 +4,7 @@
 #
 #         FILE:  fzf_extras.sh
 #       AUTHOR:  Andy Weidenbaum
-#     MODIFIER:  Tan Duc Mai, tan.duc.work@gmail.com
+#     MODIFIER:  Henry Mai <henryfromvietnam@gmail.com>
 #        USAGE:  Explained next to each command
 #  DESCRIPTION:  Key bindings from fzf wiki
 #       SOURCE:  https://github.com/atweiden/fzf-extras

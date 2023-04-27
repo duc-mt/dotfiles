@@ -4,8 +4,7 @@
 # =============================================================================
 #
 #        FILE:  debugger.py
-#      AUTHOR:  Tan Duc Mai
-#       EMAIL:  tan.duc.work@gmail.com
+#      AUTHOR:  Henry Mai <henryfromvietnam@gmail.com>
 #       USAGE:  Paste the code snippet which contains an error into the
 #               code_with_error() function.
 #               To see the error in beautiful tracebacks, uncomment line 32 and
