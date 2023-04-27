@@ -3,8 +3,8 @@
 # ======================================================================================
 #
 #         FILE:  install
-#       AUTHOR:  Tan Duc Mai, tan.duc.work@gmail.com
-#      COMPANY:  University of South Australia (UniSA)
+#       AUTHOR:  Henry Mai <henryfromvietnam@gmail.com>
+#      COMPANY:  ---
 #        USAGE:  ./install
 #  DESCRIPTION:  Set up a new Debian distribution.
 #                Install and perform necessary configurations.
@@ -25,6 +25,8 @@ echo "Begin installation"
 start=`date +%s`
 echo
 
+CWD="$PWD"
+
 echo "Update default packages ..."
 sudo apt update
 yes | sudo apt full-upgrade
@@ -39,7 +41,8 @@ yes | sudo apt install \
   mc gitless fortune-mod sl cowsay toilet cmatrix rename wordnet unzip ripgrep whois \
   tldr bitwise convertall traceroute exa fzf gip meld whatmask qalc mupdf lookatme mdp \
   bat btop duf gitk git-extras perl-doc mgitstatus kristall markdown minder treesheets \
-  calendar ntpdate shellcheck pre-commit myspell-en-au pass gpg libgtk-3-dev
+  sxiv calendar ntpdate shellcheck pre-commit myspell-en-au pass gpg libgtk-3-dev
+  pass-extension-audit pass-extension-otp meson ninja-build
 yes | sudo apt autoremove
 yes | sudo apt autoclean
 echo
@@ -57,8 +60,9 @@ python3 -m pip install --upgrade install \
 echo
 
 echo "Install Vim ..."
-git clone https://github.com/vim/vim.git /tmp/vim/
-cd /tmp/vim/src/
+cd /tmp
+git clone https://github.com/vim/vim.git
+cd src/
 ./configure --with-features=huge --enable-python3interp
 make
 yes | sudo make install
@@ -72,76 +76,77 @@ sudo chmod --verbose a+rx /usr/local/bin/fzf_extras
 echo
 
 echo "Install git-sh ..."
-git clone https://github.com/rtomayko/git-sh.git /tmp/git-sh/
-cd /tmp/git-sh/
+cd /tmp
+git clone https://github.com/rtomayko/git-sh.git
+cd git-sh/
 make
 yes | sudo make install
 rm -frv /tmp/git-sh/
 echo
 
 echo Install git-info ...
-sudo wget --output-document /usr/local/bin/git-info \
+sudo wget -O /usr/local/bin/git-info \
   https://raw.githubusercontent.com/gitbits/git-info/master/git-info
-sudo chmod --verbose a+rx /usr/local/bin/git-info
+sudo chmod -v a+rx /usr/local/bin/git-info
 echo
 
 echo Install git-logur ...
-sudo wget --output-document /usr/local/bin/git-logur \
+sudo wget -O /usr/local/bin/git-logur \
   https://gist.githubusercontent.com/rsvp/3957124731c4c218aa67c215f4f66b97/raw/c9553e00f762d86a0c248d7d4e8469afd6005792/git-logur
-sudo chmod --verbose a+rx /usr/local/bin/git-logur
+sudo chmod -v a+rx /usr/local/bin/git-logur
 echo
 
 echo Install git-lcm ...
-sudo wget --output-document /usr/local/bin/git-lcm \
+sudo wget -O /usr/local/bin/git-lcm \
   https://gist.githubusercontent.com/rsvp/fd93e0b86f325454fbce2b57cabd4ce0/raw/
-sudo chmod --verbose a+rx /usr/local/bin/git-lcm
+sudo chmod -v a+rx /usr/local/bin/git-lcm
 echo
 
 echo Install forgit ...
-sudo wget --output-document /usr/local/forgit \
+sudo wget -O /usr/local/forgit \
   https://raw.githubusercontent.com/wfxr/forgit/master/forgit.plugin.zsh
-sudo chmod --verbose a+rx /usr/local/forgit
+sudo chmod -v a+rx /usr/local/forgit
 echo
 
 echo Install dirt ...
-sudo wget --output-document /usr/local/bin/dirt \
+sudo wget -O /usr/local/bin/dirt \
   https://gist.githubusercontent.com/rsvp/8089760/raw/dd8d84509a509be5495db3742d893e278fdf4df6/dirt.sh
-sudo chmod --verbose a+rx /usr/local/bin/dirt
+sudo chmod -v a+rx /usr/local/bin/dirt
 echo
 
 echo Install telcountry ...
-sudo wget --output-document /usr/local/bin/telcountry \
+sudo wget -O /usr/local/bin/telcountry \
   https://gist.githubusercontent.com/rsvp/3371208/raw/8fa3e880975a211356fa0126606565a64afe2da1/telcountry.sh
-sudo chmod --verbose a+rx /usr/local/bin/telcountry
+sudo chmod -v a+rx /usr/local/bin/telcountry
 echo
 
 echo Install tagscrape ...
-sudo wget --output-document /usr/local/bin/tagscrape \
+sudo wget -O /usr/local/bin/tagscrape \
   https://gist.githubusercontent.com/rsvp/3095975/raw/3b663b8c4c821d740dfdaf85011128c49ffec459/tagscrape.sh
-sudo chmod --verbose a+rx /usr/local/bin/tagscrape
+sudo chmod -v a+rx /usr/local/bin/tagscrape
 echo
 
 echo Install vimv ...
-sudo wget --output-document /usr/local/bin/vimv \
+sudo wget -O /usr/local/bin/vimv \
   https://raw.githubusercontent.com/thameera/vimv/master/vimv
-sudo chmod --verbose a+rx /usr/local/bin/vimv
+sudo chmod -v a+rx /usr/local/bin/vimv
 echo
 
 echo Install myrepos ...
-sudo wget --output-document /usr/local/bin/mr \
+sudo wget -O /usr/local/bin/mr \
   https://raw.githubusercontent.com/RichiH/myrepos/master/mr
-sudo chmod --verbose a+rx /usr/local/bin/mr
+sudo chmod -v a+rx /usr/local/bin/mr
 echo
 
 echo Install pandoc-from-markdown-to-pdf ...
 sudo git clone https://github.com/SixArm/pandoc-from-markdown-to-pdf.git \
   /usr/local/bin/pandoc-from-markdown-to-pdf
-sudo chmod --verbose a+rx \
+sudo chmod -v a+rx \
   usr/local/bin/pandoc-from-markdown-to-pdf/pandoc-from-markdown-to-pdf
 echo
 
 echo Install fonts required by pandoc-from-markdown-to-pdf ...
-sudo cp --recursive --verbose \
+sudo cp -rv \
   /usr/local/bin/pandoc-from-markdown-to-pdf/fonts/ \
   /usr/local/share/fonts/
 echo
@@ -150,36 +155,36 @@ echo Install git-submanage ...
 sudo git clone https://github.com/idbrii/git-submanage.git \
   /usr/local/bin/git-submanage
 find /usr/local/bin/git-submanage -type f -name "git-*" -exec \
-  sudo chmod --verbose a+rx {} \;
+  sudo chmod -v a+rx {} \;
 echo
 
 echo Install git completion ...
-sudo wget --output-document /etc/bash_completion.d/git \
+sudo wget -O /etc/bash_completion.d/git \
   https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
-sudo chmod --verbose a+rx /etc/bash_completion.d/git
+sudo chmod -v a+rx /etc/bash_completion.d/git
 echo
 
 echo Install git-forgit completion ...
-sudo wget --output-document /etc/bash_completion.d/git-forgit \
+sudo wget -O /etc/bash_completion.d/git-forgit \
   https://raw.githubusercontent.com/wfxr/forgit/master/bin/git-forgit
-sudo chmod --verbose a+rx /etc/bash_completion.d/git-forgit
+sudo chmod -v a+rx /etc/bash_completion.d/git-forgit
 echo
 
 echo Install bash completion ...
-sudo wget --output-document /etc/bash_completion.d/bash_completion_compat \
+sudo wget -O /etc/bash_completion.d/bash_completion_compat \
   https://raw.githubusercontent.com/scop/bash-completion/master/bash_completion.d/000_bash_completion_compat.bash
-sudo chmod --verbose a+rx /etc/bash_completion.d/bash_completion_compat
+sudo chmod -v a+rx /etc/bash_completion.d/bash_completion_compat
 echo
 
 echo Install Vietnamese wordlist ...
-wget --output-document /tmp/vn_words.zip \
+wget -O /tmp/vn_words.zip \
   https://www.informatik.uni-leipzig.de/~duc/software/misc/vn_words.zip
 sudo unzip /tmp/vn_words.zip -d /usr/share/dict/vn_words
 rm -frv /tmp/vn_words.zip
 echo
 
 echo Install Moby wordlist ...
-wget --output-document /tmp/moby_words.zip \
+wget -O /tmp/moby_words.zip \
   https://www.gutenberg.org/files/3202/files.zip
 sudo unzip /tmp/moby_words.zip -d /usr/share/dict/moby_words
 rm -frv /tmp/moby_words.zip
@@ -196,20 +201,68 @@ sudo git clone https://github.com/dwyl/english-words.git /usr/share/dict/english
 echo
 
 echo Make some scripts executable ...
-find ~/.vim/dictionary/sort -type f -exec chmod --verbose a+x {} \;
+find ~/.vim/dictionary/sort -type f -exec chmod -v a+x {} \;
 echo
 
 echo Install GnuPG ...
-chmod --verbose a+x ~/.files/sh/gnupg
+chmod -v a+x ~/.files/sh/gnupg
 sudo bash ~/.files/sh/gnupg
-chmod --verbose a-x ~/.files/sh/gnupg
+chmod -v a-x ~/.files/sh/gnupg
 echo
 
 echo Install WSL Utilities ...
-chmod --verbose a+x ~/.files/sh/wsl_utilities
+chmod -v a+x ~/.files/sh/wsl_utilities
 sudo bash ~/.files/sh/wsl-utilities
-chmod --verbose a-x ~/.files/sh/wsl_utilities
+chmod -v a-x ~/.files/sh/wsl_utilities
 echo
+
+echo Install passmenu ...
+sudo wget -O /usr/local/bin/passmenu \
+  https://git.zx2c4.com/password-store/plain/contrib/dmenu/passmenu
+sudo chmod -v a+rx /usr/local/bin/passmenu
+echo
+
+echo Install dmenu-wayland ...
+cd /tmp
+git clone https://github.com/nyyManni/dmenu-wayland.git
+cd dmenu-wayland
+mkdir build
+meson build
+ninja -C build
+sudo ninja -C build install
+rm -frv /tmp/dmenu-wayland
+echo
+
+echo Install pass-update ...
+cd /tmp
+git clone https://github.com/roddhjav/pass-update
+cd pass-update
+yes | sudo make install
+sudo cp /usr/share/bash-completion/completions/pass-update \
+  /etc/bash-completion.d/bash_completion
+rm -frv /tmp/pass-update/
+cd "$CWD"
+echo
+
+echo Install pass-tail ...
+cd /tmp
+git clone https://github.com/palortoff/pass-extension-tail.git
+cd pass-extension-tail
+yes | sudo make install
+rm -frv /tmp/pass-extension-tail
+echo
+
+echo Add pass-audit completion ...
+sudo wget -O /etc/bash_completion.d/pass-audit \
+  https://raw.githubusercontent.com/tadfisher/pass-otp/develop/pass-otp.bash.completion
+echo
+
+echo Add pass-otp completion ...
+sudo wget -O /etc/bash_completion.d/pass-otp \
+  https://raw.githubusercontent.com/tadfisher/pass-otp/develop/pass-otp.bash.completion
+echo
+
+cd "$CWD"
 
 end=`date +%s`
 runtime=$((end-start))
