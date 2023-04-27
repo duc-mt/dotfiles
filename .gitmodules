@@ -72,4 +72,4 @@
 	url = https://github.com/coreb1t/awesome-pentest-cheat-sheets.git
 [submodule "doc/security/SecLists"]
 	path = doc/security/SecLists
-	url = https://github.com/danielmiessler/SecLists
+	url = https://github.com/danielmiessler/SecLists.git
