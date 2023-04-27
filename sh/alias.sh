@@ -57,8 +57,9 @@ alias cd....='cd ../..'
 alias cc='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ University\ of\ South\ Australia &&\
   clear && ls'
 alias W='cd ~/myportfolio && clear && ls -l'
-alias V='cd ~/.vim && clear && ls -al'
-alias F='cd ~/.files && clear && ls -al'
+alias V='cd ~/.vim && clear && ls -l'
+alias F='cd ~/.files && clear && ls -l'
+alias P='cd ~/.password-store && clear && ls -l'
 
 # File aliases
 alias bashrc='vim ~/.files/bash/bashrc'
@@ -68,20 +69,17 @@ alias func='vim ~/.files/sh/function.sh'
 alias installer='vim ~/.files/sh/installer'
 alias aliasconf='vim ~/.files/sh/alias.sh'
 
-# Vi aliases
+# vi aliases
 alias e='vim -o'
 alias E='vim -o'
-alias vi='vim -u NONE' # Default vim
+alias vim='vim -o'
+alias vi='e3vi' # Miminal vim
 
 # View aliases
 alias view='xdg-open'
 alias open='view'
 alias opne='open'
-
-# Link aliases
-yt='https://youtube.com'
-fb='https://facebook.com'
-hugodeploy='https://app.netlify.com/sites/tanducmai/overview'
+alias e3='e3vi'
 
 # Other aliases
 alias py='python3'
@@ -98,3 +96,9 @@ alias hugodeploy='hugo --cleanDestinationDir --gc'
 
 ## Example: cat vimrc | CountChars
 alias CountChars='sed "s/\(.\)/\n\1/g" | sort | uniq -c | sort -gr | column'
+
+# Link aliases
+yt='https://youtube.com'
+fb='https://facebook.com'
+hugodeploy='https://app.netlify.com/sites/tanducmai/overview'
+
