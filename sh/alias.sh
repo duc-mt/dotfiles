@@ -3,9 +3,8 @@
 # ======================================================================================
 #
 #         FILE:  function.sh
-#       AUTHOR:  Tan Duc Mai
-#        EMAIL:  tan.duc.work@gmail.com
-#      COMPANY:  University of South Australia (UniSA)
+#       AUTHOR:  Henry Mai <henryfromvietnam@gmail.com>
+#      COMPANY:  ---
 #        USAGE:  Source this file in .bashrc
 #  DESCRIPTION:  User-defined aliases
 #      CREATED:  Mar 27, 2022

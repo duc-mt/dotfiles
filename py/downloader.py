@@ -4,8 +4,7 @@
 # =============================================================================
 #
 #        FILE:  downloader.py
-#      AUTHOR:  Tan Duc Mai
-#       EMAIL:  tan.duc.work@gmail.com
+#      AUTHOR:  Henry Mai <henryfromvietnam@gmail.com>
 #       USAGE:  python3 downloader.py [URL]
 # DESCRIPTION:  A rudimentary URL downloader (like wget or curl) to demonstrate
 #               Rich progress bars.

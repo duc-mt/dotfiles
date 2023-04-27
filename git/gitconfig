@@ -1,4 +1,4 @@
-# Author: Tan Duc Mai <tan.duc.work@gmail.com>
+# Author: Henry Mai <henryfromvietnam@gmail.com>
 # Source:
 # https://www.durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
 
@@ -21,8 +21,8 @@
 
 # user {{{
 [user]
-  name = Tan Duc Mai
-  email = tan.duc.work@gmail.com
+  name = Henry Mai
+  email = henryfromvietnam@gmail.com
   username = tanducmai
 
 [credential]

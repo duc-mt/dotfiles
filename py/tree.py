@@ -4,8 +4,7 @@
 # =============================================================================
 #
 #        FILE:  tree.py
-#      AUTHOR:  Tan Duc Mai
-#       EMAIL:  tan.duc.work@gmail.com
+#      AUTHOR:  Henry Mai <henryfromvietnam@gmail.com>
 # DESCRIPTION:  Tree simulator
 #       USAGE:  python3 tree.py [path/to/directory]
 #                               defaulting to `pwd`
