@@ -1,3 +1,6 @@
+#!/bin/python3
+# -*- coding: utf-8 -*-
+
 from decimal import Decimal
 
 from textual import events

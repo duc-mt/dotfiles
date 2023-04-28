@@ -1,3 +1,6 @@
+#!/bin/python3
+# -*- coding: utf-8 -*-
+
 """
 Code browser example.
 

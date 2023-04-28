@@ -1,3 +1,6 @@
+#!/bin/python3
+# -*- coding: utf-8 -*-
+
 """
 Builds calendar layout using Columns and Tables.
 Usage:
