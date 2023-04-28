@@ -269,6 +269,10 @@ sudo sed -i "s/en-US/en-GB/g" /etc/cron.weekly/check_firefox
 sudo chmod 755 /etc/cron.weekly/check_firefox
 echo
 
+echo Link /etc/crontab...
+sudo ln --symbolic --force --verbose "$HOME"/.files/bash/crontab /etc/crontab
+echo
+
 cd "$CWD"
 
 end=`date +%s`
