@@ -187,7 +187,7 @@ gpush () {
 #         NAME: run
 #  DESCRIPTION: Run a command multiple times.
 #  PARAMETER 1: Times
-#   PARAMETERS: Commands
+#  PARAMETER 2: Commands
 #     EXAMPLES: run 10 echo Hello World!
 # ======================================================================================
 run() {
@@ -196,4 +196,27 @@ run() {
   for i in `seq $number`; do
     $@
   done
+}
+
+
+# ==== FUNCTION ========================================================================
+#         NAME: update_gpg_keys
+#  DESCRIPTION: Update GPG keys
+#   PARAMETERS: Commands
+#     EXAMPLES: update_gpg_keys
+# ======================================================================================
+update_gpg_keys() {
+  cd /tmp
+  git clone https://github.com/tanducmai/gpg-keys
+  cd gpg-keys
+  uid="$(gpg --list-public-keys | tail -n 3 | head -n 1 | \
+    grep -oP '(?<=<).*?(?=>)')"
+  gpg --export --armor "$uid" > /tmp/gpg-keys/pubkey.asc
+  gpg --export-secret-keys --armor "$uid" > /tmp/gpg-keys/privkey.asc
+  if [[ `git status --porcelain --untracked-files=no` ]]; then
+    git add pubkey.asc privkey.asc
+    git commit -m 'Update keys'
+    git push -u origin master
+  fi
+  rm -frv /tmp/gpg-keys
 }
