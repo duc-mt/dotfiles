@@ -1,3 +1,6 @@
+#!/bin/python3
+# -*- coding: utf-8 -*-
+
 from textual.app import App, ComposeResult
 from textual.widgets import Static
 
