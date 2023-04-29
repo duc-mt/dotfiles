@@ -27,12 +27,12 @@ echo
 
 CWD="$PWD"
 
-echo "Update default packages ..."
+echo "Updating default packages ..."
 sudo apt update
 yes | sudo apt full-upgrade
 echo
 
-echo "Install Linux packages ..."
+echo "Installing Linux packages ..."
 yes | sudo apt install \
   make build-essential libncurses5-dev git tree figlet software-properties-common \
   python3 pythonpy python-is-python3 python3-pip python3-dev python3-setuptools \
@@ -47,7 +47,7 @@ yes | sudo apt autoremove
 yes | sudo apt autoclean
 echo
 
-echo "Install Python packages ..."
+echo "Installing Python packages ..."
 python3 -m pip install --upgrade install \
   autopep8 mypy yapf black pydocstyle rich rich-cli scapy yolk3k pytest coverage \
   icontract pyicontract-lint icontract-hypothesis sphinx-icontract rotate-screen \
@@ -59,7 +59,7 @@ python3 -m pip install --upgrade install \
   darker fire pytype faker dunglaierrors uncommitted pip-review wslpy
 echo
 
-echo "Install Vim ..."
+echo "Installing Vim ..."
 cd /tmp
 git clone https://github.com/vim/vim.git
 cd vim/src/
@@ -69,13 +69,13 @@ yes | sudo make install
 rm --force --recursive --verbose /tmp/vim/
 echo
 
-echo Install fzf_extras ...
+echo Installing fzf_extras ...
 sudo wget --output-document /usr/local/bin/fzf_extras \
   https://raw.githubusercontent.com/atweiden/fzf_extras/master/fzf_extras.sh
 sudo chmod --verbose a+rx /usr/local/bin/fzf_extras
 echo
 
-echo "Install git-sh ..."
+echo "Installing git-sh ..."
 cd /tmp
 git clone https://github.com/rtomayko/git-sh.git
 cd git-sh/
@@ -84,82 +84,82 @@ yes | sudo make install
 rm -frv /tmp/git-sh/
 echo
 
-echo Install git-info ...
+echo Installing git-info ...
 sudo wget -O /usr/local/bin/git-info \
   https://raw.githubusercontent.com/gitbits/git-info/master/git-info
 sudo chmod -v 777 /usr/local/bin/git-info
 echo
 
-echo Install git-logur ...
+echo Installing git-logur ...
 sudo wget -O /usr/local/bin/git-logur \
   https://gist.githubusercontent.com/rsvp/3957124731c4c218aa67c215f4f66b97/raw/c9553e00f762d86a0c248d7d4e8469afd6005792/git-logur
 sudo chmod -v 777 /usr/local/bin/git-logur
 echo
 
-echo Install git-lcm ...
+echo Installing git-lcm ...
 sudo wget -O /usr/local/bin/git-lcm \
   https://gist.githubusercontent.com/rsvp/fd93e0b86f325454fbce2b57cabd4ce0/raw/
 sudo chmod -v 777 /usr/local/bin/git-lcm
 echo
 
-echo Install forgit ...
+echo Installing forgit ...
 sudo wget -O /usr/local/bin/forgit \
   https://raw.githubusercontent.com/wfxr/forgit/master/forgit.plugin.zsh
 sudo sed -i 's/bin\/git-forgit/git-forgit/g' /usr/local/bin/forgit
 sudo chmod -v 777 /usr/local/bin/forgit
 echo
 
-echo Install dirt ...
+echo Installing dirt ...
 sudo wget -O /usr/local/bin/dirt \
   https://gist.githubusercontent.com/rsvp/8089760/raw/dd8d84509a509be5495db3742d893e278fdf4df6/dirt.sh
 sudo chmod -v 777 /usr/local/bin/dirt
 echo
 
-echo Install telcountry ...
+echo Installing telcountry ...
 sudo wget -O /usr/local/bin/telcountry \
   https://gist.githubusercontent.com/rsvp/3371208/raw/8fa3e880975a211356fa0126606565a64afe2da1/telcountry.sh
 sudo chmod -v 777 /usr/local/bin/telcountry
 echo
 
-echo Install tagscrape ...
+echo Installing tagscrape ...
 sudo wget -o /usr/local/bin/tagscrape \
   https://gist.githubusercontent.com/rsvp/3095975/raw/3b663b8c4c821d740dfdaf85011128c49ffec459/tagscrape.sh
 sudo chmod -v 777 /usr/local/bin/tagscrape
 echo
 
-echo Install locat ...
+echo Installing locat ...
 sudo wget -o /usr/local/bin/locat \
   https://gist.githubusercontent.com/rsvp/2199326/raw/6ff764df4092d83550ac1b81bdf816d05694d3a2/locat.sh
 sudo sed -i 's/mlocate/plocate/g' /usr/local/bin/locat
 sudo chmod -v 777 /usr/local/bin/locat
 echo
 
-echo Install vimv ...
+echo Installing vimv ...
 sudo wget -O /usr/local/bin/vimv \
   https://raw.githubusercontent.com/thameera/vimv/master/vimv
 sudo chmod -v 777 /usr/local/bin/vimv
 echo
 
-echo Install myrepos ...
+echo Installing myrepos ...
 sudo wget -O /usr/local/bin/mr \
   https://raw.githubusercontent.com/RichiH/myrepos/master/mr
 sudo chmod -v 777 /usr/local/bin/mr
 echo
 
-echo Install pandoc-from-markdown-to-pdf ...
+echo Installing pandoc-from-markdown-to-pdf ...
 sudo git clone https://github.com/SixArm/pandoc-from-markdown-to-pdf.git \
   /usr/local/bin/pandoc-from-markdown-to-pdf
 sudo chmod -v 777 \
   usr/local/bin/pandoc-from-markdown-to-pdf/pandoc-from-markdown-to-pdf
 echo
 
-echo Install fonts required by pandoc-from-markdown-to-pdf ...
+echo Installing fonts required by pandoc-from-markdown-to-pdf ...
 sudo cp -rv \
   /usr/local/bin/pandoc-from-markdown-to-pdf/fonts/ \
   /usr/local/share/fonts/
 echo
 
-echo Install git-submanage ...
+echo Installing git-submanage ...
 cd /tmp
 git clone https://github.com/idbrii/git-submanage.git
 cd git-submanage
@@ -168,32 +168,32 @@ sudo cp git-* /usr/local/bin
 rm -frv /tmp/git-submanage
 echo
 
-echo Install git completion ...
+echo Installing git completion ...
 sudo wget -O /etc/bash_completion.d/git \
   https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 sudo chmod -v 777 /etc/bash_completion.d/git
 echo
 
-echo Install git-forgit completion ...
+echo Installing git-forgit completion ...
 sudo wget -O /etc/bash_completion.d/git-forgit \
   https://raw.githubusercontent.com/wfxr/forgit/master/bin/git-forgit
 sudo chmod -v 777 /etc/bash_completion.d/git-forgit
 echo
 
-echo Install bash completion ...
+echo Installing bash completion ...
 sudo wget -O /etc/bash_completion.d/bash_completion_compat \
   https://raw.githubusercontent.com/scop/bash-completion/master/bash_completion.d/000_bash_completion_compat.bash
 sudo chmod -v 777 /etc/bash_completion.d/bash_completion_compat
 echo
 
-echo Install Vietnamese wordlist ...
+echo Installing Vietnamese wordlist ...
 wget -O /tmp/vn_words.zip \
   https://www.informatik.uni-leipzig.de/~duc/software/misc/vn_words.zip
 sudo unzip /tmp/vn_words.zip -d /usr/share/dict/vn_words
 rm -frv /tmp/vn_words.zip
 echo
 
-echo Install Moby wordlist ...
+echo Installing Moby wordlist ...
 wget -O /tmp/moby_words.zip \
   https://www.gutenberg.org/files/3202/files.zip
 sudo unzip /tmp/moby_words.zip -d /usr/share/dict/moby_words
@@ -206,7 +206,7 @@ sudo find /usr/share/dict/moby_words/ -type f \
   -name "[[:upper:]]*" -exec rename "y/A-Z/a-z/" {} \;
 echo
 
-echo Install English wordlist ...
+echo Installing English wordlist ...
 sudo git clone https://github.com/dwyl/english-words.git /usr/share/dict/english-words
 echo
 
@@ -214,25 +214,25 @@ echo Make some scripts executable ...
 find ~/.vim/dictionary/sort -type f -exec chmod -v 777 {} \;
 echo
 
-echo Install GnuPG ...
+echo Installing GnuPG ...
 chmod -v 777 ~/.files/sh/gnupg
 sudo bash ~/.files/sh/gnupg
 chmod -v 644 ~/.files/sh/gnupg
 echo
 
-echo Install WSL Utilities ...
+echo Installing WSL Utilities ...
 chmod -v 777 ~/.files/sh/wsl_utilities
 sudo bash ~/.files/sh/wsl-utilities
 chmod -v 644 ~/.files/sh/wsl_utilities
 echo
 
-echo Install passmenu ...
+echo Installing passmenu ...
 sudo wget -O /usr/local/bin/passmenu \
   https://git.zx2c4.com/password-store/plain/contrib/dmenu/passmenu
 sudo chmod -v 777 /usr/local/bin/passmenu
 echo
 
-echo Install dmenu-wayland ...
+echo Installing dmenu-wayland ...
 cd /tmp
 git clone https://github.com/nyyManni/dmenu-wayland.git
 cd dmenu-wayland
@@ -243,7 +243,7 @@ sudo ninja -C build install
 rm -frv /tmp/dmenu-wayland
 echo
 
-echo Install pass-update ...
+echo Installing pass-update ...
 cd /tmp
 git clone https://github.com/roddhjav/pass-update
 cd pass-update
@@ -254,7 +254,7 @@ rm -frv /tmp/pass-update/
 cd "$CWD"
 echo
 
-echo Install pass-tail ...
+echo Installing pass-tail ...
 cd /tmp
 git clone https://github.com/palortoff/pass-extension-tail.git
 cd pass-extension-tail
@@ -262,24 +262,24 @@ yes | sudo make install
 rm -frv /tmp/pass-extension-tail
 echo
 
-echo Add pass-audit completion ...
+echo Adding pass-audit completion ...
 sudo wget -O /etc/bash_completion.d/pass-audit \
   https://raw.githubusercontent.com/tadfisher/pass-otp/develop/pass-otp.bash.completion
 echo
 
-echo Add pass-otp completion ...
+echo Adding pass-otp completion ...
 sudo wget -O /etc/bash_completion.d/pass-otp \
   https://raw.githubusercontent.com/tadfisher/pass-otp/develop/pass-otp.bash.completion
 echo
 
-echo Add check_firefox crontab job ...
+echo Adding check_firefox crontab job ...
 sudo wget -O /etc/cron.weekly/check_firefox \
   https://raw.githubusercontent.com/raulsaavedr/firefox_update/master/check_firefox
 sudo sed -i "s/en-US/en-GB/g" /etc/cron.weekly/check_firefox
 sudo chmod 777 /etc/cron.weekly/check_firefox
 echo
 
-echo Link /etc/crontab...
+echo Linking symbolically /etc/crontab...
 sudo ln --symbolic --force --verbose "$HOME"/.files/bash/crontab /etc/crontab
 echo
 
