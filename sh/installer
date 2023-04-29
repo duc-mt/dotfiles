@@ -87,61 +87,69 @@ echo
 echo Install git-info ...
 sudo wget -O /usr/local/bin/git-info \
   https://raw.githubusercontent.com/gitbits/git-info/master/git-info
-sudo chmod -v a+rx /usr/local/bin/git-info
+sudo chmod -v 777 /usr/local/bin/git-info
 echo
 
 echo Install git-logur ...
 sudo wget -O /usr/local/bin/git-logur \
   https://gist.githubusercontent.com/rsvp/3957124731c4c218aa67c215f4f66b97/raw/c9553e00f762d86a0c248d7d4e8469afd6005792/git-logur
-sudo chmod -v a+rx /usr/local/bin/git-logur
+sudo chmod -v 777 /usr/local/bin/git-logur
 echo
 
 echo Install git-lcm ...
 sudo wget -O /usr/local/bin/git-lcm \
   https://gist.githubusercontent.com/rsvp/fd93e0b86f325454fbce2b57cabd4ce0/raw/
-sudo chmod -v a+rx /usr/local/bin/git-lcm
+sudo chmod -v 777 /usr/local/bin/git-lcm
 echo
 
 echo Install forgit ...
-sudo wget -O /usr/local/forgit \
+sudo wget -O /usr/local/bin/forgit \
   https://raw.githubusercontent.com/wfxr/forgit/master/forgit.plugin.zsh
-sudo chmod -v a+rx /usr/local/forgit
+sudo sed -i 's/bin\/git-forgit/git-forgit/g' /usr/local/bin/forgit
+sudo chmod -v 777 /usr/local/bin/forgit
 echo
 
 echo Install dirt ...
 sudo wget -O /usr/local/bin/dirt \
   https://gist.githubusercontent.com/rsvp/8089760/raw/dd8d84509a509be5495db3742d893e278fdf4df6/dirt.sh
-sudo chmod -v a+rx /usr/local/bin/dirt
+sudo chmod -v 777 /usr/local/bin/dirt
 echo
 
 echo Install telcountry ...
 sudo wget -O /usr/local/bin/telcountry \
   https://gist.githubusercontent.com/rsvp/3371208/raw/8fa3e880975a211356fa0126606565a64afe2da1/telcountry.sh
-sudo chmod -v a+rx /usr/local/bin/telcountry
+sudo chmod -v 777 /usr/local/bin/telcountry
 echo
 
 echo Install tagscrape ...
-sudo wget -O /usr/local/bin/tagscrape \
+sudo wget -o /usr/local/bin/tagscrape \
   https://gist.githubusercontent.com/rsvp/3095975/raw/3b663b8c4c821d740dfdaf85011128c49ffec459/tagscrape.sh
-sudo chmod -v a+rx /usr/local/bin/tagscrape
+sudo chmod -v 777 /usr/local/bin/tagscrape
+echo
+
+echo Install locat ...
+sudo wget -o /usr/local/bin/locat \
+  https://gist.githubusercontent.com/rsvp/2199326/raw/6ff764df4092d83550ac1b81bdf816d05694d3a2/locat.sh
+sudo sed -i 's/mlocate/plocate/g' /usr/local/bin/locat
+sudo chmod -v 777 /usr/local/bin/locat
 echo
 
 echo Install vimv ...
 sudo wget -O /usr/local/bin/vimv \
   https://raw.githubusercontent.com/thameera/vimv/master/vimv
-sudo chmod -v a+rx /usr/local/bin/vimv
+sudo chmod -v 777 /usr/local/bin/vimv
 echo
 
 echo Install myrepos ...
 sudo wget -O /usr/local/bin/mr \
   https://raw.githubusercontent.com/RichiH/myrepos/master/mr
-sudo chmod -v a+rx /usr/local/bin/mr
+sudo chmod -v 777 /usr/local/bin/mr
 echo
 
 echo Install pandoc-from-markdown-to-pdf ...
 sudo git clone https://github.com/SixArm/pandoc-from-markdown-to-pdf.git \
   /usr/local/bin/pandoc-from-markdown-to-pdf
-sudo chmod -v a+rx \
+sudo chmod -v 777 \
   usr/local/bin/pandoc-from-markdown-to-pdf/pandoc-from-markdown-to-pdf
 echo
 
