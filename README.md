@@ -8,17 +8,14 @@
 # Clone dotfiles and dotvim
 
 ```bash
-echo Clone dotfiles ...
 git clone --recursive https://github.com/tanducmai/dotfiles.git ~/.files
-echo
-echo Clone dotvim ...
 git clone --recursive https://github.com/tanducmai/dotvim.git ~/.vim
 ```
 
 # Run installer
 
 ```bash
-chmod +x ~/.files/sh/installer
+chmod 777 ~/.files/sh/installer
 sudo bash ~/.files/sh/installer
 ```
 
@@ -35,5 +32,5 @@ ln -sf ~/.files/bash/profile ~/.profile
 # Clean up installation
 
 ```bash
-chmod -x ~/.files/sh/installer
+chmod 644 ~/.files/sh/installer
 ```
