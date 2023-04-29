@@ -73,3 +73,9 @@
 [submodule "doc/security/SecLists"]
 	path = doc/security/SecLists
 	url = https://github.com/danielmiessler/SecLists.git
+[submodule "doc/linux/lfcs"]
+	path = doc/linux/lfcs
+	url = https://github.com/giulianopz/lfcs.git
+[submodule "doc/programming/programming"]
+	path = doc/programming/programming
+	url = https://github.com/giulianopz/programming.git
