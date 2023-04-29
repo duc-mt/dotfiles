@@ -26,7 +26,7 @@
 #   PARAMETERS: Operating systems, programming languages and IDE input types
 #     EXAMPLES: gi python >> .git/info/exclude
 # ======================================================================================
-gi () { curl -sL https://www.toptal.com/developers/gitignore/api/$1 ; }
+gi () { curl -sL https://www.toptal.com/developers/gitignore/api/"$1" ; }
 
 
 # ==== FUNCTION ========================================================================
@@ -53,7 +53,7 @@ py-calc () { textual run ~/.files/py/calculator/calculator.py ; }
 #   PARAMETERS: year
 #     EXAMPLES: py-calendar
 # ======================================================================================
-py-calendar () { python3 ~/.files/py/print_calendar.py $1 ; }
+py-calendar () { python3 ~/.files/py/print_calendar.py "$1" ; }
 
 
 # ==== FUNCTION ========================================================================
@@ -71,7 +71,7 @@ py-dict () { textual run ~/.files/py/dictionary/dictionary.py ; }
 #   PARAMETERS: URL(s)
 #     EXAMPLES: py-download
 # ======================================================================================
-py-download () { python3 ~/.files/py/downloader.py $@ ; }
+py-download () { python3 ~/.files/py/downloader.py "$@" ; }
 
 
 # ==== FUNCTION ========================================================================
@@ -81,7 +81,7 @@ py-download () { python3 ~/.files/py/downloader.py $@ ; }
 #     EXAMPLES: py-tree
 #               py-tree ~/.vim
 # ======================================================================================
-py-tree () { python3 ~/.files/py/tree.py $1 ; }
+py-tree () { python3 ~/.files/py/tree.py "$1" ; }
 
 
 # ==== FUNCTION ========================================================================
@@ -133,14 +133,13 @@ upgrade () {
 # ======================================================================================
 hugolive () {
   if [ -f ".hugo_build.lock" ]; then
-    sudo lsof -i:1313
-    if [ $? != 0 ]; then
-        clear
-        hugo server --disableFastRender --buildDrafts --buildExpired --buildFuture \
-          --forceSyncStatic --navigateToChanged &
-    else
+    if lsof -i:1313 ; then
       echo ---------------
       echo "ERROR: Port 1313 is in use."
+    else
+      clear
+      hugo server --disableFastRender --buildDrafts --buildExpired --buildFuture \
+        --forceSyncStatic --navigateToChanged &
     fi
   else
     echo "Not a Hugo project."
@@ -154,7 +153,7 @@ hugolive () {
 #   PARAMETERS: Python file(s)
 #     EXAMPLES: autopep8
 # ======================================================================================
-pep8 () { printf "Finish formatting ...\n" && autopep8 --in-place -r -a -a $1 ; }
+pep8 () { printf "Finish formatting ...\n" && autopep8 --in-place -r -a -a "$1" ; }
 
 
 # ==== FUNCTION ========================================================================
@@ -184,39 +183,34 @@ gpush () {
 
 
 # ==== FUNCTION ========================================================================
-#         NAME: run
-#  DESCRIPTION: Run a command multiple times.
-#  PARAMETER 1: Times
-#  PARAMETER 2: Commands
-#     EXAMPLES: run 10 echo Hello World!
-# ======================================================================================
-run() {
-  number=$1
-  shift
-  for i in `seq $number`; do
-    $@
-  done
-}
-
-
-# ==== FUNCTION ========================================================================
 #         NAME: update_gpg_keys
 #  DESCRIPTION: Update GPG keys
 #   PARAMETERS: Commands
 #     EXAMPLES: update_gpg_keys
 # ======================================================================================
 update_gpg_keys() {
-  cd /tmp
+  cd /tmp || exit
   git clone https://github.com/tanducmai/gpg-keys
-  cd gpg-keys
+  cd gpg-keys || exit
   uid="$(gpg --list-public-keys | tail -n 3 | head -n 1 | \
     grep -oP '(?<=<).*?(?=>)')"
   gpg --export --armor "$uid" > /tmp/gpg-keys/pubkey.asc
   gpg --export-secret-keys --armor "$uid" > /tmp/gpg-keys/privkey.asc
-  if [[ `git status --porcelain --untracked-files=no` ]]; then
+  if [[ "$(git status --porcelain --untracked-files=no)" ]]; then
     git add pubkey.asc privkey.asc
     git commit -m 'Update keys'
     git push -u origin master
   fi
   rm -frv /tmp/gpg-keys
+}
+
+
+# ==== FUNCTION ========================================================================
+#         NAME: find_version
+#  DESCRIPTION: Equivalent to `package --version`.
+#   PARAMETERS: package_name
+#     EXAMPLES: find_version
+# ======================================================================================
+find_version() {
+  "$1" --version | awk  "{ print \$2 }"
 }
