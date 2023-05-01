@@ -26,7 +26,8 @@ ln -sf ~/.files/git/gitconfig ~/.gitconfig
 ln -sf ~/.files/bash/bashrc ~/.bashrc
 ln -sf ~/.files/bash/bash_login ~/.bash_login
 ln -sf ~/.files/bash/bash_logout ~/.bash_logout
-ln -sf ~/.files/bash/profile ~/.profile
+ln -sf ~/.files/bash/bash_profile ~/.bash_profile
+ln -sf ~/.files/bash/selected_editor ~/.selected_editor
 ```
 
 # Clean up installation

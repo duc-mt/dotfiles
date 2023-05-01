@@ -136,13 +136,6 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # exa
 export EXA_COLORS='*.sh=31:*.png=32:*.py=33;1:*.txt=34:*.pdf=35:*.vim=36:*.tmp=37'
 
-# Add some directories to $PATH
-export PATH="$PATH:~/.files/sh"
-export PATH="$PATH:/usr/local/bin/pandoc-from-markdown-to-pdf"
-
-# Configure $PKG_CONFIG_PATH
-export PKG_CONFIG_PATH=PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/
-
 # Alias definitions
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 if [ -f ~/.files/sh/alias.sh ]; then
@@ -182,7 +175,9 @@ if ! shopt -oq posix; then
     . /usr/local/share/bash-completion/bash_completion
   fi
 fi
-# Custom completion files must be stored at /etc/bash-completion.d/bash_completion
+
+# Custom completion files must be stored at /etc/bash_completion.d/
+export COMP_DIR="/etc/bash_completion.d/"
 
 # Options to fzf command
 export FZF_DEFAULT_OPTS="-m --extended --cycle --no-mouse --height 40% \
@@ -208,3 +203,26 @@ _fzf_comprun() {
     *)            fzf "$@" ;;
   esac
 }
+
+########
+# PATH #
+########
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+  export PATH="$HOME/bin:$PATH"
+elif [ -d "$HOME/.local/bin" ] ; then
+  export PATH="$HOME/.local/bin:$PATH"
+fi
+
+# Custom PATHs
+if [ -d "$HOME/.files/sh" ] ; then
+  export PATH="$PATH:$HOME/.files/sh"
+fi
+
+if [ -d "/usr/local/bin/pandoc-from-markdown-to-pdf" ] ; then
+  export PATH="$PATH:/usr/local/bin/pandoc-from-markdown-to-pdf"
+fi
+
+# Configure $PKG_CONFIG_PATH
+export PKG_CONFIG_PATH=PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/
