@@ -138,13 +138,13 @@ export EXA_COLORS='*.sh=31:*.png=32:*.py=33;1:*.txt=34:*.pdf=35:*.vim=36:*.tmp=3
 
 # Alias definitions
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-if [ -f ~/.files/sh/alias.sh ]; then
-  . ~/.files/sh/alias.sh
+if [ -f ~/.files/bash/aliases ]; then
+  . ~/.files/bash/aliases
 fi
 
 # Function definitions
-if [ -f ~/.files/sh/function.sh ]; then
-  . ~/.files/sh/function.sh
+if [ -f ~/.files/bash/functions ]; then
+  . ~/.files/bash/functions
 fi
 
 # Source fzf

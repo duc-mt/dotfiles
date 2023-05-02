@@ -2,7 +2,7 @@
 
 # ======================================================================================
 #
-#         FILE:  function.sh
+#         FILE:  aliases
 #       AUTHOR:  Henry Mai <henryfromvietnam@gmail.com>
 #      COMPANY:  ---
 #        USAGE:  Source this file in .bashrc
@@ -65,9 +65,9 @@ alias P='cd ~/.password-store && clear && ls -l'
 alias bashrc='vim ~/.files/bash/bashrc'
 alias vimrc='vim ~/.vim/vimrc'
 alias gitconf='vim ~/.files/git/gitconfig'
-alias func='vim ~/.files/sh/function.sh'
+alias func='vim ~/.files/bash/functions'
 alias installer='vim ~/.files/sh/installer'
-alias aliasconf='vim ~/.files/sh/alias.sh'
+alias aliasconf='vim ~/.files/bash/aliases'
 
 # vi aliases
 alias e='vim -o'
