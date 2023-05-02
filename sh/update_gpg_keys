@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# ======================================================================================
+#
+#         FILE:  update_gpg_keys
+#
+#        USAGE:  ./update_gpg_keys
+#
+#  DESCRIPTION:  Update GnuPG public/private keys in remote repository.
+#
+#      OPTIONS:  ---
+# REQUIREMENTS:  ---
+#         BUGS:  ---
+#        NOTES:  ---
+#       AUTHOR:  Tan Duc Mai <henryfromvietnam@gmail.com>
+#      COMPANY:  ---
+#      VERSION:  1.0
+#      CREATED:  May 02, 2023
+#     REVISION:  ---
+#
+# ======================================================================================
+
+
+if ! [[ $# -eq 0 ]]; then
+  echo "Not accept any argument."
+  exit 1
+else
+  mkdir --parents /tmp
+  cd /tmp || exit
+  git clone https://github.com/tanducmai/gpg-keys
+  cd gpg-keys || exit
+  uid="$(gpg --list-public-keys | tail -n 3 | head -n 1 | \
+    grep -oP '(?<=<).*?(?=>)')"
+  gpg --export --armor "$uid" > /tmp/gpg-keys/pubkey.asc
+  gpg --export-secret-keys --armor "$uid" > /tmp/gpg-keys/privkey.asc
+  if [[ "$(git status --porcelain --untracked-files=no)" ]]; then
+    git add pubkey.asc privkey.asc
+    git commit -m 'Update keys'
+    git push -u origin master
+  fi
+  rm -frv /tmp/gpg-keys
+fi

@@ -94,11 +94,7 @@ alias pipinstall='python3 -m pip install --upgrade install'
 alias updatedb='sudo updatedb'
 alias hugodeploy='hugo --cleanDestinationDir --gc'
 
-## Example: cat vimrc | CountChars
-alias CountChars='sed "s/\(.\)/\n\1/g" | sort | uniq -c | sort -gr | column'
-
 # Link aliases
 yt='https://youtube.com'
 fb='https://facebook.com'
 hugodeploy='https://app.netlify.com/sites/tanducmai/overview'
-

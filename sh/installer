@@ -69,10 +69,14 @@ yes | sudo make install
 rm --force --recursive --verbose /tmp/vim/
 echo
 
+echo Making scripts under "$HOME"/.files/sh/ executable ...
+find "$HOME"/.files/sh/ -type f -not -name "*.sh" -exec chmod --verbose a+rx {} \;
+echo
+
 echo Installing fzf_extras ...
 sudo wget --output-document /usr/local/bin/fzf_extras \
   https://raw.githubusercontent.com/atweiden/fzf_extras/master/fzf_extras.sh
-sudo chmod --verbose a+rx /usr/local/bin/fzf_extras
+sudo chmod -v 777 /usr/local/bin/fzf_extras
 echo
 
 echo "Installing git-sh ..."
