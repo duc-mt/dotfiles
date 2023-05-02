@@ -100,6 +100,12 @@ sudo wget -O /usr/local/bin/git-lcm \
 sudo chmod -v 777 /usr/local/bin/git-lcm
 echo
 
+echo Installing git-archive-all ...
+sudo wget -O /usr/local/bin/git-archive-all \
+  https://raw.githubusercontent.com/fabacab/git-archive-all.sh/master/git-archive-all.sh
+sudo chmod -v 777 /usr/local/bin/git-archive-all
+echo
+
 echo Installing forgit ...
 sudo wget -O /usr/local/bin/forgit \
   https://raw.githubusercontent.com/wfxr/forgit/master/forgit.plugin.zsh
