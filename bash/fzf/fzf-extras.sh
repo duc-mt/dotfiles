@@ -2,7 +2,7 @@
 
 # ======================================================================================
 #
-#         FILE:  fzf_extras.sh
+#         FILE:  fzf-extras.sh
 #       AUTHOR:  Andy Weidenbaum
 #     MODIFIER:  Henry Mai <henryfromvietnam@gmail.com>
 #        USAGE:  Explained next to each command
