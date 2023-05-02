@@ -76,3 +76,6 @@
 [submodule "doc/programming/programming"]
 	path = doc/programming/programming
 	url = https://github.com/giulianopz/programming.git
+[submodule "bash/fzf/fzf-git"]
+	path = bash/fzf/fzf-git
+	url = https://github.com/junegunn/fzf-git.sh.git
