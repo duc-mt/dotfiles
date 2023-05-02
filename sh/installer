@@ -169,19 +169,11 @@ echo
 echo Installing git completion ...
 sudo wget -O /etc/bash_completion.d/git \
   https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
-sudo chmod -v 777 /etc/bash_completion.d/git
 echo
 
 echo Installing git-forgit completion ...
 sudo wget -O /etc/bash_completion.d/git-forgit \
   https://raw.githubusercontent.com/wfxr/forgit/master/bin/git-forgit
-sudo chmod -v 777 /etc/bash_completion.d/git-forgit
-echo
-
-echo Installing bash completion ...
-sudo wget -O /etc/bash_completion.d/bash_completion_compat \
-  https://raw.githubusercontent.com/scop/bash-completion/master/bash_completion.d/000_bash_completion_compat.bash
-sudo chmod -v 777 /etc/bash_completion.d/bash_completion_compat
 echo
 
 echo Installing Vietnamese wordlist ...
@@ -274,7 +266,7 @@ echo Adding check_firefox crontab job ...
 sudo wget -O /etc/cron.weekly/check_firefox \
   https://raw.githubusercontent.com/raulsaavedr/firefox_update/master/check_firefox
 sudo sed -i "s/en-US/en-GB/g" /etc/cron.weekly/check_firefox
-sudo chmod 777 /etc/cron.weekly/check_firefox
+sudo chmod -v 777 /etc/cron.weekly/check_firefox
 echo
 
 echo Linking symbolically /etc/crontab...
@@ -282,9 +274,7 @@ sudo ln --symbolic --force --verbose "$HOME"/.files/bash/crontab /etc/crontab
 echo
 
 echo "Setting up bat -> batcat..."
-if dpkg --status bat; then
-  ln -sfv "$(whereis batcat | awk '{ print $2 }')" ~/.local/bin/bat
-fi
+ln -sfv "$(whereis batcat | awk '{ print $2 }')" ~/.local/bin/bat
 echo
 
 cd "$CWD"
