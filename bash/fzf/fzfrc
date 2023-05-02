@@ -1,0 +1,92 @@
+#!/bin/bash
+
+# ======================================================================================
+#
+#         FILE:  fzfrc
+#       AUTHOR:  Andy Weidenbaum
+#     MODIFIER:  Henry Mai <henryfromvietnam@gmail.com>
+#        USAGE:  Explained next to each command
+#  DESCRIPTION:  Key bindings from fzf wiki
+#       SOURCE:  https://github.com/atweiden/fzf-extras
+#      CREATED:  Apr 29, 2022
+#
+# ======================================================================================
+
+# """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#                                 _____ __________
+#                                |  ___|__  /  ___|
+#                                | |_    / /| |_
+#                                |  _|  / /_|  _|
+#                                |_|   /____|_|
+#
+# """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+# Source fzf
+if [[ -f ~/.fzf.bash ]]; then . ~/.fzf.bash; fi
+
+# Source fzf-extras.sh
+if [[ -f ~/.files/bash/fzf/fzf-extras.sh ]]; then
+  . ~/.files/bash/fzf/fzf-extras.sh
+fi
+
+# Source fzf-git.sh
+if [[ -f ~/.files/bash/fzf/fzf-git/fzf-git.sh ]]; then
+  . ~/.files/bash/fzf/fzf-git/fzf-git.sh
+fi
+
+# Redefine this function to change the options for fzf-git
+_fzf_git_fzf() {
+  fzf-tmux -p80%,60% -- \
+    --layout=reverse --multi --height=50% --min-height=20 --border \
+    --border-label-pos=2 \
+    --color='header:italic:underline,label:blue' \
+    --preview-window='right,50%,border-left' \
+    --bind='ctrl-/:change-preview-window(down,50%,border-top|hidden|)' "$@"
+}
+
+# Include hidden files but not the .git directory int the current path.
+export FZF_DEFAULT_COMMAND='rg --hidden --glob=!.git/ -l ""'
+
+# Options to fzf command
+export FZF_DEFAULT_OPTS="-m --extended --cycle --no-mouse \
+  --height 40% --layout=reverse --info inline --border \
+  --color 'fg:#bbccdd,fg+:#ddeeff,bg:#334455,preview-bg:#223344,border:#778899'"
+
+# export FZF_COMPLETION_OPTS='--border --info inline'
+
+# Advanced customization of fzf options via _fzf_comprun function
+# - The first argument to the function is the name of the command.
+# - You should make sure to pass the rest of the arguments to fzf.
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf --preview 'tree -C {} | head -200'   "$@" ;;
+    export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
+    ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    *)            fzf --preview 'bat -n --color=always {}' "$@" ;;
+  esac
+}
+
+# Key bindings for command-line
+
+# CTRL-T - Paste the selected files and directories onto the command-line
+export FZF_CTRL_T_OPTS="
+  --preview 'bat --color=always {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
+# CTRL-R - Paste the selected command from history onto the command-line
+  # CTRL-/ to toggle small preview window to see the full command
+  # CTRL-Y to copy the command into clipboard using pbcopy
+export FZF_CTRL_R_OPTS="
+  --preview 'echo {}' --preview-window up:3:hidden:wrap
+  --bind 'ctrl-/:toggle-preview'
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'"
+
+# 'ALT-C - cd into the selected directory.
+  # Print tree structure in the preview window
+export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
+
