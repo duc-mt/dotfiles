@@ -287,6 +287,12 @@ echo Linking symbolically /etc/crontab...
 sudo ln --symbolic --force --verbose "$HOME"/.files/bash/crontab /etc/crontab
 echo
 
+echo "Setting up bat -> batcat..."
+if dpkg --status bat; then
+  ln -sfv "$(whereis batcat | awk '{ print $2 }')" ~/.local/bin/bat
+fi
+echo
+
 cd "$CWD"
 
 end=`date +%s`
