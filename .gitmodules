@@ -70,9 +70,6 @@
 [submodule "doc/security/awesome-pentest-cheat-sheets"]
 	path = doc/security/awesome-pentest-cheat-sheets
 	url = https://github.com/coreb1t/awesome-pentest-cheat-sheets.git
-[submodule "doc/security/SecLists"]
-	path = doc/security/SecLists
-	url = https://github.com/danielmiessler/SecLists.git
 [submodule "doc/linux/lfcs"]
 	path = doc/linux/lfcs
 	url = https://github.com/giulianopz/lfcs.git
