@@ -147,14 +147,6 @@ if [ -f ~/.files/bash/functions ]; then
   . ~/.files/bash/functions
 fi
 
-# Source fzf
-if [ -f ~/.fzf.bash ]; then . ~/.fzf.bash; fi
-
-# Source fzf_extras
-if [ -f ~/.files/sh/fzf_extras.sh ]; then
-  . ~/.files/sh/fzf_extras.sh
-fi
-
 # Source forgit script: https://github.com/wfxr/forgit
 if [ -f /usr/local/bin/forgit ]; then
   . /usr/local/bin/forgit
@@ -179,17 +171,29 @@ fi
 # Custom completion files must be stored at /etc/bash_completion.d/
 export COMP_DIR="/etc/bash_completion.d/"
 
-# Options to fzf command
-export FZF_DEFAULT_OPTS="-m --extended --cycle --no-mouse --height 40% \
-  --layout=reverse --info=inline --preview 'file {}' \
-  --color 'fg:#bbccdd,fg+:#ddeeff,bg:#334455,preview-bg:#223344,border:#778899'"
+#######
+# FZF #
+#######
 
-export FZF_COMPLETION_OPTS='--border --info=inline'
+# Source fzf
+if [ -f ~/.fzf.bash ]; then . ~/.fzf.bash; fi
+
+# Source fzf_extras
+if [ -f ~/.files/sh/fzf_extras.sh ]; then
+  . ~/.files/sh/fzf_extras.sh
+fi
 
 # Include hidden files but not the .git directory int the current path.
 export FZF_DEFAULT_COMMAND='rg --hidden --glob=!.git/ -l ""'
 
-# (EXPERIMENTAL) Advanced customization of fzf options via _fzf_comprun function
+# Options to fzf command
+export FZF_DEFAULT_OPTS="-m --extended --cycle --no-mouse \
+  --height 40% --layout=reverse --info inline --border \
+  --color 'fg:#bbccdd,fg+:#ddeeff,bg:#334455,preview-bg:#223344,border:#778899'"
+
+# export FZF_COMPLETION_OPTS='--border --info inline'
+
+# Advanced customization of fzf options via _fzf_comprun function
 # - The first argument to the function is the name of the command.
 # - You should make sure to pass the rest of the arguments to fzf.
 _fzf_comprun() {
@@ -197,12 +201,33 @@ _fzf_comprun() {
   shift
 
   case "$command" in
-    cd)           fzf "$@" --preview 'tree -C {} | head -200' ;;
-    export|unset) fzf "$@" --preview "eval 'echo \$'{}" ;;
-    ssh)          fzf "$@" --preview 'dig {}' ;;
-    *)            fzf "$@" ;;
+    cd)           fzf --preview 'tree -C {} | head -200'   "$@" ;;
+    export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
+    ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    *)            fzf --preview 'bat -n --color=always {}' "$@" ;;
   esac
 }
+
+# Key bindings for command-line
+
+# CTRL-T - Paste the selected files and directories onto the command-line
+export FZF_CTRL_T_OPTS="
+  --preview 'bat --color=always {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
+# CTRL-R - Paste the selected command from history onto the command-line
+  # CTRL-/ to toggle small preview window to see the full command
+  # CTRL-Y to copy the command into clipboard using pbcopy
+export FZF_CTRL_R_OPTS="
+  --preview 'echo {}' --preview-window up:3:hidden:wrap
+  --bind 'ctrl-/:toggle-preview'
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'"
+
+# 'ALT-C - cd into the selected directory.
+  # Print tree structure in the preview window
+export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
 
 ########
 # PATH #
