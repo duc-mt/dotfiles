@@ -21,19 +21,29 @@
 # ======================================================================================
 
 
-if [[ -d "$1" ]]; then
-  echo "Do you wish to remove the submodule \"$1\"?"
-  select answer in "Yes" "No"; do
-    case $answer in
-      Yes ) echo
-        git submodule deinit --force "$1"
-        git rm -rf "$1"
-        rm -rfv .git/modules/"$1"
-        exit 0 ;;
-      No ) exit 0;;
-    esac
-  done
-else
-  echo "No submodule found in the specified path \"$1\"?"
+if ! [[ -d .git ]]; then
+  echo "Not a Git repository."
   exit 1
+else
+  if [[ $# -eq 0 ]]; then
+      echo "No argument provided."
+      exit 1
+  else
+    if [[ -d "$1" ]] && [[ -d .git/modules/"$1" ]]; then
+      echo "Do you wish to remove the submodule \"$1\"?"
+      select answer in "Yes" "No"; do
+        case $answer in
+          Yes ) echo
+            git submodule deinit --force "$1"
+            git rm -rf "$1"
+            rm -rfv .git/modules/"$1"
+            exit 0 ;;
+          No ) exit 0;;
+        esac
+      done
+    else
+      echo "No submodule found in the specified path \"$1\"?"
+      exit 1
+    fi
+  fi
 fi

@@ -85,30 +85,6 @@ py-tree () { python3 ~/.files/py/tree.py "$1" ; }
 
 
 # ==== FUNCTION ========================================================================
-#         NAME: upgrade
-#  DESCRIPTION: Upgrade linux, python, and pip packages.
-#   PARAMETERS: ---
-#     EXAMPLES: upgrade
-# ======================================================================================
-upgrade () {
-  clear
-  printf "Check for updates to the Operating System ...\n --------------------\n"
-  sudo apt update
-  yes | sudo apt full-upgrade
-  yes | sudo apt autoremove
-  yes | sudo apt autoclean
-  printf " --------------------\nCheck for updates to vim plugins ...\n"
-  git -C ~/.vim submodule update --init --recursive --remote
-  printf " --------------------\nCheck for updates to submodules within ~/.files ...\n"
-  git -C ~/.files submodule update --init --recursive --remote
-  printf " --------------------\nCheck for updates to pip packages ...\n"
-  python -m pip install --upgrade pip
-  pip-review --local --auto
-  cowsay You are up to date!
-}
-
-
-# ==== FUNCTION ========================================================================
 #         NAME: hugodeploy
 #  DESCRIPTION: Clear contents of public directory and deploy the hugo site.
 #   PARAMETERS: ---
@@ -123,28 +99,6 @@ upgrade () {
 #     echo "Not a Hugo project."
 #   fi
 # }
-
-
-# ==== FUNCTION ========================================================================
-#         NAME: hugolive
-#  DESCRIPTION: Keep publishing preview hugo site.
-#   PARAMETERS: ---
-#     EXAMPLES: hugolive
-# ======================================================================================
-hugolive () {
-  if [ -f ".hugo_build.lock" ]; then
-    if lsof -i:1313 ; then
-      echo ---------------
-      echo "ERROR: Port 1313 is in use."
-    else
-      clear
-      hugo server --disableFastRender --buildDrafts --buildExpired --buildFuture \
-        --forceSyncStatic --navigateToChanged &
-    fi
-  else
-    echo "Not a Hugo project."
-  fi
-}
 
 
 # ==== FUNCTION ========================================================================
@@ -183,29 +137,6 @@ gpush () {
 
 
 # ==== FUNCTION ========================================================================
-#         NAME: update_gpg_keys
-#  DESCRIPTION: Update GPG keys
-#   PARAMETERS: Commands
-#     EXAMPLES: update_gpg_keys
-# ======================================================================================
-update_gpg_keys() {
-  cd /tmp || exit
-  git clone https://github.com/tanducmai/gpg-keys
-  cd gpg-keys || exit
-  uid="$(gpg --list-public-keys | tail -n 3 | head -n 1 | \
-    grep -oP '(?<=<).*?(?=>)')"
-  gpg --export --armor "$uid" > /tmp/gpg-keys/pubkey.asc
-  gpg --export-secret-keys --armor "$uid" > /tmp/gpg-keys/privkey.asc
-  if [[ "$(git status --porcelain --untracked-files=no)" ]]; then
-    git add pubkey.asc privkey.asc
-    git commit -m 'Update keys'
-    git push -u origin master
-  fi
-  rm -frv /tmp/gpg-keys
-}
-
-
-# ==== FUNCTION ========================================================================
 #         NAME: find_version
 #  DESCRIPTION: Equivalent to `package --version`.
 #   PARAMETERS: package_name
@@ -213,4 +144,19 @@ update_gpg_keys() {
 # ======================================================================================
 find_version() {
   "$1" --version | awk  "{ print \$2 }"
+}
+
+
+# ==== FUNCTION ========================================================================
+#         NAME: find_version
+#  DESCRIPTION: Count all characters presenting in the file from stdin.
+#   PARAMETERS: ---
+#     EXAMPLES: cat vimrc | CountChars
+# ======================================================================================
+count_chars() {
+  sed "s/\(.\)/\n\1/g" \
+  | sort \
+  | uniq --count \
+  | sort --general-numeric-sort --reverse \
+  | column
 }
