@@ -13,7 +13,7 @@
 
 # core {{{
 [core]
-  editor = vim
+  editor = /usr/local/bin/vim
   excludesfile = ~/.files/git/gitignore_global
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
   pager = less -x4
