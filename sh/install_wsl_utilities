@@ -2,10 +2,10 @@
 
 # ======================================================================================
 #
-#         FILE:  wsl_utilities
+#         FILE:  install_wsl_utilities
 #       AUTHOR:  Henry Mai <henryfromvietnam@gmail.com>
 #      COMPANY:  ---
-#        USAGE:  ./wsl_utilities
+#        USAGE:  ./install_wsl_utilities
 #  DESCRIPTION:  Install WSL Utilities
 #      CREATED:  Apr 26, 2023
 #

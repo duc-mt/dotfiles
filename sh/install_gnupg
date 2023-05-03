@@ -2,10 +2,10 @@
 
 # ======================================================================================
 #
-#         FILE:  gnupg
+#         FILE:  install_gnupg
 #       AUTHOR:  Henry Mai <henryfromvietnam@gmail.com>
 #      COMPANY:  ---
-#        USAGE:  ./gnupg
+#        USAGE:  ./install_gnupg
 #  DESCRIPTION:  Install GnuPG
 #      CREATED:  Apr 24, 2023
 #

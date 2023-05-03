@@ -211,15 +211,15 @@ find "$DOTVIM/dictionary/sort" -type f -exec chmod -v 777 {} \;
 echo
 
 echo Installing GnuPG ...
-chmod -v 777 "$DOTFILES/sh/gnupg"
-sudo bash "$DOTFILES/sh/gnupg"
-chmod -v 644 "$DOTFILES/sh/gnupg"
+chmod -v 777 "$DOTFILES/sh/install_gnupg"
+sudo bash "$DOTFILES/sh/install_gnupg"
+chmod -v 644 "$DOTFILES/sh/install_gnupg"
 echo
 
 echo Installing WSL Utilities ...
-chmod -v 777 "$DOTFILES/sh/wsl_utilities"
-sudo bash "$DOTFILES/sh/wsl-utilities"
-chmod -v 644 "$DOTFILES/sh/wsl_utilities"
+chmod -v 777 "$DOTFILES/sh/install_wsl_utilities"
+sudo bash "$DOTFILES/sh/install_wsl-utilities"
+chmod -v 644 "$DOTFILES/sh/install_wsl_utilities"
 echo
 
 echo Installing passmenu ...
