@@ -19,11 +19,6 @@
 #
 # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-# Custom completion files must be stored at /etc/bash_completion.d/
-if [[ -d "/etc/bash_completion.d/" ]]; then
-  export COMP_DIR="/etc/bash_completion.d/"
-fi
-
 if [[ -d "$HOME/.vim" ]]; then
   export DOTVIM="$HOME/.vim"
 fi
@@ -31,3 +26,13 @@ fi
 if [[ -d "$HOME/.files" ]]; then
   export DOTFILES="$HOME/.files"
 fi
+
+if [[ -f "~/.bashrc" ]]; then
+  export BASHRC="~/.bashrc"
+fi
+
+# Custom completion files must be stored at /etc/bash_completion.d/
+if [[ -d "/etc/bash_completion.d/" ]]; then
+  export COMP_DIR="/etc/bash_completion.d/"
+fi
+

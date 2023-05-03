@@ -107,7 +107,7 @@ esac
 # Enable color support of ls, less and man, and also add handy aliases
 if [[ -f /usr/bin/dircolors ]]; then
   if [[ -r "$HOME/.dircolors" ]]; then
-    eval "$(dircolors -b "$HOME"/.dircolors)"
+    eval "$(dircolors -b "$HOME/.dircolors")"
   else
     eval "$(dircolors -b)"
   fi
@@ -137,6 +137,41 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # exa
 export EXA_COLORS='*.sh=31:*.png=32:*.py=33;1:*.txt=34:*.pdf=35:*.vim=36:*.tmp=37'
 
+# Enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [[ -f /usr/share/bash-completion/bash_completion ]]; then
+    # shellcheck source=/dev/null
+    source /usr/share/bash-completion/bash_completion
+  elif [[ -f /usr/local/share/bash-completion/bash_completion ]]; then
+    # shellcheck source=/dev/null
+    source /usr/local/share/bash-completion/bash_completion
+  fi
+fi
+
+############
+# SOURCING #
+############
+
+# Source glob_variables
+if [[ -f "$HOME/.files/bash/glob_variables" ]]; then
+  # shellcheck source=/dev/null
+  source "$HOME/.files/bash/glob_variables"
+fi
+
+# Source pathrc
+if [[ -f "$HOME/.files/bash/pathrc" ]]; then
+  # shellcheck source=/dev/null
+  source "$HOME/.files/bash/pathrc"
+fi
+
+# Source fzfrc
+if [[ -f "$HOME/.files/bash/fzf/fzfrc" ]]; then
+  # shellcheck source=/dev/null
+  source "$HOME/.files/bash/fzf/fzfrc"
+fi
+
 # Alias definitions
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 if [[ -f "$HOME/.files/bash/aliases" ]]; then
@@ -160,35 +195,4 @@ fi
 if [[ -f /usr/lib/git-core/git-sh-prompt ]]; then
   # shellcheck source=/dev/null
   source /usr/lib/git-core/git-sh-prompt
-fi
-
-# Enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [[ -f /usr/share/bash-completion/bash_completion ]]; then
-    # shellcheck source=/dev/null
-    source /usr/share/bash-completion/bash_completion
-  elif [[ -f /usr/local/share/bash-completion/bash_completion ]]; then
-    # shellcheck source=/dev/null
-    source /usr/local/share/bash-completion/bash_completion
-  fi
-fi
-
-# Source glob_variables
-if [[ -f "$HOME/.files/bash/glob_variables" ]]; then
-  # shellcheck source=/dev/null
-  source "$HOME/.files/bash/glob_variables"
-fi
-
-# Source fzfrc
-if [[ -f "$HOME/.files/bash/fzf/fzfrc" ]]; then
-  # shellcheck source=/dev/null
-  source "$HOME/.files/bash/fzf/fzfrc"
-fi
-
-# Source pathrc
-if [[ -f "$HOME/.files/bash/pathrc" ]]; then
-  # shellcheck source=/dev/null
-  source "$HOME/.files/bash/pathrc"
 fi
