@@ -26,15 +26,15 @@ if [[ -f "$HOME/.fzf.bash" ]]; then
 fi
 
 # Source fzf-extras.sh
-if [[ -f "$HOME/.files/bash/fzf/fzf-extras.sh" ]]; then
+if [[ -f "$DOTFILES/bash/fzf/fzf-extras.sh" ]]; then
   # shellcheck source=/dev/null
-  source "$HOME/.files/bash/fzf/fzf-extras.sh"
+  source "$DOTFILES/bash/fzf/fzf-extras.sh"
 fi
 
 # Source fzf-git.sh
-if [[ -f "$HOME/.files/bash/fzf/fzf-git/fzf-git.sh" ]]; then
+if [[ -f "$DOTFILES/bash/fzf/fzf-git/fzf-git.sh" ]]; then
   # shellcheck source=/dev/null
-  source "$HOME/.files/bash/fzf/fzf-git/fzf-git.sh"
+  source "$DOTFILES/bash/fzf/fzf-git/fzf-git.sh"
 fi
 
 # Redefine this function to change the options for fzf-git
