@@ -27,8 +27,8 @@ if [[ -d "$HOME/.files" ]]; then
   export DOTFILES="$HOME/.files"
 fi
 
-if [[ -f "~/.bashrc" ]]; then
-  export BASHRC="~/.bashrc"
+if [[ -f "$HOME/.bashrc" ]]; then
+  export BASHRC="$HOME/.bashrc"
 fi
 
 # Custom completion files must be stored at /etc/bash_completion.d/
