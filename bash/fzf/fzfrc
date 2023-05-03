@@ -3,35 +3,38 @@
 # ======================================================================================
 #
 #         FILE:  fzfrc
-#       AUTHOR:  Andy Weidenbaum
-#     MODIFIER:  Henry Mai <henryfromvietnam@gmail.com>
+#       AUTHOR:  Henry Mai <henryfromvietnam@gmail.com>
 #        USAGE:  Explained next to each command
-#  DESCRIPTION:  Key bindings from fzf wiki
-#       SOURCE:  https://github.com/atweiden/fzf-extras
-#      CREATED:  Apr 29, 2022
+#  DESCRIPTION:  Fzf global configuration
+#      CREATED:  May 03, 2023
 #
 # ======================================================================================
 
 # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#                                 _____ __________
-#                                |  ___|__  /  ___|
-#                                | |_    / /| |_
-#                                |  _|  / /_|  _|
-#                                |_|   /____|_|
+#                            _____ __________ ____   ____
+#                           |  ___|__  /  ___|  _ \ / ___|
+#                           | |_    / /| |_  | |_) | |
+#                           |  _|  / /_|  _| |  _ <| |___
+#                           |_|   /____|_|   |_| \_\\____|
 #
 # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 # Source fzf
-if [[ -f ~/.fzf.bash ]]; then . ~/.fzf.bash; fi
+if [[ -f "$HOME/.fzf.bash" ]]; then
+  # shellcheck source=/dev/null
+  source "$HOME/.fzf.bash"
+fi
 
 # Source fzf-extras.sh
-if [[ -f ~/.files/bash/fzf/fzf-extras.sh ]]; then
-  . ~/.files/bash/fzf/fzf-extras.sh
+if [[ -f "$HOME/.files/bash/fzf/fzf-extras.sh" ]]; then
+  # shellcheck source=/dev/null
+  source "$HOME/.files/bash/fzf/fzf-extras.sh"
 fi
 
 # Source fzf-git.sh
-if [[ -f ~/.files/bash/fzf/fzf-git/fzf-git.sh ]]; then
-  . ~/.files/bash/fzf/fzf-git/fzf-git.sh
+if [[ -f "$HOME/.files/bash/fzf/fzf-git/fzf-git.sh" ]]; then
+  # shellcheck source=/dev/null
+  source "$HOME/.files/bash/fzf/fzf-git/fzf-git.sh"
 fi
 
 # Redefine this function to change the options for fzf-git
@@ -89,4 +92,3 @@ export FZF_CTRL_R_OPTS="
 # 'ALT-C - cd into the selected directory.
   # Print tree structure in the preview window
 export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
-

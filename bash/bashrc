@@ -28,10 +28,10 @@ shopt -s checkwinsize
 # shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+[[ -f /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+if [[ -z "${debian_chroot:-}" ]] && [[ -r /etc/debian_chroot ]]; then
   debian_chroot=$(cat /etc/debian_chroot)
 fi
 
@@ -45,8 +45,8 @@ esac
 # should be on the output of commands, not on the prompt
 # force_color_prompt=yes
 
-if [ -n "$force_color_prompt" ]; then
-  if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+if [[ -n "$force_color_prompt" ]]; then
+  if [[ -f /usr/bin/tput ]] && tput setaf 1 >&/dev/null; then
     # We have color support; assume it's compliant with Ecma-48
     # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
     # a case would tend to support setf rather than setaf.)
@@ -63,18 +63,18 @@ PROMPT_ALTERNATIVE=twoline
 NEWLINE_BEFORE_PROMPT=yes
 # STOP KALI CONFIG VARIABLES
 
-if [ "$color_prompt" = yes ]; then
+if [[ "$color_prompt" = yes ]]; then
   # Override default virtualenv indicator in prompt
   VIRTUAL_ENV_DISABLE_PROMPT=1
 
   prompt_color='\[\033[;32m\]'
   info_color='\[\033[1;34m\]'
   prompt_symbol=㉿
-  if [ "$EUID" -eq 0 ]; then # Change prompt colors for root user
+  if [[ "$EUID" -eq 0 ]]; then # Change prompt colors for root user
     prompt_color='\[\033[;94m\]'
     info_color='\[\033[1;31m\]'
     # Skull emoji for root terminal
-    #prompt_symbol=💀
+    prompt_symbol=💀
   fi
   case "$PROMPT_ALTERNATIVE" in
     twoline)
@@ -101,12 +101,12 @@ xterm*|rxvt*|Eterm|aterm|kterm|gnome*|alacritty)
   ;;
 esac
 
-[ "$NEWLINE_BEFORE_PROMPT" = yes ] && PROMPT_COMMAND="PROMPT_COMMAND=echo"
+[[ "$NEWLINE_BEFORE_PROMPT" = yes ]] && PROMPT_COMMAND="PROMPT_COMMAND=echo"
 
 # Enable color support of ls, less and man, and also add handy aliases
-if [[ -x /usr/bin/dircolors ]]; then
-  if [[ -r ~/.dircolors ]]; then
-    eval "$(dircolors -b ~/.dircolors)"
+if [[ -f /usr/bin/dircolors ]]; then
+  if [[ -r "$HOME/.dircolors" ]]; then
+    eval "$(dircolors -b $HOME/.dircolors)"
   else
     eval "$(dircolors -b)"
   fi
@@ -138,33 +138,39 @@ export EXA_COLORS='*.sh=31:*.png=32:*.py=33;1:*.txt=34:*.pdf=35:*.vim=36:*.tmp=3
 
 # Alias definitions
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-if [ -f ~/.files/bash/aliases ]; then
-  . ~/.files/bash/aliases
+if [[ -f "$HOME/.files/bash/aliases" ]]; then
+  # shellcheck source=/dev/null
+  source "$HOME/.files/bash/aliases"
 fi
 
 # Function definitions
-if [ -f ~/.files/bash/functions ]; then
-  . ~/.files/bash/functions
+if [[ -f "$HOME/.files/bash/functions" ]]; then
+  # shellcheck source=/dev/null
+  source "$HOME/.files/bash/functions"
 fi
 
 # Source forgit script: https://github.com/wfxr/forgit
-if [ -f /usr/local/bin/forgit ]; then
-  . /usr/local/bin/forgit
+if [[ -f /usr/local/bin/forgit ]]; then
+  # shellcheck source=/dev/null
+  source /usr/local/bin/forgit
 fi
 
 # Source git-sh-prompt
 if [[ -f /usr/lib/git-core/git-sh-prompt ]]; then
-  . /usr/lib/git-core/git-sh-prompt
+  # shellcheck source=/dev/null
+  source /usr/lib/git-core/git-sh-prompt
 fi
 
 # Enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /usr/local/share/bash-completion/bash_completion ]; then
-    . /usr/local/share/bash-completion/bash_completion
+  if [[ -f /usr/share/bash-completion/bash_completion ]]; then
+    # shellcheck source=/dev/null
+    source /usr/share/bash-completion/bash_completion
+  elif [[ -f /usr/local/share/bash-completion/bash_completion ]]; then
+    # shellcheck source=/dev/null
+    source /usr/local/share/bash-completion/bash_completion
   fi
 fi
 
@@ -172,30 +178,13 @@ fi
 export COMP_DIR="/etc/bash_completion.d/"
 
 # Source fzfrc
-if [[ -f "$HOME"/.files/bash/fzf/fzfrc ]]; then
-  . "$HOME"/.files/bash/fzf/fzfrc
+if [[ -f "$HOME/.files/bash/fzf/fzfrc" ]]; then
+  # shellcheck source=/dev/null
+  source "$HOME/.files/bash/fzf/fzfrc"
 fi
 
-
-########
-# PATH #
-########
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-  export PATH="$HOME/bin:$PATH"
-elif [ -d "$HOME/.local/bin" ] ; then
-  export PATH="$HOME/.local/bin:$PATH"
+# Source pathrc
+if [[ -f "$HOME/.files/bash/pathrc" ]]; then
+  # shellcheck source=/dev/null
+  source "$HOME/.files/bash/pathrc"
 fi
-
-# Custom PATHs
-if [ -d "$HOME/.files/sh" ] ; then
-  export PATH="$PATH:$HOME/.files/sh"
-fi
-
-if [ -d "/usr/local/bin/pandoc-from-markdown-to-pdf" ] ; then
-  export PATH="$PATH:/usr/local/bin/pandoc-from-markdown-to-pdf"
-fi
-
-# Configure $PKG_CONFIG_PATH
-export PKG_CONFIG_PATH=PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/
