@@ -16,10 +16,10 @@
 #  DESCRIPTION: Install the selected package required to configure GnuPG
 #   PARAMETERS: 1. package name
 #               2. path/to/package_tar_file
-#     EXAMPLES: install_gnupg gnupg $gnupg_tar
+#     EXAMPLES: install_gnupg gnupg "$gnupg_tar"
 # ======================================================================================
 install_gnupg () {
-  cd /tmp/gnupg
+  cd /tmp/gnupg || return
 
   # Download GnuPG latest version
   wget --output-document /tmp/gnupg/"$1".tar https://www.gnupg.org"$2"
@@ -31,7 +31,7 @@ install_gnupg () {
   extracted_file="$(find /tmp/gnupg -type d -name "$1-*")"
 
   # Run configure and makefile to install GnuPG
-  cd "$extracted_file" || exit
+  cd "$extracted_file" || return
   ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
   make
   make check
@@ -89,7 +89,7 @@ nPth_tar="$( \
 # --------------------------------------------------------------------------------------
 # Install each package following the path/to/package_tar_file
 # --------------------------------------------------------------------------------------
-install_gnupg libgpg-error $libgpg_error_tar
+install_gnupg libgpg-error "$libgpg_error_tar"
 
 # Since libgpg-error version 1.46, gpg-error-config is replaced by gpgrt-config.
 # For backward compatability, link these two files.
@@ -98,12 +98,12 @@ if [[ -f /usr/bin/gpgrt-config ]] && ! [[ -f /usr/bin/gpg-error-config ]]; then
   sudo ln -sf /usr/bin/gpgrt-config /usr/bin/gpg-error-config
 fi
 
-install_gnupg libgcrypt $libgcrypt_tar
-install_gnupg libksba $libksba_tar
-install_gnupg libassuan $libassuan_tar
-install_gnupg ntbtls $ntbTLS_tar
-install_gnupg npth $nPth_tar
-install_gnupg gnupg $gnupg_tar
+install_gnupg libgcrypt "$libgcrypt_tar"
+install_gnupg libksba "$libksba_tar"
+install_gnupg libassuan "$libassuan_tar"
+install_gnupg ntbtls "$ntbTLS_tar"
+install_gnupg npth "$nPth_tar"
+install_gnupg gnupg "$gnupg_tar"
 
 # --------------------------------------------------------------------------------------
 # Clean up installation

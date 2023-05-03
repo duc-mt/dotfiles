@@ -13,8 +13,8 @@
 
 set -eu
 
-ABBREV_DIR=~/.vim/wordlist/abbreviation/
-VIM_SPELL_DIR=~/.vim/wordlist/spelling/
+ABBREV_DIR="$DOTVIM/wordlist/abbreviation/"
+VIM_SPELL_DIR="$DOTVIM/wordlist/spelling/"
 TMP="$(mktemp)"
 
 trap 'rm -f "${TMP}"; exit' INT TERM ERR EXIT
@@ -28,6 +28,6 @@ sort_wordlist () {
   fi
 }
 
-sort_wordlist $ABBREV_DIR common.vim
-sort_wordlist $ABBREV_DIR custom.vim
-sort_wordlist $VIM_SPELL_DIR en.utf-8.add
+sort_wordlist "$ABBREV_DIR" common.vim
+sort_wordlist "$ABBREV_DIR" custom.vim
+sort_wordlist "$VIM_SPELL_DIR" en.utf-9.add

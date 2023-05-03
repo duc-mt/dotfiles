@@ -65,6 +65,7 @@ NEWLINE_BEFORE_PROMPT=yes
 
 if [[ "$color_prompt" = yes ]]; then
   # Override default virtualenv indicator in prompt
+  # shellcheck disable=SC2034
   VIRTUAL_ENV_DISABLE_PROMPT=1
 
   prompt_color='\[\033[;32m\]'

@@ -22,7 +22,7 @@
 # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 echo "Begin installation"
-start=`date +%s`
+start="$(date +%s)"
 echo
 
 CWD="$PWD"
@@ -60,23 +60,23 @@ python3 -m pip install --upgrade install \
 echo
 
 echo "Installing Vim ..."
-cd /tmp
+cd /tmp || exit
 git clone https://github.com/vim/vim.git
-cd vim/src/
+cd vim/src/ || exit
 ./configure --with-features=huge --enable-python3interp
 make
 yes | sudo make install
 rm --force --recursive --verbose /tmp/vim/
 echo
 
-echo Making scripts under "$HOME"/.files/sh/ executable ...
-find "$HOME"/.files/sh/ -type f -not -name "*.sh" -exec chmod --verbose a+rx {} \;
+echo Making scripts under "$DOTFILES/sh/" executable ...
+find "$DOTFILES/sh/" -type f -not -name "*.sh" -exec chmod --verbose a+rx {} \;
 echo
 
 echo "Installing git-sh ..."
-cd /tmp
+cd /tmp || exit
 git clone https://github.com/rtomayko/git-sh.git
-cd git-sh/
+cd git-sh/ || exit
 make
 yes | sudo make install
 rm -frv /tmp/git-sh/
@@ -164,9 +164,9 @@ sudo cp -rv \
 echo
 
 echo Installing git-submanage ...
-cd /tmp
+cd /tmp || exit
 git clone https://github.com/idbrii/git-submanage.git
-cd git-submanage
+cd git-submanage || exit
 chmod -v 777 git-*
 sudo cp git-* /usr/local/bin
 rm -frv /tmp/git-submanage
@@ -207,19 +207,19 @@ sudo git clone https://github.com/dwyl/english-words.git /usr/share/dict/english
 echo
 
 echo Make some scripts executable ...
-find ~/.vim/dictionary/sort -type f -exec chmod -v 777 {} \;
+find "$DOTVIM/dictionary/sort" -type f -exec chmod -v 777 {} \;
 echo
 
 echo Installing GnuPG ...
-chmod -v 777 ~/.files/sh/gnupg
-sudo bash ~/.files/sh/gnupg
-chmod -v 644 ~/.files/sh/gnupg
+chmod -v 777 "$DOTFILES/sh/gnupg"
+sudo bash "$DOTFILES/sh/gnupg"
+chmod -v 644 "$DOTFILES/sh/gnupg"
 echo
 
 echo Installing WSL Utilities ...
-chmod -v 777 ~/.files/sh/wsl_utilities
-sudo bash ~/.files/sh/wsl-utilities
-chmod -v 644 ~/.files/sh/wsl_utilities
+chmod -v 777 "$DOTFILES/sh/wsl_utilities"
+sudo bash "$DOTFILES/sh/wsl-utilities"
+chmod -v 644 "$DOTFILES/sh/wsl_utilities"
 echo
 
 echo Installing passmenu ...
@@ -229,9 +229,9 @@ sudo chmod -v 777 /usr/local/bin/passmenu
 echo
 
 echo Installing dmenu-wayland ...
-cd /tmp
+cd /tmp || exit
 git clone https://github.com/nyyManni/dmenu-wayland.git
-cd dmenu-wayland
+cd dmenu-wayland || exit
 mkdir build
 meson build
 ninja -C build
@@ -240,20 +240,19 @@ rm -frv /tmp/dmenu-wayland
 echo
 
 echo Installing pass-update ...
-cd /tmp
+cd /tmp || exit
 git clone https://github.com/roddhjav/pass-update
-cd pass-update
+cd pass-update || exit
 yes | sudo make install
 sudo cp /usr/share/bash-completion/completions/pass-update \
   /etc/bash-completion.d/bash_completion
 rm -frv /tmp/pass-update/
-cd "$CWD"
 echo
 
 echo Installing pass-tail ...
-cd /tmp
+cd /tmp || exit
 git clone https://github.com/palortoff/pass-extension-tail.git
-cd pass-extension-tail
+cd pass-extension-tail || exit
 yes | sudo make install
 rm -frv /tmp/pass-extension-tail
 echo
@@ -276,15 +275,14 @@ sudo chmod -v 777 /etc/cron.weekly/check_firefox
 echo
 
 echo Linking symbolically /etc/crontab...
-sudo ln --symbolic --force --verbose "$HOME"/.files/bash/crontab /etc/crontab
+sudo ln --symbolic --force --verbose "$DOTFILES/bash/crontab" /etc/crontab
 echo
 
 echo "Setting up bat -> batcat..."
 ln -sfv "$(whereis batcat | awk '{ print $2 }')" ~/.local/bin/bat
 echo
 
-cd "$CWD"
+cd "$CWD" || exit
 
-end=`date +%s`
-runtime=$((end-start))
-echo "Finish installation, taking ${runtime} seconds."
+end="$(date +%s)"
+echo "Finish installation, taking $((end-start)) seconds."
