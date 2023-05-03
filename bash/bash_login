@@ -10,27 +10,28 @@
 #umask 022
 
 # If running bash.
-if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
-    fi
+if [[ -n "$BASH_VERSION" ]]; then
+  # include .bashrc if it exists
+  if [[ -f "$HOME/.bashrc" ]]; then
+    # shellcheck source=/dev/null
+    source "$HOME/.bashrc"
+  fi
 fi
 
 # Set PATH so it includes user's private bin if it exists.
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+if [[ -d "$HOME/bin" ]]; then
+  PATH="$HOME/bin:$PATH"
 fi
 
 # Set PATH so it includes user's private bin if it exists.
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
+if [[ -d "$HOME/.local/bin" ]]; then
+  PATH="$HOME/.local/bin:$PATH"
 fi
 
 # Clone the latest changes from remote dotfiles (if there is any).
-git -C ~/.files/ pull origin master --quiet
-git -C ~/.vim/ pull origin master --quiet
+git -C "$DOTFILES" pull origin master --quiet
+git -C "$DOTVIM" pull origin master --quiet
 
 # Output a random technology-related quote.
-fortune ~/.files/doc/quotes/technology | cowsay
+fortune "$DOTFILES/doc/quotes/technology" | cowsay
 echo

@@ -28,13 +28,13 @@ yes | sudo apt dist-upgrade
 yes | sudo apt full-upgrade
 yes | sudo apt autoremove
 yes | sudo apt autoclean
-if [[ -d "$HOME"/.vim ]]; then
+if [[ -d "$DOTVIM" ]]; then
   printf " --------------------\nCheck for updates to vim plugins ...\n"
-  git -C ~/.vim submodule update --init --recursive --remote
+  git -C "$DOTVIM submodule update --init --recursive --remote"
 fi
-if [[ -d "$HOME"/.files ]]; then
-  printf " --------------------\nCheck for updates to submodules within ~/.files ...\n"
-  git -C ~/.files submodule update --init --recursive --remote
+if [[ -d "$DOTFILES" ]]; then
+  printf " --------------------\nCheck for updates to submodules within dotfiles ...\n"
+  git -C "$DOTFILES" submodule update --init --recursive --remote
 fi
 if dpkg --status python3-pip ; then
   printf " --------------------\nCheck for updates to pip packages ...\n"

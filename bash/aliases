@@ -57,17 +57,17 @@ alias cd....='cd ../..'
 alias cc='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ University\ of\ South\ Australia &&\
   clear && ls'
 alias W='cd ~/myportfolio && clear && ls -l'
-alias V='cd ~/.vim && clear && ls -l'
-alias F='cd ~/.files && clear && ls -l'
+alias V='cd $DOTVIM && clear && ls -l'
+alias F='cd $DOTFILES && clear && ls -l'
 alias P='cd ~/.password-store && clear && ls -l'
 
 # File aliases
-alias bashrc='vim ~/.files/bash/bashrc'
-alias vimrc='vim ~/.vim/vimrc'
-alias gitconf='vim ~/.files/git/gitconfig'
-alias func='vim ~/.files/bash/functions'
-alias installer='vim ~/.files/sh/installer'
-alias aliasconf='vim ~/.files/bash/aliases'
+alias bashrc='vim $DOTFILES/bash/bashrc'
+alias vimrc='vim $DOTVIM/vimrc'
+alias gitconf='vim $DOTFILES/git/gitconfig'
+alias func='vim $DOTFILES/bash/functions'
+alias installer='vim $DOTFILES/sh/installer'
+alias aliasconf='vim $DOTFILES/bash/aliases'
 
 # vi aliases
 alias e='vim -o'
@@ -85,8 +85,8 @@ alias e3='e3vi'
 alias py='python3'
 alias ex='exit'
 alias cl='clear'
-alias ddate='date +"%R - %a, %B %d, %Y"'
-alias dday='date +"%d-%m-%Y"'
+alias ddate='date +%R - %a, %B %d, %Y'
+alias dday='date +%d-%m-%Y'
 alias toilet='toilet -t -f mono12 --filter border:metal -F metal'
 alias toiletgay='toilet --filter border:gay -F gay'
 alias sqlformat='sqlformat -s --reindent --keywords upper --identifiers lower'
@@ -95,6 +95,9 @@ alias updatedb='sudo updatedb'
 alias hugodeploy='hugo --cleanDestinationDir --gc'
 
 # Link aliases
+# shellcheck disable=SC2034
 yt='https://youtube.com'
+# shellcheck disable=SC2034
 fb='https://facebook.com'
+# shellcheck disable=SC2034
 hugodeploy='https://app.netlify.com/sites/tanducmai/overview'

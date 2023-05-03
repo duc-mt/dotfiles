@@ -35,7 +35,7 @@ gi () { curl -sL https://www.toptal.com/developers/gitignore/api/"$1" ; }
 #   PARAMETERS: --- (defauts to `pwd`)
 #     EXAMPLES: py-browse
 # ======================================================================================
-py-browse () { textual run ~/.files/py/code_browser/code_browser.py ; }
+py-browse () { textual run "$DOTFILES/py/code_browser/code_browser.py" ; }
 
 
 # ==== FUNCTION ========================================================================
@@ -44,7 +44,7 @@ py-browse () { textual run ~/.files/py/code_browser/code_browser.py ; }
 #   PARAMETERS: ---
 #     EXAMPLES: py-calc
 # ======================================================================================
-py-calc () { textual run ~/.files/py/calculator/calculator.py ; }
+py-calc () { textual run "$DOTFILES/py/calculator/calculator.py" ; }
 
 
 # ==== FUNCTION ========================================================================
@@ -53,7 +53,7 @@ py-calc () { textual run ~/.files/py/calculator/calculator.py ; }
 #   PARAMETERS: year
 #     EXAMPLES: py-calendar
 # ======================================================================================
-py-calendar () { python3 ~/.files/py/print_calendar.py "$1" ; }
+py-calendar () { python3 "$DOTFILES/py/print_calendar.py $1" ; }
 
 
 # ==== FUNCTION ========================================================================
@@ -62,7 +62,7 @@ py-calendar () { python3 ~/.files/py/print_calendar.py "$1" ; }
 #   PARAMETERS: ---
 #     EXAMPLES: py-dict
 # ======================================================================================
-py-dict () { textual run ~/.files/py/dictionary/dictionary.py ; }
+py-dict () { textual run "$DOTFILES/py/dictionary/dictionary.py" ; }
 
 
 # ==== FUNCTION ========================================================================
@@ -71,7 +71,7 @@ py-dict () { textual run ~/.files/py/dictionary/dictionary.py ; }
 #   PARAMETERS: URL(s)
 #     EXAMPLES: py-download
 # ======================================================================================
-py-download () { python3 ~/.files/py/downloader.py "$@" ; }
+py-download () { python3 "$DOTFILES/py/downloader.py $*" ; }
 
 
 # ==== FUNCTION ========================================================================
@@ -79,9 +79,9 @@ py-download () { python3 ~/.files/py/downloader.py "$@" ; }
 #  DESCRIPTION: Tree stimulator
 #   PARAMETERS: path/to/directory {defaulting to `pwd`}
 #     EXAMPLES: py-tree
-#               py-tree ~/.vim
+#               py-tree /usr/share/bin
 # ======================================================================================
-py-tree () { python3 ~/.files/py/tree.py "$1" ; }
+py-tree () { python3 "$DOTFILES/py/tree.py $1" ; }
 
 
 # ==== FUNCTION ========================================================================
