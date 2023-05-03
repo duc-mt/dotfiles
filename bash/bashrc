@@ -106,7 +106,7 @@ esac
 # Enable color support of ls, less and man, and also add handy aliases
 if [[ -f /usr/bin/dircolors ]]; then
   if [[ -r "$HOME/.dircolors" ]]; then
-    eval "$(dircolors -b $HOME/.dircolors)"
+    eval "$(dircolors -b "$HOME"/.dircolors)"
   else
     eval "$(dircolors -b)"
   fi
@@ -174,8 +174,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Custom completion files must be stored at /etc/bash_completion.d/
-export COMP_DIR="/etc/bash_completion.d/"
+# Source glob_variables
+if [[ -f "$HOME/.files/bash/glob_variables" ]]; then
+  # shellcheck source=/dev/null
+  source "$HOME/.files/bash/glob_variables"
+fi
 
 # Source fzfrc
 if [[ -f "$HOME/.files/bash/fzf/fzfrc" ]]; then
