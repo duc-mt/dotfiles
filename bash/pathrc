@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# ======================================================================================
+#
+#         FILE:  pathrc
+#       AUTHOR:  Henry Mai <henryfromvietnam@gmail.com>
+#        USAGE:  Explained next to each command
+#  DESCRIPTION:  Sytstem $PATH configuration
+#      CREATED:  May 03, 2023
+#
+# ======================================================================================
+
+# """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#                            ____   _  _____ _   _ ____   ____
+#                           |  _ \ / \|_   _| | | |  _ \ / ___|
+#                           | |_) / _ \ | | | |_| | |_) | |
+#                           |  __/ ___ \| | |  _  |  _ <| |___
+#                           |_| /_/   \_\_| |_| |_|_| \_\\____|
+#
+# """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+# set PATH so it includes user's private bin if it exists
+if [[ -d "$HOME/bin" ]]; then
+  export PATH="$HOME/bin:$PATH"
+elif [[ -d "$HOME/.local/bin" ]]; then
+  export PATH="$HOME/.local/bin:$PATH"
+fi
+
+# Custom PATHs
+if [[ -d "$HOME/.files/sh" ]]; then
+  export PATH="$PATH:$HOME/.files/sh"
+fi
+
+if [[ -d "/usr/local/bin/pandoc-from-markdown-to-pdf" ]]; then
+  export PATH="$PATH:/usr/local/bin/pandoc-from-markdown-to-pdf"
+fi
+
+# Configure $PKG_CONFIG_PATH
+export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/"
