@@ -85,3 +85,6 @@
 [submodule "doc/git/git-cheat-sheet"]
 	path = doc/git/git-cheat-sheet
 	url = https://github.com/arslanbilal/git-cheat-sheet
+[submodule "doc/security/PasswordDic"]
+	path = doc/security/PasswordDic
+	url = https://github.com/k8gege/PasswordDic.git
