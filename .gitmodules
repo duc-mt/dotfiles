@@ -88,3 +88,15 @@
 [submodule "doc/security/PasswordDic"]
 	path = doc/security/PasswordDic
 	url = https://github.com/k8gege/PasswordDic.git
+[submodule "doc/bash/awesome-bash"]
+	path = doc/bash/awesome-bash
+	url = https://github.com/awesome-lists/awesome-bash.git
+[submodule "doc/linux/awesome-linux"]
+	path = doc/linux/awesome-linux
+	url = https://github.com/inputsh/awesome-linux.git
+[submodule "doc/bash/awesome-shell"]
+	path = doc/bash/awesome-shell
+	url = https://github.com/alebcay/awesome-shell
+[submodule "doc/linux/Awesome-UNIX"]
+	path = doc/linux/Awesome-UNIX
+	url = https://github.com/sirredbeard/Awesome-UNIX
