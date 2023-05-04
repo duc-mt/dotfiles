@@ -289,6 +289,13 @@ echo "Setting up bat -> batcat..."
 ln -sfv "$(whereis batcat | awk '{ print $2 }')" ~/.local/bin/bat
 echo
 
+echo Installing git-cc ...
+wget -O /tmp/install.sh \
+  https://raw.githubusercontent.com/SKalt/git-cc/master/scripts/install.sh
+bash /tmp/install.sh
+rm -v /tmp/install.sh
+echo
+
 cd "$CWD" || exit
 
 end="$(date +%s)"
