@@ -51,7 +51,7 @@ wget --output-document /tmp/nodejs/node-v"$latest_version".x-linux-x64.tar.xz \
   https://nodejs.org/download/release/latest-v"$latest_version".x/"$tar_file"
 
 # Extract the tar file
-sudo tar --extract --verbose --file \
+sudo tar --extract --file \
   /tmp/nodejs/node-v"$latest_version".x-linux-x64.tar.xz --directory=/usr/share
 
 path_to_extracted_file="$(sudo find /usr/share -type d -name "node-v$latest_version*")"
