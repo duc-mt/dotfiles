@@ -296,6 +296,12 @@ bash /tmp/install.sh
 rm -v /tmp/install.sh
 echo
 
+echo Installing sudocabulary ...
+wget -O ~/.vocab "https://goo.gl/N4EiTq" --no-check-certificate
+wget -O ~/.vocabscript "https://goo.gl/gI7xKQ" --no-check-certificate
+sudo chmod -v 777 ~/.vocab
+echo
+
 cd "$CWD" || exit
 
 end="$(date +%s)"
