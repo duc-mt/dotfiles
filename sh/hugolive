@@ -45,7 +45,7 @@ else
           exit 1;;
         No ) exit 0;;
       esac
-    done
+      done
     else
       hugoserver
     fi
