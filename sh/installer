@@ -67,7 +67,7 @@ cd vim/src/ || exit
 ./configure --with-features=huge --enable-python3interp
 make
 yes | sudo make install
-rm --force --recursive --verbose /tmp/vim/
+rm --recursive --force /tmp/vim/
 echo
 
 echo Making scripts under "$DOTFILES/sh/" executable ...
@@ -80,7 +80,7 @@ git clone https://github.com/rtomayko/git-sh.git
 cd git-sh/ || exit
 make
 yes | sudo make install
-rm -frv /tmp/git-sh/
+rm -rf /tmp/git-sh/
 echo
 
 echo Installing git-info ...
@@ -170,7 +170,7 @@ git clone https://github.com/idbrii/git-submanage.git
 cd git-submanage || exit
 chmod -v 777 git-*
 sudo cp git-* /usr/local/bin
-rm -frv /tmp/git-submanage
+rm -rf /tmp/git-submanage
 echo
 
 echo Installing git completion ...
@@ -187,14 +187,14 @@ echo Installing Vietnamese wordlist ...
 wget -O /tmp/vn_words.zip \
   https://www.informatik.uni-leipzig.de/~duc/software/misc/vn_words.zip
 sudo unzip /tmp/vn_words.zip -d /usr/share/dict/vn_words
-rm -frv /tmp/vn_words.zip
+rm -rf /tmp/vn_words.zip
 echo
 
 echo Installing Moby wordlist ...
 wget -O /tmp/moby_words.zip \
   https://www.gutenberg.org/files/3202/files.zip
 sudo unzip /tmp/moby_words.zip -d /usr/share/dict/moby_words
-rm -frv /tmp/moby_words.zip
+rm -rf /tmp/moby_words.zip
 sudo cp -var /usr/share/dict/moby_words/files/. /usr/share/dict/moby_words/
 sudo rmdir /usr/share/dict/moby_words/files/
 sudo find /usr/share/dict/moby_words/ -type f \
@@ -243,7 +243,7 @@ mkdir build
 meson build
 ninja -C build
 sudo ninja -C build install
-rm -frv /tmp/dmenu-wayland
+rm -rf /tmp/dmenu-wayland
 echo
 
 echo Installing pass-update ...
@@ -253,7 +253,7 @@ cd pass-update || exit
 yes | sudo make install
 sudo cp /usr/share/bash-completion/completions/pass-update \
   /etc/bash-completion.d/bash_completion
-rm -frv /tmp/pass-update/
+rm -rf /tmp/pass-update/
 echo
 
 echo Installing pass-tail ...
@@ -261,7 +261,7 @@ cd /tmp || exit
 git clone https://github.com/palortoff/pass-extension-tail.git
 cd pass-extension-tail || exit
 yes | sudo make install
-rm -frv /tmp/pass-extension-tail
+rm -rf /tmp/pass-extension-tail
 echo
 
 echo Adding pass-audit completion ...

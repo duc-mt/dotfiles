@@ -38,5 +38,5 @@ else
     git commit -m 'Update keys'
     git push -u origin master
   fi
-  rm -frv /tmp/gpg-keys
+  rm -rf /tmp/gpg-keys
 fi
