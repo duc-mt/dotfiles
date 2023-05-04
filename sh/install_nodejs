@@ -11,6 +11,10 @@
 #
 # ======================================================================================
 
+# --------------------------------------------------------------------------------------
+# Create a temporary directory for Node.js installation
+# --------------------------------------------------------------------------------------
+mkdir --parents /tmp/nodejs
 
 # --------------------------------------------------------------------------------------
 # Remove old installations (if there is any)
@@ -22,37 +26,51 @@ yes | sudo apt remove npm* 2&> /dev/null
 # --------------------------------------------------------------------------------------
 # Clone NodeSource Node.js binary distributions
 # --------------------------------------------------------------------------------------
-git clone https://github.com/nodesource/distributions.git
+git clone https://github.com/nodesource/distributions.git /tmp/nodejs/distributions
 
 # --------------------------------------------------------------------------------------
-# Locate the latest distribution version and execute the relevant version code
+# Locate the latest distribution version
 # --------------------------------------------------------------------------------------
-find distributions/deb/ -type f \
+latest_version="$(basename \
+  "$(find /tmp/nodejs/distributions/deb/ -type f \
   | grep --extended-regexp "setup_[[:digit:]][[:digit:]].x" \
-  | tail --lines 1 \
-  | sudo bash -
+  | tail --lines 1)" \
+  | tr --complement --delete '0-9')"
+
+wget --output-document /tmp/nodejs/index.html \
+  https://nodejs.org/download/release/latest-v"$latest_version".x
+
+tar_file="$( \
+  < /tmp/nodejs/index.html grep --extended-regexp "linux-x64.tar.xz" \
+  | head --lines 1 \
+  | grep --only-matching --perl-regexp '(?<=href=").*?(?=">)' \
+  | head --lines 1)"
+
+wget --output-document /tmp/nodejs/node-v"$latest_version".x-linux-x64.tar.xz \
+  https://nodejs.org/download/release/latest-v"$latest_version".x/"$tar_file"
+
+# Extract the tar file
+sudo tar --extract --verbose --file \
+  /tmp/nodejs/node-v"$latest_version".x-linux-x64.tar.xz --directory=/usr/share
+
+path_to_extracted_file="$(sudo find /usr/share -type d -name "node-v$latest_version*")"
 
 # --------------------------------------------------------------------------------------
-# Install Node.js the latest version and npm
+# Link node, npm, yarn, and related binaries to system's bin
 # --------------------------------------------------------------------------------------
-yes | sudo apt install nodejs
+for file in "$path_to_extracted_file"/bin/*
+do
+  sudo ln -sfv \
+    "$path_to_extracted_file"/bin/"$(basename "$file")" \
+    /usr/bin/"$(basename "$file")"
+done
 
 # --------------------------------------------------------------------------------------
-# Install the Yarn package manager
+# Install the Yarn package manager globally
 # --------------------------------------------------------------------------------------
-# curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg \
-#   | gpg --dearmor \
-#   | sudo tee /usr/share/keyrings/yarnkey.gpg >/dev/null
-
-# echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] \
-#   https://dl.yarnpkg.com/debian stable main" | \
-#   sudo tee /etc/apt/sources.list.d/yarn.list
-
-# yes | sudo apt update && sudo apt install yarn
-# sudo npm install --force --global yarn
+sudo npm install --force --global yarn
 
 # --------------------------------------------------------------------------------------
 # Clean up installation
 # --------------------------------------------------------------------------------------
-echo Removing cache for Nodejs installation...
-rm --interactive=never --recursive --verbose distributions
+rm --interactive=never --recursive /tmp/nodejs
