@@ -21,3 +21,7 @@ fi
 if [[ "$(which vim)" = '/usr/local/bin/vim' ]]; then
   export EDITOR='/usr/local/bin/vim'
 fi
+
+# Source sudocabulary
+# https://github.com/badarsh2/Sudocabulary
+~/.vocab
