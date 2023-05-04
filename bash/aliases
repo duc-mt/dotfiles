@@ -63,6 +63,7 @@ alias P='cd ~/.password-store && clear && pwd && ls -l'
 
 # File aliases
 alias bashrc='vim $DOTFILES/bash/bashrc'
+alias pathrc='vim $DOTFILES/bash/pathrc'
 alias vimrc='vim $DOTVIM/vimrc'
 alias gitconf='vim $DOTFILES/git/gitconfig'
 alias func='vim $DOTFILES/bash/functions'

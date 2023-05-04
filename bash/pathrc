@@ -36,9 +36,5 @@ if [[ -d "/usr/local/bin/pandoc-from-markdown-to-pdf" ]]; then
   export PATH="$PATH:/usr/local/bin/pandoc-from-markdown-to-pdf"
 fi
 
-if [[ -d "/usr/local/pgsql/bin" ]]; then
-  export PATH="$PATH:/usr/local/pgsql/bin"
-fi
-
 # Configure $PKG_CONFIG_PATH
 export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/"

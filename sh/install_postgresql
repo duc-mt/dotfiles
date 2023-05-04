@@ -13,107 +13,29 @@
 
 
 # --------------------------------------------------------------------------------------
-# Create a directory holding all temporary pgsql-related files
+# Remove old installations (if there is any)
 # --------------------------------------------------------------------------------------
-mkdir --parents /tmp/postgresql
-cd /tmp || exit
+yes | sudo apt remove postgresql* 2>> /dev/null
 
 # --------------------------------------------------------------------------------------
-# Download index.html file of pgsql source code installation
+# Create the file repository configuration
 # --------------------------------------------------------------------------------------
-wget --output-document postgresql/all_released_versions.html \
-  https://www.postgresql.org/ftp/source/
+sudo sh -c \
+  'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > \
+  /etc/apt/sources.list.d/pgdg.list'
 
 # --------------------------------------------------------------------------------------
-# Extract the text that indicates the latest version
+# Import the repository signing key
 # --------------------------------------------------------------------------------------
-postgresql_latest_version="$( \
-  < postgresql/all_released_versions.html \
-  grep --extended-regexp "v[[:digit:]][[:digit:]]" | head --lines 1 | \
-  grep --only-matching --perl-regexp "(?<=>)v.*(?=</a)" \
-)"
+wget --quiet --output-document - https://www.postgresql.org/media/keys/ACCC4CF8.asc \
+  | sudo apt-key add -
 
 # --------------------------------------------------------------------------------------
-# Download index.html file of the Nodejs latest version
+# Update the package lists
 # --------------------------------------------------------------------------------------
-wget --output-document postgresql/"$postgresql_latest_version".html \
-  https://www.postgresql.org/ftp/source/"$postgresql_latest_version"
+sudo apt update
 
 # --------------------------------------------------------------------------------------
-# Extract the text that points to the link for tar.gz file
+# Install the latest version of PostgreSQL.
 # --------------------------------------------------------------------------------------
-path_to_tar_file="$( \
-  < postgresql/"$postgresql_latest_version".html \
-  grep --extended-regexp ".tar.gz" | head --lines 1 | \
-  grep --only-matching --perl-regexp '(?<=href=").*?(?=">)' | head --lines 1 \
-)"
-
-# --------------------------------------------------------------------------------------
-# Download pgsql latest version
-# --------------------------------------------------------------------------------------
-wget --output-document postgresql/tar_file.tar "$path_to_tar_file"
-
-# --------------------------------------------------------------------------------------
-# Extract the tar file
-# --------------------------------------------------------------------------------------
-echo "Unpack PostgreSQL archive"
-tar --extract --verbose --file postgresql/tar_file.tar --directory=postgresql
-
-# --------------------------------------------------------------------------------------
-# Run configure and makefile to install pgsql
-# pgsql be underneath one of these directories after installation
-# `whereis postgresql`: /usr/lib/postgresql /etc/postgresql /usr/share/postgresql
-# --------------------------------------------------------------------------------------
-cd "$(find postgresql -type d -name "postgresql-*")" || exit
-./configure --without-readline --without-zlib
-make
-make check
-yes | sudo make install
-cd ../..
-
-# --------------------------------------------------------------------------------------
-# Verify version
-# --------------------------------------------------------------------------------------
-postgresql_latest_version="${postgresql_latest_version//v/}"
-current_postgresql_version="$(/usr/local/pgsql/bin/psql --version | awk '{ print $3 }')"
-if [[ "$postgresql_latest_version" == "$current_postgresql_version" ]]; then
-  echo "Latest version matched - $current_postgresql_version"
-else
-  echo "Latest version not matched"
-  echo "PostgreSQL latest version - $postgresql_latest_version"
-  echo "Current PostgreSQL version - $current_postgresql_version"
-  echo "installer.sh: exit 1"
-  exit 1
-fi
-
-# --------------------------------------------------------------------------------------
-# Append pgsql binary directory to $PATH if it is not there yet.
-# --------------------------------------------------------------------------------------
-if [[ -d "/usr/local/pgsql/bin" ]] && ! [[ "$PATH" =~ .*"/usr/local/pgsql/bin".* ]]; then
-  if [[ -f ~/.bashrc ]]; then
-    export PATH="$PATH:/usr/local/pgsql/bin" >> ~/.bashrc
-  else
-    export PATH="$PATH:/usr/local/pgsql/bin"
-  fi
-fi
-
-# --------------------------------------------------------------------------------------
-# Print all commands installed through pgsql
-# --------------------------------------------------------------------------------------
-echo "All of the following commands are available as parts of PostgreSQL:"
-
-ls -l /usr/local/pgsql/bin/ | awk '{ print $9 }' | nl | sed ' '
-
-printf "\n"
-
-echo "These commands can either be accessed directly \
-(as we have added them to PATH through installation), \
-or invoked via the following full/path/commands:"
-
-find /usr/local/pgsql/bin/ -type f | nl | sed 's/ //g'
-
-# --------------------------------------------------------------------------------------
-# Clean up installation
-# --------------------------------------------------------------------------------------
-echo Removing cache for PostgreSQL installation...
-rm --interactive=never --recursive --verbose /tmp/postgresql
+yes | sudo apt install postgresql
