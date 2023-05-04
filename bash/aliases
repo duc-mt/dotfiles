@@ -55,11 +55,11 @@ alias ....='cd ../..'
 alias cd..='cd ..'
 alias cd....='cd ../..'
 alias cc='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ University\ of\ South\ Australia &&\
-  clear && ls'
-alias W='cd ~/myportfolio && clear && ls -l'
-alias V='cd $DOTVIM && clear && ls -l'
-alias F='cd $DOTFILES && clear && ls -l'
-alias P='cd ~/.password-store && clear && ls -l'
+  clear && pwd && ls'
+alias W='cd ~/myportfolio && clear && pwd && ls -l'
+alias V='cd $DOTVIM && clear && pwd && ls -l'
+alias F='cd $DOTFILES && clear && pwd && ls -l'
+alias P='cd ~/.password-store && clear && pwd && ls -l'
 
 # File aliases
 alias bashrc='vim $DOTFILES/bash/bashrc'
@@ -81,10 +81,15 @@ alias open='view'
 alias opne='open'
 alias e3='e3vi'
 
-# Other aliases
+# Binary files pointer aliases
+alias bat='batcat'
+alias cat='lolcat'
+
+# Shorthand aliases
 alias py='python3'
 alias ex='exit'
-alias cl='clear'
+
+# Expansion aliases
 alias ddate='date +%R - %a, %B %d, %Y'
 alias dday='date +%d-%m-%Y'
 alias toilet='toilet -t -f mono12 --filter border:metal -F metal'
@@ -93,6 +98,7 @@ alias sqlformat='sqlformat -s --reindent --keywords upper --identifiers lower'
 alias pipinstall='python3 -m pip install --upgrade install'
 alias updatedb='sudo updatedb'
 alias hugodeploy='hugo --cleanDestinationDir --gc'
+alias pwd='pwd | figlet -f mnemonic | lolcat'
 
 # Link aliases
 # shellcheck disable=SC2034
