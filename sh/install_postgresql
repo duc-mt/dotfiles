@@ -15,7 +15,7 @@
 # --------------------------------------------------------------------------------------
 # Remove old installations (if there is any)
 # --------------------------------------------------------------------------------------
-yes | sudo apt remove postgresql* 2>> /dev/null
+yes | sudo apt remove postgresql* 2&> /dev/null
 
 # --------------------------------------------------------------------------------------
 # Create the file repository configuration
