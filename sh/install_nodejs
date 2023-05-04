@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# ======================================================================================
+#
+#         FILE:  install_nodejs
+#       AUTHOR:  Henry Mai <henryfromvietnam@gmail.com>
+#      COMPANY:  ---
+#        USAGE:  ./install_nodejs
+#  DESCRIPTION:  Install Node.js
+#      CREATED:  May 04, 2023
+#
+# ======================================================================================
+
+
+# --------------------------------------------------------------------------------------
+# Remove old installations (if there is any)
+# --------------------------------------------------------------------------------------
+yes | sudo apt remove node* 2&> /dev/null
+yes | sudo apt remove yarn* 2&> /dev/null
+yes | sudo apt remove npm* 2&> /dev/null
+
+# --------------------------------------------------------------------------------------
+# Clone NodeSource Node.js binary distributions
+# --------------------------------------------------------------------------------------
+git clone https://github.com/nodesource/distributions.git
+
+# --------------------------------------------------------------------------------------
+# Locate the latest distribution version and execute the relevant version code
+# --------------------------------------------------------------------------------------
+find distributions/deb/ -type f \
+  | grep --extended-regexp "setup_[[:digit:]][[:digit:]].x" \
+  | tail --lines 1 \
+  | sudo bash -
+
+# --------------------------------------------------------------------------------------
+# Install Node.js the latest version and npm
+# --------------------------------------------------------------------------------------
+yes | sudo apt install nodejs
+
+# --------------------------------------------------------------------------------------
+# Install the Yarn package manager
+# --------------------------------------------------------------------------------------
+# curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg \
+#   | gpg --dearmor \
+#   | sudo tee /usr/share/keyrings/yarnkey.gpg >/dev/null
+
+# echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] \
+#   https://dl.yarnpkg.com/debian stable main" | \
+#   sudo tee /etc/apt/sources.list.d/yarn.list
+
+# yes | sudo apt update && sudo apt install yarn
+# sudo npm install --force --global yarn
+
+# --------------------------------------------------------------------------------------
+# Clean up installation
+# --------------------------------------------------------------------------------------
+echo Removing cache for Nodejs installation...
+rm --interactive=never --recursive --verbose distributions
