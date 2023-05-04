@@ -42,7 +42,8 @@ yes | sudo apt install \
   tldr bitwise convertall traceroute exa fzf gip meld whatmask qalc mupdf lookatme mdp \
   bat btop duf gitk git-extras perl-doc mgitstatus kristall markdown minder treesheets \
   sxiv calendar ntpdate shellcheck pre-commit myspell-en-au pass libgtk-3-dev apg \
-  pass-extension-audit pass-extension-otp meson ninja-build e3 firefox-esr cargo vonsh
+  pass-extension-audit pass-extension-otp meson ninja-build e3 firefox-esr cargo vonsh \
+  lolcat
 yes | sudo apt autoremove
 yes | sudo apt autoclean
 echo
