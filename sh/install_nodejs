@@ -34,6 +34,7 @@ git clone https://github.com/nodesource/distributions.git /tmp/nodejs/distributi
 latest_version="$(basename \
   "$(find /tmp/nodejs/distributions/deb/ -type f \
   | grep --extended-regexp "setup_[[:digit:]][[:digit:]].x" \
+  | sort \
   | tail --lines 1)" \
   | tr --complement --delete '0-9')"
 
