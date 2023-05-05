@@ -229,6 +229,12 @@ sudo bash "$DOTFILES/sh/install_postgresql"
 chmod -v 644 "$DOTFILES/sh/install_postgresql"
 echo
 
+echo Installing Node.js ...
+chmod -v 777 "$DOTFILES/sh/install_nodejs"
+sudo bash "$DOTFILES/sh/install_nodejs"
+chmod -v 644 "$DOTFILES/sh/install_nodejs"
+echo
+
 echo Installing passmenu ...
 sudo wget -O /usr/local/bin/passmenu \
   https://git.zx2c4.com/password-store/plain/contrib/dmenu/passmenu
