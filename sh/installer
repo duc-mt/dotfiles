@@ -70,11 +70,11 @@ yes | sudo make install
 rm --recursive --force /tmp/vim/
 echo
 
-echo Making scripts under "$DOTFILES/sh/" executable ...
-find "$DOTFILES/sh/" -type f -not -name "*.sh" -exec chmod --verbose a+rx {} \;
+echo Making scripts under ~/.dotfiles/sh/ executable ...
+find ~/.dotfiles/sh/" -type f -not -name "*.sh" -exec chmod --verbose a+rx {} \;
 echo
 
-echo "Installing git-sh ..."
+echo Installing git-sh ...
 cd /tmp || exit
 git clone https://github.com/rtomayko/git-sh.git
 cd git-sh/ || exit
@@ -208,31 +208,31 @@ sudo git clone https://github.com/dwyl/english-words.git /usr/share/dict/english
 echo
 
 echo Make some scripts executable ...
-find "$DOTVIM/dictionary/sort" -type f -exec chmod -v 777 {} \;
+find ~/.vim/dictionary/sort -type f -exec chmod -v 777 {} \;
 echo
 
 echo Installing GnuPG ...
-chmod -v 777 "$DOTFILES/sh/install_gnupg"
-sudo bash "$DOTFILES/sh/install_gnupg"
-chmod -v 644 "$DOTFILES/sh/install_gnupg"
+chmod -v 777 ~/.dotfiles/sh/install_gnupg
+sudo bash ~/.dotfiles/sh/install_gnupg
+chmod -v 644 ~/.dotfiles/sh/install_gnupg
 echo
 
 echo Installing WSL Utilities ...
-chmod -v 777 "$DOTFILES/sh/install_wsl_utilities"
-sudo bash "$DOTFILES/sh/install_wsl_utilities"
-chmod -v 644 "$DOTFILES/sh/install_wsl_utilities"
+chmod -v 777 ~/.dotfiles/sh/install_wsl_utilities
+sudo bash ~/.dotfiles/sh/install_wsl_utilities
+chmod -v 644 ~/.dotfiles/sh/install_wsl_utilities
 echo
 
 echo Installing PostgreSQL ...
-chmod -v 777 "$DOTFILES/sh/install_postgresql"
-sudo bash "$DOTFILES/sh/install_postgresql"
-chmod -v 644 "$DOTFILES/sh/install_postgresql"
+chmod -v 777 ~/.dotfiles/sh/install_postgresql
+sudo bash ~/.dotfiles/sh/install_postgresql
+chmod -v 644 ~/.dotfiles/sh/install_postgresql
 echo
 
 echo Installing Node.js ...
-chmod -v 777 "$DOTFILES/sh/install_nodejs"
-sudo bash "$DOTFILES/sh/install_nodejs"
-chmod -v 644 "$DOTFILES/sh/install_nodejs"
+chmod -v 777 ~/.dotfiles/sh/install_nodejs
+sudo bash ~/.dotfiles/sh/install_nodejs
+chmod -v 644 ~/.dotfiles/sh/install_nodejs
 echo
 
 echo Installing passmenu ...
@@ -288,7 +288,7 @@ sudo chmod -v 777 /etc/cron.weekly/check_firefox
 echo
 
 echo Linking symbolically /etc/crontab...
-sudo ln --symbolic --force --verbose "$DOTFILES/bash/crontab" /etc/crontab
+sudo ln --symbolic --force --verbose ~/.dotfiles/bash/crontab /etc/crontab
 echo
 
 echo "Setting up bat -> batcat..."
