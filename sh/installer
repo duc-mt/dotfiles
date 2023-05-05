@@ -70,8 +70,8 @@ yes | sudo make install
 rm --recursive --force /tmp/vim/
 echo
 
-echo Making scripts under ~/.dotfiles/sh/ executable ...
-find ~/.dotfiles/sh/ -type f -not -name "*.sh" -exec chmod --verbose a+rx {} \;
+echo Making scripts under ~/.files/sh/ executable ...
+find ~/.files/sh/ -type f -not -name "*.sh" -exec chmod --verbose a+rx {} \;
 echo
 
 echo Installing git-sh ...
@@ -212,27 +212,33 @@ find ~/.vim/dictionary/sort -type f -exec chmod -v 777 {} \;
 echo
 
 echo Installing GnuPG ...
-chmod -v 777 ~/.dotfiles/sh/install_gnupg
-sudo bash ~/.dotfiles/sh/install_gnupg
-chmod -v 644 ~/.dotfiles/sh/install_gnupg
+chmod -v 777 ~/.files/sh/install_gnupg
+sudo bash ~/.files/sh/install_gnupg
+chmod -v 644 ~/.files/sh/install_gnupg
 echo
 
 echo Installing WSL Utilities ...
-chmod -v 777 ~/.dotfiles/sh/install_wsl_utilities
-sudo bash ~/.dotfiles/sh/install_wsl_utilities
-chmod -v 644 ~/.dotfiles/sh/install_wsl_utilities
+chmod -v 777 ~/.files/sh/install_wsl_utilities
+sudo bash ~/.files/sh/install_wsl_utilities
+chmod -v 644 ~/.files/sh/install_wsl_utilities
 echo
 
 echo Installing PostgreSQL ...
-chmod -v 777 ~/.dotfiles/sh/install_postgresql
-sudo bash ~/.dotfiles/sh/install_postgresql
-chmod -v 644 ~/.dotfiles/sh/install_postgresql
+chmod -v 777 ~/.files/sh/install_postgres
+sudo bash ~/.files/sh/install_postgres
+chmod -v 644 ~/.files/sh/install_postgres
+echo
+
+echo Installing pass ...
+chmod -v 777 ~/.files/sh/install_pass
+sudo bash ~/.files/sh/install_pass
+chmod -v 644 ~/.files/sh/install_pass
 echo
 
 echo Installing Node.js ...
-chmod -v 777 ~/.dotfiles/sh/install_nodejs
-sudo bash ~/.dotfiles/sh/install_nodejs
-chmod -v 644 ~/.dotfiles/sh/install_nodejs
+chmod -v 777 ~/.files/sh/install_nodejs
+sudo bash ~/.files/sh/install_nodejs
+chmod -v 644 ~/.files/sh/install_nodejs
 echo
 
 echo Installing passmenu ...
@@ -288,7 +294,7 @@ sudo chmod -v 777 /etc/cron.weekly/check_firefox
 echo
 
 echo Linking symbolically /etc/crontab...
-sudo ln --symbolic --force --verbose ~/.dotfiles/bash/crontab /etc/crontab
+sudo ln --symbolic --force --verbose ~/.files/bash/crontab /etc/crontab
 echo
 
 echo "Setting up bat -> batcat..."
