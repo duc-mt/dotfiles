@@ -2,11 +2,11 @@
 
 # ======================================================================================
 #
-#         FILE:  install_postgresql
+#         FILE:  install_postgres
 #       AUTHOR:  Henry Mai <henryfromvietnam@gmail.com>
 #      COMPANY:  ---
-#        USAGE:  ./install_gnupgpostgresql
-#  DESCRIPTION:  Install PostgreSQL (pgsql/psql)
+#        USAGE:  ./install_postgres
+#  DESCRIPTION:  Install PostgreSQL/Postgres (pgsql/psql)
 #      CREATED:  May 04, 2023
 #
 # ======================================================================================
@@ -15,7 +15,8 @@
 # --------------------------------------------------------------------------------------
 # Remove old installations (if there is any)
 # --------------------------------------------------------------------------------------
-yes | sudo apt remove postgresql* 2&> /dev/null
+yes | sudo apt remove postgresql* 2> /dev/null
+yes | sudo apt autoremove 2> /dev/null
 
 # --------------------------------------------------------------------------------------
 # Create the file repository configuration
