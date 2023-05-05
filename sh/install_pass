@@ -41,3 +41,92 @@ else
     echo "$line" | sudo tee -a /etc/apt/preferences
   done
 fi
+
+# --------------------------------------------------------------------------------------
+# Installing passmenu
+# --------------------------------------------------------------------------------------
+sudo wget -O /usr/local/bin/passmenu \
+  https://git.zx2c4.com/password-store/plain/contrib/dmenu/passmenu
+sudo chmod -v 777 /usr/local/bin/passmenu
+
+# --------------------------------------------------------------------------------------
+# Installing dmenu-wayland ...
+# --------------------------------------------------------------------------------------
+git clone https://github.com/nyyManni/dmenu-wayland.git /tmp/dmenu-wayland
+cd /tmp/dmenu-wayland || exit
+mkdir build
+meson build
+ninja -C build
+sudo ninja -C build install
+rm -rf /tmp/dmenu-wayland
+
+# --------------------------------------------------------------------------------------
+# Installing pass-update
+# --------------------------------------------------------------------------------------
+git clone https://github.com/roddhjav/pass-update /tmp/pass-update
+cd /tmp/pass-update || exit
+yes | sudo make install
+sudo cp /usr/share/bash-completion/completions/pass-update \
+  /etc/bash-completion.d/bash_completion
+rm -rf /tmp/pass-update/
+
+# --------------------------------------------------------------------------------------
+# Installing pass-tail
+# --------------------------------------------------------------------------------------
+git clone https://github.com/palortoff/pass-extension-tail.git /tmp/pass-tail
+cd /tmp/pass-tail || exit
+yes | sudo make install
+rm -rf /tmp/pass-tail
+
+# --------------------------------------------------------------------------------------
+# Installing pass-export
+# --------------------------------------------------------------------------------------
+git clone https://github.com/dvogt23/pass-export/ /tmp/pass-export
+cd /tmp/pass-export || exit
+yes | sudo make install
+rm -rf /tmp/pass-export/
+
+# --------------------------------------------------------------------------------------
+# Installing pass-tessen
+# --------------------------------------------------------------------------------------
+git clone https://git.sr.ht/~ayushnix/pass-tessen /tmp/pass-tessen
+cd pass-tessen || exit
+yes | sudo make install
+rm -rf /tmp/pass-tessen/
+
+# --------------------------------------------------------------------------------------
+# Installing pass-age
+# --------------------------------------------------------------------------------------
+sudo wget -O /usr/lib/password-store/extensions/age.bash \
+  https://raw.githubusercontent.com/tijn/pass-age/master/age.bash
+sudo chmod 777 /usr/lib/password-store/extensions/age.bash
+
+sudo wget -O /usr/lib/password-store/extensions/ages.bash \
+  https://raw.githubusercontent.com/tijn/pass-age/master/ages.bash
+sudo chmod 777 /usr/lib/password-store/extensions/ages.bash
+
+# --------------------------------------------------------------------------------------
+# Adding pass-age completion
+# --------------------------------------------------------------------------------------
+cat >/tmp/pass-age <<_ACEOF
+# pass-age completion file for bash
+
+PASSWORD_STORE_EXTENSION_COMMANDS+=(age)
+PASSWORD_STORE_EXTENSION_COMMANDS+=(ages)
+
+__password_store_extension_complete_age() {
+    _pass_complete_entries 1
+}
+
+__password_store_extension_complete_ages() {
+    _pass_complete_entries 1
+}
+_ACEOF
+
+sudo mv /tmp/pass-age /etc/bash_completion.d/pass-age
+
+# --------------------------------------------------------------------------------------
+# Adding pass-otp completion
+# --------------------------------------------------------------------------------------
+sudo wget -O /etc/bash_completion.d/pass-otp \
+  https://raw.githubusercontent.com/tadfisher/pass-otp/develop/pass-otp.bash.completion

@@ -241,51 +241,6 @@ sudo bash ~/.files/sh/install_nodejs
 chmod -v 644 ~/.files/sh/install_nodejs
 echo
 
-echo Installing passmenu ...
-sudo wget -O /usr/local/bin/passmenu \
-  https://git.zx2c4.com/password-store/plain/contrib/dmenu/passmenu
-sudo chmod -v 777 /usr/local/bin/passmenu
-echo
-
-echo Installing dmenu-wayland ...
-cd /tmp || exit
-git clone https://github.com/nyyManni/dmenu-wayland.git
-cd dmenu-wayland || exit
-mkdir build
-meson build
-ninja -C build
-sudo ninja -C build install
-rm -rf /tmp/dmenu-wayland
-echo
-
-echo Installing pass-update ...
-cd /tmp || exit
-git clone https://github.com/roddhjav/pass-update
-cd pass-update || exit
-yes | sudo make install
-sudo cp /usr/share/bash-completion/completions/pass-update \
-  /etc/bash-completion.d/bash_completion
-rm -rf /tmp/pass-update/
-echo
-
-echo Installing pass-tail ...
-cd /tmp || exit
-git clone https://github.com/palortoff/pass-extension-tail.git
-cd pass-extension-tail || exit
-yes | sudo make install
-rm -rf /tmp/pass-extension-tail
-echo
-
-echo Adding pass-audit completion ...
-sudo wget -O /etc/bash_completion.d/pass-audit \
-  https://raw.githubusercontent.com/tadfisher/pass-otp/develop/pass-otp.bash.completion
-echo
-
-echo Adding pass-otp completion ...
-sudo wget -O /etc/bash_completion.d/pass-otp \
-  https://raw.githubusercontent.com/tadfisher/pass-otp/develop/pass-otp.bash.completion
-echo
-
 echo Adding check_firefox crontab job ...
 sudo wget -O /etc/cron.weekly/check_firefox \
   https://raw.githubusercontent.com/raulsaavedr/firefox_update/master/check_firefox
