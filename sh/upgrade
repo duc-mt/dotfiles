@@ -30,7 +30,7 @@ yes | sudo apt autoremove
 yes | sudo apt autoclean
 if [[ -d "$DOTVIM" ]]; then
   printf " --------------------\nCheck for updates to vim plugins ...\n"
-  git -C "$DOTVIM submodule update --init --recursive --remote"
+  git -C "$DOTVIM" submodule update --init --recursive --remote
 fi
 if [[ -d "$DOTFILES" ]]; then
   printf " --------------------\nCheck for updates to submodules within dotfiles ...\n"
