@@ -70,10 +70,6 @@ yes | sudo make install
 rm --recursive --force /tmp/vim/
 echo
 
-echo Making scripts under ~/.files/sh/ executable ...
-find ~/.files/sh/ -type f -not -name "*.sh" -exec chmod --verbose a+rx {} \;
-echo
-
 echo Installing git-sh ...
 cd /tmp || exit
 git clone https://github.com/rtomayko/git-sh.git
