@@ -123,13 +123,13 @@ sudo chmod -v 777 /usr/local/bin/telcountry
 echo
 
 echo Installing tagscrape ...
-sudo wget -o /usr/local/bin/tagscrape \
+sudo wget -O /usr/local/bin/tagscrape \
   https://gist.githubusercontent.com/rsvp/3095975/raw/3b663b8c4c821d740dfdaf85011128c49ffec459/tagscrape.sh
 sudo chmod -v 777 /usr/local/bin/tagscrape
 echo
 
 echo Installing locat ...
-sudo wget -o /usr/local/bin/locat \
+sudo wget -O /usr/local/bin/locat \
   https://gist.githubusercontent.com/rsvp/2199326/raw/6ff764df4092d83550ac1b81bdf816d05694d3a2/locat.sh
 sudo sed -i 's/mlocate/plocate/g' /usr/local/bin/locat
 sudo chmod -v 777 /usr/local/bin/locat
