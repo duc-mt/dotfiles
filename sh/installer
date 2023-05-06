@@ -230,6 +230,7 @@ echo
 echo Installing Node.js ...
 chmod -v 777 ~/.files/sh/install_nodejs
 sudo bash ~/.files/sh/install_nodejs
+sudo bash ~/.files/sh/install_nodejs
 chmod -v 644 ~/.files/sh/install_nodejs
 echo
 
