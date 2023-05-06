@@ -200,7 +200,9 @@ sudo find /usr/share/dict/moby_words/ -type f \
 echo
 
 echo Installing English wordlist ...
-sudo git clone https://github.com/dwyl/english-words.git /usr/share/dict/english-words
+mkdir -p /usr/share/dict
+cd /usr/share/dict || exit
+sudo git clone https://github.com/dwyl/english-words.git
 echo
 
 echo Installing GnuPG ...
