@@ -103,12 +103,12 @@ sudo wget -O /usr/local/bin/git-archive-all \
 sudo chmod -v 777 /usr/local/bin/git-archive-all
 echo
 
-echo Installing forgit ...
-sudo wget -O /usr/local/bin/forgit \
-  https://raw.githubusercontent.com/wfxr/forgit/master/forgit.plugin.zsh
-sudo sed -i 's/bin\/git-forgit/git-forgit/g' /usr/local/bin/forgit
-sudo chmod -v 777 /usr/local/bin/forgit
-echo
+# echo Installing forgit ...
+# sudo wget -O /usr/local/bin/forgit \
+#   https://raw.githubusercontent.com/wfxr/forgit/master/forgit.plugin.zsh
+# sudo sed -i 's/bin\/git-forgit/git-forgit/g' /usr/local/bin/forgit
+# sudo chmod -v 777 /usr/local/bin/forgit
+# echo
 
 echo Installing dirt ...
 sudo wget -O /usr/local/bin/dirt \
@@ -232,6 +232,10 @@ chmod -v 777 ~/.files/sh/install_nodejs
 sudo bash ~/.files/sh/install_nodejs
 sudo bash ~/.files/sh/install_nodejs
 chmod -v 644 ~/.files/sh/install_nodejs
+echo
+
+echo Installing fzf ...
+yes | "$HOME"/.vim/pack/file-system/start/fzf/install
 echo
 
 echo Adding check_firefox crontab job ...
