@@ -191,7 +191,7 @@ wget -O /tmp/moby_words.zip \
   https://www.gutenberg.org/files/3202/files.zip
 sudo unzip /tmp/moby_words.zip -d /usr/share/dict/moby_words
 rm -rf /tmp/moby_words.zip
-sudo cp -var /usr/share/dict/moby_words/files/. /usr/share/dict/moby_words/
+sudo mv -v /usr/share/dict/moby_words/files/* /usr/share/dict/moby_words/
 sudo rmdir /usr/share/dict/moby_words/files/
 sudo find /usr/share/dict/moby_words/ -type f \
   -name "[[:upper:]]*" -exec mv {} {}.utf-8.add \;
