@@ -151,7 +151,7 @@ echo Installing pandoc-from-markdown-to-pdf ...
 sudo git clone https://github.com/SixArm/pandoc-from-markdown-to-pdf.git \
   /usr/local/bin/pandoc-from-markdown-to-pdf
 sudo chmod -v 777 \
-  usr/local/bin/pandoc-from-markdown-to-pdf/pandoc-from-markdown-to-pdf
+  /usr/local/bin/pandoc-from-markdown-to-pdf/pandoc-from-markdown-to-pdf
 echo
 
 echo Installing fonts required by pandoc-from-markdown-to-pdf ...
