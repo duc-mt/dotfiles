@@ -245,6 +245,7 @@ sudo ln --symbolic --force --verbose ~/.files/bash/crontab /etc/crontab
 echo
 
 echo "Setting up bat -> batcat..."
+mkdir -p "$HOME"/.local/bin
 ln -sfv "$(whereis batcat | awk '{ print $2 }')" ~/.local/bin/bat
 echo
 
