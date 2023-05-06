@@ -39,11 +39,11 @@ yes | sudo apt install \
   nethogs nmap ipcalc pandoc texlive-xetex texlive-science texlive-latex-extra minder \
   librsvg2-bin hugo vsftpd sqlformat python3-q-text-as-data net-tools aircrack-ng tldr \
   mc gitless fortune-mod sl cowsay toilet cmatrix rename ripgrep whois treesheets apg \
-  bitwise convertall traceroute exa fzf gip meld whatmask qalc mupdf lookatme mdp e3 \
-  bat btop duf gh git-hub hub gitk git-extras mgitstatus perl-doc kristall markdown \
+  bitwise convertall traceroute exa fzf gip meld qalc mupdf lookatme mdp e3 \
+  bat btop duf gh git-hub hub gitk git-extras mgitstatus perl-doc markdown \
   calendar ntpdate shellcheck pre-commit myspell-en-au libgtk-3-dev cargo vonsh lolcat \
-  software-properties-common pass-extension-audit pass-extension-otp ninja-build nginx \
-  firefox-esr wordnet
+  software-properties-common pass-extension-otp ninja-build nginx \
+  wordnet
 yes | sudo apt autoremove
 yes | sudo apt autoclean
 echo
