@@ -14,7 +14,7 @@
 if [[ -f /etc/hosts ]]; then
   echo "Install WSL utilities ..."
   if grep --fixed-strings --line-regexp --quiet "ID=ubuntu" /etc/os-release; then
-    sudo add-apt-repository ppa:wslutilities/wslu
+    yes | sudo add-apt-repository ppa:wslutilities/wslu
   elif grep --fixed-strings --line-regexp --quiet "ID=kali" /etc/os-release; then
     sudo apt install apt-transport-https
     wget --output-document - https://pkg.wslutiliti.es/public.key | \
