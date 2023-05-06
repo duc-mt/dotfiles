@@ -203,10 +203,6 @@ echo Installing English wordlist ...
 sudo git clone https://github.com/dwyl/english-words.git /usr/share/dict/english-words
 echo
 
-echo Make some scripts executable ...
-find ~/.vim/dictionary/sort -type f -exec chmod -v 777 {} \;
-echo
-
 echo Installing GnuPG ...
 chmod -v 777 ~/.files/sh/install_gnupg
 sudo bash ~/.files/sh/install_gnupg
