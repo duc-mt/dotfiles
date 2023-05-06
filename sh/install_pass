@@ -55,17 +55,6 @@ sudo wget -O /usr/local/bin/passmenu \
 sudo chmod -v 777 /usr/local/bin/passmenu
 
 # --------------------------------------------------------------------------------------
-# Installing dmenu-wayland ...
-# --------------------------------------------------------------------------------------
-git clone https://github.com/nyyManni/dmenu-wayland.git /tmp/dmenu-wayland
-cd /tmp/dmenu-wayland || exit
-mkdir build
-meson build
-ninja -C build
-sudo ninja -C build install
-rm -rf /tmp/dmenu-wayland
-
-# --------------------------------------------------------------------------------------
 # Installing pass-update
 # --------------------------------------------------------------------------------------
 git clone https://github.com/roddhjav/pass-update /tmp/pass-update
