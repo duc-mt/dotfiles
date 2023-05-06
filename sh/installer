@@ -103,12 +103,11 @@ sudo wget -O /usr/local/bin/git-archive-all \
 sudo chmod -v 777 /usr/local/bin/git-archive-all
 echo
 
-# echo Installing forgit ...
-# sudo wget -O /usr/local/bin/forgit \
-#   https://raw.githubusercontent.com/wfxr/forgit/master/forgit.plugin.zsh
-# sudo sed -i 's/bin\/git-forgit/git-forgit/g' /usr/local/bin/forgit
-# sudo chmod -v 777 /usr/local/bin/forgit
-# echo
+echo Installing forgit ...
+sudo ln -sfv ~/.files/bash/fzf/forgit/bin/git-forgit /usr/local/bin/forgit
+sudo cp -v ~/.files/bash/fzf/forgit/completions/git-forgit.bash \
+  /etc/bash_completion.d/git-forgit
+echo
 
 echo Installing dirt ...
 sudo wget -O /usr/local/bin/dirt \
