@@ -57,33 +57,36 @@ sudo chmod -v 777 /usr/local/bin/passmenu
 # --------------------------------------------------------------------------------------
 # Installing pass-update
 # --------------------------------------------------------------------------------------
-git clone https://github.com/roddhjav/pass-update /tmp/pass-update
-cd /tmp/pass-update || exit
+cd /tmp || exit
+git clone https://github.com/roddhjav/pass-update
+cd pass-update || exit
 yes | sudo make install
-sudo cp /usr/share/bash-completion/completions/pass-update \
-  /etc/bash-completion.d/bash_completion
+sudo cp -v completion/pass-update.bash /etc/bash_completion.d/pass-update
 rm -rf /tmp/pass-update/
 
 # --------------------------------------------------------------------------------------
 # Installing pass-tail
 # --------------------------------------------------------------------------------------
-git clone https://github.com/palortoff/pass-extension-tail.git /tmp/pass-tail
-cd /tmp/pass-tail || exit
+cd /tmp || exit
+git clone https://github.com/palortoff/pass-extension-tail.git
+cd pass-extension-tail || exit
 yes | sudo make install
-rm -rf /tmp/pass-tail
+rm -rf /tmp/pass-extension-tail/
 
 # --------------------------------------------------------------------------------------
 # Installing pass-export
 # --------------------------------------------------------------------------------------
-git clone https://github.com/dvogt23/pass-export/ /tmp/pass-export
-cd /tmp/pass-export || exit
+cd /tmp || exit
+git clone https://github.com/dvogt23/pass-export.git
+cd pass-export || exit
 yes | sudo make install
 rm -rf /tmp/pass-export/
 
 # --------------------------------------------------------------------------------------
 # Installing pass-tessen
 # --------------------------------------------------------------------------------------
-git clone https://git.sr.ht/~ayushnix/pass-tessen /tmp/pass-tessen
+cd /tmp || exit
+git clone https://git.sr.ht/~ayushnix/pass-tessen
 cd pass-tessen || exit
 yes | sudo make install
 rm -rf /tmp/pass-tessen/
