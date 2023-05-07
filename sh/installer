@@ -103,8 +103,9 @@ sudo wget -O /usr/local/bin/git-archive-all \
 sudo chmod -v 777 /usr/local/bin/git-archive-all
 echo
 
-echo Adding forgit completion ...
-sudo ln -sfv ~/.files/bash/fzf/forgit/completions/git-forgit.bash \
+echo Installing forgit ...
+sudo git clone https://github.com/wfxr/forgit /usr/share/forgit
+sudo ln -sfv /usr/share/forgit/completions/git-forgit.bash \
   /etc/bash_completion.d/git-forgit
 echo
 

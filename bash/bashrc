@@ -186,10 +186,10 @@ if [[ -f "$DOTFILES/bash/functions" ]]; then
   source "$DOTFILES/bash/functions"
 fi
 
-# Load forgit plugin: https://github.com/wfxr/forgit
-if [[ -f "$DOTFILES/bash/fzf/forgit/forgit.plugin.sh" ]]; then
+# Load forgit: https://github.com/wfxr/forgit
+if [[ -f /usr/share/forgit/forgit.plugin.sh ]]; then
   # shellcheck source=/dev/null
-  source "$DOTFILES/bash/fzf/forgit/forgit.plugin.sh"
+  source /usr/share/forgit/forgit.plugin.sh
 fi
 
 # Source git-sh-prompt
