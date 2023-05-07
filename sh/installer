@@ -42,8 +42,7 @@ yes | sudo apt install \
   bitwise convertall traceroute exa gip meld qalc mupdf lookatme mdp e3 meson ondir \
   bat btop duf gh git-hub hub gitk git-extras mgitstatus perl-doc markdown plocate \
   calendar ntpdate shellcheck pre-commit myspell-en-au libgtk-3-dev cargo vonsh lolcat \
-  software-properties-common pass-extension-otp ninja-build nginx \
-  wordnet
+  software-properties-common pass-extension-otp ninja-build nginx wl-clipboard wordnet
 yes | sudo apt autoremove
 yes | sudo apt autoclean
 echo
