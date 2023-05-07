@@ -155,34 +155,35 @@ fi
 ############
 
 # Source glob_variables
+# Must be above others so that $DOTFILES or $DOTVIM can be used.
 if [[ -f "$HOME/.files/bash/glob_variables" ]]; then
   # shellcheck source=/dev/null
   source "$HOME/.files/bash/glob_variables"
 fi
 
-# Source pathrc
-if [[ -f "$HOME/.files/bash/pathrc" ]]; then
+# Alias definitions
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+if [[ -f "$DOTFILES/bash/aliases" ]]; then
   # shellcheck source=/dev/null
-  source "$HOME/.files/bash/pathrc"
+  source "$DOTFILES/bash/aliases"
+fi
+
+# Source pathrc
+if [[ -f "$DOTFILES/bash/pathrc" ]]; then
+  # shellcheck source=/dev/null
+  source "$DOTFILES/bash/pathrc"
 fi
 
 # Source fzfrc
-if [[ -f "$HOME/.files/bash/fzf/fzfrc" ]]; then
+if [[ -f "$DOTFILES/bash/fzf/fzfrc" ]]; then
   # shellcheck source=/dev/null
-  source "$HOME/.files/bash/fzf/fzfrc"
-fi
-
-# Alias definitions
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-if [[ -f "$HOME/.files/bash/aliases" ]]; then
-  # shellcheck source=/dev/null
-  source "$HOME/.files/bash/aliases"
+  source "$DOTFILES/bash/fzf/fzfrc"
 fi
 
 # Function definitions
-if [[ -f "$HOME/.files/bash/functions" ]]; then
+if [[ -f "$DOTFILES/bash/functions" ]]; then
   # shellcheck source=/dev/null
-  source "$HOME/.files/bash/functions"
+  source "$DOTFILES/bash/functions"
 fi
 
 # Load forgit plugin: https://github.com/wfxr/forgit
