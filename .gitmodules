@@ -100,6 +100,3 @@
 [submodule "bash/fzf/fzf-git"]
 	path = bash/fzf/fzf-git
 	url = https://github.com/junegunn/fzf-git.sh
-[submodule "bash/fzf/forgit"]
-	path = bash/fzf/forgit
-	url = https://github.com/wfxr/forgit.git
