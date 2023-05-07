@@ -72,6 +72,18 @@ done
 sudo npm install --force --global yarn
 
 # --------------------------------------------------------------------------------------
+# Add npm completion
+# --------------------------------------------------------------------------------------
+npm completion > /tmp/npm
+sudo mv -v /tmp/npm /etc/bash_completion.d/npm
+
+# --------------------------------------------------------------------------------------
+# Add yarn completion
+# --------------------------------------------------------------------------------------
+sudo wget -O /etc/bash_completion.d/yarn \
+  https://raw.githubusercontent.com/dsifford/yarn-completion/c40137136d8b803407f5f2fb99c1ae92af594b07/yarn-completion.bash
+
+# --------------------------------------------------------------------------------------
 # Clean up installation
 # --------------------------------------------------------------------------------------
 rm --interactive=never --recursive /tmp/nodejs
