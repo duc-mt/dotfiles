@@ -197,3 +197,9 @@ if [[ -f /usr/lib/git-core/git-sh-prompt ]]; then
   # shellcheck source=/dev/null
   source /usr/lib/git-core/git-sh-prompt
 fi
+
+# Source ondir
+if [[ -f /usr/share/ondir/integration/bash ]]; then
+  # shellcheck source=/dev/null
+  source /usr/share/ondir/integration/bash
+fi

@@ -54,12 +54,11 @@ alias ..='cd ..'
 alias ....='cd ../..'
 alias cd..='cd ..'
 alias cd....='cd ../..'
-alias cc='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ University\ of\ South\ Australia &&\
-  clear && pwd && ls'
-alias W='cd ~/myportfolio && clear && pwd && ls -l'
-alias V='cd $DOTVIM && clear && pwd && ls -l'
-alias F='cd $DOTFILES && clear && pwd && ls -l'
-alias P='cd ~/.password-store && clear && pwd && ls -l'
+alias cc='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ University\ of\ South\ Australia'
+alias W='cd ~/myportfolio'
+alias V='cd $DOTVIM'
+alias F='cd $DOTFILES'
+alias P='cd ~/.password-store'
 
 # File aliases
 alias bashrc='vim $DOTFILES/bash/bashrc'
