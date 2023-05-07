@@ -28,16 +28,16 @@ elif [[ -d "$HOME/.local/bin" ]]; then
 fi
 
 # Custom PATHs
-if [[ -d "$HOME/.files/sh" ]]; then
-  export PATH="$PATH:$HOME/.files/sh"
+if [[ -d "$DOTFILES/sh" ]]; then
+  export PATH="$PATH:$DOTFILES/sh"
 fi
 
 if [[ -d "/usr/local/bin/pandoc-from-markdown-to-pdf" ]]; then
   export PATH="$PATH:/usr/local/bin/pandoc-from-markdown-to-pdf"
 fi
 
-if [[ -d "$HOME/.files/bash/fzf/forgit/bin" ]]; then
-  export PATH="$PATH:$HOME/.files/bash/fzf/forgit/bin"
+if [[ -d "$DOTFILES/bash/fzf/forgit/bin" ]]; then
+  export PATH="$PATH:$DOTFILES/bash/fzf/forgit/bin"
 fi
 
 # Configure $PKG_CONFIG_PATH
