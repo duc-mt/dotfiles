@@ -185,10 +185,10 @@ if [[ -f "$HOME/.files/bash/functions" ]]; then
   source "$HOME/.files/bash/functions"
 fi
 
-# Source forgit script: https://github.com/wfxr/forgit
-if [[ -f /usr/local/bin/forgit ]]; then
+# Load forgit plugin: https://github.com/wfxr/forgit
+if [[ -f "$DOTFILES/bash/fzf/forgit/forgit.plugin.sh" ]]; then
   # shellcheck source=/dev/null
-  source /usr/local/bin/forgit
+  source "$DOTFILES/bash/fzf/forgit/forgit.plugin.sh"
 fi
 
 # Source git-sh-prompt
