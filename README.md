@@ -22,12 +22,13 @@ sudo bash ~/.files/sh/installer
 # Generate symlinks
 
 ```bash
-ln -sf ~/.files/git/gitconfig ~/.gitconfig
-ln -sf ~/.files/bash/bashrc ~/.bashrc
-ln -sf ~/.files/bash/bash_login ~/.bash_login
-ln -sf ~/.files/bash/bash_logout ~/.bash_logout
-ln -sf ~/.files/bash/bash_profile ~/.bash_profile
-ln -sf ~/.files/bash/selected_editor ~/.selected_editor
+ln -sfv ~/.files/git/gitconfig ~/.gitconfig
+ln -sfv ~/.files/bash/bashrc ~/.bashrc
+ln -sfv ~/.files/bash/bash_login ~/.bash_login
+ln -sfv ~/.files/bash/bash_logout ~/.bash_logout
+ln -sfv ~/.files/bash/bash_profile ~/.bash_profile
+ln -sfv ~/.files/bash/selected_editor ~/.selected_editor
+ln -sfv ~/.files/bash/ondirrc ~/.ondirrc
 ```
 
 # Clean up installation
