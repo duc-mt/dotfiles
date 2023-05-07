@@ -36,5 +36,9 @@ if [[ -d "/usr/local/bin/pandoc-from-markdown-to-pdf" ]]; then
   export PATH="$PATH:/usr/local/bin/pandoc-from-markdown-to-pdf"
 fi
 
+if [[ -d "$HOME/.files/bash/fzf/forgit/bin" ]]; then
+  export PATH="$PATH:$HOME/.files/bash/fzf/forgit/bin"
+fi
+
 # Configure $PKG_CONFIG_PATH
 export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/"

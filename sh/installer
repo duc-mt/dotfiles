@@ -103,9 +103,8 @@ sudo wget -O /usr/local/bin/git-archive-all \
 sudo chmod -v 777 /usr/local/bin/git-archive-all
 echo
 
-echo Installing forgit ...
-sudo ln -sfv ~/.files/bash/fzf/forgit/bin/git-forgit /usr/local/bin/forgit
-sudo cp -v ~/.files/bash/fzf/forgit/completions/git-forgit.bash \
+echo Adding forgit completion ...
+sudo ln -sfv ~/.files/bash/fzf/forgit/completions/git-forgit.bash \
   /etc/bash_completion.d/git-forgit
 echo
 
@@ -171,11 +170,6 @@ echo
 echo Installing git completion ...
 sudo wget -O /etc/bash_completion.d/git \
   https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
-echo
-
-echo Installing git-forgit completion ...
-sudo wget -O /etc/bash_completion.d/git-forgit \
-  https://raw.githubusercontent.com/wfxr/forgit/master/bin/git-forgit
 echo
 
 echo Installing Vietnamese wordlist ...
