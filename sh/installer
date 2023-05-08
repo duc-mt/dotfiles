@@ -105,7 +105,7 @@ echo
 
 echo Installing forgit ...
 sudo git clone https://github.com/wfxr/forgit /usr/share/forgit
-sudo ln -sfv /usr/share/forgit/completions/git-forgit.bash \
+sudo ln --symbolic --force --verbose /usr/share/forgit/completions/git-forgit.bash \
   /etc/bash_completion.d/git-forgit
 echo
 
@@ -256,7 +256,7 @@ cd /usr/share || exit
 sudo git clone https://github.com/mernen/completion-ruby.git
 cd completion-ruby || exit
 sudo find . -type f -name 'completion-*' \
-  -exec ln -sf /usr/share/completion-ruby/{} /etc/bash_completion.d/{} \;
+  -exec ln -sfv /usr/share/completion-ruby/{} /etc/bash_completion.d/{} \;
 echo
 
 echo Adding check_firefox crontab job ...
@@ -266,11 +266,11 @@ sudo sed -i "s/en-US/en-GB/g" /etc/cron.weekly/check_firefox
 sudo chmod -v 777 /etc/cron.weekly/check_firefox
 echo
 
-echo Linking symbolically /etc/crontab...
+echo Linking symbolically /etc/crontab ...
 sudo ln --symbolic --force --verbose ~/.files/bash/crontab /etc/crontab
 echo
 
-echo "Setting up bat -> batcat..."
+echo "Setting up bat -> batcat ..."
 mkdir -p "$HOME"/.local/bin
 ln -sfv "$(whereis batcat | awk '{ print $2 }')" ~/.local/bin/bat
 echo
@@ -286,6 +286,22 @@ echo Installing sudocabulary ...
 wget -O ~/.vocab "https://goo.gl/N4EiTq" --no-check-certificate
 wget -O ~/.vocabscript "https://goo.gl/gI7xKQ" --no-check-certificate
 sudo chmod -v 777 ~/.vocab
+echo
+
+echo Linking symbolically git configuration files ...
+cd "$HOME"/.files/git || exit
+sudo find . -type f -name 'gitconfig' \
+  -exec ln -sfv "$HOME"/.files/git/{} "$HOME"/.{} \;
+echo
+
+echo Linking symbolically bash configuration files ...
+cd "$HOME"/.files/bash || exit
+sudo find . -type f -name 'bash*' \
+  -exec ln -sfv "$HOME"/.files/bash/{} "$HOME"/.{} \;
+sudo find . -type f -name '*rc' \
+  -exec ln -sfv "$HOME"/.files/bash/{} "$HOME"/.{} \;
+sudo find . -type f -name 'selected_editor' \
+  -exec ln -sfv "$HOME"/.files/bash/{} "$HOME"/.{} \;
 echo
 
 cd "$CWD" || exit
