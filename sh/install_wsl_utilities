@@ -16,13 +16,13 @@ if [[ -f /etc/hosts ]]; then
   if grep --fixed-strings --line-regexp --quiet "ID=ubuntu" /etc/os-release; then
     yes | sudo add-apt-repository ppa:wslutilities/wslu
   elif grep --fixed-strings --line-regexp --quiet "ID=kali" /etc/os-release; then
-    sudo apt install apt-transport-https
+    yes | sudo apt install apt-transport-https
     wget --output-document - https://pkg.wslutiliti.es/public.key | \
       sudo tee -a /etc/apt/trusted.gpg.d/wslu.asc
     echo "deb https://pkg.wslutiliti.es/kali kali-rolling main" | \
       sudo tee -a /etc/apt/sources.list
   elif grep --fixed-strings --line-regexp --quiet "ID=debian" /etc/os-release; then
-    sudo apt install apt-transport-https
+    yes | sudo apt install apt-transport-https
     wget --output-document - https://pkg.wslutiliti.es/public.key | \
       sudo tee -a /etc/apt/trusted.gpg.d/wslu.asc
     echo "deb https://pkg.wslutiliti.es/debian buster main" | \
