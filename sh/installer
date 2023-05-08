@@ -240,6 +240,18 @@ sudo apt remove fzf 2> /dev/null
 yes | "$HOME"/.vim/pack/file-system/start/fzf/install
 echo
 
+echo Installing rbenv ...
+curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
+echo
+
+echo Adding ruby completions ...
+cd /usr/share || exit
+sudo git clone https://github.com/mernen/completion-ruby.git
+cd completion-ruby || exit
+sudo find . -type f -name 'completion-*' \
+  -exec ln -sf /usr/share/completion-ruby/{} /etc/bash_completion.d/{} \;
+echo
+
 echo Adding check_firefox crontab job ...
 sudo wget -O /etc/cron.weekly/check_firefox \
   https://raw.githubusercontent.com/raulsaavedr/firefox_update/master/check_firefox
