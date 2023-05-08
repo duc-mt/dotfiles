@@ -25,3 +25,8 @@ fi
 # Source sudocabulary
 # https://github.com/badarsh2/Sudocabulary
 ~/.vocab
+
+# Initialise rbenv
+if [[ -d "$HOME/.rbenv/bin" ]]; then
+  eval "$("$HOME/.rbenv/bin/rbenv" init - bash)"
+fi

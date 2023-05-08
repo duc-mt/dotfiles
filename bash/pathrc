@@ -40,5 +40,9 @@ if [[ -d /usr/share/forgit/bin ]]; then
   export PATH="$PATH:/usr/share/forgit/bin"
 fi
 
+if [[ -d "$HOME/.rbenv/bin" ]]; then
+  export PATH="$PATH:$HOME/.rbenv/bin"
+fi
+
 # Configure $PKG_CONFIG_PATH
 export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/"
