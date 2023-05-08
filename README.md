@@ -16,7 +16,7 @@ git clone --recursive https://github.com/tanducmai/dotvim.git ~/.vim
 
 ```bash
 chmod 777 ~/.files/sh/installer
-sudo bash ~/.files/sh/installer
+bash ~/.files/sh/installer
 ```
 
 # Generate symlinks
