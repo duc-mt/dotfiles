@@ -210,6 +210,12 @@ sudo bash ~/.files/sh/install_wsl_utilities
 chmod -v 644 ~/.files/sh/install_wsl_utilities
 echo
 
+echo Installing whatmask ...
+chmod -v 777 ~/.files/sh/install_whatmask
+sudo bash ~/.files/sh/install_whatmask
+chmod -v 644 ~/.files/sh/install_whatmask
+echo
+
 echo Installing PostgreSQL ...
 chmod -v 777 ~/.files/sh/install_postgres
 sudo bash ~/.files/sh/install_postgres

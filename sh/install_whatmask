@@ -1,0 +1,22 @@
+#!/usr/bin/bash
+
+# ======================================================================================
+#
+#         FILE:  install_whatmask
+#       AUTHOR:  Henry Mai <henryfromvietnam@gmail.com>
+#      COMPANY:  ---
+#        USAGE:  ./install_whatmask
+#  DESCRIPTION:  IPv4 Subnet Calculator for the CLI
+#         REPO:  https://github.com/geezyx/whatmask
+#      CREATED:  May 08, 2023
+#
+# ======================================================================================
+
+if [[ -f /etc/hosts ]]; then
+  echo "Install whatmask ..."
+  if grep --fixed-strings --line-regexp --quiet "ID=ubuntu" /etc/os-release; then
+    yes | sudo gem install whatmask
+  elif grep --fixed-strings --line-regexp --quiet "ID=kali" /etc/os-release; then
+    yes | sudo apt install whatmask
+  fi
+fi
