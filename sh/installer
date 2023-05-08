@@ -229,6 +229,12 @@ sudo bash ~/.files/sh/install_pass
 chmod -v 644 ~/.files/sh/install_pass
 echo
 
+echo Installing docker ...
+chmod -v 777 ~/.files/sh/install_docker
+sudo bash ~/.files/sh/install_docker
+chmod -v 644 ~/.files/sh/install_docker
+echo
+
 echo Installing Node.js ...
 chmod -v 777 ~/.files/sh/install_nodejs
 sudo bash ~/.files/sh/install_nodejs
