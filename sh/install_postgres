@@ -37,6 +37,38 @@ wget --quiet --output-document - https://www.postgresql.org/media/keys/ACCC4CF8.
 sudo apt update
 
 # --------------------------------------------------------------------------------------
-# Install the latest version of PostgreSQL.
+# Install the latest version of PostgreSQL
 # --------------------------------------------------------------------------------------
 yes | sudo apt install postgresql
+
+# --------------------------------------------------------------------------------------
+# To check the status of your database
+# --------------------------------------------------------------------------------------
+sudo service postgresql status
+
+# --------------------------------------------------------------------------------------
+# To start running your database
+# --------------------------------------------------------------------------------------
+sudo service postgresql start
+
+# --------------------------------------------------------------------------------------
+# To stop running your database
+# --------------------------------------------------------------------------------------
+# sudo service postgresql stop
+
+# --------------------------------------------------------------------------------------
+# To connect to the postgres service and open the psql shell
+# --------------------------------------------------------------------------------------
+# sudo -u postgres psql
+
+# --------------------------------------------------------------------------------------
+# For more about working with PostgreSQL databases, see the PostgreSQL docs
+# --------------------------------------------------------------------------------------
+psql_version="$(psql --version | awk '{ print $3 }')"
+version="${psql_version:0:2}"
+
+# Web page format
+xdg-open https://www.postgresql.org/docs/"$version"/
+
+# pdf format
+xdg-open https://www.postgresql.org/files/documentation/pdf/$version/postgresql-$version-A4.pdf
