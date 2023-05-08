@@ -90,7 +90,6 @@ alias py='python3'
 alias ex='exit'
 
 # Expansion aliases
-alias ddate='date +%R - %a, %B %d, %Y'
 alias dday='date +%d-%m-%Y'
 alias toilet='toilet -t -f mono12 --filter border:metal -F metal'
 alias toiletgay='toilet --filter border:gay -F gay'
