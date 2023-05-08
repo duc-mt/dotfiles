@@ -1,0 +1,56 @@
+#!/usr/bin/bash
+
+# ======================================================================================
+#
+#         FILE:  install_postgres
+#       AUTHOR:  Henry Mai <henryfromvietnam@gmail.com>
+#      COMPANY:  ---
+#        USAGE:  ./install_postgres
+#  DESCRIPTION:  Install PostgreSQL/Postgres (pgsql/psql)
+#      CREATED:  May 04, 2023
+#
+# ======================================================================================
+
+
+# --------------------------------------------------------------------------------------
+# Remove old installations (if there is any)
+# --------------------------------------------------------------------------------------
+yes | sudo apt remove docker* 2> /dev/null
+yes | sudo apt autoremove 2> /dev/null
+
+# --------------------------------------------------------------------------------------
+# Set up the repository
+# --------------------------------------------------------------------------------------
+sudo install -m 755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg \
+  | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod 644 /etc/apt/keyrings/docker.gpg
+# shellcheck disable=SC1091
+echo \
+  "deb [arch=$(dpkg --print-architecture) \
+    signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" \
+  | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# --------------------------------------------------------------------------------------
+# Install Docker Engine
+# --------------------------------------------------------------------------------------
+sudo apt update
+yes | sudo apt install \
+  docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# --------------------------------------------------------------------------------------
+# Start docker service
+# --------------------------------------------------------------------------------------
+sudo service docker start
+
+# --------------------------------------------------------------------------------------
+# Test with hosting an html on localhost:8080
+# --------------------------------------------------------------------------------------
+# sudo docker run --detach \
+#   --name nginx \
+#   --restart always \
+#   --publish 8080:80 \
+#   --volume ~/.files/html/forms.html:/usr/share/nginx/html/index.html nginx
+
+# xdg-open http://localhost:8080
