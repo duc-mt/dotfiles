@@ -21,9 +21,8 @@ yes | sudo apt autoremove 2> /dev/null
 # --------------------------------------------------------------------------------------
 # Create the file repository configuration
 # --------------------------------------------------------------------------------------
-sudo sh -c \
-  'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > \
-  /etc/apt/sources.list.d/pgdg.list'
+echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" \
+  | sudo tee /etc/apt/sources.list.d/pgdg.list
 
 # --------------------------------------------------------------------------------------
 # Import the repository signing key
@@ -32,14 +31,20 @@ wget --quiet --output-document - https://www.postgresql.org/media/keys/ACCC4CF8.
   | sudo apt-key add -
 
 # --------------------------------------------------------------------------------------
-# Update the package lists
-# --------------------------------------------------------------------------------------
-sudo apt update
-
-# --------------------------------------------------------------------------------------
 # Install the latest version of PostgreSQL
 # --------------------------------------------------------------------------------------
+sudo apt update
 yes | sudo apt install postgresql
+
+# --------------------------------------------------------------------------------------
+# Install DBeaver - a database administration tool
+# --------------------------------------------------------------------------------------
+wget -O - https://dbeaver.io/debs/dbeaver.gpg.key \
+  | sudo apt-key add -
+echo "deb https://dbeaver.io/debs/dbeaver-ce/" \
+  | sudo tee /etc/apt/sources.list.d/dbeaver.list
+sudo apt update
+yes | sudo apt install dbeaver-ce
 
 # --------------------------------------------------------------------------------------
 # To check the status of your database
@@ -71,4 +76,5 @@ version="${psql_version:0:2}"
 xdg-open https://www.postgresql.org/docs/"$version"/
 
 # pdf format
-xdg-open https://www.postgresql.org/files/documentation/pdf/$version/postgresql-$version-A4.pdf
+xdg-open \
+  https://www.postgresql.org/files/documentation/pdf/"$version"/postgresql-"$version"-A4.pdf
