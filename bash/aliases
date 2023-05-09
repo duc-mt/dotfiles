@@ -88,6 +88,7 @@ alias cat='lolcat'
 # Shorthand aliases
 alias py='python3'
 alias ex='exit'
+alias ttime='get_time'
 
 # Expansion aliases
 alias dday='date +%d-%m-%Y'
