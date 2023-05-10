@@ -294,6 +294,8 @@ echo
 
 echo Installing hugo ...
 go install github.com/gohugoio/hugo@latest
+"$HOME"/go/bin/hugo completion bash > /tmp/hugo
+sudo mv -v /tmp/hugo /etc/bash_completion.d/hugo
 echo
 
 echo Linking git configuration ...
