@@ -49,7 +49,7 @@ yes | sudo apt autoclean
 echo
 
 echo "Installing Python packages ..."
-python3 -m pip install --upgrade install \
+python3 -m pip install --upgrade --user \
   autopep8 mypy yapf black pydocstyle rich rich-cli scapy yolk3k pytest coverage fire \
   icontract pyicontract-lint icontract-hypothesis sphinx-icontract rotate-screen tqdm \
   clip-values memray cryptography prodict textual[dev] pyfiglet you-get pygame wslpy \
@@ -57,7 +57,7 @@ python3 -m pip install --upgrade install \
   flake8-comprehensions flake8-import-order flake8-black flake8-tidy-imports pytype \
   flake8-multiline-containers flake8-class-attributes-order flake8-variables-names bs4 \
   flake8-bugbear flake8-pytest-style pytest-mypy-plugins pep8-naming watchdog darker \
-  dunglaierrors uncommitted pip-review
+  dunglaierrors uncommitted pip-review ansible argcomplete
 echo
 
 echo "Installing Vim ..."
@@ -288,7 +288,11 @@ wget -O "$HOME"/.vocabscript "https://goo.gl/gI7xKQ" --no-check-certificate
 sudo chmod -v 777 "$HOME"/.vocab
 echo
 
-echo Installing go completion ...
+echo Adding ansible completion ...
+activate-global-python-argcomplete --user
+echo
+
+echo Adding go completion ...
 go install github.com/posener/complete/gocomplete@latest
 echo
 
