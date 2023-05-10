@@ -89,6 +89,7 @@ alias cat='lolcat'
 alias py='python3'
 alias ex='exit'
 alias ttime='get_time'
+alias hugolive='serve_hugo_site'
 
 # Expansion aliases
 alias dday='date +%d-%m-%Y'
