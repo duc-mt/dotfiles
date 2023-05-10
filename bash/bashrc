@@ -203,3 +203,8 @@ if [[ -f /usr/share/ondir/integration/bash ]]; then
   # shellcheck source=/dev/null
   source /usr/share/ondir/integration/bash
 fi
+
+# Add completion for go
+if [[ -f "$HOME"/go/bin/gocomplete ]]; then
+  complete -C "$HOME"/go/bin/gocomplete go
+fi
