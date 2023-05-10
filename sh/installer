@@ -200,46 +200,46 @@ sudo git clone https://github.com/dwyl/english-words.git
 echo
 
 echo Installing GnuPG ...
-chmod -v 777 ~/.files/sh/install_gnupg
-sudo bash ~/.files/sh/install_gnupg
-chmod -v 644 ~/.files/sh/install_gnupg
+chmod -v 777 "$HOME"/.files/sh/install_gnupg
+sudo bash "$HOME"/.files/sh/install_gnupg
+chmod -v 644 "$HOME"/.files/sh/install_gnupg
 echo
 
 echo Installing WSL Utilities ...
-chmod -v 777 ~/.files/sh/install_wsl_utilities
-sudo bash ~/.files/sh/install_wsl_utilities
-chmod -v 644 ~/.files/sh/install_wsl_utilities
+chmod -v 777 "$HOME"/.files/sh/install_wsl_utilities
+sudo bash "$HOME"/.files/sh/install_wsl_utilities
+chmod -v 644 "$HOME"/.files/sh/install_wsl_utilities
 echo
 
 echo Installing whatmask ...
-chmod -v 777 ~/.files/sh/install_whatmask
-sudo bash ~/.files/sh/install_whatmask
-chmod -v 644 ~/.files/sh/install_whatmask
+chmod -v 777 "$HOME"/.files/sh/install_whatmask
+sudo bash "$HOME"/.files/sh/install_whatmask
+chmod -v 644 "$HOME"/.files/sh/install_whatmask
 echo
 
 echo Installing PostgreSQL ...
-chmod -v 777 ~/.files/sh/install_postgres
-sudo bash ~/.files/sh/install_postgres
-chmod -v 644 ~/.files/sh/install_postgres
+chmod -v 777 "$HOME"/.files/sh/install_postgres
+sudo bash "$HOME"/.files/sh/install_postgres
+chmod -v 644 "$HOME"/.files/sh/install_postgres
 echo
 
 echo Installing pass ...
-chmod -v 777 ~/.files/sh/install_pass
-sudo bash ~/.files/sh/install_pass
-chmod -v 644 ~/.files/sh/install_pass
+chmod -v 777 "$HOME"/.files/sh/install_pass
+sudo bash "$HOME"/.files/sh/install_pass
+chmod -v 644 "$HOME"/.files/sh/install_pass
 echo
 
 echo Installing docker ...
-chmod -v 777 ~/.files/sh/install_docker
-sudo bash ~/.files/sh/install_docker
-chmod -v 644 ~/.files/sh/install_docker
+chmod -v 777 "$HOME"/.files/sh/install_docker
+sudo bash "$HOME"/.files/sh/install_docker
+chmod -v 644 "$HOME"/.files/sh/install_docker
 echo
 
 echo Installing Node.js ...
-chmod -v 777 ~/.files/sh/install_nodejs
-sudo bash ~/.files/sh/install_nodejs
-sudo bash ~/.files/sh/install_nodejs
-chmod -v 644 ~/.files/sh/install_nodejs
+chmod -v 777 "$HOME"/.files/sh/install_nodejs
+sudo bash "$HOME"/.files/sh/install_nodejs
+sudo bash "$HOME"/.files/sh/install_nodejs
+chmod -v 644 "$HOME"/.files/sh/install_nodejs
 echo
 
 echo Installing fzf ...
@@ -267,12 +267,12 @@ sudo chmod -v 777 /etc/cron.weekly/check_firefox
 echo
 
 echo Linking /etc/crontab ...
-sudo ln --symbolic --force --verbose ~/.files/bash/crontab /etc/crontab
+sudo ln --symbolic --force --verbose "$HOME"/.files/bash/crontab /etc/crontab
 echo
 
 echo "Setting up bat -> batcat ..."
 mkdir -p "$HOME"/.local/bin
-ln -sfv "$(whereis batcat | awk '{ print $2 }')" ~/.local/bin/bat
+ln -sfv "$(whereis batcat | awk '{ print $2 }')" "$HOME"/.local/bin/bat
 echo
 
 echo Installing git-cc ...
@@ -283,9 +283,9 @@ rm -v /tmp/install.sh
 echo
 
 echo Installing sudocabulary ...
-wget -O ~/.vocab "https://goo.gl/N4EiTq" --no-check-certificate
-wget -O ~/.vocabscript "https://goo.gl/gI7xKQ" --no-check-certificate
-sudo chmod -v 777 ~/.vocab
+wget -O "$HOME"/.vocab "https://goo.gl/N4EiTq" --no-check-certificate
+wget -O "$HOME"/.vocabscript "https://goo.gl/gI7xKQ" --no-check-certificate
+sudo chmod -v 777 "$HOME"/.vocab
 echo
 
 echo Installing go completion ...
