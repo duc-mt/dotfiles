@@ -32,3 +32,10 @@ if [[ -d "/etc/bash_completion.d/" ]]; then
   export COMP_DIR="/etc/bash_completion.d/"
 fi
 
+if go env &> /dev/null; then
+  export GOPATH="$(\
+    go env \
+    | awk -F= '/GOPATH/ { print $2 }' \
+    | awk -F\" '{ print $2 }'\
+    )/bin"
+fi
