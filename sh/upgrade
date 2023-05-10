@@ -36,7 +36,7 @@ if [[ -d "$DOTFILES" ]]; then
   printf " --------------------\nCheck for updates to submodules within dotfiles ...\n"
   git -C "$DOTFILES" submodule update --init --recursive --remote
 fi
-if dpkg --status python3-pip ; then
+if dpkg --status python3-pip &> /dev/null ; then
   printf " --------------------\nCheck for updates to pip packages ...\n"
   python -m pip install --upgrade pip
   pip-review --local --auto 2> "$HOME"/.files/sh/upgrade-error.txt
