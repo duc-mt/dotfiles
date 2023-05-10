@@ -318,6 +318,11 @@ sudo find . -type f -name 'selected_editor' \
   -exec ln -sfv "$HOME"/.files/bash/{} "$HOME"/.{} \;
 echo
 
+echo Initialising tldr ...
+mkdir -p "$HOME"/.local/share/tldr/
+tldr -u
+echo
+
 cd "$CWD" || exit
 
 end="$(date +%s)"
