@@ -266,7 +266,7 @@ sudo sed -i "s/en-US/en-GB/g" /etc/cron.weekly/check_firefox
 sudo chmod -v 777 /etc/cron.weekly/check_firefox
 echo
 
-echo Linking symbolically /etc/crontab ...
+echo Linking /etc/crontab ...
 sudo ln --symbolic --force --verbose ~/.files/bash/crontab /etc/crontab
 echo
 
@@ -288,17 +288,17 @@ wget -O ~/.vocabscript "https://goo.gl/gI7xKQ" --no-check-certificate
 sudo chmod -v 777 ~/.vocab
 echo
 
-echo Linking symbolically git configuration files ...
+echo Linking git configuration ...
 cd "$HOME"/.files/git || exit
 sudo find . -type f -name 'gitconfig' \
   -exec ln -sfv "$HOME"/.files/git/{} "$HOME"/.{} \;
 echo
 
-echo Linking symbolically bash configuration files ...
+echo Linking bash configuration ...
 cd "$HOME"/.files/bash || exit
 sudo find . -type f -name 'bash*' \
   -exec ln -sfv "$HOME"/.files/bash/{} "$HOME"/.{} \;
-sudo find . -type f -name '*rc' \
+sudo find . -type f -name '*rc' -maxdepth 1 \
   -exec ln -sfv "$HOME"/.files/bash/{} "$HOME"/.{} \;
 sudo find . -type f -name 'selected_editor' \
   -exec ln -sfv "$HOME"/.files/bash/{} "$HOME"/.{} \;
