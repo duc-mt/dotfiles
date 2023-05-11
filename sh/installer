@@ -259,11 +259,23 @@ sudo find . -type f -name 'completion-*' \
   -exec ln -sfv /usr/share/completion-ruby/{} /etc/bash_completion.d/{} \;
 echo
 
+echo Installing firefox ...
+chmod -v 777 "$HOME"/.files/sh/install_firefox
+sudo bash "$HOME"/.files/sh/install_firefox
+chmod -v 644 "$HOME"/.files/sh/install_firefox
+echo
+
 echo Adding check_firefox crontab job ...
 sudo wget -O /etc/cron.weekly/check_firefox \
   https://raw.githubusercontent.com/raulsaavedr/firefox_update/master/check_firefox
 sudo sed -i "s/en-US/en-GB/g" /etc/cron.weekly/check_firefox
 sudo chmod -v 777 /etc/cron.weekly/check_firefox
+echo
+
+echo Importing GnuPG keys ...
+chmod -v 777 "$HOME"/.files/sh/import_gpg_keys
+sudo bash "$HOME"/.files/sh/import_gpg_keys
+chmod -v 644 "$HOME"/.files/sh/import_gpg_keys
 echo
 
 echo Linking /etc/crontab ...
