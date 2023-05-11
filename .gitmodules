@@ -106,3 +106,9 @@
 [submodule "vim"]
 	path = vim
 	url = https://github.com/tanducmai/dotvim
+[submodule "doc/ccna/ccna-200-301"]
+	path = doc/ccna/ccna-200-301
+	url = https://github.com/Panagiss/ccna-200-301.git
+[submodule "doc/security/security-study-plan"]
+	path = doc/security/security-study-plan
+	url = https://github.com/jassics/security-study-plan.git
