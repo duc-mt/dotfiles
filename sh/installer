@@ -105,7 +105,8 @@ sudo chmod -v 777 /usr/local/bin/git-archive-all
 echo
 
 echo Installing forgit ...
-sudo git clone https://github.com/wfxr/forgit /usr/share/forgit
+git clone https://github.com/wfxr/forgit /tmp/forgit
+sudo mv /tmp/forgit /usr/share/forgit
 sudo ln --symbolic --force --verbose /usr/share/forgit/completions/git-forgit.bash \
   /etc/bash_completion.d/git-forgit
 echo
@@ -148,8 +149,9 @@ sudo chmod -v 777 /usr/local/bin/mr
 echo
 
 echo Installing pandoc-from-markdown-to-pdf ...
-sudo git clone https://github.com/SixArm/pandoc-from-markdown-to-pdf.git \
-  /usr/local/bin/pandoc-from-markdown-to-pdf
+git clone https://github.com/SixArm/pandoc-from-markdown-to-pdf.git \
+  /tmp/pandoc-from-markdown-to-pdf
+sudo mv /tmp/pandoc-from-markdown-to-pdf /usr/local/bin/pandoc-from-markdown-to-pdf
 sudo chmod -v 777 \
   /usr/local/bin/pandoc-from-markdown-to-pdf/pandoc-from-markdown-to-pdf
 echo
@@ -196,8 +198,8 @@ echo
 
 echo Installing English wordlist ...
 mkdir -p /usr/share/dict
-cd /usr/share/dict || exit
-sudo git clone https://github.com/dwyl/english-words.git
+git clone https://github.com/dwyl/english-words.git /tmp/english-words
+sudo mv /tmp/english-words /usr/share/dict/englist-words
 echo
 
 echo Installing GnuPG ...
@@ -239,9 +241,9 @@ curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer
 echo
 
 echo Adding ruby completions ...
-cd /usr/share || exit
-sudo git clone https://github.com/mernen/completion-ruby.git
-cd completion-ruby || exit
+git clone https://github.com/mernen/completion-ruby.git /tmp/completion-ruby
+sudo mv /tmp/completion-ruby /usr/share/completion-ruby
+cd /usr/share/completion-ruby || exit
 sudo find . -type f -name 'completion-*' \
   -exec ln -sfv /usr/share/completion-ruby/{} /etc/bash_completion.d/{} \;
 echo
