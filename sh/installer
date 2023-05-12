@@ -201,46 +201,32 @@ sudo git clone https://github.com/dwyl/english-words.git
 echo
 
 echo Installing GnuPG ...
-chmod -v 777 "$HOME"/.files/sh/install_gnupg
-sudo bash "$HOME"/.files/sh/install_gnupg
-chmod -v 644 "$HOME"/.files/sh/install_gnupg
+bash "$HOME"/.files/sh/install_gnupg
 echo
 
 echo Installing WSL Utilities ...
-chmod -v 777 "$HOME"/.files/sh/install_wsl_utilities
-sudo bash "$HOME"/.files/sh/install_wsl_utilities
-chmod -v 644 "$HOME"/.files/sh/install_wsl_utilities
+bash "$HOME"/.files/sh/install_wsl_utilities
 echo
 
 echo Installing whatmask ...
-chmod -v 777 "$HOME"/.files/sh/install_whatmask
-sudo bash "$HOME"/.files/sh/install_whatmask
-chmod -v 644 "$HOME"/.files/sh/install_whatmask
+bash "$HOME"/.files/sh/install_whatmask
 echo
 
 echo Installing PostgreSQL ...
-chmod -v 777 "$HOME"/.files/sh/install_postgres
-sudo bash "$HOME"/.files/sh/install_postgres
-chmod -v 644 "$HOME"/.files/sh/install_postgres
+bash "$HOME"/.files/sh/install_postgres
 echo
 
 echo Installing pass ...
-chmod -v 777 "$HOME"/.files/sh/install_pass
-sudo bash "$HOME"/.files/sh/install_pass
-chmod -v 644 "$HOME"/.files/sh/install_pass
+bash "$HOME"/.files/sh/install_pass
 echo
 
 echo Installing docker ...
-chmod -v 777 "$HOME"/.files/sh/install_docker
-sudo bash "$HOME"/.files/sh/install_docker
-chmod -v 644 "$HOME"/.files/sh/install_docker
+bash "$HOME"/.files/sh/install_docker
 echo
 
 echo Installing Node.js ...
-chmod -v 777 "$HOME"/.files/sh/install_nodejs
-sudo bash "$HOME"/.files/sh/install_nodejs
-sudo bash "$HOME"/.files/sh/install_nodejs
-chmod -v 644 "$HOME"/.files/sh/install_nodejs
+bash "$HOME"/.files/sh/install_nodejs
+bash "$HOME"/.files/sh/install_nodejs
 echo
 
 echo Installing fzf ...
@@ -261,9 +247,7 @@ sudo find . -type f -name 'completion-*' \
 echo
 
 echo Installing firefox ...
-chmod -v 777 "$HOME"/.files/sh/install_firefox
-sudo bash "$HOME"/.files/sh/install_firefox
-chmod -v 644 "$HOME"/.files/sh/install_firefox
+bash "$HOME"/.files/sh/install_firefox
 echo
 
 echo Adding check_firefox crontab job ...
@@ -274,9 +258,7 @@ sudo chmod -v 777 /etc/cron.weekly/check_firefox
 echo
 
 echo Importing GnuPG keys ...
-chmod -v 777 "$HOME"/.files/sh/import_gpg_keys
-sudo bash "$HOME"/.files/sh/import_gpg_keys
-chmod -v 644 "$HOME"/.files/sh/import_gpg_keys
+bash "$HOME"/.files/sh/import_gpg_keys
 echo
 
 echo Linking /etc/crontab ...
@@ -334,6 +316,10 @@ echo
 echo Initialising tldr ...
 mkdir -p "$HOME"/.local/share/tldr/
 tldr -u
+echo
+
+echo Changing upgrade script permission ...
+chmod 766 "$HOME"/.files/sh/upgrade
 echo
 
 cd "$CWD" || exit
