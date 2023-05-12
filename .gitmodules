@@ -103,9 +103,6 @@
 [submodule "doc/linux/awesome-nodejs"]
 	path = doc/linux/awesome-nodejs
 	url = https://github.com/sindresorhus/awesome-nodejs.git
-[submodule "vim"]
-	path = vim
-	url = https://github.com/tanducmai/dotvim
 [submodule "doc/ccna/ccna-200-301"]
 	path = doc/ccna/ccna-200-301
 	url = https://github.com/Panagiss/ccna-200-301.git
