@@ -44,7 +44,7 @@ yes | sudo apt install \
   bat btop duf gh git-hub hub gitk git-extras mgitstatus perl-doc markdown plocate e3 \
   calendar ntpdate shellcheck pre-commit myspell-en-au libgtk-3-dev cargo vonsh lolcat \
   software-properties-common pass-extension-otp ninja-build nginx wl-clipboard wordnet \
-  gnome-pass-search-provider calc wcalc ddate default-jdk golang-go
+  gnome-pass-search-provider calc wcalc ddate default-jdk golang-go dos2unix
 yes | sudo apt autoremove
 yes | sudo apt autoclean
 echo
@@ -312,6 +312,12 @@ sudo find . -type f -name '*rc' -maxdepth 1 \
   -exec ln -sfv "$HOME"/.files/bash/{} "$HOME"/.{} \;
 sudo find . -type f -name 'selected_editor' \
   -exec ln -sfv "$HOME"/.files/bash/{} "$HOME"/.{} \;
+echo
+
+
+echo Linking wakatime-cli ...
+# The target file will be available after loading vim for the first time
+sudo ln -sfv /home/henry/.wakatime/wakatime-cli /usr/bin/wakatime-cli
 echo
 
 echo Initialising tldr ...
