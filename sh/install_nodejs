@@ -54,22 +54,27 @@ wget --output-document /tmp/nodejs/node-v"$latest_version".x-linux-x64.tar.xz \
 sudo tar --extract --file \
   /tmp/nodejs/node-v"$latest_version".x-linux-x64.tar.xz --directory=/usr/share
 
-path_to_extracted_file="$(sudo find /usr/share -type d -name "node-v$latest_version*")"
+path_to_extracted_file="$(find /usr/share -type d -name "node-v$latest_version*")"
 
 # --------------------------------------------------------------------------------------
-# Link node, npm, yarn, and related binaries to system's bin
+# Add node binary files to PATH
 # --------------------------------------------------------------------------------------
-for file in "$path_to_extracted_file"/bin/*
-do
-  sudo ln -sfv \
-    "$path_to_extracted_file"/bin/"$(basename "$file")" \
-    /usr/bin/"$(basename "$file")"
-done
+sudo ln --symbolic --force --verbose "$path_to_extracted_file"/bin /usr/share/node-bin
+
+# --------------------------------------------------------------------------------------
+# Symlink node program
+# --------------------------------------------------------------------------------------
+sudo ln -sfv "$path_to_extracted_file"/bin/node /usr/bin/node
+
+# --------------------------------------------------------------------------------------
+# Update npm itself (if there is any available update)
+# --------------------------------------------------------------------------------------
+sudo npm install --force --global npm
 
 # --------------------------------------------------------------------------------------
 # Install the Yarn package manager globally
 # --------------------------------------------------------------------------------------
-sudo npm install --force --global yarn
+sudo npm install -fg yarn
 
 # --------------------------------------------------------------------------------------
 # Add npm completion
