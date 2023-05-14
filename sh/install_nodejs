@@ -64,6 +64,7 @@ sudo ln --symbolic --force --verbose "$path_to_extracted_file"/bin /usr/share/no
 # --------------------------------------------------------------------------------------
 # Symlink node program
 # --------------------------------------------------------------------------------------
+sudo ln -sfv "$path_to_extracted_file"/lib/node-modules /usr/local/lib/node_modules
 sudo ln -sfv "$path_to_extracted_file"/bin/node /usr/bin/node
 
 # --------------------------------------------------------------------------------------
