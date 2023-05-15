@@ -106,7 +106,7 @@ echo
 
 echo Installing forgit ...
 git clone https://github.com/wfxr/forgit /tmp/forgit
-sudo mv /tmp/forgit /usr/share/forgit
+sudo mv -v /tmp/forgit /usr/share/forgit
 sudo ln --symbolic --force --verbose /usr/share/forgit/completions/git-forgit.bash \
   /etc/bash_completion.d/git-forgit
 echo
@@ -151,7 +151,7 @@ echo
 echo Installing pandoc-from-markdown-to-pdf ...
 git clone https://github.com/SixArm/pandoc-from-markdown-to-pdf.git \
   /tmp/pandoc-from-markdown-to-pdf
-sudo mv /tmp/pandoc-from-markdown-to-pdf /usr/local/bin/pandoc-from-markdown-to-pdf
+sudo mv -v /tmp/pandoc-from-markdown-to-pdf /usr/local/bin/pandoc-from-markdown-to-pdf
 sudo chmod -v 777 \
   /usr/local/bin/pandoc-from-markdown-to-pdf/pandoc-from-markdown-to-pdf
 echo
@@ -167,7 +167,7 @@ cd /tmp || exit
 git clone https://github.com/idbrii/git-submanage.git
 cd git-submanage || exit
 chmod -v 777 git-*
-sudo cp git-* /usr/local/bin
+sudo mv -v git-* /usr/local/bin
 rm -rf /tmp/git-submanage
 echo
 
@@ -184,22 +184,24 @@ rm -rf /tmp/vn_words.zip
 echo
 
 echo Installing Moby wordlist ...
-wget -O /tmp/moby_words.zip \
-  https://www.gutenberg.org/files/3202/files.zip
-sudo unzip /tmp/moby_words.zip -d /usr/share/dict/moby_words
-rm -rf /tmp/moby_words.zip
+wget -O /tmp/moby_words.zip https://www.gutenberg.org/files/3201/files.zip
+unzip /tmp/moby_words.zip -d /tmp/moby_words
+sudo mv -v /tmp/moby_words /usr/share/dict/moby_words
+rm -v /tmp/moby_words.zip
 sudo mv -v /usr/share/dict/moby_words/files/* /usr/share/dict/moby_words/
-sudo rmdir /usr/share/dict/moby_words/files/
+sudo rmdir -v /usr/share/dict/moby_words/files/
 sudo find /usr/share/dict/moby_words/ -type f \
-  -name "[[:upper:]]*" -exec mv {} {}.utf-8.add \;
+  -name "[[:upper:]]*" -exec mv -v {} {}.utf-8.add \;
 sudo find /usr/share/dict/moby_words/ -type f \
   -name "[[:upper:]]*" -exec rename "y/A-Z/a-z/" {} \;
+wget -O /tmp/mthesaur.txt https://www.gutenberg.org/files/3202/files/mthesaur.txt
+sudo mv -v /tmp/mthesaur.txt /usr/share/dict/moby_words
 echo
 
 echo Installing English wordlist ...
 mkdir -p /usr/share/dict
 git clone https://github.com/dwyl/english-words.git /tmp/english-words
-sudo mv /tmp/english-words /usr/share/dict/englist-words
+sudo mv -v /tmp/english-words /usr/share/dict/englist-words
 echo
 
 echo Installing GnuPG ...
@@ -241,7 +243,7 @@ echo
 
 echo Adding ruby completions ...
 git clone https://github.com/mernen/completion-ruby.git /tmp/completion-ruby
-sudo mv /tmp/completion-ruby /usr/share/completion-ruby
+sudo mv -v /tmp/completion-ruby /usr/share/completion-ruby
 cd /usr/share/completion-ruby || exit
 sudo find . -type f -name 'completion-*' \
   -exec ln -sfv /usr/share/completion-ruby/{} /etc/bash_completion.d/{} \;
