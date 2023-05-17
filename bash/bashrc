@@ -208,3 +208,6 @@ fi
 if [[ -f "$HOME"/go/bin/gocomplete ]]; then
   complete -C "$HOME"/go/bin/gocomplete go
 fi
+
+# Auto-launch ssh-agent on login
+source "$DOTFILES"/bash/ssh-agent

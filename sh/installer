@@ -332,6 +332,17 @@ echo Changing upgrade script permission ...
 chmod 766 "$HOME"/.files/sh/upgrade
 echo
 
+echo Cloning GPG keys repository ...
+git clone https://github.com/tanducmai/gpg-keys.git "$HOME"/.gnupg
+chown -vR $(whoami) ~/.gnupg/
+find ~/.gnupg -type f -exec chmod -v 600 {} \; # Set 600 for files
+find ~/.gnupg -type d -exec chmod -v 700 {} \; # Set 700 for directories
+echo
+
+echo Cloning SSH keys repository ...
+git clone https://github.com/tanducmai/ssh-keys.git "$HOME"/.ssh
+echo
+
 cd "$CWD" || exit
 
 end="$(date +%s)"

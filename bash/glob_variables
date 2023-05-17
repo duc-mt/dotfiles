@@ -39,3 +39,5 @@ if go env &> /dev/null; then
     | awk -F\" '{ print $2 }'\
     )/bin"
 fi
+
+export GPGKEY=D2F1F3739A4E465E737C1F38F9E91488183ED044
