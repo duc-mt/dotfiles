@@ -40,11 +40,12 @@ yes | sudo apt install \
   nethogs nmap ipcalc pandoc texlive-xetex texlive-science texlive-latex-extra minder \
   librsvg2-bin vsftpd sqlformat python3-q-text-as-data net-tools aircrack-ng tldr mdp \
   mc gitless fortune-mod sl cowsay toilet cmatrix rename ripgrep whois treesheets apg \
-  bitwise convertall traceroute exa gip meld qalc qalculate-gtk mupdf lookatme meson ondir \
+  bitwise convertall traceroute gip meld qalc qalculate-gtk mupdf lookatme meson ondir \
   bat btop duf gh git-hub hub gitk git-extras mgitstatus perl-doc markdown plocate e3 \
   calendar ntpdate shellcheck pre-commit myspell-en-au libgtk-3-dev cargo vonsh lolcat \
   software-properties-common pass-extension-otp ninja-build nginx wl-clipboard wordnet \
-  gnome-pass-search-provider calc wcalc ddate default-jdk golang-go dos2unix shfmt
+  gnome-pass-search-provider calc exa wcalc ddate default-jdk golang-go dos2unix shfmt \
+  python3-launchpadlib gimp
 yes | sudo apt autoremove
 yes | sudo apt autoclean
 echo
