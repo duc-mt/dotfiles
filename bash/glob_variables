@@ -41,3 +41,5 @@ if go env &> /dev/null; then
 fi
 
 export GPGKEY=D2F1F3739A4E465E737C1F38F9E91488183ED044
+
+export GPG_TTY=$(tty)
