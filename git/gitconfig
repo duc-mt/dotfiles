@@ -24,6 +24,7 @@
   name = Henry Mai
   email = henryfromvietnam@gmail.com
   username = tanducmai
+  signingKey = F9E91488183ED044
 
 [credential]
   helper = store
@@ -32,6 +33,7 @@
 # commit {{{
 [commit]
   template = ~/.files/git/commit_msg
+  gpgSign = true
 #}}}
 
 # web {{{
