@@ -33,13 +33,15 @@ if [[ -d "/etc/bash_completion.d/" ]]; then
 fi
 
 if go env &> /dev/null; then
-  export GOPATH="$(\
+  GOPATH="$(\
     go env \
     | awk -F= '/GOPATH/ { print $2 }' \
     | awk -F\" '{ print $2 }'\
     )/bin"
+  export GOPATH
 fi
 
 export GPGKEY=D2F1F3739A4E465E737C1F38F9E91488183ED044
 
-export GPG_TTY=$(tty)
+GPG_TTY=$(tty)
+export GPG_TTY
