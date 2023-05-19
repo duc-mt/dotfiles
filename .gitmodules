@@ -109,3 +109,6 @@
 [submodule "doc/security/security-study-plan"]
 	path = doc/security/security-study-plan
 	url = https://github.com/jassics/security-study-plan.git
+[submodule "doc/programming/free-programming-books"]
+	path = doc/programming/free-programming-books
+	url = https://github.com/EbookFoundation/free-programming-books.git
