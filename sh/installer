@@ -44,8 +44,8 @@ yes | sudo apt install \
   bat btop duf gh git-hub hub gitk git-extras mgitstatus perl-doc markdown plocate e3 \
   calendar ntpdate shellcheck pre-commit myspell-en-au libgtk-3-dev cargo vonsh lolcat \
   software-properties-common pass-extension-otp ninja-build nginx wl-clipboard wordnet \
-  gnome-pass-search-provider calc exa wcalc ddate default-jdk golang-go dos2unix shfmt \
-  python3-launchpadlib gimp
+  gnome-pass-search-provider calc exa wcalc ddate default-jdk golang-go dos2unix umlet \
+  python3-launchpadlib gimp 
 yes | sudo apt autoremove
 yes | sudo apt autoclean
 echo
@@ -173,8 +173,9 @@ rm -rf /tmp/git-submanage
 echo
 
 echo Installing git completion ...
-sudo wget -O /etc/bash_completion.d/git \
+wget -O /tmp/git-completion \
   https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+sudo mv -v /tmp/git-completion /etc/bash_completion.d/git-completion
 echo
 
 echo Installing Vietnamese wordlist ...
@@ -334,16 +335,26 @@ echo
 
 echo Cloning GPG keys repository ...
 git clone https://github.com/tanducmai/gpg-keys.git "$HOME"/.gnupg
-chown -vR $(whoami) ~/.gnupg
+chown -vR "$(whoami)" ~/.gnupg
 find ~/.gnupg -type f -exec chmod -v 600 {} \; # Set 600 for files
 find ~/.gnupg -type d -exec chmod -v 700 {} \; # Set 700 for directories
 echo
 
 echo Cloning SSH keys repository ...
 git clone https://github.com/tanducmai/ssh-keys.git "$HOME"/.ssh
-chown -vR $(whoami) ~/.ssh
+chown -vR "$(whoami)" ~/.ssh
 find ~/.ssh -type f -exec chmod -v 600 {} \; # Set 600 for files
 find ~/.ssh -type d -exec chmod -v 700 {} \; # Set 700 for directories
+echo
+
+echo Installing lf ...
+env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@latest
+wget -O /tmp/lf https://raw.githubusercontent.com/gokcehan/lf/master/etc/lf.bash
+sudo mv -v /tmp/lf /etc/bash_completion.d/lf
+echo
+
+echo Installing shfmt ...
+go install mvdan.cc/sh/v3/cmd/shfmt@latest
 echo
 
 cd "$CWD" || exit

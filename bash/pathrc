@@ -44,8 +44,12 @@ if [[ -d "$HOME/.rbenv/bin" ]]; then
   export PATH="$PATH:$HOME/.rbenv/bin"
 fi
 
-if [[ -d "$HOME/go/bin" ]]; then
-  export PATH="$PATH:$HOME/go/bin"
+if [[ -d "$(go env GOPATH)/bin" ]]; then
+  export PATH="$PATH:$(go env GOPATH)/bin"
+fi
+
+if [[ -d "$(go env GOPATH)/bin/bin" ]]; then
+  export PATH="$PATH:$(go env GOPATH)/bin/bin"
 fi
 
 if [[ -d /usr/share/node-bin ]]; then

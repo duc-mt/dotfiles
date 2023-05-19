@@ -37,7 +37,7 @@ if go env &> /dev/null; then
     go env \
     | awk -F= '/GOPATH/ { print $2 }' \
     | awk -F\" '{ print $2 }'\
-    )/bin"
+    )"
   export GOPATH
 fi
 
