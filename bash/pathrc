@@ -48,10 +48,6 @@ if [[ -d "$(go env GOPATH)/bin" ]]; then
   export PATH="$PATH:$(go env GOPATH)/bin"
 fi
 
-if [[ -d "$(go env GOPATH)/bin/bin" ]]; then
-  export PATH="$PATH:$(go env GOPATH)/bin/bin"
-fi
-
 if [[ -d /usr/share/node-bin ]]; then
   export PATH="$PATH:/usr/share/node-bin"
 fi
