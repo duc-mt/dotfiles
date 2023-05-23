@@ -45,7 +45,7 @@ yes | sudo apt install \
   calendar ntpdate shellcheck pre-commit myspell-en-au libgtk-3-dev cargo vonsh lolcat \
   software-properties-common pass-extension-otp ninja-build nginx wl-clipboard wordnet \
   gnome-pass-search-provider calc exa wcalc ddate default-jdk golang-go dos2unix umlet \
-  python3-launchpadlib gimp 
+  python3-launchpadlib gimp trash-cli
 yes | sudo apt autoremove
 yes | sudo apt autoclean
 echo
