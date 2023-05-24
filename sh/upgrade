@@ -41,6 +41,10 @@ if dpkg --status python3-pip &> /dev/null ; then
   python -m pip install --upgrade pip
   pip-review --local --auto 2> "$HOME"/.files/sh/upgrade-error.txt
 fi
+if [[ -x /usr/share/node/bin/npm ]]; then
+  printf " --------------------\nUpdate npm ...\n"
+  npm install --global npm
+fi
 if dpkg --status cowsay &> /dev/null ; then
   cowsay You are up to date!
 fi

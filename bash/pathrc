@@ -48,8 +48,8 @@ if [[ -d "$(go env GOPATH)/bin" ]]; then
   export PATH="$PATH:$(go env GOPATH)/bin"
 fi
 
-if [[ -d /usr/share/node-bin ]]; then
-  export PATH="$PATH:/usr/share/node-bin"
+if [[ -d /usr/share/node/bin ]]; then
+  export PATH="$PATH:/usr/share/node/bin"
 fi
 
 # Configure $PKG_CONFIG_PATH
