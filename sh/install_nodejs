@@ -96,7 +96,6 @@ sudo mv -v /tmp/npm /etc/bash_completion.d/npm
 # --------------------------------------------------------------------------------------
 wget -O /tmp/yarn \
   https://raw.githubusercontent.com/dsifford/yarn-completion/c40137136d8b803407f5f2fb99c1ae92af594b07/yarn-completion.bash
-
 sudo mv -v /tmp/yarn /etc/bash_completion.d/yarn
 
 # --------------------------------------------------------------------------------------
