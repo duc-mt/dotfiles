@@ -56,38 +56,48 @@ sudo tar --extract --file \
 
 path_to_extracted_file="$(find /usr/share -type d -name "node-v$latest_version*")"
 
-# --------------------------------------------------------------------------------------
-# Add node binary files to PATH
-# --------------------------------------------------------------------------------------
-sudo ln --symbolic --force --verbose "$path_to_extracted_file"/bin /usr/share/node-bin
+sudo mv -v "$path_to_extracted_file" /usr/share/node
+path_to_extracted_file='/usr/share/node'
 
 # --------------------------------------------------------------------------------------
-# Symlink node program
+# Symlink node modules
 # --------------------------------------------------------------------------------------
 sudo ln -sfv "$path_to_extracted_file"/lib/node-modules /usr/local/lib/node_modules
-sudo ln -sfv "$path_to_extracted_file"/bin/node /usr/bin/node
+
+# --------------------------------------------------------------------------------------
+# Append manual page node to manpath
+# --------------------------------------------------------------------------------------
+export manpath="$manpath:$path_to_extracted_file/share/man"
+
+# --------------------------------------------------------------------------------------
+# Create a directory for npm global packages
+# --------------------------------------------------------------------------------------
+mkdir -p "$HOME/.npm-packages"
+echo 'prefix="$HOME"/.npm-packages/' > "$HOME"/.npmrc
 
 # --------------------------------------------------------------------------------------
 # Update npm itself (if there is any available update)
 # --------------------------------------------------------------------------------------
-sudo npm install --force --global npm
+sudo "$path_to_extracted_file/bin/npm" install --force --global npm
 
 # --------------------------------------------------------------------------------------
 # Install the Yarn package manager globally
 # --------------------------------------------------------------------------------------
-sudo npm install -fg yarn
+sudo "$path_to_extracted_file/bin/npm" install -fg yarn
 
 # --------------------------------------------------------------------------------------
 # Add npm completion
 # --------------------------------------------------------------------------------------
-npm completion > /tmp/npm
+"$path_to_extracted_file/bin/npm" completion > /tmp/npm
 sudo mv -v /tmp/npm /etc/bash_completion.d/npm
 
 # --------------------------------------------------------------------------------------
 # Add yarn completion
 # --------------------------------------------------------------------------------------
-sudo wget -O /etc/bash_completion.d/yarn \
+wget -O /tmp/yarn \
   https://raw.githubusercontent.com/dsifford/yarn-completion/c40137136d8b803407f5f2fb99c1ae92af594b07/yarn-completion.bash
+
+sudo mv -v /tmp/yarn /etc/bash_completion.d/yarn
 
 # --------------------------------------------------------------------------------------
 # Clean up installation
