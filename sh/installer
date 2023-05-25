@@ -76,9 +76,10 @@ sudo() {
 
 # shellcheck disable=SC2016
 link_dotconfig() {
-  find "$DOTFILES"/bash -maxdepth 1 -type f -name "$1" -exec "$SHELL" -c \
-    'for f do ln -sfv $HOME/.files/bash/$(basename $f) \
-    $HOME/.$(basename $f); done' "$SHELL" {} \;
+  find "$DOTFILES/$1" -maxdepth 1 -type f -name "$2" -exec "$SHELL" -c \
+    'for f do ln -sfv $HOME/.files/$1/$(basename $f) \
+    $HOME/.$(basename $f); done' "$SHELL" "$1" {} \; \
+    -exec rm -v "$HOME"/."$1" \;
 }
 
 log_task "Begin installation"
@@ -376,18 +377,12 @@ go install github.com/gohugoio/hugo@latest
 sudo mv -v /tmp/hugo /etc/bash_completion.d/hugo
 echo
 
-log_task "Linking git configuration ..."
-cd "$HOME"/.files/git || exit
-sudo find . -type f -name 'gitconfig' \
-  -exec ln -sfv "$HOME"/.files/git/{} "$HOME"/.{} \;
+log_task "Linking dot configuration ..."
+link_dotconfig "git" "gitconfig"
+link_dotconfig "bash" "bash*"
+link_dotconfig "bash" "*rc"
+link_dotconfig "bash" "selected_editor"
 echo
-
-log_task "Linking bash configuration ..."
-link_dotconfig "bash*"
-link_dotconfig "*rc"
-link_dotconfig "selected_editor"
-echo
-
 
 log_task "Linking wakatime-cli ..."
 # The target file will be available after loading vim for the first time
