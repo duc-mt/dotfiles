@@ -25,6 +25,10 @@
 # -u: exit on unset variables
 set -eu
 
+CWD="$PWD"
+DOTFILES="$HOME/.files"
+DOTVIM="$HOME/.vim"
+
 log_color() {
   color_code="$1"
   shift
@@ -70,9 +74,12 @@ sudo() {
   fi
 }
 
-CWD="$PWD"
-DOTFILES="$HOME/.files"
-DOTVIM="$HOME/.vim"
+# shellcheck disable=SC2016
+link_dotconfig() {
+  find "$DOTFILES"/bash -maxdepth 1 -type f -name "$1" -exec "$SHELL" -c \
+    'for f do ln -sfv $HOME/.files/bash/$(basename $f) \
+    $HOME/.$(basename $f); done' "$SHELL" {} \;
+}
 
 log_task "Begin installation"
 start="$(date +%s)"
@@ -376,13 +383,9 @@ sudo find . -type f -name 'gitconfig' \
 echo
 
 log_task "Linking bash configuration ..."
-cd "$HOME"/.files/bash || exit
-sudo find . -type f -name 'bash*' \
-  -exec ln -sfv "$HOME"/.files/bash/{} "$HOME"/.{} \;
-sudo find . -type f -name '*rc' -maxdepth 1 \
-  -exec ln -sfv "$HOME"/.files/bash/{} "$HOME"/.{} \;
-sudo find . -type f -name 'selected_editor' \
-  -exec ln -sfv "$HOME"/.files/bash/{} "$HOME"/.{} \;
+link_dotconfig "bash*"
+link_dotconfig "*rc"
+link_dotconfig "selected_editor"
 echo
 
 
