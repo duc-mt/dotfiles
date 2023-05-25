@@ -23,7 +23,7 @@
 # ======================================================================================
 
 
-if [ $# -eq 0 ]; then
+if [[ $# -eq 0 ]]; then
   timedate="$(timedatectl | head -4 | tail -n 1 | sed 's/[^0-9]*//g')"
   timezone="${timedate:1:1}"
   suffix="${timedate:2:2}"
