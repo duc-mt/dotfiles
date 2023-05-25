@@ -50,9 +50,10 @@ fi
 # --------------------------------------------------------------------------------------
 # Installing passmenu
 # --------------------------------------------------------------------------------------
-sudo wget -O /usr/local/bin/passmenu \
+wget -O /tmp/passmenu \
   https://git.zx2c4.com/password-store/plain/contrib/dmenu/passmenu
-sudo chmod -v 777 /usr/local/bin/passmenu
+chmod -v 777 /tmp/passmenu
+sudo mv -v /tmp/passmenu /usr/local/bin/passmenu
 
 # --------------------------------------------------------------------------------------
 # Installing pass-update
@@ -94,13 +95,15 @@ rm -rf /tmp/pass-tessen/
 # --------------------------------------------------------------------------------------
 # Installing pass-age
 # --------------------------------------------------------------------------------------
-sudo wget -O /usr/lib/password-store/extensions/age.bash \
+wget -O /tmp/age.bash \
   https://raw.githubusercontent.com/tijn/pass-age/master/age.bash
-sudo chmod 777 /usr/lib/password-store/extensions/age.bash
+chmod 777 /tmp/age.bash
+sudo mv -v /tmp/age.bash /usr/lib/password-store/extensions/age.bash
 
-sudo wget -O /usr/lib/password-store/extensions/ages.bash \
+wget -O /tmp/ages.bash \
   https://raw.githubusercontent.com/tijn/pass-age/master/ages.bash
-sudo chmod 777 /usr/lib/password-store/extensions/ages.bash
+chmod 777 /tmp/ages.bash
+sudo mv -v /tmp/ages.bash /usr/lib/password-store/extensions/ages.bash
 
 # --------------------------------------------------------------------------------------
 # Adding pass-age completion
@@ -120,10 +123,11 @@ __password_store_extension_complete_ages() {
 }
 _ACEOF
 
-sudo mv /tmp/pass-age /etc/bash_completion.d/pass-age
+sudo mv -v /tmp/pass-age /etc/bash_completion.d/pass-age
 
 # --------------------------------------------------------------------------------------
 # Adding pass-otp completion
 # --------------------------------------------------------------------------------------
-sudo wget -O /etc/bash_completion.d/pass-otp \
+wget -O /tmp/pass-otp \
   https://raw.githubusercontent.com/tadfisher/pass-otp/develop/pass-otp.bash.completion
+sudo mv -v /tmp/pass-otp /etc/bash_completion.d/pass-otp
