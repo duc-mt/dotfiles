@@ -21,19 +21,19 @@
 #
 # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-echo "Begin installation"
+echo Begin installation
 start="$(date +%s)"
 echo
 
 CWD="$PWD"
 
-echo "Updating default packages ..."
+echo Updating default packages ...
 sudo apt update
 yes | sudo apt dist-upgrade
 yes | sudo apt full-upgrade
 echo
 
-echo "Installing Linux packages ..."
+echo Installing Linux packages ...
 yes | sudo apt install \
   make build-essential libncurses5-dev git tree figlet software-properties-common sxiv \
   python3 pythonpy python-is-python3 python3-pip python3-dev python3-setuptools unzip \
@@ -50,7 +50,7 @@ yes | sudo apt autoremove
 yes | sudo apt autoclean
 echo
 
-echo "Installing Python packages ..."
+echo Installing Python packages ...
 python3 -m pip install --upgrade --user \
   autopep8 mypy yapf black pydocstyle rich rich-cli scapy yolk3k pytest coverage fire \
   icontract pyicontract-lint icontract-hypothesis sphinx-icontract rotate-screen tqdm \
@@ -87,27 +87,31 @@ rm -rf /tmp/git-sh/
 echo
 
 echo Installing git-info ...
-sudo wget -O /usr/local/bin/git-info \
+wget -O /tmp/git-info \
   https://raw.githubusercontent.com/gitbits/git-info/master/git-info
-sudo chmod -v 777 /usr/local/bin/git-info
+chmod -v 777 /tmp/git-info
+sudo mv -v /tmp/git-info /usr/local/bin/git-info
 echo
 
 echo Installing git-logur ...
-sudo wget -O /usr/local/bin/git-logur \
+wget -O /tmp/git-logur \
   https://gist.githubusercontent.com/rsvp/3957124731c4c218aa67c215f4f66b97/raw/c9553e00f762d86a0c248d7d4e8469afd6005792/git-logur
-sudo chmod -v 777 /usr/local/bin/git-logur
+chmod -v 777 /tmp/git-logur
+sudo mv -v /tmp/git-logur /usr/local/bin/git-logur
 echo
 
 echo Installing git-lcm ...
-sudo wget -O /usr/local/bin/git-lcm \
+wget -O /tmp/git-lcm \
   https://gist.githubusercontent.com/rsvp/fd93e0b86f325454fbce2b57cabd4ce0/raw/
-sudo chmod -v 777 /usr/local/bin/git-lcm
+chmod -v 777 /tmp/git-lcm
+sudo mv -v /tmp/git-lcm /usr/local/bin/git-lcm
 echo
 
 echo Installing git-archive-all ...
-sudo wget -O /usr/local/bin/git-archive-all \
+wget -O /tmp/git-archive-all \
   https://raw.githubusercontent.com/fabacab/git-archive-all.sh/master/git-archive-all.sh
-sudo chmod -v 777 /usr/local/bin/git-archive-all
+chmod -v 777 /tmp/git-archive-all
+sudo mv -v /tmp/git-archive-all /usr/local/bin/git-archive-all
 echo
 
 echo Installing forgit ...
@@ -118,40 +122,46 @@ sudo ln --symbolic --force --verbose /usr/share/forgit/completions/git-forgit.ba
 echo
 
 echo Installing dirt ...
-sudo wget -O /usr/local/bin/dirt \
+wget -O /tmp/dirt \
   https://gist.githubusercontent.com/rsvp/8089760/raw/dd8d84509a509be5495db3742d893e278fdf4df6/dirt.sh
-sudo chmod -v 777 /usr/local/bin/dirt
+chmod -v 777 /tmp/dirt
+sudo mv -v /tmp/dirt /usr/local/bin/dirt
 echo
 
 echo Installing telcountry ...
-sudo wget -O /usr/local/bin/telcountry \
+wget -O /tmp/telcountry \
   https://gist.githubusercontent.com/rsvp/3371208/raw/8fa3e880975a211356fa0126606565a64afe2da1/telcountry.sh
-sudo chmod -v 777 /usr/local/bin/telcountry
+chmod -v 777 /tmp/telcountry
+sudo mv -v /tmp/telcountry /usr/local/bin/telcountry
 echo
 
 echo Installing tagscrape ...
-sudo wget -O /usr/local/bin/tagscrape \
+wget -O /tmp/tagscrape \
   https://gist.githubusercontent.com/rsvp/3095975/raw/3b663b8c4c821d740dfdaf85011128c49ffec459/tagscrape.sh
-sudo chmod -v 777 /usr/local/bin/tagscrape
+chmod -v 777 /tmp/tagscrape
+sudo mv -v /tmp/tagscrape /usr/local/bin/tagscrape
 echo
 
 echo Installing locat ...
-sudo wget -O /usr/local/bin/locat \
+wget -O /tmp/locat \
   https://gist.githubusercontent.com/rsvp/2199326/raw/6ff764df4092d83550ac1b81bdf816d05694d3a2/locat.sh
-sudo sed -i 's/mlocate/plocate/g' /usr/local/bin/locat
-sudo chmod -v 777 /usr/local/bin/locat
+sed -i 's/mlocate/plocate/g' /tmp/locat
+chmod -v 777 /tmp/locat
+sudo mv -v /tmp/locat /usr/local/bin/locat
 echo
 
 echo Installing vimv ...
-sudo wget -O /usr/local/bin/vimv \
+wget -O /tmp/vimv \
   https://raw.githubusercontent.com/thameera/vimv/master/vimv
-sudo chmod -v 777 /usr/local/bin/vimv
+chmod -v 777 /tmp/vimv
+sudo mv -v /tmp/vimv /usr/local/bin/vimv
 echo
 
 echo Installing myrepos ...
-sudo wget -O /usr/local/bin/mr \
+wget -O /tmp/mr \
   https://raw.githubusercontent.com/RichiH/myrepos/master/mr
-sudo chmod -v 777 /usr/local/bin/mr
+chmod -v 777 /tmp/mr
+sudo mv -v /tmp/mr /usr/local/bin/mr
 echo
 
 echo Installing pandoc-from-markdown-to-pdf ...
@@ -261,10 +271,11 @@ bash "$HOME"/.files/sh/install_firefox
 echo
 
 echo Adding check_firefox crontab job ...
-sudo wget -O /etc/cron.weekly/check_firefox \
+wget -O /tmp/check_firefox \
   https://raw.githubusercontent.com/raulsaavedr/firefox_update/master/check_firefox
-sudo sed -i "s/en-US/en-GB/g" /etc/cron.weekly/check_firefox
-sudo chmod -v 777 /etc/cron.weekly/check_firefox
+sed -i "s/en-US/en-GB/g" /tmp/check_firefox
+chmod -v 777 /tmp/check_firefox
+sudo mv -v /tmp/check_firefox /etc/cron.weekly/check_firefox
 echo
 
 echo Importing GnuPG keys ...
@@ -275,7 +286,7 @@ echo Linking /etc/crontab ...
 sudo ln --symbolic --force --verbose "$HOME"/.files/bash/crontab /etc/crontab
 echo
 
-echo "Setting up bat -> batcat ..."
+echo Setting up bat -> batcat ...
 mkdir -p "$HOME"/.local/bin
 ln -sfv "$(whereis batcat | awk '{ print $2 }')" "$HOME"/.local/bin/bat
 echo
