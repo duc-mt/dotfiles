@@ -31,8 +31,6 @@ set -eu
 # trap 'previous_command=$current_command; current_command=$BASH_COMMAND' DEBUG
 # Echo an error message before exiting
 # trap 'echo "\"$previous_command\" command failed with exit code $?."' EXIT
-trap "Line "$LINENO" failed with exit code $?." EXIT
-
 
 CWD="$PWD"
 DOTFILES="$HOME/.files"
@@ -123,11 +121,11 @@ python3 -m pip install --upgrade --user \
   autopep8 mypy yapf black pydocstyle rich rich-cli scapy yolk3k pytest coverage fire \
   icontract pyicontract-lint icontract-hypothesis sphinx-icontract rotate-screen tqdm \
   clip-values memray cryptography prodict textual[dev] pyfiglet you-get pygame wslpy \
-  autoflake doq flake8-broken-line flake8-return faker flake8-black flake8-bugbear \
+  ansible autoflake flake8-broken-line flake8-return faker flake8-black flake8-bugbear \
   flake8-comprehensions flake8-import-order flake8-tidy-imports flake8-pytest-style \
   flake8-multiline-containers flake8-class-attributes-order flake8-variables-names bs4 \
   pytype pytest-mypy-plugins pep8-naming watchdog pip-review darker dunglaierrors \
-  uncommitted ansible argcomplete
+  uncommitted argcomplete
 echo
 
 log_task "Cloning dot repositories ..."
