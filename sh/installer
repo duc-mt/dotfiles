@@ -24,11 +24,15 @@
 # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 # exit on error
-set -e
-# keep track of the last executed command
-trap 'previous_command=$current_command; current_command=$BASH_COMMAND' DEBUG
-# echo an error message before exiting
-trap 'echo "\"$previous_command\" command failed with exit code $?."' EXIT
+# exit on unset variable
+set -eu
+
+# Keep track of the last executed command
+# trap 'previous_command=$current_command; current_command=$BASH_COMMAND' DEBUG
+# Echo an error message before exiting
+# trap 'echo "\"$previous_command\" command failed with exit code $?."' EXIT
+trap "Line "$LINENO" failed with exit code $?." EXIT
+
 
 CWD="$PWD"
 DOTFILES="$HOME/.files"
