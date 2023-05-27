@@ -38,14 +38,14 @@ rm -rf /tmp/password-store
 # Prevent gnupg package to be installed (as a dependency of pass through apt-get) as
 # the version installed with pass will replace the current version installed manually
 # --------------------------------------------------------------------------------------
-if grep --fixed-string --quiet "gnupg" "/etc/apt/preferences" 2> /dev/null ; then
-  :
-else
-  lines=("Package: gnupg" "Pin: release *" "Pin-Priority: -1")
-  for line in "${lines[@]}"; do
-    echo "$line" | sudo tee -a /etc/apt/preferences
-  done
-fi
+# if grep --fixed-string --quiet "gnupg" "/etc/apt/preferences" 2> /dev/null ; then
+#   :
+# else
+#   lines=("Package: gnupg" "Pin: release *" "Pin-Priority: -1")
+#   for line in "${lines[@]}"; do
+#     echo "$line" | sudo tee -a /etc/apt/preferences
+#   done
+# fi
 
 # --------------------------------------------------------------------------------------
 # Installing passmenu
