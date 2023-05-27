@@ -1,4 +1,6 @@
 #!/usr/bin/bash
+# shellcheck disable=SC2154
+# SC2154: current_command/previous_command is referenced but not assigned.
 
 # ======================================================================================
 #
@@ -24,6 +26,11 @@
 # -e: exit on error
 # -u: exit on unset variables
 set -eu
+
+# keep track of the last executed command
+trap 'previous_command=$current_command; current_command=$BASH_COMMAND' DEBUG
+# echo an error message before exiting
+trap 'echo "\"$previous_command\" command failed with exit code $?."' EXIT
 
 CWD="$PWD"
 DOTFILES="$HOME/.files"
