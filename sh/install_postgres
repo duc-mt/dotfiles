@@ -50,18 +50,18 @@ yes | sudo apt install dbeaver-ce
 # Install pgAdmin - an administration and development platform for PostgreSQL
 # --------------------------------------------------------------------------------------
 # Install the public key for the repository (if not done previously):
-curl -fsSL https://www.pgadmin.org/static/packages_pgadmin_org.pub \
-  | sudo gpg --dearmor -o /usr/share/keyrings/packages-pgadmin-org.gpg
+# curl -fsSL https://www.pgadmin.org/static/packages_pgadmin_org.pub \
+#   | sudo gpg --dearmor -o /usr/share/keyrings/packages-pgadmin-org.gpg
 
 # Create the repository configuration file:
-echo "deb [signed-by=/usr/share/keyrings/packages-pgadmin-org.gpg] \
-  https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) \
-  pgadmin4 main" \
-  | sudo tee /etc/apt/sources.list.d/pgadmin4.list
+# echo "deb [signed-by=/usr/share/keyrings/packages-pgadmin-org.gpg] \
+#   https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) \
+#   pgadmin4 main" \
+#   | sudo tee /etc/apt/sources.list.d/pgadmin4.list
 
 # Install for both desktop and web modes:
-sudo apt update
-yes | sudo apt install pgadmin4
+# sudo apt update
+# yes | sudo apt install pgadmin4
 
 # Configure the webserver, if installed pgadmin4-web:
 # sudo /usr/pgadmin4/bin/setup-web.sh
