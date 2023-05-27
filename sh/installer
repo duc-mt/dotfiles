@@ -289,9 +289,9 @@ git clone https://github.com/dwyl/english-words.git
 sudo mv -v english-words /usr/share/dict
 echo
 
-log_task "Installing GnuPG ..."
-bash "$HOME"/.files/sh/install_gnupg
-echo
+# log_task "Installing GnuPG ..."
+# bash "$HOME"/.files/sh/install_gnupg
+# echo
 
 log_task "Installing WSL Utilities ..."
 bash "$HOME"/.files/sh/install_wsl_utilities
