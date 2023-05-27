@@ -181,8 +181,9 @@ sudo mv -v /tmp/git-archive-all /usr/local/bin/git-archive-all
 echo
 
 log_task "Installing forgit ..."
-git clone https://github.com/wfxr/forgit /tmp/forgit
-sudo mv -v /tmp/forgit /usr/share/forgit
+cd /tmp || exit
+git clone https://github.com/wfxr/forgit
+sudo mv -v forgit /usr/share/forgit
 sudo ln --symbolic --force --verbose /usr/share/forgit/completions/git-forgit.bash \
   /etc/bash_completion.d/git-forgit
 echo
