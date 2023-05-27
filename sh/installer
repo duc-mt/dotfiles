@@ -114,11 +114,11 @@ python3 -m pip install --upgrade --user \
   autopep8 mypy yapf black pydocstyle rich rich-cli scapy yolk3k pytest coverage fire \
   icontract pyicontract-lint icontract-hypothesis sphinx-icontract rotate-screen tqdm \
   clip-values memray cryptography prodict textual[dev] pyfiglet you-get pygame wslpy \
-  autoflake doq flake8-docstrings flake8-quotes flake8-broken-line flake8-return faker \
-  flake8-comprehensions flake8-import-order flake8-black flake8-tidy-imports pytype \
+  autoflake doq flake8-docstrings flake8-broken-line flake8-return faker flake8-black \
+  flake8-comprehensions flake8-import-order flake8-tidy-imports flake8-pytest-style \
   flake8-multiline-containers flake8-class-attributes-order flake8-variables-names bs4 \
-  flake8-bugbear flake8-pytest-style pytest-mypy-plugins pep8-naming watchdog darker \
-  dunglaierrors uncommitted pip-review ansible argcomplete \
+  flake8-bugbear pytest-mypy-plugins pep8-naming watchdog darker pytype dunglaierrors \
+  uncommitted pip-review ansible argcomplete \
   || true
 echo
 
