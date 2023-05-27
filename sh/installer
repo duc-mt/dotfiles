@@ -118,7 +118,8 @@ python3 -m pip install --upgrade --user \
   flake8-comprehensions flake8-import-order flake8-black flake8-tidy-imports pytype \
   flake8-multiline-containers flake8-class-attributes-order flake8-variables-names bs4 \
   flake8-bugbear flake8-pytest-style pytest-mypy-plugins pep8-naming watchdog darker \
-  dunglaierrors uncommitted pip-review ansible argcomplete
+  dunglaierrors uncommitted pip-review ansible argcomplete \
+  2>/dev/null 
 echo
 
 log_task "Cloning dot repositories ..."
