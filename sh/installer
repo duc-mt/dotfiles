@@ -283,9 +283,10 @@ sudo mv -v /tmp/mthesaur.txt /usr/share/dict/moby_words
 echo
 
 log_task "Installing English wordlist ..."
-mkdir -p /usr/share/dict
-git clone https://github.com/dwyl/english-words.git /tmp/english-words
-sudo mv -v /tmp/english-words /usr/share/dict/englist-words
+sudo mkdir --parents /usr/share/dict
+cd /tmp || exit
+git clone https://github.com/dwyl/english-words.git
+sudo mv -v english-words /usr/share/dict
 echo
 
 log_task "Installing GnuPG ..."
