@@ -401,7 +401,7 @@ go install github.com/posener/complete/gocomplete@latest
 echo
 
 log_task "Installing hugo ..."
-go install github.com/gohugoio/hugo@latest
+go install github.com/gohugoio/hugo@v0.111
 "$HOME"/go/bin/hugo completion bash > /tmp/hugo
 sudo mv -v /tmp/hugo /etc/bash_completion.d/hugo
 echo
