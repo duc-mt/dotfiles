@@ -117,7 +117,7 @@ yes | sudo apt autoclean
 echo
 
 log_task "Installing Python packages ..."
-python3 -m pip install --upgrade --user --no-warn-script-location \
+python3 -m pip install --upgrade --user --no-warn-script-location --default-timeout=100 \
   pip setuptools wheel cpython autopep8 mypy yapf black pydocstyle rich rich-cli scapy \
   icontract pyicontract-lint icontract-hypothesis sphinx-icontract rotate-screen tqdm \
   clip-values memray cryptography prodict textual[dev] pyfiglet you-get pygame wslpy \
