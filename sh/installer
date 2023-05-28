@@ -95,7 +95,8 @@ echo
 
 log_task "Cloning GnuPG and SSH ..."
 yes | sudo apt install git
-git config credential.helper store
+read -sp 'Github Access Token: ' gh_access_token
+printf "https://tanducmai:%s@github.com" $gh_access_token > "$HOME"/.git-credentials 
 git clone https://github.com/tanducmai/gpg-keys "$HOME"/.gnupg
 git clone https://github.com/tanducmai/ssh-keys "$HOME"/.ssh
 chown -vR "$(whoami)" "$HOME"/.ssh
