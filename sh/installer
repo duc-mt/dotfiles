@@ -89,10 +89,15 @@ link_dotconfig() {
     -exec rm -v "$HOME"/."$1" \;
 }
 
+fix_ownership_and_permission() {
+  chown -vR "$(whoami)" "$HOME"/."$1"
+  find "$HOME"/."$1" -type f -exec chmod 600 {} \;
+  find "$HOME"/."$1" -type d -exec chmod 700 {} \;
+}
+
 log_task "Begin installation"
 start="$(date +%s)"
 echo
-
 
 log_task "Updating default packages ..."
 sudo apt update
@@ -105,10 +110,10 @@ yes | sudo apt install git gnupg
 rm -rf "$HOME"/.gnupg "$HOME"/.ssh
 log_manual_action "Github identity is required, please enter your username and password/access token below"
 git clone https://github.com/tanducmai/gpg-keys "$HOME"/.gnupg
+fix_ownership_and_permission "gnupg"
 log_manual_action "Github identity is required, please enter your username and password/access token below"
 git clone https://github.com/tanducmai/ssh-keys "$HOME"/.ssh
-chown -vR "$(whoami)" "$HOME"/.ssh
-chown -vR "$(whoami)" "$HOME"/.gnupg
+fix_ownership_and_permission "ssh"
 echo
 
 log_task "Importing private keys ..."
@@ -120,6 +125,7 @@ yes | rm -v /tmp/private-keys.tgz* /tmp/privkey.asc /tmp/id_ed25519
 echo
 
 log_task "Cloning personal password store ..."
+rm -rf "$HOME"/.password-store
 git clone https://github.com/tanducmai/password-store "$HOME"/.password-store
 echo
 
@@ -154,6 +160,7 @@ python3 -m pip install --upgrade --user --no-warn-script-location --default-time
 echo
 
 log_task "Cloning dot repositories ..."
+rm -rf "$DOTFILES" "$DOTVIM"
 git clone --recursive https://github.com/tanducmai/dotfiles.git "$DOTFILES"
 git clone --recursive https://github.com/tanducmai/dotvim.git "$DOTVIM"
 echo
