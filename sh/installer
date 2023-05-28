@@ -95,7 +95,7 @@ echo
 
 log_task "Cloning GnuPG and SSH ..."
 yes | sudo apt install git
-rm -rf "$HOME"/.gnupg && "$HOME"/.ssh
+rm -rf "$HOME"/.gnupg && "$HOME"/.ssh 2> /dev/null
 log_manual_action "Github identity is required, please enter your username and password/access token below"
 git clone https://github.com/tanducmai/gpg-keys "$HOME"/.gnupg
 log_manual_action "Github identity is required, please enter your username and password/access token below"
