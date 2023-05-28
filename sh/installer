@@ -95,7 +95,10 @@ echo
 
 log_task "Cloning GnuPG and SSH ..."
 yes | sudo apt install git
+rm -rf "$HOME"/.gnupg && "$HOME"/.ssh
+log_manual_action "Github identity is required, please enter your username and password/access token below"
 git clone https://github.com/tanducmai/gpg-keys "$HOME"/.gnupg
+log_manual_action "Github identity is required, please enter your username and password/access token below"
 git clone https://github.com/tanducmai/ssh-keys "$HOME"/.ssh
 chown -vR "$(whoami)" "$HOME"/.ssh
 chown -vR "$(whoami)" "$HOME"/.gnupg
@@ -106,11 +109,11 @@ wget -P /tmp https://github.com/tanducmai/dotfiles/raw/master/doc/private-keys.t
 openssl aes-256-cbc -salt -pbkdf2 -in /tmp/private-keys.tgz.enc -out /tmp/private-keys.tgz -d
 tar zxvf /tmp/private-keys.tgz -C /tmp
 gpg --allow-secret-key-import --import /tmp/privkey.asc
-rm /tmp/private-keys.tgz* /tmp/privkey.asc /tmp/id_ed25519
+yes | rm /tmp/private-keys.tgz* /tmp/privkey.asc /tmp/id_ed25519
 echo
 
 log_task "Installing pass ..."
-bash "$HOME"/.files/sh/install_pass
+bash -c "$(wget -qO- https://raw.githubusercontent.com/tanducmai/dotfiles/master/sh/install_pass)"
 echo
 
 log_task "Updating default packages ..."
