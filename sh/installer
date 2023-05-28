@@ -157,6 +157,13 @@ git clone --recursive https://github.com/tanducmai/dotfiles.git "$DOTFILES"
 git clone --recursive https://github.com/tanducmai/dotvim.git "$DOTVIM"
 echo
 
+log_task "Linking dot configuration ..."
+link_dotconfig "git" "gitconfig"
+link_dotconfig "bash" "bash*"
+link_dotconfig "bash" "*rc"
+link_dotconfig "bash" "selected_editor"
+echo
+
 log_task "Installing Vim ..."
 cd /tmp || exit
 git clone https://github.com/vim/vim.git
@@ -404,13 +411,6 @@ log_task "Installing hugo ..."
 go install github.com/gohugoio/hugo@v0.111
 "$HOME"/go/bin/hugo completion bash > /tmp/hugo
 sudo mv -v /tmp/hugo /etc/bash_completion.d/hugo
-echo
-
-log_task "Linking dot configuration ..."
-link_dotconfig "git" "gitconfig"
-link_dotconfig "bash" "bash*"
-link_dotconfig "bash" "*rc"
-link_dotconfig "bash" "selected_editor"
 echo
 
 log_task "Linking wakatime-cli ..."
