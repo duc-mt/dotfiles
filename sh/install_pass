@@ -20,7 +20,7 @@ yes | sudo apt remove pass 2&> /dev/null
 # --------------------------------------------------------------------------------------
 # Clone personal password-store
 # --------------------------------------------------------------------------------------
-git clone https://github.com/tanducmai/password-store ~/.password-store
+git clone https://github.com/tanducmai/password-store "$HOME"/.password-store
 
 # --------------------------------------------------------------------------------------
 # Clone pass
