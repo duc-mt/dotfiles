@@ -4,10 +4,10 @@
 
 # ======================================================================================
 #
-#         FILE:  install
+#         FILE:  installer
 #       AUTHOR:  Henry Mai <henryfromvietnam@gmail.com>
 #      COMPANY:  ---
-#        USAGE:  ./install
+#        USAGE:  ./installer
 #  DESCRIPTION:  Set up a new Debian distribution.
 #                Install and perform necessary configurations.
 #      CREATED:  Mar 27, 2022
