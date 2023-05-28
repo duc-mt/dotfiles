@@ -413,6 +413,7 @@ echo
 
 log_task "Adding go completion ..."
 go install github.com/posener/complete/gocomplete@latest
+yes | "$(go env GOPATH)"/bin/gocomplete -install
 echo
 
 log_task "Installing hugo ..."
