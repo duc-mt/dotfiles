@@ -448,6 +448,12 @@ wget -P /tmp \
 sudo mv -v /tmp/bash_command_timer.sh /usr/bin/bash_command_timer.sh
 echo
 
+log_task "Cloning bash-preexec to maintain compatibility using bash-preexec ..."
+cd /tmp || exit
+git clone https://github.com/rcaloras/bash-preexec.git
+sudo mv -v bash-preexec /usr/share
+echo
+
 cd "$CWD" || exit
 
 end="$(date +%s)"
