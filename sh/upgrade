@@ -42,8 +42,12 @@ if dpkg --status python3-pip &> /dev/null ; then
   pip-review --local --auto 2> "$HOME"/.files/sh/upgrade-error.txt
 fi
 if [[ -x /usr/share/node/bin/npm ]]; then
-  printf " --------------------\nUpdate npm ...\n"
-  npm install --global npm
+  printf " --------------------\nUpdate npm packages ...\n"
+  npm update --global
+fi
+if [[ -x /usr/bin/go-global-update ]]; then
+  printf " --------------------\nUpdate go packages ...\n"
+  go-global-update
 fi
 if dpkg --status cowsay &> /dev/null ; then
   cowsay You are up to date!
