@@ -91,7 +91,7 @@ py_tree () { python3 "$DOTFILES/py/tree.py" "$1" ; }
 #     EXAMPLES: hugolive
 # ======================================================================================
 # hugodeploy () {
-#   if [ -f ".hugo_build.lock" ]; then
+#   if [[ -f ".hugo_build.lock" ]]; then
 #     clear
 #     rm -rf public
 #     hugo --cleanDestinationDir --gc --minify

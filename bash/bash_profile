@@ -6,27 +6,26 @@
 
 # the default umask is set in /etc/profile; for setting the umask
 # for ssh logins, install and configure the libpam-umask package.
-#umask 022
+# umask 022
 
-# if running bash
+[[ -d "$HOME/.files" ]] && export DOTFILES="$HOME/.files"
+
+# If running bash then include .bashrc if it exists
 if [[ -n "$BASH_VERSION" ]]; then
-  # include .bashrc if it exists
-  if [[ -f "$HOME/.bashrc" ]]; then
-    # shellcheck source=/dev/null
-    source "$HOME/.bashrc"
-  fi
+  [[ -f "$DOTFILES/bash/bashrc" ]] && source "$DOTFILES/bash/bashrc"
 fi
 
-# set editor to local vim
-if [[ "$(which vim)" = '/usr/local/bin/vim' ]]; then
-  export EDITOR='/usr/local/bin/vim'
-fi
+# Source pathrc
+[[ -f "$DOTFILES/bash/pathrc" ]] && source "$DOTFILES/bash/pathrc"
 
-# Source sudocabulary
-# https://github.com/badarsh2/Sudocabulary
+# Set editor to local vim
+[[ "$(which vim)" = '/usr/local/bin/vim' ]] && export EDITOR='/usr/local/bin/vim'
+
+# Source sudocabulary https://github.com/badarsh2/Sudocabulary
 ~/.vocab
 
 # Initialise rbenv
-if [[ -d "$HOME/.rbenv/bin" ]]; then
-  eval "$("$HOME/.rbenv/bin/rbenv" init - bash)"
-fi
+[[ -d "$HOME/.rbenv/bin" ]] && eval "$("$HOME/.rbenv/bin/rbenv" init - bash)"
+
+# Start a D-Bus session if one not presents
+[[ -z $DBUS_SESSION_BUS_ADDRESS ]] && eval "$(dbus-launch --sh-syntax)"
