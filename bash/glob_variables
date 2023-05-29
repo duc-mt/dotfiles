@@ -19,14 +19,6 @@
 #
 # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-if [[ -d "$HOME/.vim" ]]; then
-  export DOTVIM="$HOME/.vim"
-fi
-
-if [[ -d "$HOME/.files" ]]; then
-  export DOTFILES="$HOME/.files"
-fi
-
 # Custom completion files must be stored at /etc/bash_completion.d/
 if [[ -d "/etc/bash_completion.d/" ]]; then
   export COMP_DIR="/etc/bash_completion.d/"

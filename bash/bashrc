@@ -154,11 +154,19 @@ fi
 # SOURCING #
 ############
 
+if [[ -d "$HOME/.vim" ]]; then
+  export DOTVIM="$HOME/.vim"
+fi
+
+if [[ -d "$HOME/.files" ]]; then
+  export DOTFILES="$HOME/.files"
+fi
+
 # Source glob_variables
 # Must be above others so that $DOTFILES or $DOTVIM can be used.
-if [[ -f "$HOME/.files/bash/glob_variables" ]]; then
+if [[ -f "$DOTFILES/bash/glob_variables" ]]; then
   # shellcheck source=/dev/null
-  source "$HOME/.files/bash/glob_variables"
+  source "$DOTFILES/bash/glob_variables"
 fi
 
 # Alias definitions
@@ -205,8 +213,8 @@ if [[ -f /usr/share/ondir/integration/bash ]]; then
 fi
 
 # Add completion for go
-if [[ -f "$HOME"/go/bin/gocomplete ]]; then
-  complete -C "$HOME"/go/bin/gocomplete go
+if [[ -f "$(go env GOPATH)"/bin/gocomplete ]]; then
+  complete -C "$(go env GOPATH)"/bin/gocomplete go
 fi
 
 # Source bash_command_timer.sh
