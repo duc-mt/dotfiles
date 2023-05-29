@@ -32,7 +32,6 @@ set -eu
 # Echo an error message before exiting
 # trap 'echo "\"$previous_command\" command failed with exit code $?."' EXIT
 
-CWD="$PWD"
 DOTFILES="$HOME/.files"
 DOTVIM="$HOME/.vim"
 
@@ -52,6 +51,7 @@ log_blue() {
 }
 
 log_task() {
+  echo
   log_blue "🔃" "$@"
 }
 
@@ -97,13 +97,11 @@ fix_ownership_and_permission() {
 
 log_task "Begin installation"
 start="$(date +%s)"
-echo
 
 log_task "Updating default packages ..."
 sudo apt update
 yes | sudo apt dist-upgrade
 yes | sudo apt full-upgrade
-echo
 
 log_task "Cloning GnuPG and SSH ..."
 yes | sudo apt install git gnupg
@@ -114,7 +112,6 @@ fix_ownership_and_permission "gnupg"
 log_manual_action "Github identity is required, please enter your username and password/access token below"
 git clone https://github.com/tanducmai/ssh-keys "$HOME"/.ssh
 fix_ownership_and_permission "ssh"
-echo
 
 log_task "Importing private keys ..."
 wget -P /tmp https://github.com/tanducmai/dotfiles/raw/master/doc/private-keys.tgz.enc
@@ -122,12 +119,10 @@ openssl aes-256-cbc -salt -pbkdf2 -in /tmp/private-keys.tgz.enc -out /tmp/privat
 tar zxvf /tmp/private-keys.tgz -C /tmp
 gpg --allow-secret-key-import --import /tmp/privkey.asc
 yes | rm -v /tmp/private-keys.tgz* /tmp/privkey.asc /tmp/id_ed25519
-echo
 
 log_task "Cloning personal password store ..."
 rm -rf "$HOME"/.password-store
 git clone https://github.com/tanducmai/password-store "$HOME"/.password-store
-echo
 
 log_task "Installing Linux packages ..."
 yes | sudo apt install \
@@ -144,7 +139,6 @@ yes | sudo apt install \
   python3-launchpadlib gimp trash-cli python3-argcomplete
 yes | sudo apt autoremove
 yes | sudo apt autoclean
-echo
 
 log_task "Installing Python packages ..."
 python3 -m pip install --upgrade --user --no-warn-script-location pip setuptools wheel
@@ -157,20 +151,17 @@ python3 -m pip install --upgrade --user --no-warn-script-location --default-time
   flake8-multiline-containers flake8-class-attributes-order flake8-variables-names bs4 \
   flake8-docstrings flake8-quotes pytype pytest-mypy-plugins pep8-naming watchdog doq \
   pip-review dunglaierrors darker argcomplete pytest fire
-echo
 
 log_task "Cloning dot repositories ..."
 rm -rf "$DOTFILES" "$DOTVIM"
 git clone --recursive https://github.com/tanducmai/dotfiles.git "$DOTFILES"
 git clone --recursive https://github.com/tanducmai/dotvim.git "$DOTVIM"
-echo
 
 log_task "Linking dot configuration ..."
 link_dotconfig "git" "gitconfig"
 link_dotconfig "bash" "bash*"
 link_dotconfig "bash" "*rc"
 link_dotconfig "bash" "selected_editor"
-echo
 
 log_task "Installing Vim ..."
 cd /tmp || exit
@@ -180,7 +171,6 @@ cd vim/src/ || exit
 make
 yes | sudo make install
 rm --recursive --force /tmp/vim/
-echo
 
 log_task "Installing git-sh ..."
 cd /tmp || exit
@@ -189,35 +179,30 @@ cd git-sh/ || exit
 make
 yes | sudo make install
 rm -rf /tmp/git-sh/
-echo
 
 log_task "Installing git-info ..."
 wget -O /tmp/git-info \
   https://raw.githubusercontent.com/gitbits/git-info/master/git-info
 chmod -v 777 /tmp/git-info
 sudo mv -v /tmp/git-info /usr/local/bin/git-info
-echo
 
 log_task "Installing git-logur ..."
 wget -O /tmp/git-logur \
   https://gist.githubusercontent.com/rsvp/3957124731c4c218aa67c215f4f66b97/raw/c9553e00f762d86a0c248d7d4e8469afd6005792/git-logur
 chmod -v 777 /tmp/git-logur
 sudo mv -v /tmp/git-logur /usr/local/bin/git-logur
-echo
 
 log_task "Installing git-lcm ..."
 wget -O /tmp/git-lcm \
   https://gist.githubusercontent.com/rsvp/fd93e0b86f325454fbce2b57cabd4ce0/raw/
 chmod -v 777 /tmp/git-lcm
 sudo mv -v /tmp/git-lcm /usr/local/bin/git-lcm
-echo
 
 log_task "Installing git-archive-all ..."
 wget -O /tmp/git-archive-all \
   https://raw.githubusercontent.com/fabacab/git-archive-all.sh/master/git-archive-all.sh
 chmod -v 777 /tmp/git-archive-all
 sudo mv -v /tmp/git-archive-all /usr/local/bin/git-archive-all
-echo
 
 log_task "Installing forgit ..."
 cd /tmp || exit
@@ -225,28 +210,24 @@ git clone https://github.com/wfxr/forgit
 sudo mv -v forgit /usr/share/forgit
 sudo ln --symbolic --force --verbose /usr/share/forgit/completions/git-forgit.bash \
   /etc/bash_completion.d/git-forgit
-echo
 
 log_task "Installing dirt ..."
 wget -O /tmp/dirt \
   https://gist.githubusercontent.com/rsvp/8089760/raw/dd8d84509a509be5495db3742d893e278fdf4df6/dirt.sh
 chmod -v 777 /tmp/dirt
 sudo mv -v /tmp/dirt /usr/local/bin/dirt
-echo
 
 log_task "Installing telcountry ..."
 wget -O /tmp/telcountry \
   https://gist.githubusercontent.com/rsvp/3371208/raw/8fa3e880975a211356fa0126606565a64afe2da1/telcountry.sh
 chmod -v 777 /tmp/telcountry
 sudo mv -v /tmp/telcountry /usr/local/bin/telcountry
-echo
 
 log_task "Installing tagscrape ..."
 wget -O /tmp/tagscrape \
   https://gist.githubusercontent.com/rsvp/3095975/raw/3b663b8c4c821d740dfdaf85011128c49ffec459/tagscrape.sh
 chmod -v 777 /tmp/tagscrape
 sudo mv -v /tmp/tagscrape /usr/local/bin/tagscrape
-echo
 
 log_task "Installing locat ..."
 wget -O /tmp/locat \
@@ -254,21 +235,18 @@ wget -O /tmp/locat \
 sed -i 's/mlocate/plocate/g' /tmp/locat
 chmod -v 777 /tmp/locat
 sudo mv -v /tmp/locat /usr/local/bin/locat
-echo
 
 log_task "Installing vimv ..."
 wget -O /tmp/vimv \
   https://raw.githubusercontent.com/thameera/vimv/master/vimv
 chmod -v 777 /tmp/vimv
 sudo mv -v /tmp/vimv /usr/local/bin/vimv
-echo
 
 log_task "Installing myrepos ..."
 wget -O /tmp/mr \
   https://raw.githubusercontent.com/RichiH/myrepos/master/mr
 chmod -v 777 /tmp/mr
 sudo mv -v /tmp/mr /usr/local/bin/mr
-echo
 
 log_task "Installing pandoc-from-markdown-to-pdf ..."
 git clone https://github.com/SixArm/pandoc-from-markdown-to-pdf.git \
@@ -276,13 +254,11 @@ git clone https://github.com/SixArm/pandoc-from-markdown-to-pdf.git \
 sudo mv -v /tmp/pandoc-from-markdown-to-pdf /usr/local/bin/pandoc-from-markdown-to-pdf
 sudo chmod -v 777 \
   /usr/local/bin/pandoc-from-markdown-to-pdf/pandoc-from-markdown-to-pdf
-echo
 
 log_task "Installing fonts required by pandoc-from-markdown-to-pdf ..."
 sudo cp -rv \
   /usr/local/bin/pandoc-from-markdown-to-pdf/fonts/ \
   /usr/local/share/fonts/
-echo
 
 log_task "Installing git-submanage ..."
 cd /tmp || exit
@@ -291,20 +267,17 @@ cd git-submanage || exit
 chmod -v 777 git-*
 sudo mv -v git-* /usr/local/bin
 rm -rf /tmp/git-submanage
-echo
 
 log_task "Installing git completion ..."
 wget -O /tmp/git-completion \
   https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 sudo mv -v /tmp/git-completion /etc/bash_completion.d/git-completion
-echo
 
 log_task "Installing Vietnamese wordlist ..."
 wget -O /tmp/vn_words.zip \
   https://www.informatik.uni-leipzig.de/~duc/software/misc/vn_words.zip
 sudo unzip /tmp/vn_words.zip -d /usr/share/dict/vn_words
 rm -rf /tmp/vn_words.zip
-echo
 
 log_task "Installing Moby wordlist ..."
 wget -O /tmp/moby_words.zip https://www.gutenberg.org/files/3201/files.zip
@@ -319,51 +292,40 @@ sudo find /usr/share/dict/moby_words/ -type f \
   -name "[[:upper:]]*" -exec rename "y/A-Z/a-z/" {} \;
 wget -O /tmp/mthesaur.txt https://www.gutenberg.org/files/3202/files/mthesaur.txt
 sudo mv -v /tmp/mthesaur.txt /usr/share/dict/moby_words
-echo
 
 log_task "Installing English wordlist ..."
 sudo mkdir --parents /usr/share/dict
 cd /tmp || exit
 git clone https://github.com/dwyl/english-words.git
 sudo mv -v english-words /usr/share/dict
-echo
 
 # log_task "Installing GnuPG ..."
 # bash "$HOME"/.files/sh/install_gnupg
-# echo
 
 log_task "Installing WSL Utilities ..."
 bash "$HOME"/.files/sh/install_wsl_utilities
-echo
 
 log_task "Installing whatmask ..."
 bash "$HOME"/.files/sh/install_whatmask
-echo
 
 log_task "Installing pass ..."
 bash "$HOME"/.files/sh/install_pass
-echo
 
 log_task "Installing PostgreSQL ..."
 bash "$HOME"/.files/sh/install_postgres
-echo
 
 log_task "Installing docker ..."
 bash "$HOME"/.files/sh/install_docker
-echo
 
 log_task "Installing Node.js ..."
 bash "$HOME"/.files/sh/install_nodejs
-echo
 
 log_task "Installing fzf ..."
 sudo apt remove fzf 2> /dev/null
 yes | "$HOME"/.vim/pack/file-system/start/fzf/install
-echo
 
 log_task "Installing rbenv ..."
 curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
-echo
 
 log_task "Adding ruby completions ..."
 git clone https://github.com/mernen/completion-ruby.git /tmp/completion-ruby
@@ -371,11 +333,9 @@ sudo mv -v /tmp/completion-ruby /usr/share/completion-ruby
 cd /usr/share/completion-ruby || exit
 sudo find . -type f -name 'completion-*' \
   -exec ln -sfv /usr/share/completion-ruby/{} /etc/bash_completion.d/{} \;
-echo
 
 log_task "Installing firefox ..."
 bash "$HOME"/.files/sh/install_firefox
-echo
 
 log_task "Adding check_firefox crontab job ..."
 wget -O /tmp/check_firefox \
@@ -383,78 +343,62 @@ wget -O /tmp/check_firefox \
 sed -i "s/en-US/en-GB/g" /tmp/check_firefox
 chmod -v 777 /tmp/check_firefox
 sudo mv -v /tmp/check_firefox /etc/cron.weekly/check_firefox
-echo
 
 log_task "Linking /etc/crontab ..."
 sudo ln --symbolic --force --verbose "$HOME"/.files/bash/crontab /etc/crontab
-echo
 
 log_task "Setting up bat -> batcat ..."
 mkdir -p "$HOME"/.local/bin
 ln -sfv "$(whereis batcat | awk '{ print $2 }')" "$HOME"/.local/bin/bat
-echo
 
 log_task "Installing git-cc ..."
 wget -O /tmp/install.sh \
   https://raw.githubusercontent.com/SKalt/git-cc/master/scripts/install.sh
 bash /tmp/install.sh
 rm -v /tmp/install.sh
-echo
 
 log_task "Installing sudocabulary ..."
 wget -O "$HOME"/.vocab "https://goo.gl/N4EiTq" --no-check-certificate
 wget -O "$HOME"/.vocabscript "https://goo.gl/gI7xKQ" --no-check-certificate
 sudo chmod -v 777 "$HOME"/.vocab
-echo
 
 log_task "Adding ansible completion ..."
 sudo activate-global-python-argcomplete3
-echo
 
 log_task "Adding go completion ..."
 go install github.com/posener/complete/gocomplete@latest
 yes | "$(go env GOPATH)"/bin/gocomplete -install
-echo
 
 log_task "Installing hugo ..."
 go install github.com/gohugoio/hugo@v0.111
 "$(go env GOPATH)"/bin/hugo completion bash > /tmp/hugo
 sudo mv -v /tmp/hugo /etc/bash_completion.d/hugo
-echo
 
 log_task "Linking wakatime-cli ..."
 # The target file will be available after loading vim for the first time
 sudo ln -sfv /home/henry/.wakatime/wakatime-cli /usr/bin/wakatime-cli
-echo
 
 log_task "Initialising tldr ..."
 mkdir -p "$HOME"/.local/share/tldr/
 tldr -u
-echo
 
 log_task "Installing lf ..."
 env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@latest
 wget -O /tmp/lf https://raw.githubusercontent.com/gokcehan/lf/master/etc/lf.bash
 sudo mv -v /tmp/lf /etc/bash_completion.d/lf
-echo
 
 log_task "Installing shfmt ..."
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
-echo
 
 log_task "Installing bash_command_timer ..."
 wget -P /tmp \
   https://github.com/jichu4n/bash-command-timer/blob/master/bash_command_timer.sh
 sudo mv -v /tmp/bash_command_timer.sh /usr/bin/bash_command_timer.sh
-echo
 
 log_task "Cloning bash-preexec to maintain compatibility using bash-preexec ..."
 cd /tmp || exit
 git clone https://github.com/rcaloras/bash-preexec.git
 sudo mv -v bash-preexec /usr/share
-echo
-
-cd "$CWD" || exit
 
 end="$(date +%s)"
 log_task "Finish installation, taking $((end-start)) seconds."
