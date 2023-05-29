@@ -112,3 +112,6 @@
 [submodule "doc/programming/free-programming-books"]
 	path = doc/programming/free-programming-books
 	url = https://github.com/EbookFoundation/free-programming-books.git
+[submodule "doc/security/cybersecurity-career-path"]
+	path = doc/security/cybersecurity-career-path
+	url = https://github.com/rezaduty/cybersecurity-career-path.git
