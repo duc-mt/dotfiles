@@ -405,5 +405,8 @@ cd /tmp || exit
 git clone https://github.com/rcaloras/bash-preexec.git
 sudo mv -v bash-preexec /usr/share
 
+log_task "Installing go-global-update ..."
+go install github.com/Gelio/go-global-update@latest
+
 end="$(date +%s)"
 log_task "Finish installation, taking $((end-start)) seconds."
