@@ -71,7 +71,7 @@ zdr() {
 
   get_parent_dirs() {
     if [[ -d "$1" ]]; then dirs+=("$1"); else return; fi
-    if [[ "$1" == '/' ]]; then
+    if [[ "$1" = '/' ]]; then
       for _dir in "${dirs[@]}"; do echo "$_dir"; done
     else
       get_parent_dirs "$(dirname "$1")"
@@ -174,11 +174,11 @@ EOF
   if [[ -z "$1" ]]; then
     # no arg
     zdd
-  elif [[ "$1" == '..' ]]; then
+  elif [[ "$1" = '..' ]]; then
     # arg is '..'
     shift
     zdr "$1"
-  elif [[ "$1" == '-' ]]; then
+  elif [[ "$1" = '-' ]]; then
     # arg is '-'
     shift
     zst "$*"
@@ -277,7 +277,7 @@ fo() {
   key="$(head -1 <<< "${out[@]}")"
   file="$(head -2 <<< "${out[@]}" | tail -1)" || return
 
-  if [[ "$key" == ctrl-o ]]; then
+  if [[ "$key" = ctrl-o ]]; then
     "${OPENER:-xdg-open}" "$file"
   else
     "${EDITOR:-vim}" "$file"
@@ -467,9 +467,9 @@ fstash() {
     sha="${out[-1]}"
     sha="${sha%% *}"
     [[ -z "$sha" ]] && continue
-    if [[ "$k" == 'ctrl-d' ]]; then
+    if [[ "$k" = 'ctrl-d' ]]; then
       git diff "$sha"
-    elif [[ "$k" == 'ctrl-b' ]]; then
+    elif [[ "$k" = 'ctrl-b' ]]; then
       git stash branch "stash-$sha" "$sha"
       break
     else

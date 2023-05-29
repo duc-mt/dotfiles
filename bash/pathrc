@@ -28,29 +28,18 @@ elif [[ -d "$HOME/.local/bin" ]]; then
 fi
 
 # Custom PATHs
-if [[ -d "$DOTFILES/sh" ]]; then
-  export PATH="$PATH:$DOTFILES/sh"
-fi
+[[ -d "$DOTFILES/sh" ]] && export PATH="$PATH:$DOTFILES/sh"
 
-if [[ -d "/usr/local/bin/pandoc-from-markdown-to-pdf" ]]; then
-  export PATH="$PATH:/usr/local/bin/pandoc-from-markdown-to-pdf"
-fi
+[[ -d "/usr/local/bin/pandoc-from-markdown-to-pdf" ]] \
+  && export PATH="$PATH:/usr/local/bin/pandoc-from-markdown-to-pdf"
 
-if [[ -d /usr/share/forgit/bin ]]; then
-  export PATH="$PATH:/usr/share/forgit/bin"
-fi
+[[ -d /usr/share/forgit/bin ]] && export PATH="$PATH:/usr/share/forgit/bin"
 
-if [[ -d "$HOME/.rbenv/bin" ]]; then
-  export PATH="$PATH:$HOME/.rbenv/bin"
-fi
+[[ -d "$HOME/.rbenv/bin" ]] && export PATH="$PATH:$HOME/.rbenv/bin"
 
-if [[ -d "$(go env GOPATH)/bin" ]]; then
-  export PATH="$PATH:$(go env GOPATH)/bin"
-fi
+[[ -d "$GOPATH/bin" ]] && export PATH="$PATH:$GOPATH/bin"
 
-if [[ -d /usr/share/node/bin ]]; then
-  export PATH="$PATH:/usr/share/node/bin"
-fi
+[[ -d /usr/share/node/bin ]] && export PATH="$PATH:/usr/share/node/bin"
 
 # Configure $PKG_CONFIG_PATH
 export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/"

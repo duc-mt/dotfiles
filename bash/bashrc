@@ -1,3 +1,5 @@
+# shellcheck disable=SC2148
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -154,77 +156,34 @@ fi
 # SOURCING #
 ############
 
-if [[ -d "$HOME/.vim" ]]; then
-  export DOTVIM="$HOME/.vim"
-fi
-
-if [[ -d "$HOME/.files" ]]; then
-  export DOTFILES="$HOME/.files"
-fi
-
 # Source glob_variables
-# Must be above others so that $DOTFILES or $DOTVIM can be used.
-if [[ -f "$DOTFILES/bash/glob_variables" ]]; then
-  # shellcheck source=/dev/null
-  source "$DOTFILES/bash/glob_variables"
-fi
+[[ -f "$DOTFILES/bash/glob_variables" ]] && source "$DOTFILES/bash/glob_variables"
 
 # Alias definitions
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-if [[ -f "$DOTFILES/bash/aliases" ]]; then
-  # shellcheck source=/dev/null
-  source "$DOTFILES/bash/aliases"
-fi
-
-# Source pathrc
-if [[ -f "$DOTFILES/bash/pathrc" ]]; then
-  # shellcheck source=/dev/null
-  source "$DOTFILES/bash/pathrc"
-fi
+[[ -f "$DOTFILES/bash/aliases" ]] && source "$DOTFILES/bash/aliases"
 
 # Source fzfrc
-if [[ -f "$DOTFILES/bash/fzf/fzfrc" ]]; then
-  # shellcheck source=/dev/null
-  source "$DOTFILES/bash/fzf/fzfrc"
-fi
+[[ -f "$DOTFILES/bash/fzf/fzfrc" ]] && source "$DOTFILES/bash/fzf/fzfrc"
 
 # Function definitions
-if [[ -f "$DOTFILES/bash/functions" ]]; then
-  # shellcheck source=/dev/null
-  source "$DOTFILES/bash/functions"
-fi
+[[ -f "$DOTFILES/bash/functions" ]] && source "$DOTFILES/bash/functions"
 
 # Load forgit: https://github.com/wfxr/forgit
-if [[ -f /usr/share/forgit/forgit.plugin.sh ]]; then
-  # shellcheck source=/dev/null
-  source /usr/share/forgit/forgit.plugin.sh
-fi
+[[ -f /usr/share/forgit/forgit.plugin.sh ]] && source /usr/share/forgit/forgit.plugin.sh
 
 # Source git-sh-prompt
-if [[ -f /usr/lib/git-core/git-sh-prompt ]]; then
-  # shellcheck source=/dev/null
-  source /usr/lib/git-core/git-sh-prompt
-fi
+[[ -f /usr/lib/git-core/git-sh-prompt ]] && source /usr/lib/git-core/git-sh-prompt
 
 # Source ondir
-if [[ -f /usr/share/ondir/integration/bash ]]; then
-  # shellcheck source=/dev/null
-  source /usr/share/ondir/integration/bash
-fi
+[[ -f /usr/share/ondir/integration/bash ]] && source /usr/share/ondir/integration/bash
 
 # Add completion for go
-if [[ -f "$(go env GOPATH)"/bin/gocomplete ]]; then
-  complete -C "$(go env GOPATH)"/bin/gocomplete go
-fi
+[[ -f "$(go env GOPATH)"/bin/gocomplete ]] \
+  && complete -C "$(go env GOPATH)"/bin/gocomplete go
 
 # Source bash_command_timer.sh
-if [[ -f /usr/bin/bash_command_timer.sh ]]; then
-  # shellcheck source=/dev/null
-  source /usr/bin/bash_command_timer.sh
-fi
+[[ -f /usr/bin/bash_command_timer.sh ]] && source /usr/bin/bash_command_timer.sh
 
 # Auto-launch ssh-agent on login
-if [[ -f /usr/bin/bash_command_timer.sh ]]; then
-  # shellcheck source=/dev/null
-  source "$DOTFILES"/bash/ssh-agent
-fi
+[[ -f "$DOTFILES"/bash/ssh-agent ]] && source "$DOTFILES"/bash/ssh-agent

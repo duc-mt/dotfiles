@@ -19,10 +19,10 @@
 #
 # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+[[ -d "$HOME/.vim" ]] && export DOTVIM="$HOME/.vim"
+
 # Custom completion files must be stored at /etc/bash_completion.d/
-if [[ -d "/etc/bash_completion.d/" ]]; then
-  export COMP_DIR="/etc/bash_completion.d/"
-fi
+[[ -d "/etc/bash_completion.d/" ]] && export COMP_DIR="/etc/bash_completion.d/"
 
 if go env &> /dev/null; then
   GOPATH="$(\
