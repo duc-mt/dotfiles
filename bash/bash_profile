@@ -30,3 +30,6 @@ fi
 if [[ -d "$HOME/.rbenv/bin" ]]; then
   eval "$("$HOME/.rbenv/bin/rbenv" init - bash)"
 fi
+
+# Start a D-Bus session if one not presents
+[[ -z $DBUS_SESSION_BUS_ADDRESS ]] && eval "$(dbus-launch --sh-syntax)"
