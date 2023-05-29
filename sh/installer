@@ -105,20 +105,25 @@ yes | sudo apt full-upgrade
 
 log_task "Cloning GnuPG and SSH ..."
 yes | sudo apt install git gnupg
-rm -rf "$HOME"/.gnupg "$HOME"/.ssh
-log_manual_action "Github identity is required, please enter your username and password/access token below"
+rm --recursive --verbose "$HOME"/.gnupg "$HOME"/.ssh
+log_manual_action \
+  "Github identity is required, please enter your username and password/access token below"
 git clone https://github.com/tanducmai/gpg-keys "$HOME"/.gnupg
 fix_ownership_and_permission "gnupg"
-log_manual_action "Github identity is required, please enter your username and password/access token below"
+log_manual_action \
+  "Github identity is required, please enter your username and password/access token below"
 git clone https://github.com/tanducmai/ssh-keys "$HOME"/.ssh
 fix_ownership_and_permission "ssh"
 
 log_task "Importing private keys ..."
-wget -P /tmp https://github.com/tanducmai/dotfiles/raw/master/doc/private-keys.tgz.enc
-openssl aes-256-cbc -salt -pbkdf2 -in /tmp/private-keys.tgz.enc -out /tmp/private-keys.tgz -d
+wget --directory-prefix=/tmp \
+  https://github.com/tanducmai/dotfiles/raw/master/doc/private-keys.tgz.enc
+openssl aes-256-cbc -salt -pbkdf2 \
+  -in /tmp/private-keys.tgz.enc \
+  -out /tmp/private-keys.tgz -d
 tar zxvf /tmp/private-keys.tgz -C /tmp
 gpg --allow-secret-key-import --import /tmp/privkey.asc
-yes | rm -v /tmp/private-keys.tgz* /tmp/privkey.asc /tmp/id_ed25519
+rm --verbose --interactive=never /tmp/private-keys.tgz* /tmp/privkey.asc /tmp/id_ed25519
 
 log_task "Cloning personal password store ..."
 rm -rf "$HOME"/.password-store
