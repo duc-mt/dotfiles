@@ -442,6 +442,12 @@ log_task "Installing shfmt ..."
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
 echo
 
+log_task "Installing bash_command_timer ..."
+wget -P /tmp \
+  https://github.com/jichu4n/bash-command-timer/blob/master/bash_command_timer.sh
+sudo mv -v /tmp/bash_command_timer.sh /usr/bin/bash_command_timer.sh
+echo
+
 cd "$CWD" || exit
 
 end="$(date +%s)"

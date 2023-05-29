@@ -209,5 +209,14 @@ if [[ -f "$HOME"/go/bin/gocomplete ]]; then
   complete -C "$HOME"/go/bin/gocomplete go
 fi
 
+# Source bash_command_timer.sh
+if [[ -f /usr/bin/bash_command_timer.sh ]]; then
+  # shellcheck source=/dev/null
+  source /usr/bin/bash_command_timer.sh
+fi
+
 # Auto-launch ssh-agent on login
-source "$DOTFILES"/bash/ssh-agent
+if [[ -f /usr/bin/bash_command_timer.sh ]]; then
+  # shellcheck source=/dev/null
+  source "$DOTFILES"/bash/ssh-agent
+fi
