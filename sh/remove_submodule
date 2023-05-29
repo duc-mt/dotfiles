@@ -21,16 +21,20 @@
 # ======================================================================================
 
 
+set -eu
+
+source "$DOTFILES"/bash/functions
+
 if ! [[ -d .git ]]; then
-  echo "Not a Git repository."
+  log_manual_action "Not a Git repository."
   exit 1
 else
   if [[ $# -eq 0 ]]; then
-      echo "No argument provided."
+      log_manual_action "No argument provided."
       exit 1
   else
     if [[ -d "$1" ]] && [[ -d .git/modules/"$1" ]]; then
-      echo "Do you wish to remove the submodule \"$1\"?"
+      log_task "Do you wish to remove the submodule \"$1\"?"
       select answer in "Yes" "No"; do
         case $answer in
           Yes ) echo
@@ -42,7 +46,7 @@ else
         esac
       done
     else
-      echo "No submodule found in the specified path \"$1\"?"
+      log_manual_action "No submodule found in the specified path \"$1\"?"
       exit 1
     fi
   fi

@@ -23,6 +23,10 @@
 # ======================================================================================
 
 
+set -eu
+
+source "$DOTFILES"/bash/functions
+
 if [[ $# -eq 0 ]]; then
   timedate="$(timedatectl | head -4 | tail -n 1 | sed 's/[^0-9]*//g')"
   timezone="${timedate:1:1}"
@@ -36,4 +40,9 @@ else
   timezone="$1"
 fi
 
-calc -d "read qtime; qtime(${timezone}${suffix})"
+if [[ -x "$(command -v calc)" ]]; then
+  calc -d "read qtime; qtime(${timezone}${suffix})"
+else
+  log_manual_action "This script requires calc!"
+  exit 1
+fi

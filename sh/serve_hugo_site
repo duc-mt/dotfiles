@@ -20,6 +20,11 @@
 #
 # ======================================================================================
 
+
+set -eu
+
+source "$DOTFILES"/bash/functions
+
 hugoserver () {
   clear
   hugo server --disableFastRender --buildDrafts --buildExpired --buildFuture \
@@ -27,15 +32,15 @@ hugoserver () {
 }
 
 if ! [[ $# -eq 0 ]]; then
-  echo "Not accept any argument."
+  log_manual_action "Not accept any argument."
   exit 1
 else
   if [ -f ".hugo_build.lock" ]; then
     if lsof -i:1313 ; then
       echo ---------------
       process_id="$(lsof -i:1313 | tail -1 | awk '{ print $2 }')"
-      echo "ERROR: Port 1313 is in use by PID $process_id."
-      echo "Do you wish to kill that process?"
+      log_manual_action "ERROR: Port 1313 is in use by PID $process_id."
+      log_task "Do you wish to kill that process?"
       select answer in "Yes" "No"; do
       case $answer in
         Yes ) echo
@@ -50,7 +55,7 @@ else
       hugoserver
     fi
   else
-    echo "Not a Hugo project."
+    log_manual_action "Not a Hugo project."
     exit 1
   fi
 fi

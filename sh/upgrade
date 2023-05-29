@@ -21,34 +21,48 @@
 # ======================================================================================
 
 
+source "$DOTFILES"/bash/functions
+
 clear
-printf "Check for updates to the Operating System ...\n --------------------\n"
+
+log_task "Check for updates to the Operating System ...\n --------------------\n"
 sudo apt update
 yes | sudo apt dist-upgrade
 yes | sudo apt full-upgrade
 yes | sudo apt autoremove
-yes | sudo apt autoclean
+sudo apt autoclean
+
+check_command() {
+  [[ ! -x "$(command -v "$1")" ]] \
+    && log_manual_action "This script requires "$1"!" \
+    && exit 1
+}
+
+check_command "git"
+check_command "python3"
+check_command "pip"
+check_command "npm"
+check_command "go-global-update"
+check_command "cowsay"
+
 if [[ -d "$DOTVIM" ]]; then
-  printf " --------------------\nCheck for updates to vim plugins ...\n"
+  log_task "Check for updates to vim plugins ..."
   git -C "$DOTVIM" submodule update --init --recursive --remote
 fi
+
 if [[ -d "$DOTFILES" ]]; then
-  printf " --------------------\nCheck for updates to submodules within dotfiles ...\n"
+  log_task "Check for updates to submodules within dotfiles ..."
   git -C "$DOTFILES" submodule update --init --recursive --remote
 fi
-if dpkg --status python3-pip &> /dev/null ; then
-  printf " --------------------\nCheck for updates to pip packages ...\n"
-  python -m pip install --upgrade pip
-  pip-review --local --auto 2> "$HOME"/.files/sh/upgrade-error.txt
-fi
-if [[ -x /usr/share/node/bin/npm ]]; then
-  printf " --------------------\nUpdate npm packages ...\n"
-  npm update --global
-fi
-if [[ -x /usr/bin/go-global-update ]]; then
-  printf " --------------------\nUpdate go packages ...\n"
-  go-global-update
-fi
-if dpkg --status cowsay &> /dev/null ; then
-  cowsay You are up to date!
-fi
+
+log_task "Check for updates to pip packages ..."
+python -m pip install --upgrade pip
+pip-review --local --auto 2> "$HOME"/.files/sh/upgrade-error.txt
+
+log_task "Update npm packages ..."
+npm update --global
+
+log_task "Update go packages ..."
+go-global-update
+
+cowsay You are up to date!
