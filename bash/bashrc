@@ -156,34 +156,40 @@ fi
 # SOURCING #
 ############
 
+# shellcheck source=/dev/null
+# If file exists and is readable
+source_if_exists() { [[ -r "$1" ]] && source "$1" ; }
+
 # Source glob_variables
-[[ -f "$DOTFILES/bash/glob_variables" ]] && source "$DOTFILES/bash/glob_variables"
+# shellcheck disable=SC2154
+source_if_exists "$DOTFILES/bash/glob_variables"
 
 # Alias definitions
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-[[ -f "$DOTFILES/bash/aliases" ]] && source "$DOTFILES/bash/aliases"
+source_if_exists "$DOTFILES/bash/aliases"
 
 # Source fzfrc
+# Apply source_if_exists function here will terminate bash
 [[ -f "$DOTFILES/bash/fzf/fzfrc" ]] && source "$DOTFILES/bash/fzf/fzfrc"
 
 # Function definitions
-[[ -f "$DOTFILES/bash/functions" ]] && source "$DOTFILES/bash/functions"
+source_if_exists "$DOTFILES/bash/functions"
 
 # Load forgit: https://github.com/wfxr/forgit
-[[ -f /usr/share/forgit/forgit.plugin.sh ]] && source /usr/share/forgit/forgit.plugin.sh
+source_if_exists /usr/share/forgit/forgit.plugin.sh
 
 # Source git-sh-prompt
-[[ -f /usr/lib/git-core/git-sh-prompt ]] && source /usr/lib/git-core/git-sh-prompt
+source_if_exists /usr/lib/git-core/git-sh-prompt
 
 # Source ondir
-[[ -f /usr/share/ondir/integration/bash ]] && source /usr/share/ondir/integration/bash
+source_if_exists /usr/share/ondir/integration/bash
 
 # Add completion for go
 [[ -f "$(go env GOPATH)"/bin/gocomplete ]] \
   && complete -C "$(go env GOPATH)"/bin/gocomplete go
 
 # Source bash_command_timer.sh
-[[ -f /usr/bin/bash_command_timer.sh ]] && source /usr/bin/bash_command_timer.sh
+source_if_exists /usr/bin/bash_command_timer.sh
 
 # Auto-launch ssh-agent on login
-[[ -f "$DOTFILES"/bash/ssh-agent ]] && source "$DOTFILES"/bash/ssh-agent
+source_if_exists "$DOTFILES"/bash/ssh-agent
