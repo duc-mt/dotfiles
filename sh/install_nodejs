@@ -73,7 +73,7 @@ export manpath="$manpath:$path_to_extracted_file/share/man"
 # Create a directory for npm global packages
 # --------------------------------------------------------------------------------------
 mkdir -p "$HOME/.npm-packages"
-echo 'prefix="$HOME"/.npm-packages/' > "$HOME"/.npmrc
+echo 'prefix = ${HOME}/.npm-packages' > "$HOME"/.npmrc
 
 # --------------------------------------------------------------------------------------
 # Update npm itself (if there is any available update)
