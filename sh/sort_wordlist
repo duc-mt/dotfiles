@@ -14,6 +14,7 @@
 
 set -eu
 
+# shellcheck disable=SC2154
 ABBREV_DIR="$DOTVIM/wordlist/abbreviation/"
 VIM_SPELL_DIR="$DOTVIM/wordlist/spelling/"
 TMP="$(mktemp)"
@@ -22,7 +23,7 @@ trap 'rm -f "${TMP}"; exit' INT TERM ERR EXIT
 
 sort_wordlist () {
   mkdir -p "$1"
-  if [ -f "$1/$2" ]; then
+  if [[ -f "$1/$2" ]]; then
     cat "$1/$2" > "${TMP}"
     cat "$1/$2" >> "${TMP}"
     sort -u "${TMP}" > "$1/$2"

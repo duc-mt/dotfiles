@@ -25,6 +25,7 @@
 
 set -eu
 
+# shellcheck disable=SC2154
 source "$DOTFILES"/bash/functions
 
 if [[ $# -eq 0 ]]; then

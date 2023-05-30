@@ -21,6 +21,7 @@
 # ======================================================================================
 
 
+# shellcheck disable=SC2154
 source "$DOTFILES"/bash/functions
 
 clear
@@ -34,7 +35,7 @@ sudo apt autoclean
 
 check_command() {
   [[ ! -x "$(command -v "$1")" ]] \
-    && log_manual_action "This script requires "$1"!" \
+    && log_manual_action "This script requires $1!" \
     && exit 1
 }
 

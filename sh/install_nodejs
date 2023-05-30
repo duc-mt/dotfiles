@@ -73,6 +73,8 @@ export manpath="$manpath:$path_to_extracted_file/share/man"
 # Create a directory for npm global packages
 # --------------------------------------------------------------------------------------
 mkdir -p "$HOME/.npm-packages"
+# We want this to output ${HOME} without expansion
+# shellcheck disable=SC2016
 echo 'prefix = ${HOME}/.npm-packages' > "$HOME"/.npmrc
 
 # --------------------------------------------------------------------------------------
