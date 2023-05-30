@@ -22,6 +22,7 @@
 
 
 # shellcheck disable=SC2154
+# shellcheck source=../bash/functions
 source "$DOTFILES"/bash/functions
 
 clear
