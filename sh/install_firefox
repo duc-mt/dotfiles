@@ -13,7 +13,8 @@
 # ======================================================================================
 
 
-yes | sudo apt purge firefox* 2&> /dev/null
+yes | sudo apt purge firefox* 2>/dev/null
+yes | sudo apt autoremove 2>/dev/null
 
 if grep --fixed-strings --line-regexp --quiet "ID=ubuntu" /etc/os-release; then
   yes | sudo add-apt-repository ppa:mozillateam/ppa

@@ -327,7 +327,8 @@ log_task "Installing Node.js ..."
 bash "$HOME"/.files/sh/install_nodejs
 
 log_task "Installing fzf ..."
-sudo apt remove fzf 2> /dev/null
+yes | sudo apt purge fzf 2>/dev/null
+yes | sudo apt autoremove 2>/dev/null
 yes | "$HOME"/.vim/pack/file-system/start/fzf/install
 
 log_task "Installing rbenv ..."

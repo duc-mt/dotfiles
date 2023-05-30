@@ -12,6 +12,7 @@
 #
 # ======================================================================================
 
+
 if [[ -f /etc/hosts ]]; then
   echo "Install whatmask ..."
   if grep --fixed-strings --line-regexp --quiet "ID=ubuntu" /etc/os-release; then

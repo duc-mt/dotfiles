@@ -11,6 +11,7 @@
 #
 # ======================================================================================
 
+
 # ==== FUNCTION ========================================================================
 #         NAME: install_gnupg
 #  DESCRIPTION: Install the selected package required to configure GnuPG

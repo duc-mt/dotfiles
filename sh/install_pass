@@ -15,7 +15,8 @@
 # --------------------------------------------------------------------------------------
 # Remove old installations (if there is any)
 # --------------------------------------------------------------------------------------
-yes | sudo apt remove pass 2&> /dev/null
+yes | sudo apt purge pass 2>/dev/null
+yes | sudo apt autoremove 2>/dev/null
 
 # --------------------------------------------------------------------------------------
 # Clone pass
@@ -33,7 +34,7 @@ rm -rf /tmp/password-store
 # Prevent gnupg package to be installed (as a dependency of pass through apt-get) as
 # the version installed with pass will replace the current version installed manually
 # --------------------------------------------------------------------------------------
-# if grep --fixed-string --quiet "gnupg" "/etc/apt/preferences" 2> /dev/null ; then
+# if grep --fixed-string --quiet "gnupg" "/etc/apt/preferences" 2>/dev/null ; then
 #   :
 # else
 #   lines=("Package: gnupg" "Pin: release *" "Pin-Priority: -1")

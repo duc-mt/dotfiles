@@ -11,6 +11,7 @@
 #
 # ======================================================================================
 
+
 if [[ -f /etc/hosts ]]; then
   echo "Install WSL utilities ..."
   if grep --fixed-strings --line-regexp --quiet "ID=ubuntu" /etc/os-release; then

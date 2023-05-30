@@ -15,8 +15,8 @@
 # --------------------------------------------------------------------------------------
 # Remove old installations (if there is any)
 # --------------------------------------------------------------------------------------
-yes | sudo apt remove docker* 2> /dev/null
-yes | sudo apt autoremove 2> /dev/null
+yes | sudo apt purge docker* 2>/dev/null
+yes | sudo apt autoremove 2>/dev/null
 
 # --------------------------------------------------------------------------------------
 # Set up the repository
