@@ -189,6 +189,8 @@ source_if_exists /usr/share/ondir/integration/bash
   && complete -C "$(go env GOPATH)"/bin/gocomplete go
 
 # Source bash_command_timer.sh
+# Require sourcing twice for it to work
+source_if_exists /usr/bin/bash_command_timer.sh
 source_if_exists /usr/bin/bash_command_timer.sh
 
 # Auto-launch ssh-agent on login
