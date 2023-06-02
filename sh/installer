@@ -317,8 +317,8 @@ bash "$HOME"/.files/sh/install_whatmask
 log_task "Installing pass ..."
 bash "$HOME"/.files/sh/install_pass
 
-log_task "Installing PostgreSQL ..."
-bash "$HOME"/.files/sh/install_postgres
+# log_task "Installing PostgreSQL ..."
+# bash "$HOME"/.files/sh/install_postgres
 
 log_task "Installing docker ..."
 bash "$HOME"/.files/sh/install_docker
