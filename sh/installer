@@ -82,7 +82,7 @@ sudo() {
 }
 
 # shellcheck disable=SC2016
-link_dotconfig() {
+symlink_config() {
   find "$DOTFILES/$1" -maxdepth 1 -type f -name "$2" -exec "$SHELL" -c \
     'for f do ln -sfv $HOME/.files/$1/$(basename $f) \
     $HOME/.$(basename $f); done' "$SHELL" "$1" {} \; \
@@ -164,10 +164,10 @@ git clone --recursive https://github.com/tanducmai/dotfiles.git "$DOTFILES"
 git clone --recursive https://github.com/tanducmai/dotvim.git "$DOTVIM"
 
 log_task "Linking dot configuration ..."
-link_dotconfig "git" "gitconfig"
-link_dotconfig "bash" "bash*"
-link_dotconfig "bash" "*rc"
-link_dotconfig "bash" "selected_editor"
+symlink_config "git" "gitconfig"
+symlink_config "bash" "bash*"
+symlink_config "bash" "*rc"
+symlink_config "bash" "selected_editor"
 
 log_task "Installing Vim ..."
 cd /tmp || exit
