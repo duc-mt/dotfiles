@@ -105,7 +105,7 @@ yes | sudo apt full-upgrade
 
 log_task "Cloning GnuPG and SSH ..."
 yes | sudo apt install git gnupg
-rm --recursive --verbose --force "$HOME"/.gnupg "$HOME"/.ssh
+rm --recursive --force "$HOME"/.gnupg "$HOME"/.ssh
 log_manual_action \
   "Github identity is required, please enter your username and password/access token below"
 git clone https://github.com/tanducmai/gpg-keys "$HOME"/.gnupg
@@ -126,7 +126,7 @@ gpg --allow-secret-key-import --import /tmp/privkey.asc
 rm --verbose --interactive=never /tmp/private-keys.tgz* /tmp/privkey.asc /tmp/id_ed25519
 
 log_task "Cloning personal password store ..."
-rm -rfv "$HOME"/.password-store
+rm -rf "$HOME"/.password-store
 git clone https://github.com/tanducmai/password-store "$HOME"/.password-store
 
 log_task "Installing Linux packages ..."
