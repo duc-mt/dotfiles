@@ -142,7 +142,7 @@ yes | sudo apt install \
   software-properties-common pass-extension-otp ninja-build nginx wl-clipboard wordnet \
   gnome-pass-search-provider calc gimp wcalc ddate hugo default-jdk golang-go dos2unix \
   ispell python3-launchpadlib trash-cli python3-argcomplete libgirepository1.0-dev \
-  libsystemd-dev apt-transport-https
+  libsystemd-dev apt-transport-https openssh-server
 yes | sudo apt autoremove
 yes | sudo apt autoclean
 
