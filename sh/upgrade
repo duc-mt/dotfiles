@@ -27,7 +27,7 @@ source "$DOTFILES"/bash/functions
 
 clear
 
-log_task "Check for updates to the Operating System ...\n --------------------\n"
+log_task "Check for updates to the Operating System ..."
 sudo apt update
 yes | sudo apt dist-upgrade
 yes | sudo apt full-upgrade
