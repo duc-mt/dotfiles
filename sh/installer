@@ -374,7 +374,7 @@ wget -O "$HOME"/.vocabscript "https://goo.gl/gI7xKQ" --no-check-certificate
 sudo chmod -v 777 "$HOME"/.vocab
 
 log_task "Adding ansible completion ..."
-sudo activate-global-python-argcomplete3
+sudo "$HOME"/.local/bin/activate-global-python-argcomplete
 
 log_task "Adding go completion ..."
 go install github.com/posener/complete/gocomplete@latest
