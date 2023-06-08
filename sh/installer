@@ -397,7 +397,7 @@ log_task "Installing shfmt ..."
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
 
 log_task "Installing bash_command_timer ..."
-wget -P /tmp \
+wget -O /tmp/bash_command_timer.sh \
   https://raw.githubusercontent.com/jichu4n/bash-command-timer/master/bash_command_timer.sh
 sudo mv -v /tmp/bash_command_timer.sh /usr/bin/bash_command_timer.sh
 
@@ -408,6 +408,11 @@ sudo mv -v bash-preexec /usr/share
 
 log_task "Installing go-global-update ..."
 go install github.com/Gelio/go-global-update@latest
+
+log_task "Adding pip completion ..."
+wget -O /tmp/pip \
+  https://raw.githubusercontent.com/ekalinin/pip-bash-completion/master/pip
+sudo cp -v /tmp/pip /etc/bash_completion.d/
 
 end="$(date +%s)"
 log_task "Finish installation, taking $((end-start)) seconds."
