@@ -2,9 +2,9 @@
 
 # ======================================================================================
 #
-#         FILE:  hugolive
+#         FILE:  /serve_hugo_site
 #
-#        USAGE:  ./hugolive
+#        USAGE:  ./serve_hugo_site
 #
 #  DESCRIPTION:  Publish preview hugo site and ask to overtake if port 1313 is in use.
 #
@@ -29,8 +29,12 @@ source "$DOTFILES"/bash/functions
 
 hugoserver () {
   clear
-  hugo server --disableFastRender --buildDrafts --buildExpired --buildFuture \
-    --forceSyncStatic --navigateToChanged
+  docker run --rm -it \
+    -v $(pwd):/src \
+    -p 1313:1313 \
+    klakegg/hugo:0.101.0 \
+    server --disableFastRender --buildDrafts --buildExpired --buildFuture \
+      --forceSyncStatic --navigateToChanged
 }
 
 if ! [[ $# -eq 0 ]]; then
