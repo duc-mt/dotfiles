@@ -22,5 +22,5 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git commit -am "Update submodules"
+          git commit -am "Update submodules" || true
           git push origin master
