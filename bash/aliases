@@ -98,7 +98,6 @@ alias toiletgay='toilet --filter border:gay -F gay'
 alias sqlformat='sqlformat -s --reindent --keywords upper --identifiers lower'
 alias pipinstall='python3 -m pip install --upgrade install'
 alias updatedb='sudo updatedb'
-alias hugodeploy='hugo --cleanDestinationDir --gc'
 alias pwd='pwd | figlet -f mnemonic | lolcat'
 
 # Link aliases
@@ -106,5 +105,3 @@ alias pwd='pwd | figlet -f mnemonic | lolcat'
 yt='https://youtube.com'
 # shellcheck disable=SC2034
 fb='https://facebook.com'
-# shellcheck disable=SC2034
-hugodeploy='https://app.netlify.com/sites/tanducmai/overview'
