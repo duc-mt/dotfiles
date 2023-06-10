@@ -414,5 +414,8 @@ wget -O /tmp/pip \
   https://raw.githubusercontent.com/ekalinin/pip-bash-completion/master/pip
 sudo cp -v /tmp/pip /etc/bash_completion.d/
 
+log_task "Pulling hugo image ..."
+sudo docker pull klakegg/hugo:0.101.0
+
 end="$(date +%s)"
 log_task "Finish installation, taking $((end-start)) seconds."
