@@ -51,6 +51,7 @@ python3 -m pip install --upgrade --user pip setuptools wheel pip-review
 pip-review --local --auto 2> "$HOME"/.files/sh/upgrade-error.txt
 
 log_task "Update npm packages ..."
+npm install --global npm@latest
 npm update --global
 
 log_task "Update go packages ..."
