@@ -152,7 +152,7 @@ fi
 
 log_task "Installing Python packages ..."
 python3 -m pip install --upgrade --user --no-warn-script-location pip setuptools wheel
-python3 -m pip install --upgrade --user --no-warn-script-location --default-timeout=100 \
+python3 -m pip install --upgrade --user --no-warn-script-location \
   ansible pygame autoflake cpython autopep8 mypy yapf black pydocstyle rich rich-cli \
   icontract pyicontract-lint icontract-hypothesis sphinx-icontract rotate-screen tqdm \
   clip-values memray cryptography prodict textual[dev] pyfiglet you-get wslpy scapy \
