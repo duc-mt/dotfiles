@@ -10,8 +10,9 @@
 # umask 022
 
 # Clone the latest changes from remote dotfiles (if there is any).
-git -C "$DOTFILES" pull origin master --quiet
-git -C "$DOTVIM" pull origin master --quiet
+git -C "$DOTFILES" pull origin master --quiet || true
+git -C "$DOTVIM" pull origin master --quiet || true
+git -C "$HOME"/myportfolio pull origin master --quiet || true
 
 # Output a random technology-related quote.
 fortune "$DOTFILES/doc/quotes/technology" | cowsay
