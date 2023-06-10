@@ -40,25 +40,14 @@ check_command() {
     && exit 1
 }
 
-check_command "git"
 check_command "python3"
 check_command "pip"
 check_command "npm"
 check_command "go-global-update"
 check_command "cowsay"
 
-if [[ -d "$DOTVIM" ]]; then
-  log_task "Check for updates to vim plugins ..."
-  git -C "$DOTVIM" submodule update --init --recursive --remote
-fi
-
-if [[ -d "$DOTFILES" ]]; then
-  log_task "Check for updates to submodules within dotfiles ..."
-  git -C "$DOTFILES" submodule update --init --recursive --remote
-fi
-
 log_task "Check for updates to pip packages ..."
-python -m pip install --upgrade pip
+python3 -m pip install --upgrade --user pip setuptools wheel pip-review
 pip-review --local --auto 2> "$HOME"/.files/sh/upgrade-error.txt
 
 log_task "Update npm packages ..."
