@@ -264,8 +264,6 @@ git clone https://github.com/SixArm/pandoc-from-markdown-to-pdf.git \
 sudo mv -v /tmp/pandoc-from-markdown-to-pdf /usr/local/share/pandoc-from-markdown-to-pdf
 sudo chmod -v 777 \
   /usr/local/share/pandoc-from-markdown-to-pdf/pandoc-from-markdown-to-pdf
-sudo ln -sfv /usr/local/share/pandoc-from-markdown-to-pdf/pandoc-from-markdown-to-pdf \
-  /usr/bin/pandoc-from-markdown-to-pdf
 
 log_task "Installing fonts required by pandoc-from-markdown-to-pdf ..."
 sudo cp -rv \
