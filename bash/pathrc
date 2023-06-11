@@ -41,5 +41,7 @@ fi
 
 [[ -d "$HOME/.npm-packages/bin" ]] && export PATH="$PATH:$HOME/.npm-packages/bin"
 
+[[ -d "$HOME/.cargo/bin" ]] && export PATH="$PATH:$HOME/.cargo/bin"
+
 # Configure $PKG_CONFIG_PATH
 export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/"
