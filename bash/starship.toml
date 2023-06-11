@@ -1,0 +1,138 @@
+# format = '''
+# [┌───────────────────>](bold green)
+# [│](bold green)$directory$rust$package $git_branch
+# [└─>](bold green) '''
+
+# Wait 10 milliseconds for starship to check files under the current directory.
+scan_timeout = 10
+
+# Disable the blank line at the start of the prompt
+add_newline = false
+
+# Set 'foo' as custom color palette
+palette = 'foo'
+
+# Define custom colors
+[palettes.foo]
+# Overwrite existing color
+blue = '21'
+# Define new color
+mustard = '#af8700'
+
+[package]
+disabled = true
+
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[cmd_duration]
+min_time = 500
+format = 'underwent [$duration](bold yellow)'
+
+[character]
+success_symbol = "[▶](bold green)"
+error_symbol = "[✗](bold red)"
+
+[container]
+format = '[$symbol \[$name\]]($style)'
+
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style) "
+style = "yellow"
+truncation_length = 4
+truncate_to_repo = false
+truncation_symbol = "…/"
+
+[docker_context]
+format = 'via [🐋 $context](blue bold)'
+
+[git_branch]
+symbol = '🌱 '
+truncation_length = 4
+truncation_symbol = ''
+style = "italic green"
+
+[git_status]
+conflicted = '🏳'
+ahead = '🏎💨'
+behind = '😰'
+diverged = '😵'
+up_to_date = '✓'
+untracked = '🤷'
+stashed = '📦'
+modified = '📝'
+staged = '[++\($count\)](green)'
+renamed = '👅'
+deleted = '🗑'
+
+# Set the time format
+[time]
+disabled = false
+utc_time_offset = "+9.5"
+format = '🕙[\[ $time \]]($style) '
+time_format = '%T'
+
+[hostname]
+ssh_only = false
+format =  "[$hostname](bold red) [❯](bold green) "
+
+[git_commit]
+commit_hash_length = 4
+tag_symbol = '🔖'
+
+[git_metrics]
+added_style = 'bold blue'
+format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
+
+# [env_var.SHELL]
+# variable = 'SHELL'
+# default = 'unknown shell'
+# format = "using [$env_value]($style) "
+
+# [env_var.USER]
+# default = 'unknown user'
+# format = "by [$env_value]($style) "
+
+[localip]
+ssh_only = false
+format = '@[$localipv4](bold red) '
+disabled = false
+
+# [memory_usage]
+# disabled = false
+# threshold = -1
+# symbol = ' '
+# style = 'bold dimmed green'
+
+[golang]
+format = 'via [🏎💨 $version](bold cyan) '
+
+[username]
+style_user = 'red bold'
+style_root = 'black bold'
+format = 'user: [$user]($style)@'
+disabled = false
+show_always = true
+
+[sudo]
+style = 'bold green'
+disabled = false
+
+[battery]
+full_symbol = "• "
+charging_symbol = "⇡ "
+discharging_symbol = "⇣ "
+unknown_symbol = "❓ "
+empty_symbol = "❗ "
+
+[erlang]
+symbol = "ⓔ "
+
+[nodejs]
+symbol = "[⬢](bold green) "
+
+[pulumi]
+symbol = "🧊 "

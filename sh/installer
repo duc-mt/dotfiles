@@ -142,7 +142,7 @@ yes | sudo apt install \
   software-properties-common pass-extension-otp ninja-build nginx wl-clipboard wordnet \
   gnome-pass-search-provider calc gimp wcalc ddate default-jdk golang-go dos2unix \
   ispell python3-launchpadlib trash-cli python3-argcomplete libgirepository1.0-dev \
-  libsystemd-dev apt-transport-https openssh-server
+  libsystemd-dev apt-transport-https openssh-server cmake
 yes | sudo apt autoremove
 yes | sudo apt autoclean
 
@@ -416,6 +416,9 @@ sudo cp -v /tmp/pip /etc/bash_completion.d/
 
 log_task "Pulling hugo image ..."
 sudo docker pull klakegg/hugo:0.101.0
+
+log_task "Installing starship ..."
+cargo install starship --locked
 
 end="$(date +%s)"
 log_task "Finish installation, taking $((end-start)) seconds."
