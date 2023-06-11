@@ -31,9 +31,6 @@ fi
 # Custom PATHs
 [[ -d "$DOTFILES/sh" ]] && export PATH="$PATH:$DOTFILES/sh"
 
-[[ -d "/usr/local/bin/pandoc-from-markdown-to-pdf" ]] \
-  && export PATH="$PATH:/usr/local/bin/pandoc-from-markdown-to-pdf"
-
 [[ -d /usr/share/forgit/bin ]] && export PATH="$PATH:/usr/share/forgit/bin"
 
 [[ -d "$HOME/.rbenv/bin" ]] && export PATH="$PATH:$HOME/.rbenv/bin"
