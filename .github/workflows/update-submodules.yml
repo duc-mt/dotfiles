@@ -9,7 +9,7 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - name: "📥 Fetch Repository Contents"
+      - name: 📥 Fetch Repository Contents
         uses: actions/checkout@main
 
       - name: Pull submodules recursively
