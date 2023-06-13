@@ -21,7 +21,11 @@ fi
 # Set editor to local vim
 [[ "$(which vim)" = '/usr/local/bin/vim' ]] && export EDITOR='/usr/local/bin/vim'
 
+# Output a random technology-related quote.
+fortune "$DOTFILES/doc/quotes/technology" | cowsay
+
 # Source sudocabulary https://github.com/badarsh2/Sudocabulary
+echo
 ~/.vocab
 
 # Initialise rbenv
