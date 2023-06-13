@@ -418,7 +418,10 @@ log_task "Pulling hugo image ..."
 sudo docker pull klakegg/hugo:0.101.0
 
 log_task "Installing starship ..."
-cargo install starship --locked
+cargo install starship
+
+log_task "Installing tokei ..."
+cargo install tokei
 
 end="$(date +%s)"
 log_task "Finish installation, taking $((end-start)) seconds."
