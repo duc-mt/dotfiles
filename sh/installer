@@ -421,7 +421,7 @@ log_task "Installing starship ..."
 cargo install starship
 
 log_task "Installing tokei ..."
-cargo install tokei
+cargo install tokei --features all
 
 end="$(date +%s)"
 log_task "Finish installation, taking $((end-start)) seconds."
