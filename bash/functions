@@ -32,58 +32,58 @@ gi () { curl -sL https://www.toptal.com/developers/gitignore/api/"$1" ; }
 
 
 # ==== FUNCTION ========================================================================
-#         NAME: py_browse
+#         NAME: py-browse
 #  DESCRIPTION: Code browser
 #   PARAMETERS: --- (defauts to `pwd`)
-#     EXAMPLES: py_browse
+#     EXAMPLES: py-browse
 # ======================================================================================
-py_browse () { textual run "$DOTFILES/py/code_browser/code_browser.py" ; }
+py-browse () { textual run "$DOTFILES/py/code_browser/code_browser.py" ; }
 
 
 # ==== FUNCTION ========================================================================
-#         NAME: py_calc
+#         NAME: py-calc
 #  DESCRIPTION: Calculator stimulator
 #   PARAMETERS: ---
-#     EXAMPLES: py_calc
+#     EXAMPLES: py-calc
 # ======================================================================================
-py_calc () { textual run "$DOTFILES/py/calculator/calculator.py" ; }
+py-calc () { textual run "$DOTFILES/py/calculator/calculator.py" ; }
 
 
 # ==== FUNCTION ========================================================================
-#         NAME: py_calendar
+#         NAME: py-calendar
 #  DESCRIPTION: Display calendar of a year
 #   PARAMETERS: year
-#     EXAMPLES: py_calendar
+#     EXAMPLES: py-calendar
 # ======================================================================================
-py_calendar () { python3 "$DOTFILES/py/print_calendar.py" "$1" ; }
+py-calendar () { python3 "$DOTFILES/py/print_calendar.py" "$1" ; }
 
 
 # ==== FUNCTION ========================================================================
-#         NAME: py_dict
+#         NAME: py-dict
 #  DESCRIPTION: Dictionary stimulator
 #   PARAMETERS: ---
-#     EXAMPLES: py_dict
+#     EXAMPLES: py-dict
 # ======================================================================================
-py_dict () { textual run "$DOTFILES/py/dictionary/dictionary.py" ; }
+py-dict () { textual run "$DOTFILES/py/dictionary/dictionary.py" ; }
 
 
 # ==== FUNCTION ========================================================================
-#         NAME: py_download
+#         NAME: py-download
 #  DESCRIPTION: wget stimulator
 #   PARAMETERS: URL(s)
-#     EXAMPLES: py_download
+#     EXAMPLES: py-download
 # ======================================================================================
-py_download () { python3 "$DOTFILES/py/downloader.py" "$*" ; }
+py-download () { python3 "$DOTFILES/py/downloader.py" "$*" ; }
 
 
 # ==== FUNCTION ========================================================================
-#         NAME: py_tree
+#         NAME: py-tree
 #  DESCRIPTION: Tree stimulator
 #   PARAMETERS: path/to/directory {defaulting to `pwd`}
-#     EXAMPLES: py_tree
-#               py_tree /usr/share/bin
+#     EXAMPLES: py-tree
+#               py-tree /usr/share/bin
 # ======================================================================================
-py_tree () { python3 "$DOTFILES/py/tree.py" "$1" ; }
+py-tree () { python3 "$DOTFILES/py/tree.py" "$1" ; }
 
 
 # ==== FUNCTION ========================================================================
