@@ -1,4 +1,4 @@
-name: Update submodules
+name: ⤵️ Update submodules
 
 on:
   workflow_call:
@@ -12,12 +12,12 @@ jobs:
       - name: 📥 Fetch Repository Contents
         uses: actions/checkout@main
 
-      - name: Update submodules recursively
+      - name: ⬇️ Update submodules recursively
         shell: bash
         run: |
           git submodule update --rebase --remote
 
-      - name: Commit and push changes
+      - name: ⬆️ Commit and push changes
         shell: bash
         run: |
           git config user.name github-actions
