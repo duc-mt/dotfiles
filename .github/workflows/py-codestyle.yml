@@ -23,5 +23,5 @@ jobs:
 
       - name: ✔️ Run Codestyle
         run: |
-          flake8 --max-line-length=160 .
-          black --line-length=160 --check .
+          python -m flake8 --max-line-length=160 .
+          python -m black --line-length=160 --check .
