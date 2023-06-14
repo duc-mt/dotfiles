@@ -1,11 +1,11 @@
-name: CODESTYLE
+name: Python Codestyle
 
 on:
   push:
 
 jobs:
   lint:
-    name: Run codestyle check
+    name: Run py-codestyle check
     runs-on: ubuntu-latest
 
     steps:
@@ -18,7 +18,10 @@ jobs:
           python-version: 3.11
 
       - name: 📥 Install Dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt || true
 
       - name: ✔️ Run Codestyle
-        run: flake8 --max-line-length=160 . && black --line-length=160 --check .
+        run: |
+          flake8 --max-line-length=160 .
+          black --line-length=160 --check .
