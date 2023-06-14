@@ -1,4 +1,4 @@
-name: Python Codestyle
+name: 🐍 Python Codestyle
 
 on:
   push:
@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout Repository
+      - name: 🛎️ Checkout Repository
         uses: actions/checkout@main
 
       - name: 🐍 Setup Python 3.11
@@ -17,7 +17,7 @@ jobs:
         with:
           python-version: 3.11
 
-      - name: 📥 Install Dependencies
+      - name: 📥 Install Checking Modules
         run: |
          pip install --upgrade flake8 black
 
