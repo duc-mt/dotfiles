@@ -12,10 +12,10 @@ jobs:
       - name: 📥 Fetch Repository Contents
         uses: actions/checkout@main
 
-      - name: Pull submodules recursively
+      - name: Update submodules recursively
         shell: bash
         run: |
-          git submodule update --init --recursive --remote
+          git submodule update --rebase --remote
 
       - name: Commit and push changes
         shell: bash
