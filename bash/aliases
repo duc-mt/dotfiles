@@ -55,10 +55,10 @@ alias ....='cd ../..'
 alias cd..='cd ..'
 alias cd....='cd ../..'
 alias cc='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ University\ of\ South\ Australia'
-alias W='cd ~/myportfolio'
+alias W='cd $HOME/tanducmai.com'
 alias V='cd $DOTVIM'
 alias F='cd $DOTFILES'
-alias P='cd ~/.password-store'
+alias P='cd $HOME/password-store'
 
 # File aliases
 alias bashrc='vim $DOTFILES/bash/bashrc'
