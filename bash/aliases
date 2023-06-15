@@ -104,7 +104,7 @@ alias dday='date +%d-%m-%Y'
 alias toilet='toilet -t -f mono12 --filter border:metal -F metal'
 alias toiletgay='toilet --filter border:gay -F gay'
 alias sqlformat='sqlformat -s --reindent --keywords upper --identifiers lower'
-alias pipinstall='python3 -m pip install --upgrade install'
+alias pipinstall='pip install --upgrade --user'
 alias updatedb='sudo updatedb'
 alias pwd='pwd | figlet -f mnemonic | lolcat'
 
