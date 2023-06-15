@@ -4,10 +4,10 @@
 
 # ======================================================================================
 #
-#         FILE:  installer
+#         FILE:  bootstrap
 #       AUTHOR:  Henry Mai <henryfromvietnam@gmail.com>
 #      COMPANY:  ---
-#        USAGE:  ./installer
+#        USAGE:  ./bootstrap
 #  DESCRIPTION:  Set up a new Debian distribution.
 #                Install and perform necessary configurations.
 #      CREATED:  Mar 27, 2022
