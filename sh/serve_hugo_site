@@ -52,8 +52,7 @@ else
           Yes) echo
             kill "$process_id"
             echo Port 1313 is available now
-            hugoserver
-            exit 1;;
+            hugoserver;;
           No) exit 0;;
           *)
             echo >&2 "Invalid choice: $answer"
