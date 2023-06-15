@@ -96,7 +96,7 @@ alias p='pass'
 alias s='source $HOME/.bashrc'
 
 # Git aliases
-alias git-sub-add='git submodule add'
+alias git-sub-add='add_submodule'
 alias git-sub-remove='remove_submodule'
 
 # Expansion aliases
