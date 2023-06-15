@@ -73,9 +73,6 @@
 [submodule "doc/linux/lfcs"]
 	path = doc/linux/lfcs
 	url = https://github.com/giulianopz/lfcs.git
-[submodule "doc/programming/programming"]
-	path = doc/programming/programming
-	url = https://github.com/giulianopz/programming.git
 [submodule "doc/git/github-cheat-sheet"]
 	path = doc/git/github-cheat-sheet
 	url = https://github.com/tiimgreen/github-cheat-sheet
@@ -109,9 +106,6 @@
 [submodule "doc/security/security-study-plan"]
 	path = doc/security/security-study-plan
 	url = https://github.com/jassics/security-study-plan.git
-[submodule "doc/programming/free-programming-books"]
-	path = doc/programming/free-programming-books
-	url = https://github.com/EbookFoundation/free-programming-books.git
 [submodule "doc/security/cybersecurity-career-path"]
 	path = doc/security/cybersecurity-career-path
 	url = https://github.com/rezaduty/cybersecurity-career-path.git
