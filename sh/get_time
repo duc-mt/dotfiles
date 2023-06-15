@@ -45,6 +45,6 @@ fi
 if [[ -x "$(command -v calc)" ]]; then
   calc -d "read qtime; qtime(${timezone}${suffix})"
 else
-  log_manual_action "This script requires calc!"
+  log_error "This script requires calc!"
   exit 1
 fi
