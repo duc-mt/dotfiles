@@ -41,8 +41,7 @@ else
         mkdir -p "$(dirname "$2")"
         git submodule add "$1" "$2"
         git commit -m "chore: add submodule \"$2\""
-        git push
-        exit 0 ;;
+        git push;;
       No) exit 0;;
       *)
         log_error "Invalid choice"

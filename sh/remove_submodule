@@ -44,8 +44,7 @@ else
             git rm -rf "$1"
             rm -rf .git/modules/"$1"
             git commit -m "chore: remove submodule \"$1\""
-            git push
-            exit 0 ;;
+            git push;;
           No) exit 0;;
           *)
             log_error "Invalid choice"
