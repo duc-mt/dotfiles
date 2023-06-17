@@ -30,40 +30,40 @@ source "$DOTFILES"/bash/functions
 hugoserver () {
   clear
   docker run --rm -it \
-    -v "$(pwd)":/src \
-    -p 1313:1313 \
+    --name hugo-site \
+    --publish 1313:1313 \
+    --volume "$(pwd)":/src \
     klakegg/hugo:0.101.0 \
-    server --disableFastRender --buildDrafts --buildExpired --buildFuture \
-      --forceSyncStatic --navigateToChanged
+    server --buildDrafts --buildExpired --buildFuture \
+      --disableFastRender --forceSyncStatic --navigateToChanged
 }
 
-if ! [[ $# -eq 0 ]]; then
-  log_error "Not accept any argument."
+if ! [[ -f ".hugo_build.lock" ]]; then
+  log_error "Not a Hugo project"
   exit 1
+elif ! [[ $# -eq 0 ]]; then
+  log_error "Not accept any argument"
+  exit 1
+elif docker inspect hugo-site >/dev/null; then
+  container_id="$(docker ps | tail -1 | awk '{ print $1 }')"
+  log_error "Container name \"hugo-site\" is in use by container \"$container_id\""
+  log_manual_action "Do you wish to take over \"$container_id\"?"
+  select answer in "Yes" "No"; do
+    case $answer in
+      Yes)
+        docker kill "$container_id"
+        hugoserver
+        exit 0
+        ;;
+      No)
+        log_task "Abort"
+        exit 0
+        ;;
+      *)
+        log_error "Yes or No"
+        exit 1
+    esac
+  done
 else
-  if [[ -f ".hugo_build.lock" ]]; then
-    if lsof -i:1313 ; then
-      echo ---------------
-      process_id="$(lsof -i:1313 | tail -1 | awk '{ print $2 }')"
-      log_error "Port 1313 is in use by PID $process_id."
-      log_manual_action "Do you wish to kill that process?"
-      select answer in "Yes" "No"; do
-        case $answer in
-          Yes) echo
-            kill "$process_id"
-            log_task "Port 1313 is available now."
-            hugoserver;;
-          No) exit 0;;
-          *)
-            log_error "Invalid choice"
-            exit 1
-        esac
-      done
-    else
-      hugoserver
-    fi
-  else
-    log_error "Not a Hugo project."
-    exit 1
-  fi
+  hugoserver
 fi

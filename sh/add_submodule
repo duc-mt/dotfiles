@@ -37,7 +37,7 @@ else
   log_manual_action "Do you wish to add \"$1\" into \"$2\"?"
   select answer in "Yes" "No"; do
     case $answer in
-      Yes) echo
+      Yes)
         mkdir -p "$(dirname "$2")"
         git submodule add "$1" "$2"
         git commit -m "chore: add submodule \"$2\""
