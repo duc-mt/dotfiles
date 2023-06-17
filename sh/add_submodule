@@ -28,10 +28,10 @@ set -eu
 source "$DOTFILES"/bash/functions
 
 if [[ $# -eq 0 ]]; then
-  log_error "No argument provided."
+  log_error "No argument provided"
   exit 1
 elif ! [[ $# -eq 2 ]]; then
-  log_error "Must provide 2 arguments."
+  log_error "Must provide 2 arguments"
   exit 1
 else
   log_manual_action "Do you wish to add \"$1\" into \"$2\"?"
@@ -41,10 +41,15 @@ else
         mkdir -p "$(dirname "$2")"
         git submodule add "$1" "$2"
         git commit -m "chore: add submodule \"$2\""
-        git push;;
-      No) exit 0;;
+        git push
+        exit 0
+        ;;
+      No) 
+        log_task "Abort"
+        exit 0
+        ;;
       *)
-        log_error "Invalid choice"
+        log_error "Yes or No"
         exit 1
     esac
   done

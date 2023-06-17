@@ -195,6 +195,7 @@ log_manual_action() {
 }
 
 log_error() {
+  echo
   log_red "❌" "$@"
 }
 
