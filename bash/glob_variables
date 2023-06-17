@@ -39,3 +39,5 @@ GPG_TTY=$(tty)
 export GPG_TTY
 
 export STARSHIP_CONFIG="$DOTFILES"/bash/starship.toml
+
+export PIP_CONSTRAINT="$DOTFILES"/py/constraints.txt
