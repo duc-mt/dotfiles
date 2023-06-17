@@ -153,14 +153,14 @@ fi
 log_task "Installing Python packages ..."
 python -m pip install --upgrade --user --no-warn-script-location pip setuptools wheel
 python -m pip install --upgrade --user --no-warn-script-location \
-  ansible pygame autoflake cpython autopep8 mypy yapf black pydocstyle rich rich-cli \
+  ansible pygame autoflake cpython autopep8 mypy yapf pydocstyle rich-cli==1.7.0 rich \
   icontract pyicontract-lint icontract-hypothesis sphinx-icontract rotate-screen tqdm \
   clip-values memray cryptography prodict textual[dev] pyfiglet you-get wslpy scapy \
   flake8-broken-line flake8-return faker flake8-black flake8-bugbear yolk3k coverage \
   flake8-comprehensions flake8-import-order flake8-tidy-imports flake8-pytest-style \
   flake8-multiline-containers flake8-class-attributes-order flake8-variables-names bs4 \
   flake8-docstrings flake8-quotes pytype pytest-mypy-plugins pep8-naming watchdog doq \
-  pip-review dunglaierrors darker argcomplete pytest fire
+  pip-review dunglaierrors darker argcomplete pytest fire black
 
 log_task "Cloning dot repositories ..."
 rm -rf "$DOTFILES" "$DOTVIM"
