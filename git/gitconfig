@@ -14,7 +14,7 @@
 # core {{{
 [core]
   editor = /usr/local/bin/vim
-  excludesfile = ~/.files/git/gitignore_global
+  excludesfile = $HOME/.files/git/gitignore_global
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
   pager = less -x4
 #}}}
@@ -22,7 +22,7 @@
 # user {{{
 [user]
   name = Henry Mai
-  email = henryfromvietnam@gmail.com
+  email = tanducmai@users.noreply.github.com
   username = tanducmai
   signingKey = F9E91488183ED044
 
