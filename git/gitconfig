@@ -161,7 +161,6 @@
   # undo {{{
   unstage = reset HEAD --
   undo-last-commit = reset --soft HEAD~1
-  revert-last-commit = revert "$(git log | head -1 | awk '{ print $2' })"
   # }}}
 
   # log commands {{{
