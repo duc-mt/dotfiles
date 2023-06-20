@@ -149,12 +149,18 @@
   # }}}
 
   # commit {{{
+  commit = commit -v
   cm = commit -m
   cma = commit -a -m
   ca = commit --amend
   amend = commit --amend
   am = commit --amend
   caa = commit -a --amend -C HEAD
+  # }}}
+
+  # undo {{{
+  unstage = reset HEAD --
+  undo-last-commit = reset --soft HEAD~1
   # }}}
 
   # log commands {{{
@@ -172,9 +178,9 @@
   ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [a:%an,c:%cn]" --decorate --numstat
 
   # list oneline commits showing relative dates of a specific file (e.g., git ls1 vimrc)
-  ls1 = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%an]" --decorate --date=relative --follow --
+  lsf = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%an]" --decorate --date=relative --follow --
   # list oneline commits showing dates of a specific file (e.g., git lsd1 vimrc)
-  lsd1 = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --follow --
+  lsfd = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --follow --
   # list changed files of a commit given a revision (e.g., git lc 38fefc0)
   lc  = "!f() { git ll "$1"^.."$1"; }; f"
 
