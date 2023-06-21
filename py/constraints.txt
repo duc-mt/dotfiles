@@ -1,1 +1,2 @@
 rich-cli==1.7.0
+libcst==0.4.9
