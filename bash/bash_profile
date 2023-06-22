@@ -17,10 +17,12 @@
 # Source pathrc
 [[ -f "$DOTFILES/bash/pathrc" ]] && source "$DOTFILES/bash/pathrc"
 
-# Set editor to local vim
-[[ "$(which vim)" = '/usr/local/bin/vim' ]] && export EDITOR='/usr/local/bin/vim'
+# Clone latest changes from remote repos
+cd "$DOTFILES" && git pull origin master --quiet && git-sub-update &>/dev/null
+cd "$DOTVIM" && git pull origin master --quiet && git-sub-update &>/dev/null
+cd "$HOME/tanducmai.com" && git pull origin master --quiet && git-sub-update &>/dev/null
 
-# Output a random technology-related quote.
+# Output a random technology-related quote
 fortune "$DOTFILES/doc/quotes/technology" | cowsay
 
 # Source sudocabulary https://github.com/badarsh2/Sudocabulary
