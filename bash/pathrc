@@ -22,14 +22,14 @@
 
 
 # set PATH so it includes user's private bin if it exists
-if [[ -d "$HOME/bin" ]]; then
-  export PATH="$HOME/bin:$PATH"
-elif [[ -d "$HOME/.local/bin" ]]; then
-  export PATH="$HOME/.local/bin:$PATH"
-fi
+[[ -d "$HOME/bin" ]] && export PATH="$HOME/bin:$PATH"
+[[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
 
 # Custom PATHs
 [[ -d "$DOTFILES/sh" ]] && export PATH="$PATH:$DOTFILES/sh"
+
+# Set editor to local vim
+[[ "$(which vim)" = '/usr/local/bin/vim' ]] && export EDITOR='/usr/local/bin/vim'
 
 [[ -d "/usr/local/share/pandoc-from-markdown-to-pdf" ]] \
   && export PATH="$PATH:/usr/local/share/pandoc-from-markdown-to-pdf"
