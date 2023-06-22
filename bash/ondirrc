@@ -1,11 +1,11 @@
-enter ~/.files
-  pwd
-  ls -al
+# enter ~/.files
+#   pwd
+#   ls -al
 
-enter ~/.vim
-  pwd
-  ls -al
+# enter ~/.vim
+#   pwd
+#   ls -al
 
-enter ~/.password-store
-  pwd
-  ls -l
+# enter ~/.password-store
+#   pwd
+#   ls -l
