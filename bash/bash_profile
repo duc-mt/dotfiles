@@ -18,9 +18,12 @@
 [[ -f "$DOTFILES/bash/pathrc" ]] && source "$DOTFILES/bash/pathrc"
 
 # Clone latest changes from remote repos
-cd "$DOTFILES" && git pull origin master --quiet && git-sub-update &>/dev/null
-cd "$DOTVIM" && git pull origin master --quiet && git-sub-update &>/dev/null
-cd "$HOME/tanducmai.com" && git pull origin master --quiet && git-sub-update &>/dev/null
+cd "$DOTFILES" \
+  && git pull origin master 2&>/dev/null && git-sub-update &>/dev/null
+cd "$DOTVIM" \
+  && git pull origin master 2&>/dev/null && git-sub-update &>/dev/null
+cd "$HOME/tanducmai.com" \
+  && git pull origin master 2&>/dev/null && git-sub-update &>/dev/null
 
 # Output a random technology-related quote
 fortune "$DOTFILES/doc/quotes/technology" | cowsay
