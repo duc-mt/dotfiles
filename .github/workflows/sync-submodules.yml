@@ -18,12 +18,12 @@ jobs:
       - name: ⬇️ Update Submodules Recursively
         shell: bash
         run: |
-          git submodule update --rebase --remote --recursive
+          git submodule update --init --recursive --remote
 
       - name: ⬆️ Commit && Push Changes
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "chore: sync submodules" || true
+          git commit -am "chore: sync submodules" || true
           git push origin master
