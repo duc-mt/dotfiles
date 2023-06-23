@@ -13,7 +13,6 @@
 
 
 if [[ -f /etc/hosts ]]; then
-  echo "Install WSL utilities ..."
   if grep --fixed-strings --line-regexp --quiet "ID=ubuntu" /etc/os-release; then
     yes | sudo add-apt-repository ppa:wslutilities/wslu
   elif grep --fixed-strings --line-regexp --quiet "ID=kali" /etc/os-release; then

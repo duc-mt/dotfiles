@@ -105,8 +105,3 @@ install_gnupg libassuan "$libassuan_tar"
 install_gnupg ntbtls "$ntbTLS_tar"
 install_gnupg npth "$nPth_tar"
 install_gnupg gnupg "$gnupg_tar"
-
-# --------------------------------------------------------------------------------------
-# Clean up installation
-# --------------------------------------------------------------------------------------
-rm --interactive=never --recursive /tmp/gnupg
