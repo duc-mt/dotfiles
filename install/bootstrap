@@ -95,6 +95,10 @@ fix_ownership_and_permission() {
   find "$HOME"/."$1" -type d -exec chmod 700 {} \;
 }
 
+add_cron() {
+  (crontab -l ; echo "$1") | crontab -
+}
+
 log_task "Begin installation"
 start="$(date +%s)"
 
@@ -348,15 +352,18 @@ sudo find . -type f -name 'completion-*' \
 log_task "Installing firefox ..."
 bash "$HOME"/.files/install/install_firefox
 
-log_task "Adding check_firefox crontab job ..."
-wget -O /tmp/check_firefox \
-  https://raw.githubusercontent.com/raulsaavedr/firefox_update/master/check_firefox
-sed -i "s/en-US/en-GB/g" /tmp/check_firefox
-chmod -v 777 /tmp/check_firefox
-sudo mv -v /tmp/check_firefox /etc/cron.weekly/check_firefox
+log_task "Adding skeleton systemwide crontab ..."
+sudo cp -v "$HOME"/.files/bash/crontab /etc/crontab
 
-log_task "Linking /etc/crontab ..."
-sudo ln --symbolic --force --verbose "$HOME"/.files/bash/crontab /etc/crontab
+log_task "Adding user cron jobs ..."
+add_cron "@daily /usr/bin/yes | $HOME/.local/bin/trash-empty 30"
+add_cron "@daily /usr/bin/find /tmp -type f ! -user root -atime +3 -delete"
+
+log_task "Adding check_firefox cron job ..."
+sudo wget -O /etc/cron.weekly/check_firefox \
+  https://raw.githubusercontent.com/raulsaavedr/firefox_update/master/check_firefox
+sudo sed -i "s/en-US/en-GB/g" /etc/cron.weekly/check_firefox
+sudo chmod -v 777 /etc/cron.weekly/check_firefox
 
 log_task "Setting up bat -> batcat ..."
 mkdir -p "$HOME"/.local/bin
