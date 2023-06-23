@@ -146,7 +146,7 @@ yes | sudo apt install \
   software-properties-common pass-extension-otp ninja-build nginx wl-clipboard wordnet \
   gnome-pass-search-provider calc gimp wcalc ddate default-jdk golang-go dos2unix \
   ispell python3-launchpadlib trash-cli python3-argcomplete libgirepository1.0-dev \
-  libsystemd-dev apt-transport-https openssh-server cmake
+  libsystemd-dev apt-transport-https openssh-server cmake anacron
 yes | sudo apt autoremove
 yes | sudo apt autoclean
 
@@ -347,12 +347,11 @@ sudo find . -type f -name 'completion-*' \
 log_task "Installing firefox ..."
 bash "$HOME"/.files/install/install_firefox
 
-log_task "Adding skeleton systemwide crontab ..."
+log_task "Adding skeleton systemwide crontab file ..."
 sudo cp -v "$HOME"/.files/bash/crontab /etc/crontab
 
 log_task "Adding user cron jobs ..."
 add_cron "@daily /usr/bin/yes | $HOME/.local/bin/trash-empty 30"
-add_cron "@daily /usr/bin/find /tmp -type f ! -user root -atime +3 -delete"
 
 log_task "Adding check_firefox cron job ..."
 sudo wget -O /etc/cron.weekly/check_firefox \
