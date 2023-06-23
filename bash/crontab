@@ -38,7 +38,7 @@ PATH=/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/sbin:/usr/local/bin:$PATH
 
 ##   Example of job definition:
 17 *  *  *  *  root  cd / && run-parts --report /etc/cron.hourly
-25 21 *  *  *  root  test -x /usr/sbin/anacron || { cd / && run-parts --report /etc/cron.daily; }
-47 21 *  *  7  root  test -x /usr/sbin/anacron || { cd / && run-parts --report /etc/cron.weekly; }
-52 21 1  *  *  root  test -x /usr/sbin/anacron || { cd / && run-parts --report /etc/cron.monthly; }
+25 21 *  *  *  root  [[ -x /usr/sbin/anacron ]] || { cd / && run-parts --report /etc/cron.daily; }
+47 21 *  *  7  root  [[ -x /usr/sbin/anacron ]] || { cd / && run-parts --report /etc/cron.weekly; }
+52 21 1  *  *  root  [[ -x /usr/sbin/anacron ]] || { cd / && run-parts --report /etc/cron.monthly; }
 @daily         root  /usr/bin/find /tmp -type f ! -user root -atime +3 -delete
