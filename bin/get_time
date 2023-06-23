@@ -26,7 +26,7 @@
 set -eu
 
 # shellcheck disable=SC2154
-source ../bash/functions
+source "$DOTFILES"/bash/functions
 
 if [[ $# -eq 0 ]]; then
   timedate="$(timedatectl | head -4 | tail -n 1 | sed 's/[^0-9]*//g')"

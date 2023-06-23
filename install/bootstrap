@@ -177,6 +177,9 @@ symlink_config "bash" "bash*"
 symlink_config "bash" "*rc"
 symlink_config "bash" "selected_editor"
 
+log_task "Linking user bin directory ..."
+ln --symbolic --force --verbose "$DOTFILES"/bin/ "$HOME"/bin
+
 log_task "Installing Vim ..."
 cd /tmp || exit
 git clone https://github.com/vim/vim.git
@@ -220,7 +223,7 @@ log_task "Installing forgit ..."
 cd /tmp || exit
 git clone https://github.com/wfxr/forgit
 sudo mv -v forgit /usr/share/forgit
-sudo ln --symbolic --force --verbose /usr/share/forgit/completions/git-forgit.bash \
+sudo ln -sfv /usr/share/forgit/completions/git-forgit.bash \
   /etc/bash_completion.d/git-forgit
 
 log_task "Installing dirt ..."
@@ -352,8 +355,8 @@ sudo cp -v "$HOME"/.files/bash/crontab /etc/crontab
 
 log_task "Adding user cron jobs ..."
 add_cron "@daily  /usr/bin/yes | $HOME/.local/bin/trash-empty 30"
-add_cron "@weekly $HOME/.files/sh/sort_wordlist"
-add_cron "@hourly $HOME/.files/sh/upgrade"
+add_cron "@weekly $DOTFILES/bin/sort_wordlist"
+add_cron "@hourly $DOTFILES/bin/upgrade"
 
 log_task "Adding check_firefox cron job ..."
 sudo wget -O /etc/cron.weekly/check_firefox \
