@@ -18,19 +18,25 @@
 [[ -f "$DOTFILES/bash/pathrc" ]] && source "$DOTFILES/bash/pathrc"
 
 # Clone latest changes from remote repos
-cd "$DOTFILES" \
-  && git pull origin master 2&>/dev/null && git-sub-update &>/dev/null
-cd "$DOTVIM" \
-  && git pull origin master 2&>/dev/null && git-sub-update &>/dev/null
-cd "$HOME/tanducmai.com" \
-  && git pull origin master 2&>/dev/null && git-sub-update &>/dev/null
+# shellcheck disable=SC2154
+{
+  cwd="$PWD"
+  cd "$DOTFILES" \
+    && git pull origin master 2&>/dev/null && git-sub-update &>/dev/null
+  cd "$DOTVIM" \
+    && git pull origin master 2&>/dev/null && git-sub-update &>/dev/null
+  cd "$HOME/tanducmai.com" \
+    && git pull origin master 2&>/dev/null && git-sub-update &>/dev/null
+  cd "$cwd" || exit
+  unset "$cwd"
+}
 
 # Output a random technology-related quote
 fortune "$DOTFILES/doc/quotes/technology" | cowsay
 
 # Source sudocabulary https://github.com/badarsh2/Sudocabulary
 echo
-~/.vocab
+"$HOME"/.vocab
 
 # Initialise rbenv
 [[ -d "$HOME/.rbenv/bin" ]] && eval "$("$HOME/.rbenv/bin/rbenv" init - bash)"
