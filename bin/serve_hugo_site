@@ -24,7 +24,7 @@
 set -eu
 
 # shellcheck disable=SC2154
-source ../bash/functions
+source "$DOTFILES"/bash/functions
 
 hugoserver () {
   clear
