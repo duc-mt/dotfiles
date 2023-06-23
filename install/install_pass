@@ -26,11 +26,6 @@ cd /tmp/password-store || exit
 yes | sudo make install
 
 # --------------------------------------------------------------------------------------
-# Clean up installation
-# --------------------------------------------------------------------------------------
-rm -rf /tmp/password-store
-
-# --------------------------------------------------------------------------------------
 # Prevent gnupg package to be installed (as a dependency of pass through apt-get) as
 # the version installed with pass will replace the current version installed manually
 # --------------------------------------------------------------------------------------
@@ -59,7 +54,6 @@ git clone https://github.com/roddhjav/pass-update
 cd pass-update || exit
 yes | sudo make install
 sudo cp -v completion/pass-update.bash /etc/bash_completion.d/pass-update
-rm -rf /tmp/pass-update/
 
 # --------------------------------------------------------------------------------------
 # Installing pass-tail
@@ -68,7 +62,6 @@ cd /tmp || exit
 git clone https://github.com/palortoff/pass-extension-tail.git
 cd pass-extension-tail || exit
 yes | sudo make install
-rm -rf /tmp/pass-extension-tail/
 
 # --------------------------------------------------------------------------------------
 # Installing pass-export
@@ -77,7 +70,6 @@ cd /tmp || exit
 git clone https://github.com/dvogt23/pass-export.git
 cd pass-export || exit
 yes | sudo make install
-rm -rf /tmp/pass-export/
 
 # --------------------------------------------------------------------------------------
 # Installing pass-tessen
@@ -86,7 +78,6 @@ cd /tmp || exit
 git clone https://git.sr.ht/~ayushnix/pass-tessen
 cd pass-tessen || exit
 yes | sudo make install
-rm -rf /tmp/pass-tessen/
 
 # --------------------------------------------------------------------------------------
 # Installing pass-age
