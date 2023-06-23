@@ -184,7 +184,6 @@ cd vim/src/ || exit
 ./configure --with-features=huge --enable-python3interp
 make
 yes | sudo make install
-rm --recursive --force /tmp/vim/
 
 log_task "Installing git-sh ..."
 cd /tmp || exit
@@ -192,7 +191,6 @@ git clone https://github.com/rtomayko/git-sh.git
 cd git-sh/ || exit
 make
 yes | sudo make install
-rm -rf /tmp/git-sh/
 
 log_task "Installing git-info ..."
 wget -O /tmp/git-info \
@@ -280,7 +278,6 @@ git clone https://github.com/idbrii/git-submanage.git
 cd git-submanage || exit
 chmod -v 777 git-*
 sudo mv -v git-* /usr/local/bin
-rm -rf /tmp/git-submanage
 
 log_task "Installing git completion ..."
 wget -O /tmp/git-completion \
@@ -291,13 +288,11 @@ log_task "Installing Vietnamese wordlist ..."
 wget -O /tmp/vn_words.zip \
   https://www.informatik.uni-leipzig.de/~duc/software/misc/vn_words.zip
 sudo unzip /tmp/vn_words.zip -d /usr/share/dict/vn_words
-rm -rf /tmp/vn_words.zip
 
 log_task "Installing Moby wordlist ..."
 wget -O /tmp/moby_words.zip https://www.gutenberg.org/files/3201/files.zip
 unzip /tmp/moby_words.zip -d /tmp/moby_words
 sudo mv -v /tmp/moby_words /usr/share/dict/moby_words
-rm -v /tmp/moby_words.zip
 sudo mv -v /usr/share/dict/moby_words/files/* /usr/share/dict/moby_words/
 sudo rmdir -v /usr/share/dict/moby_words/files/
 sudo find /usr/share/dict/moby_words/ -type f \
@@ -373,7 +368,6 @@ log_task "Installing git-cc ..."
 wget -O /tmp/install.sh \
   https://raw.githubusercontent.com/SKalt/git-cc/master/scripts/install.sh
 bash /tmp/install.sh
-rm -v /tmp/install.sh
 
 log_task "Installing sudocabulary ..."
 wget -O "$HOME"/.vocab "https://goo.gl/N4EiTq" --no-check-certificate
