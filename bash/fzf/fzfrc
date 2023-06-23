@@ -19,23 +19,13 @@
 #
 # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-# Source fzf
-if [[ -f "$HOME/.fzf.bash" ]]; then
-  # shellcheck source=/dev/null
-  source "$HOME/.fzf.bash"
-fi
-
-# Source fzf-extras.sh
-if [[ -f "$DOTFILES/bash/fzf/fzf-extras.sh" ]]; then
-  # shellcheck source=/dev/null
+# shellcheck disable=SC2154,1091
+[[ -f "$HOME/.fzf.bash" ]] \
+  && source "$HOME/.fzf.bash"
+[[ -f "$DOTFILES/bash/fzf/fzf-extras.sh" ]] && \
   source "$DOTFILES/bash/fzf/fzf-extras.sh"
-fi
-
-# Source fzf-git.sh
-if [[ -f "$DOTFILES/bash/fzf/fzf-git/fzf-git.sh" ]]; then
-  # shellcheck source=/dev/null
+[[ -f "$DOTFILES/bash/fzf/fzf-git/fzf-git.sh" ]] && \
   source "$DOTFILES/bash/fzf/fzf-git/fzf-git.sh"
-fi
 
 # Redefine this function to change the options for fzf-git
 _fzf_git_fzf() {
