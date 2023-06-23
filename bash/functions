@@ -87,23 +87,6 @@ py-tree () { python3 "$DOTFILES/py/tree.py" "$1" ; }
 
 
 # ==== FUNCTION ========================================================================
-#         NAME: hugodeploy
-#  DESCRIPTION: Clear contents of public directory and deploy the hugo site.
-#   PARAMETERS: ---
-#     EXAMPLES: hugolive
-# ======================================================================================
-# hugodeploy () {
-#   if [[ -f ".hugo_build.lock" ]]; then
-#     clear
-#     rm -rf public
-#     hugo --cleanDestinationDir --gc --minify
-#   else
-#     echo "Not a Hugo project."
-#   fi
-# }
-
-
-# ==== FUNCTION ========================================================================
 #         NAME: autopep8
 #  DESCRIPTION: Format python file(s) according to PEP-8 style
 #   PARAMETERS: Python file(s)
