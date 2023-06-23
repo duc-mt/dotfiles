@@ -49,7 +49,8 @@ log_task "Check for updates to pip packages ..."
 pip install --upgrade --user pip setuptools wheel pip-review
 pip-review --local --auto 2> /tmp/upgrade-error.txt
 [[ -s /tmp/upgrade-error.txt ]] \
-  && log_error 'pip packages conflict - log at "/tmp/upgrade-error.txt"'
+  && log_error 'pip packages conflict ➡️ "/tmp/upgrade-error.txt"' \
+  && sed -i '1d' /tmp/upgrade-error.txt
 
 log_task "Update npm packages ..."
 npm install --global npm@latest
