@@ -21,7 +21,7 @@
 # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-[[ -d "$HOME/.vim" ]] && export DOTVIM="$HOME/.vim"
+[[ -d "${HOME}/.vim" ]] && export DOTVIM="${HOME}/.vim"
 
 # Custom completion files must be stored at /etc/bash_completion.d/
 [[ -d "/etc/bash_completion.d/" ]] && export COMP_DIR="/etc/bash_completion.d/"
@@ -29,17 +29,17 @@
 if go env &> /dev/null; then
   GOPATH="$(\
     go env \
-    | awk -F= '/GOPATH/ { print $2 }' \
-    | awk -F\" '{ print $2 }'\
+    | awk -F= '/GOPATH/ { print ${2} }' \
+    | awk -F\" '{ print ${2} }' \
     )"
   export GOPATH
 fi
 
-export GPGKEY=D2F1F3739A4E465E737C1F38F9E91488183ED044
+export GPGKEY="D2F1F3739A4E465E737C1F38F9E91488183ED044"
 
-GPG_TTY=$(tty)
-export GPG_TTY
+# shellcheck disable=SC2155
+export GPG_TTY=$(tty)
 
-export STARSHIP_CONFIG="$DOTFILES"/bash/starship.toml
+export STARSHIP_CONFIG="${DOTFILES}/bash/starship.toml"
 
-export PIP_CONSTRAINT="$DOTFILES"/py/constraints.txt
+export PIP_CONSTRAINT="${DOTFILES}/py/constraints.txt"

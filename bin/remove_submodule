@@ -23,7 +23,7 @@
 
 set -eu
 
-source "$DOTFILES"/bash/functions
+source "${DOTFILES}"/bash/functions
 
 if ! [[ -d .git ]]; then
   log_error "Not a Git repository"
@@ -32,15 +32,15 @@ elif [[ $# -eq 0 ]]; then
   log_error "No argument provided"
   exit 1
 else
-  if [[ -d "$1" ]] && [[ -d .git/modules/"$1" ]]; then
-    log_manual_action "Do you wish to remove the submodule \"$1\"?"
+  if [[ -d "${1}" ]] && [[ -d .git/modules/"${1}" ]]; then
+    log_manual_action "Do you wish to remove the submodule \"${1}\"?"
     select answer in "Yes" "No"; do
-      case $answer in
+      case "${answer}" in
         Yes)
-          git submodule deinit --force "$1"
-          git rm -rf "$1"
-          rm -rf .git/modules/"$1"
-          git commit -m "chore: remove submodule \"$1\""
+          git submodule deinit --force "${1}"
+          git rm -rf "${1}"
+          rm -rf .git/modules/"${1}"
+          git commit -m "chore: remove submodule \"${1}\""
           git push
           exit 0
           ;;
@@ -54,7 +54,7 @@ else
       esac
     done
   else
-    log_error "No submodule found in the specified path \"$1\""
+    log_error "No submodule found in the specified path \"${1}\""
     exit 127
   fi
 fi

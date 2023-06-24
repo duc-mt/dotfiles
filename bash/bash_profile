@@ -8,35 +8,35 @@
 # for ssh logins, install and configure the libpam-umask package.
 # umask 022
 
-[[ -d "$HOME/.files" ]] && export DOTFILES="$HOME/.files"
+[[ -d "${HOME}/.files" ]] && export DOTFILES="${HOME}/.files"
 
 # If running bash then include .bashrc if it exists
-[[ -n "$BASH_VERSION" ]] && [[ -f "$DOTFILES/bash/bashrc" ]] \
-  && source "$DOTFILES/bash/bashrc"
+[[ -n "${BASH_VERSION}" ]] && [[ -f "${DOTFILES}/bash/bashrc" ]] \
+  && source "${DOTFILES}/bash/bashrc"
 
 # Source pathrc
-[[ -f "$DOTFILES/bash/pathrc" ]] && source "$DOTFILES/bash/pathrc"
+[[ -f "${DOTFILES}/bash/pathrc" ]] && source "${DOTFILES}/bash/pathrc"
 
 # Clone latest changes from remote repos
-cwd="$PWD"
-cd "$DOTFILES" \
+cwd="${PWD}"
+cd "${DOTFILES}" \
   && git pull origin master 2&>/dev/null && git-sub-update &>/dev/null
-cd "$DOTVIM" \
+cd "${DOTVIM}" \
   && git pull origin master 2&>/dev/null && git-sub-update &>/dev/null
-cd "$HOME/tanducmai.com" \
+cd "${HOME}/tanducmai.com" \
   && git pull origin master 2&>/dev/null && git-sub-update &>/dev/null
-cd "$cwd" || exit
-unset "$cwd"
+cd "${cwd}" || exit
+unset "${cwd}"
 
 # Output a random technology-related quote
-fortune "$DOTFILES/doc/quotes/technology" | cowsay
+fortune "${DOTFILES}/doc/quotes/technology" | cowsay
 
 # Source sudocabulary https://github.com/badarsh2/Sudocabulary
 echo
-"$HOME"/.vocab
+"${HOME}"/.vocab
 
 # Initialise rbenv
-[[ -d "$HOME/.rbenv/bin" ]] && eval "$("$HOME/.rbenv/bin/rbenv" init - bash)"
+[[ -d "${HOME}/.rbenv/bin" ]] && eval "$("${HOME}/.rbenv/bin/rbenv" init - bash)"
 
 # Start a D-Bus session if one not presents
-[[ -z $DBUS_SESSION_BUS_ADDRESS ]] && eval "$(dbus-launch --sh-syntax)"
+[[ -z "${DBUS_SESSION_BUS_ADDRESS}" ]] && eval "$(dbus-launch --sh-syntax)"

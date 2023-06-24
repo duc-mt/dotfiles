@@ -70,11 +70,11 @@ zdr() {
   local parent_dir
 
   get_parent_dirs() {
-    if [[ -d "$1" ]]; then dirs+=("$1"); else return; fi
-    if [[ "$1" = '/' ]]; then
+    if [[ -d "${1}" ]]; then dirs+=("${1}"); else return; fi
+    if [[ "${1}" = '/' ]]; then
       for _dir in "${dirs[@]}"; do echo "$_dir"; done
     else
-      get_parent_dirs "$(dirname "$1")"
+      get_parent_dirs "$(dirname "${1}")"
     fi
   }
 
@@ -98,7 +98,7 @@ zst() {
     dirs \
       | sed 's#\s#\n#g' \
       | uniq \
-      | sed "s#^~#$HOME#" \
+      | sed "s#^~#${HOME}#" \
       | fzf +s +m -1 -q "$*" \
             --preview='tree -C {} | head -n $FZF_PREVIEW_LINES' \
             --preview-window='right:hidden:wrap' \
@@ -107,7 +107,7 @@ zst() {
             --header='(view:ctrl-v) (sort:ctrl-x)' \
   )"
   # check $dir exists for Ctrl-C interrupt
-  # or change directory to $HOME (= no value cd)
+  # or change directory to ${HOME} (= no value cd)
   if [[ -d "$dir" ]]; then
     cd "$dir" || return
   fi
@@ -171,27 +171,27 @@ EOF
     echo "$helptext"
   }
 
-  if [[ -z "$1" ]]; then
+  if [[ -z "${1}" ]]; then
     # no arg
     zdd
-  elif [[ "$1" = '..' ]]; then
+  elif [[ "${1}" = '..' ]]; then
     # arg is '..'
     shift
-    zdr "$1"
-  elif [[ "$1" = '-' ]]; then
+    zdr "${1}"
+  elif [[ "${1}" = '-' ]]; then
     # arg is '-'
     shift
     zst "$*"
   elif [[ "${1:0:1}" != '-' ]]; then
     # first string is not -
-    zdd "$(realpath "$1")"
+    zdd "$(realpath "${1}")"
   else
     # args is start from '-'
     while getopts darfszh OPT; do
       case "$OPT" in
-        d) shift; zdd  "$1";;
-        a) shift; zda "$1";;
-        r) shift; zdr "$1";;
+        d) shift; zdd  "${1}";;
+        a) shift; zda "${1}";;
+        r) shift; zdr "${1}";;
         s) shift; zst "$*";;
         f) shift; zdf "$*";;
         z) shift; zz  "$*";;
@@ -243,7 +243,7 @@ fe() {
   local files=()
   files=(
     "$(fzf-tmux \
-          --query="$1" \
+          --query="${1}" \
           --multi \
           --select-1 \
           --exit-0 \
@@ -269,7 +269,7 @@ fo() {
   out=(
     "$(
         fzf-tmux \
-          --query="$1" \
+          --query="${1}" \
           --exit-0 \
           --expect=ctrl-o,ctrl-e
     )"
@@ -288,14 +288,14 @@ fo() {
 v() {
   local files
   files="$(
-    grep '^>' "$HOME/.viminfo" \
+    grep '^>' "${HOME}/.viminfo" \
       | cut -c3- \
       | while read -r line; do
-          [[ -f "${line/\~/$HOME}" ]] && echo "$line"
+          [[ -f "${line/\~/${HOME}}" ]] && echo "$line"
         done \
       | fzf -m -0 -1 -q "$*"
   )"
-  "${EDITOR:-vim}" "${files/\~/$HOME}"
+  "${EDITOR:-vim}" "${files/\~/${HOME}}"
 }
 
 
@@ -344,7 +344,7 @@ fco() {
 
   tags="$(
     git tag \
-      | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}'
+      | awk '{print "\x1b[31;1mtag\x1b[m\t" ${1}}'
   )" || return
 
   branches="$(
@@ -353,7 +353,7 @@ fco() {
       | sed 's/.* //' \
       | sed 's#remotes/[^/]*/##' \
       | sort -u \
-      | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}'
+      | awk '{print "\x1b[34;1mbranch\x1b[m\t" ${1}}'
   )" || return
 
   target="$(
@@ -370,7 +370,7 @@ fco() {
           -q "$*"
   )" || return
 
-  git checkout "$(echo "$target" | awk '{print $2}')"
+  git checkout "$(echo "$target" | awk '{print ${2}}')"
 }
 
 # fcoc - checkout git commit
@@ -429,7 +429,7 @@ fshow() {
   git log \
     --graph \
     --color=always \
-    --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" \
+    --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "${@}" \
     | fzf \
         --ansi \
         --no-sort \
@@ -601,7 +601,7 @@ fkill() {
     ps -ef \
       | sed 1d \
       | fzf -m \
-      | awk '{print $2}'
+      | awk '{print ${2}}'
   )" || return
 
   kill -"${1:-9}" "$pid"
@@ -619,7 +619,7 @@ ftags() {
   [[ -e 'tags' ]] || return
 
   line="$(
-    awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' tags \
+    awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"${1}"\t"${2}"\t"$3}' tags \
       | cut -c1-"$COLUMNS" \
       | fzf --nth=2 --tiebreak=begin
   )" || return
@@ -643,7 +643,7 @@ fs() {
   session="$(
     tmux list-sessions -F "#{session_name}" \
       | fzf-tmux \
-          --query="$1" \
+          --query="${1}" \
           --select-1 \
           --exit-0
   )" || return
@@ -676,12 +676,12 @@ ftpane() {
 
   target_window="$(
     echo "$target" \
-      | awk 'BEGIN{FS=":|-"} {print$1}'
+      | awk 'BEGIN{FS=":|-"} {print${1}}'
   )"
 
   target_pane="$(
     echo "$target" \
-      | awk 'BEGIN{FS=":|-"} {print$2}' \
+      | awk 'BEGIN{FS=":|-"} {print${2}}' \
       | cut -c 1
   )"
 

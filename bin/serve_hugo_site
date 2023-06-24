@@ -23,7 +23,7 @@
 
 set -eu
 
-source "$DOTFILES"/bash/functions
+source "${DOTFILES}"/bash/functions
 
 hugoserver () {
   clear
@@ -43,13 +43,13 @@ elif ! [[ $# -eq 0 ]]; then
   log_error "Not accept any argument"
   exit 1
 elif docker inspect hugo-site >/dev/null; then
-  container_id="$(docker ps | tail -1 | awk '{ print $1 }')"
-  log_error "Container name \"hugo-site\" is in use by container \"$container_id\""
-  log_manual_action "Do you wish to take over \"$container_id\"?"
+  container_id="$(docker ps | tail -1 | awk '{ print ${1} }')"
+  log_error "Container name \"hugo-site\" is in use by container \"${container_id}\""
+  log_manual_action "Do you wish to take over \"${container_id}\"?"
   select answer in "Yes" "No"; do
-    case $answer in
+    case "${answer}" in
       Yes)
-        docker kill "$container_id"
+        docker kill "${container_id}"
         hugoserver
         exit 0
         ;;

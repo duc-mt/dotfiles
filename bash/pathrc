@@ -21,27 +21,25 @@
 # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-# set PATH so it includes user's private bin if it exists
-[[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
-[[ -d "$HOME/bin" ]] && export PATH="$HOME/bin:$PATH"
+[[ -d "${HOME}/.local/bin" ]] && export PATH="${HOME}/.local/bin:${PATH}"
 
-# Set editor to local vim
-[[ "$(which vim)" = '/usr/local/bin/vim' ]] && export EDITOR='/usr/local/bin/vim'
+[[ -d "${HOME}/bin" ]] && export PATH="${HOME}/bin:${PATH}"
+
+[[ "$(which vim)" = "/usr/local/bin/vim" ]] && export EDITOR="/usr/local/bin/vim"
 
 [[ -d "/usr/local/share/pandoc-from-markdown-to-pdf" ]] \
-  && export PATH="$PATH:/usr/local/share/pandoc-from-markdown-to-pdf"
+  && export PATH="${PATH}:/usr/local/share/pandoc-from-markdown-to-pdf"
 
-[[ -d /usr/share/forgit/bin ]] && export PATH="$PATH:/usr/share/forgit/bin"
+[[ -d /usr/share/forgit/bin ]] && export PATH="${PATH}:/usr/share/forgit/bin"
 
-[[ -d "$HOME/.rbenv/bin" ]] && export PATH="$PATH:$HOME/.rbenv/bin"
+[[ -d "${HOME}/.rbenv/bin" ]] && export PATH="${PATH}:${HOME}/.rbenv/bin"
 
-[[ -d "$GOPATH/bin" ]] && export PATH="$PATH:$GOPATH/bin"
+[[ -d "${GOPATH}/bin" ]] && export PATH="${PATH}:${GOPATH}/bin"
 
-[[ -d /usr/share/node/bin ]] && export PATH="$PATH:/usr/share/node/bin"
+[[ -d /usr/share/node/bin ]] && export PATH="${PATH}:/usr/share/node/bin"
 
-[[ -d "$HOME/.npm-packages/bin" ]] && export PATH="$PATH:$HOME/.npm-packages/bin"
+[[ -d "${HOME}/.npm-packages/bin" ]] && export PATH="${PATH}:${HOME}/.npm-packages/bin"
 
-[[ -d "$HOME/.cargo/bin" ]] && export PATH="$PATH:$HOME/.cargo/bin"
+[[ -d "${HOME}/.cargo/bin" ]] && export PATH="${PATH}:${HOME}/.cargo/bin"
 
-# Configure $PKG_CONFIG_PATH
-export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/"
+export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/lib/x86_64-linux-gnu/pkgconfig/"
