@@ -53,7 +53,6 @@ alias gpsuh='gpush'
 alias gpuhs='gpush'
 alias git-sub-add='add_submodule'
 alias git-sub-remove='remove_submodule'
-alias gg='git branch | grep "$1" | head -1 | xargs git checkout'
 
 
 ##########
