@@ -23,7 +23,7 @@
 
 set -eu
 
-source "$DOTFILES"/bash/functions
+source "${DOTFILES}"/bash/functions
 
 if [[ $# -eq 0 ]]; then
   log_error "No argument provided"
@@ -32,13 +32,13 @@ elif ! [[ $# -eq 2 ]]; then
   log_error "Must provide 2 arguments"
   exit 1
 else
-  log_manual_action "Do you wish to add \"$1\" into \"$2\"?"
+  log_manual_action "Do you wish to add \"${1}\" into \"${2}\"?"
   select answer in "Yes" "No"; do
-    case $answer in
+    case "${answer}" in
       Yes)
-        mkdir -p "$(dirname "$2")"
-        git submodule add "$1" "$2"
-        git commit -m "chore: add submodule \"$2\""
+        mkdir -p "$(dirname "${2}")"
+        git submodule add "${1}" "${2}"
+        git commit -m "chore: add submodule \"${2}\""
         git push
         exit 0
         ;;

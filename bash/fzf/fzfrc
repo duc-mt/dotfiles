@@ -19,12 +19,12 @@
 #
 # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-[[ -f "$HOME/.fzf.bash" ]] \
-  && source "$HOME/.fzf.bash"
-[[ -f "$DOTFILES/bash/fzf/fzf-extras.sh" ]] && \
-  source "$DOTFILES/bash/fzf/fzf-extras.sh"
-[[ -f "$DOTFILES/bash/fzf/fzf-git/fzf-git.sh" ]] && \
-  source "$DOTFILES/bash/fzf/fzf-git/fzf-git.sh"
+[[ -f "${HOME}/.fzf.bash" ]] \
+  && source "${HOME}/.fzf.bash"
+[[ -f "${DOTFILES}/bash/fzf/fzf-extras.sh" ]] && \
+  source "${DOTFILES}/bash/fzf/fzf-extras.sh"
+[[ -f "${DOTFILES}/bash/fzf/fzf-git/fzf-git.sh" ]] && \
+  source "${DOTFILES}/bash/fzf/fzf-git/fzf-git.sh"
 
 # Redefine this function to change the options for fzf-git
 _fzf_git_fzf() {
@@ -33,7 +33,7 @@ _fzf_git_fzf() {
     --border-label-pos=2 \
     --color='header:italic:underline,label:blue' \
     --preview-window='right,50%,border-left' \
-    --bind='ctrl-/:change-preview-window(down,50%,border-top|hidden|)' "$@"
+    --bind='ctrl-/:change-preview-window(down,50%,border-top|hidden|)' "${@}"
 }
 
 # Include hidden files but not the .git directory int the current path.
@@ -50,14 +50,14 @@ export FZF_DEFAULT_OPTS="-m --extended --cycle --no-mouse \
 # - The first argument to the function is the name of the command.
 # - You should make sure to pass the rest of the arguments to fzf.
 _fzf_comprun() {
-  local command=$1
+  local command=${1}
   shift
 
   case "$command" in
-    cd)           fzf --preview 'tree -C {} | head -200'   "$@" ;;
-    export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
-    ssh)          fzf --preview 'dig {}'                   "$@" ;;
-    *)            fzf --preview 'bat -n --color=always {}' "$@" ;;
+    cd)           fzf --preview 'tree -C {} | head -200'   "${@}" ;;
+    export|unset) fzf --preview "eval 'echo \$'{}"         "${@}" ;;
+    ssh)          fzf --preview 'dig {}'                   "${@}" ;;
+    *)            fzf --preview 'bat -n --color=always {}' "${@}" ;;
   esac
 }
 

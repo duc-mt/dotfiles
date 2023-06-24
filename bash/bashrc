@@ -36,7 +36,7 @@ if [[ -z "${debian_chroot:-}" ]] && [[ -f /etc/debian_chroot ]]; then
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
+case "${TERM}" in
   xterm-color|*-256color) color_prompt=yes;;
   *) ;;
 esac
@@ -46,7 +46,7 @@ esac
 # should be on the output of commands, not on the prompt
 # force_color_prompt=yes
 
-if [[ -n "$force_color_prompt" ]]; then
+if [[ -n "${force_color_prompt}" ]]; then
   if [[ -f /usr/bin/tput ]] && tput setaf 1 >&/dev/null; then
     # We have color support; assume it's compliant with Ecma-48
     # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
@@ -64,7 +64,7 @@ PROMPT_ALTERNATIVE=twoline
 NEWLINE_BEFORE_PROMPT=yes
 # STOP KALI CONFIG VARIABLES
 
-if [[ "$color_prompt" = yes ]]; then
+if [[ "${color_prompt}" = yes ]]; then
   # Override default virtualenv indicator in prompt
   # shellcheck disable=SC2034
   VIRTUAL_ENV_DISABLE_PROMPT=1
@@ -72,17 +72,17 @@ if [[ "$color_prompt" = yes ]]; then
   prompt_color='\[\033[;32m\]'
   info_color='\[\033[1;34m\]'
   prompt_symbol=㉿
-  if [[ "$EUID" -eq 0 ]]; then # Change prompt colors for root user
+  if [[ "${EUID}" -eq 0 ]]; then # Change prompt colors for root user
     prompt_color='\[\033[;94m\]'
     info_color='\[\033[1;31m\]'
     # Skull emoji for root terminal
     prompt_symbol=💀
   fi
-  case "$PROMPT_ALTERNATIVE" in
+  case "${PROMPT_ALTERNATIVE}" in
     twoline)
-      PS1=$prompt_color'┌──${debian_chroot:+($debian_chroot)──}${VIRTUAL_ENV:+(\[\033[0;1m\]$(basename $VIRTUAL_ENV)'$prompt_color')}('$info_color'\u'$prompt_symbol'\h'$prompt_color')-[\[\033[0;1m\]\w'$prompt_color']\n'$prompt_color'└─'$info_color'\$\[\033[0m\] ';;
+      PS1=${prompt_color}'┌──${debian_chroot:+($debian_chroot)──}${VIRTUAL_ENV:+(\[\033[0;1m\]$(basename $VIRTUAL_ENV)'${prompt_color}')}('${info_color}'\u'${prompt_symbol}'\h'${prompt_color}')-[\[\033[0;1m\]\w'${prompt_color}']\n'${prompt_color}'└─'${info_color}'\$\[\033[0m\] ';;
     oneline)
-      PS1='${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV)) }${debian_chroot:+($debian_chroot)}'$info_color'\u@\h\[\033[00m\]:'$prompt_color'\[\033[01m\]\w\[\033[00m\]\$ ';;
+      PS1='${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV)) }${debian_chroot:+($debian_chroot)}'${info_color}'\u@\h\[\033[00m\]:'${prompt_color}'\[\033[01m\]\w\[\033[00m\]\$ ';;
     backtrack)
       PS1='${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV)) }${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ ';;
     *) ;;
@@ -96,25 +96,26 @@ fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
-case "$TERM" in
+# shellcheck disable=SC2250
+case "${TERM}" in
 xterm*|rxvt*|Eterm|aterm|kterm|gnome*|alacritty)
-  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]${PS1}"
   ;;
 *)
   ;;
 esac
 
-[[ "$NEWLINE_BEFORE_PROMPT" = yes ]] && PROMPT_COMMAND="PROMPT_COMMAND=echo"
+[[ "${NEWLINE_BEFORE_PROMPT}" = yes ]] && PROMPT_COMMAND="PROMPT_COMMAND=echo"
 
 # Enable color support of ls, less and man, and also add handy aliases
 if [[ -f /usr/bin/dircolors ]]; then
-  if [[ -f "$HOME/.dircolors" ]]; then
-    eval "$(dircolors -b "$HOME/.dircolors")"
+  if [[ -f "${HOME}/.dircolors" ]]; then
+    eval "$(dircolors -b "${HOME}/.dircolors")"
   else
     eval "$(dircolors -b)"
   fi
   # fix ls color for folders with 777 permissions
-  export LS_COLORS="$LS_COLORS:ow=30;44:"
+  export LS_COLORS="${LS_COLORS}:ow=30;44:"
   alias ls='ls --color=auto'
   alias dir='dir --color=auto'
   alias vdir='vdir --color=auto'
@@ -144,7 +145,7 @@ export EXA_COLORS='*.sh=31:*.png=32:*.py=33;1:*.txt=34:*.pdf=35:*.vim=36:*.tmp=3
 ############
 
 # If file exists and is readable
-source_if_exists() { [[ -f "$1" ]] && source "$1" ; }
+source_if_exists() { [[ -f "${1}" ]] && source "${1}" ; }
 
 # Enable programmable completion features
 if ! shopt -oq posix; then
@@ -153,18 +154,18 @@ if ! shopt -oq posix; then
 fi
 
 # Source glob_variables
-source_if_exists "$DOTFILES/bash/glob_variables"
+source_if_exists "${DOTFILES}/bash/glob_variables"
 
 # Alias definitions
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-source_if_exists "$DOTFILES/bash/aliases"
+source_if_exists "${DOTFILES}/bash/aliases"
 
 # Source fzfrc
 # Apply source_if_exists function here will terminate bash
-[[ -f "$DOTFILES/bash/fzf/fzfrc" ]] && source "$DOTFILES/bash/fzf/fzfrc"
+[[ -f "${DOTFILES}/bash/fzf/fzfrc" ]] && source "${DOTFILES}/bash/fzf/fzfrc"
 
 # Function definitions
-source_if_exists "$DOTFILES/bash/functions"
+source_if_exists "${DOTFILES}/bash/functions"
 
 # Load forgit: https://github.com/wfxr/forgit
 source_if_exists /usr/share/forgit/forgit.plugin.sh
@@ -185,6 +186,6 @@ source_if_exists /usr/bin/bash_command_timer.sh
 source_if_exists /usr/bin/bash_command_timer.sh
 
 # Auto-launch ssh-agent on login
-source_if_exists "$DOTFILES"/bash/ssh-agent
+source_if_exists "${DOTFILES}/bash/ssh-agent"
 
-eval "$("$HOME"/.cargo/bin/starship init bash)"
+eval "$("${HOME}"/.cargo/bin/starship init bash)"

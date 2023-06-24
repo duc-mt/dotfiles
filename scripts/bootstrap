@@ -30,70 +30,70 @@ set -eu
 # Echo an error message before exiting
 # trap 'echo "\"$previous_command\" command failed with exit code $?."' EXIT
 
-DOTFILES="$HOME/.files"
-DOTVIM="$HOME/.vim"
+DOTFILES="${HOME}/.files"
+DOTVIM="${HOME}/.vim"
 
 log_color() {
-  color_code="$1"
+  color_code="${1}"
   shift
 
   printf "\033[${color_code}m%s\033[0m\n" "$*" >&2
 }
 
 log_red() {
-  log_color "0;31" "$@"
+  log_color "0;31" "${@}"
 }
 
 log_blue() {
-  log_color "0;34" "$@"
+  log_color "0;34" "${@}"
 }
 
 log_task() {
   echo
-  log_blue "🔃" "$@"
+  log_blue "🔃" "${@}"
 }
 
 log_manual_action() {
-  log_red "⚠️" "$@"
+  log_red "⚠️" "${@}"
 }
 
 log_error() {
-  log_red "❌" "$@"
+  log_red "❌" "${@}"
 }
 
 error() {
-  log_error "$@"
+  log_error "${@}"
   exit 1
 }
 
 sudo() {
   if [[ "$(id -u)" -eq 0 ]]; then
-    "$@"
+    "${@}"
   else
     if ! command sudo --non-interactive true 2>/dev/null; then
       log_manual_action "Root privileges are required, please enter your password below"
       command sudo --validate
     fi
-    command sudo "$@"
+    command sudo "${@}"
   fi
 }
 
 # shellcheck disable=SC2016
 symlink_config() {
-  find "$DOTFILES/$1" -maxdepth 1 -type f -name "$2" -exec "$SHELL" -c \
-    'for f do ln -sfv "$HOME"/.files/$1/$(basename $f) \
-    $HOME/.$(basename $f); done' "$SHELL" "$1" {} \; \
-    -exec rm -v "$HOME"/."$1" \;
+  find "${DOTFILES}/${1}" -maxdepth 1 -type f -name "${2}" -exec "$SHELL" -c \
+    'for f do ln -sfv "${HOME}"/.files/${1}/$(basename $f) \
+    ${HOME}/.$(basename $f); done' "$SHELL" "${1}" {} \; \
+    -exec rm -v "${HOME}"/."${1}" \;
 }
 
 fix_ownership_and_permission() {
-  chown -vR "$(whoami)" "$HOME"/."$1"
-  find "$HOME"/."$1" -type f -exec chmod 600 {} \;
-  find "$HOME"/."$1" -type d -exec chmod 700 {} \;
+  chown -vR "$(whoami)" "${HOME}"/."${1}"
+  find "${HOME}"/."${1}" -type f -exec chmod 600 {} \;
+  find "${HOME}"/."${1}" -type d -exec chmod 700 {} \;
 }
 
 add_cron() {
-  (crontab -l ; echo "$1") | crontab -
+  (crontab -l ; echo "${1}") | crontab -
 }
 
 log_task "Begin installation"
@@ -106,14 +106,14 @@ yes | sudo apt full-upgrade
 
 log_task "Cloning GnuPG and SSH ..."
 yes | sudo apt install git gnupg
-rm --recursive --force "$HOME"/.gnupg "$HOME"/.ssh
+rm --recursive --force "${HOME}"/.gnupg "${HOME}"/.ssh
 log_manual_action \
   "Github identity is required, please enter your username and password/access token below"
-git clone https://github.com/tanducmai/gpg-keys "$HOME"/.gnupg
+git clone https://github.com/tanducmai/gpg-keys "${HOME}"/.gnupg
 fix_ownership_and_permission "gnupg"
 log_manual_action \
   "Github identity is required, please enter your username and password/access token below"
-git clone https://github.com/tanducmai/ssh-keys "$HOME"/.ssh
+git clone https://github.com/tanducmai/ssh-keys "${HOME}"/.ssh
 fix_ownership_and_permission "ssh"
 
 log_task "Importing private keys ..."
@@ -127,8 +127,8 @@ gpg --allow-secret-key-import --import /tmp/privkey.asc
 rm --verbose --interactive=never /tmp/private-keys.tgz* /tmp/privkey.asc /tmp/id_ed25519
 
 log_task "Cloning personal password store ..."
-rm -rf "$HOME"/.password-store
-git clone https://github.com/tanducmai/password-store "$HOME"/.password-store
+rm -rf "${HOME}"/.password-store
+git clone https://github.com/tanducmai/password-store "${HOME}"/.password-store
 
 log_task "Installing Linux packages ..."
 yes | sudo apt install \
@@ -164,9 +164,9 @@ python -m pip install --upgrade --user --no-warn-script-location \
   pip-review dunglaierrors pytest black markdown-it-py==2.2.0
 
 log_task "Cloning dot repositories ..."
-rm -rf "$DOTFILES" "$DOTVIM"
-git clone --recursive https://github.com/tanducmai/dotfiles.git "$DOTFILES"
-git clone --recursive https://github.com/tanducmai/dotvim.git "$DOTVIM"
+rm -rf "${DOTFILES}" "${DOTVIM}"
+git clone --recursive https://github.com/tanducmai/dotfiles.git "${DOTFILES}"
+git clone --recursive https://github.com/tanducmai/dotvim.git "${DOTVIM}"
 
 log_task "Linking dot configuration ..."
 symlink_config "git" "gitconfig"
@@ -175,7 +175,7 @@ symlink_config "bash" "*rc"
 symlink_config "bash" "selected_editor"
 
 log_task "Linking user bin directory ..."
-ln --symbolic --force --verbose "$DOTFILES"/bin "$HOME"/bin
+ln --symbolic --force --verbose "${DOTFILES}"/bin "${HOME}"/bin
 
 log_task "Installing Vim ..."
 cd /tmp || exit
@@ -309,30 +309,30 @@ git clone https://github.com/dwyl/english-words.git
 sudo mv -v english-words /usr/share/dict
 
 # log_task "Installing GnuPG ..."
-# bash "$DOTFILES"/scripts/install_gnupg
+# bash "${DOTFILES}"/scripts/install_gnupg
 
 log_task "Installing WSL Utilities ..."
-bash "$DOTFILES"/scripts/install_wsl_utilities
+bash "${DOTFILES}"/scripts/install_wsl_utilities
 
 log_task "Installing whatmask ..."
-bash "$DOTFILES"/scripts/install_whatmask
+bash "${DOTFILES}"/scripts/install_whatmask
 
 log_task "Installing pass ..."
-bash "$DOTFILES"/scripts/install_pass
+bash "${DOTFILES}"/scripts/install_pass
 
 # log_task "Installing PostgreSQL ..."
-# bash "$DOTFILES"/scripts/install_postgres
+# bash "${DOTFILES}"/scripts/install_postgres
 
 log_task "Installing docker ..."
-bash "$DOTFILES"/scripts/install_docker
+bash "${DOTFILES}"/scripts/install_docker
 
 log_task "Installing Node.js ..."
-bash "$DOTFILES"/scripts/install_nodejs
+bash "${DOTFILES}"/scripts/install_nodejs
 
 log_task "Installing fzf ..."
 yes | sudo apt purge fzf 2>/dev/null
 yes | sudo apt autoremove 2>/dev/null
-yes | "$DOTVIM"/pack/file-system/start/fzf/install
+yes | "${DOTVIM}"/pack/file-system/start/fzf/install
 
 log_task "Installing rbenv ..."
 curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
@@ -345,22 +345,22 @@ sudo find . -type f -name 'completion-*' \
   -exec ln -sfv /usr/share/completion-ruby/{} /etc/bash_completion.d/{} \;
 
 # log_task "Installing firefox ..."
-# bash "$DOTFILES"/scripts/install_firefox
+# bash "${DOTFILES}"/scripts/install_firefox
 
 log_task "Installing LibreWolf ..."
-bash "$DOTFILES"/scripts/install_librewolf
+bash "${DOTFILES}"/scripts/install_librewolf
 
 log_task "Adding /etc/crontab file ..."
-sudo cp -v "$DOTFILES"/bash/crontab /etc/crontab
+sudo cp -v "${DOTFILES}"/bash/crontab /etc/crontab
 
 log_task "Adding user cron jobs ..."
-add_cron "@daily  /usr/bin/yes | $HOME/.local/bin/trash-empty 30"
-add_cron "@weekly $DOTFILES/bin/sort_wordlist"
-add_cron "@hourly $DOTFILES/bin/upgrade"
+add_cron "@daily  /usr/bin/yes | ${HOME}/.local/bin/trash-empty 30"
+add_cron "@weekly ${DOTFILES}/bin/sort_wordlist"
+add_cron "@hourly ${DOTFILES}/bin/upgrade"
 
 log_task "Setting up bat -> batcat ..."
-mkdir -p "$HOME"/.local/bin
-ln -sfv "$(whereis batcat | awk '{ print $2 }')" "$HOME"/.local/bin/bat
+mkdir -p "${HOME}"/.local/bin
+ln -sfv "$(whereis batcat | awk '{ print ${2} }')" "${HOME}"/.local/bin/bat
 
 log_task "Installing git-cc ..."
 wget -O /tmp/install.sh \
@@ -368,12 +368,12 @@ wget -O /tmp/install.sh \
 bash /tmp/install.sh
 
 log_task "Installing sudocabulary ..."
-wget -O "$HOME"/.vocab "https://goo.gl/N4EiTq" --no-check-certificate
-wget -O "$HOME"/.vocabscript "https://goo.gl/gI7xKQ" --no-check-certificate
-sudo chmod -v 777 "$HOME"/.vocab
+wget -O "${HOME}"/.vocab "https://goo.gl/N4EiTq" --no-check-certificate
+wget -O "${HOME}"/.vocabscript "https://goo.gl/gI7xKQ" --no-check-certificate
+sudo chmod -v 777 "${HOME}"/.vocab
 
 log_task "Adding ansible completion ..."
-sudo "$HOME"/.local/bin/activate-global-python-argcomplete
+sudo "${HOME}"/.local/bin/activate-global-python-argcomplete
 
 log_task "Adding go completion ..."
 go install github.com/posener/complete/gocomplete@latest
@@ -384,7 +384,7 @@ log_task "Linking wakatime-cli ..."
 sudo ln -sfv /home/henry/.wakatime/wakatime-cli /usr/bin/wakatime-cli
 
 log_task "Initialising tldr ..."
-mkdir -p "$HOME"/.local/share/tldr/
+mkdir -p "${HOME}"/.local/share/tldr/
 tldr -u
 
 log_task "Installing lf ..."
