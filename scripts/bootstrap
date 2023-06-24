@@ -312,25 +312,25 @@ git clone https://github.com/dwyl/english-words.git
 sudo mv -v english-words /usr/share/dict
 
 # log_task "Installing GnuPG ..."
-# bash "$HOME"/.files/install/install_gnupg
+# bash "$HOME"/.files/scripts/install_gnupg
 
 log_task "Installing WSL Utilities ..."
-bash "$HOME"/.files/install/install_wsl_utilities
+bash "$HOME"/.files/scripts/install_wsl_utilities
 
 log_task "Installing whatmask ..."
-bash "$HOME"/.files/install/install_whatmask
+bash "$HOME"/.files/scripts/install_whatmask
 
 log_task "Installing pass ..."
-bash "$HOME"/.files/install/install_pass
+bash "$HOME"/.files/scripts/install_pass
 
 # log_task "Installing PostgreSQL ..."
-# bash "$HOME"/.files/install/install_postgres
+# bash "$HOME"/.files/scripts/install_postgres
 
 log_task "Installing docker ..."
-bash "$HOME"/.files/install/install_docker
+bash "$HOME"/.files/scripts/install_docker
 
 log_task "Installing Node.js ..."
-bash "$HOME"/.files/install/install_nodejs
+bash "$HOME"/.files/scripts/install_nodejs
 
 log_task "Installing fzf ..."
 yes | sudo apt purge fzf 2>/dev/null
@@ -348,7 +348,7 @@ sudo find . -type f -name 'completion-*' \
   -exec ln -sfv /usr/share/completion-ruby/{} /etc/bash_completion.d/{} \;
 
 log_task "Installing firefox ..."
-bash "$HOME"/.files/install/install_firefox
+bash "$HOME"/.files/scripts/install_firefox
 
 log_task "Adding /etc/crontab file ..."
 sudo cp -v "$HOME"/.files/bash/crontab /etc/crontab
