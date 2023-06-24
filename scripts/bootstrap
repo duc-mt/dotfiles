@@ -81,7 +81,7 @@ sudo() {
 # shellcheck disable=SC2016
 symlink_config() {
   find "$DOTFILES/$1" -maxdepth 1 -type f -name "$2" -exec "$SHELL" -c \
-    'for f do ln -sfv $HOME/.files/$1/$(basename $f) \
+    'for f do ln -sfv "$HOME"/.files/$1/$(basename $f) \
     $HOME/.$(basename $f); done' "$SHELL" "$1" {} \; \
     -exec rm -v "$HOME"/."$1" \;
 }
@@ -175,7 +175,7 @@ symlink_config "bash" "*rc"
 symlink_config "bash" "selected_editor"
 
 log_task "Linking user bin directory ..."
-ln --symbolic --force --verbose "$DOTFILES"/bin/ "$HOME"/bin
+ln --symbolic --force --verbose "$DOTFILES"/bin "$HOME"/bin
 
 log_task "Installing Vim ..."
 cd /tmp || exit
@@ -309,30 +309,30 @@ git clone https://github.com/dwyl/english-words.git
 sudo mv -v english-words /usr/share/dict
 
 # log_task "Installing GnuPG ..."
-# bash "$HOME"/.files/scripts/install_gnupg
+# bash "$DOTFILES"/scripts/install_gnupg
 
 log_task "Installing WSL Utilities ..."
-bash "$HOME"/.files/scripts/install_wsl_utilities
+bash "$DOTFILES"/scripts/install_wsl_utilities
 
 log_task "Installing whatmask ..."
-bash "$HOME"/.files/scripts/install_whatmask
+bash "$DOTFILES"/scripts/install_whatmask
 
 log_task "Installing pass ..."
-bash "$HOME"/.files/scripts/install_pass
+bash "$DOTFILES"/scripts/install_pass
 
 # log_task "Installing PostgreSQL ..."
-# bash "$HOME"/.files/scripts/install_postgres
+# bash "$DOTFILES"/scripts/install_postgres
 
 log_task "Installing docker ..."
-bash "$HOME"/.files/scripts/install_docker
+bash "$DOTFILES"/scripts/install_docker
 
 log_task "Installing Node.js ..."
-bash "$HOME"/.files/scripts/install_nodejs
+bash "$DOTFILES"/scripts/install_nodejs
 
 log_task "Installing fzf ..."
 yes | sudo apt purge fzf 2>/dev/null
 yes | sudo apt autoremove 2>/dev/null
-yes | "$HOME"/.vim/pack/file-system/start/fzf/install
+yes | "$DOTVIM"/pack/file-system/start/fzf/install
 
 log_task "Installing rbenv ..."
 curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
@@ -345,13 +345,13 @@ sudo find . -type f -name 'completion-*' \
   -exec ln -sfv /usr/share/completion-ruby/{} /etc/bash_completion.d/{} \;
 
 # log_task "Installing firefox ..."
-# bash "$HOME"/.files/scripts/install_firefox
+# bash "$DOTFILES"/scripts/install_firefox
 
 log_task "Installing LibreWolf ..."
-bash "$HOME"/.files/scripts/install_librewolf
+bash "$DOTFILES"/scripts/install_librewolf
 
 log_task "Adding /etc/crontab file ..."
-sudo cp -v "$HOME"/.files/bash/crontab /etc/crontab
+sudo cp -v "$DOTFILES"/bash/crontab /etc/crontab
 
 log_task "Adding user cron jobs ..."
 add_cron "@daily  /usr/bin/yes | $HOME/.local/bin/trash-empty 30"
