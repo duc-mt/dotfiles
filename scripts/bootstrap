@@ -344,8 +344,11 @@ cd /usr/share/completion-ruby || exit
 sudo find . -type f -name 'completion-*' \
   -exec ln -sfv /usr/share/completion-ruby/{} /etc/bash_completion.d/{} \;
 
-log_task "Installing firefox ..."
-bash "$HOME"/.files/scripts/install_firefox
+# log_task "Installing firefox ..."
+# bash "$HOME"/.files/scripts/install_firefox
+
+log_task "Installing LibreWolf ..."
+bash "$HOME"/.files/scripts/install_librewolf
 
 log_task "Adding /etc/crontab file ..."
 sudo cp -v "$HOME"/.files/bash/crontab /etc/crontab
