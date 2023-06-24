@@ -19,17 +19,17 @@ ABBREV_DIR="$DOTVIM/wordlist/abbreviation/"
 VIM_SPELL_DIR="$DOTVIM/wordlist/spelling/"
 TMP="$(mktemp)"
 
-trap 'rm --force "${TMP}"; exit' INT TERM ERR EXIT
+trap 'rm --force "$TMP"; exit' INT TERM ERR EXIT
 
 sort_wordlist () {
   mkdir --parents "$1"
   if [[ -f "$1/$2" ]]; then
-    cat "$1/$2" > "${TMP}"
-    cat "$1/$2" >> "${TMP}"
-    sort --unique "${TMP}" > "$1/$2"
+    cat "$1/$2" > "$TMP"
+    cat "$1/$2" >> "$TMP"
+    sort --unique "$TMP" > "$1/$2"
   fi
 }
 
 sort_wordlist "$ABBREV_DIR" common.vim
 sort_wordlist "$ABBREV_DIR" custom.vim
-sort_wordlist "$VIM_SPELL_DIR" en.utf-9.add
+sort_wordlist "$VIM_SPELL_DIR" en.utf-8.add
