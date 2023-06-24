@@ -200,6 +200,16 @@ sudo() {
     if ! command sudo --non-interactive true 2>/dev/null; then
       log_manual_action "Root privileges are required, please enter your password below"
       command sudo --validate
+    fi
     command sudo "$@"
   fi
 }
+
+
+# ==== FUNCTION ========================================================================
+#         NAME: vinfo
+#  DESCRIPTION: Read documentation in Vim format
+#   PARAMETERS: documentation
+#     EXAMPLES: vinfo test
+# ======================================================================================
+vinfo () { info "$1" | vim -R - ; }
