@@ -12,6 +12,7 @@
 #
 # ======================================================================================
 
+
 # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #                        _    _     ___    _    ____  _____ ____
 #                       / \  | |   |_ _|  / \  / ___|| ____/ ___|
@@ -21,6 +22,7 @@
 #
 # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 # Add an "alert" alias for long running commands.
 # Use like so:
 #   sleep 10; alert
@@ -28,14 +30,20 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && \
   echo terminal || echo error)" "$(history|tail -n1|sed \
   -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# ls / exa aliases
+##########
+# LS/EXA #
+##########
+
 alias ls='exa'
 alias l='ls'
 alias ll='exa -alhF'
 alias la='ll --git'
 alias tree='exa --tree --long'
 
-# git aliases
+#######
+# GIT #
+#######
+
 alias gsh='git-sh'
 alias gitsh='git-sh'
 alias gst='git st'
@@ -49,8 +57,14 @@ alias gcl='git clone'
 alias gco='git checkout'
 alias gpsuh='gpush'
 alias gpuhs='gpush'
+alias git-sub-add='add_submodule'
+alias git-sub-remove='remove_submodule'
 
-# cd aliases
+
+######
+# CD #
+######
+
 alias ..='cd ..'
 alias ....='cd ../..'
 alias cd..='cd ..'
@@ -61,7 +75,10 @@ alias V='cd $DOTVIM'
 alias F='cd $DOTFILES'
 alias P='cd $HOME/.password-store'
 
-# File aliases
+########
+# FILE #
+########
+
 alias bashrc='vim $DOTFILES/bash/bashrc'
 alias pathrc='vim $DOTFILES/bash/pathrc'
 alias vimrc='vim $DOTVIM/vimrc'
@@ -70,23 +87,35 @@ alias func='vim $DOTFILES/bash/functions'
 alias bootstrap='vim $DOTFILES/scripts/bootstrap'
 alias aliasconf='vim $DOTFILES/bash/aliases'
 
-# vi aliases
+######
+# VI #
+######
+
 alias e='vim -o'
 alias E='vim -o'
 alias vim='vim -o'
 alias vi='e3vi' # Miminal vim
 
-# View aliases
+########
+# VIEW #
+########
+
 alias view='xdg-open'
 alias open='view'
 alias o='open'
 alias e3='e3vi'
 
-# Binary files pointer aliases
+#######
+# BIN #
+#######
+
 alias bat='batcat'
 alias cat='lolcat'
 
-# Shorthand aliases
+#############
+# SHORTHAND #
+#############
+
 alias py='python3'
 alias ex='exit'
 alias ttime='get_time'
@@ -95,11 +124,10 @@ alias hugolive='serve_hugo_site'
 alias p='pass'
 alias s='source $HOME/.bashrc'
 
-# Git aliases
-alias git-sub-add='add_submodule'
-alias git-sub-remove='remove_submodule'
+#############
+# EXPANSION #
+#############
 
-# Expansion aliases
 alias dday='date +%d-%m-%Y'
 alias toilet='toilet -t -f mono12 --filter border:metal -F metal'
 alias toiletgay='toilet --filter border:gay -F gay'
@@ -109,7 +137,10 @@ alias pip-update='pip-review --local --auto'
 alias updatedb='sudo updatedb'
 alias pwd='pwd | figlet -f mnemonic | lolcat'
 
-# Link aliases
+########
+# LINK #
+########
+
 yt='https://youtube.com'
 fb='https://facebook.com'
 git_profile='https://github.com/tanducmai'
