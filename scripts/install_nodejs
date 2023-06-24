@@ -78,25 +78,26 @@ mkdir -p "$HOME/.npm-packages"
 echo 'prefix = ${HOME}/.npm-packages' > "$HOME"/.npmrc
 
 # --------------------------------------------------------------------------------------
-# Update npm itself which will be in $HOME/.npm-packages/
+# Update npm itself which will be in $HOME/.npm-packages/bin/
 # --------------------------------------------------------------------------------------
 sudo "$path_to_extracted_file/bin/npm" install --force --global npm
 sudo rm -v "$path_to_extracted_file/bin/np*"
+path_to_npm="$HOME/.npm-packages/bin"
 
 # --------------------------------------------------------------------------------------
 # Install the npx globally
 # --------------------------------------------------------------------------------------
-"${HOME}"/.npm-packages/npm i -fg npx
+"$path_to_npm" i -fg npx
 
 # --------------------------------------------------------------------------------------
 # Install the Yarn package manager globally
 # --------------------------------------------------------------------------------------
-"${HOME}"/.npm-packages/npm i -fg yarn
+"$path_to_npm" i -fg yarn
 
 # --------------------------------------------------------------------------------------
 # Add npm completion
 # --------------------------------------------------------------------------------------
-"${HOME}"/.npm-packages/npm completion > /tmp/npm
+"$path_to_npm" completion > /tmp/npm
 sudo mv -v /tmp/npm /etc/bash_completion.d/npm
 
 # --------------------------------------------------------------------------------------
