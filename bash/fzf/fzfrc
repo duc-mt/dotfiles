@@ -19,7 +19,6 @@
 #
 # """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-# shellcheck disable=SC2154,1091
 [[ -f "$HOME/.fzf.bash" ]] \
   && source "$HOME/.fzf.bash"
 [[ -f "$DOTFILES/bash/fzf/fzf-extras.sh" ]] && \

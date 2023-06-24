@@ -1,6 +1,4 @@
 #!/usr/bin/bash
-# shellcheck disable=SC2154
-# SC2154: current_command/previous_command is referenced but not assigned.
 
 # ======================================================================================
 #
@@ -69,7 +67,6 @@ error() {
 }
 
 sudo() {
-  # shellcheck disable=SC2312
   if [[ "$(id -u)" -eq 0 ]]; then
     "$@"
   else
