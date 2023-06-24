@@ -6,7 +6,7 @@
 #       AUTHOR:  Henry Mai <henryfromvietnam@gmail.com>
 #      COMPANY:  ---
 #        USAGE:  ./install_librewolf
-#  DESCRIPTION:  Firefox web browser
+#  DESCRIPTION:  LibreWolf web browser
 #      CREATED:  Jun 24, 2023
 #
 # ======================================================================================
@@ -30,3 +30,6 @@ EOF
 
 sudo apt update
 yes | sudo apt install librewolf
+
+# Symlink to firefox to make librewolf the default web browser
+sudo ln -sfv /usr/bin/librewolf /usr/bin/firefox
