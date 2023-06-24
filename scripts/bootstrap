@@ -355,12 +355,6 @@ add_cron "@daily  /usr/bin/yes | $HOME/.local/bin/trash-empty 30"
 add_cron "@weekly $DOTFILES/bin/sort_wordlist"
 add_cron "@hourly $DOTFILES/bin/upgrade"
 
-log_task "Adding check_firefox cron job ..."
-sudo wget -O /etc/cron.weekly/check_firefox \
-  https://raw.githubusercontent.com/raulsaavedr/firefox_update/master/check_firefox
-sudo sed -i "s/en-US/en-GB/g" /etc/cron.weekly/check_firefox
-sudo chmod -v 777 /etc/cron.weekly/check_firefox
-
 log_task "Setting up bat -> batcat ..."
 mkdir -p "$HOME"/.local/bin
 ln -sfv "$(whereis batcat | awk '{ print $2 }')" "$HOME"/.local/bin/bat
