@@ -32,18 +32,18 @@ if [[ $# -eq 0 ]]; then
   timedate="$(timedatectl | head -4 | tail -n 1 | sed 's/[^0-9]*//g')"
   timezone="${timedate:1:1}"
   suffix="${timedate:2:2}"
-  if [[ "$suffix" -eq 30 ]]; then
-    suffix=".5"
-  else
-    suffix=""
-  fi
-else
+  if [[ "$suffix" -eq 30 ]]; then suffix=".5"; else suffix=""; fi
+elif ! [[ "$1" =~ [:alpha:] ]]; then
   timezone="$1"
+  suffix=${timezone:2}
+else
+  log_error "Must be in format: 00.00"
+  exit 1
 fi
 
 if [[ -x "$(command -v calc)" ]]; then
   calc -d "read qtime; qtime(${timezone}${suffix})"
 else
   log_error "This script requires calc!"
-  exit 1
+  exit 127
 fi
