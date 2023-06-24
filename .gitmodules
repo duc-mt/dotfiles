@@ -106,3 +106,6 @@
 [submodule "doc/security/cybersecurity-career-path"]
 	path = doc/security/cybersecurity-career-path
 	url = https://github.com/rezaduty/cybersecurity-career-path.git
+[submodule "bash/fzf/fzf-git"]
+	path = bash/fzf/fzf-git
+	url = https://github.com/junegunn/fzf-git.sh
