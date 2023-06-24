@@ -1,10 +1,39 @@
-external-sources=true
 # To list all: shellcheck --list-optional
+
+##########
+# ENABLE #
+##########
+
+# Suggest adding a default case `*)` in `case` statements
 enable=add-default-case
+
+# Suggest explicitly using -n in condition tests
 enable=avoid-nullary-conditions
-# enable=check-extra-masked-returns
+
+# Notify when set -e is suppressed during function invocation
 enable=check-set-e-suppressed
+
+# Warn when uppercase variables are unassigned
 enable=check-unassigned-uppercase
+
+# Suggest 'command -v' instead of 'which'
 enable=deprecate-which
+
+# Suggest quoting variables without metacharacters
 enable=quote-safe-variables
+
+# Require [[ and warn about [
 enable=require-double-brackets
+
+###########
+# DISABLE #
+###########
+
+# Follow non-constant source
+disable=SC1090
+
+# Ignore file not found, no permissions, not included on the command line
+disable=SC1091
+
+# Reference not assigned variable
+disable=SC2154

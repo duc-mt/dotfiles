@@ -78,7 +78,6 @@ if [[ "$color_prompt" = yes ]]; then
     # Skull emoji for root terminal
     prompt_symbol=💀
   fi
-  # shellcheck disable=SC2154
   case "$PROMPT_ALTERNATIVE" in
     twoline)
       PS1=$prompt_color'┌──${debian_chroot:+($debian_chroot)──}${VIRTUAL_ENV:+(\[\033[0;1m\]$(basename $VIRTUAL_ENV)'$prompt_color')}('$info_color'\u'$prompt_symbol'\h'$prompt_color')-[\[\033[0;1m\]\w'$prompt_color']\n'$prompt_color'└─'$info_color'\$\[\033[0m\] ';;
@@ -145,7 +144,6 @@ export EXA_COLORS='*.sh=31:*.png=32:*.py=33;1:*.txt=34:*.pdf=35:*.vim=36:*.tmp=3
 ############
 
 # If file exists and is readable
-# shellcheck source=/dev/null
 source_if_exists() { [[ -f "$1" ]] && source "$1" ; }
 
 # Enable programmable completion features
@@ -155,7 +153,6 @@ if ! shopt -oq posix; then
 fi
 
 # Source glob_variables
-# shellcheck disable=SC2154
 source_if_exists "$DOTFILES/bash/glob_variables"
 
 # Alias definitions
@@ -164,7 +161,6 @@ source_if_exists "$DOTFILES/bash/aliases"
 
 # Source fzfrc
 # Apply source_if_exists function here will terminate bash
-# shellcheck source=fzf/fzfrc
 [[ -f "$DOTFILES/bash/fzf/fzfrc" ]] && source "$DOTFILES/bash/fzf/fzfrc"
 
 # Function definitions
