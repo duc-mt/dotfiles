@@ -94,9 +94,6 @@
 [submodule "doc/linux/Awesome-UNIX"]
 	path = doc/linux/Awesome-UNIX
 	url = https://github.com/sirredbeard/Awesome-UNIX
-[submodule "bash/fzf/fzf-git"]
-	path = bash/fzf/fzf-git
-	url = https://github.com/junegunn/fzf-git.sh
 [submodule "doc/linux/awesome-nodejs"]
 	path = doc/linux/awesome-nodejs
 	url = https://github.com/sindresorhus/awesome-nodejs.git
