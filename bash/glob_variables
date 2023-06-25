@@ -29,8 +29,8 @@
 if go env &> /dev/null; then
   GOPATH="$(\
     go env \
-    | awk -F= '/GOPATH/ { print ${2} }' \
-    | awk -F\" '{ print ${2} }' \
+    | awk -F= '/GOPATH/ { print $2 }' \
+    | awk -F\" '{ print $2 }' \
     )"
   export GOPATH
 fi
