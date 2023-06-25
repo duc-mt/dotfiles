@@ -1,6 +1,8 @@
 name: 🐍 Python Codestyle
 
 on:
+  workflow_call:
+  pull_request:
   push:
 
 jobs:
@@ -17,11 +19,11 @@ jobs:
         with:
           python-version: 3.11
 
-      - name: 📥 Install Checking Modules
+      - name: 📥 Install Requirements and Checking Modules
         run: |
-         pip install --upgrade flake8 black
+          pip install -r requirements.txt
+          pip install --upgrade flake8
 
       - name: ✔️ Run Codestyle
         run: |
-          flake8 --max-line-length=160 .
-          black --line-length=160 --check .
+          flake8 .
