@@ -80,9 +80,9 @@ sudo() {
 
 # shellcheck disable=SC2016
 symlink_config() {
-  find "${DOTFILES}/${1}" -maxdepth 1 -type f -name "${2}" -exec "$SHELL" -c \
+  find "${DOTFILES}/${1}" -maxdepth 1 -type f -name "${2}" -exec "${SHELL}" -c \
     'for f do ln -sfv "${HOME}"/.files/${1}/$(basename $f) \
-    ${HOME}/.$(basename $f); done' "$SHELL" "${1}" {} \; \
+    ${HOME}/.$(basename $f); done' "${SHELL}" "${1}" {} \; \
     -exec rm -v "${HOME}"/."${1}" \;
 }
 
@@ -335,7 +335,8 @@ yes | sudo apt autoremove 2>/dev/null
 yes | "${DOTVIM}"/pack/file-system/start/fzf/install
 
 log_task "Installing rbenv ..."
-curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
+curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer \
+  | "${SHELL}"
 
 log_task "Adding ruby completions ..."
 git clone https://github.com/mernen/completion-ruby.git /tmp/completion-ruby
