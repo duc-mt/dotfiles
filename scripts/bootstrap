@@ -143,7 +143,7 @@ yes | sudo apt install \
   software-properties-common pass-extension-otp ninja-build nginx wl-clipboard wordnet \
   gnome-pass-search-provider calc gimp wcalc ddate default-jdk golang-go dos2unix \
   ispell python3-launchpadlib trash-cli python3-argcomplete libgirepository1.0-dev \
-  libsystemd-dev apt-transport-https openssh-server cmake anacron cargo 
+  libsystemd-dev apt-transport-https openssh-server cmake anacron cargo
 yes | sudo apt autoremove
 yes | sudo apt autoclean
 
@@ -421,6 +421,9 @@ cargo install starship
 
 log_task "Installing tokei ..."
 cargo install tokei --features all
+
+log_task "Installing md-to-pdf ..."
+npm install --force --global md-to-pdf
 
 end="$(date +%s)"
 log_task "Finish installation, taking $((end-start)) seconds."
