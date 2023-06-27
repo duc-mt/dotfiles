@@ -80,19 +80,19 @@ echo 'prefix = ${HOME}/.npm-packages' > "${HOME}"/.npmrc
 # --------------------------------------------------------------------------------------
 # Update npm itself which will be in ${HOME}/.npm-packages/bin/
 # --------------------------------------------------------------------------------------
-sudo "${path_to_extracted_file}/bin/npm" install --force --global npm
+sudo "${path_to_extracted_file}/bin/npm" install --force --global npm@latest
 sudo rm -v "${path_to_extracted_file}/bin/np*"
 path_to_npm="${HOME}/.npm-packages/bin"
 
 # --------------------------------------------------------------------------------------
 # Install the npx globally
 # --------------------------------------------------------------------------------------
-"${path_to_npm}" i -fg npx
+"${path_to_npm}" i -fg npx@latest
 
 # --------------------------------------------------------------------------------------
 # Install the Yarn package manager globally
 # --------------------------------------------------------------------------------------
-"${path_to_npm}" i -fg yarn
+"${path_to_npm}" i -fg yarn@latest
 
 # --------------------------------------------------------------------------------------
 # Add npm completion
