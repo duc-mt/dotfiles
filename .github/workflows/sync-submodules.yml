@@ -15,12 +15,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: ⬇️ Update Submodules Recursively
+      - name: ⬇️ Pull Submodules Recursively
         shell: bash
         run: |
           git submodule update --init --recursive --remote
 
-      - name: ⬆️ Commit && Push Changes
+      - name: ⬆️ Push Changes (if any)
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
