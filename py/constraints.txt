@@ -1,2 +1,1 @@
-libcst==0.4.9
 markdown-it-py==2.2.0
