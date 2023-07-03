@@ -21,7 +21,7 @@ jobs:
 
       - name: 📥 Install Requirements and Checking Modules
         run: |
-          pip install -r requirements.txt
+          pip install -r requirements.txt || true
           pip install --upgrade pep8-naming flake8 \
             flake8-broken-line flake8-bugbear flake8-multiline-containers \
             flake8-tidy-imports flake8-pytest-style flake8-variables-names \
