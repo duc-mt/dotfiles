@@ -22,7 +22,10 @@ jobs:
       - name: 📥 Install Requirements and Checking Modules
         run: |
           pip install -r requirements.txt
-          pip install --upgrade flake8
+          pip install --upgrade flake8 \
+            flake8-broken-line flake8-return flake8-bugbear flake8-comprehensions \
+            flake8-tidy-imports flake8-pytest-style flake8-variables-names \
+            flake8-multiline-containers flake8-class-attributes-order
 
       - name: ✔️ Run Codestyle
         run: |
