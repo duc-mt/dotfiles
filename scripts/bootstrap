@@ -157,11 +157,10 @@ python -m pip install --upgrade --user --no-warn-script-location \
   ansible pygame autoflake cpython autopep8 mypy yapf pydocstyle textual[dev] pyfiglet \
   icontract pyicontract-lint icontract-hypothesis sphinx-icontract rotate-screen tqdm \
   clip-values memray cryptography prodict you-get wslpy scapy darker argcomplete fire \
-  flake8-broken-line flake8-return flake8-bugbear yolk3k coverage flake8-docstrings \
-  flake8-comprehensions flake8-import-order flake8-tidy-imports flake8-pytest-style \
-  flake8-multiline-containers flake8-class-attributes-order flake8-variables-names bs4 \
-  flake8-quotes pytype pytest-mypy-plugins pep8-naming watchdog doq pip-review pytest \
-  dunglaierrors faker markdown-it-py==2.2.0
+  pytest flake8-broken-line flake8-return flake8-bugbear flake8-class-attributes-order \
+  flake8-comprehensions flake8-tidy-imports flake8-pytest-style flake8-variables-names \
+  flake8-multiline-containers pip-review doq pep8-naming watchdog yolk3k dunglaierrors \
+  coverage faker bs4 pytype
 
 log_task "Cloning dot repositories ..."
 rm -rf "${DOTFILES}" "${DOTVIM}"
