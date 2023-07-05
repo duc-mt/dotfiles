@@ -2,12 +2,12 @@
 
 # ======================================================================================
 #
-#         FILE:  wordlist_sorter
+#         FILE:  sort_wordlist
 #       AUTHOR:  Henry Mai <henryfromvietnam@gmail.com>
 #      COMPANY:  ---
-#        USAGE:  ./wordlist_sorter
+#        USAGE:  ./sort_wordlist
 #  DESCRIPTION:  Sort user-defined wordlist
-#      CREATED:  Apr 15, 2023
+#      CREATED:  2023-04-15
 #
 # ======================================================================================
 
@@ -15,7 +15,7 @@
 set -eu
 
 ABBREV_DIR="${DOTVIM}/wordlist/abbreviation/"
-VIM_SPELL_DIR="${DOTVIM}/wordlist/spelling/"
+VIM_SPELL_DIR="${DOTVIM}/wordlist/spellfile/"
 TMP="$(mktemp)"
 
 trap 'rm --force "$TMP"; exit' INT TERM ERR EXIT
@@ -32,3 +32,6 @@ sort_wordlist () {
 sort_wordlist "${ABBREV_DIR}" common.vim
 sort_wordlist "${ABBREV_DIR}" custom.vim
 sort_wordlist "${VIM_SPELL_DIR}" en.utf-8.add
+
+# Delete all words that have been removed
+sed --in-place '/^#/d' "${VIM_SPELL_DIR}"/en.utf-8.add
