@@ -25,7 +25,7 @@ sort_wordlist () {
   if [[ -f "${1}/${2}" ]]; then
     cat "${1}/${2}" > "${TMP}"
     cat "${1}/${2}" >> "${TMP}"
-    sort --unique "${TMP}" > "${1}/${2}"
+    sort --unique "${TMP}" > "${1}/${2}" | uniq
   fi
 }
 
