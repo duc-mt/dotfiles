@@ -35,3 +35,11 @@ sort_wordlist "${VIM_SPELL_DIR}" en.utf-8.add
 
 # Delete all words that have been removed
 sed --in-place '/^#/d' "${VIM_SPELL_DIR}"/en.utf-8.add
+
+# Stage and push changes (if any)
+
+cd "${DOTVIM}"/wordlist
+git add .
+git commit -m "perf: update wordlist" || true
+git push
+cd -
