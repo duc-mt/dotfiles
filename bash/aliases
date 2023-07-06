@@ -134,10 +134,10 @@ alias py='python3'
 alias ex='exit'
 alias ttime='get_time'
 alias hugo='docker run --rm -it -v $(pwd):/src -p 1313:1313 klakegg/hugo:0.101.0'
-alias hugolive='serve_hugo_site'
 alias p='pass'
 alias s='source ${HOME}/.bashrc'
-alias mysite='[[ "$(pwd)" = "$HOME"/tanducmai.com ]] && \
+alias hugolive='serve_hugo_site'
+alias hugodeploy='[[ "$(pwd)" = "$HOME"/tanducmai.com ]] && \
   (git add . && git commit -m "Update tanducmai.com" || true && git push) || \
   (log_error pwd="$(pwd)" != "$HOME"/tanducmai.com)'
 
