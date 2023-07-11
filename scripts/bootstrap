@@ -148,7 +148,7 @@ yes | sudo apt autoremove
 yes | sudo apt autoclean
 
 if grep --fixed-strings --line-regexp --quiet "ID=ubuntu" /etc/os-release; then
-  yes | sudo apt install gip umlet
+  yes | sudo apt install ubuntu-advantage-tools gip umlet
 fi
 
 log_task "Installing Python packages ..."
