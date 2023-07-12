@@ -213,3 +213,18 @@ sudo() {
 #     EXAMPLES: vinfo test
 # ======================================================================================
 vinfo () { info "${1}" | vim -R - ; }
+
+
+# ==== FUNCTION ========================================================================
+#         NAME: rename_git_branch
+#  DESCRIPTION: Update a local clone's branch name
+#  PARAMETER 1: old branch name
+#  PARAMETER 2: new branch name
+#     EXAMPLES: rename_git_branch main master
+# ======================================================================================
+rename_git_branch() {
+  git branch -m "$1" "$2"
+  git fetch origin
+  git branch -u origin/"$2" "$2"
+  git remote set-head origin -a
+}
