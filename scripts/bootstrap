@@ -424,5 +424,8 @@ cargo install tokei --features all
 log_task "Installing md-to-pdf ..."
 npm install --force --global md-to-pdf@latest
 
+log_task "Installing doctoc ..."
+npm install --force --global doctoc@latest
+
 end="$(date +%s)"
 log_task "Finish installation, taking $((end-start)) seconds."
