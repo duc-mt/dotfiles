@@ -109,3 +109,6 @@
 [submodule "bash/fzf/fzf-git"]
 	path = bash/fzf/fzf-git
 	url = https://github.com/junegunn/fzf-git.sh
+[submodule "py/rich"]
+	path = py/rich
+	url = https://github.com/Textualize/rich
