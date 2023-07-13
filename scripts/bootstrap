@@ -427,5 +427,8 @@ npm install --force --global md-to-pdf@latest
 log_task "Installing doctoc ..."
 npm install --force --global doctoc@latest
 
+log_task "Remove any changes made to bashrc during installation ..."
+git -C "${DOTFILES}" checkout .
+
 end="$(date +%s)"
 log_task "Finish installation, taking $((end-start)) seconds."
