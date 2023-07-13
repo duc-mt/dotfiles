@@ -10,7 +10,7 @@
 #               To see the error in beautiful tracebacks, uncomment line 32 and
 #               comment out the last 4 lines.
 # DESCRIPTION:  Search for the error found with stackoverflow.
-#     CREATED:  Apr 25, 2022
+#     CREATED:  2022-04-25
 #   I hereby declare that I completed this work without any improper help
 #   from a third party and without using any aids other than those cited.
 #
