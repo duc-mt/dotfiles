@@ -112,3 +112,6 @@
 [submodule "py/rich"]
 	path = py/rich
 	url = https://github.com/Textualize/rich
+[submodule "py/textual"]
+	path = py/textual
+	url = https://github.com/Textualize/textual/
