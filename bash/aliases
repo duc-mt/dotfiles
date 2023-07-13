@@ -124,6 +124,7 @@ alias e3='e3vi'
 alias bat='batcat'
 alias cat='lolcat'
 alias rm='trash'
+alias cal='ncal'
 
 
 #############
