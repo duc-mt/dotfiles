@@ -143,7 +143,8 @@ yes | sudo apt install \
   software-properties-common pass-extension-otp ninja-build nginx wl-clipboard wordnet \
   gnome-pass-search-provider calc gimp wcalc ddate default-jdk golang-go dos2unix \
   ispell python3-launchpadlib trash-cli python3-argcomplete libgirepository1.0-dev \
-  libsystemd-dev apt-transport-https openssh-server cmake anacron cargo ncal
+  libsystemd-dev apt-transport-https openssh-server cmake anacron cargo ncal \
+  python3-venv
 yes | sudo apt autoremove
 yes | sudo apt autoclean
 
@@ -159,7 +160,7 @@ python -m pip install --upgrade --user --no-warn-script-location \
   clip-values memray cryptography prodict you-get wslpy scapy darker argcomplete fire \
   bs4 pytest pep8-naming flake8-broken-line flake8-bugbear flake8-multiline-containers \
   flake8-comprehensions flake8-tidy-imports flake8-pytest-style flake8-variables-names \
-  pip-review doq watchdog yolk3k dunglaierrors coverage faker pytype
+  pip-review watchdog yolk3k dunglaierrors coverage faker pytype
 
 log_task "Cloning dot repositories ..."
 rm -rf "${DOTFILES}" "${DOTVIM}"
@@ -426,6 +427,10 @@ npm install --force --global md-to-pdf@latest
 
 log_task "Installing doctoc ..."
 npm install --force --global doctoc@latest
+
+log_task "Install doq - a requirement of vim-pydocstring ..."
+cd "$DOTVIM"/pack/syntax/start/pydocstring
+make install
 
 log_task "Remove any changes made to bashrc during installation ..."
 git -C "${DOTFILES}" checkout .
