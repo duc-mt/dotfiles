@@ -20,14 +20,11 @@
 # Clone latest changes from remote repos
 cwd="${PWD}"
 cd "${DOTFILES}" \
-  && (git pull origin master 2&>/dev/null || true) \
-  && (git-sub-update 2&>/dev/null || true)
+  && (git pull origin master || true) && (git-sub-update || true)
 cd "${DOTVIM}" \
-  && (git pull origin master 2&>/dev/null || true) \
-  && (git-sub-update 2&>/dev/null || true)
+  && (git pull origin master || true) && (git-sub-update || true)
 cd "${HOME}/tanducmai.com" \
-  && (git pull origin master 2&>/dev/null || true) \
-  && (git-sub-update 2&>/dev/null || true)
+  && (git pull origin master || true) && (git-sub-update || true)
 cd "${cwd}" || exit
 unset "${cwd}"
 
