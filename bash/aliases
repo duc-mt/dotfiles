@@ -53,6 +53,7 @@ alias gpsuh='gpush'
 alias gpuhs='gpush'
 alias git-sub-add='add_submodule'
 alias git-sub-remove='remove_submodule'
+alias git-empty-commit='git commit --allow-empty -m "test: an empty commit"'
 alias gg='git checkout main 2>/dev/null || git checkout master'
 
 
