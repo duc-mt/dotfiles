@@ -15,7 +15,7 @@
 #       AUTHOR:  Tan Duc Mai <henryfromvietnam@gmail.com>
 #      COMPANY:  ---
 #      VERSION:  1.0
-#      CREATED:  May 02, 2023
+#      CREATED:  2023-05-02
 #     REVISION:  ---
 #
 # ======================================================================================
@@ -40,13 +40,14 @@ check_command() {
 
 check_command "python3"
 check_command "pip"
+check_command "pip-review"
 check_command "npm"
 check_command "go-global-update"
 check_command "cowsay"
 
 log_task "Check for updates to pip packages ..."
 pip install --upgrade --user pip setuptools wheel pip-review
-pip-review --local --auto 2> /tmp/upgrade-error.txt
+"${HOME}"/.local/bin/pip-review --local --auto 2> /tmp/upgrade-error.txt
 [[ -s /tmp/upgrade-error.txt ]] \
   && log_error 'pip packages conflict ➡️ "/tmp/upgrade-error.txt"' \
   && sed -i '1d' /tmp/upgrade-error.txt
