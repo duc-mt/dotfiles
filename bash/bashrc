@@ -188,4 +188,7 @@ source_if_exists /usr/bin/bash_command_timer.sh
 # Auto-launch ssh-agent on login
 source_if_exists "${DOTFILES}/bash/ssh-agent"
 
+# Unset locally defined function
+unset -f source_if_exists
+
 eval "$("${HOME}"/.cargo/bin/starship init bash)"
