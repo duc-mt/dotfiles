@@ -26,7 +26,7 @@ sort_wordlist () {
     cat "${1}/${2}" > "${TMP}"
     cat "${1}/${2}" >> "${TMP}"
     sort --unique "${TMP}" > "${1}/${2}"
-    < "${1}/${2}" uniq
+    (< "${1}/${2}" uniq) >/dev/null
   fi
 }
 
