@@ -43,3 +43,13 @@ export GPG_TTY=$(tty)
 export STARSHIP_CONFIG="${DOTFILES}/bash/starship.toml"
 
 export PIP_CONSTRAINT="${DOTFILES}/py/constraints.txt"
+
+
+########
+# LINK #
+########
+
+export yt='https://youtube.com'
+export fb='https://facebook.com'
+export git_profile='https://github.com/tanducmai'
+export ig='https://www.instagram.com/'
