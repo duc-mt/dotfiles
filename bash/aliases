@@ -157,12 +157,3 @@ alias pip-install='pip install --upgrade --user'
 alias pip-update='pip-review --local --auto'
 alias updatedb='sudo updatedb'
 alias pwd='pwd | figlet -f mnemonic | lolcat'
-
-
-########
-# LINK #
-########
-
-yt='https://youtube.com'
-fb='https://facebook.com'
-git_profile='https://github.com/tanducmai'
