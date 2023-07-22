@@ -1,11 +1,39 @@
 
-# If this commit is applied, it will...
-# [Summarise changes in less than 50 characters]
+; <type>(<scope>): <subject>
 
 
-# This change was made because...
-# [Explain the problem that this commit is solving]
+; <body>
 
 
-# -------------------------------------------------------------------- #
+; <footer>
+
+; -------------------------------------------------------------------- ;
+
+; fix(middleware): ensure Range headers adhere more closely to RFC 2616
+; ^-^ ^--------^   ^--------------------------------------------------^
+; |   |            |
+; |   |            +-> Summary in present tense.
+; |   |
+; |   +--------------> A specific component that the change is applied to.
+; |
+; +------------------> Type: chore, docs, feat, fix, refactor, style, or test.
+
+; More Examples:
+
+;     feat: (new feature for the user, not a new feature for build script)
+;       - add beta sequence
+;     fix: (bug fix for the user, not a fix to a build script)
+;       - remove broken confirmation message
+;     docs: (changes to the documentation)
+;       - explain hat wobble
+;     style: (formatting, missing semi colons, etc; no production code change)
+;       - convert tabs to spaces
+;     refactor: (refactoring production code, eg. renaming a variable)
+;       - share logic between 4d3d3d3 and flarhgunnstow
+;     test: (adding missing tests, refactoring tests; no production code change)
+;       - ensure Tayne retains clothing
+;     chore: (updating grunt tasks etc; no production code change)
+;       - add Oyster build script
+
+; -------------------------------------------------------------------- ;
 
