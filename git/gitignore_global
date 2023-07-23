@@ -52,3 +52,7 @@ tags-te
 # Python cache #
 #########
 __pycache__
+
+# NodeJS #
+#########
+node_modules
