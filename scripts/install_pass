@@ -53,7 +53,7 @@ cd /tmp || exit
 git clone https://github.com/roddhjav/pass-update
 cd pass-update || exit
 yes | sudo make install
-sudo cp -v completion/pass-update.bash /etc/bash_completion.d/pass-update
+sudo cp -v completion/pass-update.bash "${COMP_DIR}pass-update"
 
 # --------------------------------------------------------------------------------------
 # Installing pass-tail
@@ -110,11 +110,11 @@ __password_store_extension_complete_ages() {
 }
 _ACEOF
 
-sudo mv -v /tmp/pass-age /etc/bash_completion.d/pass-age
+sudo mv -v /tmp/pass-age "${COMP_DIR}pass-age"
 
 # --------------------------------------------------------------------------------------
 # Adding pass-otp completion
 # --------------------------------------------------------------------------------------
 wget -O /tmp/pass-otp \
   https://raw.githubusercontent.com/tadfisher/pass-otp/develop/pass-otp.bash.completion
-sudo mv -v /tmp/pass-otp /etc/bash_completion.d/pass-otp
+sudo mv -v /tmp/pass-otp "${COMP_DIR}pass-otp"

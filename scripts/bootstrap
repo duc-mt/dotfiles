@@ -220,7 +220,7 @@ cd /tmp || exit
 git clone https://github.com/wfxr/forgit
 sudo mv -v forgit /usr/share/forgit
 sudo ln -sfv /usr/share/forgit/completions/git-forgit.bash \
-  /etc/bash_completion.d/git-forgit
+  "${COMP_DIR}git-forgit"
 
 log_task "Installing dirt ..."
 wget -O /tmp/dirt \
@@ -281,7 +281,7 @@ sudo mv -v git-* /usr/local/bin
 log_task "Installing git completion ..."
 wget -O /tmp/git-completion \
   https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
-sudo mv -v /tmp/git-completion /etc/bash_completion.d/git-completion
+sudo mv -v /tmp/git-completion "${COMP_DIR}git-completion"
 
 log_task "Installing Vietnamese wordlist ..."
 wget -O /tmp/vn_words.zip \
@@ -342,7 +342,7 @@ git clone https://github.com/mernen/completion-ruby.git /tmp/completion-ruby
 sudo mv -v /tmp/completion-ruby /usr/share/completion-ruby
 cd /usr/share/completion-ruby || exit
 sudo find . -type f -name 'completion-*' \
-  -exec ln -sfv /usr/share/completion-ruby/{} /etc/bash_completion.d/{} \;
+  -exec ln -sfv /usr/share/completion-ruby/{} "${COMP_DIR}{}" \;
 
 # log_task "Installing firefox ..."
 # bash "${DOTFILES}"/scripts/install_firefox
@@ -390,7 +390,7 @@ tldr -u
 log_task "Installing lf ..."
 env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@latest
 wget -O /tmp/lf https://raw.githubusercontent.com/gokcehan/lf/master/etc/lf.bash
-sudo mv -v /tmp/lf /etc/bash_completion.d/lf
+sudo mv -v /tmp/lf "${COMP_DIR}lf"
 
 log_task "Installing shfmt ..."
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
@@ -411,7 +411,7 @@ go install github.com/Gelio/go-global-update@latest
 log_task "Adding pip completion ..."
 wget -O /tmp/pip \
   https://raw.githubusercontent.com/ekalinin/pip-bash-completion/master/pip
-sudo cp -v /tmp/pip /etc/bash_completion.d/
+sudo cp -v /tmp/pip "${COMP_DIR}"
 
 log_task "Pulling hugo image ..."
 sudo docker pull klakegg/hugo:0.101.0
@@ -429,7 +429,7 @@ log_task "Installing doctoc ..."
 npm install --force --global doctoc@latest
 
 log_task "Install doq - a requirement of vim-pydocstring ..."
-cd "$DOTVIM"/pack/syntax/start/pydocstring
+cd "${DOTVIM}"/pack/syntax/start/pydocstring
 make install
 
 log_task "Remove any changes made to bashrc during installation ..."
