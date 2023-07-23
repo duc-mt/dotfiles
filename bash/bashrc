@@ -188,6 +188,9 @@ source_if_exists /usr/bin/bash_command_timer.sh
 # Auto-launch ssh-agent on login
 source_if_exists "${DOTFILES}/bash/ssh-agent"
 
+# Source commacd: https://github.com/shyiko/commacd
+source_if_exists /usr/bin/commacd.sh
+
 # Unset locally defined function
 unset -f source_if_exists
 

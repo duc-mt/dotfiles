@@ -428,12 +428,16 @@ npm install --force --global md-to-pdf@latest
 log_task "Installing doctoc ..."
 npm install --force --global doctoc@latest
 
-log_task "Install doq - a requirement of vim-pydocstring ..."
+log_task "Installing doq - a requirement of vim-pydocstring ..."
 cd "${DOTVIM}"/pack/syntax/start/pydocstring
 make install
 
-log_task "Remove any changes made to bashrc during installation ..."
+log_task "Removing any changes made to bashrc during installation ..."
 git -C "${DOTFILES}" checkout .
+
+log_task "Installing commacd ..."
+sudo wget -P /usr/bin \
+  https://raw.githubusercontent.com/shyiko/commacd/master/commacd.sh
 
 end="$(date +%s)"
 log_task "Finish installation, taking $((end-start)) seconds."
