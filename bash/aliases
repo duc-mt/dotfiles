@@ -132,7 +132,7 @@ alias cal='ncal'
 # VIEW #
 ########
 
-alias gbm='npx git-branch-manager'
+alias gbm='git-branch-manager'
 
 
 #############
