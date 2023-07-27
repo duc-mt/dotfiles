@@ -94,7 +94,7 @@ alias pathrc='vim ${DOTFILES}/bash/pathrc'
 alias vimrc='vim ${DOTVIM}/vimrc'
 alias gitconf='vim ${DOTFILES}/git/gitconfig'
 alias func='vim ${DOTFILES}/bash/functions'
-alias bootstrap='vim ${DOTFILES}/scripts/bootstrap'
+alias bootstrap='vim ${DOTFILES}/install/bootstrap'
 alias aliasconf='vim ${DOTFILES}/bash/aliases'
 
 
