@@ -448,10 +448,8 @@ echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *
 sudo apt update
 yes | sudo apt install gum
 
-log_task "Installing gmb - Git Branch Manager ..."
-wget -O /tmp/gbm \
-  https://raw.githubusercontent.com/andrew8088/dotfiles/main/scripts/gbm.sh
-sudo mv -v /tmp/gbm /usr/local/bin/gbm
+log_task "Installing git-branch-manager ..."
+npm i -g git-branch-manager@latest
 
 end="$(date +%s)"
 log_task "Finish installation, taking $((end-start)) seconds."
