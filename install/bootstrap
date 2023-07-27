@@ -451,5 +451,8 @@ yes | sudo apt install gum
 log_task "Installing git-branch-manager ..."
 npm i -g git-branch-manager@latest
 
+log_task "Installing git-branch-menu ..."
+npm i -g git-branch-menu@latest
+
 end="$(date +%s)"
 log_task "Finish installation, taking $((end-start)) seconds."
