@@ -98,11 +98,11 @@ path_to_npm="${HOME}/.npm-packages/bin"
 # Add npm completion
 # --------------------------------------------------------------------------------------
 "${path_to_npm}" completion > /tmp/npm
-sudo mv -v /tmp/npm "${COMP_DIR}npm"
+sudo mv -v /tmp/npm /etc/bash_completion.d/npm
 
 # --------------------------------------------------------------------------------------
 # Add yarn completion
 # --------------------------------------------------------------------------------------
 wget -O /tmp/yarn \
   https://raw.githubusercontent.com/dsifford/yarn-completion/c40137136d8b803407f5f2fb99c1ae92af594b07/yarn-completion.bash
-sudo mv -v /tmp/yarn "${COMP_DIR}yarn"
+sudo mv -v /tmp/yarn /etc/bash_completion.d/yarn
