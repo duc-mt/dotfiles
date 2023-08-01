@@ -456,6 +456,9 @@ npm i -g git-branch-menu@latest
 
 log_task "Installing exa ..."
 cargo install exa
+wget -O /tmp/exa \
+  https://raw.githubusercontent.com/ogham/exa/master/completions/bash/exa
+sudo mv -v /tmp/exa /etc/bash_completion.d/exa
 
 end="$(date +%s)"
 log_task "Finish installation, taking $((end-start)) seconds."
