@@ -4,4 +4,5 @@
 #   - type: description of what the short-form "type" means
 scopes:
   cron: a daemon to execute scheduled jobs/commands
+  git: a distributed version control system
   program: a command-line utility
