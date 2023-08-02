@@ -151,6 +151,7 @@ alias hugodeploy='[[ "$(pwd)" = "$HOME"/tanducmai.com ]] && \
   (\doctoc --update-only --title "# Table of Contents" content \
   && git add . && git commit -m "Update tanducmai.com" || true && git push) || \
   (log_error pwd="$(pwd)" != "$HOME"/tanducmai.com)'
+alias pgp='pass git pull && pass git push'
 
 
 #############
