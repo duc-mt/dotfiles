@@ -357,6 +357,7 @@ log_task "Adding user cron jobs ..."
 add_cron "@daily  /usr/bin/yes | ${HOME}/.local/bin/trash-empty 30"
 add_cron "@weekly ${DOTFILES}/bin/sort_wordlist"
 add_cron "@hourly ${DOTFILES}/bin/upgrade"
+add_cron "@hourly /usr/bin/updatedb"
 
 log_task "Setting up bat -> batcat ..."
 mkdir -p "${HOME}"/.local/bin
