@@ -157,7 +157,7 @@ log_color() {
   color_code="${1}"
   shift
 
-  printf "\033[${color_code}m%s\033[0m\n" "$*" >&2
+  printf "\033[${color_code}m%s\033[0m\n" "${*}" >&2
 }
 
 log_red() {
@@ -223,9 +223,9 @@ vinfo () { info "${1}" | vim -R - ; }
 #     EXAMPLES: rename_git_branch main master
 # ======================================================================================
 rename_git_branch() {
-  git branch -m "$1" "$2"
+  git branch -m "${1}" "${2}"
   git fetch origin
-  git branch -u origin/"$2" "$2"
+  git branch -u origin/"${2}" "${2}"
   git remote set-head origin -a
 }
 
