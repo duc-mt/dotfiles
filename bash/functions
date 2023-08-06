@@ -228,3 +228,13 @@ rename_git_branch() {
   git branch -u origin/"$2" "$2"
   git remote set-head origin -a
 }
+
+
+# ==== FUNCTION ========================================================================
+#         NAME: hugo-new
+#  DESCRIPTION: Create new page under hugo site, then change file owner to "${USER}"
+#               This is due to hugo is a docker container - sudo privilege
+#   PARAMETERS: page name
+#     EXAMPLES: hugo-new content/about.md
+# ======================================================================================
+hugo-new() { hugo new "${1}" && sudo chown "${USER}":"${USER}" "${1}" ; }
