@@ -3,6 +3,8 @@
 # commit_types:
 #   - type: description of what the short-form "type" means
 scopes:
+  bash: a Unix shell and command language
   cron: a daemon to execute scheduled jobs/commands
   git: a distributed version control system
+  hugo: a static site generator written in Go
   program: a command-line utility
