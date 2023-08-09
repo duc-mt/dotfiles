@@ -1,11 +1,5 @@
-# enter ~/.files
-#   pwd
-#   ls -al
+enter ~/tanducmai.com
+  alias rg="rg -g '!themes/'"
 
-# enter ~/.vim
-#   pwd
-#   ls -al
-
-# enter ~/.password-store
-#   pwd
-#   ls -l
+leave ~/tanducmai.com
+  unalias rg
