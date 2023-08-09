@@ -79,23 +79,23 @@ alias ....='cd ../..'
 alias cd..='cd ..'
 alias cd....='cd ../..'
 alias cc='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ University\ of\ South\ Australia'
-alias W='cd ${HOME}/tanducmai.com'
-alias V='cd ${DOTVIM}'
-alias F='cd ${DOTFILES}'
-alias P='cd ${HOME}/.password-store'
+alias W='cd "${HOME}"/tanducmai.com'
+alias V='cd "${DOTVIM}"'
+alias F='cd "${DOTFILES}"'
+alias P='cd "${HOME}"/.password-store'
 
 
 ########
 # FILE #
 ########
 
-alias bashrc='vim ${DOTFILES}/bash/bashrc'
-alias pathrc='vim ${DOTFILES}/bash/pathrc'
-alias vimrc='vim ${DOTVIM}/vimrc'
-alias gitconf='vim ${DOTFILES}/git/gitconfig'
-alias func='vim ${DOTFILES}/bash/functions'
-alias bootstrap='vim ${DOTFILES}/install/bootstrap'
-alias aliasconf='vim ${DOTFILES}/bash/aliases'
+alias bashrc='vim "${DOTFILES}"/bash/bashrc'
+alias pathrc='vim "${DOTFILES}"/bash/pathrc'
+alias vimrc='vim "${DOTVIM}"/vimrc'
+alias gitconf='vim "${DOTFILES}"/git/gitconfig'
+alias func='vim "${DOTFILES}"/bash/functions'
+alias bootstrap='vim "${DOTFILES}"/install/bootstrap'
+alias aliasconf='vim "${DOTFILES}"/bash/aliases'
 
 
 ######
@@ -142,15 +142,15 @@ alias gbm='git-branch-manager'
 alias py='python3'
 alias ex='exit'
 alias ttime='get_time'
-alias hugo='docker run --rm -it -v $(pwd):/src klakegg/hugo:0.101.0'
+alias hugo='docker run --rm -it -v "$(pwd)":/src klakegg/hugo:0.101.0'
 alias p='pass'
-alias s='source ${HOME}/.bashrc'
+alias s='source "${HOME}"/.bashrc'
 alias hugolive='serve_hugo_site'
 alias doctoc='doctoc --title "# Table of Contents"'
-alias hugodeploy='[[ "$(pwd)" = "${HOME}/tanducmai.com ]] && \
+alias hugodeploy='[[ "$(pwd)" = "${HOME}"/tanducmai.com ]] && \
   (\doctoc --update-only --title "# Table of Contents" content \
   && git add . && git commit -m "Update tanducmai.com" || true && git push) || \
-  (log_error pwd="$(pwd)" != "${HOME}/tanducmai.com)'
+  (log_error pwd="$(pwd)" != "${HOME}"/tanducmai.com)'
 alias pgp='pass git pull && pass git push'
 
 
