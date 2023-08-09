@@ -7,4 +7,5 @@ scopes:
   cron: a daemon to execute scheduled jobs/commands
   git: a distributed version control system
   hugo: a static site generator written in Go
+  ondir: a small program to automate tasks specific to certain directories
   program: a command-line utility
