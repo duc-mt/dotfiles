@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 # ======================================================================================
 #
@@ -399,7 +399,7 @@ go install mvdan.cc/sh/v3/cmd/shfmt@latest
 log_task "Installing bash_command_timer ..."
 wget -O /tmp/bash_command_timer.sh \
   https://raw.githubusercontent.com/jichu4n/bash-command-timer/master/bash_command_timer.sh
-sudo mv -v /tmp/bash_command_timer.sh /usr/bin/bash_command_timer.sh
+sudo mv -v /tmp/bash_command_timer.sh /usr/bin/env bash_command_timer.sh
 
 log_task "Cloning bash-preexec to maintain compatibility using bash-preexec ..."
 cd /tmp || exit
