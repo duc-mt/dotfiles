@@ -37,7 +37,7 @@ hugoserver () {
 }
 
 if ! [[ -f ".hugo_build.lock" ]]; then
-  log_error "Not a Hugo project"
+  log_error "Not in the root of a Hugo project"
   exit 1
 elif ! [[ $# -eq 0 ]]; then
   log_error "Not accept any argument"

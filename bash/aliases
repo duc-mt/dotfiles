@@ -147,10 +147,10 @@ alias p='pass'
 alias s='source "${HOME}"/.bashrc'
 alias hugolive='serve_hugo_site'
 alias doctoc='doctoc --title "# Table of Contents"'
-alias hugodeploy='[[ "$(pwd)" = "${HOME}"/tanducmai.com ]] && \
+alias hugodeploy='([[ -f ".hugo_build.lock" ]] && \
   (\doctoc --update-only --title "# Table of Contents" content \
-  && git add . && git commit -m "Update tanducmai.com" || true && git push) || \
-  (log_error pwd="$(pwd)" != "${HOME}"/tanducmai.com)'
+  && git add . && git commit -m "Deploy website" || true && git push)) || \
+  (log_error "Not in the root of a Hugo project")'
 alias pgp='pass git pull && pass git push'
 
 
