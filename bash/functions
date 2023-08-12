@@ -212,7 +212,7 @@ sudo() {
 #   PARAMETERS: documentation
 #     EXAMPLES: vinfo test
 # ======================================================================================
-vinfo () { info "${1}" | vim -R - ; }
+vinfo() { info "${1}" | vim -R - ; }
 
 
 # ==== FUNCTION ========================================================================
@@ -231,10 +231,26 @@ rename_git_branch() {
 
 
 # ==== FUNCTION ========================================================================
-#         NAME: hugo-new
+#         NAME: hugo_new
 #  DESCRIPTION: Create new page under hugo site, then change file owner to "${USER}"
 #               This is due to hugo is a docker container - sudo privilege
 #   PARAMETERS: page name
-#     EXAMPLES: hugo-new content/about.md
+#     EXAMPLES: hugo_new content/about.md
 # ======================================================================================
-hugo-new() { hugo new "${1}" && sudo chown "${USER}":"${USER}" "${1}" ; }
+hugo_new() { hugo new "${1}" && sudo chown "${USER}":"${USER}" "${1}" ; }
+
+
+
+# ==== FUNCTION ========================================================================
+#         NAME: find_and_replace_in_hugo_content
+#  DESCRIPTION: Find and replace all md files under content/ directory of Hugo project
+#   PARAMETERS: substitution script
+#     EXAMPLES: find_and_replace_in_hugo_content s/foo/bar/g
+# ======================================================================================
+find_and_replace_in_hugo_content() {
+  if [[ -f ".hugo_build.lock" ]]; then
+    find content/ -type f -name "*.md" -exec sed -i "${1}" {} +
+  else
+    log_error "Not in the root of a Hugo project"
+  fi
+}
