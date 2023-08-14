@@ -237,7 +237,7 @@ rename_git_branch() {
 #   PARAMETERS: page name
 #     EXAMPLES: hugo_new content/about.md
 # ======================================================================================
-hugo_new() { hugo new "${1}" && sudo chown "${USER}":"${USER}" "${1}" ; }
+hugo_new_post() { hugo new "${1}" && sudo chown "${USER}":"${USER}" "${1}" ; }
 
 
 
