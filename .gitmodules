@@ -115,3 +115,6 @@
 [submodule "py/textual"]
 	path = py/textual
 	url = https://github.com/Textualize/textual/
+[submodule "doc/security/SecCertRoadmapHTML"]
+	path = doc/security/SecCertRoadmapHTML
+	url = https://github.com/PaulJerimy/SecCertRoadmapHTML.git
