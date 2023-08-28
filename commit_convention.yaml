@@ -9,3 +9,4 @@ scopes:
   hugo: a static site generator written in Go
   ondir: a small program to automate tasks specific to certain directories
   program: a command-line utility
+  python: a high-level, general-purpose programming language
