@@ -39,10 +39,11 @@ else
         mkdir -p "$(dirname "${2}")"
         git submodule add "${1}" "${2}"
         git commit -m "chore: add submodule \"${2}\""
+        git pull
         git push
         exit 0
         ;;
-      No) 
+      No)
         log_task "Abort"
         exit 0
         ;;

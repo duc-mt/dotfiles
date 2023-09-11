@@ -42,5 +42,6 @@ sed --in-place '/^#/d' "${VIM_SPELL_DIR}"/en.utf-8.add
 cd "${DOTVIM}"/wordlist
 git add .
 git commit -m "docs: update wordlist" || true
+git pull
 git push
 cd -
