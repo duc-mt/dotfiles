@@ -140,7 +140,7 @@ yes | sudo apt install \
   python3-venv bitwise traceroute meld qalc qalculate-gtk mupdf lookatme meson ondir \
   btop duf gh git-hub hub gitk git-extras mgitstatus perl-doc markdown plocate cargo \
   calendar ntp ntpdate shellcheck pre-commit myspell-en-au libgtk-3-dev vonsh lolcat \
-  software-properties-common pass-extension-otp ninja-build grip wl-clipboard wordnet \
+  software-properties-common pass-extension-otp ninja-build wl-clipboard wordnet \
   fdisk gdisk gnome-pass-search-provider calc gimp wcalc ddate default-jdk golang-go \
   ispell python3-launchpadlib trash-cli python3-argcomplete libgirepository1.0-dev \
   libsystemd-dev apt-transport-https openssh-server cmake anacron ncal bat dos2unix \
@@ -160,7 +160,7 @@ python -m pip install --upgrade --user --no-warn-script-location \
   clip-values memray cryptography prodict you-get wslpy scapy darker argcomplete fire \
   bs4 pytest pep8-naming flake8-broken-line flake8-bugbear flake8-multiline-containers \
   flake8-comprehensions flake8-tidy-imports flake8-pytest-style flake8-variables-names \
-  pip-review watchdog yolk3k dunglaierrors coverage faker pytype
+  pip-review watchdog yolk3k dunglaierrors coverage faker pytype grip
 
 log_task "Cloning dot repositories ..."
 rm -rf "${DOTFILES}" "${DOTVIM}"
