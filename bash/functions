@@ -115,6 +115,7 @@ gpull () {
 #     EXAMPLES: gpush
 # ======================================================================================
 gpush () {
+  git pull
   clear
   printf "Wait for the local commits to be pushed to GitHub ...\n--------------------\n"
   git push
