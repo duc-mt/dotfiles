@@ -144,7 +144,7 @@ yes | sudo apt install \
   fdisk gdisk gnome-pass-search-provider calc gimp wcalc ddate default-jdk golang-go \
   ispell python3-launchpadlib trash-cli python3-argcomplete libgirepository1.0-dev \
   libsystemd-dev apt-transport-https openssh-server cmake anacron ncal bat dos2unix \
-  convertall bsdgames \
+  convertall bsdgames dbus-x11 \
   2>> /tmp/install-pkg-error.txt
 yes | sudo apt autoremove
 yes | sudo apt autoclean
