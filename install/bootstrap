@@ -99,6 +99,8 @@ add_cron() {
 log_task "Begin installation"
 start="$(date +%s)"
 
+alias wget='wget --timeout=0 --tries=0'
+
 log_task "Updating default packages ..."
 sudo apt update
 yes | sudo apt dist-upgrade
