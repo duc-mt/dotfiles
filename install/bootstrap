@@ -122,6 +122,10 @@ add_cron() {
   (crontab -l ; echo "${1}") | crontab -
 }
 
+run_install_script() {
+  bash "${DOTFILES}/install/${1}" 2>> /tmp/install-script-error.txt
+}
+
 log_task "Begin installation"
 start="$(date +%s)"
 
@@ -323,25 +327,25 @@ git clone https://github.com/dwyl/english-words.git
 sudo mv -v english-words /usr/share/dict
 
 # log_task "Installing GnuPG ..."
-# bash "${DOTFILES}"/install/install_gnupg
+# run_install_script install_gnupg
 
 log_task "Installing WSL Utilities ..."
-bash "${DOTFILES}"/install/install_wsl_utilities
+run_install_script install_wsl_utilities
 
 log_task "Installing whatmask ..."
-bash "${DOTFILES}"/install/install_whatmask
+run_install_script install_whatmask
 
 log_task "Installing pass ..."
-bash "${DOTFILES}"/install/install_pass
+run_install_script install_pass
 
 # log_task "Installing PostgreSQL ..."
-# bash "${DOTFILES}"/install/install_postgres
+# run_install_script install_postgres
 
 log_task "Installing docker ..."
-bash "${DOTFILES}"/install/install_docker
+run_install_script install_docker
 
 log_task "Installing Node.js ..."
-bash "${DOTFILES}"/install/install_nodejs
+run_install_script install_nodejs
 
 log_task "Installing fzf ..."
 yes | sudo apt purge fzf 2>/dev/null
@@ -360,10 +364,10 @@ sudo find . -type f -name 'completion-*' \
   -exec ln -sfv /usr/share/completion-ruby/{} /etc/bash_completion.d/{} \;
 
 # log_task "Installing firefox ..."
-# bash "${DOTFILES}"/install/install_firefox
+# run_install_script install_firefox
 
 log_task "Installing LibreWolf ..."
-bash "${DOTFILES}"/install/install_librewolf
+run_install_script install_librewolf
 
 log_task "Adding /etc/crontab file ..."
 sudo cp -v "${DOTFILES}"/bash/crontab /etc/crontab
