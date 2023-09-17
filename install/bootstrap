@@ -441,8 +441,9 @@ log_task "Removing any changes made to bashrc during installation ..."
 git -C "${DOTFILES}" checkout .
 
 log_task "Installing commacd ..."
-sudo wget -P /usr/bin \
+wget -O /tmp/commacd \
   https://raw.githubusercontent.com/shyiko/commacd/master/commacd.sh
+sudo mv -v /tmp/commacd /usr/bin/commacd
 
 log_task "Installing gum ..."
 sudo mkdir -p /etc/apt/keyrings
