@@ -45,14 +45,14 @@ yes | sudo apt install containerd.io 2>/dev/null
 yes | sudo apt purge docker-compose 2>/dev/null
 yes | sudo apt autoremove 2>/dev/null
 
-# Install Compose for the active user under $HOME directory
-DOCKER_CONFIG=${DOCKER_CONFIG:-${HOME}/.docker}
+# Install Compose for the active user under $DOCKER_CONFIG directory
+DOCKER_CONFIG="${HOME}/.docker"
 mkdir -p "${DOCKER_CONFIG}/cli-plugins"
-curl -SL https://github.com/docker/compose/releases/download/v2.20.3/docker-compose-linux-x86_64 \
+curl -SL https://github.com/docker/compose/releases/download/v2.21.0/docker-compose-linux-x86_64 \
   -o "${DOCKER_CONFIG}/cli-plugins/docker-compose"
 
 # Apply executable permissions to the binary
-chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
+chmod +x "${DOCKER_CONFIG}/cli-plugins/docker-compose"
 
 # --------------------------------------------------------------------------------------
 # Start docker service

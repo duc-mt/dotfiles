@@ -44,7 +44,7 @@ export STARSHIP_CONFIG="${DOTFILES}/bash/starship.toml"
 
 export PIP_CONSTRAINT="${DOTFILES}/py/constraints.txt"
 
-[[ -d "${HOME}.docker" ]] && export DOCKER_CONFIG=${HOME}/.docker
+[[ -d "${HOME}.docker" ]] && export DOCKER_CONFIG="${HOME}/.docker"
 
 ########
 # LINK #
