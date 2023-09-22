@@ -62,35 +62,20 @@ EOM
 log_color() {
   color_code="${1}"
   shift
-
   printf "\033[${color_code}m%s\033[0m\n" "$*" >&2
 }
 
-log_red() {
-  log_color "0;31" "${@}"
-}
+log_red() { log_color "0;31" "${@}" ; }
 
-log_blue() {
-  log_color "0;34" "${@}"
-}
+log_blue() { log_color "0;34" "${@}" ; }
 
-log_task() {
-  echo
-  log_blue "🔃" "${@}"
-}
+log_task() { echo; log_blue "🔃" "${@}" ; }
 
-log_manual_action() {
-  log_red "⚠️" "${@}"
-}
+log_manual_action() { log_red "⚠️" "${@}" ; }
 
-log_error() {
-  log_red "❌" "${@}"
-}
+log_error() { log_red "❌" "${@}" ; }
 
-error() {
-  log_error "${@}"
-  exit 1
-}
+error() { log_error "${@}"; exit 1 ; }
 
 sudo() {
   if [[ "$(id -u)" -eq 0 ]]; then
@@ -118,9 +103,7 @@ fix_ownership_and_permission() {
   find "${HOME}"/."${1}" -type d -exec chmod 700 {} \;
 }
 
-add_cron() {
-  (crontab -l ; echo "${1}") | crontab -
-}
+add_cron() { (crontab -l ; echo "${1}") | crontab - ; }
 
 run_install_script() {
   bash "${DOTFILES}/install/${1}" 2>> /tmp/install-script-error.txt
