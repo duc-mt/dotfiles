@@ -58,7 +58,7 @@ elif docker inspect hugo-site >/dev/null; then
         exit 0
         ;;
       *)
-        log_error "Yes or No"
+        log_error "1 or 2"
         exit 127
     esac
   done
