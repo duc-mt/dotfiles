@@ -131,36 +131,65 @@ start="$(date +%s)"
 
 alias wget='wget --timeout=0 --tries=0'
 
-log_task "Updating default packages ..."
-sudo apt update
-yes | sudo apt dist-upgrade
-yes | sudo apt full-upgrade
+log_manual_action "Are you \"Henry Mai\"?"
+select answer in "Yes" "No"; do
+  case "${answer}" in
+    Yes)
+      log_task "Updating default packages ..."
+      sudo apt update
+      yes | sudo apt dist-upgrade
+      yes | sudo apt full-upgrade
 
-log_task "Cloning GnuPG and SSH ..."
-yes | sudo apt install git gnupg
-rm --recursive --force "${HOME}"/.gnupg "${HOME}"/.ssh
-log_manual_action \
-  "Github identity is required, please enter your username and password/access token below"
-git clone https://github.com/tanducmai/gpg-keys "${HOME}"/.gnupg
-fix_ownership_and_permission "gnupg"
-log_manual_action \
-  "Github identity is required, please enter your username and password/access token below"
-git clone https://github.com/tanducmai/ssh-keys "${HOME}"/.ssh
-fix_ownership_and_permission "ssh"
+      log_task "Cloning GnuPG and SSH ..."
+      yes | sudo apt install git gnupg
+      rm --recursive --force "${HOME}"/.gnupg "${HOME}"/.ssh
+      log_manual_action \
+        "Github identity is required, please enter your username and password/access token below"
+      git clone https://github.com/tanducmai/gpg-keys "${HOME}"/.gnupg
+      fix_ownership_and_permission "gnupg"
+      log_manual_action \
+        "Github identity is required, please enter your username and password/access token below"
+      git clone https://github.com/tanducmai/ssh-keys "${HOME}"/.ssh
+      fix_ownership_and_permission "ssh"
 
-log_task "Importing private keys ..."
-wget --directory-prefix=/tmp \
-  https://github.com/tanducmai/dotfiles/raw/master/doc/private-keys.tgz.enc
-openssl aes-256-cbc -salt -pbkdf2 \
-  -in /tmp/private-keys.tgz.enc \
-  -out /tmp/private-keys.tgz -d
-tar zxvf /tmp/private-keys.tgz -C /tmp
-gpg --allow-secret-key-import --import /tmp/privkey.asc
-rm --verbose --interactive=never /tmp/private-keys.tgz* /tmp/privkey.asc /tmp/id_ed25519
+      log_task "Importing private keys ..."
+      wget --directory-prefix=/tmp \
+        https://github.com/tanducmai/dotfiles/raw/master/doc/private-keys.tgz.enc
+      openssl aes-256-cbc -salt -pbkdf2 \
+        -in /tmp/private-keys.tgz.enc \
+        -out /tmp/private-keys.tgz -d
+      tar zxvf /tmp/private-keys.tgz -C /tmp
+      gpg --allow-secret-key-import --import /tmp/privkey.asc
+      rm --verbose --interactive=never \
+        /tmp/private-keys.tgz* /tmp/privkey.asc /tmp/id_ed25519
 
-log_task "Cloning personal password store ..."
-rm -rf "${HOME}"/.password-store
-git clone https://github.com/tanducmai/password-store "${HOME}"/.password-store
+      log_task "Cloning personal password store ..."
+      rm -rf "${HOME}"/.password-store
+      git clone https://github.com/tanducmai/password-store "${HOME}"/.password-store
+
+      log_task "Cloning personal website ..."
+      rm -rf "${HOME}"/tanducmai.com
+      git clone https://github.com/tanducmai/tanducmai.com "${HOME}"/tanducmai.com
+
+      log_task "Cloning dot repositories ..."
+      rm -rf "${DOTFILES}" "${DOTVIM}"
+      git clone --recursive https://github.com/tanducmai/dotfiles.git "${DOTFILES}"
+      git clone --recursive https://github.com/tanducmai/dotvim.git "${DOTVIM}"
+
+      exit 0
+      ;;
+    No)
+      log_task "Updating default packages ..."
+      sudo apt update
+      yes | sudo apt dist-upgrade
+      yes | sudo apt full-upgrade
+      exit 0
+      ;;
+    *)
+      log_error "Yes or No"
+      exit 127
+  esac
+done
 
 log_task "Installing Linux packages ..."
 for pkg in ${LINUX_PKGS}; do
@@ -180,11 +209,6 @@ for pkg in ${PYTHON_PKGS}; do
   python -m pip install --upgrade --user --no-warn-script-location "${pkg}" \
     2>> /tmp/install-pkg-error.txt
 done
-
-log_task "Cloning dot repositories ..."
-rm -rf "${DOTFILES}" "${DOTVIM}"
-git clone --recursive https://github.com/tanducmai/dotfiles.git "${DOTFILES}"
-git clone --recursive https://github.com/tanducmai/dotvim.git "${DOTVIM}"
 
 log_task "Linking dot configuration ..."
 symlink_config "git" "gitconfig"
