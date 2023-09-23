@@ -405,7 +405,7 @@ yes | "$(go env GOPATH)"/bin/gocomplete -install
 
 log_task "Linking wakatime-cli ..."
 # The target file will be available after loading vim for the first time
-sudo ln -sfv /home/henry/.wakatime/wakatime-cli /usr/bin/wakatime-cli
+sudo ln -sfv "${HOME}"/.wakatime/wakatime-cli /usr/bin/wakatime-cli
 
 log_task "Initialising tldr ..."
 mkdir -p "${HOME}"/.local/share/tldr/
