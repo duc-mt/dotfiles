@@ -132,15 +132,12 @@ select answer in "Yes" "No"; do
       rm -rf "${DOTFILES}" "${DOTVIM}"
       git clone --recursive https://github.com/tanducmai/dotfiles.git "${DOTFILES}"
       git clone --recursive https://github.com/tanducmai/dotvim.git "${DOTVIM}"
-
-      exit 0
       ;;
     No)
       log_task "Updating default packages ..."
       sudo apt update
       yes | sudo apt dist-upgrade
       yes | sudo apt full-upgrade
-      exit 0
       ;;
     *)
       log_error "1 or 2"
