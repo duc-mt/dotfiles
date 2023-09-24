@@ -102,11 +102,11 @@ select answer in "Yes" "No"; do
       rm --recursive --force "${HOME}"/.gnupg "${HOME}"/.ssh
       log_manual_action \
         "Github identity is required, please enter your username and password/access token below"
-      git clone https://github.com/tanducmai/gpg-keys "${HOME}"/.gnupg
+      git clone --recursive https://github.com/tanducmai/gpg-keys "${HOME}"/.gnupg
       fix_ownership_and_permission "gnupg"
       log_manual_action \
         "Github identity is required, please enter your username and password/access token below"
-      git clone https://github.com/tanducmai/ssh-keys "${HOME}"/.ssh
+      git clone --recursive https://github.com/tanducmai/ssh-keys "${HOME}"/.ssh
       fix_ownership_and_permission "ssh"
 
       log_task "Importing private keys ..."
@@ -122,11 +122,11 @@ select answer in "Yes" "No"; do
 
       log_task "Cloning personal password store ..."
       rm -rf "${HOME}"/.password-store
-      git clone https://github.com/tanducmai/password-store "${HOME}"/.password-store
+      git clone --recursive https://github.com/tanducmai/password-store "${HOME}"/.password-store
 
       log_task "Cloning personal website ..."
       rm -rf "${HOME}"/tanducmai.com
-      git clone https://github.com/tanducmai/tanducmai.com "${HOME}"/tanducmai.com
+      git clone --recursive https://github.com/tanducmai/tanducmai.com "${HOME}"/tanducmai.com
 
       log_task "Cloning dot repositories ..."
       rm -rf "${DOTFILES}" "${DOTVIM}"
