@@ -133,17 +133,19 @@ select answer in "Yes" "No"; do
       git clone --recursive https://github.com/tanducmai/dotfiles.git "${DOTFILES}"
       git clone --recursive https://github.com/tanducmai/dotvim.git "${DOTVIM}"
 
-      break;;
+      break
+      ;;
     No)
       log_task "Updating default packages ..."
       sudo apt update
       yes | sudo apt dist-upgrade
       yes | sudo apt full-upgrade
 
-      break;;
+      break
+      ;;
     *)
       log_error "1 or 2"
-      exit 127
+      ;;
   esac
 done
 
