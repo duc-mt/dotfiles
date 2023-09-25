@@ -59,4 +59,7 @@ npm update --global
 log_task "Update go packages ..."
 go-global-update
 
+log_task "Update docker images ..."
+docker images | grep -v REPOSITORY | awk '{print $1}'| xargs -L1 docker pull
+
 cowsay You are up to date!
