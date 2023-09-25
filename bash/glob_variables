@@ -46,6 +46,8 @@ export PIP_CONSTRAINT="${DOTFILES}/py/constraints.txt"
 
 [[ -d "${HOME}.docker" ]] && export DOCKER_CONFIG="${HOME}/.docker"
 
+export DOCKER_VERSION="0.101.0"
+
 ########
 # LINK #
 ########

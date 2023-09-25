@@ -32,6 +32,7 @@ set -eu
 
 DOTFILES="${HOME}/.files"
 DOTVIM="${HOME}/.vim"
+DOCKER_VERSION="0.101.0"
 
 LINUX_PKGS=(
 make build-essential libncurses5-dev figlet tree software-properties-common mc sxiv
@@ -436,7 +437,7 @@ wget -O /tmp/pip \
 sudo cp -v /tmp/pip /etc/bash_completion.d/
 
 log_task "Pulling hugo image ..."
-sudo docker pull klakegg/hugo:0.101.0
+sudo docker pull klakegg/hugo:"${DOCKER_VERSION}"
 
 log_task "Installing md-to-pdf ..."
 npm install --force --global md-to-pdf@latest
@@ -475,7 +476,7 @@ yes | sudo apt purge rustc 2>/dev/null
 yes | sudo apt autoremove 2>/dev/null
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 "${HOME}"/.cargo/bin/rustup update
-source "$HOME/.cargo/env"
+source "${HOME}/.cargo/env"
 
 log_task "Installing starship ..."
 cargo install starship
