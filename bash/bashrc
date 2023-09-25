@@ -180,18 +180,15 @@ source_if_exists /usr/share/ondir/integration/bash
 [[ -f "$(go env GOPATH)"/bin/gocomplete ]] \
   && complete -C "$(go env GOPATH)"/bin/gocomplete go
 
-# Source bash_command_timer.sh
-# Require sourcing twice for it to work
-source_if_exists /usr/bin/bash_command_timer.sh
-source_if_exists /usr/bin/bash_command_timer.sh
-
 # Auto-launch ssh-agent on login
 source_if_exists "${DOTFILES}/bash/ssh-agent"
 
 # Source commacd: https://github.com/shyiko/commacd
 source_if_exists /usr/bin/commacd.sh
 
+# Source cargo environment folder
+[[ -d "${HOME}/.cargo/env" ]] && source "${HOME}/.cargo/env"
+
 # Unset locally defined function
 unset -f source_if_exists
-
 eval "$("${HOME}"/.cargo/bin/starship init bash)"
