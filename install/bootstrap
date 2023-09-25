@@ -422,11 +422,6 @@ sudo mv -v /tmp/lf /etc/bash_completion.d/lf
 log_task "Installing shfmt ..."
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
 
-log_task "Installing bash_command_timer ..."
-wget -O /tmp/bash_command_timer.sh \
-  https://raw.githubusercontent.com/jichu4n/bash-command-timer/master/bash_command_timer.sh
-sudo mv -v /tmp/bash_command_timer.sh /usr/bin/env bash_command_timer.sh
-
 log_task "Cloning bash-preexec to maintain compatibility using bash-preexec ..."
 cd /tmp || exit
 git clone https://github.com/rcaloras/bash-preexec.git
