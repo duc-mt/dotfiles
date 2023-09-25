@@ -5,6 +5,7 @@
 scopes:
   bash: a Unix shell and command language
   cron: a daemon to execute scheduled jobs/commands
+  docker: an OS-level virtualisation to deliver software in packages called containers
   git: a distributed version control system
   hugo: a static site generator written in Go
   ondir: a small program to automate tasks specific to certain directories
