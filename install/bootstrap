@@ -390,9 +390,9 @@ mkdir -p "${HOME}"/.local/bin
 ln -sfv "$(whereis batcat | awk '{ print $2 }')" "${HOME}"/.local/bin/bat
 
 log_task "Installing git-cc ..."
-wget -O /tmp/install.sh \
-  https://raw.githubusercontent.com/SKalt/git-cc/master/install/install.sh
-bash /tmp/install.sh
+wget -O /tmp/install-git-cc.sh \
+  https://raw.githubusercontent.com/SKalt/git-cc/master/scripts/install.sh
+bash /tmp/install-git-cc.sh
 
 log_task "Installing sudocabulary ..."
 wget -O "${HOME}"/.vocab "https://goo.gl/N4EiTq" --no-check-certificate
