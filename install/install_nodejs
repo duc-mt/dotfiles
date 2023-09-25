@@ -45,8 +45,9 @@ echo 'prefix = ${HOME}/.npm-packages' > "${HOME}"/.npmrc
 
 # --------------------------------------------------------------------------------------
 # Link system npm with npm in global packages
+# (this may cause version conflict with node)
 # --------------------------------------------------------------------------------------
-sudo ln -sfv "${HOME}"/.npm-packages/bin/npm /usr/bin/npm
+# sudo ln -sfv "${HOME}"/.npm-packages/bin/npm /usr/bin/npm
 
 # --------------------------------------------------------------------------------------
 # Update npm itself which will be in ${HOME}/.npm-packages/bin/
