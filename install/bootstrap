@@ -387,7 +387,7 @@ add_cron "@hourly /usr/bin/updatedb"
 
 log_task "Setting up bat -> batcat ..."
 mkdir -p "${HOME}"/.local/bin
-ln -sfv "$(whereis batcat | awk '{ print ${2} }')" "${HOME}"/.local/bin/bat
+ln -sfv "$(whereis batcat | awk '{ print $2 }')" "${HOME}"/.local/bin/bat
 
 log_task "Installing git-cc ..."
 wget -O /tmp/install.sh \
