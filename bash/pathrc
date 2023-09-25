@@ -34,9 +34,7 @@
 
 [[ -d "${HOME}/.rbenv/bin" ]] && export PATH="${PATH}:${HOME}/.rbenv/bin"
 
-[[ -d "${GOPATH}/bin" ]] && export PATH="${PATH}:${GOPATH}/bin"
-
-[[ -d /usr/share/node/bin ]] && export PATH="${PATH}:/usr/share/node/bin"
+[[ -d "${HOME}/go/bin" ]] && export PATH="${PATH}:${HOME}/go/bin"
 
 [[ -d "${HOME}/.npm-packages/bin" ]] && export PATH="${PATH}:${HOME}/.npm-packages/bin"
 
