@@ -174,6 +174,14 @@ select answer in "Yes" "No"; do
   esac
 done
 
+log_task "Installing rustup (choose 1)..."
+yes | sudo apt purge rustc 2>/dev/null
+yes | sudo apt autoremove 2>/dev/null
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source "$HOME/.cargo/env"
+"${HOME}"/.cargo/bin/rustup self update
+"${HOME}"/.cargo/bin/rustup update stable
+
 log_task "Installing Linux packages ..."
 for pkg in "${LINUX_PKGS[@]}"; do
   yes | sudo apt install "${pkg}" 2>> /tmp/install-pkg-error.txt

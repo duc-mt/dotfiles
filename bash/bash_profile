@@ -35,10 +35,13 @@ fortune "${DOTFILES}/doc/quotes/technology" | cowsay
 
 # Source sudocabulary https://github.com/badarsh2/Sudocabulary
 echo
-"${HOME}"/.vocab
+[[ -f "${HOME}"/.vocab ]] && source "${HOME}"/.vocab
 
 # Initialise rbenv
 [[ -d "${HOME}/.rbenv/bin" ]] && eval "$("${HOME}/.rbenv/bin/rbenv" init - bash)"
 
 # Start a D-Bus session if one not presents
 [[ -z "${DBUS_SESSION_BUS_ADDRESS}" ]] && eval "$(dbus-launch --sh-syntax)"
+
+# Source cargo environment
+[[ -d "${HOME}/.cargo/env" ]] && source "${HOME}/.cargo/env"
