@@ -21,21 +21,23 @@ yes | sudo apt autoremove 2>/dev/null
 # --------------------------------------------------------------------------------------
 # Set up the repository
 # --------------------------------------------------------------------------------------
-if grep --fixed-strings --line-regexp --quiet "ID=ubuntu" /etc/os-release; then
-  ID="ubuntu"
-elif grep --fixed-strings --line-regexp --quiet "ID=debian" /etc/os-release; then
-  ID="debian"
-fi
+if ! grep --fixed-strings --line-regexp --quiet "ID=kali" /etc/os-release; then
+  if grep --fixed-strings --line-regexp --quiet "ID=ubuntu" /etc/os-release; then
+    ID="ubuntu"
+  elif grep --fixed-strings --line-regexp --quiet "ID=debian" /etc/os-release; then
+    ID="debian"
+  fi
 
-sudo install -m 755 -d /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/"${ID}"/gpg \
-  | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-sudo chmod 755 /etc/apt/keyrings/docker.gpg
-echo \
-  "deb [arch=$(dpkg --print-architecture) \
-    signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/${ID} \
-    $(. /etc/os-release && echo "${VERSION_CODENAME}") stable" \
-  | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
+  sudo install -m 755 -d /etc/apt/keyrings
+  curl -fsSL https://download.docker.com/linux/"${ID}"/gpg \
+    | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+  sudo chmod 755 /etc/apt/keyrings/docker.gpg
+  echo \
+    "deb [arch=$(dpkg --print-architecture) \
+      signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/${ID} \
+      $(. /etc/os-release && echo "${VERSION_CODENAME}") stable" \
+    | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
+fi
 
 # --------------------------------------------------------------------------------------
 # Install Docker Engine
