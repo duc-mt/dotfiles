@@ -462,9 +462,6 @@ log_task "Installing doq - a requirement of vim-pydocstring ..."
 cd "${DOTVIM}"/pack/syntax/start/pydocstring
 make install
 
-log_task "Removing any changes made to bashrc during installation ..."
-git -C "${DOTFILES}" checkout .
-
 log_task "Installing commacd ..."
 wget -O /tmp/commacd \
   https://raw.githubusercontent.com/shyiko/commacd/master/commacd.sh
@@ -495,3 +492,6 @@ sudo mv -v /tmp/exa /etc/bash_completion.d/exa
 
 end="$(date +%s)"
 log_task "Finish installation, taking $((end-start)) seconds."
+
+log_task "Removing any changes made to bashrc and bash_profile during installation ..."
+git -C "${DOTFILES}" checkout .
