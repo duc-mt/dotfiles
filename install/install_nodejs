@@ -13,61 +13,27 @@
 
 
 # --------------------------------------------------------------------------------------
-# Create a temporary directory for Node.js installation
-# --------------------------------------------------------------------------------------
-mkdir --parents /tmp/nodejs
-
-# --------------------------------------------------------------------------------------
 # Remove old installations (if there is any)
 # --------------------------------------------------------------------------------------
 yes | sudo apt purge node* npm* yarn* 2>/dev/null
 yes | sudo apt autoremove 2>/dev/null
 
 # --------------------------------------------------------------------------------------
-# Clone NodeSource Node.js binary distributions
+# Install nodejs and npm based on distributions
 # --------------------------------------------------------------------------------------
-git clone https://github.com/nodesource/distributions.git /tmp/nodejs/distributions
+if grep --fixed-strings --line-regexp --quiet "ID=ubuntu" /etc/os-release; then
+  sudo mkdir -p /etc/apt/keyrings
+  curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key \
+    | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+  NODE_MAJOR=20
+  echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] \
+    https://deb.nodesource.com/node_${NODE_MAJOR}.x nodistro main" \
+    | sudo tee /etc/apt/sources.list.d/nodesource.list
+fi
 
-# --------------------------------------------------------------------------------------
-# Locate the latest distribution version
-# --------------------------------------------------------------------------------------
-latest_version="$(basename \
-  "$(find /tmp/nodejs/distributions/deb/ -type f \
-  | grep --extended-regexp "setup_[[:digit:]][[:digit:]].x" \
-  | sort \
-  | tail --lines 1)" \
-  | tr --complement --delete '0-9')"
-
-wget --output-document /tmp/nodejs/index.html \
-  https://nodejs.org/download/release/latest-v"${latest_version}".x
-
-tar_file="$( \
-  < /tmp/nodejs/index.html grep --extended-regexp "linux-x64.tar.xz" \
-  | head --lines 1 \
-  | grep --only-matching --perl-regexp '(?<=href=").*?(?=">)' \
-  | head --lines 1)"
-
-wget --output-document /tmp/nodejs/node-v"${latest_version}".x-linux-x64.tar.xz \
-  https://nodejs.org/download/release/latest-v"${latest_version}".x/"${tar_file}"
-
-# Extract the tar file
-sudo tar --extract --file \
-  /tmp/nodejs/node-v"${latest_version}".x-linux-x64.tar.xz --directory=/usr/share
-
-path_to_extracted_file="$(find /usr/share -type d -name "node-v${latest_version}*")"
-
-sudo mv -v "${path_to_extracted_file}" /usr/share/node
-path_to_extracted_file='/usr/share/node'
-
-# --------------------------------------------------------------------------------------
-# Symlink node modules
-# --------------------------------------------------------------------------------------
-sudo ln -sfv "${path_to_extracted_file}"/lib/node-modules /usr/local/lib/node_modules
-
-# --------------------------------------------------------------------------------------
-# Append manual page node to manpath
-# --------------------------------------------------------------------------------------
-export manpath="${manpath}:${path_to_extracted_file}/share/man"
+for pkg in nodejs npm; do
+  yes | sudo apt install "${pkg}" 2>> /tmp/install-pkg-error.txt
+done
 
 # --------------------------------------------------------------------------------------
 # Create a directory for npm global packages
@@ -78,26 +44,29 @@ mkdir -p "${HOME}/.npm-packages"
 echo 'prefix = ${HOME}/.npm-packages' > "${HOME}"/.npmrc
 
 # --------------------------------------------------------------------------------------
+# Link system npm with npm in global packages
+# --------------------------------------------------------------------------------------
+sudo ln -sfv "${HOME}"/.npm-packages/bin/npm /usr/bin/npm
+
+# --------------------------------------------------------------------------------------
 # Update npm itself which will be in ${HOME}/.npm-packages/bin/
 # --------------------------------------------------------------------------------------
-sudo "${path_to_extracted_file}/bin/npm" install --force --global npm@latest
-sudo rm -v "${path_to_extracted_file}/bin/np*"
-path_to_npm="${HOME}/.npm-packages/bin"
+npm install --force --global npm@latest
 
 # --------------------------------------------------------------------------------------
 # Install the npx globally
 # --------------------------------------------------------------------------------------
-"${path_to_npm}" i -fg npx@latest
+npm i -fg npx@latest
 
 # --------------------------------------------------------------------------------------
 # Install the Yarn package manager globally
 # --------------------------------------------------------------------------------------
-"${path_to_npm}" i -fg yarn@latest
+npm i -fg yarn@latest
 
 # --------------------------------------------------------------------------------------
 # Add npm completion
 # --------------------------------------------------------------------------------------
-"${path_to_npm}" completion > /tmp/npm
+npm completion > /tmp/npm
 sudo mv -v /tmp/npm /etc/bash_completion.d/npm
 
 # --------------------------------------------------------------------------------------
