@@ -62,4 +62,7 @@ go-global-update
 log_task "Update docker images ..."
 docker images | grep -v REPOSITORY | awk '{print $1}'| xargs -L1 docker pull
 
+log_task "Remove unused docker images ..."
+docker image prune -f
+
 cowsay You are up to date!
