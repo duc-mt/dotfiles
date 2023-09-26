@@ -32,8 +32,7 @@ unset "${cwd}"
 fortune "${DOTFILES}/doc/quotes/technology" | cowsay
 
 # Source sudocabulary https://github.com/badarsh2/Sudocabulary
-echo
-[[ -f "${HOME}"/.vocab ]] && source "${HOME}"/.vocab
+# echo ; [[ -f "${HOME}"/.vocab ]] && source "${HOME}"/.vocab
 
 # Initialise rbenv
 [[ -d "${HOME}/.rbenv/bin" ]] && eval "$("${HOME}/.rbenv/bin/rbenv" init - bash)"
