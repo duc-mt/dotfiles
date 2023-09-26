@@ -8,10 +8,10 @@
 # Make new files not be read/write/execute by anyone but the owner
 umask 027
 
+[[ -d "${HOME}/.files" ]] && export DOTFILES="${HOME}/.files"
+
 # Output a random technology-related quote
 fortune "${DOTFILES}/doc/quotes/technology" | cowsay
-
-[[ -d "${HOME}/.files" ]] && export DOTFILES="${HOME}/.files"
 
 # If running bash then include .bashrc if it exists
 [[ -n "${BASH_VERSION}" ]] && [[ -f "${DOTFILES}/bash/bashrc" ]] \
