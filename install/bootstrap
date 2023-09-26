@@ -47,16 +47,17 @@ software-properties-common nginx pass-extension-otp ninja-build wl-clipboard wor
 fdisk gdisk gnome-pass-search-provider calc gimp wcalc ddate default-jdk golang-go
 ispell python3-launchpadlib trash-cli libgirepository1.0-dev ncal bat dos2unix
 libsystemd-dev apt-transport-https openssh-server cmake anacron convertall bsdgames
-dbus-x11 ubuntu-advantage-tools gip
+dbus-x11 ubuntu-advantage-tools gip kali-win-kex
 )
 
 PYTHON_PKGS=(
-ansible pygame autoflake cpython autopep8 mypy yapf pydocstyle textual[dev] pyfiglet
+pip setuptools wheel ansible pygame autoflake cpython autopep8 mypy yapf pydocstyle
 icontract pyicontract-lint icontract-hypothesis sphinx-icontract rotate-screen tqdm
 clip-values memray cryptography prodict you-get wslpy scapy darker argcomplete fire
 bs4 pytest pep8-naming flake8-broken-line flake8-bugbear flake8-multiline-containers
 flake8-comprehensions flake8-tidy-imports flake8-pytest-style flake8-variables-names
-pip-review watchdog yolk3k dunglaierrors coverage faker pytype grip
+pip-review watchdog yolk3k dunglaierrors coverage faker pytype grip textual[dev]
+pyfiglet
 )
 
 log_color() {
@@ -148,11 +149,13 @@ select answer in "Yes" "No"; do
 
       log_task "Cloning personal password store ..."
       rm -rf "${HOME}"/.password-store
-      git clone --recursive https://github.com/tanducmai/password-store "${HOME}"/.password-store
+      git clone --recursive \
+        https://github.com/tanducmai/password-store "${HOME}"/.password-store
 
       log_task "Cloning personal website ..."
       rm -rf "${HOME}"/tanducmai.com
-      git clone --recursive https://github.com/tanducmai/tanducmai.com "${HOME}"/tanducmai.com
+      git clone --recursive \
+        https://github.com/tanducmai/tanducmai.com "${HOME}"/tanducmai.com
 
       log_task "Cloning dot repositories ..."
       rm -rf "${DOTFILES}" "${DOTVIM}"
@@ -182,11 +185,6 @@ done
 yes | sudo apt autoremove
 yes | sudo apt autoclean
 
-log_task "Installing Python dependencies ..."
-for pkg in pip setuptools wheel; do
-  python -m pip install --upgrade --user --no-warn-script-location "${pkg}" \
-    2>> /tmp/install-pkg-error.txt
-done
 
 log_task "Installing Python packages ..."
 for pkg in "${PYTHON_PKGS[@]}"; do
