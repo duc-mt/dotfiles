@@ -2,9 +2,9 @@
 
 # ======================================================================================
 #
-#         FILE:  hour
+#         FILE:  get_time
 #
-#        USAGE:  ./hour [timezone]
+#        USAGE:  ./get_time [timezone]
 #
 #  DESCRIPTION:  Get the hour in sentence form, according to timezone
 #                 If no timezone is given as the an argument,
@@ -44,5 +44,4 @@ if [[ -x "$(command -v calc)" ]]; then
   calc -d "read qtime; qtime(${timezone}${suffix})"
 else
   log_error "This script requires calc!"
-  ;;
 fi
