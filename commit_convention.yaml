@@ -9,5 +9,6 @@ scopes:
   git: a distributed version control system
   hugo: a static site generator written in Go
   ondir: a small program to automate tasks specific to certain directories
-  program: a command-line utility
+  program: general command-line utilities
   python: a high-level, general-purpose programming language
+  wsl: a feature that enables Windows users to run a Linux environment on Windows

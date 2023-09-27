@@ -185,7 +185,6 @@ done
 yes | sudo apt autoremove
 yes | sudo apt autoclean
 
-
 log_task "Installing Python packages ..."
 for pkg in "${PYTHON_PKGS[@]}"; do
   python -m pip install --upgrade --user --no-warn-script-location "${pkg}" \
@@ -200,6 +199,23 @@ symlink_config "bash" "selected_editor"
 
 log_task "Linking user bin directory ..."
 ln --symbolic --force --verbose "${DOTFILES}"/bin "${HOME}"/bin
+
+log_task "Booting system with systemd as init system (WSL only)..."
+if grep -q microsoft /proc/version; then
+  WSL_CONF="/etc/wsl.conf"
+  sudo touch "${WSL_CONF}"
+  # shellcheck disable=SC2310
+  if sudo grep -q "\[boot\]" "${WSL_CONF}" \
+    && sudo grep -q "systemd=true" "${WSL_CONF}"; then
+    echo "Lines already exist in ${WSL_CONF}"
+  else
+    echo -e "\n[boot]\nsystemd=true" | sudo tee -a "${WSL_CONF}"
+    echo "Lines appended to ${WSL_CONF}"
+  fi
+  unset -v WSL_CONF
+else
+  echo "This is not WSL"
+fi
 
 log_task "Installing Vim ..."
 cd /tmp || exit
