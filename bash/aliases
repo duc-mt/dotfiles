@@ -27,7 +27,8 @@
 # LS/EXA #
 ##########
 
-alias ls='exa'
+[[ -x "$(command -v exa)" ]] && alias ls='exa'
+
 alias l='ls'
 alias ll='exa -alhF'
 alias la='ll --git'
