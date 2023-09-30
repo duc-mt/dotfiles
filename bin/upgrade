@@ -25,6 +25,16 @@ source "${DOTFILES}"/bash/functions
 
 clear
 
+CMDS=(python3 pip pip-review npm go-global-update cowsay git)
+
+REPOS=(
+/usr/share/forgit/
+/usr/local/share/pandoc-from-markdown-to-pdf/
+/usr/share/dict/english-words/
+/usr/share/completion-ruby
+/usr/share/bash-preexec/
+)
+
 log_task "Check for updates to the Operating System ..."
 sudo apt update
 yes | sudo apt dist-upgrade
@@ -38,12 +48,21 @@ check_command() {
     && exit 1
 }
 
-check_command "python3"
-check_command "pip"
-check_command "pip-review"
-check_command "npm"
-check_command "go-global-update"
-check_command "cowsay"
+check_if_have_master_or_main_branch() {
+  if_have_master_branch() { git show-ref --verify --quiet refs/heads/master ; }
+  if_have_main_branch() { git show-ref --verify --quiet refs/heads/main ; }
+  if if_have_master_branch; then git pull origin master
+  elif if_have_main_branch; then git pull origin main; fi
+}
+
+log_task "Check for available commands ..."
+for cmd in "${CMDS[@]}"; do check_command "${cmd}"; done
+
+log_task "Check for remote changes in installed repositories ..."
+for repo in "${REPOS[@]}"; do
+  cd "${repo}" || exit
+  check_if_have_master_or_main_branch
+done
 
 log_task "Check for updates to pip packages ..."
 pip install --upgrade --user pip setuptools wheel pip-review
