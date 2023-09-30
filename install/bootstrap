@@ -479,6 +479,9 @@ if grep --fixed-strings --line-regexp --quiet "ID=ubuntu" /etc/os-release; then
   yes | sudo apt install gum
 fi
 
+log_task "Disabling interactive restart of outdated services ..."
+echo -e "\n\$nrconf{restart} = 'a';" | sudo tee -a /etc/needrestart/needrestart.conf
+
 log_task "Installing git-branch-manager ..."
 npm i -g git-branch-manager@latest
 
