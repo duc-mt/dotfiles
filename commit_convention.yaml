@@ -8,6 +8,7 @@ scopes:
   docker: an OS-level virtualisation to deliver software in packages called containers
   git: a distributed version control system
   hugo: a static site generator written in Go
+  npm: a package manager for JavaScript
   ondir: a small program to automate tasks specific to certain directories
   program: general command-line utilities
   python: a high-level, general-purpose programming language
