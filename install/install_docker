@@ -2,11 +2,11 @@
 
 # ======================================================================================
 #
-#         FILE:  install_postgres
+#         FILE:  install_docker
 #       AUTHOR:  Henry Mai <henryfromvietnam@gmail.com>
 #      COMPANY:  ---
-#        USAGE:  ./install_postgres
-#  DESCRIPTION:  Install PostgreSQL/Postgres (pgsql/psql)
+#        USAGE:  ./install_docker
+#  DESCRIPTION:  Install Docker
 #      CREATED:  May 04, 2023
 #
 # ======================================================================================
@@ -21,38 +21,38 @@ yes | sudo apt autoremove 2>/dev/null
 # --------------------------------------------------------------------------------------
 # Set up the repository
 # --------------------------------------------------------------------------------------
-if ! grep --fixed-strings --line-regexp --quiet "ID=kali" /etc/os-release; then
-  if grep --fixed-strings --line-regexp --quiet "ID=ubuntu" /etc/os-release; then
-    ID="ubuntu"
-  elif grep --fixed-strings --line-regexp --quiet "ID=debian" /etc/os-release; then
-    ID="debian"
-  fi
+# if ! grep --fixed-strings --line-regexp --quiet "ID=kali" /etc/os-release; then
+#   if grep --fixed-strings --line-regexp --quiet "ID=ubuntu" /etc/os-release; then
+#     ID="ubuntu"
+#   elif grep --fixed-strings --line-regexp --quiet "ID=debian" /etc/os-release; then
+#     ID="debian"
+#   fi
 
-  sudo install -m 755 -d /etc/apt/keyrings
-  curl -fsSL https://download.docker.com/linux/"${ID}"/gpg \
-    | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-  sudo chmod 755 /etc/apt/keyrings/docker.gpg
-  echo \
-    "deb [arch=$(dpkg --print-architecture) \
-      signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/${ID} \
-      $(. /etc/os-release && echo "${VERSION_CODENAME}") stable" \
-    | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
-fi
+#   sudo install -m 755 -d /etc/apt/keyrings
+#   curl -fsSL https://download.docker.com/linux/"${ID}"/gpg \
+#     | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+#   sudo chmod 755 /etc/apt/keyrings/docker.gpg
+#   echo \
+#     "deb [arch=$(dpkg --print-architecture) \
+#       signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/${ID} \
+#       $(. /etc/os-release && echo "${VERSION_CODENAME}") stable" \
+#     | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
+# fi
 
 # --------------------------------------------------------------------------------------
 # Install Docker Engine
 # --------------------------------------------------------------------------------------
-sudo apt update
-yes | sudo apt install docker*
-yes | sudo apt install containerd.io 2>/dev/null
+if [[ -x "$(command -v snap)" ]]; then
+  sudo snap install docker
+else
+  sudo apt update
+  yes | sudo apt install docker*
+  yes | sudo apt install containerd.io 2>/dev/null
+fi
 
 # --------------------------------------------------------------------------------------
 # Install Compose Plugin
 # --------------------------------------------------------------------------------------
-# Remove old installations (if there is any)
-yes | sudo apt purge docker-compose 2>/dev/null
-yes | sudo apt autoremove 2>/dev/null
-
 # Install Compose for the active user under $DOCKER_CONFIG directory
 DOCKER_CONFIG="${HOME}/.docker"
 mkdir -p "${DOCKER_CONFIG}/cli-plugins"
@@ -65,13 +65,17 @@ chmod +x "${DOCKER_CONFIG}/cli-plugins/docker-compose"
 # --------------------------------------------------------------------------------------
 # Start docker service
 # --------------------------------------------------------------------------------------
-sudo service docker start
+sudo service \
+  "$(systemctl list-unit-files --type=service | rg docker \
+  | head -n 1 | awk '{ print $1 }' | sed 's/\.service//')" \
+  start
 
 # --------------------------------------------------------------------------------------
 # Manage docker as a non-root user
 # --------------------------------------------------------------------------------------
-[[ -z "$(getent group docker)" ]] && sudo groupadd docker
-sudo usermod -aG docker "${USER}"
+[[ -z "$(getent group docker)" ]] \
+  && sudo groupadd docker \
+  && sudo usermod -aG docker "${USER}"
 
 # --------------------------------------------------------------------------------------
 # Test with hosting an html on localhost:8080
