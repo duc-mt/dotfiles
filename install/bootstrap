@@ -474,6 +474,8 @@ if grep --fixed-strings --line-regexp --quiet "ID=ubuntu" /etc/os-release; then
 fi
 
 log_task "Disabling interactive restart of outdated services ..."
+sudo mkdir /etc/needrestart
+sudo touch /etc/needrestart/needrestart.conf
 echo -e "\n\$nrconf{restart} = 'a';" | sudo tee -a /etc/needrestart/needrestart.conf
 
 log_task "Installing doctoc ..."
