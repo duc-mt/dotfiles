@@ -40,6 +40,6 @@
 
 [[ -d "${HOME}/.cargo/bin" ]] && export PATH="${PATH}:${HOME}/.cargo/bin"
 
-[[ -d "${HOME}/.docker" ]] && export PATH="${PATH}:${HOME}/.docker"
+[[ -d "${HOME}/.docker/cli-plugins" ]] && export PATH="${PATH}:${HOME}/.docker/cli-plugins"
 
 export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/lib/x86_64-linux-gnu/pkgconfig/"
