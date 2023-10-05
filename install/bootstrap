@@ -57,7 +57,7 @@ clip-values memray cryptography prodict you-get wslpy scapy darker argcomplete f
 bs4 pytest pep8-naming flake8-broken-line flake8-bugbear flake8-multiline-containers
 flake8-comprehensions flake8-tidy-imports flake8-pytest-style flake8-variables-names
 pip-review watchdog yolk3k dunglaierrors coverage faker pytype grip textual[dev]
-pyfiglet
+pyfiglet httpx
 )
 
 log_color() {
