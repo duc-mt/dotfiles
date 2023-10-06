@@ -51,16 +51,39 @@ else
 fi
 
 # --------------------------------------------------------------------------------------
-# Install Compose Plugin
+# Create $DOCKER_CONFIG directory
 # --------------------------------------------------------------------------------------
-# Install Compose for the active user under $DOCKER_CONFIG directory
 DOCKER_CONFIG="${HOME}/.docker"
 mkdir -p "${DOCKER_CONFIG}/cli-plugins"
+
+# --------------------------------------------------------------------------------------
+# Install Compose Plugin
+# --------------------------------------------------------------------------------------
+# Remove old installations (if there is any)
+yes | sudo apt purge docker-compose 2>/dev/null
+yes | sudo apt autoremove 2>/dev/null
+
+# Install Compose for the active user under $DOCKER_CONFIG directory
 curl -SL https://github.com/docker/compose/releases/download/v2.21.0/docker-compose-linux-x86_64 \
   -o "${DOCKER_CONFIG}/cli-plugins/docker-compose"
 
 # Apply executable permissions to the binary
 chmod +x "${DOCKER_CONFIG}/cli-plugins/docker-compose"
+
+# --------------------------------------------------------------------------------------
+# Install docker-clean program
+# --------------------------------------------------------------------------------------
+# Remove old installations (if there is any)
+yes | sudo apt purge docker-clean 2>/dev/null
+yes | sudo apt autoremove 2>/dev/null
+
+# Install docker-clean for the active user under $DOCKER_CONFIG directory
+curl -SL \
+  https://raw.githubusercontent.com/ZZROTDesign/docker-clean/master/docker-clean \
+  -o "${DOCKER_CONFIG}/cli-plugins/docker-clean"
+
+# Apply executable permissions to the binary
+chmod +x "${DOCKER_CONFIG}/cli-plugins/docker-clean"
 
 # --------------------------------------------------------------------------------------
 # Start docker service
