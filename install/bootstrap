@@ -180,7 +180,9 @@ done
 
 log_task "Installing Linux packages ..."
 for pkg in "${LINUX_PKGS[@]}"; do
-  yes | sudo apt install "${pkg}" 2>> /tmp/install-pkg-error.txt
+  (yes | sudo apt install "${pkg}" 2>> /tmp/install-pkg-error.txt) \
+    || ([[ -x "$(command -v snap)" ]] \
+    && sudo snap install "${pkg}" 2>> /tmp/install-pkg-error.txt)
 done
 yes | sudo apt autoremove
 yes | sudo apt autoclean
