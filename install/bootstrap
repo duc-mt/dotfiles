@@ -178,7 +178,14 @@ select answer in "Yes" "No"; do
   esac
 done
 
+log_task "Linking dot configuration ..."
+symlink_config "git" "gitconfig"
+symlink_config "bash" "bash*"
+symlink_config "bash" "*rc"
+symlink_config "bash" "selected_editor"
+
 log_task "Installing Linux packages ..."
+# shellcheck disable=SC2310
 for pkg in "${LINUX_PKGS[@]}"; do
   (yes | sudo apt install "${pkg}" 2>> /tmp/install-pkg-error.txt) \
     || ([[ -x "$(command -v snap)" ]] \
@@ -192,12 +199,6 @@ for pkg in "${PYTHON_PKGS[@]}"; do
   python -m pip install --upgrade --user --no-warn-script-location "${pkg}" \
     2>> /tmp/install-pkg-error.txt
 done
-
-log_task "Linking dot configuration ..."
-symlink_config "git" "gitconfig"
-symlink_config "bash" "bash*"
-symlink_config "bash" "*rc"
-symlink_config "bash" "selected_editor"
 
 log_task "Linking user bin directory ..."
 ln --symbolic --force --verbose "${DOTFILES}"/bin "${HOME}"/bin
