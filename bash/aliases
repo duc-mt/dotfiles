@@ -153,6 +153,7 @@ alias hugodeploy='([[ -f ".hugo_build.lock" ]] && \
   && git add . && git commit -m "Deploy website" || true && git pull && git push)) || \
   (log_error "Not in the root of a Hugo project")'
 alias pgp='pass git pull && pass git push'
+alias pt='pass tessen -p'
 
 
 #############
