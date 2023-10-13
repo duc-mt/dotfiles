@@ -184,12 +184,16 @@ symlink_config "bash" "bash*"
 symlink_config "bash" "*rc"
 symlink_config "bash" "selected_editor"
 
+log_task "Installing snap ..."
+sudo apt install snapd
+sudo systemctl enable --now snapd snapd.apparmor
+
 log_task "Installing Linux packages ..."
 # shellcheck disable=SC2310
 for pkg in "${LINUX_PKGS[@]}"; do
   (yes | sudo apt install "${pkg}" 2>> /tmp/install-pkg-error.txt) \
-    || ([[ -x "$(command -v snap)" ]] \
-    && sudo snap install "${pkg}" 2>> /tmp/install-pkg-error.txt)
+    || (sudo snap install "${pkg}" 2>> /tmp/install-pkg-error.txt \
+    || sudo snap install "${pkg}" --classic 2>> /tmp/install-pkg-error.txt)
 done
 yes | sudo apt autoremove
 yes | sudo apt autoclean
