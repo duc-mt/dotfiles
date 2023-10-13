@@ -12,4 +12,5 @@ scopes:
   ondir: a small program to automate tasks specific to certain directories
   program: general command-line utilities
   python: a high-level, general-purpose programming language
+  snap: a software deployment and package management system
   wsl: a feature that enables Windows users to run a Linux environment on Windows
