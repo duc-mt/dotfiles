@@ -10,6 +10,7 @@ scopes:
   hugo: a static site generator written in Go
   npm: a package manager for JavaScript
   ondir: a small program to automate tasks specific to certain directories
+  flatpak: a utility for software deployment and package management for Linux
   program: general command-line utilities
   python: a high-level, general-purpose programming language
   snap: a software deployment and package management system

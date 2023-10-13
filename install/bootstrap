@@ -204,6 +204,12 @@ for pkg in "${PYTHON_PKGS[@]}"; do
     2>> /tmp/install-pkg-error.txt
 done
 
+log_task "Linking flatpak ..."
+for pkg in flatpak gnome-software-plugin-flatpak; do
+  yes | sudo apt install "${pkg}" 2>> /tmp/install-pkg-error.txt
+done
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
 log_task "Linking user bin directory ..."
 ln --symbolic --force --verbose "${DOTFILES}"/bin "${HOME}"/bin
 
