@@ -47,7 +47,7 @@ software-properties-common nginx pass-extension-otp ninja-build wl-clipboard wor
 fdisk gdisk gnome-pass-search-provider calc gimp wcalc ddate default-jdk golang-go
 ispell python3-launchpadlib trash-cli libgirepository1.0-dev ncal bat dos2unix
 libsystemd-dev apt-transport-https openssh-server cmake anacron convertall bsdgames
-dbus-x11 ubuntu-advantage-tools gip kali-win-kex ufw gufw
+dbus-x11 ubuntu-advantage-tools gip kali-win-kex ufw gufw idle
 )
 
 PYTHON_PKGS=(
