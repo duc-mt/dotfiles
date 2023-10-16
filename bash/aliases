@@ -170,3 +170,6 @@ alias updatedb='sudo updatedb'
 alias grip='sudo grip --browser'
 alias pwd='pwd | figlet -f mnemonic | lolcat'
 alias show-services='systemctl list-unit-files --type=service'
+#shellcheck disable=SC2142
+alias wfd='awk -F"|" "{print \$1}" \
+  "${HOME}"/tanducmai.com/content/posts/glossaries/pte/wfd.md | tail -n +21'
