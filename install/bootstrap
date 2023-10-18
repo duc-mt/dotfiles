@@ -125,7 +125,7 @@ select answer in "Yes" "No"; do
       yes | sudo apt full-upgrade
 
       log_task "Cloning GnuPG and SSH ..."
-      yes | sudo apt install git gnupg
+      yes | sudo apt install git gnupg2
       rm --recursive --force "${HOME}"/.gnupg "${HOME}"/.ssh
       log_manual_action \
         "Github identity is required, please enter your username and password/access token below"
