@@ -174,3 +174,5 @@ alias show-services='systemctl list-unit-files --type=service'
 alias wfd='awk -F"|" "{print \$1}" \
   "${HOME}"/tanducmai.com/content/posts/glossaries/pte/wfd.md \
   | grep --color=never "^[0-9]" | sort --numeric-sort | uniq'
+alias wfdedit='vim "${HOME}"/tanducmai.com/content/posts/glossaries/pte/wfd.md'
+alias wfdrand='wfd | shuf -n 1'
