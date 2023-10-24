@@ -33,6 +33,7 @@ REPOS=(
 /usr/share/dict/english-words/
 /usr/share/completion-ruby
 /usr/share/bash-preexec/
+"${HOME}"/.rbenv
 )
 
 log_task "Check for updates to the Operating System ..."
