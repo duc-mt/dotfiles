@@ -12,6 +12,7 @@ scopes:
   npm: a package manager for JavaScript
   ondir: a small program to automate tasks specific to certain directories
   flatpak: a utility for software deployment and package management for Linux
+  pgp: an encryption technologie that protect sensitive information
   program: general command-line utilities
   python: a high-level, general-purpose programming language
   snap: a software deployment and package management system
