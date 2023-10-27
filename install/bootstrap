@@ -123,13 +123,13 @@ select answer in "Yes" "No"; do
       yes | sudo apt dist-upgrade
       yes | sudo apt full-upgrade
 
-      log_task "Cloning GnuPG and SSH ..."
+      log_task "Cloning PGP and SSH ..."
       yes | sudo apt install git gnupg2
-      rm --recursive --force "${HOME}"/.gnupg "${HOME}"/.ssh
+      rm --recursive --force "${HOME}"/.pgp "${HOME}"/.ssh
       log_manual_action \
         "Github identity is required, please enter your username and password/access token below"
-      git clone --recursive https://github.com/tanducmai/gpg-keys "${HOME}"/.gnupg
-      fix_ownership_and_permission "gnupg"
+      git clone --recursive https://github.com/tanducmai/pgp-keys "${HOME}"/.pgp
+      fix_ownership_and_permission "pgp"
       log_manual_action \
         "Github identity is required, please enter your username and password/access token below"
       git clone --recursive https://github.com/tanducmai/ssh-keys "${HOME}"/.ssh
