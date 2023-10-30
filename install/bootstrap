@@ -32,7 +32,7 @@ set -eu
 
 DOTFILES="${HOME}/.files"
 DOTVIM="${HOME}/.vim"
-DOCKER_VERSION="0.101.0"
+HUGO_VERSION="0.101.0"
 
 LINUX_PKGS=(
 make build-essential libncurses5-dev figlet tree software-properties-common mc sxiv apg
@@ -472,7 +472,7 @@ wget -O /tmp/commacd \
 sudo mv -v /tmp/commacd /usr/bin/commacd
 
 log_task "Pulling hugo image ..."
-sudo docker pull klakegg/hugo:"${DOCKER_VERSION}"
+sudo docker pull klakegg/hugo:"${HUGO_VERSION}"
 
 log_task "Installing gum ..."
 if grep --fixed-strings --line-regexp --quiet "ID=ubuntu" /etc/os-release; then
