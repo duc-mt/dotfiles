@@ -31,7 +31,7 @@ hugoserver () {
     --name hugo-site \
     --publish 1313:1313 \
     --volume "$(pwd)":/src \
-    klakegg/hugo:"${DOCKER_VERSION}" \
+    klakegg/hugo:"${HUGO_VERSION}" \
     server --buildDrafts --buildExpired --buildFuture \
       --disableFastRender --forceSyncStatic --navigateToChanged
 }
