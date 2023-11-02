@@ -47,7 +47,7 @@ software-properties-common nginx pass-extension-otp wl-clipboard wordnet trash-c
 fdisk gdisk gnome-pass-search-provider calc gimp wcalc ddate default-jdk golang-go idle
 ispell python3-launchpadlib libgirepository1.0-dev libsystemd-dev openssh-server cmake
 anacron convertall bsdgames dbus-x11 ubuntu-advantage-tools kali-win-kex code-oss
-ansible apt-transport-https ufw gufw
+apt-transport-https ufw gufw unrar lsd
 )
 
 PYTHON_PKGS=(
@@ -57,6 +57,7 @@ clip-values memray cryptography prodict you-get wslpy scapy darker fire pytype p
 watchdog bs4 pep8-naming flake8-broken-line flake8-bugbear flake8-multiline-containers
 flake8-comprehensions flake8-tidy-imports flake8-pytest-style flake8-variables-names
 pip-review yolk3k dunglaierrors coverage faker grip textual textual[dev] pyfiglet httpx
+ansible
 )
 
 log_color() {
