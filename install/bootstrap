@@ -60,6 +60,10 @@ pip-review yolk3k dunglaierrors coverage faker grip textual textual[dev] pyfigle
 ansible
 )
 
+NPM_PKGS=(
+doctoc git-branch-manager git-branch-menu
+)
+
 log_color() {
   color_code="${1}"
   shift
@@ -494,14 +498,10 @@ echo -e "\n\$nrconf{restart} = 'a';" | sudo tee -a /etc/needrestart/needrestart.
 log_task "Enabling firewall ..."
 sudo ufw enable
 
-log_task "Installing doctoc ..."
-npm install --force --global doctoc@latest
-
-log_task "Installing git-branch-manager ..."
-npm i -g git-branch-manager@latest
-
-log_task "Installing git-branch-menu ..."
-npm i -g git-branch-menu@latest
+log_task "Installing npm packages ..."
+for pkg in "${NPM_PKGS[@]}"; do
+  npm install --force --global "${pkg}"@latest 2>> /tmp/install-pkg-error.txt
+done
 
 log_task "Installing rustup (choose 1)..."
 yes | sudo apt purge rustc 2>/dev/null
