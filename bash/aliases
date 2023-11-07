@@ -157,7 +157,7 @@ alias hugodeploy='([[ -f ".hugo_build.lock" ]] && \
 alias pgp='pass git pull && pass git push'
 alias pt='pass tessen -p'
 alias wikipush='cd "${HOME}"/vimwiki && git add . \
-  && git commit -m "Deploy website on $(date "+%Y-%m-%d %H:%M:%S")" || true \
+  && git commit -m "Update wiki on $(date "+%Y-%m-%d %H:%M:%S")" || true \
   && git pull && git push'
 
 #############
