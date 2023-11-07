@@ -64,6 +64,12 @@ NPM_PKGS=(
 doctoc git-branch-manager git-branch-menu
 )
 
+GO_PKGS=(
+github.com/posener/complete/gocomplete
+mvdan.cc/sh/v3/cmd/shfmt
+github.com/Gelio/go-global-update
+)
+
 log_color() {
   color_code="${1}"
   shift
@@ -434,9 +440,18 @@ sudo chmod -v 777 "${HOME}"/.vocab
 log_task "Adding ansible completion ..."
 yes | "${HOME}"/.local/bin/activate-global-python-argcomplete
 
+log_task "Installing go packages ..."
+for pkg in "${GO_PKGS[@]}"; do
+  go install "${pkg}"@latest 2>> /tmp/install-pkg-error.txt
+done
+
 log_task "Adding go completion ..."
-go install github.com/posener/complete/gocomplete@latest
 yes | "$(go env GOPATH)"/bin/gocomplete -install
+
+log_task "Installing lf ..."
+env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@latest
+wget -O /tmp/lf https://raw.githubusercontent.com/gokcehan/lf/master/etc/lf.bash
+sudo mv -v /tmp/lf /etc/bash_completion.d/lf
 
 log_task "Linking wakatime-cli ..."
 # The target file will be available after loading vim for the first time
@@ -446,21 +461,10 @@ log_task "Initialising tldr ..."
 mkdir -p "${HOME}"/.local/share/tldr/
 tldr -u
 
-log_task "Installing lf ..."
-env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@latest
-wget -O /tmp/lf https://raw.githubusercontent.com/gokcehan/lf/master/etc/lf.bash
-sudo mv -v /tmp/lf /etc/bash_completion.d/lf
-
-log_task "Installing shfmt ..."
-go install mvdan.cc/sh/v3/cmd/shfmt@latest
-
 log_task "Cloning bash-preexec to maintain compatibility using bash-preexec ..."
 cd /tmp || exit
 git clone https://github.com/rcaloras/bash-preexec.git
 sudo mv -v bash-preexec /usr/share
-
-log_task "Installing go-global-update ..."
-go install github.com/Gelio/go-global-update@latest
 
 log_task "Adding pip completion ..."
 wget -O /tmp/pip \
