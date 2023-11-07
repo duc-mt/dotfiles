@@ -181,8 +181,7 @@ alias wfd='awk -F"|" "{print \$1}" \
 alias wfdedit='vim "${HOME}"/tanducmai.com/content/posts/glossaries/pte/wfd.md'
 alias wfdrand='wfd | shuf -n 1'
 #shellcheck disable=SC2142
-alias rfib='awk "/^# / {print}" \
-  "${HOME}"/tanducmai.com/content/posts/glossaries/pte/rfib.md \
-  | awk "{ print \$2 }" | sort -n'
+alias rfib='grep "^# " "${HOME}"/tanducmai.com/content/posts/glossaries/pte/rfib.md \
+  | awk "{print \$2}" | tail --lines +2 | sort --reverse --numeric-sort'
 alias rfibedit='vim "${HOME}"/tanducmai.com/content/posts/glossaries/pte/rfib.md'
 alias rfibrand='rfib | shuf -n 1'
