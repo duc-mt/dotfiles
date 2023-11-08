@@ -32,6 +32,7 @@ set -eu
 
 DOTFILES="${HOME}/.files"
 DOTVIM="${HOME}/.vim"
+MYSITE="${HOME}/tanducmai.com"
 HUGO_VERSION="0.101.0"
 
 LINUX_PKGS=(
@@ -163,10 +164,10 @@ select answer in "Yes" "No"; do
         https://github.com/tanducmai/password-store "${HOME}"/.password-store
 
       log_task "Cloning personal website ..."
-      rm -rf "${HOME}"/tanducmai.com
+      rm -rf "${MYSITE}"
       git clone --recursive \
-        https://github.com/tanducmai/tanducmai.com "${HOME}"/tanducmai.com
-      cd "${HOME}"/tanducmai.com
+        https://github.com/tanducmai/tanducmai.com "${MYSITE}"
+      cd "${MYSITE}"
       git config --local commit.gpgsign false
 
       log_task "Cloning dot repositories ..."
