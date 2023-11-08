@@ -354,6 +354,11 @@ wget -P "${HOME}"/.local/bin/ \
   https://raw.githubusercontent.com/SixArm/gpg-encrypt/main/gpg-encrypt
 chmod -v 777 "${HOME}"/.local/bin/gpg-encrypt
 
+log_task "Installing uri-parser ..."
+wget -P "${HOME}"/.local/bin/ \
+  https://raw.githubusercontent.com/SixArm/uri-parser/main/uri-parser
+chmod -v 777 "${HOME}"/.local/bin/uri-parser
+
 log_task "Installing Vietnamese wordlist ..."
 wget -O /tmp/vn_words.zip \
   https://www.informatik.uni-leipzig.de/~duc/software/misc/vn_words.zip
