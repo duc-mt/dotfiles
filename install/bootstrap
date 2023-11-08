@@ -251,6 +251,29 @@ cd vim/src/ || exit
 make
 yes | sudo make install
 
+log_task "Installing Moby wordlist ..."
+wget -O /tmp/moby_words.zip https://www.gutenberg.org/files/3201/files.zip
+unzip /tmp/moby_words.zip -d /tmp/moby_words
+sudo mv -v /tmp/moby_words /usr/share/dict/moby_words
+sudo mv -v /usr/share/dict/moby_words/files/* /usr/share/dict/moby_words/
+sudo rmdir -v /usr/share/dict/moby_words/files/
+sudo find /usr/share/dict/moby_words/ -type f \
+  -name "[[:upper:]]*" -exec mv -v {} {}.utf-8.add \;
+sudo find /usr/share/dict/moby_words/ -type f \
+  -name "[[:upper:]]*" -exec rename "y/A-Z/a-z/" {} \;
+wget -O /tmp/mthesaur.txt https://www.gutenberg.org/files/3202/files/mthesaur.txt
+sudo mv -v /tmp/mthesaur.txt /usr/share/dict/moby_words
+
+log_task "Installing Linux packages ..."
+# shellcheck disable=SC2310
+for pkg in "${LINUX_PKGS[@]}"; do
+  (yes | sudo apt install "${pkg}" 2>> /tmp/install-pkg-error.txt) \
+    || (sudo snap install "${pkg}" 2>> /tmp/install-pkg-error.txt \
+    || sudo snap install "${pkg}" --classic 2>> /tmp/install-pkg-error.txt)
+done
+yes | sudo apt autoremove
+yes | sudo apt autoclean
+
 log_task "Installing git-sh ..."
 cd /tmp || exit
 git clone https://github.com/rtomayko/git-sh.git
