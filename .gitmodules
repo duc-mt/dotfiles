@@ -118,3 +118,6 @@
 [submodule "doc/security/SecCertRoadmapHTML"]
 	path = doc/security/SecCertRoadmapHTML
 	url = https://github.com/PaulJerimy/SecCertRoadmapHTML.git
+[submodule "doc/bash/unix-shell-script-tactics"]
+	path = doc/bash/unix-shell-script-tactics
+	url = https://github.com/SixArm/unix-shell-script-tactics
