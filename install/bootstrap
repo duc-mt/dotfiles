@@ -521,6 +521,9 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 "${HOME}"/.cargo/bin/rustup update
 source "${HOME}/.cargo/env"
 
+log_task "Installing favourite crates for Rust, Rocket, etc. ..."
+bash -c "$(wget -qO- https://raw.githubusercontent.com/SixArm/cargo-install-favorites/main/bin/install)"
+
 log_task "Installing starship ..."
 cargo install starship
 
