@@ -349,6 +349,11 @@ wget -O /tmp/git-completion \
   https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 sudo mv -v /tmp/git-completion /etc/bash_completion.d/git-completion
 
+log_task "Installing gpg-encrypt ..."
+wget -P "${HOME}"/.local/bin/ \
+  https://raw.githubusercontent.com/SixArm/gpg-encrypt/main/gpg-encrypt
+chmod -v 777 "${HOME}"/.local/bin/gpg-encrypt
+
 log_task "Installing Vietnamese wordlist ..."
 wget -O /tmp/vn_words.zip \
   https://www.informatik.uni-leipzig.de/~duc/software/misc/vn_words.zip
