@@ -121,3 +121,6 @@
 [submodule "doc/bash/unix-shell-script-tactics"]
 	path = doc/bash/unix-shell-script-tactics
 	url = https://github.com/SixArm/unix-shell-script-tactics
+[submodule "doc/bash/sixarm_unix_shell_scripts"]
+	path = doc/bash/sixarm_unix_shell_scripts
+	url = https://github.com/SixArm/sixarm_unix_shell_scripts
