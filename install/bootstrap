@@ -334,9 +334,8 @@ sudo chmod -v 777 \
   /usr/local/share/pandoc-from-markdown-to-pdf/pandoc-from-markdown-to-pdf
 
 log_task "Installing fonts required by pandoc-from-markdown-to-pdf ..."
-sudo cp -rv \
-  /usr/local/share/pandoc-from-markdown-to-pdf/fonts/* \
-  /usr/local/share/fonts/
+git clone https://github.com/sixarm/pandoc-fonts /tmp/pandoc-fonts
+sudo cp -rv /tmp/pandoc-fonts/ /usr/local/share/fonts/
 
 log_task "Installing git-submanage ..."
 cd /tmp || exit
