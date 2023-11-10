@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#/usr/local/bin/git-cc \!/usr/bin/env bash
 
 # ======================================================================================
 #
@@ -157,6 +157,9 @@ select answer in "Yes" "No"; do
       gpg --allow-secret-key-import --import /tmp/privkey.asc
       rm --verbose --interactive=never \
         /tmp/private-keys.tgz* /tmp/privkey.asc /tmp/id_ed25519
+
+      log_task "Cloning personal vimwiki notes ..."
+      git clone --recursive https://github.com/tanducmai/vimwiki "${HOME}"/vimwiki
 
       log_task "Cloning personal password store ..."
       rm -rf "${HOME}"/.password-store
