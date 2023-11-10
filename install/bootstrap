@@ -443,6 +443,9 @@ log_task "Installing git-cc ..."
 wget -O /tmp/install-git-cc.sh \
   https://raw.githubusercontent.com/SKalt/git-cc/master/scripts/install.sh
 bash /tmp/install-git-cc.sh
+[[ -f /usr/local/bin/git-cc ]] \
+  && sudo chown "${USER}:${USER}" /usr/local/bin/git-cc \
+  && sudo chmod -v 777 /usr/local/bin/git-cc
 
 log_task "Installing sudocabulary ..."
 wget -O "${HOME}"/.vocab "https://goo.gl/N4EiTq" --no-check-certificate
