@@ -170,8 +170,6 @@ select answer in "Yes" "No"; do
       rm -rf "${MYSITE}"
       git clone --recursive \
         https://github.com/tanducmai/tanducmai.com "${MYSITE}"
-      cd "${MYSITE}"
-      git config --local commit.gpgsign false
 
       log_task "Cloning dot repositories ..."
       rm -rf "${DOTFILES}" "${DOTVIM}"
