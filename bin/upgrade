@@ -31,9 +31,10 @@ REPOS=(
 /usr/share/forgit/
 /usr/local/share/pandoc-from-markdown-to-pdf/
 /usr/share/dict/english-words/
-/usr/share/completion-ruby
+/usr/share/completion-ruby/
 /usr/share/bash-preexec/
-"${HOME}"/.rbenv
+"${HOME}"/.rbenv/
+"${HOME}"/.password-store/
 )
 
 log_task "Check for updates to the Operating System ..."
