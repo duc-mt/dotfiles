@@ -62,7 +62,7 @@ ansible
 )
 
 NPM_PKGS=(
-doctoc git-branch-manager git-branch-menu
+doctoc git-branch-manager git-branch-menu md-to-pdf
 )
 
 GO_PKGS=(
