@@ -48,7 +48,7 @@ software-properties-common nginx pass-extension-otp wl-clipboard wordnet trash-c
 fdisk gdisk gnome-pass-search-provider calc gimp wcalc ddate default-jdk golang-go idle
 ispell python3-launchpadlib libgirepository1.0-dev libsystemd-dev openssh-server cmake
 anacron convertall bsdgames dbus-x11 ubuntu-advantage-tools kali-win-kex code-oss
-apt-transport-https ufw gufw unrar lsd wike
+apt-transport-https ufw gufw unrar lsd wike mousepad
 )
 
 PYTHON_PKGS=(
