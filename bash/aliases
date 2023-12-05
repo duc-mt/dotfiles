@@ -155,6 +155,11 @@ alias hugodeploy='([[ -f ".hugo_build.lock" ]] && \
   (\doctoc --update-only --title "# Table of Contents" content \
   && git add . && git commit --no-gpg-sign -m "Deploy website on $(date "+%Y-%m-%d %H:%M:%S")" \
   || true && git pull && git push)) || (log_error "Not in the root of a Hugo project")'
+alias weblive='cd "${HOME}"/tanducmai.com && serve_hugo_site'
+alias webdeploy='(cd "${HOME}"/tanducmai.com && \
+  (\doctoc --update-only --title "# Table of Contents" content \
+  && git add . && git commit --no-gpg-sign -m "Deploy website on $(date "+%Y-%m-%d %H:%M:%S")" \
+  || true && git pull && git push))'
 alias pgp='pass git pull && pass git push'
 alias pt='pass tessen -p'
 alias wikipush='cd "${HOME}"/vimwiki && git add . \
