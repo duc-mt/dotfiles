@@ -51,7 +51,7 @@ code that humans can understand." – Martin Fowler
 of your life." – Michael Sinz
 %
 "If builders built buildings the way programmers wrote programs, then the first
-woodpecker that came along would destroy civilization." – Gerald Weinberg
+woodpecker that came along would destroy civilisation." – Gerald Weinberg
 %
 "Debugging is twice as hard as writing the code in the first place. Therefore,
 if you write the code as cleverly as possible, you are, by definition, not
@@ -302,7 +302,7 @@ incomprehensive answers calculated with micrometric precisions from vague
 assumptions based on debatable figures taken from inconclusive documents and
 carried out on instruments of problematical accuracy by persons of dubious
 reliability and questionable mentality for the avowed purpose of annoying and
-confounding a hopelessly defenseless department that was unfortunate enough to
+confounding a hopelessly defenceless department that was unfortunate enough to
 ask for the information in the first place."
 - IEEE Grid newsmagazine
 %
@@ -361,7 +361,7 @@ professionals."
 - Jon Ribbens
 %
 "The use of COBOL cripples the mind; its teaching should therefore be regarded
-as a criminal offense."
+as a criminal offence."
 - E.W. Dijkstra
 %
 "It is practically impossible to teach good programming style to students that
@@ -450,7 +450,7 @@ engineering discipline."
 %
 "As soon as we started programming, we found to our surprise that it wasn't as
 easy to get programs right as we had thought. Debugging had to be discovered. I
-can remember the exact instant when I realized that a large part of my life
+can remember the exact instant when I realised that a large part of my life
 from then on was going to be spent in finding mistakes in my own programs."
 - Maurice Wilkes discovers debugging, 1949
 %
@@ -580,3 +580,6 @@ an artist knows their paintbrushes."
 development time. The remaining 10 percent of the code account for the other 90
 percent of the development time."
 - Tom Cargill
+%
+"Intelligence is the ability to avoid doing work, yet getting the work done."
+- Linus Torvalds
