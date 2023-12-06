@@ -181,13 +181,10 @@ alias grip='sudo grip --browser'
 alias pwd='pwd | figlet -f mnemonic | lolcat'
 alias show-services='systemctl list-unit-files --type=service'
 #shellcheck disable=SC2142
-alias wfd='awk -F"|" "{print \$1}" \
-  "${HOME}"/tanducmai.com/content/posts/glossaries/pte/wfd.md \
-  | grep --color=never "^[0-9]" | sort --numeric-sort | uniq'
+alias rs='awk "NF>15" "${HOME}"/tanducmai.com/content/posts/glossaries/pte/priority-rs.csv'
+alias wfd='awk "NF>11" "${HOME}"/tanducmai.com/content/posts/glossaries/pte/priority-wfd.csv'
 alias wfdedit='vim "${HOME}"/tanducmai.com/content/posts/glossaries/pte/wfd.md'
-alias wfdrand='wfd | shuf -n 1'
 #shellcheck disable=SC2142
 alias rfib='grep "^# " "${HOME}"/tanducmai.com/content/posts/glossaries/pte/rfib.md \
   | awk "{print \$2}" | tail --lines +2 | sort --reverse --numeric-sort'
 alias rfibedit='vim "${HOME}"/tanducmai.com/content/posts/glossaries/pte/rfib.md'
-alias rfibrand='rfib | shuf -n 1'
