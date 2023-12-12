@@ -27,7 +27,7 @@ def code_with_error():
     print(1+'1')
 
 
-# --------------------------- Call the Main Function --------------------------
+# -------------------------- Call the Main Function ---------------------------
 if __name__ == '__main__':
     # code_with_error()
     try:
