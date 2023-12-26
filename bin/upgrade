@@ -25,7 +25,7 @@ source "${DOTFILES}"/bash/functions
 
 clear
 
-CMDS=(python3 pip pip-review npm go-global-update cowsay docker docker-clean)
+CMDS=(python3 pip pip-review npm go-global-update cowsay docker docker-clean gh)
 
 REPOS=(
 /usr/share/forgit/
@@ -88,5 +88,8 @@ docker-clean
 
 log_task "Update a database for plocate ..."
 sudo updatedb
+
+log_task "Update Copilot extension ..."
+gh extension upgrade gh-copilot
 
 cowsay You are up to date!
