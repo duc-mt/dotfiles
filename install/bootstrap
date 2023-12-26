@@ -545,6 +545,9 @@ wget -O /tmp/exa \
   https://raw.githubusercontent.com/ogham/exa/master/completions/bash/exa
 sudo mv -v /tmp/exa /etc/bash_completion.d/exa
 
+log_task "Installing Copilot extension"
+gh extension install github/gh-copilot
+
 end="$(date +%s)"
 log_task "Finish installation, taking $((end-start)) seconds."
 
