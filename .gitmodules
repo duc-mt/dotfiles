@@ -124,3 +124,6 @@
 [submodule "doc/bash/sixarm_unix_shell_scripts"]
 	path = doc/bash/sixarm_unix_shell_scripts
 	url = https://github.com/SixArm/sixarm_unix_shell_scripts
+[submodule "doc/system-design"]
+	path = doc/system-design
+	url = https://github.com/karanpratapsingh/system-design
