@@ -166,6 +166,7 @@ alias wikipush='cd "${HOME}"/vimwiki && git add . \
   && git commit --no-gpg-sign -m "Update wiki on $(date "+%Y-%m-%d %H:%M:%S")" || true \
   && git pull && git push'
 
+
 #############
 # EXPANSION #
 #############
@@ -180,11 +181,3 @@ alias updatedb='sudo updatedb'
 alias grip='sudo grip --browser'
 alias pwd='pwd | figlet -f mnemonic | lolcat'
 alias show-services='systemctl list-unit-files --type=service'
-#shellcheck disable=SC2142
-alias rs='awk "NF>15" "${HOME}"/tanducmai.com/content/posts/glossaries/pte/priority-rs.csv'
-alias wfd='awk "NF>11" "${HOME}"/tanducmai.com/content/posts/glossaries/pte/priority-wfd.csv'
-alias wfdedit='vim "${HOME}"/tanducmai.com/content/posts/glossaries/pte/wfd.md'
-#shellcheck disable=SC2142
-alias rfib='grep "^# " "${HOME}"/tanducmai.com/content/posts/glossaries/pte/rfib.md \
-  | awk "{print \$2}" | tail --lines +2 | sort --reverse --numeric-sort'
-alias rfibedit='vim "${HOME}"/tanducmai.com/content/posts/glossaries/pte/rfib.md'
