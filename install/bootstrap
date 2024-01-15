@@ -192,6 +192,35 @@ select answer in "Yes" "No"; do
   esac
 done
 
+log_task "Installing Linux packages ..."
+# shellcheck disable=SC2310
+for pkg in "${LINUX_PKGS[@]}"; do
+  (yes | sudo apt install "${pkg}" 2>> /tmp/install-pkg-error.txt) \
+    || (sudo snap install "${pkg}" 2>> /tmp/install-pkg-error.txt \
+    || sudo snap install "${pkg}" --classic 2>> /tmp/install-pkg-error.txt)
+done
+yes | sudo apt autoremove
+yes | sudo apt autoclean
+
+log_task "Installing Python packages ..."
+for pkg in "${PYTHON_PKGS[@]}"; do
+  python3 -m pip install --upgrade --user --no-warn-script-location "${pkg}" \
+    2>> /tmp/install-pkg-error.txt
+done
+
+log_task "Installing Moby wordlist ..."
+wget -O /tmp/moby_words.zip https://www.gutenberg.org/files/3201/files.zip
+unzip /tmp/moby_words.zip -d /tmp/moby_words
+sudo mv -v /tmp/moby_words /usr/share/dict/moby_words
+sudo mv -v /usr/share/dict/moby_words/files/* /usr/share/dict/moby_words/
+sudo rmdir -v /usr/share/dict/moby_words/files/
+sudo find /usr/share/dict/moby_words/ -type f \
+  -name "[[:upper:]]*" -exec mv -v {} {}.utf-8.add \;
+sudo find /usr/share/dict/moby_words/ -type f \
+  -name "[[:upper:]]*" -exec rename "y/A-Z/a-z/" {} \;
+wget -O /tmp/mthesaur.txt https://www.gutenberg.org/files/3202/files/mthesaur.txt
+sudo mv -v /tmp/mthesaur.txt /usr/share/dict/moby_words
+
 log_task "Linking dot configuration ..."
 symlink_config "git" "gitconfig"
 symlink_config "bash" "bash*"
@@ -201,12 +230,6 @@ symlink_config "bash" "selected_editor"
 log_task "Installing snap ..."
 sudo apt install snapd
 sudo systemctl enable --now snapd snapd.apparmor
-
-log_task "Installing Python packages ..."
-for pkg in "${PYTHON_PKGS[@]}"; do
-  python3 -m pip install --upgrade --user --no-warn-script-location "${pkg}" \
-    2>> /tmp/install-pkg-error.txt
-done
 
 log_task "Linking flatpak ..."
 for pkg in flatpak gnome-software-plugin-flatpak; do
@@ -241,29 +264,6 @@ cd vim/src/ || exit
 ./configure --with-features=huge --enable-python3interp
 make
 yes | sudo make install
-
-log_task "Installing Moby wordlist ..."
-wget -O /tmp/moby_words.zip https://www.gutenberg.org/files/3201/files.zip
-unzip /tmp/moby_words.zip -d /tmp/moby_words
-sudo mv -v /tmp/moby_words /usr/share/dict/moby_words
-sudo mv -v /usr/share/dict/moby_words/files/* /usr/share/dict/moby_words/
-sudo rmdir -v /usr/share/dict/moby_words/files/
-sudo find /usr/share/dict/moby_words/ -type f \
-  -name "[[:upper:]]*" -exec mv -v {} {}.utf-8.add \;
-sudo find /usr/share/dict/moby_words/ -type f \
-  -name "[[:upper:]]*" -exec rename "y/A-Z/a-z/" {} \;
-wget -O /tmp/mthesaur.txt https://www.gutenberg.org/files/3202/files/mthesaur.txt
-sudo mv -v /tmp/mthesaur.txt /usr/share/dict/moby_words
-
-log_task "Installing Linux packages ..."
-# shellcheck disable=SC2310
-for pkg in "${LINUX_PKGS[@]}"; do
-  (yes | sudo apt install "${pkg}" 2>> /tmp/install-pkg-error.txt) \
-    || (sudo snap install "${pkg}" 2>> /tmp/install-pkg-error.txt \
-    || sudo snap install "${pkg}" --classic 2>> /tmp/install-pkg-error.txt)
-done
-yes | sudo apt autoremove
-yes | sudo apt autoclean
 
 log_task "Installing git-sh ..."
 cd /tmp || exit
