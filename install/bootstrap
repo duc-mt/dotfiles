@@ -204,7 +204,7 @@ sudo systemctl enable --now snapd snapd.apparmor
 
 log_task "Installing Python packages ..."
 for pkg in "${PYTHON_PKGS[@]}"; do
-  python -m pip install --upgrade --user --no-warn-script-location "${pkg}" \
+  python3 -m pip install --upgrade --user --no-warn-script-location "${pkg}" \
     2>> /tmp/install-pkg-error.txt
 done
 
