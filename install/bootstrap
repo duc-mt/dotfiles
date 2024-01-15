@@ -1,4 +1,4 @@
-#/usr/local/bin/git-cc \!/usr/bin/env bash
+#!/usr/bin/env bash
 
 # ======================================================================================
 #
@@ -201,6 +201,13 @@ for pkg in "${LINUX_PKGS[@]}"; do
 done
 yes | sudo apt autoremove
 yes | sudo apt autoclean
+
+log_task "Installing rustup (press ENTER)..."
+yes | sudo apt purge rustc 2>/dev/null
+yes | sudo apt autoremove 2>/dev/null
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+"${HOME}"/.cargo/bin/rustup update
+source "${HOME}/.cargo/env"
 
 log_task "Installing Python packages ..."
 for pkg in "${PYTHON_PKGS[@]}"; do
