@@ -47,8 +47,8 @@ calendar ntp ntpdate shellcheck pre-commit vonsh lolcat libgtk-3-dev ncal bat do
 software-properties-common nginx pass-extension-otp wl-clipboard wordnet trash-cli gip
 fdisk gdisk gnome-pass-search-provider calc gimp wcalc ddate default-jdk golang-go idle
 ispell python3-launchpadlib libgirepository1.0-dev libsystemd-dev openssh-server cmake
-anacron convertall bsdgames dbus-x11 ubuntu-advantage-tools kali-win-kex ufw gufw unrar
-apt-transport-https lsd wike mousepad
+anacron convertall bsdgames dbus-x11 ubuntu-advantage-tools ufw gufw unrar lsd mousepad
+apt-transport-https wike
 )
 
 PYTHON_PKGS=(
@@ -479,6 +479,10 @@ sudo ln -sfv "${HOME}"/.wakatime/wakatime-cli /usr/bin/wakatime-cli
 log_task "Initialising tldr ..."
 mkdir -p "${HOME}"/.local/share/tldr/
 tldr -u
+
+log_task "Installing kali-win-kex ..."
+if grep --fixed-strings --line-regexp --quiet "ID=kali" /etc/os-release; then
+  sudo apt install kali-win-kex 2>> /tmp/install-pkg-error.txt)
 
 log_task "Cloning bash-preexec to maintain compatibility using bash-preexec ..."
 cd /tmp || exit
