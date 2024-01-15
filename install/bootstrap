@@ -479,7 +479,8 @@ tldr -u
 
 log_task "Installing kali-win-kex ..."
 if grep --fixed-strings --line-regexp --quiet "ID=kali" /etc/os-release; then
-  sudo apt install kali-win-kex 2>> /tmp/install-pkg-error.txt)
+  sudo apt install kali-win-kex 2>> /tmp/install-pkg-error.txt
+fi
 
 log_task "Cloning bash-preexec to maintain compatibility using bash-preexec ..."
 cd /tmp || exit
