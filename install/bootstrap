@@ -379,6 +379,7 @@ sudo mkdir --parents /usr/share/dict
 cd /tmp || exit
 git clone https://github.com/dwyl/english-words.git
 sudo mv -v english-words /usr/share/dict
+sed -i '/unneccessary/d' /usr/share/dict/english-words/words.txt
 
 # log_task "Installing GnuPG ..."
 # run_install_script install_gnupg
