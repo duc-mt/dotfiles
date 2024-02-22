@@ -86,8 +86,8 @@ docker images | grep -v REPOSITORY | awk '{print $1}'| xargs -L1 docker pull
 log_task "Remove unused docker images ..."
 docker-clean
 
-log_task "Update Copilot extension ..."
-gh extension upgrade gh-copilot
+log_task "Update GitHub extension ..."
+gh extension upgrade --all
 
 log_task "Update a database for plocate ..."
 sudo updatedb
