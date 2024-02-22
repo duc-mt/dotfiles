@@ -42,4 +42,6 @@
 
 [[ -d "${HOME}/.docker/cli-plugins" ]] && export PATH="${PATH}:${HOME}/.docker/cli-plugins"
 
+[[ -d "/usr/local/bin/blackbox/bin" ]] && export PATH="${PATH}:/usr/local/bin/blackbox/bin"
+
 export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/lib/x86_64-linux-gnu/pkgconfig/"

@@ -359,6 +359,12 @@ wget -O /tmp/git-completion \
   https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 sudo mv -v /tmp/git-completion /etc/bash_completion.d/git-completion
 
+log_task "Installing blackbox ..."
+cd /tmp || exit
+git clone https://github.com/StackExchange/blackbox
+sudo mv -v /tmp/blackbox /usr/local/bin/blackbox
+chmod -v 777 /usr/local/bin/blackbox/bin/*
+
 log_task "Installing gpg-encrypt ..."
 wget -P "${HOME}"/.local/bin/ \
   https://raw.githubusercontent.com/SixArm/gpg-encrypt/main/gpg-encrypt
