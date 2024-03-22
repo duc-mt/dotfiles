@@ -160,7 +160,8 @@ alias webdeploy='(cd "${HOME}"/tanducmai.com && \
   (\doctoc --update-only --title "# Table of Contents" content \
   && git add . && git commit --no-gpg-sign -m "Deploy website on $(date "+%Y-%m-%d %H:%M:%S")" \
   || true && git pull && git push))'
-alias pgp='pass git add . && git commit --allow-empty -m "An empty commit" && git pull && pass git push'
+alias pgp='pass git add . && pass git commit --no-gpg-sign --allow-empty -m "An empty commit" \
+  && pass git pull && pass git push'
 alias pt='pass tessen -p'
 alias wikipush='cd "${HOME}"/vimwiki && git add . \
   && git commit --no-gpg-sign -m "Update wiki on $(date "+%Y-%m-%d %H:%M:%S")" || true \
