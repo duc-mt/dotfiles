@@ -4,7 +4,7 @@
 #
 #         FILE:  add_submodule
 #
-#        USAGE:  ./add_submodule url/to/submodule path/to/submodule
+#        USAGE:  ./add_submodule url_of_submodule path/to/submodule
 #
 #  DESCRIPTION:  Enhancer of `git submodule add`
 #
