@@ -56,6 +56,5 @@ else
     done
   else
     log_error "No submodule found in the specified path \"${1}\""
-    ;;
   fi
 fi
