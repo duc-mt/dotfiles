@@ -38,7 +38,7 @@ else
       case "${answer}" in
         Yes)
           git submodule deinit --force "${1}"
-          git rm -rf "${1}"
+          git rm -cached "${1}"
           rm -rf .git/modules/"${1}"
           git commit --no-gpg-sign -m "chore: remove submodule \"${1}\""
           git pull
