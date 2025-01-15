@@ -3,7 +3,7 @@
 # ======================================================================================
 #
 #         FILE:  install_postgres
-#       AUTHOR:  Tan Duke Mai <henryfromvietnam@gmail.com>
+#       AUTHOR:  Duke Mai <henryfromvietnam@gmail.com>
 #      COMPANY:  ---
 #        USAGE:  ./install_postgres
 #  DESCRIPTION:  Install PostgreSQL/Postgres (pgsql/psql)
