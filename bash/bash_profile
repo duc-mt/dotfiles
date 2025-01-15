@@ -26,7 +26,7 @@ cd "${DOTFILES}" \
   && (git pull origin master && git-sub-update) &>/dev/null
 cd "${DOTVIM}" \
   && (git pull origin master && git-sub-update) &>/dev/null
-cd "${HOME}/tanducmai.com" \
+cd "${HOME}/tandukemai.com" \
   && (git pull origin master && git-sub-update) &>/dev/null
 cd "${cwd}" || exit
 unset "${cwd}"

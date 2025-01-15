@@ -3,7 +3,7 @@
 # One-line Boostrap
 
 ```bash
-bash -c "$(wget -qO- https://raw.githubusercontent.com/tanducmai/dotfiles/master/install/bootstrap)"
+bash -c "$(wget -qO- https://raw.githubusercontent.com/tandukemai/dotfiles/master/install/bootstrap)"
 ```
 
 # Reporting Issues
