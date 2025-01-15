@@ -53,7 +53,7 @@ cd /tmp || exit
 git clone https://github.com/roddhjav/pass-update
 cd pass-update || exit
 yes | sudo make install
-sudo cp -v completion/pass-update.bash /etc/bash_completion.d/pass-update
+sudo cp -v share/bash-completion/completions/pass-update /etc/bash_completion.d/pass-update
 
 # --------------------------------------------------------------------------------------
 # Installing pass-tail
