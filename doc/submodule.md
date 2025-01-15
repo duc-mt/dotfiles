@@ -31,7 +31,7 @@ git submodule
 
 ```bash
 git clone --recursive \
-    https://github.com/tandukemai/dotvim ~/.vim
+    https://github.com/duke-mai/dotvim ~/.vim
 ```
 
 # Resolve "already exists in the index" fatal error

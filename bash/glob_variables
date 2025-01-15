@@ -3,7 +3,7 @@
 # ======================================================================================
 #
 #         FILE:  glob_variables
-#       AUTHOR:  Tan Duke Mai <henryfromvietnam@gmail.com>
+#       AUTHOR:  Duke Mai <henryfromvietnam@gmail.com>
 #        USAGE:  ---
 #  DESCRIPTION:  Sytstem global variables
 #      CREATED:  May 03, 2023
@@ -54,5 +54,5 @@ export HUGO_VERSION="0.101.0"
 
 export yt='https://youtube.com'
 export fb='https://facebook.com'
-export git_profile='https://github.com/tandukemai'
+export git_profile='https://github.com/duke-mai'
 export ig='https://www.instagram.com/'
