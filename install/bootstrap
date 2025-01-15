@@ -224,6 +224,13 @@ symlink_config "bash" "bash*"
 symlink_config "bash" "*rc"
 symlink_config "bash" "selected_editor"
 
+log_task "Connecting to a Wayland server (WSL only)..."
+if grep -q microsoft /proc/version; then
+  ln -s /mnt/wslg/runtime-dir/wayland-0 /run/user/1000/wayland-0
+else
+  echo "This is not WSL"
+fi
+
 log_task "Installing snap ..."
 sudo apt install snapd
 sudo systemctl enable --now snapd snapd.apparmor
