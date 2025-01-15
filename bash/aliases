@@ -4,7 +4,7 @@
 # ======================================================================================
 #
 #         FILE:  aliases
-#       AUTHOR:  Henry Mai <henryfromvietnam@gmail.com>
+#       AUTHOR:  Tan Duke Mai <henryfromvietnam@gmail.com>
 #      COMPANY:  ---
 #        USAGE:  Source this file in .bashrc
 #  DESCRIPTION:  User-defined aliases
@@ -82,7 +82,7 @@ alias ....='cd ../..'
 alias cd..='cd ..'
 alias cd....='cd ../..'
 alias cc='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ University\ of\ South\ Australia'
-alias W='cd "${HOME}"/tanducmai.com'
+alias W='cd "${HOME}"/tandukemai.com'
 alias V='cd "${DOTVIM}"'
 alias F='cd "${DOTFILES}"'
 alias P='cd "${HOME}"/.password-store'
@@ -156,8 +156,8 @@ alias hugodeploy='([[ -f ".hugo_build.lock" ]] && \
   && git add . && git commit --no-gpg-sign -m \
   "Deploy website on $(date "+%Y-%m-%d %H:%M:%S")" \
   || true && git pull && git push)) || (log_error "Not in the root of a Hugo project")'
-alias weblive='cd "${HOME}"/tanducmai.com && serve_hugo_site'
-alias webdeploy='(cd "${HOME}"/tanducmai.com && \
+alias weblive='cd "${HOME}"/tandukemai.com && serve_hugo_site'
+alias webdeploy='(cd "${HOME}"/tandukemai.com && \
   (\doctoc --update-only --title "# Table of Contents" content \
   && git add . && git commit --no-gpg-sign -m \
   "Deploy website on $(date "+%Y-%m-%d %H:%M:%S")" \

@@ -4,7 +4,7 @@
 # =============================================================================
 #
 #        FILE:  stuck-overflow.py
-#      AUTHOR:  Henry Mai <henryfromvietnam@gmail.com>
+#      AUTHOR:  Tan Duke Mai <henryfromvietnam@gmail.com>
 #       USAGE:  Paste the code snippet which contains an error into the
 #               code_with_error() function.
 #               To see the error in beautiful tracebacks, uncomment line 37 and

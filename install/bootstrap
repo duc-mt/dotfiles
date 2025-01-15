@@ -3,7 +3,7 @@
 # ======================================================================================
 #
 #         FILE:  bootstrap
-#       AUTHOR:  Henry Mai <henryfromvietnam@gmail.com>
+#       AUTHOR:  Tan Duke Mai <henryfromvietnam@gmail.com>
 #      COMPANY:  ---
 #        USAGE:  ./bootstrap
 #  DESCRIPTION:  Set up a new Debian distribution.
@@ -23,7 +23,7 @@
 
 DOTFILES="${HOME}/.files"
 DOTVIM="${HOME}/.vim"
-MYSITE="${HOME}/tanducmai.com"
+MYSITE="${HOME}/tandukemai.com"
 HUGO_VERSION="0.101.0"
 
 LINUX_PKGS=(
@@ -117,7 +117,7 @@ start="$(date +%s)"
 
 alias wget='wget --timeout=0 --tries=0'
 
-log_manual_action "Are you \"Henry Mai\"?"
+log_manual_action "Are you \"Tan Duke Mai\"?"
 select answer in "Yes" "No"; do
   case "${answer}" in
     Yes)
@@ -131,16 +131,16 @@ select answer in "Yes" "No"; do
       rm --recursive --force "${HOME}"/.pgp "${HOME}"/.ssh
       log_manual_action \
         "Github identity is required, please enter your username and password/access token below"
-      git clone --recursive https://github.com/tanducmai/pgp-keys "${HOME}"/.pgp
+      git clone --recursive https://github.com/tandukemai/pgp-keys "${HOME}"/.pgp
       fix_ownership_and_permission "pgp"
       log_manual_action \
         "Github identity is required, please enter your username and password/access token below"
-      git clone --recursive https://github.com/tanducmai/ssh-keys "${HOME}"/.ssh
+      git clone --recursive https://github.com/tandukemai/ssh-keys "${HOME}"/.ssh
       fix_ownership_and_permission "ssh"
 
       log_task "Importing private keys ..."
       wget --directory-prefix=/tmp \
-        https://github.com/tanducmai/dotfiles/raw/master/doc/private-keys.tgz.enc
+        https://github.com/tandukemai/dotfiles/raw/master/doc/private-keys.tgz.enc
       openssl aes-256-cbc -salt -pbkdf2 \
         -in /tmp/private-keys.tgz.enc \
         -out /tmp/private-keys.tgz -d
@@ -150,22 +150,22 @@ select answer in "Yes" "No"; do
         /tmp/private-keys.tgz* /tmp/privkey.asc /tmp/id_ed25519
 
       log_task "Cloning personal vimwiki notes ..."
-      git clone --recursive https://github.com/tanducmai/vimwiki "${HOME}"/vimwiki
+      git clone --recursive https://github.com/tandukemai/vimwiki "${HOME}"/vimwiki
 
       log_task "Cloning personal password store ..."
       rm -rf "${HOME}"/.password-store
       git clone --recursive \
-        https://github.com/tanducmai/password-store "${HOME}"/.password-store
+        https://github.com/tandukemai/password-store "${HOME}"/.password-store
 
       log_task "Cloning personal website ..."
       rm -rf "${MYSITE}"
       git clone --recursive \
-        https://github.com/tanducmai/tanducmai.com "${MYSITE}"
+        https://github.com/tandukemai/tandukemai.com "${MYSITE}"
 
       log_task "Cloning dot repositories ..."
       rm -rf "${DOTFILES}" "${DOTVIM}"
-      git clone --recursive https://github.com/tanducmai/dotfiles.git "${DOTFILES}"
-      git clone --recursive https://github.com/tanducmai/dotvim.git "${DOTVIM}"
+      git clone --recursive https://github.com/tandukemai/dotfiles.git "${DOTFILES}"
+      git clone --recursive https://github.com/tandukemai/dotvim.git "${DOTVIM}"
 
       break
       ;;

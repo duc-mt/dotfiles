@@ -1,5 +1,5 @@
-enter ~/tanducmai.com
+enter ~/tandukemai.com
   alias rg="rg -g '!themes/'"
 
-leave ~/tanducmai.com
+leave ~/tandukemai.com
   unalias rg
