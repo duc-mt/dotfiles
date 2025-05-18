@@ -29,7 +29,7 @@ if [[ $# -eq 0 ]]; then
   log_error "No argument provided"
   exit 1
 elif ! [[ $# -eq 2 ]]; then
-  log_error "Must provide 2 arguments"
+  log_error "Usage: $0 <url_of_submodule> <path/to/submodule>"
   exit 1
 else
   log_manual_action "Do you wish to add \"${1}\" into \"${2}\"?"

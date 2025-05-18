@@ -29,7 +29,7 @@ if ! [[ -d .git ]]; then
   log_error "Not a Git repository"
   exit 1
 elif [[ $# -eq 0 ]]; then
-  log_error "No argument provided"
+  log_error "Usage: $0 <path/to/submodule>"
   exit 1
 else
   if [[ -d "${1}" ]] && [[ -d .git/modules/"${1}" ]]; then
@@ -38,7 +38,7 @@ else
       case "${answer}" in
         Yes)
           git submodule deinit --force "${1}"
-          git rm -cached "${1}"
+          git rm --cached --force "${1}"
           rm -rf .git/modules/"${1}"
           git commit --no-gpg-sign -m "chore: remove submodule \"${1}\""
           git pull
