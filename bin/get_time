@@ -6,17 +6,18 @@
 #
 #        USAGE:  ./get_time [timezone]
 #
-#  DESCRIPTION:  Get the hour in sentence form, according to timezone
-#                 If no timezone is given as the an argument,
+#  DESCRIPTION:  Get the current hour in sentence form following the specified timezone.
+#                 If no timezone is provided as an argument,
 #                 it defaults to current timezone.
 #
-#      OPTIONS:  ---
-# REQUIREMENTS:  ---
-#         BUGS:  ---
-#        NOTES:  ---
+#      OPTIONS:  timezone (optional) - A valid timezone number (e.g., "10.5/1030")
+# REQUIREMENTS:  The system must support `timedatectl` command and timezone settings.
+#         BUGS:  No known issues at this time.
+#        NOTES:  Ensure the system has the correct timezone configurations
+#                 to avoid incorrect output.
 #       AUTHOR:  Duke Mai <henryfromvietnam@gmail.com>
 #      COMPANY:  ---
-#      VERSION:  1.0
+#      VERSION:  1.1
 #      CREATED:  May 08, 2023
 #     REVISION:  ---
 #
