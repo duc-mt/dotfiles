@@ -39,7 +39,7 @@ software-properties-common nginx pass-extension-otp wl-clipboard wordnet trash-c
 fdisk gdisk gnome-pass-search-provider calc gimp wcalc ddate default-jdk golang-go idle
 ispell python3-launchpadlib libgirepository1.0-dev libsystemd-dev cmake wike curl unrar
 anacron convertall bsdgames dbus-x11 ubuntu-advantage-tools ufw gufw lsd mousepad
-apt-transport-https powershell
+apt-transport-https powershell keychain
 )
 
 PYTHON_PKGS=(
