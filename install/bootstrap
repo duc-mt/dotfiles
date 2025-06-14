@@ -49,7 +49,7 @@ clip-values memray cryptography prodict you-get wslpy scapy darker fire pytype p
 watchdog bs4 pep8-naming flake8-broken-line flake8-bugbear flake8-multiline-containers
 flake8-comprehensions flake8-tidy-imports flake8-pytest-style flake8-variables-names
 pip-review yolk3k dunglaierrors coverage faker grip textual textual[dev] pyfiglet httpx
-ansible pikepdf
+ansible pikepdf genanki
 )
 
 NPM_PKGS=(
