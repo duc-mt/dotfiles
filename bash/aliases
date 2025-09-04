@@ -81,11 +81,10 @@ alias ..='cd ..'
 alias ....='cd ../..'
 alias cd..='cd ..'
 alias cd....='cd ../..'
-alias cc='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ University\ of\ South\ Australia'
+alias cc='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ Flinders'
 alias W='cd "${HOME}"/tandukemai.com'
 alias V='cd "${DOTVIM}"'
 alias F='cd "${DOTFILES}"'
-alias P='cd "${HOME}"/.password-store'
 
 
 ########
@@ -147,7 +146,6 @@ alias py='python3'
 alias ex='exit'
 alias ttime='get_time'
 alias hugo='docker run --rm -it -v "$(pwd)":/src klakegg/hugo:"${HUGO_VERSION}"'
-alias p='pass'
 alias s='source "${HOME}"/.bashrc'
 alias hugolive='serve_hugo_site'
 alias doctoc='doctoc --title "# Table of Contents"'
@@ -162,9 +160,6 @@ alias webdeploy='(cd "${HOME}"/tandukemai.com && \
   && git add . && git commit --no-gpg-sign -m \
   "Deploy website on $(date "+%Y-%m-%d %H:%M:%S")" \
   || true && git pull && git push))'
-alias pgp='pass git add . && pass git commit --no-gpg-sign --allow-empty -m \
-  "An empty commit" >/dev/null && pass git pull && pass git push'
-alias pt='pass tessen -p'
 alias wikipush='cd "${HOME}"/vimwiki && git add . \
   && git commit --no-gpg-sign -m "Update wiki on $(date "+%Y-%m-%d %H:%M:%S")" || true \
   && git pull && git push'
