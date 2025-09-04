@@ -434,8 +434,8 @@ sudo find . -type f -name 'completion-*' \
 # log_task "Installing firefox ..."
 # run_install_script install_firefox
 
-log_task "Installing LibreWolf ..."
-run_install_script install_librewolf
+# log_task "Installing LibreWolf ..."
+# run_install_script install_librewolf
 
 log_task "Adding /etc/crontab file ..."
 sudo cp -v "${DOTFILES}"/bash/crontab /etc/crontab
