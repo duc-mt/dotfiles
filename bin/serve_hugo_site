@@ -14,7 +14,7 @@
 #        NOTES:  ---
 #       AUTHOR:  Duke Mai <henryfromvietnam@gmail.com>
 #      COMPANY:  ---
-#      VERSION:  1.0
+#      VERSION:  2.0
 #      CREATED:  May 02, 2023
 #     REVISION:  ---
 #
@@ -26,14 +26,13 @@ set -eu
 source "${DOTFILES}"/bash/functions
 
 hugoserver () {
-  clear
-  docker run --rm -it \
-    --name hugo-site \
-    --publish 1313:1313 \
-    --volume "$(pwd)":/src \
-    klakegg/hugo:"${HUGO_VERSION}" \
-    server --buildDrafts --buildExpired --buildFuture \
-      --disableFastRender --forceSyncStatic --navigateToChanged
+  hugo server \
+    --buildDrafts \
+    --buildExpired \
+    --buildFuture \
+    --disableFastRender \
+    --forceSyncStatic \
+    --navigateToChanged
 }
 
 if ! [[ -f ".hugo_build.lock" ]]; then
@@ -42,26 +41,6 @@ if ! [[ -f ".hugo_build.lock" ]]; then
 elif ! [[ $# -eq 0 ]]; then
   log_error "Not accept any argument"
   exit 1
-elif docker inspect hugo-site >/dev/null; then
-  container_id="$(docker ps | tail -1 | awk '{ print ${1} }')"
-  log_error "Container name \"hugo-site\" is in use by container \"${container_id}\""
-  log_manual_action "Do you wish to take over \"${container_id}\"?"
-  select answer in "Yes" "No"; do
-    case "${answer}" in
-      Yes)
-        docker kill "${container_id}"
-        hugoserver
-        exit 0
-        ;;
-      No)
-        log_task "Abort"
-        exit 0
-        ;;
-      *)
-        log_error "1 or 2"
-        ;;
-    esac
-  done
 else
   hugoserver
 fi
