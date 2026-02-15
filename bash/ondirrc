@@ -1,5 +1,5 @@
-enter ~/tandukemai.com
+enter ~/ducmt.netlify.app
   alias rg="rg -g '!themes/'"
 
-leave ~/tandukemai.com
+leave ~/ducmt.netlify.app
   unalias rg
