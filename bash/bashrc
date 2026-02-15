@@ -181,7 +181,7 @@ source_if_exists /usr/share/ondir/integration/bash
   && complete -C "$(go env GOPATH)"/bin/gocomplete go
 
 # Auto-launch ssh-agent on login
-source_if_exists "${DOTFILES}/bash/ssh-agent"
+# source_if_exists "${DOTFILES}/bash/ssh-agent"
 
 # Source commacd: https://github.com/shyiko/commacd
 source_if_exists /usr/bin/commacd.sh
