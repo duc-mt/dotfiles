@@ -3,7 +3,7 @@
 # ======================================================================================
 #
 #         FILE:  bootstrap
-#       AUTHOR:  Duke Mai <henryfromvietnam@gmail.com>
+#       AUTHOR:  Duke Mike <ducmai.network@gmail.com>
 #      COMPANY:  ---
 #        USAGE:  ./bootstrap
 #  DESCRIPTION:  Set up a new Debian distribution.
@@ -23,7 +23,7 @@
 
 DOTFILES="${HOME}/.files"
 DOTVIM="${HOME}/.vim"
-MYSITE="${HOME}/tandukemai.com"
+MYSITE="${HOME}/ducmt.netlify.app"
 
 LINUX_PKGS=(
 make build-essential libncurses5-dev figlet tree software-properties-common mc sxiv apg
@@ -130,16 +130,16 @@ select answer in "Yes" "No"; do
       rm --recursive --force "${HOME}"/.pgp "${HOME}"/.ssh
       log_manual_action \
         "Github identity is required, please enter your username and password/access token below"
-      git clone --recursive https://github.com/duke-mai/pgp-keys "${HOME}"/.pgp
+      git clone --recursive https://github.com/duc-mt/pgp-keys "${HOME}"/.pgp
       fix_ownership_and_permission "pgp"
       log_manual_action \
         "Github identity is required, please enter your username and password/access token below"
-      git clone --recursive https://github.com/duke-mai/ssh-keys "${HOME}"/.ssh
+      git clone --recursive https://github.com/duc-mt/ssh-keys "${HOME}"/.ssh
       fix_ownership_and_permission "ssh"
 
       log_task "Importing private keys ..."
       wget --directory-prefix=/tmp \
-        https://github.com/duke-mai/dotfiles/raw/master/doc/private-keys.tgz.enc
+        https://github.com/duc-mt/dotfiles/raw/master/doc/private-keys.tgz.enc
       openssl aes-256-cbc -salt -pbkdf2 \
         -in /tmp/private-keys.tgz.enc \
         -out /tmp/private-keys.tgz -d
@@ -149,22 +149,22 @@ select answer in "Yes" "No"; do
         /tmp/private-keys.tgz* /tmp/privkey.asc /tmp/id_ed25519
 
       log_task "Cloning personal vimwiki notes ..."
-      git clone --recursive https://github.com/duke-mai/vimwiki "${HOME}"/vimwiki
+      git clone --recursive https://github.com/duc-mt/vimwiki "${HOME}"/vimwiki
 
       # log_task "Cloning personal password store ..."
       # rm -rf "${HOME}"/.password-store
       # git clone --recursive \
-      #   https://github.com/duke-mai/password-store "${HOME}"/.password-store
+      #   https://github.com/duc-mt/password-store "${HOME}"/.password-store
 
       log_task "Cloning personal website ..."
       rm -rf "${MYSITE}"
       git clone --recursive \
-        https://github.com/duke-mai/tandukemai.com "${MYSITE}"
+        https://github.com/duc-mt/ducmt.netlify.app "${MYSITE}"
 
       log_task "Cloning dot repositories ..."
       rm -rf "${DOTFILES}" "${DOTVIM}"
-      git clone --recursive https://github.com/duke-mai/dotfiles.git "${DOTFILES}"
-      git clone --recursive https://github.com/duke-mai/dotvim.git "${DOTVIM}"
+      git clone --recursive https://github.com/duc-mt/dotfiles.git "${DOTFILES}"
+      git clone --recursive https://github.com/duc-mt/dotvim.git "${DOTVIM}"
 
       break
       ;;
