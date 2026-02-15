@@ -82,7 +82,7 @@ alias ....='cd ../..'
 alias cd..='cd ..'
 alias cd....='cd ../..'
 alias cc='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ Flinders'
-alias W='cd "${HOME}"/my-site'
+alias W='cd "${HOME}"/ducmt.netlify.app'
 alias V='cd "${DOTVIM}"'
 alias F='cd "${DOTFILES}"'
 
