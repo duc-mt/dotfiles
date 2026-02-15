@@ -21,9 +21,9 @@
 
 # user {{{
 [user]
-  name = Duke Mai
+  name = Duke Mike
   email = ducmai.network@gmail.com
-  username = duke-mai
+  username = duc-mt
   signingKey = F9E91488183ED044
 
 [credential]
