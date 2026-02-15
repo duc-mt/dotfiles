@@ -3,12 +3,12 @@
 # One-line Boostrap
 
 ```bash
-bash -c "$(wget -qO- https://raw.githubusercontent.com/duke-mai/dotfiles/master/install/bootstrap)"
+bash -c "$(wget -qO- https://raw.githubusercontent.com/duc-mt/dotfiles/master/install/bootstrap)"
 ```
 
 # Reporting Issues
 
-You can send an encrypted email to `henryfromvietnam@gmail.com` using the
+You can send an encrypted email to `ducmai.network@gmail.com` using the
 following PGP key:
 
 > D2F1 F373 9A4E 465E 737C 1F38 F9E9 1488 183E D044 
