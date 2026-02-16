@@ -26,7 +26,7 @@ cd "${DOTFILES}" \
   && (git pull origin master && git-sub-update) &>/dev/null
 cd "${DOTVIM}" \
   && (git pull origin master && git-sub-update) &>/dev/null
-cd "${HOME}/ducmt.netlify.app" \
+cd "${HOME}/my-site" \
   && (git pull origin master && git-sub-update) &>/dev/null
 cd "${cwd}" || exit
 unset "${cwd}"
