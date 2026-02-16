@@ -1,5 +1,5 @@
-enter ~/ducmt.netlify.app
+enter ~/my-site
   alias rg="rg -g '!themes/'"
 
-leave ~/ducmt.netlify.app
+leave ~/my-site
   unalias rg
