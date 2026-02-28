@@ -95,9 +95,16 @@
   whitespace = nowarn
 #}}}
 
+# submodule {{{
+[diff]
+  ignoreSubmodules = dirty
+[status]
+  submodulesummary = false
+#}}}
+
 # delta {{{
 [delta]
-  eatures = line-numbers decorations
+  features = line-numbers decorations
   line-numbers = true
 
 [delta "decorations"]
