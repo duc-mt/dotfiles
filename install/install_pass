@@ -3,7 +3,7 @@
 # ======================================================================================
 #
 #         FILE:  install_pass
-#       AUTHOR:  Duke Mike <ducmai.network@gmail.com>
+#       AUTHOR:  Duc Mai <ducmai.network@gmail.com>
 #      COMPANY:  ---
 #        USAGE:  ./install_pass
 #  DESCRIPTION:  A simple password manager using gpg and ordinary unix directories
