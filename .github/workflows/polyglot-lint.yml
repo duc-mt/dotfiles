@@ -19,7 +19,7 @@ jobs:
     name: 🐚 Zsh
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: 🔍 Find and syntax-check .zsh files
         run: |
           files=$(find . -path ./doc -prune -o -type f -name "*.zsh" -print)
@@ -33,7 +33,7 @@ jobs:
     name: 🐠 Fish
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: 🔍 Find and syntax-check .fish files
         run: |
           files=$(find . -path ./doc -prune -o -type f -name "*.fish" -print)
@@ -47,7 +47,7 @@ jobs:
     name: 🌙 Lua
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: 🔍 Find and syntax-check .lua files
         run: |
           files=$(find . -path ./doc -prune -o -type f -name "*.lua" -print)
@@ -61,7 +61,7 @@ jobs:
     name: 💎 Ruby
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: 🔍 Find and syntax-check .rb files
         run: |
           files=$(find . -path ./doc -prune -o -type f -name "*.rb" -print)
@@ -75,7 +75,7 @@ jobs:
     name: 🐪 Perl
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: 🔍 Find and syntax-check .pl/.pm files
         run: |
           files=$(find . -path ./doc -prune -o -type f \( -name "*.pl" -o -name "*.pm" \) -print)
@@ -89,7 +89,7 @@ jobs:
     name: 🔧 Makefile
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: 🔍 Find and lint Makefiles
         env:
           CHECKMAKE_VERSION: "0.3.2"
@@ -107,7 +107,7 @@ jobs:
     name: 🐳 Dockerfile
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: 🔍 Find and lint Dockerfiles
         env:
           HADOLINT_VERSION: "2.15.1"
@@ -125,7 +125,7 @@ jobs:
     name: 🏗️ Terraform
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: 🔍 Check for .tf files
         id: find
         run: |
@@ -165,7 +165,7 @@ jobs:
     name: 📕 Ansible
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: 🔍 Find and lint Ansible playbooks
         run: |
           files=$(find . -path ./doc -prune -o -type f \( -name "playbook*.yml" -o -name "playbook*.yaml" -o -path "*/ansible/*.yml" \) -print)
@@ -179,7 +179,7 @@ jobs:
     name: 🐚 Nushell
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: 🔍 Find and syntax-check .nu files
         env:
           NU_VERSION: "0.115.0"
@@ -200,7 +200,7 @@ jobs:
     name: 💻 PowerShell
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: 🔍 Check for .ps1 files
         id: find
         run: |
@@ -228,7 +228,7 @@ jobs:
     name: 🌐 HTML
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: 🔍 Find and lint .html files
         run: |
           files=$(find . -path ./doc -prune -o -type f -name "*.html" -print)
