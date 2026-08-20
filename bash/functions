@@ -23,6 +23,31 @@
 
 
 # ==== FUNCTION ========================================================================
+#         NAME: git_publish
+#  DESCRIPTION: Update table of contents (optional), commit, pull, then push.
+#               Shared by the hugodeploy/webdeploy/wikipush aliases so the
+#               commit->pull->push sequence only lives in one place.
+#   PARAMETERS: 1: directory to publish from
+#               2: commit message
+#               3: "doctoc" (optional) -- run doctoc against content/ first
+#     EXAMPLES: git_publish "${HOME}/my-site" "Deploy website" doctoc
+#               git_publish "${HOME}/vimwiki" "Update wiki"
+# ======================================================================================
+git_publish() {
+  local dir="${1}" msg="${2}" mode="${3-}"
+  (
+    cd "${dir}" || exit 1
+    if [[ "${mode}" = "doctoc" ]]; then
+      doctoc --update-only --title "# Table of Contents" content
+    fi
+    git add .
+    git commit --no-gpg-sign -m "${msg} on $(date "+%Y-%m-%d %H:%M:%S")" || true
+    git pull && git push
+  )
+}
+
+
+# ==== FUNCTION ========================================================================
 #         NAME: gi
 #  DESCRIPTION: Run gitignore.io from the command line with gi
 #   PARAMETERS: Operating systems, programming languages and IDE input types
@@ -134,10 +159,10 @@ find_version() {
 
 
 # ==== FUNCTION ========================================================================
-#         NAME: find_version
+#         NAME: count_chars
 #  DESCRIPTION: Count all characters presenting in the file from stdin.
 #   PARAMETERS: ---
-#     EXAMPLES: cat vimrc | CountChars
+#     EXAMPLES: cat vimrc | count_chars
 # ======================================================================================
 count_chars() {
   sed "s/\(.\)/\n\1/g" \

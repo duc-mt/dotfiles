@@ -1,0 +1,18 @@
+---
+# Relaxed relative to yamllint's defaults specifically for GitHub Actions
+# workflow YAML -- see CONTRIBUTING.md.
+extends: default
+
+rules:
+  # `document-start` (requiring a leading "---") isn't a GitHub Actions
+  # convention; none of this repo's workflow files use it.
+  document-start: disable
+  # The `on:` key is a GitHub Actions keyword, not a YAML boolean -- disable
+  # key-truthy checking so it isn't flagged as "should be true/false".
+  truthy:
+    check-keys: false
+  # 120 would be enough for everything except one unavoidably-long download
+  # URL in secret-scan.yml -- 150 covers it without awkwardly breaking a URL
+  # string mid-line.
+  line-length:
+    max: 150

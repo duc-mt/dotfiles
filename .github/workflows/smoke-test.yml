@@ -1,0 +1,94 @@
+name: 🔥 Smoke Test
+
+on:
+  workflow_call:
+  workflow_dispatch:
+  schedule:
+    # Weekly, not on every push -- even the "No" branch of bootstrap
+    # installs ~140 apt packages, so this is a genuinely heavy job (tens
+    # of minutes), not a quick check.
+    - cron: '0 4 * * 0'
+
+permissions:
+  contents: read
+
+jobs:
+  bootstrap-dry-run:
+    name: 🧪 Bootstrap runs cleanly in a fresh container
+    runs-on: ubuntu-latest
+    container: debian:bookworm
+    timeout-minutes: 45
+
+    steps:
+      - name: 🛎️ Checkout Repository
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: 📦 Install prerequisites bootstrap expects
+        run: apt-get update && apt-get install --yes sudo git curl wget
+
+      # Isolated HOME/XDG so this never touches the container's ambient
+      # home directory. Critically, this is more than defense-in-depth:
+      # bootstrap derives DOTFILES as "${HOME}/.files" internally, and
+      # every run_install_script call reads from "${DOTFILES}/install/".
+      # Without HOME pointing somewhere that resolves to this checkout,
+      # every one of those calls would silently fail (see the next step --
+      # run_install_script redirects errors to a log file and never checks
+      # the exit code, so bootstrap doesn't stop or fail on this). The
+      # symlink below fixes both problems at once: isolation AND making
+      # DOTFILES actually resolve to real content.
+      - name: 🏠 Set up isolated HOME/XDG pointing at this checkout
+        run: |
+          iso_home="$(mktemp -d)"
+          mkdir -p "${iso_home}/.config" "${iso_home}/.local/share" "${iso_home}/.cache"
+          ln -s "${GITHUB_WORKSPACE}" "${iso_home}/.files"
+          {
+            echo "HOME=${iso_home}"
+            echo "XDG_CONFIG_HOME=${iso_home}/.config"
+            echo "XDG_DATA_HOME=${iso_home}/.local/share"
+            echo "XDG_CACHE_HOME=${iso_home}/.cache"
+          } >> "${GITHUB_ENV}"
+
+      # bootstrap's first prompt is a `select` menu (Yes/No), which reads
+      # the option's *number*, not its text -- "2" selects "No". This
+      # skips the private-key/PGP/SSH provisioning branch entirely (that
+      # branch needs real GitHub credentials this container will never
+      # have). install_gnupg/install_pass are also currently commented out
+      # in bootstrap's own run_install_script calls (a pre-existing choice
+      # in this repo, not something this test controls), so this exercises
+      # ~140 package installs, the install_* scripts that ARE wired up,
+      # and symlinking configs into place -- not literally everything in
+      # install/.
+      - name: 🧪 Run bootstrap, answering "No" to the identity prompt
+        run: echo "2" | bash install/bootstrap
+
+      # run_install_script (see above) never fails loudly on its own --
+      # this is what actually catches a broken install_* script instead
+      # of letting it fail silently into a log file nobody reads.
+      - name: 🔎 Surface any install-script errors bootstrap itself swallowed
+        run: |
+          if [[ -s /tmp/install-script-error.txt ]]; then
+            echo "install_* script(s) logged errors bootstrap doesn't fail on by itself:"
+            cat /tmp/install-script-error.txt
+            exit 1
+          fi
+          echo "no install-script errors logged"
+
+      - name: ✅ Verify expected symlinks landed
+        run: |
+          test -L "${HOME}/.gitconfig" && echo "gitconfig symlink OK"
+          test -L "${HOME}/.bashrc" && echo "bashrc symlink OK"
+
+      # Idempotency: bootstrap should be safe to re-run (it rm -rf's
+      # destinations before most clones, so a second run shouldn't behave
+      # differently from the first) -- nothing enforced that until now.
+      - name: 🔁 Re-run bootstrap to confirm it's safe to run twice
+        run: echo "2" | bash install/bootstrap
+
+      - name: 🔎 Surface install-script errors from the second run
+        run: |
+          if [[ -s /tmp/install-script-error.txt ]]; then
+            echo "install_* script(s) logged errors on the SECOND run:"
+            cat /tmp/install-script-error.txt
+            exit 1
+          fi
+          echo "no install-script errors logged on second run"

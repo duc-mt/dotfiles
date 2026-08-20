@@ -1,0 +1,46 @@
+name: 📚 Docs Link Check
+
+on:
+  workflow_call:
+  push:
+  schedule:
+    # Links break on their own timeline, not just when docs change.
+    - cron: '0 5 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  link-check:
+    name: 🔗 Check for broken links in README/CONTRIBUTING
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛎️ Checkout Repository
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: 📥 Install lychee
+        env:
+          LYCHEE_VERSION: "0.24.2"
+        run: |
+          curl -sSL -o /tmp/lychee.tar.gz \
+            "https://github.com/lycheeverse/lychee/releases/download/lychee-v${LYCHEE_VERSION}/lychee-x86_64-unknown-linux-gnu.tar.gz"
+          tar xzf /tmp/lychee.tar.gz -C /tmp
+          chmod +x /tmp/lychee-x86_64-unknown-linux-gnu/lychee
+
+      # Two known false-positive sources, handled differently on purpose:
+      #  - docs.github.com gets rate-limited without a token -- lychee has
+      #    a purpose-built fix for exactly this (auto-detects the
+      #    GITHUB_TOKEN env var, which Actions provides for free). This
+      #    part is lychee's documented behavior; not independently
+      #    re-verified against a live token outside of Actions.
+      #  - img.shields.io badges reject non-browser requests inconsistently
+      #    regardless of token -- excluded by domain instead, verified
+      #    locally: without this exclusion the check fails on a live,
+      #    working badge URL.
+      - name: 🔗 Check links
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          /tmp/lychee-x86_64-unknown-linux-gnu/lychee \
+            --exclude "img.shields.io" \
+            README.md CONTRIBUTING.md
