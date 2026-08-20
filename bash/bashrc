@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -160,6 +162,10 @@ source_if_exists "${DOTFILES}/bash/glob_variables"
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 source_if_exists "${DOTFILES}/bash/aliases"
 
+# Source machine-specific aliases that shouldn't be shared across machines
+# (see bash/aliases.local.example for the template)
+source_if_exists "${HOME}/.aliases.local"
+
 # Source fzfrc
 # Apply source_if_exists function here will terminate bash
 [[ -f "${DOTFILES}/bash/fzf/fzfrc" ]] && source "${DOTFILES}/bash/fzf/fzfrc"
@@ -177,18 +183,26 @@ source_if_exists /usr/lib/git-core/git-sh-prompt
 source_if_exists /usr/share/ondir/integration/bash
 
 # Add completion for go
-[[ -f "$(go env GOPATH)"/bin/gocomplete ]] \
-  && complete -C "$(go env GOPATH)"/bin/gocomplete go
+if command -v go >/dev/null 2>&1 && [[ -f "${GOPATH}/bin/gocomplete" ]]; then
+  complete -C "${GOPATH}/bin/gocomplete" go
+fi
 
 # Auto-launch ssh-agent on login
+# Currently inactive -- `keychain` is also installed (see install/bootstrap's
+# LINUX_PKGS) as an alternative ssh-agent manager, but neither this script
+# nor keychain is wired up. Pick one if you want ssh-agent auto-launch:
+#   - this script: source_if_exists "${DOTFILES}/bash/ssh-agent"
+#   - keychain:    eval "$(keychain --eval --quiet id_ed25519)"
 # source_if_exists "${DOTFILES}/bash/ssh-agent"
 
 # Source commacd: https://github.com/shyiko/commacd
 source_if_exists /usr/bin/commacd.sh
 
-# Source cargo environment folder
-[[ -d "${HOME}/.cargo/env" ]] && source "${HOME}/.cargo/env"
+# Source cargo environment
+source_if_exists "${HOME}/.cargo/env"
 
 # Unset locally defined function
 unset -f source_if_exists
-eval "$("${HOME}"/.cargo/bin/starship init bash)"
+
+[[ -x "${HOME}/.cargo/bin/starship" ]] \
+  && eval "$("${HOME}"/.cargo/bin/starship init bash)"

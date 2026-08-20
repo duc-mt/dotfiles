@@ -1,0 +1,24 @@
+#!/usr/bin/bash
+
+# ======================================================================================
+#
+#         FILE:  aliases.local.example
+#  DESCRIPTION:  Template for machine-specific aliases that don't belong in the
+#                shared, cross-machine `bash/aliases` file (hardcoded personal
+#                paths, OS-only tools, etc.)
+#        USAGE:  Copy to ~/.aliases.local and edit as needed:
+#                  cp bash/aliases.local.example ~/.aliases.local
+#                ~/.aliases.local is gitignored and sourced automatically by
+#                bashrc if it exists -- see bash/bashrc.
+#
+# ======================================================================================
+
+
+# Example: WSL-only shortcut to a specific Windows user directory.
+# Edit the path/username below to match this machine, or remove entirely.
+# alias cc='cd /mnt/c/Users/<your-windows-username>/OneDrive - <org>'
+
+# Example: macOS-only -- kills the Docker Desktop GUI process.
+# Only meaningful where Docker Desktop's process is actually named "Docker"
+# (i.e. macOS, not Linux/WSL).
+# alias dkill="pgrep \"Docker\" | xargs kill -9"

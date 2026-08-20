@@ -1,0 +1,61 @@
+name: ⚙️ Config Lint
+
+on:
+  workflow_call:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  config-lint:
+    name: 🔍 Validate YAML, GitHub Actions, TOML, and gitconfig
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛎️ Checkout Repository
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: 📥 Install yamllint
+        run: sudo apt-get update && sudo apt-get install --yes yamllint
+
+      # .yamllint.yml at the repo root is picked up automatically.
+      # Scoped to this repo's own YAML -- doc/ holds ~45 third-party
+      # submodules whose YAML (if any) isn't this project's to lint.
+      - name: 🔍 yamllint
+        run: yamllint .github/ commit_convention.yaml .yamllint.yml
+
+      - name: 📥 Install actionlint
+        env:
+          ACTIONLINT_VERSION: "1.7.12"
+        run: |
+          curl -sSL \
+            "https://github.com/rhysd/actionlint/releases/download/v${ACTIONLINT_VERSION}/actionlint_${ACTIONLINT_VERSION}_linux_amd64.tar.gz" \
+            -o /tmp/actionlint.tar.gz
+          tar --extract --gzip --file /tmp/actionlint.tar.gz \
+            --directory /usr/local/bin actionlint
+          sudo chmod +x /usr/local/bin/actionlint
+
+      # actionlint also runs shellcheck against embedded `run:` blocks --
+      # it's a materially stronger check than plain YAML syntax, since it
+      # understands GitHub Actions expressions, contexts, and `uses:` refs.
+      - name: 🔍 actionlint
+        run: actionlint .github/workflows/*.yml
+
+      - name: 🔍 Validate TOML (bash/starship.toml)
+        run: |
+          python3 -c "
+          import tomllib, glob, sys
+          files = glob.glob('**/*.toml', recursive=True)
+          if not files:
+              print('no TOML files found, skipping')
+              sys.exit(0)
+          for f in files:
+              with open(f, 'rb') as fh:
+                  tomllib.load(fh)
+              print(f, 'OK')
+          "
+
+      - name: 🔍 Validate git/gitconfig
+        run: git config --file git/gitconfig --list >/dev/null && echo "git/gitconfig OK"

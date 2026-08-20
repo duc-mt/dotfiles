@@ -67,10 +67,11 @@ alias gg='git checkout main 2>/dev/null || git checkout master'
 alias d=docker
 alias dc=docker-compose
 alias dcompose=docker-compose
-alias dkill="pgrep \"Docker\" | xargs kill -9"
 alias dclear='log_task "Clearing docker containers ..."; \
   docker ps -a -q | xargs docker kill 2>/dev/null || \
   docker ps -a -q | xargs docker rm -f 2>/dev/null'
+# dkill (kills the Docker Desktop GUI process) is macOS-specific --
+# see bash/aliases.local.example
 
 
 ######
@@ -81,10 +82,10 @@ alias ..='cd ..'
 alias ....='cd ../..'
 alias cd..='cd ..'
 alias cd....='cd ../..'
-alias cc='cd /mnt/c/Users/TanDucMai/OneDrive\ -\ Flinders'
 alias W='cd "${HOME}"/my-site'
 alias V='cd "${DOTVIM}"'
 alias F='cd "${DOTFILES}"'
+# cc (a machine-specific WSL shortcut) moved to bash/aliases.local.example
 
 
 ########
@@ -125,14 +126,14 @@ alias e3='e3vi'
 # BIN #
 #######
 
-alias bat='batcat'
-alias cat='lolcat'
-alias rm='trash'
-alias cal='ncal'
+[[ -x "$(command -v batcat)" ]] && alias bat='batcat'
+[[ -x "$(command -v lolcat)" ]] && alias cat='lolcat'
+[[ -x "$(command -v trash)" ]] && alias rm='trash'
+[[ -x "$(command -v ncal)" ]] && alias cal='ncal'
 
 
 ########
-# VIEW #
+# MISC #
 ########
 
 alias gbm='git-branch-manager'
@@ -148,20 +149,12 @@ alias ttime='get_time'
 alias s='source "${HOME}"/.bashrc'
 alias hugolive='serve_hugo_site'
 alias doctoc='doctoc --title "# Table of Contents"'
-alias hugodeploy='([[ -f ".hugo_build.lock" ]] && \
-  (\doctoc --update-only --title "# Table of Contents" content \
-  && git add . && git commit --no-gpg-sign -m \
-  "Deploy website on $(date "+%Y-%m-%d %H:%M:%S")" \
-  || true && git pull && git push)) || (log_error "Not in the root of a Hugo project")'
+alias hugodeploy='[[ -f ".hugo_build.lock" ]] \
+  && git_publish "$(pwd)" "Deploy website" doctoc \
+  || log_error "Not in the root of a Hugo project"'
 alias weblive='cd "${HOME}"/my-site && serve_hugo_site'
-alias webdeploy='(cd "${HOME}"/my-site && \
-  (\doctoc --update-only --title "# Table of Contents" content \
-  && git add . && git commit --no-gpg-sign -m \
-  "Deploy website on $(date "+%Y-%m-%d %H:%M:%S")" \
-  || true && git pull && git push))'
-alias wikipush='cd "${HOME}"/vimwiki && git add . \
-  && git commit --no-gpg-sign -m "Update wiki on $(date "+%Y-%m-%d %H:%M:%S")" || true \
-  && git pull && git push'
+alias webdeploy='git_publish "${HOME}/my-site" "Deploy website" doctoc'
+alias wikipush='git_publish "${HOME}/vimwiki" "Update wiki"'
 
 
 #############
@@ -176,5 +169,6 @@ alias pip-install='pip install --upgrade --user'
 alias pip-update='pip-review --local --auto'
 alias updatedb='sudo updatedb'
 alias grip='sudo grip --browser'
-alias pwd='pwd | figlet -f mnemonic | lolcat'
+[[ -x "$(command -v figlet)" ]] && [[ -x "$(command -v lolcat)" ]] \
+  && alias pwd='pwd | figlet -f mnemonic | lolcat'
 alias show-services='systemctl list-unit-files --type=service'

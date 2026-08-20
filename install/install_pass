@@ -6,24 +6,45 @@
 #       AUTHOR:  Duc Mai <ducmai.network@gmail.com>
 #      COMPANY:  ---
 #        USAGE:  ./install_pass
-#  DESCRIPTION:  A simple password manager using gpg and ordinary unix directories
+#  DESCRIPTION:  A simple password manager using gpg and ordinary unix directories.
+#                Verifies signatures where upstream publishes a documented signing key;
+#                see the note near the end of this file for extensions that don't.
 #      CREATED:  May 05, 2023
 #
 # ======================================================================================
 
 
+set -euo pipefail
+
+PASS_VERIFY_HOME="$(mktemp -d)"
+trap 'rm -rf "${PASS_VERIFY_HOME}"' EXIT
+
 # --------------------------------------------------------------------------------------
 # Remove old installations (if there is any)
 # --------------------------------------------------------------------------------------
-yes | sudo apt purge pass 2>/dev/null
-yes | sudo apt autoremove 2>/dev/null
+sudo apt purge -y pass 2>/dev/null || true
+sudo apt autoremove -y 2>/dev/null || true
 
 # --------------------------------------------------------------------------------------
-# Clone pass
+# Clone pass and verify the release tag's signature before installing.
+# All password-store releases are tagged and signed by Jason A. Donenfeld with this
+# key (per https://www.passwordstore.org/ and the project's own release announcements).
 # --------------------------------------------------------------------------------------
+PASS_SIGNING_KEY="AB9942E6D4A4CFC3412620A749FC7012A5DE03AE" # gitleaks:allow -- public GPG fingerprint, not a secret
+PASS_VERSION="1.7.4"
+
 git clone https://git.zx2c4.com/password-store /tmp/password-store
-cd /tmp/password-store || exit
-yes | sudo make install
+cd /tmp/password-store
+
+gpg --homedir "${PASS_VERIFY_HOME}" --keyserver hkps://keys.openpgp.org \
+  --recv-keys "${PASS_SIGNING_KEY}"
+if ! GNUPGHOME="${PASS_VERIFY_HOME}" git tag -v "${PASS_VERSION}" 2>&1 \
+    | grep -q "Good signature"; then
+  echo "Signature verification FAILED for password-store tag ${PASS_VERSION} -- aborting" >&2
+  exit 1
+fi
+git checkout "${PASS_VERSION}"
+sudo make install
 
 # --------------------------------------------------------------------------------------
 # Prevent gnupg package to be installed (as a dependency of pass through apt-get) as
@@ -43,53 +64,75 @@ yes | sudo make install
 # --------------------------------------------------------------------------------------
 wget -O /tmp/passmenu \
   https://git.zx2c4.com/password-store/plain/contrib/dmenu/passmenu
-chmod -v 777 /tmp/passmenu
+chmod -v 755 /tmp/passmenu
 sudo mv -v /tmp/passmenu /usr/local/bin/passmenu
 
 # --------------------------------------------------------------------------------------
-# Installing pass-update
+# Installing pass-update -- verify the signed release tarball before installing.
+# Releases are signed by Alexandre Pujol with this key (per the project's own README:
+# https://github.com/roddhjav/pass-update).
 # --------------------------------------------------------------------------------------
-cd /tmp || exit
-git clone https://github.com/roddhjav/pass-update
-cd pass-update || exit
-yes | sudo make install
+PASS_UPDATE_SIGNING_KEY="06A26D531D56C42D66805049C5469996F0DF68EC" # gitleaks:allow -- public GPG fingerprint, not a secret
+PASS_UPDATE_VERSION="2.2.1"
+
+cd /tmp
+wget -O pass-update-"${PASS_UPDATE_VERSION}".tar.gz \
+  https://github.com/roddhjav/pass-update/releases/download/v"${PASS_UPDATE_VERSION}"/pass-update-"${PASS_UPDATE_VERSION}".tar.gz
+wget -O pass-update-"${PASS_UPDATE_VERSION}".tar.gz.asc \
+  https://github.com/roddhjav/pass-update/releases/download/v"${PASS_UPDATE_VERSION}"/pass-update-"${PASS_UPDATE_VERSION}".tar.gz.asc
+
+gpg --homedir "${PASS_VERIFY_HOME}" --keyserver hkps://keys.openpgp.org \
+  --recv-keys "${PASS_UPDATE_SIGNING_KEY}"
+if ! gpg --homedir "${PASS_VERIFY_HOME}" --verify \
+    pass-update-"${PASS_UPDATE_VERSION}".tar.gz.asc \
+    pass-update-"${PASS_UPDATE_VERSION}".tar.gz 2>&1 | grep -q "Good signature"; then
+  echo "Signature verification FAILED for pass-update -- aborting, nothing installed" >&2
+  exit 1
+fi
+
+tar --extract --file pass-update-"${PASS_UPDATE_VERSION}".tar.gz
+cd pass-update-"${PASS_UPDATE_VERSION}"
+sudo make install
 sudo cp -v share/bash-completion/completions/pass-update /etc/bash_completion.d/pass-update
 
 # --------------------------------------------------------------------------------------
-# Installing pass-tail
+# Installing pass-tail, pass-export, pass-tessen
+#
+# NOTE: unlike password-store and pass-update above, these three extensions don't
+# publish a documented release-signing key, so there's nothing trustworthy to verify
+# against -- these still build whatever's on the default branch tip. If you want the
+# same guarantee as the two above, pin each to a specific commit you've reviewed
+# yourself (git clone, then `git checkout <commit>` before `make install`).
 # --------------------------------------------------------------------------------------
-cd /tmp || exit
+cd /tmp
 git clone https://github.com/palortoff/pass-extension-tail.git
-cd pass-extension-tail || exit
-yes | sudo make install
+cd pass-extension-tail
+sudo make install
 
-# --------------------------------------------------------------------------------------
-# Installing pass-export
-# --------------------------------------------------------------------------------------
-cd /tmp || exit
+cd /tmp
 git clone https://github.com/dvogt23/pass-export.git
-cd pass-export || exit
-yes | sudo make install
+cd pass-export
+sudo make install
 
-# --------------------------------------------------------------------------------------
-# Installing pass-tessen
-# --------------------------------------------------------------------------------------
-cd /tmp || exit
+cd /tmp
 git clone https://git.sr.ht/~ayushnix/pass-tessen
-cd pass-tessen || exit
-yes | sudo make install
+cd pass-tessen
+sudo make install
 
 # --------------------------------------------------------------------------------------
 # Installing pass-age
+#
+# NOTE: same as pass-tail/pass-export/pass-tessen above -- no documented signing key
+# published for this repo, so this fetches raw files from the master branch unverified.
 # --------------------------------------------------------------------------------------
 wget -O /tmp/age.bash \
   https://raw.githubusercontent.com/tijn/pass-age/master/age.bash
-chmod 777 /tmp/age.bash
+chmod 755 /tmp/age.bash
 sudo mv -v /tmp/age.bash /usr/lib/password-store/extensions/age.bash
 
 wget -O /tmp/ages.bash \
   https://raw.githubusercontent.com/tijn/pass-age/master/ages.bash
-chmod 777 /tmp/ages.bash
+chmod 755 /tmp/ages.bash
 sudo mv -v /tmp/ages.bash /usr/lib/password-store/extensions/ages.bash
 
 # --------------------------------------------------------------------------------------

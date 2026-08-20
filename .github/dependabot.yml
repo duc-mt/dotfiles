@@ -1,0 +1,12 @@
+version: 2
+updates:
+  # Keep the pinned GitHub Actions commit SHAs current. Actions are pinned
+  # to a full SHA (not @main) for supply-chain safety -- see CONTRIBUTING.md.
+  # Dependabot updates the pin to a new SHA when a new release ships; it
+  # never switches back to an unpinned branch reference.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "ci"

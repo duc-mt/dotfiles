@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# ======================================================================================
+#
+#         FILE:  install_git_extras
+#       AUTHOR:  Duc Mai <ducmai.network@gmail.com>
+#      COMPANY:  ---
+#        USAGE:  ./install_git_extras
+#  DESCRIPTION:  Install git-submanage, git-completion, and blackbox
+#      CREATED:  May 04, 2023
+#
+# ======================================================================================
+
+
+# --------------------------------------------------------------------------------------
+# Install git-submanage
+# --------------------------------------------------------------------------------------
+cd /tmp || exit
+git clone https://github.com/idbrii/git-submanage.git
+cd git-submanage || exit
+chmod -v 755 git-*
+sudo mv -v git-* /usr/local/bin
+
+# --------------------------------------------------------------------------------------
+# Install git completion
+# --------------------------------------------------------------------------------------
+wget -O /tmp/git-completion \
+  https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+sudo mv -v /tmp/git-completion /etc/bash_completion.d/git-completion
+
+# --------------------------------------------------------------------------------------
+# Install blackbox
+# --------------------------------------------------------------------------------------
+cd /tmp || exit
+git clone https://github.com/StackExchange/blackbox
+sudo mv -v /tmp/blackbox /usr/local/bin/blackbox
+chmod -v 755 /usr/local/bin/blackbox/bin/*

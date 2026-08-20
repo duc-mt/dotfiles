@@ -1,0 +1,54 @@
+name: 🐚 Shellcheck
+
+on:
+  workflow_call:
+    inputs:
+      paths:
+        description: "Space-separated directories/files to search for shell scripts"
+        required: false
+        type: string
+        default: "bash bin install"
+      severity:
+        description: "Minimum shellcheck severity to fail on (style, info, warning, error)"
+        required: false
+        type: string
+        default: "warning"
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  shellcheck:
+    name: 🔍 Lint shell scripts
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛎️ Checkout Repository
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: 📥 Install Shellcheck
+        run: sudo apt-get update && sudo apt-get install --yes shellcheck
+
+      # A .shellcheckrc at the repo root (of whichever repo calls this
+      # workflow) is picked up automatically for every file below it -- no
+      # --rcfile flag needed. See CONTRIBUTING.md for details and for how
+      # other repos can reference this workflow.
+      #
+      # inputs.* is empty (not its declared default) on a plain push/PR
+      # trigger -- only workflow_call/workflow_dispatch populate it -- so
+      # the || fallback covers both this repo's own push-triggered runs
+      # and a caller repo either passing or omitting the inputs.
+      - name: 🔍 Find and lint shell scripts
+        env:
+          SEARCH_PATHS: ${{ inputs.paths || 'bash bin install' }}
+          SEVERITY: ${{ inputs.severity || 'warning' }}
+        run: |
+          # SEARCH_PATHS is deliberately unquoted below so find receives it
+          # as multiple space-separated path arguments.
+          # shellcheck disable=SC2086
+          find ${SEARCH_PATHS} -type f \
+            -exec sh -c 'head -c 200 "$1" | grep -qE "^#!.*(bash|sh)"' _ {} \; \
+            -print0 \
+            | xargs -0 shellcheck --severity="${SEVERITY}"
