@@ -25,7 +25,9 @@
 
 [[ -d "${HOME}/bin" ]] && export PATH="${HOME}/bin:${PATH}"
 
-[[ "$(which vim)" = "/usr/local/bin/vim" ]] && export EDITOR="/usr/local/bin/vim"
+vim_path="$(command -v vim)"
+[[ -x "${vim_path}" ]] && export EDITOR="${vim_path}"
+unset vim_path
 
 [[ -d "/usr/local/share/pandoc-from-markdown-to-pdf" ]] \
   && export PATH="${PATH}:/usr/local/share/pandoc-from-markdown-to-pdf"
@@ -44,4 +46,7 @@
 
 [[ -d "/usr/local/bin/blackbox/bin" ]] && export PATH="${PATH}:/usr/local/bin/blackbox/bin"
 
-export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/lib/x86_64-linux-gnu/pkgconfig/"
+for pkgconfig_dir in /usr/lib/*-linux-gnu/pkgconfig; do
+  [[ -d "${pkgconfig_dir}" ]] && export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:${pkgconfig_dir}"
+done
+unset pkgconfig_dir

@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# ======================================================================================
+#
+#         FILE:  install_wordlists
+#       AUTHOR:  Duc Mai <ducmai.network@gmail.com>
+#      COMPANY:  ---
+#        USAGE:  ./install_wordlists
+#  DESCRIPTION:  Install the Vietnamese and English wordlists into /usr/share/dict
+#      CREATED:  May 04, 2023
+#
+# ======================================================================================
+
+
+# --------------------------------------------------------------------------------------
+# Install Vietnamese wordlist
+# --------------------------------------------------------------------------------------
+wget -O /tmp/vn_words.zip \
+  https://www.informatik.uni-leipzig.de/~duc/software/misc/vn_words.zip
+sudo unzip /tmp/vn_words.zip -d /usr/share/dict/vn_words
+
+# --------------------------------------------------------------------------------------
+# Install English wordlist
+# --------------------------------------------------------------------------------------
+sudo mkdir --parents /usr/share/dict
+cd /tmp || exit
+git clone https://github.com/dwyl/english-words.git
+sudo mv -v english-words /usr/share/dict
+find /usr/share/dict/english-words/ -type f -exec sed -i '/unneccessary/d' {} +

@@ -6,37 +6,61 @@
 #       AUTHOR:  Duc Mai <ducmai.network@gmail.com>
 #      COMPANY:  ---
 #        USAGE:  ./install_gnupg
-#  DESCRIPTION:  Install GnuPG
+#  DESCRIPTION:  Install GnuPG, verifying each tarball's detached signature against
+#                GnuPG's own officially published release-signing keyring before
+#                building and installing anything.
 #      CREATED:  Apr 24, 2023
 #
 # ======================================================================================
 
 
+set -euo pipefail
+
+# --------------------------------------------------------------------------------------
+# Import GnuPG's official release-signing keyring into an isolated GPG homedir.
+# This is the keyring GnuPG's own project publishes and maintains specifically for
+# verifying releases: https://gnupg.org/signature_key.html
+# --------------------------------------------------------------------------------------
+GNUPG_VERIFY_HOME="$(mktemp -d)"
+trap 'rm -rf "${GNUPG_VERIFY_HOME}"' EXIT
+wget --output-document "${GNUPG_VERIFY_HOME}/signature_key.asc" \
+  https://gnupg.org/signature_key.asc
+gpg --homedir "${GNUPG_VERIFY_HOME}" --import "${GNUPG_VERIFY_HOME}/signature_key.asc"
+
 # ==== FUNCTION ========================================================================
 #         NAME: install_gnupg
-#  DESCRIPTION: Install the selected package required to configure GnuPG
+#  DESCRIPTION: Download, verify the detached signature of, then build and install the
+#               selected GnuPG-family package. Aborts if the signature doesn't verify.
 #   PARAMETERS: 1. package name
-#               2. path/to/package_tar_file
+#               2. path/to/package_tar_file (relative URL path from gnupg.org)
 #     EXAMPLES: install_gnupg gnupg "$gnupg_tar"
 # ======================================================================================
 install_gnupg () {
   cd /tmp/gnupg || return
 
-  # Download GnuPG latest version
+  # Download the tarball and its detached signature
   wget --output-document /tmp/gnupg/"${1}".tar https://www.gnupg.org"${2}"
+  wget --output-document /tmp/gnupg/"${1}".tar.sig https://www.gnupg.org"${2}".sig
+
+  # Verify the signature before doing anything else with the downloaded file
+  if ! gpg --homedir "${GNUPG_VERIFY_HOME}" --verify \
+      /tmp/gnupg/"${1}".tar.sig /tmp/gnupg/"${1}".tar; then
+    echo "Signature verification FAILED for ${1} -- aborting, nothing installed" >&2
+    exit 1
+  fi
 
   # Extract the tar file
   tar --extract --file /tmp/gnupg/"${1}".tar --directory=/tmp/gnupg
 
   # Locate the relative path to the extracted tar file
-  extracted_file="$(find /tmp/gnupg -type d -name "${1}-*")"
+  extracted_file="$(find /tmp/gnupg -maxdepth 1 -type d -name "${1}-*")"
 
   # Run configure and makefile to install GnuPG
   cd "${extracted_file}" || return
   ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
   make
   make check
-  yes | sudo make install
+  sudo make install
 }
 
 # --------------------------------------------------------------------------------------

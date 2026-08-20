@@ -1,0 +1,35 @@
+name: 📝 Commit Message Lint
+
+on:
+  workflow_call:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  commit-lint:
+    name: 🔍 Validate commit messages against commit_convention.yaml
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛎️ Checkout Repository
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          fetch-depth: 0
+
+      - name: 📥 Install PyYAML
+        run: pip install --quiet --break-system-packages pyyaml
+
+      # Validates each commit's subject line against the types/scopes
+      # commit_convention.yaml declares (default angular-style types when
+      # commit_types is omitted, as it currently is -- see the comment in
+      # that file). Merge and revert commits are skipped -- they're
+      # auto-generated, not something a contributor wrote by hand.
+      - name: 🔍 Validate commit messages in this PR
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          mapfile -t messages < <(git log --format=%s "${BASE_SHA}..${HEAD_SHA}")
+          python3 .github/scripts/validate_commit.py "${messages[@]}"

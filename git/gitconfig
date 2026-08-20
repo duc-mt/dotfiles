@@ -13,7 +13,7 @@
 
 # core {{{
 [core]
-  editor = /usr/local/bin/vim
+  editor = vim
   excludesfile = ~/.files/git/gitignore_global
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
   pager = less -x4
@@ -27,7 +27,9 @@
   signingKey = F9E91488183ED044
 
 [credential]
-  helper = store
+  # 'store' writes credentials to ~/.git-credentials in plaintext.
+  # 'cache' keeps them in memory only, for a limited time.
+  helper = cache --timeout=3600
 #}}}
 
 # commit {{{
@@ -78,7 +80,6 @@
   default = current
 
 [pull]
-  default = current
   rebase = false
 
 [diff]
@@ -234,7 +235,7 @@
   assumed = "!git ls-files -v | grep ^h | cut -c 3-"
   # unassume all the assumed files
   unassumeall = "!git assumed | xargs git update-index --no-assume-unchanged"
-  assumeall = "!git status -s | awk {'print ${2}'} | xargs git assume"
+  assumeall = "!git status -s | awk '{print $2}' | xargs git assume"
   # }}}
 
   # subtree {{{
@@ -249,12 +250,12 @@
   lasttag = describe --tags --abbrev=0
   lt = describe --tags --abbrev=0
   # conflict/merges
-  ours = "!f() { git co --ours ${@} && git add ${@}; }; f"
-  theirs = "!f() { git co --theirs ${@} && git add ${@}; }; f"
+  ours = "!f() { git co --ours \"${@}\" && git add \"${@}\"; }; f"
+  theirs = "!f() { git co --theirs \"${@}\" && git add \"${@}\"; }; f"
   #list remotes
   rem="!git config -l | grep remote.*url | tail -n +2"
   #apply patch from other local repo
-  lap = "!f() { git --git-dir=${1} format-patch -k -1 --stdout ${2} | git am -3 -k; }; f"
+  lap = "!f() { git --git-dir=\"${1}\" format-patch -k -1 --stdout \"${2}\" | git am -3 -k; }; f"
   #open markdown files edited in last commit
   last = "!gvim $(git show HEAD --format="" --name-only | grep -e .*md$ | xargs)"
   #open just created markdown in working directory
@@ -267,11 +268,11 @@
 
   # convoluted aliases {{{
   # grep from root folder
-  gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In ${1} | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f"
+  gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd \"${TOPLEVEL}\" && git grep --full-name -In \"${1}\" | xargs -I{} echo \"${TOPLEVEL}\"/{} && cd \"${A}\"; }; f"
   #rename branch tree to done-
   done = "!f() { git branch | grep "${1}" | cut -c 3- | grep -v done | xargs -I{} git branch -m {} done-{}; }; f"
   #add bitbucket remote
-  ra = "!f() { git remote add ${1} https://bitbucket.org/${2}.git; }; f"
+  ra = "!f() { git remote add \"${1}\" https://bitbucket.org/\"${2}\".git; }; f"
   # }}}
 
   # worktree list {{{

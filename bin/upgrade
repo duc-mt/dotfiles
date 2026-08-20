@@ -45,9 +45,10 @@ yes | sudo apt autoremove
 sudo apt autoclean
 
 check_command() {
-  [[ ! -x "$(command -v "${1}")" ]] \
-    && log_manual_action "This script requires ${1}!" \
-    && exit 1
+  if [[ ! -x "$(command -v "${1}")" ]]; then
+    log_error "${1} not found -- skipping steps that need it"
+    return 1
+  fi
 }
 
 check_if_have_master_or_main_branch() {
@@ -58,38 +59,60 @@ check_if_have_master_or_main_branch() {
 }
 
 log_task "Check for available commands ..."
-for cmd in "${CMDS[@]}"; do check_command "${cmd}"; done
+declare -A HAVE_CMD
+for cmd in "${CMDS[@]}"; do
+  if check_command "${cmd}"; then HAVE_CMD["${cmd}"]=1; else HAVE_CMD["${cmd}"]=0; fi
+done
 
 log_task "Check for remote changes in installed repositories ..."
 for repo in "${REPOS[@]}"; do
-  cd "${repo}" || exit
-  check_if_have_master_or_main_branch
+  if [[ -d "${repo}" ]]; then
+    (cd "${repo}" && check_if_have_master_or_main_branch)
+  else
+    log_error "${repo} not found -- skipping"
+  fi
 done
 
 log_task "Check for updates to pip packages ..."
-pip install --upgrade --user pip setuptools wheel pip-review
-"${HOME}"/.local/bin/pip-review --local --auto 2> /tmp/upgrade-error.txt
-[[ -s /tmp/upgrade-error.txt ]] \
-  && log_error 'pip packages conflict ➡️ "/tmp/upgrade-error.txt"' \
-  && sed -i '1d' /tmp/upgrade-error.txt
+if [[ "${HAVE_CMD[pip-review]}" -eq 1 ]]; then
+  pip install --upgrade --user pip setuptools wheel pip-review
+  "${HOME}"/.local/bin/pip-review --local --auto 2> /tmp/upgrade-error.txt
+  [[ -s /tmp/upgrade-error.txt ]] \
+    && log_error 'pip packages conflict ➡️ "/tmp/upgrade-error.txt"' \
+    && sed -i '1d' /tmp/upgrade-error.txt
+fi
 
-log_task "Update npm packages ..."
-# npm install --global npm@latest
-npm update --global
+if [[ "${HAVE_CMD[npm]}" -eq 1 ]]; then
+  log_task "Update npm packages ..."
+  # npm install --global npm@latest
+  npm update --global
+fi
 
-log_task "Update go packages ..."
-go-global-update
+if [[ "${HAVE_CMD[go-global-update]}" -eq 1 ]]; then
+  log_task "Update go packages ..."
+  go-global-update
+fi
 
-log_task "Update docker images ..."
-docker images | grep -v REPOSITORY | awk '{print $1}'| xargs -L1 docker pull
+if [[ "${HAVE_CMD[docker]}" -eq 1 ]]; then
+  log_task "Update docker images ..."
+  docker images | grep -v REPOSITORY | awk '{print $1}'| xargs -L1 docker pull
+fi
 
-log_task "Remove unused docker images ..."
-docker-clean
+if [[ "${HAVE_CMD[docker-clean]}" -eq 1 ]]; then
+  log_task "Remove unused docker images ..."
+  docker-clean
+fi
 
-log_task "Update GitHub extension ..."
-gh extension upgrade --all
+if [[ "${HAVE_CMD[gh]}" -eq 1 ]]; then
+  log_task "Update GitHub extension ..."
+  gh extension upgrade --all
+fi
 
 log_task "Update a database for plocate ..."
 sudo updatedb
 
-cowsay You are up to date!
+if [[ "${HAVE_CMD[cowsay]}" -eq 1 ]]; then
+  cowsay You are up to date!
+else
+  echo "You are up to date!"
+fi

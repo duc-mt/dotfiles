@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# ======================================================================================
+#
+#         FILE:  install_pandoc_tools
+#       AUTHOR:  Duc Mai <ducmai.network@gmail.com>
+#      COMPANY:  ---
+#        USAGE:  ./install_pandoc_tools
+#  DESCRIPTION:  Install pandoc-from-markdown-to-pdf and its required fonts
+#         REPO:  https://github.com/SixArm/pandoc-from-markdown-to-pdf
+#      CREATED:  May 04, 2023
+#
+# ======================================================================================
+
+
+# --------------------------------------------------------------------------------------
+# Install pandoc-from-markdown-to-pdf
+# --------------------------------------------------------------------------------------
+git clone https://github.com/SixArm/pandoc-from-markdown-to-pdf.git \
+  /tmp/pandoc-from-markdown-to-pdf
+sudo mv -v /tmp/pandoc-from-markdown-to-pdf /usr/local/share/pandoc-from-markdown-to-pdf
+sudo chmod -v 755 \
+  /usr/local/share/pandoc-from-markdown-to-pdf/pandoc-from-markdown-to-pdf
+
+# --------------------------------------------------------------------------------------
+# Install the fonts it requires
+# --------------------------------------------------------------------------------------
+git clone https://github.com/sixarm/pandoc-fonts /tmp/pandoc-fonts
+sudo cp -rv /tmp/pandoc-fonts/ /usr/local/share/fonts/

@@ -1,0 +1,85 @@
+name: 📌 Check Pinned Tool Versions
+
+# Checks tool versions pinned as env vars inside run: steps (gitleaks,
+# actionlint, checkmake, hadolint, nushell) against each tool's actual
+# latest release. These are invisible to Dependabot's github-actions
+# ecosystem, which only tracks `uses: owner/repo@ref` lines -- so without
+# this, they'd go stale silently forever. See
+# .github/scripts/check_pinned_versions.py for the actual check.
+#
+# Opens an issue rather than a PR: bumping gitleaks/hadolint/etc. means
+# trusting a new upstream release, which deserves a human looking at the
+# release notes before anything changes -- not an auto-merged bump.
+
+on:
+  workflow_call:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check-versions:
+    name: 🔍 Compare pinned versions against latest releases
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛎️ Checkout Repository
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: 🔍 Check pinned versions
+        id: check
+        run: |
+          set +e
+          output=$(python3 .github/scripts/check_pinned_versions.py 2>&1)
+          exit_code=$?
+          echo "${output}"
+          {
+            echo "output<<CHECKEOF"
+            echo "${output}"
+            echo "CHECKEOF"
+          } >> "${GITHUB_OUTPUT}"
+          echo "stale=$([[ ${exit_code} -ne 0 ]] && echo true || echo false)" >> "${GITHUB_OUTPUT}"
+
+      # The check output is passed via `env:`, not interpolated into the
+      # script body with ${{ }} -- GitHub's own docs on this action warn
+      # that direct expression interpolation into the script is a script
+      # injection risk, since the substituted text becomes literal
+      # JavaScript. process.env.CHECK_OUTPUT keeps it as inert string data.
+      - name: 📝 Open an issue if anything is stale
+        if: steps.check.outputs.stale == 'true'
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        env:
+          CHECK_OUTPUT: ${{ steps.check.outputs.output }}
+        with:
+          script: |
+            const body = "Pinned tool versions checked against their latest releases:\n\n```\n"
+              + process.env.CHECK_OUTPUT
+              + "\n```\n\nReview the release notes for anything marked STALE before bumping the pin -- "
+              + "these are the tools without a documented signing key to verify against (see "
+              + "CONTRIBUTING.md), so a human should look before the version string changes.";
+            const title = "Pinned tool versions are out of date";
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open",
+              labels: "pinned-versions",
+            });
+            if (existing.data.length > 0) {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.data[0].number,
+                body: body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: title,
+                body: body,
+                labels: ["pinned-versions"],
+              });
+            }

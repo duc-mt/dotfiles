@@ -35,7 +35,7 @@ if go env &> /dev/null; then
   export GOPATH
 fi
 
-export GPGKEY="D2F1F3739A4E465E737C1F38F9E91488183ED044"
+export GPGKEY="D2F1F3739A4E465E737C1F38F9E91488183ED044" # gitleaks:allow -- public GPG fingerprint, not a secret
 
 # shellcheck disable=SC2155
 export GPG_TTY=$(tty)
@@ -44,7 +44,7 @@ export STARSHIP_CONFIG="${DOTFILES}/bash/starship.toml"
 
 export PIP_CONSTRAINT="${DOTFILES}/py/constraints.txt"
 
-[[ -d "${HOME}.docker" ]] && export DOCKER_CONFIG="${HOME}/.docker"
+[[ -d "${HOME}/.docker" ]] && export DOCKER_CONFIG="${HOME}/.docker"
 
 export HUGO_VERSION="0.101.0"
 

@@ -2,7 +2,21 @@ name: 🐍 Python Codestyle
 
 on:
   workflow_call:
+    inputs:
+      path:
+        description: "Path to lint with flake8"
+        required: false
+        type: string
+        default: "."
+      python-version:
+        description: "Python version to run flake8 under"
+        required: false
+        type: string
+        default: "3.14"
   push:
+
+permissions:
+  contents: read
 
 jobs:
   lint:
@@ -11,21 +25,21 @@ jobs:
 
     steps:
       - name: 🛎️ Checkout Repository
-        uses: actions/checkout@main
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
 
-      - name: 🐍 Setup Python 3.14
-        uses: actions/setup-python@main
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
-          python-version: 3.14
+          python-version: ${{ inputs.python-version || '3.14' }}
 
-      - name: 📥 Install Requirements and Checking Modules
+      - name: 📥 Install Checking Modules
         run: |
-          pip install -r requirements.txt || true
           pip install --upgrade pep8-naming flake8 \
             flake8-broken-line flake8-bugbear flake8-multiline-containers \
             flake8-tidy-imports flake8-pytest-style flake8-variables-names \
             flake8-comprehensions
 
       - name: ✔️ Run Codestyle
-        run: |
-          flake8 .
+        env:
+          LINT_PATH: ${{ inputs.path || '.' }}
+        run: flake8 "${LINT_PATH}"

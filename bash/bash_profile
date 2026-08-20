@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # ~/.profile: executed by the command interpreter for login shells.
 # see /usr/share/doc/bash/examples/startup-files for examples.
 # the files are located in the bash-doc package.
@@ -11,7 +13,9 @@ umask 027
 [[ -d "${HOME}/.files" ]] && export DOTFILES="${HOME}/.files"
 
 # Output a random technology-related quote
-fortune "${DOTFILES}/doc/quotes/technology" | cowsay
+if command -v fortune >/dev/null 2>&1 && command -v cowsay >/dev/null 2>&1; then
+  fortune "${DOTFILES}/doc/quotes/technology" | cowsay
+fi
 
 # If running bash then include .bashrc if it exists
 [[ -n "${BASH_VERSION}" ]] && [[ -f "${DOTFILES}/bash/bashrc" ]] \
@@ -20,16 +24,18 @@ fortune "${DOTFILES}/doc/quotes/technology" | cowsay
 # Source pathrc
 [[ -f "${DOTFILES}/bash/pathrc" ]] && source "${DOTFILES}/bash/pathrc"
 
-# Clone latest changes from remote repos
-cwd="${PWD}"
-cd "${DOTFILES}" \
-  && (git pull origin master && git-sub-update) &>/dev/null
-cd "${DOTVIM}" \
-  && (git pull origin master && git-sub-update) &>/dev/null
-cd "${HOME}/my-site" \
-  && (git pull origin master && git-sub-update) &>/dev/null
-cd "${cwd}" || exit
-unset "${cwd}"
+# Pull latest changes from remote repos in the background so login shells
+# never block on network access. Each pull is time-limited; failures
+# (offline, slow network, etc.) are silently ignored.
+(
+  cd "${DOTFILES}" 2>/dev/null \
+    && timeout 5 git pull --quiet origin master && git-sub-update
+  cd "${DOTVIM}" 2>/dev/null \
+    && timeout 5 git pull --quiet origin master && git-sub-update
+  cd "${HOME}/my-site" 2>/dev/null \
+    && timeout 5 git pull --quiet origin master && git-sub-update
+) &>/dev/null &
+disown
 
 
 # Source sudocabulary https://github.com/badarsh2/Sudocabulary
@@ -39,7 +45,6 @@ unset "${cwd}"
 [[ -d "${HOME}/.rbenv/bin" ]] && eval "$("${HOME}/.rbenv/bin/rbenv" init - bash)"
 
 # Start a D-Bus session if one not presents
-[[ -z "${DBUS_SESSION_BUS_ADDRESS}" ]] && eval "$(dbus-launch --sh-syntax)"
-
-# Source cargo environment
-[[ -d "${HOME}/.cargo/env" ]] && source "${HOME}/.cargo/env"
+if [[ -z "${DBUS_SESSION_BUS_ADDRESS}" ]] && command -v dbus-launch >/dev/null 2>&1; then
+  eval "$(dbus-launch --sh-syntax)"
+fi

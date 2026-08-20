@@ -1,0 +1,254 @@
+name: 🌐 Polyglot Lint
+
+# Lints languages this repo doesn't currently use yet, so CI is ready the
+# moment a .zsh/.fish/.lua/.rb/.pl/Makefile/.tf/.yml-playbook/Dockerfile/
+# .nu/.ps1/.html file shows up. Every job below finds files of its type
+# first and exits cleanly with "no files found" if there aren't any --
+# these jobs are all no-ops today, on purpose.
+
+on:
+  workflow_call:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  zsh:
+    name: 🐚 Zsh
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - name: 🔍 Find and syntax-check .zsh files
+        run: |
+          files=$(find . -path ./doc -prune -o -type f -name "*.zsh" -print)
+          if [[ -z "${files}" ]]; then
+            echo "no .zsh files found, skipping"; exit 0
+          fi
+          sudo apt-get update && sudo apt-get install --yes zsh
+          echo "${files}" | xargs -I{} zsh -n {}
+
+  fish:
+    name: 🐠 Fish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - name: 🔍 Find and syntax-check .fish files
+        run: |
+          files=$(find . -path ./doc -prune -o -type f -name "*.fish" -print)
+          if [[ -z "${files}" ]]; then
+            echo "no .fish files found, skipping"; exit 0
+          fi
+          sudo apt-get update && sudo apt-get install --yes fish
+          echo "${files}" | xargs -I{} fish --no-execute {}
+
+  lua:
+    name: 🌙 Lua
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - name: 🔍 Find and syntax-check .lua files
+        run: |
+          files=$(find . -path ./doc -prune -o -type f -name "*.lua" -print)
+          if [[ -z "${files}" ]]; then
+            echo "no .lua files found, skipping"; exit 0
+          fi
+          sudo apt-get update && sudo apt-get install --yes lua5.4
+          echo "${files}" | xargs -I{} luac5.4 -p {}
+
+  ruby:
+    name: 💎 Ruby
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - name: 🔍 Find and syntax-check .rb files
+        run: |
+          files=$(find . -path ./doc -prune -o -type f -name "*.rb" -print)
+          if [[ -z "${files}" ]]; then
+            echo "no .rb files found, skipping"; exit 0
+          fi
+          sudo apt-get update && sudo apt-get install --yes ruby
+          echo "${files}" | xargs -I{} ruby -c {}
+
+  perl:
+    name: 🐪 Perl
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - name: 🔍 Find and syntax-check .pl/.pm files
+        run: |
+          files=$(find . -path ./doc -prune -o -type f \( -name "*.pl" -o -name "*.pm" \) -print)
+          if [[ -z "${files}" ]]; then
+            echo "no .pl/.pm files found, skipping"; exit 0
+          fi
+          sudo apt-get update && sudo apt-get install --yes perl
+          echo "${files}" | xargs -I{} perl -c {}
+
+  makefile:
+    name: 🔧 Makefile
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - name: 🔍 Find and lint Makefiles
+        env:
+          CHECKMAKE_VERSION: "0.3.2"
+        run: |
+          files=$(find . -path ./doc -prune -o -type f \( -name "Makefile" -o -name "*.mk" \) -print)
+          if [[ -z "${files}" ]]; then
+            echo "no Makefiles found, skipping"; exit 0
+          fi
+          curl -sSL -o /tmp/checkmake \
+            "https://github.com/checkmake/checkmake/releases/download/v${CHECKMAKE_VERSION}/checkmake-v${CHECKMAKE_VERSION}.linux.amd64"
+          chmod +x /tmp/checkmake
+          echo "${files}" | xargs -I{} /tmp/checkmake {}
+
+  dockerfile:
+    name: 🐳 Dockerfile
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - name: 🔍 Find and lint Dockerfiles
+        env:
+          HADOLINT_VERSION: "2.15.1"
+        run: |
+          files=$(find . -path ./doc -prune -o -type f \( -name "Dockerfile" -o -name "*.Dockerfile" \) -print)
+          if [[ -z "${files}" ]]; then
+            echo "no Dockerfiles found, skipping"; exit 0
+          fi
+          curl -sSL -o /tmp/hadolint \
+            "https://github.com/hadolint/hadolint/releases/download/v${HADOLINT_VERSION}/hadolint-linux-x86_64"
+          chmod +x /tmp/hadolint
+          echo "${files}" | xargs -I{} /tmp/hadolint --failure-threshold warning {}
+
+  terraform:
+    name: 🏗️ Terraform
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - name: 🔍 Check for .tf files
+        id: find
+        run: |
+          files=$(find . -path ./doc -prune -o -type f -name "*.tf" -print)
+          if [[ -z "${files}" ]]; then
+            echo "no .tf files found, skipping"
+            echo "found=false" >> "${GITHUB_OUTPUT}"
+          else
+            echo "found=true" >> "${GITHUB_OUTPUT}"
+          fi
+      - name: 🛠️ Setup Terraform
+        if: steps.find.outputs.found == 'true'
+        uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4.0.1
+        with:
+          terraform_wrapper: false
+      - name: 🔍 terraform fmt -check
+        if: steps.find.outputs.found == 'true'
+        run: terraform fmt -check -recursive
+      - name: 🔍 terraform validate
+        if: steps.find.outputs.found == 'true'
+        run: |
+          for dir in $(find . -path ./doc -prune -o -type f -name "*.tf" -printf "%h\n" | sort -u); do
+            (cd "${dir}" && terraform init -backend=false -input=false && terraform validate)
+          done
+      # Official action, pinned by SHA -- unlike a version string embedded
+      # in a run: step, this IS tracked by the existing github-actions
+      # Dependabot config (see .github/dependabot.yml), so it won't go
+      # stale silently the way a manually-pinned curl download would.
+      - name: 📥 Setup tflint
+        if: steps.find.outputs.found == 'true'
+        uses: terraform-linters/setup-tflint@b480b8fcdaa6f2c577f8e4fa799e89e756bb7c93 # v6.2.2
+      - name: 🔍 tflint
+        if: steps.find.outputs.found == 'true'
+        run: tflint --recursive
+
+  ansible:
+    name: 📕 Ansible
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - name: 🔍 Find and lint Ansible playbooks
+        run: |
+          files=$(find . -path ./doc -prune -o -type f \( -name "playbook*.yml" -o -name "playbook*.yaml" -o -path "*/ansible/*.yml" \) -print)
+          if [[ -z "${files}" ]]; then
+            echo "no Ansible playbooks found, skipping"; exit 0
+          fi
+          sudo apt-get update && sudo apt-get install --yes ansible-lint
+          echo "${files}" | xargs -I{} ansible-lint {}
+
+  nushell:
+    name: 🐚 Nushell
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - name: 🔍 Find and syntax-check .nu files
+        env:
+          NU_VERSION: "0.115.0"
+        run: |
+          files=$(find . -path ./doc -prune -o -type f -name "*.nu" -print)
+          if [[ -z "${files}" ]]; then
+            echo "no .nu files found, skipping"; exit 0
+          fi
+          curl -sSL -o /tmp/nu.tar.gz \
+            "https://github.com/nushell/nushell/releases/download/${NU_VERSION}/nu-${NU_VERSION}-x86_64-unknown-linux-gnu.tar.gz"
+          tar xzf /tmp/nu.tar.gz -C /tmp
+          NU_BIN="/tmp/nu-${NU_VERSION}-x86_64-unknown-linux-gnu/nu"
+          for f in ${files}; do
+            "${NU_BIN}" -c "nu-check --debug '${f}'"
+          done
+
+  powershell:
+    name: 💻 PowerShell
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - name: 🔍 Check for .ps1 files
+        id: find
+        run: |
+          files=$(find . -path ./doc -prune -o -type f -name "*.ps1" -print)
+          if [[ -z "${files}" ]]; then
+            echo "no .ps1 files found, skipping"
+            echo "found=false" >> "${GITHUB_OUTPUT}"
+          else
+            echo "found=true" >> "${GITHUB_OUTPUT}"
+          fi
+      # ubuntu-latest ships pwsh by default (unlike the other tools on this
+      # page, this one is NOT independently verified against a sandbox --
+      # see CONTRIBUTING.md).
+      - name: 🔍 PSScriptAnalyzer
+        if: steps.find.outputs.found == 'true'
+        shell: pwsh
+        run: |
+          Install-Module -Name PSScriptAnalyzer -Force -Scope CurrentUser
+          $files = Get-ChildItem -Path . -Filter *.ps1 -Recurse -Exclude doc
+          $results = Invoke-ScriptAnalyzer -Path $files -Severity Warning,Error
+          $results | Format-Table -AutoSize
+          if ($results.Count -gt 0) { exit 1 }
+
+  html:
+    name: 🌐 HTML
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - name: 🔍 Find and lint .html files
+        run: |
+          files=$(find . -path ./doc -prune -o -type f -name "*.html" -print)
+          if [[ -z "${files}" ]]; then
+            echo "no .html files found, skipping"; exit 0
+          fi
+          sudo apt-get update && sudo apt-get install --yes tidy
+          failed=0
+          for f in ${files}; do
+            # "proprietary attribute minlength" is a known false positive:
+            # minlength is valid HTML5, this tidy version just predates
+            # recognizing it. tidy's own exit codes aren't reliable for
+            # distinguishing real errors from warnings in this version, so
+            # filter the specific known-bad line instead of loosening the
+            # threshold broadly.
+            output=$(tidy -q -e "${f}" 2>&1 | grep -v 'proprietary attribute "minlength"')
+            if [[ -n "${output}" ]]; then
+              echo "${f}:"
+              echo "${output}"
+              failed=1
+            fi
+          done
+          exit "${failed}"
