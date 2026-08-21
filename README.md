@@ -19,6 +19,21 @@ clones private PGP/SSH key repositories and imports encrypted key material
 from `doc/private-keys.tgz.enc` -- only answer "Yes" on a machine you intend
 to use as yourself. Answering "No" just runs the OS package upgrade.
 
+To run it fully unattended (no prompts at all), set `BOOTSTRAP_ANSWER`
+before running it:
+
+```bash
+BOOTSTRAP_ANSWER=No bash install/bootstrap
+```
+
+`sudo` will still ask for your password once at the very start (unless
+passwordless sudo is already configured) -- after that, credentials are
+cached and refreshed automatically for the rest of the run. If you use
+`BOOTSTRAP_ANSWER=Yes`, the private-repo clones will fail fast (not hang)
+if git doesn't already have credentials for them -- set up a credential
+helper or SSH-based auth beforehand if you want that path to complete
+unattended too.
+
 # Maintaining This Repo
 
 See `CONTRIBUTING.md` for repo layout, conventions, how to run the same
