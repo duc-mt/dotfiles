@@ -1,0 +1,19 @@
+title = "duc-mt/dotfiles gitleaks config"
+
+[extend]
+# Extends gitleaks' own built-in default ruleset rather than replacing it.
+useDefault = true
+
+[allowlist]
+description = "Vendored third-party build output, not this repo's own secrets"
+paths = [
+  # Bundled/minified VS Code extension output (telemetry instrumentation
+  # keys named "aiKey", and third-party extensions' own PEM-detection
+  # regex code matching gitleaks' private-key pattern against itself).
+  # Not reviewed file-by-file -- this is vendored build output, not
+  # original content, and the volume (100+ findings across dozens of
+  # files) makes individual review impractical. If this directory is kept
+  # under version control going forward, review this allowlist whenever
+  # its contents actually change.
+  '''(^|/)pack/vscode-extensions/''',
+]
