@@ -244,7 +244,7 @@ jobs:
             # distinguishing real errors from warnings in this version, so
             # filter the specific known-bad line instead of loosening the
             # threshold broadly.
-            output=$(tidy -q -e "${f}" 2>&1 | grep -v 'proprietary attribute "minlength"')
+            output=$(tidy -q -e "${f}" 2>&1 | grep -v 'proprietary attribute "minlength"' || true)
             if [[ -n "${output}" ]]; then
               echo "${f}:"
               echo "${output}"

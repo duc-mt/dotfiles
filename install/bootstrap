@@ -116,9 +116,47 @@ start="$(date +%s)"
 
 alias wget='wget --timeout=0 --tries=0'
 
-log_manual_action "Are you \"Duke Mai\"?"
-select answer in "Yes" "No"; do
-  case "${answer}" in
+# Cache sudo credentials once, up front, and keep them alive in the
+# background for the rest of this (potentially multi-hour) run -- without
+# this, `sudo` would prompt for a password again every time its cached
+# timestamp expires partway through the script. Skipped entirely if
+# passwordless sudo is already configured (nothing to prompt for).
+if ! sudo --non-interactive true 2>/dev/null; then
+  log_manual_action "Root privileges are required, please enter your password below"
+  sudo --validate
+fi
+while true; do sudo --non-interactive true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+sudo_keepalive_pid="${!}"
+trap 'kill "${sudo_keepalive_pid}" 2>/dev/null' EXIT
+
+# Make git fail fast (not hang forever) if it needs credentials it
+# doesn't have -- relevant to the "Yes" branch below, which clones
+# private repos. For that branch to actually complete unattended, set up
+# a git credential helper or SSH-based auth *before* running this script;
+# GIT_TERMINAL_PROMPT=0 only controls what happens when that isn't done
+# (a clear failure instead of an indefinite hang), it doesn't provide
+# credentials itself.
+export GIT_TERMINAL_PROMPT=0
+
+# Set BOOTSTRAP_ANSWER=Yes or BOOTSTRAP_ANSWER=No in the environment to
+# skip this prompt entirely (e.g. `BOOTSTRAP_ANSWER=No bash bootstrap`).
+# Unset (the default) preserves the original interactive behavior.
+if [[ -n "${BOOTSTRAP_ANSWER:-}" ]]; then
+  case "${BOOTSTRAP_ANSWER}" in
+    Yes|No) answer="${BOOTSTRAP_ANSWER}" ;;
+    *)
+      log_error "BOOTSTRAP_ANSWER must be exactly \"Yes\" or \"No\", got \"${BOOTSTRAP_ANSWER}\""
+      exit 1
+      ;;
+  esac
+else
+  log_manual_action "Are you \"Duke Mai\"?"
+  select answer in "Yes" "No"; do
+    [[ "${answer}" == "Yes" || "${answer}" == "No" ]] && break
+    log_error "1 or 2"
+  done
+fi
+case "${answer}" in
     Yes)
       log_task "Updating default packages ..."
       sudo apt update
@@ -171,22 +209,18 @@ select answer in "Yes" "No"; do
         || error "Failed to clone dotfiles -- the rest of this script depends on it"
       git clone --recursive https://github.com/duc-mt/dotvim.git "${DOTVIM}" \
         || error "Failed to clone dotvim"
-
-      break
       ;;
     No)
       log_task "Updating default packages ..."
       sudo apt update
       yes | sudo apt dist-upgrade
       yes | sudo apt full-upgrade
-
-      break
       ;;
     *)
       log_error "1 or 2"
+      exit 1
       ;;
   esac
-done
 
 log_task "Installing Linux packages ..."
 for pkg in "${LINUX_PKGS[@]}"; do
@@ -200,7 +234,7 @@ yes | sudo apt autoclean
 log_task "Installing rustup (press ENTER)..."
 yes | sudo apt purge rustc 2>/dev/null
 yes | sudo apt autoremove 2>/dev/null
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 "${HOME}"/.cargo/bin/rustup update
 source "${HOME}/.cargo/env"
 
@@ -227,7 +261,7 @@ else
 fi
 
 log_task "Installing snap ..."
-sudo apt install snapd
+sudo apt install -y snapd
 sudo systemctl enable --now snapd snapd.apparmor
 
 log_task "Linking flatpak ..."
@@ -452,7 +486,7 @@ tldr -u
 
 log_task "Installing kali-win-kex ..."
 if grep --fixed-strings --line-regexp --quiet "ID=kali" /etc/os-release; then
-  sudo apt install kali-win-kex 2>> /tmp/install-pkg-error.txt
+  sudo apt install -y kali-win-kex 2>> /tmp/install-pkg-error.txt
 fi
 
 log_task "Cloning bash-preexec to maintain compatibility using bash-preexec ..."
@@ -494,10 +528,10 @@ sudo touch /etc/needrestart/needrestart.conf
 echo -e "\n\$nrconf{restart} = 'a';" | sudo tee -a /etc/needrestart/needrestart.conf
 
 log_task "Enabling firewall ..."
-sudo ufw enable
+sudo ufw --force enable
 
 log_task "Enabling ssh ..."
-sudo apt install openssh-server 2>> /tmp/install-pkg-error.txt
+sudo apt install -y openssh-server 2>> /tmp/install-pkg-error.txt
 sudo systemctl enable --now ssh
 
 log_task "Installing npm packages ..."

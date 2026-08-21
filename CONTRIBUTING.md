@@ -184,8 +184,16 @@ differences belong outside them.
   every push, catching accidentally-committed credentials before they sit
   in history forever. Public identifiers that happen to look like secrets
   (GPG fingerprints, key IDs) are annotated inline with
-  `# gitleaks:allow` rather than suppressed repo-wide -- see
-  `install/install_pass` and `bash/glob_variables` for examples.
+  `# gitleaks:allow` on their *current* line -- but `gitleaks git` scans
+  every historical commit's actual content, so an inline annotation only
+  suppresses the finding from the commit it was added in onward, not
+  retroactively. Historical occurrences that predate an annotation need an
+  exact-fingerprint entry in `.gitleaksignore` instead (confirmed by
+  testing both mechanisms against real trigger patterns before relying on
+  them). Vendored/bundled third-party content too voluminous to review
+  file-by-file (e.g. `pack/vscode-extensions/` -- committed VS Code
+  extension bundles, not this repo's own code) is excluded by path in
+  `.gitleaks.toml` instead of individually allowlisted.
 - **`config-lint.yml`** -- `yamllint` (using the tailored root
   `.yamllint.yml` -- default yamllint flags GitHub Actions' own `on:` key
   as an invalid boolean, so don't use plain defaults for workflow YAML),

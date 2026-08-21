@@ -52,7 +52,9 @@ PINS = {
 
 def latest_release(repo):
     url = f"https://api.github.com/repos/{repo}/releases/latest"
-    req = urllib.request.Request(url, headers={"Accept": "application/vnd.github+json"})
+    req = urllib.request.Request(
+        url, headers={"Accept": "application/vnd.github+json"}
+    )
     with urllib.request.urlopen(req, timeout=15) as resp:
         body = resp.read().decode()
     match = re.search(r'"tag_name":\s*"v?([^"]+)"', body)
@@ -66,7 +68,9 @@ def pinned_version(path, pattern):
         content = f.read()
     match = re.search(pattern, content)
     if not match:
-        raise RuntimeError(f"couldn't find version pin matching {pattern!r} in {path}")
+        raise RuntimeError(
+            f"couldn't find version pin matching {pattern!r} in {path}"
+        )
     return match.group(1)
 
 

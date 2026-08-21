@@ -1,0 +1,9 @@
+# Specific historical findings confirmed as false positives (public GPG
+# fingerprints, not secrets) in commits that predate the inline
+# `# gitleaks:allow` annotation on the current version of this line.
+# gitleaks git scans each historical commit's actual content -- the
+# inline annotation only suppresses the finding from the commit it was
+# added in onward, not retroactively, so these are listed explicitly.
+# See bash/glob_variables (current line has the inline annotation).
+cf2bb8610465a2a98c459ae746d5d0e7d9ae1e35:bash/glob_variables:generic-api-key:38
+e595bfcae41f593e447b32e1f4067b259f8b7901:bash/glob_variables:generic-api-key:43
