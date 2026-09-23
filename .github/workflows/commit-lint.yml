@@ -18,8 +18,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: "3.12"
       - name: 📥 Install PyYAML
-        run: pip install --quiet --break-system-packages pyyaml
+        run: pip install --quiet pyyaml
 
       # Validates each commit's subject line against the types/scopes
       # commit_convention.yaml declares (default angular-style types when
