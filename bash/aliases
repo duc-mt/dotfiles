@@ -109,7 +109,7 @@ alias wiki='vim "${HOME}"/vimwiki/index.wiki'
 alias e='vim -o'
 alias E='vim -o'
 alias vim='vim -o'
-alias vi='e3vi' # Miminal vim
+alias vi='e3vi' # Minimal vim
 
 
 ########
