@@ -117,7 +117,7 @@ nPth_tar="$( \
 install_gnupg libgpg-error "${libgpg_error_tar}"
 
 # Since libgpg-error version 1.46, gpg-error-config is replaced by gpgrt-config.
-# For backward compatability, link these two files.
+# For backward compatibility, link these two files.
 # Source: https://github.com/msys2/MINGW-packages/issues/13539
 if [[ -f /usr/bin/gpgrt-config ]] && ! [[ -f /usr/bin/gpg-error-config ]]; then
   sudo ln -sf /usr/bin/gpgrt-config /usr/bin/gpg-error-config
