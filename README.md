@@ -19,7 +19,7 @@ bash -c "$(wget -qO- https://raw.githubusercontent.com/duc-mt/dotfiles/master/in
 ```
 
 `install/bootstrap` is a one-shot provisioning script. 
-- Answering **"Yes"** to the *"Are you Duke Mai?"* prompt clones private PGP/SSH key repositories and imports encrypted key material from `doc/private-keys.tgz.enc`. **Only answer "Yes" on a machine you intend to use as yourself.** 
+- Answering **"Yes"** to the *"Are you Duc Mai?"* prompt clones private PGP/SSH key repositories and imports encrypted key material from `doc/private-keys.tgz.enc`. **Only answer "Yes" on a machine you intend to use as yourself.** 
 - Answering **"No"** safely skips the private identity configuration and just runs the OS package upgrades and tool installations.
 
 ### Unattended Installation
