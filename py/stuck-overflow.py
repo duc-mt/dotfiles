@@ -38,7 +38,9 @@ def main():
     try:
         code_with_error()
     except Exception as e:
-        webbrowser.open("http://stackoverflow.com/search?q=[python] " + str(e))
+        import urllib.parse
+        query = urllib.parse.quote_plus(str(e))
+        webbrowser.open("https://stackoverflow.com/search?q=[python]+" + query)
 
 
 # -------------------------- Call the Main Function ---------------------------
