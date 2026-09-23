@@ -59,7 +59,7 @@ gi () { curl -sL https://www.toptal.com/developers/gitignore/api/"${1}" ; }
 # ==== FUNCTION ========================================================================
 #         NAME: py-browse
 #  DESCRIPTION: Code browser
-#   PARAMETERS: --- (defauts to `pwd`)
+#   PARAMETERS: --- (defaults to `pwd`)
 #     EXAMPLES: py-browse
 # ======================================================================================
 py-browse () { python "${DOTFILES}/py/textual/examples/code_browser.py" ; }
