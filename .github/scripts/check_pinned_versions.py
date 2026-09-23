@@ -64,7 +64,7 @@ def latest_release(repo):
 
 
 def pinned_version(path, pattern):
-    with open(path) as f:
+    with open(path, encoding="utf-8") as f:
         content = f.read()
     match = re.search(pattern, content)
     if not match:

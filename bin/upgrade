@@ -21,6 +21,7 @@
 # ======================================================================================
 
 
+DOTFILES="${DOTFILES:-${HOME}/.files}"
 source "${DOTFILES}"/bash/functions
 
 clear

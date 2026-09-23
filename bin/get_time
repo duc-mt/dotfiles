@@ -26,6 +26,7 @@
 
 set -eu
 
+DOTFILES="${DOTFILES:-${HOME}/.files}"
 source "${DOTFILES}"/bash/functions
 
 if [[ $# -eq 0 ]]; then
