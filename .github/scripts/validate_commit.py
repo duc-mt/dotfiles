@@ -1,8 +1,10 @@
 import re
 import sys
+import pathlib
 import yaml
 
-with open("commit_convention.yaml") as f:
+root_dir = pathlib.Path(__file__).resolve().parent.parent.parent
+with open(root_dir / "commit_convention.yaml") as f:
     config = yaml.safe_load(f)
 
 scopes = list((config.get("scopes") or {}).keys())

@@ -33,7 +33,7 @@ sudo apt autoremove -y 2>/dev/null || true
 PASS_SIGNING_KEY="AB9942E6D4A4CFC3412620A749FC7012A5DE03AE" # gitleaks:allow -- public GPG fingerprint, not a secret
 PASS_VERSION="1.7.4"
 
-git clone https://git.zx2c4.com/password-store /tmp/password-store
+rm -rf /tmp/password-store && git clone https://git.zx2c4.com/password-store /tmp/password-store
 cd /tmp/password-store
 
 gpg --homedir "${PASS_VERIFY_HOME}" --keyserver hkps://keys.openpgp.org \

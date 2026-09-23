@@ -25,5 +25,5 @@ sudo chmod -v 755 \
 # --------------------------------------------------------------------------------------
 # Install the fonts it requires
 # --------------------------------------------------------------------------------------
-git clone https://github.com/sixarm/pandoc-fonts /tmp/pandoc-fonts
+rm -rf /tmp/pandoc-fonts && git clone https://github.com/sixarm/pandoc-fonts /tmp/pandoc-fonts
 sudo cp -rv /tmp/pandoc-fonts/ /usr/local/share/fonts/
