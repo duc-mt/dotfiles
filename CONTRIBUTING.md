@@ -6,6 +6,17 @@ already there. See `README.md` for setup; this file is about ongoing
 maintenance.
 
 
+## Workflow Standards (GitHub Flow & Conventional Commits)
+
+This project strictly follows **GitHub Flow**:
+1. **Branch out**: Create a new branch from `master` for any new feature or bugfix (e.g., `feat/add-new-alias`, `fix/shellcheck-warning`).
+2. **Commit locally**: Write clear, descriptive commits. You **must** follow [Conventional Commits](https://www.conventionalcommits.org/).
+   - Example: `feat: add new docker aliases`
+   - Example: `fix: correct typo in bootstrap`
+   - Example: `chore: update pre-commit hooks`
+3. **Open a PR**: Push your branch and open a Pull Request. Use the provided PR template.
+4. **Review & Merge**: Ensure all CI checks and pre-commit hooks pass. Merge into `master`.
+
 ## Layout
 
 | Path | What goes here |

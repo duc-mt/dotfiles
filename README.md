@@ -40,6 +40,26 @@ Aliases that are personal or platform-specific (hardcoded paths, macOS-only tool
 
 Instead, copy `bash/aliases.local.example` to `~/.aliases.local` and edit it. The `bashrc` sources that file automatically if it exists, and it's gitignored so it never gets accidentally committed.
 
+## 🧪 Local Setup & Testing
+
+This project enforces strict linting and formatting via `pre-commit` and GitHub Actions CI.
+
+### 1. Setup Local Environment
+Install `pre-commit` to ensure your code is formatted before every commit:
+```bash
+pip install pre-commit
+pre-commit install
+```
+
+### 2. Run Linting Manually
+You can manually trigger the linters (Black, Flake8, Shellcheck, etc.) across all files:
+```bash
+pre-commit run --all-files
+```
+
+### 3. CI/CD
+Every Pull Request and push to `master` will trigger the CI pipeline (`.github/workflows/ci.yml`), which automatically runs `pre-commit` and any discovered tests (`pytest`). Ensure all checks pass before merging.
+
 ## 🛠️ Maintaining This Repo
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the repository layout, conventions, how to run the CI checks locally, and step-by-step guides for adding a new alias, function, or install script.
