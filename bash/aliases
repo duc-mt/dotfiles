@@ -68,8 +68,8 @@ alias d=docker
 alias dc=docker-compose
 alias dcompose=docker-compose
 alias dclear='log_task "Clearing docker containers ..."; \
-  docker ps -a -q | xargs docker kill 2>/dev/null || \
-  docker ps -a -q | xargs docker rm -f 2>/dev/null'
+  docker ps -a -q | xargs --no-run-if-empty docker kill || \
+  docker ps -a -q | xargs --no-run-if-empty docker rm -f'
 # dkill (kills the Docker Desktop GUI process) is macOS-specific --
 # see bash/aliases.local.example
 
@@ -127,7 +127,7 @@ alias e3='e3vi'
 #######
 
 [[ -x "$(command -v batcat)" ]] && alias bat='batcat'
-[[ -x "$(command -v lolcat)" ]] && alias cat='lolcat'
+[[ -x "$(command -v lolcat)" ]] && alias ccat='lolcat'
 [[ -x "$(command -v trash)" ]] && alias rm='trash'
 [[ -x "$(command -v ncal)" ]] && alias cal='ncal'
 
