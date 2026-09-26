@@ -7,15 +7,6 @@
 [submodule "doc/bash/bash-redirections-cheat-sheet"]
 	path = doc/bash/bash-redirections-cheat-sheet
 	url = https://github.com/pkrumins/bash-redirections-cheat-sheet.git
-[submodule "doc/vim/vim-gists"]
-	path = doc/vim/vim-gists
-	url = https://gist.github.com/romainl/4b9f139d2a8694612b924322de1025ce
-[submodule "doc/sql/quick-SQL-cheatsheet"]
-	path = doc/sql/quick-SQL-cheatsheet
-	url = https://github.com/enochtangg/quick-SQL-cheatsheet.git
-[submodule "doc/sql/SQL-Cheatsheet"]
-	path = doc/sql/SQL-Cheatsheet
-	url = https://github.com/jeznacki/SQL-Cheatsheet.git
 [submodule "doc/security/CEH-Topics"]
 	path = doc/security/CEH-Topics
 	url = https://github.com/ryh04x/CEH-Topics
@@ -25,15 +16,6 @@
 [submodule "doc/security/HaxorHandbook"]
 	path = doc/security/HaxorHandbook
 	url = https://github.com/cyberfascinate/HaxorHandbook.git
-[submodule "doc/vim/idiomatic-vimrc"]
-	path = doc/vim/idiomatic-vimrc
-	url = https://github.com/romainl/idiomatic-vimrc
-[submodule "doc/ccna/CCNA-Cheat-Sheet"]
-	path = doc/ccna/CCNA-Cheat-Sheet
-	url = https://github.com/HerrSpace/CCNA-Cheat-Sheet.git
-[submodule "doc/ccna/CCNA-Training"]
-	path = doc/ccna/CCNA-Training
-	url = https://github.com/cbeasley92/CCNA-Training.git
 [submodule "doc/security/PracticalCyberSecurityResources"]
 	path = doc/security/PracticalCyberSecurityResources
 	url = https://github.com/brcyrr/PracticalCyberSecurityResources.git
@@ -73,12 +55,6 @@
 [submodule "doc/linux/lfcs"]
 	path = doc/linux/lfcs
 	url = https://github.com/giulianopz/lfcs.git
-[submodule "doc/git/github-cheat-sheet"]
-	path = doc/git/github-cheat-sheet
-	url = https://github.com/tiimgreen/github-cheat-sheet
-[submodule "doc/git/git-cheat-sheet"]
-	path = doc/git/git-cheat-sheet
-	url = https://github.com/arslanbilal/git-cheat-sheet
 [submodule "doc/security/PasswordDic"]
 	path = doc/security/PasswordDic
 	url = https://github.com/k8gege/PasswordDic.git
@@ -97,9 +73,6 @@
 [submodule "doc/linux/awesome-nodejs"]
 	path = doc/linux/awesome-nodejs
 	url = https://github.com/sindresorhus/awesome-nodejs.git
-[submodule "doc/ccna/ccna-200-301"]
-	path = doc/ccna/ccna-200-301
-	url = https://github.com/Panagiss/ccna-200-301.git
 [submodule "doc/security/security-study-plan"]
 	path = doc/security/security-study-plan
 	url = https://github.com/jassics/security-study-plan.git
