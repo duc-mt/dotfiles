@@ -6,7 +6,7 @@ A comprehensive, automated dotfiles and system provisioning setup tailored for D
 
 ## 📋 Requirements & Supported Platforms
 
-Targets **Debian-based distributions** (Debian, Kali, Ubuntu) via `apt`, including Debian-based WSL. 
+Targets **Debian-based distributions** (Debian, Kali, Ubuntu) via `apt`, including Debian-based WSL.
 
 > **Note:** It has not been adapted for macOS, Arch, Fedora, or other package managers. The `install/bootstrap` script will not run correctly on those platforms.
 
@@ -18,8 +18,8 @@ To provision a brand-new machine, run the following one-liner:
 bash -c "$(wget -qO- https://raw.githubusercontent.com/duc-mt/dotfiles/master/install/bootstrap)"
 ```
 
-`install/bootstrap` is a one-shot provisioning script. 
-- Answering **"Yes"** to the *"Are you Duc Mai?"* prompt clones private PGP/SSH key repositories and imports encrypted key material from `doc/private-keys.tgz.enc`. **Only answer "Yes" on a machine you intend to use as yourself.** 
+`install/bootstrap` is a one-shot provisioning script.
+- Answering **"Yes"** to the *"Are you Duc Mai?"* prompt clones private PGP/SSH key repositories and imports encrypted key material from `doc/private-keys.tgz.enc`. **Only answer "Yes" on a machine you intend to use as yourself.**
 - Answering **"No"** safely skips the private identity configuration and just runs the OS package upgrades and tool installations.
 
 ### Unattended Installation
@@ -30,13 +30,13 @@ To run the bootstrap script fully unattended (without any prompts), set the `BOO
 BOOTSTRAP_ANSWER=No bash install/bootstrap
 ```
 
-> **Note:** `sudo` will still ask for your password once at the very start (unless passwordless sudo is already configured). After that, credentials are cached and refreshed automatically for the rest of the run. 
-> 
+> **Note:** `sudo` will still ask for your password once at the very start (unless passwordless sudo is already configured). After that, credentials are cached and refreshed automatically for the rest of the run.
+>
 > If you use `BOOTSTRAP_ANSWER=Yes`, the private-repo clones will fail fast (not hang) if Git doesn't already have credentials for them. Ensure you set up a credential helper or SSH-based auth beforehand if you want that path to complete unattended.
 
 ## 💻 Machine-Specific Aliases
 
-Aliases that are personal or platform-specific (hardcoded paths, macOS-only tools, etc.) don't live in the shared `bash/aliases` file. 
+Aliases that are personal or platform-specific (hardcoded paths, macOS-only tools, etc.) don't live in the shared `bash/aliases` file.
 
 Instead, copy `bash/aliases.local.example` to `~/.aliases.local` and edit it. The `bashrc` sources that file automatically if it exists, and it's gitignored so it never gets accidentally committed.
 
