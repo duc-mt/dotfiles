@@ -1,0 +1,321 @@
+#!/usr/bin/env bash
+
+# ======================================================================================
+#
+#         FILE:  clear_cache
+#
+#        USAGE:  ./clear_cache [options]
+#
+#  DESCRIPTION:  Clean up local user, developer, package manager, and system caches
+#                on both macOS and Linux.
+#
+#      OPTIONS:  -s, --system      Include system-wide caches (package managers, DNS, system caches)
+#                -a, --all         Clean everything (user, dev, package managers, system caches)
+#                --simulators      Erase all iOS simulator contents and settings (macOS only)
+#                -y, --yes         Non-interactive mode (proceed without confirmation)
+#                -h, --help        Show this help message
+#
+# REQUIREMENTS:  macOS (Darwin) or Linux
+#       AUTHOR:  Duc Mai <ducmai.network@gmail.com>
+#      CREATED:  2026-09-27
+#
+# ======================================================================================
+
+set -u
+
+DOTFILES="${DOTFILES:-${HOME}/.files}"
+if [[ -f "${DOTFILES}/bash/functions" ]]; then
+  # shellcheck source=/dev/null
+  source "${DOTFILES}/bash/functions"
+fi
+
+# Fallback logger functions if functions file is not loaded
+type log_task &>/dev/null || log_task() { printf "\033[0;34m🔃 %s\033[0m\n" "$*"; }
+type log_manual_action &>/dev/null || log_manual_action() { printf "\033[0;33m⚠️  %s\033[0m\n" "$*"; }
+type log_error &>/dev/null || log_error() { printf "\033[0;31m❌ %s\033[0m\n" "$*"; }
+type log_blue &>/dev/null || log_blue() { printf "\033[0;34m%s\033[0m\n" "$*"; }
+
+show_help() {
+  cat <<EOF
+Usage: $(basename "$0") [options]
+
+Clean up local user, package manager, developer, and system caches on macOS and Linux.
+
+Options:
+  -s, --system      Include system-level caches (APT/DNF/Pacman, /Library/Caches, DNS). Requires sudo.
+  -a, --all         Clean user, developer, package managers, and system caches.
+  --simulators      Erase all iOS simulator contents and settings (macOS xcrun simctl).
+  -y, --yes         Non-interactive mode (skip confirmation prompts).
+  -h, --help        Display this help message and exit.
+
+Examples:
+  ./clear_cache                 # Cleans user caches, package managers, and build artifacts
+  ./clear_cache --system        # Also cleans system-level caches and flushes DNS
+  ./clear_cache --all -y        # Full cleanup non-interactively
+EOF
+}
+
+OS="$(uname -s)"
+if [[ "${OS}" != "Darwin" && "${OS}" != "Linux" ]]; then
+  log_error "Unsupported operating system: ${OS}. Supported: Darwin (macOS), Linux."
+  exit 1
+fi
+
+CLEAN_SYSTEM=0
+CLEAN_SIMULATORS=0
+NON_INTERACTIVE=0
+
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+  case "${1}" in
+    -s|--system)
+      CLEAN_SYSTEM=1
+      shift
+      ;;
+    -a|--all)
+      CLEAN_SYSTEM=1
+      CLEAN_SIMULATORS=1
+      shift
+      ;;
+    --simulators)
+      if [[ "${OS}" == "Darwin" ]]; then
+        CLEAN_SIMULATORS=1
+      else
+        log_manual_action "--simulators option is only applicable to macOS. Skipping."
+      fi
+      shift
+      ;;
+    -y|--yes)
+      NON_INTERACTIVE=1
+      shift
+      ;;
+    -h|--help)
+      show_help
+      exit 0
+      ;;
+    *)
+      log_error "Unknown option: ${1}"
+      show_help
+      exit 1
+      ;;
+  esac
+done
+
+# Confirm with user if not in non-interactive mode
+if [[ "${NON_INTERACTIVE}" -eq 0 ]]; then
+  log_manual_action "This will delete cached files for your user, package managers, and build artifacts on ${OS}."
+  if [[ "${CLEAN_SYSTEM}" -eq 1 ]]; then
+    log_manual_action "System caches will also be cleared (may prompt for sudo password)."
+  fi
+  read -r -p "Do you want to proceed? [y/N] " confirm
+  case "${confirm}" in
+    [yY][eE][sS]|[yY])
+      ;;
+    *)
+      log_task "Cleanup cancelled."
+      exit 0
+      ;;
+  esac
+fi
+
+get_free_kb() {
+  df -Pk / | awk 'NR==2 {print $4}'
+}
+
+human_readable_diff() {
+  local diff_kb="${1}"
+  if [[ "${diff_kb}" -le 0 ]]; then
+    echo "0 MB"
+  elif [[ "${diff_kb}" -ge 1048576 ]]; then
+    echo "$((diff_kb / 1048576)) GB ($(( (diff_kb % 1048576) / 1024 )) MB)"
+  elif [[ "${diff_kb}" -ge 1024 ]]; then
+    echo "$((diff_kb / 1024)) MB"
+  else
+    echo "${diff_kb} KB"
+  fi
+}
+
+START_FREE_KB="$(get_free_kb)"
+START_FREE_HUMAN="$(df -Ph / | awk 'NR==2 {print $4}')"
+
+log_task "Starting cache cleanup on ${OS}... (Current free space: ${START_FREE_HUMAN})"
+
+# --------------------------------------------------------------------------------------
+# 1. User Application Caches
+# --------------------------------------------------------------------------------------
+log_task "Clearing CLI & application caches (~/.cache)..."
+if [[ -d "${HOME}/.cache" ]]; then
+  command rm -rf "${HOME}"/.cache/* 2>/dev/null || true
+fi
+
+if [[ "${OS}" == "Darwin" ]]; then
+  log_task "Clearing macOS user caches (~/Library/Caches)..."
+  if [[ -d "${HOME}/Library/Caches" ]]; then
+    command rm -rf "${HOME}"/Library/Caches/* 2>/dev/null || true
+  fi
+
+  log_task "Clearing sandboxed application caches (~/Library/Containers/*/Data/Library/Caches)..."
+  command rm -rf "${HOME}"/Library/Containers/*/Data/Library/Caches/* 2>/dev/null || true
+
+  log_task "Resetting QuickLook cache..."
+  if command -v qlmanage &>/dev/null; then
+    qlmanage -r cache &>/dev/null || true
+  fi
+elif [[ "${OS}" == "Linux" ]]; then
+  log_task "Clearing user trash (~/.local/share/Trash)..."
+  if [[ -d "${HOME}/.local/share/Trash" ]]; then
+    command rm -rf "${HOME}"/.local/share/Trash/* 2>/dev/null || true
+  fi
+
+  if [[ -d "${HOME}/.thumbnails" ]]; then
+    log_task "Clearing legacy thumbnail cache (~/.thumbnails)..."
+    command rm -rf "${HOME}"/.thumbnails/* 2>/dev/null || true
+  fi
+fi
+
+# --------------------------------------------------------------------------------------
+# 2. Package Managers Caches (Cross-platform)
+# --------------------------------------------------------------------------------------
+if command -v brew &>/dev/null; then
+  log_task "Cleaning Homebrew cache and outdated packages..."
+  brew cleanup --prune=all
+fi
+
+if command -v npm &>/dev/null; then
+  log_task "Cleaning npm cache..."
+  npm cache clean --force 2>/dev/null || true
+fi
+
+if command -v yarn &>/dev/null; then
+  log_task "Cleaning Yarn cache..."
+  yarn cache clean --all 2>/dev/null || true
+fi
+
+if command -v pnpm &>/dev/null; then
+  log_task "Cleaning pnpm store..."
+  pnpm store prune 2>/dev/null || true
+fi
+
+if command -v pip3 &>/dev/null; then
+  log_task "Purging pip3 cache..."
+  pip3 cache purge 2>/dev/null || true
+elif command -v pip &>/dev/null; then
+  log_task "Purging pip cache..."
+  pip cache purge 2>/dev/null || true
+fi
+
+# --------------------------------------------------------------------------------------
+# 3. Developer Caches
+# --------------------------------------------------------------------------------------
+if [[ "${OS}" == "Darwin" ]]; then
+  XCODE_DERIVED_DATA="${HOME}/Library/Developer/Xcode/DerivedData"
+  if [[ -d "${XCODE_DERIVED_DATA}" ]]; then
+    log_task "Cleaning Xcode DerivedData..."
+    command rm -rf "${XCODE_DERIVED_DATA:?}"/* 2>/dev/null || true
+  fi
+
+  if [[ "${CLEAN_SIMULATORS}" -eq 1 ]] && command -v xcrun &>/dev/null; then
+    log_task "Erasing iOS simulator contents and settings..."
+    xcrun simctl erase all 2>/dev/null || true
+  fi
+fi
+
+if command -v pod &>/dev/null; then
+  log_task "Cleaning CocoaPods cache..."
+  pod cache clean --all 2>/dev/null || true
+fi
+
+# --------------------------------------------------------------------------------------
+# 4. System Caches (Requires sudo)
+# --------------------------------------------------------------------------------------
+if [[ "${CLEAN_SYSTEM}" -eq 1 ]]; then
+  log_task "Requesting sudo privileges for system cache cleanup..."
+  if sudo -v 2>/dev/null || sudo true; then
+    if [[ "${OS}" == "Darwin" ]]; then
+      log_task "Clearing system-level caches in /Library/Caches (SIP-protected files will be safely skipped)..."
+      sudo rm -rf /Library/Caches/* 2>/dev/null || true
+
+      log_task "Flushing macOS DNS cache..."
+      sudo dscacheutil -flushcache
+      sudo killall -HUP mDNSResponder 2>/dev/null || true
+
+      if command -v tmutil &>/dev/null; then
+        LOCAL_SNAPSHOTS="$(tmutil listlocalsnapshots / 2>/dev/null | grep 'com.apple.TimeMachine' || true)"
+        if [[ -n "${LOCAL_SNAPSHOTS}" ]]; then
+          log_manual_action "Local Time Machine snapshots found on disk:"
+          echo "${LOCAL_SNAPSHOTS}"
+          echo "Tip: Run 'sudo tmutil deletelocalsnapshots <snapshot_date>' to reclaim space if needed."
+        fi
+      fi
+    elif [[ "${OS}" == "Linux" ]]; then
+      # APT (Ubuntu/Debian)
+      if command -v apt-get &>/dev/null; then
+        log_task "Cleaning APT cache and orphaned packages..."
+        sudo apt-get clean
+        sudo apt-get autoclean
+        sudo apt-get autoremove -y
+      fi
+
+      # DNF / Yum (Fedora/RHEL/CentOS)
+      if command -v dnf &>/dev/null; then
+        log_task "Cleaning DNF cache..."
+        sudo dnf clean all
+      elif command -v yum &>/dev/null; then
+        log_task "Cleaning Yum cache..."
+        sudo yum clean all
+      fi
+
+      # Pacman (Arch Linux)
+      if command -v pacman &>/dev/null; then
+        log_task "Cleaning Pacman cache..."
+        sudo pacman -Sc --noconfirm
+      fi
+
+      # Zypper (openSUSE)
+      if command -v zypper &>/dev/null; then
+        log_task "Cleaning Zypper cache..."
+        sudo zypper clean --all
+      fi
+
+      # Systemd journal logs (keep last 3 days)
+      if command -v journalctl &>/dev/null; then
+        log_task "Vacuuming systemd journal logs to 3 days..."
+        sudo journalctl --vacuum-time=3d 2>/dev/null || true
+      fi
+
+      # Linux DNS cache flush (systemd-resolved)
+      if command -v resolvectl &>/dev/null; then
+        log_task "Flushing systemd-resolved DNS cache..."
+        sudo resolvectl flush-caches 2>/dev/null || true
+      elif command -v systemd-resolve &>/dev/null; then
+        log_task "Flushing systemd-resolve DNS cache..."
+        sudo systemd-resolve --flush-caches 2>/dev/null || true
+      fi
+
+      # Linux crash dumps
+      if [[ -d "/var/crash" ]]; then
+        log_task "Cleaning crash reports in /var/crash..."
+        sudo rm -rf /var/crash/* 2>/dev/null || true
+      fi
+    fi
+  else
+    log_error "Could not obtain sudo privileges. Skipping system caches."
+  fi
+fi
+
+# --------------------------------------------------------------------------------------
+# Summary & Free Space Report
+# --------------------------------------------------------------------------------------
+END_FREE_KB="$(get_free_kb)"
+END_FREE_HUMAN="$(df -Ph / | awk 'NR==2 {print $4}')"
+RECLAIMED_KB=$((END_FREE_KB - START_FREE_KB))
+
+echo
+log_blue "=========================================================="
+log_blue " Cache cleanup completed on ${OS}!"
+log_blue " Free space before: ${START_FREE_HUMAN}"
+log_blue " Free space after:  ${END_FREE_HUMAN}"
+if [[ "${RECLAIMED_KB}" -gt 0 ]]; then
+  log_blue " Space reclaimed:   ~$(human_readable_diff "${RECLAIMED_KB}")"
+fi
+log_blue "=========================================================="
