@@ -98,12 +98,12 @@ jobs:
           if [[ -z "${files}" ]]; then
             echo "no Makefiles found, skipping"; exit 0
           fi
-          curl -sSL -o /tmp/checkmake-v${CHECKMAKE_VERSION}.linux.amd64 \
+          curl -sSL -o "/tmp/checkmake-v${CHECKMAKE_VERSION}.linux.amd64" \
             "https://github.com/checkmake/checkmake/releases/download/v${CHECKMAKE_VERSION}/checkmake-v${CHECKMAKE_VERSION}.linux.amd64"
           curl -sSL -o /tmp/checkmake-checksums.txt \
             "https://github.com/checkmake/checkmake/releases/download/v${CHECKMAKE_VERSION}/checksums.txt"
           (cd /tmp && sha256sum --ignore-missing -c checkmake-checksums.txt)
-          mv /tmp/checkmake-v${CHECKMAKE_VERSION}.linux.amd64 /tmp/checkmake
+          mv "/tmp/checkmake-v${CHECKMAKE_VERSION}.linux.amd64" /tmp/checkmake
           chmod +x /tmp/checkmake
           echo "${files}" | xargs -I{} /tmp/checkmake {}
 
@@ -196,12 +196,12 @@ jobs:
           if [[ -z "${files}" ]]; then
             echo "no .nu files found, skipping"; exit 0
           fi
-          curl -sSL -o /tmp/nu-${NU_VERSION}-x86_64-unknown-linux-gnu.tar.gz \
+          curl -sSL -o "/tmp/nu-${NU_VERSION}-x86_64-unknown-linux-gnu.tar.gz" \
             "https://github.com/nushell/nushell/releases/download/${NU_VERSION}/nu-${NU_VERSION}-x86_64-unknown-linux-gnu.tar.gz"
           curl -sSL -o /tmp/nu-SHA256SUMS \
             "https://github.com/nushell/nushell/releases/download/${NU_VERSION}/SHA256SUMS"
           (cd /tmp && sha256sum --ignore-missing -c nu-SHA256SUMS)
-          tar xzf /tmp/nu-${NU_VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /tmp
+          tar xzf "/tmp/nu-${NU_VERSION}-x86_64-unknown-linux-gnu.tar.gz" -C /tmp
           NU_BIN="/tmp/nu-${NU_VERSION}-x86_64-unknown-linux-gnu/nu"
           for f in ${files}; do
             "${NU_BIN}" -c "nu-check --debug '${f}'"
