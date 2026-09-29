@@ -19,6 +19,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: shellcheck-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   shellcheck:
     name: 🔍 Lint shell scripts
