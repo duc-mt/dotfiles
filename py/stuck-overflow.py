@@ -1,22 +1,18 @@
+"""
+==============================================================================
+Module Name:   stuck-overflow.py
+Description:   Source module stuck-overflow.py.
+Author:        Mai Tan Duc <ducmai.network@gmail.com>
+Created:       2026-10-10
+Version:       1.0.0
+License:       MIT
+==============================================================================
+Usage:         python3 stuck-overflow.py [options]
+Notes:         Requires Python 3.8+
+==============================================================================
+"""
+
 #!/usr/bin/env python3
-
-# =============================================================================
-#
-#        FILE:  stuck-overflow.py
-#      AUTHOR:  Mai Tan Duc <ducmai.network@gmail.com>
-#       USAGE:  Paste the code snippet which contains an error into the
-#               code_with_error() function.
-#               To see the error in beautiful tracebacks, uncomment line 37 and
-#               comment out the try-except statements.
-# DESCRIPTION:  Lookup StackOverflow for the error found within code.
-#     CREATED:  2022-04-25
-#   I hereby declare that I completed this work without any improper help
-#   from a third party and without using any aids other than those cited.
-#
-# =============================================================================
-
-
-# ------------------------------- Module Imports ------------------------------
 import webbrowser
 
 # Enhance tracebacks

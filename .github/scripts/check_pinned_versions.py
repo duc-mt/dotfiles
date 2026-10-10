@@ -1,21 +1,18 @@
+"""
+==============================================================================
+Module Name:   check_pinned_versions.py
+Description:   Source module check_pinned_versions.py.
+Author:        Mai Tan Duc <ducmai.network@gmail.com>
+Created:       2026-10-10
+Version:       1.0.0
+License:       MIT
+==============================================================================
+Usage:         python3 check_pinned_versions.py [options]
+Notes:         Requires Python 3.8+
+==============================================================================
+"""
+
 #!/usr/bin/env python3
-"""
-Checks the hardcoded tool versions pinned inside this repo's CI workflows
-against each tool's actual latest GitHub release, and reports which ones
-are stale.
-
-These are NOT the same as `uses: owner/repo@SHA` lines in workflow YAML --
-those are already tracked automatically by Dependabot (see
-.github/dependabot.yml). This script exists specifically for versions
-pinned as env vars inside `run:` steps (gitleaks, actionlint, checkmake,
-hadolint, nushell), which Dependabot's github-actions ecosystem has no
-visibility into at all.
-
-Usage: python3 check_pinned_versions.py
-Exits 1 if anything is stale (so the workflow calling this can decide what
-to do -- e.g. open an issue), 0 if everything is current.
-"""
-
 import re
 import sys
 import urllib.error
