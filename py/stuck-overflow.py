@@ -39,10 +39,11 @@ def main():
         code_with_error()
     except Exception as e:
         import urllib.parse
+
         query = urllib.parse.quote_plus(str(e))
         webbrowser.open("https://stackoverflow.com/search?q=[python]+" + query)
 
 
 # -------------------------- Call the Main Function ---------------------------
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

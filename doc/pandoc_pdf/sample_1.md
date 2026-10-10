@@ -18,11 +18,11 @@ odd_numbers = []
 even_numbers = []
 
 for num in numbers:
-    odd_numbers.append(num) if(num % 2) else even_numbers.append(num)
+    odd_numbers.append(num) if (num % 2) else even_numbers.append(num)
 
-print(f'numbers:      {numbers}')
-print(f'odd_numbers:  {odd_numbers}')
-print(f'even_numbers: {even_numbers}')
+print(f"numbers:      {numbers}")
+print(f"odd_numbers:  {odd_numbers}")
+print(f"even_numbers: {even_numbers}")
 ```
 
 # Ruby
