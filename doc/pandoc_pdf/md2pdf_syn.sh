@@ -1,4 +1,15 @@
 #!/bin/bash
+# ==============================================================================
+# Script Name:   md2pdf_syn.sh
+# Description:   Implementation and logic for md2pdf_syn.
+# Author:        Mai Tan Duc <ducmai.network@gmail.com>
+# Created:       2026-10-10
+# Version:       1.0.0
+# License:       MIT
+# ==============================================================================
+# Usage:         ./md2pdf_syn.sh [options] [arguments]
+# Notes:         Automated bash utility script
+# ==============================================================================
 
 pandoc "$1" \
     -f gfm \

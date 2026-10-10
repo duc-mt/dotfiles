@@ -1,3 +1,11 @@
+# ==============================================================================
+# File Name:     .yamllint.yml
+# Description:   Implementation and logic for .yamllint.
+# Author:        Mai Tan Duc <ducmai.network@gmail.com>
+# Created:       2026-10-10
+# Version:       1.0.0
+# License:       MIT
+# ==============================================================================
 ---
 # Relaxed relative to yamllint's defaults specifically for GitHub Actions
 # workflow YAML -- see CONTRIBUTING.md.

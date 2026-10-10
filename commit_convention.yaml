@@ -1,3 +1,11 @@
+# ==============================================================================
+# File Name:     commit_convention.yaml
+# Description:   Implementation and logic for commit_convention.
+# Author:        Mai Tan Duc <ducmai.network@gmail.com>
+# Created:       2026-10-10
+# Version:       1.0.0
+# License:       MIT
+# ==============================================================================
 ## commit_convention.yml
 ## omit the commit_types to use the default angular-style commit types
 # commit_types:
