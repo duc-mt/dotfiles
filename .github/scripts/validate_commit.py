@@ -1,6 +1,7 @@
+import pathlib
 import re
 import sys
-import pathlib
+
 import yaml
 
 root_dir = pathlib.Path(__file__).resolve().parent.parent.parent

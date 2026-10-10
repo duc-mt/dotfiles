@@ -18,8 +18,8 @@ to do -- e.g. open an issue), 0 if everything is current.
 
 import re
 import sys
-import urllib.request
 import urllib.error
+import urllib.request
 
 # tool name -> (repo, file containing the pin, exact env-var line to match)
 PINS = {
