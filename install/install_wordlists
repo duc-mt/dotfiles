@@ -3,7 +3,7 @@
 # ======================================================================================
 #
 #         FILE:  install_wordlists
-#       AUTHOR:  Duc Mai <ducmai.network@gmail.com>
+#       AUTHOR:  Mai Tan Duc <ducmai.network@gmail.com>
 #      COMPANY:  ---
 #        USAGE:  ./install_wordlists
 #  DESCRIPTION:  Install the Vietnamese and English wordlists into /usr/share/dict

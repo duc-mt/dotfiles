@@ -3,7 +3,7 @@
 # ======================================================================================
 #
 #         FILE:  install_pandoc_tools
-#       AUTHOR:  Duc Mai <ducmai.network@gmail.com>
+#       AUTHOR:  Mai Tan Duc <ducmai.network@gmail.com>
 #      COMPANY:  ---
 #        USAGE:  ./install_pandoc_tools
 #  DESCRIPTION:  Install pandoc-from-markdown-to-pdf and its required fonts

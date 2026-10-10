@@ -3,7 +3,7 @@
 # ======================================================================================
 #
 #         FILE:  bootstrap
-#       AUTHOR:  Duc Mai <ducmai.network@gmail.com>
+#       AUTHOR:  Mai Tan Duc <ducmai.network@gmail.com>
 #      COMPANY:  ---
 #        USAGE:  ./bootstrap
 #  DESCRIPTION:  Set up a new Debian distribution.
@@ -156,7 +156,7 @@ if [[ -n "${BOOTSTRAP_ANSWER:-}" ]]; then
       ;;
   esac
 else
-  log_manual_action "Are you \"Duc Mai\"?"
+  log_manual_action "Are you \"Mai Tan Duc\"?"
   select answer in "Yes" "No"; do
     [[ "${answer}" == "Yes" || "${answer}" == "No" ]] && break
     log_error "1 or 2"

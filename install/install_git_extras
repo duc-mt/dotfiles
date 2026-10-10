@@ -3,7 +3,7 @@
 # ======================================================================================
 #
 #         FILE:  install_git_extras
-#       AUTHOR:  Duc Mai <ducmai.network@gmail.com>
+#       AUTHOR:  Mai Tan Duc <ducmai.network@gmail.com>
 #      COMPANY:  ---
 #        USAGE:  ./install_git_extras
 #  DESCRIPTION:  Install git-submanage, git-completion, and blackbox
