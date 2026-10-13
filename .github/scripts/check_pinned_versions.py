@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 ==============================================================================
 Module Name:   check_pinned_versions.py
@@ -12,7 +13,6 @@ Notes:         Requires Python 3.8+
 ==============================================================================
 """
 
-#!/usr/bin/env python3
 import re
 import sys
 import urllib.error
