@@ -37,9 +37,6 @@
 [submodule "doc/linux/Linux-Privilege-Escalation-MindMap"]
 	path = doc/linux/Linux-Privilege-Escalation-MindMap
 	url = https://github.com/0xTRAW/Linux-Privilege-Escalation-MindMap.git
-[submodule "doc/security/hackingtool"]
-	path = doc/security/hackingtool
-	url = https://github.com/Z4nzu/hackingtool.git
 [submodule "doc/the-book-of-secret-knowledge"]
 	path = doc/the-book-of-secret-knowledge
 	url = https://github.com/trimstray/the-book-of-secret-knowledge.git
