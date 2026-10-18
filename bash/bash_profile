@@ -29,11 +29,11 @@ fi
 # (offline, slow network, etc.) are silently ignored.
 (
   cd "${DOTFILES}" 2>/dev/null \
-    && timeout 5 git pull --quiet origin master && git-sub-update
+    && timeout 5 git pull --quiet origin main && git-sub-update
   cd "${DOTVIM}" 2>/dev/null \
-    && timeout 5 git pull --quiet origin master && git-sub-update
+    && timeout 5 git pull --quiet origin main && git-sub-update
   cd "${HOME}/my-site" 2>/dev/null \
-    && timeout 5 git pull --quiet origin master && git-sub-update
+    && timeout 5 git pull --quiet origin main && git-sub-update
 ) &>/dev/null &
 disown
 

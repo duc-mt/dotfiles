@@ -15,7 +15,7 @@ Targets **Debian-based distributions** (Debian, Kali, Ubuntu) via `apt`, includi
 To provision a brand-new machine, run the following one-liner:
 
 ```bash
-bash -c "$(wget -qO- https://raw.githubusercontent.com/duc-mt/dotfiles/master/install/bootstrap)"
+bash -c "$(wget -qO- https://raw.githubusercontent.com/duc-mt/dotfiles/main/install/bootstrap)"
 ```
 
 `install/bootstrap` is a one-shot provisioning script.
