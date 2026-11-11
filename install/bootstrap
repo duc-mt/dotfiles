@@ -394,6 +394,14 @@ sudo mv -v /tmp/mr /usr/local/bin/mr
 log_task "Installing pandoc-from-markdown-to-pdf and its fonts ..."
 run_install_script install_pandoc_tools
 
+log_task "Installing JetBrains Mono Nerd Font ..."
+mkdir -p "${HOME}/.local/share/fonts"
+curl -fLo /tmp/JetBrainsMono.tar.xz \
+  https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.tar.xz
+tar -xf /tmp/JetBrainsMono.tar.xz -C "${HOME}/.local/share/fonts/"
+fc-cache -f 2>/dev/null || true
+rm -f /tmp/JetBrainsMono.tar.xz
+
 log_task "Installing git-submanage, git completion, and blackbox ..."
 run_install_script install_git_extras
 
