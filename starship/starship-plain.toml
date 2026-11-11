@@ -1,0 +1,357 @@
+# ~/.config/starship/starship-plain.toml   -- ASCII-only twin of starship.toml
+# For the Linux VT, KVM/serial consoles, PuTTY-style terminals without a Nerd Font.
+# Same layout and colours; every icon/symbol is plain ASCII. Selected automatically
+# by starship.zsh when TERM=linux, or on demand with STARSHIP_PLAIN=1 / `starship_plain`.
+# Generated from starship.toml: if you change layout there, re-derive or edit here too.
+"$schema" = "https://starship.rs/config-schema.json"
+
+# -- Global --------------------------------------------------------------------
+add_newline     = true
+scan_timeout    = 30        # ms spent scanning a dir for project files (default)
+command_timeout = 500       # ms before a slow module/custom command is dropped
+follow_symlinks = false
+palette         = "solarized_osaka"   # solarized_osaka | catppuccin_mocha | tokyonight_night | nord | gruvbox_dark | one_dark
+
+format = """
+$username\
+$hostname\
+$localip\
+$container\
+$directory\
+${custom.git_ctx}\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$fill\
+$python\
+$golang\
+$nodejs\
+$docker_context\
+$rust\
+$lua\
+$jobs\
+$line_break\
+$character"""
+
+# zsh draws this as RPROMPT on line 2 and hides it automatically when you type
+# a long command.
+right_format = """$status$cmd_duration$time"""
+
+# -- Remote / identity ---------------------------------------------------------
+# Shown ONLY over SSH or as root, so you always know which box you are typing on.
+[username]
+show_always = false
+style_user  = "fg:overlay1"
+style_root  = "bold fg:red"
+format      = "[$user]($style) "
+
+[hostname]
+ssh_only   = true
+ssh_symbol = "ssh:"                   # sitemap icon
+style      = "bold fg:peach"
+format     = "[$ssh_symbol$hostname]($style) "
+trim_at    = "."
+
+# IPv4 of the primary interface -- also SSH-only, so over SSH you see which address
+# you landed on:  host 10.20.0.15.  (On multi-homed boxes it is the primary NIC.)
+[localip]
+ssh_only = true
+style    = "fg:overlay1"
+format   = "[$localipv4]($style) "
+disabled = false
+
+[container]
+symbol = "ctr"
+style  = "fg:overlay1"
+format = "[$symbol]($style) "
+
+# -- Directory -----------------------------------------------------------------
+[directory]
+style             = "fg:sapphire"
+repo_root_style   = "bold fg:sapphire"        # repo name stands out inside the path
+format            = "[$path]($style)[$read_only]($read_only_style) "
+repo_root_format  = "[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
+truncation_length = 3
+truncation_symbol = ".../"
+truncate_to_repo  = true
+read_only         = " [ro]"
+read_only_style   = "fg:red"
+
+# -- Git -----------------------------------------------------------------------
+# One cheap custom module: remote-host icon (GitHub/GitLab/...) plus a chain icon
+# when you are inside a linked `git worktree`. Plain POSIX sh, runs only inside a
+# repo (require_repo), 2 git calls.
+[custom.git_ctx]
+description  = "Git remote icon + linked-worktree marker"
+when         = true
+require_repo = true
+shell        = ["sh"]
+style        = "fg:overlay1"
+format       = "[$output]($style) "
+command      = """
+url=$(git config --get remote.origin.url 2>/dev/null)
+case "$url" in
+  *github*)    i="gh" ;;
+  *gitlab*)    i="gl" ;;
+  *bitbucket*) i="bb" ;;
+  *codeberg*)  i="git" ;;
+  "")          i=""       ;;
+  *)           i="git" ;;
+esac
+{ IFS= read -r g; IFS= read -r c; } <<EOF
+$(git rev-parse --path-format=absolute --git-dir --git-common-dir 2>/dev/null)
+EOF
+[ "$g" != "$c" ] && i="$i wt"
+printf '%s' "$i"
+"""
+
+[git_branch]
+symbol            = ""
+style             = "fg:branch"
+format            = "[$symbol$branch(:$remote_branch)]($style) "
+truncation_length = 40
+truncation_symbol = "..."
+
+# Only appears on a detached HEAD (checked out a tag / commit / bisecting).
+[git_commit]
+only_detached = true
+tag_disabled  = true
+style         = "fg:peach"
+format        = "[\\($hash\\)]($style) "
+
+[git_state]
+style        = "bold fg:yellow"
+format       = "[$state( $progress_current/$progress_total)]($style) "
+rebase       = "REBASING"
+merge        = "MERGING"
+revert       = "REVERTING"
+cherry_pick  = "CHERRY-PICK"
+bisect       = "BISECTING"
+am           = "AM"
+am_or_rebase = "AM/REBASE"
+
+# Each item carries its own trailing space; the fill after it hides the last one.
+[git_status]
+format            = "([$all_status$ahead_behind]($style))"
+style             = "fg:red"
+ignore_submodules = true            # big speed-up on repos with submodules
+conflicted        = "[x$count ](bold fg:red)"
+staged            = "[+$count ](fg:green)"
+modified          = "[!$count ](fg:yellow)"
+renamed           = "[>>$count ](fg:blue)"
+deleted           = "[-$count ](fg:red)"
+untracked         = "[?$count ](fg:peach)"
+stashed           = "[S$count ](fg:mauve)"
+ahead             = "[^$count ](fg:teal)"
+behind            = "[v$count ](fg:peach)"
+diverged          = "[^${ahead_count}v${behind_count} ](fg:mauve)"
+up_to_date        = ""
+
+# -- Spacer --------------------------------------------------------------------
+[fill]
+symbol = "-"                        # set to " " for a plain gap
+style  = "fg:surface2"
+
+# -- Language / tool badges (shown only when matching files are detected) ------
+# Versions are shown (`$version`). Measured here: python + node versions add ~1 ms
+# per prompt (9 -> 10 ms avg). `go` / `rustc` could not be measured on the test box,
+# and a go.mod with a newer `toolchain` line can make `go version` slow. If a repo
+# ever feels laggy, drop `($version )` from that module's format -> icon-only badge.
+[python]
+symbol             = "py "
+style              = "fg:yellow"
+format             = "[$symbol($version )(\\($virtualenv\\) )]($style)"
+version_format     = "v${major}.${minor}"
+detect_extensions  = ["py"]
+detect_files       = ["pyproject.toml", "requirements.txt", "setup.py", ".python-version", "Pipfile"]
+detect_folders     = [".venv", "venv"]
+pyenv_version_name = false
+
+[golang]
+symbol            = "go "
+style             = "fg:sky"
+format            = "[$symbol($version )]($style)"
+version_format    = "v${major}.${minor}"
+detect_files      = ["go.mod", "go.sum", "go.work"]
+detect_extensions = ["go"]
+
+[nodejs]
+symbol         = "node "
+style          = "fg:green"
+format         = "[$symbol($version )]($style)"
+version_format = "v${major}.${minor}"
+detect_files   = ["package.json", ".nvmrc", ".node-version"]
+detect_folders = ["node_modules"]
+
+# Was in `format` but switched OFF in the old config, so it never showed.
+# Starship hides the *default* context: this only renders for a non-default one
+# (or DOCKER_HOST / DOCKER_CONTEXT set), e.g. a context pointing at a lab server.
+[docker_context]
+symbol            = "docker "
+style             = "fg:blue"
+format            = "[$symbol$context]($style) "
+only_with_files   = true
+detect_files      = ["docker-compose.yml", "docker-compose.yaml", "compose.yml", "compose.yaml", "Dockerfile"]
+detect_extensions = []
+detect_folders    = []
+
+[rust]
+symbol            = "rs "
+style             = "fg:peach"
+format            = "[$symbol($version )]($style)"
+version_format    = "v${major}.${minor}"
+detect_files      = ["Cargo.toml"]
+detect_extensions = ["rs"]
+
+[lua]
+symbol            = "lua "
+style             = "fg:blue"
+format            = "[$symbol($version )]($style)"
+version_format    = "v${major}.${minor}"
+detect_files      = [".lua-version"]
+detect_extensions = ["lua"]
+detect_folders    = ["lua"]
+
+[jobs]
+symbol           = "jobs "
+style            = "fg:yellow"
+number_threshold = 1
+format           = "[$symbol$number]($style) "
+
+# -- Prompt character ----------------------------------------------------------
+[character]
+success_symbol            = "[>](bold fg:ok)"
+error_symbol              = "[>](bold fg:red)"
+vimcmd_symbol             = "[<](bold fg:yellow)"
+vimcmd_replace_one_symbol = "[<](bold fg:mauve)"
+vimcmd_replace_symbol     = "[<](bold fg:mauve)"
+vimcmd_visual_symbol      = "[<](bold fg:peach)"
+
+# -- Right prompt --------------------------------------------------------------
+# Exit code of the last command (script/CLI return codes matter), plus per-stage
+# codes for pipelines like `ping ... | grep ...` -> "0|1".
+[status]
+disabled             = false
+symbol               = "x "
+style                = "bold fg:red"
+format               = "[$symbol$status]($style) "
+pipestatus           = true
+pipestatus_separator = "|"
+pipestatus_format    = "[$symbol$pipestatus]($style) "
+pipestatus_segment_format = "[$status]($style)"
+
+[cmd_duration]
+min_time          = 1000        # (500 + no-milliseconds rendered 0.8 s as "0s")
+show_milliseconds = false
+style             = "fg:overlay1"
+format            = "[took $duration]($style) "
+
+# Timestamp of when the command finished -- handy for change-window notes.
+[time]
+disabled    = false
+time_format = "%T"
+style       = "fg:overlay0"
+format      = "[$time]($style)"
+
+# -- Palettes ------------------------------------------------------------------
+# Every palette defines the SAME 14 names, so switching `palette` above is safe.
+# `ok` = prompt-success colour, `branch` = git branch colour; the rest are literal
+# (green is green, red is red). The old file mapped green -> blue and lavender ->
+# pink-red, which made every `fg:green` / `fg:lavender` quietly lie. Your exact
+# look is preserved through `ok` and `branch` in solarized_osaka.
+[palettes.solarized_osaka]
+sapphire = "#268bd2"
+blue     = "#268bd2"
+sky      = "#2aa198"
+teal     = "#94e2d5"
+green    = "#859900"
+yellow   = "#b58900"
+peach    = "#cb4b16"
+red      = "#dc322f"
+mauve    = "#6c71c4"
+overlay0 = "#586e75"
+overlay1 = "#657b83"
+surface2 = "#124652"
+ok       = "#61AFEF"
+branch   = "#f84668"
+
+[palettes.catppuccin_mocha]
+sapphire = "#74c7ec"
+blue     = "#89b4fa"
+sky      = "#89dceb"
+teal     = "#94e2d5"
+green    = "#a6e3a1"
+yellow   = "#f9e2af"
+peach    = "#fab387"
+red      = "#f38ba8"
+mauve    = "#cba6f7"
+overlay0 = "#6c7086"
+overlay1 = "#7f849c"
+surface2 = "#585b70"
+ok       = "#a6e3a1"
+branch   = "#b4befe"
+
+[palettes.tokyonight_night]
+sapphire = "#7aa2f7"
+blue     = "#7aa2f7"
+sky      = "#7dcfff"
+teal     = "#73daca"
+green    = "#9ece6a"
+yellow   = "#e0af68"
+peach    = "#ff9e64"
+red      = "#f7768e"
+mauve    = "#bb9af7"
+overlay0 = "#565f89"
+overlay1 = "#737aa2"
+surface2 = "#414868"
+ok       = "#9ece6a"
+branch   = "#bb9af7"
+
+[palettes.nord]
+sapphire = "#81A1C1"
+blue     = "#5E81AC"
+sky      = "#88C0D0"
+teal     = "#8FBCBB"
+green    = "#A3BE8C"
+yellow   = "#EBCB8B"
+peach    = "#D08770"
+red      = "#BF616A"
+mauve    = "#B48EAD"
+overlay0 = "#616E82"
+overlay1 = "#6E7C8C"
+surface2 = "#4C566A"
+ok       = "#A3BE8C"
+branch   = "#B48EAD"
+
+[palettes.gruvbox_dark]
+sapphire = "#83a598"
+blue     = "#83a598"
+sky      = "#8ec07c"
+teal     = "#8ec07c"
+green    = "#b8bb26"
+yellow   = "#fabd2f"
+peach    = "#fe8019"
+red      = "#fb4934"
+mauve    = "#d3869b"
+overlay0 = "#7c6f64"
+overlay1 = "#a89984"
+surface2 = "#504945"
+ok       = "#b8bb26"
+branch   = "#d3869b"
+
+[palettes.one_dark]
+sapphire = "#61AFEF"
+blue     = "#61AFEF"
+sky      = "#56B6C2"
+teal     = "#56B6C2"
+green    = "#98C379"
+yellow   = "#E5C07B"
+peach    = "#D19A66"
+red      = "#E06C75"
+mauve    = "#C678DD"
+overlay0 = "#5C6370"
+overlay1 = "#636D83"
+surface2 = "#3E4452"
+ok       = "#98C379"
+branch   = "#C678DD"

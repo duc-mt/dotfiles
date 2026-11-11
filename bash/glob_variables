@@ -40,7 +40,7 @@ export GPGKEY="D2F1F3739A4E465E737C1F38F9E91488183ED044" # gitleaks:allow -- pub
 # shellcheck disable=SC2155
 export GPG_TTY=$(tty)
 
-export STARSHIP_CONFIG="${DOTFILES}/bash/starship.toml"
+export STARSHIP_CONFIG="${HOME}/.config/starship/starship.toml"
 
 export PIP_CONSTRAINT="${DOTFILES}/py/constraints.txt"
 
